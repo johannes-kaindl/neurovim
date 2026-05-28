@@ -1,0 +1,21 @@
+{
+  "name": "@neurovim/adapter-web",
+  "version": "0.0.0",
+  "description": "Standalone-Web-App-Target (Vite-SPA): implementiert die @neurovim/core Ports für den Browser.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "echo \"(Phase 3: vite)\"",
+    "build": "echo \"(Phase 3: vite build → dist/)\""
+  },
+  "dependencies": {
+    "@neurovim/core": "*",
+    "@neurovim/content": "*"
+  },
+  "peerDependencies": {
+    "preact": "^10.29.1",
+    "@codemirror/state": "^6.0.0",
+    "@codemirror/view": "^6.0.0"
+  },
+  "comment-phase3-deps": "@replit/codemirror-vim (Vim-Mode), vite, idb (IndexedDB-Wrapper) — erst bei Phase 3 installieren."
+}

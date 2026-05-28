@@ -1,0 +1,15 @@
+{
+  "name": "@neurovim/core",
+  "version": "0.0.0",
+  "description": "Plattform-neutraler Kern: Game-Logic, Web-Audio, Preact-UI, Port-Interfaces.",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "echo \"(Tests wandern in Phase 3 aus _dev/plugin-src/tests/ hierher)\""
+  },
+  "peerDependencies": {
+    "preact": "^10.29.1"
+  }
+}

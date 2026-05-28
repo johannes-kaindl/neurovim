@@ -1,0 +1,11 @@
+{
+  "name": "@neurovim/content",
+  "version": "0.0.0",
+  "description": "Versionierte Content-Quelle: Missionen, Katas, Loot, Fragments, Story-Bible, World-Codex.",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "echo \"(Phase 3: Markdown+Frontmatter → typisiertes JSON)\""
+  }
+}
