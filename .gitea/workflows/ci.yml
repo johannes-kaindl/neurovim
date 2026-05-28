@@ -1,0 +1,27 @@
+# Codeberg / Forgejo Actions — CI (Stub)
+# Gitea-kompatible Syntax; Codeberg liest .gitea/workflows/ und .forgejo/workflows/.
+# Phase-2-Skelett: Build + Typecheck über alle Workspaces. Tests/Lint folgen in Phase 3.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        run: npm install
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build
+        run: npm run build
+      # TODO Phase 3: - name: Test
+      #   run: npm test
