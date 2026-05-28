@@ -6,15 +6,22 @@
  *  - data/     statische Daten (chapters, levels, cheatsheet, cipher-quotes)
  *  - audio/    Web-Audio-Engine (AudioEngine, SoundCues, AmbientLayer, CommandListener)
  *  - ui/       Preact-Components (FloatHUD, SandboxHUD, AsciiArt, *Module, NexusDashboard)
- *  - ports/    die vier Plattform-Interfaces (siehe unten)
+ *  - types.ts  kanonisches State-Schema ✅
+ *  - ports/    die Plattform-Interfaces ✅
  *
  * Hängt NIEMALS direkt an `obsidian`. Plattform-Spezifik kommt ausschließlich
- * über die vier Ports, die adapter-obsidian / adapter-web implementieren.
+ * über die Ports, die adapter-obsidian / adapter-web implementieren.
+ *
+ * Phase-3-Schritt-1 (Interfaces) abgeschlossen: types.ts + 4 finalisierte Ports
+ * (StoragePort, ContentPort, AudioPort, VimModeSource) + UiHost (P5). ADR-001 §Decisions.
  */
+export * from './types';
+
+export * from './ports/StoragePort';
+export * from './ports/ContentPort';
+export * from './ports/AudioPort';
 export * from './ports/VimModeSource';
-export * from './ports/StateStore';
-export * from './ports/ContentSource';
 export * from './ports/UiHost';
 
-// TODO Phase 3 (Migrations-Schritt 2): engine/data/audio/utils/types/ui aus
+// TODO Phase 3 Schritt 2 (Core-Move): engine/data/audio/utils/ui aus
 // 32_NeuroVim/_dev/plugin-src/src/ hierher bewegen + Re-Exports ergänzen.
