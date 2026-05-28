@@ -6,10 +6,10 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc -b",
-    "test": "echo \"(Tests wandern in Phase 3 aus _dev/plugin-src/tests/ hierher)\""
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"(core-Tests: Phase 3 Schritt 2 — Jest-Setup folgt)\""
   },
-  "peerDependencies": {
+  "dependencies": {
     "preact": "^10.29.1"
   }
 }
