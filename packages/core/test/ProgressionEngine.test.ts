@@ -154,4 +154,33 @@ describe('ProgressionEngine', () => {
       expect(r.runs).toBe(3);
     });
   });
+
+  describe('getXpProgress', () => {
+    it('reports progress within level 1 toward level 2 (66 xp)', () => {
+      const p = ProgressionEngine.getXpProgress(33);
+      expect(p.level).toBe(1);
+      expect(p.into).toBe(33);
+      expect(p.span).toBe(66);
+      expect(p.pct).toBe(50);
+      expect(p.nextLevelXp).toBe(66);
+      expect(p.nextTitle).toBe('GHOST OPERATOR');
+    });
+
+    it('reports progress within a mid level', () => {
+      const p = ProgressionEngine.getXpProgress(186); // exactly level 3 start
+      expect(p.level).toBe(3);
+      expect(p.into).toBe(0);
+      expect(p.span).toBe(371 - 186);
+      expect(p.pct).toBe(0);
+      expect(p.nextTitle).toBe('NEON WRAITH');
+    });
+
+    it('caps at max level (no next)', () => {
+      const p = ProgressionEngine.getXpProgress(3000); // beyond level 10
+      expect(p.level).toBe(10);
+      expect(p.pct).toBe(100);
+      expect(p.nextLevelXp).toBeNull();
+      expect(p.nextTitle).toBeNull();
+    });
+  });
 });

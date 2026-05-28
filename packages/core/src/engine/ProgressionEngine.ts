@@ -57,6 +57,25 @@ export class ProgressionEngine {
   }
 
   /**
+   * XP-Fortschritt innerhalb des aktuellen Levels (für den NEXUS-Progress-Bar).
+   * `into`/`span` = XP seit Level-Start / bis zum nächsten Level; `pct` 0..100.
+   * Auf Max-Level: pct=100, nextLevelXp=null, nextTitle=null.
+   */
+  static getXpProgress(xp: number): {
+    level: number; into: number; span: number; pct: number;
+    nextLevelXp: number | null; nextTitle: string | null;
+  } {
+    const level = this.getLevelForXp(xp);
+    const cur = this.getLevelData(level);
+    const next = LEVELS.find(l => l.level === level + 1);
+    if (!next) return { level, into: 0, span: 0, pct: 100, nextLevelXp: null, nextTitle: null };
+    const span = next.xp_required - cur.xp_required;
+    const into = xp - cur.xp_required;
+    const pct = span > 0 ? Math.min(100, Math.round((into / span) * 100)) : 100;
+    return { level, into, span, pct, nextLevelXp: next.xp_required, nextTitle: next.title };
+  }
+
+  /**
    * Personal-Best-Update für eine Mission nach einem erfolgreichen Run.
    * best_time_ms / best_keystrokes = Minimum (kleiner = besser; 0 = noch kein Best),
    * best_ks_per_min = Maximum (höherer Durchsatz). `runs` inkrementiert.

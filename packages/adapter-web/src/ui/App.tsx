@@ -105,23 +105,36 @@ export function App() {
     );
   }
 
-  const level = ProgressionEngine.getLevelForXp(data.total_xp);
-  const levelData = ProgressionEngine.getLevelData(level);
+  const progress = ProgressionEngine.getXpProgress(data.total_xp);
+  const levelData = ProgressionEngine.getLevelData(progress.level);
   const missions = listMissions('I');
+  const cleared = missions.filter((m) => data.completed_missions.includes(m.mission_id)).length;
+  const times = missions
+    .map((m) => data.missions[m.mission_id]?.best_time_ms ?? 0)
+    .filter((t) => t > 0);
+  const fastest = times.length ? Math.min(...times) : null;
 
   return (
     <div class="nv-app" onPointerDown={unlockAudio}>
       <header class="nv-nexus-head">
         <h1>&gt;_ NEXUS</h1>
+        <div class="nv-lvl-row">
+          <span class="nv-lvl">LVL {progress.level} · {levelData.title}</span>
+          <span class="nv-lvl-next">
+            {progress.nextTitle
+              ? `${data.total_xp} / ${progress.nextLevelXp} XP → ${progress.nextTitle}`
+              : `${data.total_xp} XP · MAX`}
+          </span>
+        </div>
+        <div class="nv-xpbar"><div class="nv-xpbar-fill" style={{ width: `${progress.pct}%` }} /></div>
         <div class="nv-stats">
-          <span>LVL {level} · {levelData?.title ?? '—'}</span>
-          <span>{data.total_xp} XP</span>
-          <span>Completed {data.completed_missions.length}/{missions.length}</span>
+          <span>Cleared {cleared}/{missions.length}</span>
           <span>Streak {data.streak_current}</span>
+          {fastest != null && <span>Fastest {fmtTime(fastest)}</span>}
         </div>
       </header>
       <section class="nv-picker">
-        <h2>ARC I — Indoctrination</h2>
+        <h2>ARC I — Indoctrination <span class="nv-arc-prog">{cleared}/{missions.length} cleared</span></h2>
         <ul>
           {missions.map((m) => {
             const rec = data.missions[m.mission_id];
