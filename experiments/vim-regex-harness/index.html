@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeuroVim · Vim-Regex-Parität-Spike</title>
+    <style>
+      body { font-family: ui-monospace, monospace; margin: 0; background: #0b0e0c; color: #d7e0d7; }
+      header { padding: 12px 16px; background: #11160f; border-bottom: 1px solid #1f2a1c; }
+      header h1 { font-size: 15px; margin: 0 0 4px; color: #39ff7a; }
+      header p { font-size: 12px; margin: 2px 0; color: #8aa68a; }
+      .cases { padding: 10px 16px; font-size: 12px; }
+      .cases code { background: #1a221a; padding: 1px 5px; border-radius: 3px; color: #9fe6b8; }
+      .cases li { margin: 6px 0; }
+      #editor { border-top: 1px solid #1f2a1c; height: 60vh; }
+      .cm-editor { height: 100%; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Vim-Regex-Parität-Spike — @replit/codemirror-vim</h1>
+      <p>Editor ist im Vim-Normal-Mode. Tippe die <code>:%s</code>-Kommandos unten, vergleiche Ergebnis mit der Erwartung.</p>
+      <p>Findings dokumentieren in <code>experiments/vim-regex-findings.md</code>.</p>
+    </header>
+    <div class="cases">
+      <ol>
+        <li><b>R-08 very-magic:</b> <code>:%s/\v(ALPHA|BETA|GAMMA)-TIER/TIER-1/g</code> → erwartet: alle drei Tier-Labels → <code>TIER-1</code></li>
+        <li><b>R-07 lazy:</b> <code>:%s/&lt;.\{-}&gt;//g</code> → erwartet: XML-Tags entfernt, Payload bleibt (lazy, nicht greedy)</li>
+        <li><b>R-10 capture+backref:</b> <code>:%s/\(\w\+\): \(\w\+\)/\2 = \1/</code> → erwartet: <code>KEY: value</code> → <code>value = KEY</code></li>
+      </ol>
+    </div>
+    <div id="editor"></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
