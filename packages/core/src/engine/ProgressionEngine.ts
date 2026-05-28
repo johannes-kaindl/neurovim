@@ -1,5 +1,6 @@
-import { PluginData, LevelUpResult } from '../types';
+import { PluginData, LevelUpResult, MissionRecord } from '../types';
 import { LEVELS, UNLOCK_MAP } from '../data/levels';
+import type { MetricsResult } from './MetricsTracker';
 
 interface AddXpResult {
   new_data: PluginData;
@@ -53,5 +54,26 @@ export class ProgressionEngine {
 
   static getLevelData(level: number) {
     return LEVELS.find(l => l.level === level) ?? LEVELS[0];
+  }
+
+  /**
+   * Personal-Best-Update für eine Mission nach einem erfolgreichen Run.
+   * best_time_ms / best_keystrokes = Minimum (kleiner = besser; 0 = noch kein Best),
+   * best_ks_per_min = Maximum (höherer Durchsatz). `runs` inkrementiert.
+   * `today` ist injizierbar (Tests übergeben ein festes Datum).
+   */
+  static recordMissionRun(
+    prev: MissionRecord | undefined,
+    metrics: MetricsResult,
+    today: string = new Date().toISOString().slice(0, 10),
+  ): MissionRecord {
+    const lower = (cur: number, next: number) => (cur > 0 ? Math.min(cur, next) : next);
+    return {
+      best_time_ms: lower(prev?.best_time_ms ?? 0, metrics.elapsed_ms),
+      best_keystrokes: lower(prev?.best_keystrokes ?? 0, metrics.keystrokes),
+      best_ks_per_min: Math.max(prev?.best_ks_per_min ?? 0, metrics.ks_per_min),
+      runs: (prev?.runs ?? 0) + 1,
+      last_run: today,
+    };
   }
 }

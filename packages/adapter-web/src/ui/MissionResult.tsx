@@ -4,6 +4,8 @@
  * abweichen. Buttons: Retry/Review (Modal schließen), Next Mission, ← NEXUS.
  * Metrics-Felder (Zeit/Keystrokes) werden gerendert, sobald gesetzt (Item 6).
  */
+import { fmtTime } from './format';
+
 export interface MissionResultData {
   status: 'complete' | 'fail';
   xp?: number;
@@ -11,6 +13,12 @@ export interface MissionResultData {
   levelUp?: number | null;
   /** Fail: Anzahl noch abweichender Zeilen. */
   linesOff?: number;
+  /** Metrics dieses Runs (complete). */
+  timeMs?: number;
+  keystrokes?: number;
+  /** Persönliche Bestwerte nach diesem Run. */
+  bestTimeMs?: number;
+  bestKeystrokes?: number;
 }
 
 interface Props {
@@ -37,6 +45,17 @@ export function MissionResult({ result, missionTitle, hasNext, onRetry, onNext, 
             <div class="nv-modal-xp">+{result.xp ?? 0} XP</div>
             {result.levelUp != null && (
               <div class="nv-modal-levelup">LEVEL UP → {result.levelUp}</div>
+            )}
+            {result.timeMs != null && (
+              <div class="nv-modal-metrics">
+                <span>{fmtTime(result.timeMs)}</span>
+                <span>{result.keystrokes} keystrokes</span>
+                {(result.bestTimeMs != null || result.bestKeystrokes != null) && (
+                  <span class="nv-modal-best">
+                    best {fmtTime(result.bestTimeMs ?? result.timeMs)} · {result.bestKeystrokes ?? result.keystrokes} ks
+                  </span>
+                )}
+              </div>
             )}
           </div>
         ) : (

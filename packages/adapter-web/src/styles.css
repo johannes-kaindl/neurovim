@@ -26,6 +26,7 @@ button { font-family: inherit; cursor: pointer; }
 .nv-mid { color: var(--nv-accent); min-width: 56px; }
 .nv-mtitle { flex: 1; }
 .nv-mxp { color: var(--nv-muted); font-size: 12px; }
+.nv-mbest { color: var(--nv-accent); font-size: 11px; opacity: 0.75; white-space: nowrap; }
 .nv-done { color: var(--nv-accent); }
 
 .nv-loading { max-width: 900px; margin: 0 auto; padding: 24px 16px; color: var(--nv-muted); }
@@ -47,6 +48,8 @@ button { font-family: inherit; cursor: pointer; }
 .nv-modal-body { margin: 12px 0 20px; color: var(--nv-text); font-size: 14px; }
 .nv-modal-xp { font-size: 28px; color: var(--nv-accent); font-weight: bold; }
 .nv-modal-levelup { margin-top: 6px; color: var(--nv-accent); font-size: 13px; letter-spacing: 1px; }
+.nv-modal-metrics { margin-top: 12px; display: flex; flex-direction: column; gap: 2px; color: var(--nv-text); font-size: 13px; }
+.nv-modal-best { color: var(--nv-muted); font-size: 12px; }
 .nv-modal-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .nv-modal-actions button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 8px 14px; }
 .nv-modal-actions button:hover { border-color: var(--nv-accent); }

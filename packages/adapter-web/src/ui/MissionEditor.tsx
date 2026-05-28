@@ -8,20 +8,24 @@ import { EditorView, keymap, lineNumbers } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
 import { vim } from '@replit/codemirror-vim';
-import type { MissionDoc } from '@neurovim/core';
+import { MetricsTracker, type MetricsResult, type MissionDoc } from '@neurovim/core';
 
 interface Props {
   mission: MissionDoc;
-  onSubmit: (content: string) => void;
+  onSubmit: (content: string, metrics: MetricsResult) => void;
   onBack: () => void;
 }
 
 export function MissionEditor({ mission, onSubmit, onBack }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const view = useRef<EditorView | null>(null);
+  const metrics = useRef(new MetricsTracker());
 
   useEffect(() => {
     if (!host.current) return;
+    const tracker = metrics.current;
+    tracker.reset();
+    tracker.start();
     const v = new EditorView({
       parent: host.current,
       state: EditorState.create({
@@ -33,6 +37,8 @@ export function MissionEditor({ mission, onSubmit, onBack }: Props) {
           history(),
           keymap.of([...defaultKeymap, ...historyKeymap]),
           EditorView.lineWrapping,
+          // Jeder Tastendruck zählt (Vim-Effizienz-Metrik: weniger Keystrokes = besser).
+          EditorView.domEventHandlers({ keydown() { tracker.addKeystroke(); return false; } }),
           EditorView.theme({
             '&': { fontSize: '14px', height: '60vh', border: '1px solid #1f2a1c' },
             '.cm-content': { fontFamily: 'ui-monospace, monospace' },
@@ -51,7 +57,7 @@ export function MissionEditor({ mission, onSubmit, onBack }: Props) {
         <span class="nv-editor-title">{mission.mission_id} · {mission.title}</span>
         <button
           class="nv-submit"
-          onClick={() => onSubmit(view.current?.state.doc.toString() ?? '')}
+          onClick={() => onSubmit(view.current?.state.doc.toString() ?? '', metrics.current.getResult())}
         >
           Submit (verify)
         </button>

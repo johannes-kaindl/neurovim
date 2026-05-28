@@ -123,4 +123,35 @@ describe('ProgressionEngine', () => {
     const result = ProgressionEngine.recordCompletion(data);
     expect(result.streak_current).toBe(1);
   });
+
+  describe('recordMissionRun', () => {
+    const m = (elapsed_ms: number, keystrokes: number, ks_per_min: number) => ({ elapsed_ms, keystrokes, ks_per_min });
+
+    it('seeds bests on the first run (no prev record)', () => {
+      const r = ProgressionEngine.recordMissionRun(undefined, m(12000, 45, 225), '2026-05-28');
+      expect(r.best_time_ms).toBe(12000);
+      expect(r.best_keystrokes).toBe(45);
+      expect(r.best_ks_per_min).toBe(225);
+      expect(r.runs).toBe(1);
+      expect(r.last_run).toBe('2026-05-28');
+    });
+
+    it('keeps the lower time/keystrokes and higher ks_per_min', () => {
+      const prev = { best_time_ms: 12000, best_keystrokes: 45, best_ks_per_min: 225, runs: 1, last_run: '2026-05-27' };
+      const r = ProgressionEngine.recordMissionRun(prev, m(9000, 50, 333), '2026-05-28');
+      expect(r.best_time_ms).toBe(9000);   // faster → updated
+      expect(r.best_keystrokes).toBe(45);  // 50 > 45 → kept
+      expect(r.best_ks_per_min).toBe(333); // higher → updated
+      expect(r.runs).toBe(2);
+    });
+
+    it('does not regress bests on a worse run', () => {
+      const prev = { best_time_ms: 9000, best_keystrokes: 40, best_ks_per_min: 333, runs: 2, last_run: '2026-05-28' };
+      const r = ProgressionEngine.recordMissionRun(prev, m(20000, 99, 100), '2026-05-29');
+      expect(r.best_time_ms).toBe(9000);
+      expect(r.best_keystrokes).toBe(40);
+      expect(r.best_ks_per_min).toBe(333);
+      expect(r.runs).toBe(3);
+    });
+  });
 });

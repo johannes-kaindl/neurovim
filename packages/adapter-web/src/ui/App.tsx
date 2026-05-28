@@ -7,11 +7,12 @@ import { useEffect, useState } from 'preact/hooks';
 import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
-  DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc,
+  DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
 } from '@neurovim/core';
 import { listMissions, getMission } from '@neurovim/content';
 import { WebStorage } from '../ports/WebStorage';
 import { MissionResult, type MissionResultData } from './MissionResult';
+import { fmtTime } from './format';
 
 // CM6 + @replit/codemirror-vim sind das schwerste Dep-Bündel und nur im Editor
 // nötig — lazy laden, damit Picker/NEXUS sie nicht im Initial-Bundle tragen (Code-Splitting).
@@ -54,7 +55,7 @@ export function App() {
     setView('mission');
   }
 
-  async function submit(content: string) {
+  async function submit(content: string, metrics: MetricsResult) {
     if (!mission) return;
     const diff = MissionEngine.verify(content, mission.solution ?? '');
     if (!diff.matches) {
@@ -68,15 +69,20 @@ export function App() {
     if (!next.completed_missions.includes(mission.mission_id)) {
       next = { ...next, completed_missions: [...next.completed_missions, mission.mission_id] };
     }
-    next = { ...next, missions: { ...next.missions, [mission.mission_id]: {
-      best_time_ms: 0, best_keystrokes: 0, best_ks_per_min: 0,
-      runs: (next.missions[mission.mission_id]?.runs ?? 0) + 1,
-      last_run: new Date().toISOString().slice(0, 10),
-    } } };
+    const record = ProgressionEngine.recordMissionRun(next.missions[mission.mission_id], metrics);
+    next = { ...next, missions: { ...next.missions, [mission.mission_id]: record } };
     setData(next);
     await storage.saveData(next);
     if (level_up) SoundCues.levelUp(audio);
-    setResult({ status: 'complete', xp: mission.xp_reward, levelUp: level_up ? level_up.new_level : null });
+    setResult({
+      status: 'complete',
+      xp: mission.xp_reward,
+      levelUp: level_up ? level_up.new_level : null,
+      timeMs: metrics.elapsed_ms,
+      keystrokes: metrics.keystrokes,
+      bestTimeMs: record.best_time_ms,
+      bestKeystrokes: record.best_keystrokes,
+    });
   }
 
   if (view === 'mission' && mission) {
@@ -117,16 +123,23 @@ export function App() {
       <section class="nv-picker">
         <h2>ARC I — Indoctrination</h2>
         <ul>
-          {missions.map((m) => (
-            <li key={m.mission_id}>
-              <button onClick={() => selectMission(m.mission_id)}>
-                <span class="nv-mid">{m.mission_id}</span>
-                <span class="nv-mtitle">{m.title}</span>
-                <span class="nv-mxp">{m.xp_reward} XP</span>
-                {data.completed_missions.includes(m.mission_id) && <span class="nv-done">✓</span>}
-              </button>
-            </li>
-          ))}
+          {missions.map((m) => {
+            const rec = data.missions[m.mission_id];
+            const done = data.completed_missions.includes(m.mission_id);
+            return (
+              <li key={m.mission_id}>
+                <button onClick={() => selectMission(m.mission_id)}>
+                  <span class="nv-mid">{m.mission_id}</span>
+                  <span class="nv-mtitle">{m.title}</span>
+                  {done && (rec?.best_time_ms ?? 0) > 0 && (
+                    <span class="nv-mbest">{fmtTime(rec!.best_time_ms)} · {rec!.best_keystrokes}ks</span>
+                  )}
+                  <span class="nv-mxp">{m.xp_reward} XP</span>
+                  {done && <span class="nv-done">✓</span>}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </div>
