@@ -7,9 +7,15 @@
   "main": "src/index.ts",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "echo \"(core-Tests: Phase 3 Schritt 2 — Jest-Setup folgt)\""
+    "test": "jest"
   },
   "dependencies": {
     "preact": "^10.29.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
   }
 }
