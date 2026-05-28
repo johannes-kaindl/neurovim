@@ -6,11 +6,17 @@
  * bundler-tauglich, kein Runtime-fs (web-fähig). Konsumiert via adapter-web (Phase 4)
  * oder direkt; der Obsidian-Adapter nutzt weiter Vault-Reads (ObsidianContent).
  */
-import type { MissionSummary, MissionDoc, LoreDoc } from '@neurovim/core';
+import type { MissionSummary, MissionDoc, LoreDoc, GlitchDefinition } from '@neurovim/core';
 import { ENTRIES, type RawContentEntry } from './generated/content';
+import { RAVEN_ORIGINAL, RAVEN_GLITCH_POOL } from './generated/sandbox';
 
 export { ENTRIES };
 export type { RawContentEntry };
+
+/** THE RAVEN Sandbox-Quelle (M-08): sauberer Original-Text + Glitch-Pool. */
+export function getSandboxSource(): { original: string; pool: GlitchDefinition[] } {
+  return { original: RAVEN_ORIGINAL, pool: RAVEN_GLITCH_POOL };
+}
 
 function toSummary(e: RawContentEntry): MissionSummary {
   const fm = e.frontmatter;

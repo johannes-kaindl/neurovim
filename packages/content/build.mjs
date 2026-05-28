@@ -88,6 +88,24 @@ try {
 } catch { /* solutions/ optional */ }
 
 mkdirSync(OUT_DIR, { recursive: true });
+
+// Sandbox (THE RAVEN, M-08) — Original-Text + Glitch-Pool als typisierte Exports.
+const SANDBOX_DIR = join(ROOT, 'src', 'sandbox');
+try {
+  const ravenOriginal = readFileSync(join(SANDBOX_DIR, 'raven-original.md'), 'utf8').replace(/\s+$/, '');
+  const glitchPool = JSON.parse(readFileSync(join(SANDBOX_DIR, 'raven-glitches.json'), 'utf8'));
+  const sandboxOut =
+    `// AUTO-GENERATED von build.mjs — NICHT manuell editieren.\n` +
+    `// Quelle: src/sandbox/ (THE RAVEN). Regenerieren: npm run build --workspace @neurovim/content\n\n` +
+    `import type { GlitchDefinition } from '@neurovim/core';\n\n` +
+    `export const RAVEN_ORIGINAL = ${JSON.stringify(ravenOriginal)};\n\n` +
+    `export const RAVEN_GLITCH_POOL: GlitchDefinition[] = ${JSON.stringify(glitchPool, null, 2)};\n`;
+  writeFileSync(join(OUT_DIR, 'sandbox.ts'), sandboxOut);
+  console.log(`[content build] sandbox → ${glitchPool.length} glitches, ${ravenOriginal.length} chars original`);
+} catch (e) {
+  console.warn('[content build] sandbox skip:', e.message);
+}
+
 const header = `// AUTO-GENERATED von build.mjs — NICHT manuell editieren.\n` +
   `// Quelle: src/content/*.md (SSOT). Regenerieren: npm run build --workspace @neurovim/content\n` +
   `// Generiert: ${entries.length} Einträge.\n\n` +

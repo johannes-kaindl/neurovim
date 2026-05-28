@@ -60,3 +60,20 @@ button { font-family: inherit; cursor: pointer; }
 .nv-modal-actions button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 8px 14px; }
 .nv-modal-actions button:hover { border-color: var(--nv-accent); }
 .nv-modal-primary { border-color: var(--nv-accent) !important; color: var(--nv-accent) !important; }
+
+/* Sandbox (THE RAVEN) */
+.nv-sandbox-intro { color: var(--nv-muted); font-size: 13px; margin: 0 0 4px; max-width: 60ch; }
+.nv-sandbox-diffs { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+.nv-sandbox-diff { display: flex; flex-direction: column; gap: 4px; min-width: 150px; background: var(--nv-panel); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 6px; padding: 14px 16px; text-align: left; }
+.nv-sandbox-diff:hover { border-color: var(--nv-accent); }
+.nv-sandbox-diff-name { color: var(--nv-accent); letter-spacing: 1px; font-size: 15px; }
+.nv-sandbox-diff-count { color: var(--nv-muted); font-size: 12px; }
+.nv-sandbox-diff-pb { color: var(--nv-accent); font-size: 12px; opacity: 0.75; }
+.nv-sandbox-back { background: var(--nv-panel); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 8px 14px; }
+.nv-sandbox-back:hover { border-color: var(--nv-accent); }
+.nv-sandbox-remaining { color: #ff6b6b; }
+.nv-sandbox-result { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 10px; padding: 12px; background: var(--nv-panel); border-left: 2px solid var(--nv-accent); border-radius: 4px; }
+.nv-sandbox-result-msg { color: var(--nv-accent); font-size: 14px; }
+.nv-sandbox-result-actions { display: flex; gap: 10px; margin-left: auto; flex-wrap: wrap; }
+.nv-sandbox-result-actions button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 6px 12px; }
+.nv-sandbox-result-actions button:hover { border-color: var(--nv-accent); }

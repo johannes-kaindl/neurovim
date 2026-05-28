@@ -8,6 +8,7 @@ import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
+  type SandboxDifficulty,
 } from '@neurovim/core';
 import { listMissions, getMission } from '@neurovim/content';
 import { WebStorage } from '../ports/WebStorage';
@@ -18,6 +19,9 @@ import { fmtTime } from './format';
 // nötig — lazy laden, damit Picker/NEXUS sie nicht im Initial-Bundle tragen (Code-Splitting).
 const MissionEditor = lazy(() =>
   import('./MissionEditor').then((m) => ({ default: m.MissionEditor })),
+);
+const SandboxView = lazy(() =>
+  import('./SandboxView').then((m) => ({ default: m.SandboxView })),
 );
 
 /** Nächste spielbare Mission im selben Arc (für den „Next Mission"-Button). */
@@ -33,7 +37,7 @@ let audioUnlocked = false;
 
 export function App() {
   const [data, setData] = useState<PluginData>({ ...DEFAULT_PLUGIN_DATA });
-  const [view, setView] = useState<'nexus' | 'mission'>('nexus');
+  const [view, setView] = useState<'nexus' | 'mission' | 'sandbox'>('nexus');
   const [mission, setMission] = useState<MissionDoc | null>(null);
   const [result, setResult] = useState<MissionResultData | null>(null);
 
@@ -85,6 +89,13 @@ export function App() {
     });
   }
 
+  async function saveSandboxBest(difficulty: SandboxDifficulty, ms: number) {
+    const next = { ...data, sandbox_bests: { ...data.sandbox_bests, [difficulty]: ms } };
+    setData(next);
+    SoundCues.transmissionRestored(audio);
+    await storage.saveData(next);
+  }
+
   if (view === 'mission' && mission) {
     return (
       <>
@@ -102,6 +113,14 @@ export function App() {
           />
         )}
       </>
+    );
+  }
+
+  if (view === 'sandbox') {
+    return (
+      <Suspense fallback={<div class="nv-loading">loading sandbox…</div>}>
+        <SandboxView bests={data.sandbox_bests} onNewBest={saveSandboxBest} onExit={() => setView('nexus')} />
+      </Suspense>
     );
   }
 
@@ -153,6 +172,20 @@ export function App() {
               </li>
             );
           })}
+        </ul>
+      </section>
+      <section class="nv-picker">
+        <h2>SANDBOX</h2>
+        <ul>
+          <li>
+            <button onClick={() => { unlockAudio(); setView('sandbox'); }}>
+              <span class="nv-mid">RAVEN</span>
+              <span class="nv-mtitle">Glitch Drill — restore the transmission</span>
+              {data.sandbox_bests.normal != null && (
+                <span class="nv-mbest">PB {fmtTime(data.sandbox_bests.normal)}</span>
+              )}
+            </button>
+          </li>
         </ul>
       </section>
     </div>
