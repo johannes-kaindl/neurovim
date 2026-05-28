@@ -66,6 +66,8 @@ Alle vom Repo-Root aus aufrufbar (`npm run <script>`):
 
 ## Setup (Jay copy-paste — Repos müssen vorher manuell angelegt werden)
 
+> **Bequemer:** `scripts/setup-remotes.sh` — `CODEBERG_USER`/`GITHUB_USER` oben ausfüllen, dann `bash scripts/setup-remotes.sh`. Das Script setzt die Remotes (kein Push, keine Repo-Erstellung) und gibt die zwei Push-Befehle aus, die Du selbst ausführst. Die manuellen Schritte unten sind die Langform desselben.
+
 ```bash
 # Repo ist bereits lokal git-initialisiert (scaffold-Commit liegt vor).
 # 1. Auf codeberg.org + github.com je ein leeres Repo "neurovim-standalone" anlegen (Web-UI).
