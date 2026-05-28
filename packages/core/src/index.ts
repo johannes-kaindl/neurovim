@@ -6,16 +6,16 @@
  * Plattform-Spezifik kommt über die Ports, die adapter-obsidian / adapter-web
  * implementieren. ADR-001 §Decisions.
  *
- * Hinweis: Die Ports (StoragePort/ContentPort/AudioPort/VimModeSource/UiHost) sind
- * definiert, werden aber von der gemoveten Game-Logic noch NICHT konsumiert —
- * das ist Schritt 2.5 (Port-Consumption-Refactor). Heute: „extract package, keep behavior".
+ * Hinweis: Die Ports (StoragePort/ContentPort/VimModeSource/UiHost) werden von den
+ * Adaptern implementiert, nicht von der Game-Logic konsumiert (Engines sind reine
+ * Funktionen — D17). AudioPort wurde entfernt (D19e): AudioEngine ist bereits
+ * plattform-neutral + injizierbar, der Port-Wrapper war redundant.
  */
 
 // ── State-Schema + Ports ─────────────────────────────────────
 export * from './types';
 export * from './ports/StoragePort';
 export * from './ports/ContentPort';
-export * from './ports/AudioPort';
 export * from './ports/VimModeSource';
 export * from './ports/UiHost';
 
