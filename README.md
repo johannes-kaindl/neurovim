@@ -55,3 +55,32 @@ git -C /Users/Shared/code/neurovim-standalone push github main
 ```
 
 > ⚠️ URLs sind Platzhalter (`jay/...`) — vor dem Push durch die echten Account-/Org-Namen ersetzen. Branch heißt `main` (Default dieses Repos prüfen mit `git -C … branch`).
+
+## Web-App lokal + Deploy (`@neurovim/adapter-web`)
+
+```bash
+cd /Users/Shared/code/neurovim-standalone
+npm install
+# Lokal entwickeln (öffnet localhost:5173):
+npm run dev --workspace @neurovim/adapter-web
+# Production-Build → packages/adapter-web/dist/ (statische Site, ~744KB / 228KB gzip):
+npm run build --workspace @neurovim/adapter-web
+```
+
+`dist/` ist eine **statische Site** (relative `base: './'` → unter beliebigem Unterpfad deploybar).
+
+**Codeberg Pages** (primär): den `dist/`-Inhalt in einen `pages`-Branch des Repos pushen.
+```bash
+cd /Users/Shared/code/neurovim-standalone/packages/adapter-web
+npx vite build
+# pages-Branch befüllen (orphan, nur dist-Inhalt):
+git -C /Users/Shared/code/neurovim-standalone worktree add /tmp/nv-pages --orphan pages
+cp -R dist/. /tmp/nv-pages/ && touch /tmp/nv-pages/.nojekyll
+git -C /tmp/nv-pages add -A && git -C /tmp/nv-pages commit -m "deploy web app"
+git -C /tmp/nv-pages push origin pages   # → https://<user>.codeberg.page/neurovim-standalone/
+git -C /Users/Shared/code/neurovim-standalone worktree remove /tmp/nv-pages
+```
+
+**GitHub Pages** (Mirror): identisch, aber Push auf `github`-Remote `pages`-Branch + in den GitHub-Repo-Settings Pages-Source = `pages`-Branch setzen. Alternativ ein `.github/workflows/pages.yml` (Build + `actions/deploy-pages`) — TODO.
+
+**itch.io** (Game-Audience, TODO): `dist/` als ZIP packen (`cd dist && zip -r ../neurovim-web.zip .`) → auf itch.io als HTML5-Game hochladen, „This file will be played in the browser" aktivieren. (Vorbereiten wenn Distribution-Channel bestätigt.)
