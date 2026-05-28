@@ -2,11 +2,15 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src"
+    "composite": false,
+    "strict": false,
+    "strictNullChecks": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "@neurovim/core": ["../core/src/index.ts"],
+      "@neurovim/content": ["../content/src/index.ts"]
+    }
   },
-  "references": [
-    { "path": "../core" },
-    { "path": "../content" }
-  ],
-  "include": ["src"]
+  "include": ["src", "vite.config.ts"]
 }
