@@ -1,5 +1,6 @@
 import React from 'react';
-import { createRoot, Root } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+type Root = ReturnType<typeof createRoot>;
 import { ItemView, WorkspaceLeaf } from 'obsidian';
 import { MissionHudModule } from '@neurovim/core';
 import { CheatSheetModule } from '@neurovim/core';

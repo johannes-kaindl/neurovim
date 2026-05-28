@@ -3,7 +3,8 @@ import {
 } from 'obsidian';
 import { EditorView, ViewPlugin, ViewUpdate, Decoration, DecorationSet } from '@codemirror/view';
 import { StateField, StateEffect, RangeSetBuilder } from '@codemirror/state';
-import { createRoot, Root } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+type Root = ReturnType<typeof createRoot>;
 import React from 'react';
 
 import {
@@ -338,7 +339,7 @@ export default class NeuroVimPlugin extends Plugin {
     const categoryMatch = storedFm.match(/^category:\s*(.+)$/m);
     const xpMatch = storedFm.match(/^xp_reward:\s*(\d+)$/m);
     const category = categoryMatch ? categoryMatch[1].trim() : (missionDef as { category?: string }).category ?? null;
-    const xp_reward = xpMatch ? parseInt(xpMatch[1]) : missionDef.xp_reward;
+    const xp_reward = xpMatch ? parseInt(xpMatch[1]) : (missionDef as { xp_reward: number }).xp_reward;
 
     this.missionState = {
       status: 'active',
