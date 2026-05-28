@@ -1,11 +1,23 @@
 {
   "name": "@neurovim/content",
   "version": "0.0.0",
-  "description": "Versionierte Content-Quelle: Missionen, Katas, Loot, Fragments, Story-Bible, World-Codex.",
+  "description": "Versionierte Content-Quelle: Missionen, Katas, Loot, Fragments, Story-Bible (Markdown SSOT + generiertes typed-JSON).",
   "license": "MIT",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "build": "echo \"(Phase 3: Markdown+Frontmatter → typisiertes JSON)\""
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@neurovim/core": "*"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
   }
 }

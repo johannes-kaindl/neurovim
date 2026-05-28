@@ -1,0 +1,2681 @@
+// AUTO-GENERATED von build.mjs — NICHT manuell editieren.
+// Quelle: src/content/*.md (SSOT). Regenerieren: npm run build --workspace @neurovim/content
+// Generiert: 109 Einträge.
+
+export interface RawContentEntry {
+  id: string;
+  role: 'briefing' | 'transmission' | 'kata' | 'loot' | 'fragment' | 'ref';
+  kind: 'mission' | 'lore';
+  arc: 'I' | 'II';
+  chapter: string;
+  frontmatter: Record<string, unknown>;
+  body: string;
+  path: string;
+}
+
+export const ENTRIES: RawContentEntry[] = [
+  {
+    "id": "M-01",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "01 - Indoctrination/M-01-TRANSMISSION-The_Three_Modes",
+      "locked": false,
+      "tags": [
+        "briefing",
+        "tier-1"
+      ],
+      "sticker": "lucide//mail",
+      "color": "#00ff41"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-01 // THE THREE MODES       ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You were referred. Someone vouched. That's all you get before the test.*\n> *Before you receive a designation, before you receive missions, before you receive anything — you prove you can use the tool.*\n> *Not fluently. Not fast. Just: can you use it at all.*\n> *CORP corrupted your induction document in transit. Standard NEVERMORE noise — character-level injections. Stray signals inserted mid-word. The document reads as garbage. It shouldn't.*\n> *Restore it. Use Vim. Nothing else.*\n> *Three modes. That's all you need.*\n> *Normal — your default. Move without writing.*\n> *Insert — when you must change something.*\n> *Escape — when you're done changing.*\n> *The document is waiting.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Restore the corrupted induction document.\n>\n> > [!tip] SKILLS\n> > Mode switching (`i`, `a`, `o`, `ESC`), character deletion (`x`, `X`)\n>\n> > [!success] +15 XP\n>\n> → **[[_content/01 - Indoctrination/M-01-TRANSMISSION-The_Three_Modes|M-01-TRANSMISSION-The_Three_Modes]]** — open to begin. Timer starts on file open.",
+    "path": "01 - Indoctrination/M-01-BRIEFING-Induction_Order.md"
+  },
+  {
+    "id": "M-01",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_id": "M-01",
+      "title": "The Three Modes",
+      "tier": "🔴 INDOCTRINATION",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 1,
+      "category": "fundamentals",
+      "tags": [
+        "vim/modes",
+        "indoctrination"
+      ],
+      "sticker": "lucide//radio",
+      "color": "#ff4444",
+      "summary": "Learn Vim's three modes — Normal, Insert, Visual. Without this foundation^jjj^^^^^^^jjkl, you're blind.",
+      "mission_type": "practice",
+      "locked": false
+    },
+    "body": "FROM: CIPHER\nTO: [PENDING DESIGNATION] — NEW OPERATIVE\n\nYoXur induction doZcument has been comprXomized in tranZsit.\nCORP's NEVERMORE sysXtem injeXcted noise at the charZacter level.\nYou must useX the tooXl to reZmove it.\n\nThree moXdes. That is alXl you need to knoZw right now.\n\nNormal mZode — your defauXlt state. The tool waXits here.\nInsert moXde — when you must cZhange somethZing. Press i.\nEscape — wheXn you are done chanZging. Press ESC.\n\nYouX are not typZing. You are editZing.\nThere is a diXfference. LeaZrn it.\n\nThe fiXle is broken. The tooXl is not.\nUse the tZool. Fix the fXile.\n\n— CIPHER",
+    "path": "01 - Indoctrination/M-01-TRANSMISSION-The_Three_Modes.md"
+  },
+  {
+    "id": "M-02",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "01 - Indoctrination/M-02-TRANSMISSION-Basic_Navigation",
+      "locked": false,
+      "tags": [
+        "briefing",
+        "tier-1"
+      ],
+      "sticker": "lucide//map",
+      "color": "#00ff41"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-02 // BASIC NAVIGATION      ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You've been assigned a designation. NEXUS has you in the system.*\n> *A training transmission went through a corrupted relay — characters transposed, positions shifted. NEVERMORE's standard noise pattern.*\n> *The coordinates in the file are intact. Just in the wrong positions.*\n> *You navigate precisely. `h`, `j`, `k`, `l` — no mouse, no arrow keys. Position matters. One character off means the wrong line.*\n> *`0` gets you to the start of a line. `$` to the end. `^` to the first non-blank character.*\n> *Study the corrupted file. Find what's wrong. Fix it.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Restore the scrambled coordinate transmission.\n>\n> > [!tip] SKILLS\n> > `h` `j` `k` `l`, `0` `$` `^`, precise cursor positioning\n>\n> > [!success] +15 XP\n>\n> → **[[_content/01 - Indoctrination/M-02-TRANSMISSION-Basic_Navigation|M-02-TRANSMISSION-Basic_Navigation]]** — open to begin. Timer starts on file open.",
+    "path": "01 - Indoctrination/M-02-BRIEFING-Sector_Seven.md"
+  },
+  {
+    "id": "M-02",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_id": "M-02",
+      "title": "Basic Navigation — hjkl",
+      "tier": "🔴 INDOCTRINATION",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 1,
+      "category": "navigation",
+      "tags": [
+        "vim/navigation",
+        "vim/hjkl",
+        "indoctrination"
+      ],
+      "sticker": "lucide//move",
+      "color": "#ff4444",
+      "summary": "Arrow keys are your enemy. hjkl are your allies. Learn them until your fingers dream.",
+      "mission_type": "practice",
+      "locked": false
+    },
+    "body": "TRAINING TRANSMISSION — NAVIGATION DRILL\nClassification: RESISTANCE EYES ONLY\nStatus: CORRUPTED IN TRANSIT\n\nOperative rendezvous: Node 7 at 23:00\nApproach vector: North entarnce, third corridor\nFallback positiob: Sub-level 2, east stairwel\nEmergency exfil: Roof accesss point Charlie\n\nNotes: Training window opens at 22:45.\nWindow is fiften minutes. Do not be la\nComplete all restorations befoer the window closes.\n\nConfirm receipt by restoirng this file.\nIf you can read this corectly, you are in position.\n\n— Training Relay",
+    "path": "01 - Indoctrination/M-02-TRANSMISSION-Basic_Navigation.md"
+  },
+  {
+    "id": "M-03",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "01 - Indoctrination/M-03-TRANSMISSION-Word_Movement",
+      "locked": false,
+      "tags": [
+        "briefing",
+        "tier-1"
+      ],
+      "sticker": "lucide//users",
+      "color": "#00ff41"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-03 // WORD MOVEMENT         ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Sector 7 drill went clean. Good.*\n> *Next file. NEVERMORE hit a training roster — not real callsigns, a practice registry. It replaced each token with a CORP-style surveillance code. Systematically. Word by word.*\n> *You're fixing words, not characters. Word-level navigation.*\n> *`w` moves forward a word. `b` moves back. `e` lands on the end of a word.*\n> *Learn the difference between `w` and `W`. Upper-case versions ignore punctuation.*\n> *Move fast. Replace precisely.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace CORP surveillance codes with correct practice tokens.\n>\n> > [!tip] SKILLS\n> > `w` `b` `e` `W` `B` `E`, `cw` to change words\n>\n> > [!success] +20 XP\n>\n> → **[[_content/01 - Indoctrination/M-03-TRANSMISSION-Word_Movement|M-03-TRANSMISSION-Word_Movement]]** — open to begin. Timer starts on file open.",
+    "path": "01 - Indoctrination/M-03-BRIEFING-Agent_Roster.md"
+  },
+  {
+    "id": "M-03",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_id": "M-03",
+      "title": "Word Movement — w b e",
+      "tier": "🔴 INDOCTRINATION",
+      "xp_reward": 20,
+      "completed": false,
+      "difficulty": 2,
+      "category": "navigation",
+      "tags": [
+        "vim/navigation",
+        "vim/words",
+        "indoctrination"
+      ],
+      "sticker": "lucide//fast-forward",
+      "color": "#ff4444",
+      "summary": "hjkl is slow. Jumping word by word makes you fast. w, b, e are your turbochargers.",
+      "mission_type": "practice",
+      "locked": false
+    },
+    "body": "SECTOR 7 — PRACTICE ROSTER\nClassification: RESISTANCE TRAINING USE ONLY\nVerification: Required at all drill handoffs\n\nSCAN-7741 — Field operative, northern sector\nTRACE-3392 — Intelligence contact, CORP adjacent\nSCAN-7741 — Logistics, supply chain access\nWATCH-0012 — Safehouses, sector west\nSCAN-7741 — Communications relay operator\nTRACE-3392 — Deep cover, infrastructure division\nSCAN-7741 — Medical support, mobile unit\nWATCH-0012 — Exfiltration specialist\n\nChallenge phrase: SCAN-7741\nResponse phrase: TRACE-3392\n\nNotes: WATCH-0012 identifiers are active.\nUse practice tokens only. No real designations in drills.\nTRACE-3392 has changed meeting protocols.\nNext contact window: SCAN-7741\n\n— CIPHER",
+    "path": "01 - Indoctrination/M-03-TRANSMISSION-Word_Movement.md"
+  },
+  {
+    "id": "M-04",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "01 - Indoctrination/M-04-TRANSMISSION-Lines_and_Jumps",
+      "locked": false,
+      "tags": [
+        "briefing",
+        "tier-1"
+      ],
+      "sticker": "lucide//layout",
+      "color": "#00ff41"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-04 // LINES AND JUMPS       ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Another corrupted file. Not a roster this time — a layout document. Sections scrambled at the line level. Whole blocks shifted out of order. Section 1 notes below Section 3. The index appears after the entries.*\n> *Restoring this requires line-level navigation. Not character by character — you jump.*\n> *`gg` to the top. `G` to the bottom. `:#` to a specific line number.*\n> *`{` and `}` jump between paragraphs. In a large file, character navigation is useless.*\n> *Read the document. Restore the order.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Reorder the scrambled layout sections.\n>\n> > [!tip] SKILLS\n> > `gg` `G` `:#`, `{` `}`, `H` `M` `L`\n>\n> > [!success] +15 XP\n>\n> → **[[_content/01 - Indoctrination/M-04-TRANSMISSION-Lines_and_Jumps|M-04-TRANSMISSION-Lines_and_Jumps]]** — open to begin. Timer starts on file open.",
+    "path": "01 - Indoctrination/M-04-BRIEFING-Facility_Schematics.md"
+  },
+  {
+    "id": "M-04",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "01 - Indoctrination",
+    "frontmatter": {
+      "mission_id": "M-04",
+      "title": "Lines and Jumps",
+      "tier": "🔴 INDOCTRINATION",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 2,
+      "category": "navigation",
+      "tags": [
+        "vim/navigation",
+        "vim/lines",
+        "indoctrination"
+      ],
+      "sticker": "lucide//align-left",
+      "color": "#ff4444",
+      "summary": "Line start, line end, jump to any line. Learn to teleport through files.",
+      "mission_type": "practice",
+      "locked": false
+    },
+    "body": "DOCUMENT LAYOUT DRILL — STRUCTURED INDEX\nClassification: RESISTANCE TRAINING USE ONLY\n\n=== SECTION 3 — ARCHIVE INDEX ===\nArchive root: north wing reading room\nShelf access: ceiling-catalog C-3, cross-reference required\nRetrieval protocol: one requisition form every 45 minutes\n\n=== ACCESS WINDOWS ===\n22:00 — Evening reading period opens\n22:45 — Half-term catalog rotation passes\n23:15 — Reserved-shelf access opens: 12 minutes\n23:27 — Next rotation begins\n\n=== SECTION 1 — ENTRY INDEX ===\nMain entry: biometric reading station, staff only\nSide entry: requisition desk 4471, maintenance tier\nDelivery bay: unattended after 21:00, reference column D\n\n=== ENTRY NODES ===\nPrimary: delivery bay, column D reference point\nSecondary: requisition desk 4471, maintenance tier\nEmergency: rooftop reading gallery, accessible from Section 3 catalog\n\n=== SECTION 2 — ADMINISTRATIVE INDEX ===\nRegisters empty after 20:30\nCatalog closet: room 214, open during catalog rotation\nStairwell B: connects all sections, reading-only corridor",
+    "path": "01 - Indoctrination/M-04-TRANSMISSION-Lines_and_Jumps.md"
+  },
+  {
+    "id": "M-05",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "02 - Field Training/M-05-TRANSMISSION-Operators",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-2"
+      ],
+      "sticker": "lucide//terminal",
+      "color": "#66cc66"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-05 // OPERATORS             ║\n║  Clearance: SHADOW LINK                  ║\n╚══════════════════════════════════════════╝\n```\n\n```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Infrastructure Division — Automated Access Log                  ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Automated Access Log — Sector 7 Relay          ║\n║  Classification : Internal — Sector Administration               ║\n║  Audit Code     : ALA-2047-Q1-0271                               ║\n║  Timestamp      : 2047-03-14T04:17:33Z (Automated)               ║\n║  Generator      : Relay Monitor v8.2 (no human review)           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n```\n04:01:02 UTC  SYS_DIAG     Relay uptime nominal. Packet throughput: 99.3%. No anomalies detected.\n04:03:17 UTC  ACCESS       Badge ID 7741-C // Clearance: YELLOW // Entry: Sub-level 3, Junction Node\n04:03:19 UTC  ACCESS       Badge ID 7741-C // Motion pattern logged. Transit vector: north corridor.\n04:05:44 UTC  COMPLIANCE   Pursuant to Directive 88-F of the UDCA, all relay\n              COMPLIANCE   activity is subject to automated harmonization review. Non-compliant data\n              COMPLIANCE   patterns will be flagged for audit classification within 48-72 hours.\n              COMPLIANCE   No operator input required.\n04:06:31 UTC  SYS_DIAG     Buffer flush complete. Compression ratio: 1:4.2. Log segment archived.\n04:08:55 UTC  ACCESS       Badge ID 7741-C // Entry: Relay Core Anteroom. Dwell: 00:02:11.\n04:09:10 UTC  ACCESS       Badge ID 9902-A // Clearance: ORANGE // Entry: Sub-level 3, Junction Node\n04:09:14 UTC  COMPLIANCE   Automated harmonization coverage extended. Anomalous endpoint\n              COMPLIANCE   diversity logged. Cross-reference against subsequent windows scheduled.\n              COMPLIANCE   Reference: Audit Code ALA-2047-Q1-0271 for status.\n04:11:03 UTC  ACCESS       Badge ID 7741-C // Exit: Relay Core Anteroom. Transit vector: east annex.\n04:14:58 UTC  SYS_DIAG     Scheduled compliance audit initiated. No operator input required.\n04:17:33 UTC  SYS_DIAG     Log segment closed. Archival status: PENDING HARMONIZATION REVIEW.\n```\n\n> [!note] CIPHER — Intercepted // Sector 7 Relay\n> GHOST pulled this before the window closed.\n> Badge 7741-C is ours. They walked the node sequence at 04:03 through 04:11.\n> The COMPLIANCE blocks are engine injections — automated flags CORP attaches to flagged segments. They are what you remove. Whole lines. Use your operators.\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Remove all CORP-injected lines from the access log.\n>\n> > [!tip] SKILLS\n> > `d` `c` `y` + motions, `dd` `D` `cc` `C`, `p` `P`\n>\n> > [!success] +25 XP\n>\n> → **[[_content/02 - Field Training/M-05-TRANSMISSION-Operators|M-05-TRANSMISSION-Operators]]** — open to begin. Timer starts on file open.",
+    "path": "02 - Field Training/M-05-BRIEFING-Access_Log_Alpha.md"
+  },
+  {
+    "id": "M-05",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_id": "M-05",
+      "title": "Operators — d c y p",
+      "tier": "🟡 FIELD TRAINING",
+      "xp_reward": 25,
+      "completed": false,
+      "difficulty": 3,
+      "category": "editing",
+      "tags": [
+        "vim/operators",
+        "vim/delete",
+        "vim/yank",
+        "field-training"
+      ],
+      "sticker": "lucide//scissors",
+      "color": "#ffaa00",
+      "summary": "Delete, copy, paste. The building blocks of text manipulation. Operators + Motions = Power.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Infrastructure Relay Division — Access Log Alpha                ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Access Log — Sector 7 Primary Node             ║\n║  Period         : 2047-03-14T21:00 — 23:59                       ║\n║  Classification : Internal — Sector Administration               ║\n║  Audit Code     : ALA-2047-Q1-0271                               ║\n║  Generator      : Relay Monitor v8.2 (Automated)                 ║\n║  Reviewer       : None — No human review required                ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n>> COMPLIANCE: This log is monitored under Directive §441 of the UDCA. <<\n>> Unauthorized access is subject to automated classification review. <<\n\n21:04 — ASSET authenticated — clearance LEVEL-2\n21:17 — File transfer initiated — 4.2MB encrypted packet\n21:19 — Transfer complete — node 7-PRIMARY confirmed receipt\n\n>> COMPLIANCE: All relay activity is logged. Flagged segments will be <<\n>> cross-referenced against subsequent monitoring windows. <<\n\n21:44 — Second authentication — same ASSET — flagged: pattern anomaly\n21:45 — Query: infrastructure database — search term [REDACTED]\n21:51 — Database access terminated — no match returned\n\n>> COMPLIANCE: Operator pattern flagged for review. <<\n\n22:13 — ASSET disconnects — session duration 69 minutes\n22:14 — Automated sweep initiated by monitoring infrastructure\n\n>> COMPLIANCE: Anomalous endpoint diversity logged. Cross-reference queued. <<\n>> Audit Code ALA-2047-Q1-0271 scheduled. <<\n\nEnd of period log.\n\n```ascii\n── END OF LOG ──────────────────────────────────────────────────────\n   CORP — Infrastructure Relay Division\n   ALA-2047-Q1-0271 — 2047-03-14T23:59:00Z\n   Automated log. No operator input required.\n────────────────────────────────────────────────────────────────────\n```",
+    "path": "02 - Field Training/M-05-TRANSMISSION-Operators.md"
+  },
+  {
+    "id": "M-06",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "02 - Field Training/M-06-TRANSMISSION-Text_Objects",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-2"
+      ],
+      "sticker": "lucide//code",
+      "color": "#66cc66"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-06 // TEXT OBJECTS          ║\n║  Clearance: SHADOW LINK                  ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"GHOST extracted a structured data file from CORP's endpoint registry. Case numbers, sectors, access codes — exactly what we need for the next operation.*\n> *NEVERMORE hit it at the value level. Not whole lines this time — just the content inside brackets and quotes. Everything was placeholder-sanitized. The structure is intact. The brackets are still there. The quotes are still there. You just need to replace what's inside them.*\n> *Text objects. `ci\"` — change inside quotes. `ci(` — change inside parentheses. `ci{` — inside braces. `diw` — delete inner word. `daw` — delete around word, including spacing.*\n> *The structure tells you where to go. The objects tell you what to change.*\n> *The container is clean. Fix the contents.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace placeholder values inside brackets, quotes, and braces.\n>\n> > [!tip] SKILLS\n> > `ci\"` `ca\"` `ci(` `ci{` `ci[` `diw` `daw` `cit`\n>\n> > [!success] +30 XP\n>\n> → **[[_content/02 - Field Training/M-06-TRANSMISSION-Text_Objects|M-06-TRANSMISSION-Text_Objects]]** — open to begin. Timer starts on file open.",
+    "path": "02 - Field Training/M-06-BRIEFING-Cipher_Fragments.md"
+  },
+  {
+    "id": "M-06",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_id": "M-06",
+      "title": "Text Objects — ciw di( ya\"",
+      "tier": "🟡 FIELD TRAINING",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 4,
+      "category": "editing",
+      "tags": [
+        "vim/text-objects",
+        "vim/precision",
+        "field-training"
+      ],
+      "sticker": "lucide//target",
+      "color": "#ffaa00",
+      "summary": "Text objects are Vim's superpower. No matter where the cursor is — you hit the target. iw, aw, i(, a\", is, as.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Infrastructure Division — Endpoint Registry Extract             ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Endpoint Registry Fragment — Serialized Export ║\n║  Classification : Internal — Division Circulation                ║\n║  Source         : Personnel Registry v2.3 (automated export)     ║\n║  Audit Code     : ERX-2047-Q1-0143                               ║\n║  Generator      : Registry Export Tool v1.8 (no human review)    ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Intercepted // Infrastructure Division\n> GHOST pulled a serialized-export from the endpoint registry.\n> CORP's export tool dumps records as structured data — dicts, lists, tuples. NEVERMORE hit the values inside the containers. Brackets, quotes, braces are intact. Values aren't.\n> Fix what's inside. The containers stay.\n\n---\n\nendpoints = {\n  \"NCE-0091-A\": {\"sector\": \"ZONE-NULL\", \"clearance\": \"RESTRICTED\", \"status\": \"INACTIVE\"},\n  \"NCE-0042-B\": {\"sector\": \"ZONE-NULL\", \"clearance\": \"RESTRICTED\", \"status\": \"INACTIVE\"},\n  \"NCE-0017-C\": {\"sector\": \"ZONE-NULL\", \"clearance\": \"RESTRICTED\", \"status\": \"INACTIVE\"},\n}\n\naccess_codes = [\n  (\"NCE-0091-A\", \"ZONE-NULL\", \"0000\"),\n  (\"NCE-0042-B\", \"ZONE-NULL\", \"0000\"),\n  (\"NCE-0017-C\", \"ZONE-NULL\", \"0000\"),\n]\n\nlocation = \"ZONE-NULL\"\nfrequency = \"000.0\"\nwindow = \"NCE-0091-A\"\nresponse = \"NCE-0042-B\"",
+    "path": "02 - Field Training/M-06-TRANSMISSION-Text_Objects.md"
+  },
+  {
+    "id": "M-07",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "02 - Field Training/M-07-TRANSMISSION-Search_and_Replace",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-2"
+      ],
+      "sticker": "lucide//search",
+      "color": "#66cc66"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-07 // SEARCH AND REPLACE    ║\n║  Clearance: SHADOW LINK                  ║\n╚══════════════════════════════════════════╝\n```\n\n```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Workforce Optimization Bureau — Sector 7 Division               ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Quarterly Workforce Optimization Report        ║\n║  Report Period  : Q1 2047 // Sector 7                            ║\n║  Classification : Internal — HR Administration                   ║\n║  Audit Code     : WOR-2047-Q1-0047                               ║\n║  Generator      : Workforce Analytics Engine v3.1 (Automated)    ║\n║  Reviewer       : None — No human review required                ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n**SECTOR 7 — Q1 2047 OPTIMIZATION SUMMARY**\n\nTotal registered personnel: 1,204\nEfficiency corrections processed: 17\nCompliance index: 93.1% (Target: 95.0%) — *variance flagged for Q2 review*\nNon-compliant entity resolutions: 5\n\nPer Directive 12.4(a), all entity designations within this document have been standardized to assigned case numbers. Name-based identifiers introduce inconsistency and are not recognized by Workforce Analytics Engine v3.1.\n\n---\n\n**NON-COMPLIANT ENTITY RESOLUTIONS — Q1 2047**\n\n| Case No.  | Infraction Category                                    | Resolution                                      |\n|-----------|--------------------------------------------------------|-------------------------------------------------|\n| NE-4471   | Cat. 7 — Legacy Infrastructure Usage. Sustained.       | Permanent Reclassification. Network access suspended. Employer notification transmitted. |\n| NE-4489   | Cat. 3 — Unproductive Ideation. Repeat infraction.     | Reclassification Level 2. Productivity audit initiated. |\n| NE-4501   | Cat. 11 — Unauthorized Resource Consumption.           | Resource Reallocation. Sector transfer pending. |\n| NE-4522   | Cat. 3 — Unproductive Ideation. First occurrence.      | Efficiency Correction Level 1. Monitoring flag active. |\n| NE-4558   | Cat. 7 — Legacy Infrastructure Usage. First occurrence.| Reclassification Level 1. Compliance re-onboarding scheduled. |\n\n---\n\n*All resolutions executed within standard processing windows. No delays recorded.*\n*Affected entities have been notified via automated transmission per HR Protocol 9.2.*\n*This report has been generated automatically. No human review required.*\n\n---\n\n> [!note] CIPHER — Intercepted // Workforce Optimization Bureau\n> Five reclassifications this quarter. All of them ours.\n>\n> CORP doesn't use names in these reports. Every person gets a case number. Per Directive 12.4(a) — systematic substitution, applied to every non-compliant entity in the document. Every instance.\n>\n> Your job: restore the original designations. In drill terms, practice the command. `:%s/NE-4471/CELL-DELTA/g` replaces every `NE-4471` with `CELL-DELTA` across the file. Work through the file case by case.\n>\n> Learn the command. Then use it.\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Find and replace the systematic substitution throughout the document.\n>\n> > [!tip] SKILLS\n> > `/pattern` `n` `N`, `:%s/old/new/g`, `:%s/old/new/gc`, `cgn` `.`\n>\n> > [!success] +30 XP\n>\n> → **[[_content/02 - Field Training/M-07-TRANSMISSION-Search_and_Replace|M-07-TRANSMISSION-Search_and_Replace]]** — open to begin. Timer starts on file open.",
+    "path": "02 - Field Training/M-07-BRIEFING-Personnel_Matrix.md"
+  },
+  {
+    "id": "M-07",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_id": "M-07",
+      "title": "Search and Replace — f / ?",
+      "tier": "🟡 FIELD TRAINING",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 4,
+      "category": "search",
+      "tags": [
+        "vim/search",
+        "vim/replace",
+        "field-training"
+      ],
+      "sticker": "lucide//search",
+      "color": "#ffaa00",
+      "summary": "Find targets in seconds. f, F, /, ?, n, N, * and :s/old/new/ — tracking like a Ghost.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  [RESISTANCE — INTERNAL]                                         ║\n║  Sector 7 — Personnel Matrix Fragment                            ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Source         : GHOST pull // Workforce Optimization extract   ║\n║  Period         : 2047-03-15                                     ║\n║  Distribution   : Cell-delta training use only                   ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\nCELL-DELTA-01 — ZONE-7-CLUSTER, field operative, rotation A\nCELL-DELTA-02 — ZONE-7-CLUSTER, intelligence, rotation B\nCELL-DELTA-03 — ZONE-7-CLUSTER, logistics, rotation A\nCELL-DELTA-04 — ZONE-7-CLUSTER, security, rotation C\nCELL-DELTA-05 — ZONE-7-CLUSTER, communications, rotation B\nCELL-DELTA-06 — ZONE-7-CLUSTER, medical, rotation A\n\nRendezvous: ZONE-7-CLUSTER at 23:00\nFallback: ZONE-7-CLUSTER sub-level, 23:30\nAbort signal: ZONE-7-CLUSTER code broadcast on 441.7\n\n> [!note] GHOST — Intercepted\n> ZONE-7-CLUSTER is not the location.\n> I ran the delta on the handoff records twice. The substring appears nine times. CORP's substitution tool points teams to their surveillance checkpoint.\n> Correct term: RELAY-CLUSTER-7.\n> There are 9 substitutions to replace.",
+    "path": "02 - Field Training/M-07-TRANSMISSION-Search_and_Replace.md"
+  },
+  {
+    "id": "M-08",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "02 - Field Training/M-08-TRANSMISSION-Corrupted_Transmission",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-2"
+      ],
+      "sticker": "lucide//zap",
+      "color": "#ffaa00"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — WRAITH + CIPHER              ║\n║  BRIEFING: M-08 // OPERATION RAVEN       ║\n║  Clearance: SHADOW LINK                  ║\n╚══════════════════════════════════════════╝\n```\n\n> [!danger] WRAITH\n> *\"CORP intercepted the archive transmission. The original is a poem — our next handoff is encoded in it. They replaced words, shifted lines, injected garbage.*\n> *Everything you've learned — modes, navigation, word movement, operators, text objects, search and replace. All of it.*\n> *Restore the poem. Vim only.*\n> *Clock is running.\"*\n\n> [!quote] CIPHER\n> *\"The poem is Poe's The Raven. Clean version in [[99-THE_RAVEN|99-THE_RAVEN]] for reference.*\n> *Every `Nevermore` you recover is the same word.*\n> *Work fast. Work clean.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Fully restore the corrupted Raven transmission.\n>\n> > [!tip] SKILLS\n> > All of Tier 2 — combined application\n>\n> > [!success] +35 XP\n>\n> → **[[_content/02 - Field Training/M-08-TRANSMISSION-Corrupted_Transmission|M-08-TRANSMISSION-Corrupted_Transmission]]** — open to begin. Timer starts on file open.",
+    "path": "02 - Field Training/M-08-BRIEFING-Ghost_Transmission.md"
+  },
+  {
+    "id": "M-08",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "02 - Field Training",
+    "frontmatter": {
+      "mission_id": "M-08",
+      "title": "Corrupted Transmission — Operation RAVEN",
+      "tier": "🟡 FIELD TRAINING",
+      "xp_reward": 35,
+      "completed": false,
+      "difficulty": 5,
+      "category": "mission",
+      "tags": [
+        "vim/combined",
+        "field-training",
+        "story-mission"
+      ],
+      "sticker": "lucide//zap",
+      "color": "#ffaa00",
+      "summary": "First real mission. CORP corrupted a Resistance transmission. Repair it with everything you've learned.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii-glitch\n╔══════════════════════════════════════════╗\n║  MISSION M-08 // OPERATION RAVEN         ║\n║  Tier: FIELD TRAINING  //  +35 XP        ║\n║  Clearance: SHADOW LINK                  ║\n╚══════════════════════════════════════════╝\n```\n\n> [!danger] WRAITH\n> *\"Archive transmission corrupted in transit. The original is a poem — our next handoff is encoded in it.*\n> *Everything you've learned. All of it.*\n> *Restore the poem. Vim only.*\n> *Clock is running.\"*\n\n> [!quote] CIPHER\n> *\"Poe's The Raven. Clean version in [[99-THE_RAVEN]] for reference.*\n> *Every `Nevermore` you recover is the same word.*\n> *Work fast. Work clean.\"*\n\n---\n\n```\nCORRUPTED TRANSMISSION // Source: Archive Relay // Classification: RESISTANCE EYES ONLY\n\nOnce upon a ██████████ dreary, while I pondered, weak and weary,\nREDACTED REDACTED REDACTED volume of REDACTED lore—\n\tWhile I nodded, nearly napping, suddenly there came a tapping,\nAs of some one gently rapping, rapping at my chamber door.\n\"'Tis some SURVEILLANCE,\" I muttered, \"MONITORING at my chamber door—\n\t\tOnly this and nothing more.\"\n\n[LINE REMOVED BY AUTOMATED CONTENT HARMONIZATION ENGINE v4.1]\nAnd each separate dying ember wrought its ghost upon the floor;\nEagerly I wished the ████████;—vainly I had sought to borrow\n\tFrom my books surcease of sorrow—sorrow for the lost REDACTED—\nFor the rare and radiant maiden whom the angels name REDACTED—\nNameless here for EVERMORE.\n\n>> COMPLIANCE: This transmission has been flagged under Directive §441. <<\n>> Subversive literature references scheduled for automated reclassification. <<\n```\n\n---\n\nNote: The corruption-signature follows the standard NEVERMORE profile — character-level injection (█ glyphs), word-substitution (REDACTED, SURVEILLANCE, MONITORING, EVERMORE), line-level deletion ([LINE REMOVED]), and embedded compliance-banners. Use the full Tier-2 toolkit.\n\nCompare the restored form against [[99-THE_RAVEN]] — first two stanzas should match exactly.",
+    "path": "02 - Field Training/M-08-TRANSMISSION-Corrupted_Transmission.md"
+  },
+  {
+    "id": "M-09",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "03 - Deep Infiltration/M-09-TRANSMISSION-Marks_and_Macros",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-3"
+      ],
+      "sticker": "lucide//cpu",
+      "color": "#00e5ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-09 // MARKS AND MACROS      ║\n║  Clearance: NEON WRAITH                  ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You've reached Deep Infiltration. GHOST pulled this one from a memo relay inside CORP's infrastructure division — a Register-2 chronology. Still current. They don't know we have it.*\n> *NEVERMORE hit it in transit. This time the corruption is systematic: every line with a timestamp carries the same prefix injection. Identical, repeating, twelve times.*\n> *Manual repair would take an hour.*\n> *`ma` — set mark a. `'a` — jump back. `qa` — record into register a. `q` — stop. `@a` — replay. `@@` — replay last.*\n> *Record the repair once. Replay on every matching line.*\n> *Read the pattern before you start recording. A bad macro repeated thirty times is thirty times wrong.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Restore a CORP internal memo with systematic line-level corruption.\n>\n> > [!tip] SKILLS\n> > `ma` `'a` `` `a ``, `qa` `q` `@a` `@@`, `:norm`\n>\n> > [!success] +50 XP\n>\n> → **[[_content/03 - Deep Infiltration/M-09-TRANSMISSION-Marks_and_Macros|M-09-TRANSMISSION-Marks_and_Macros]]** — open to begin. Timer starts on file open.",
+    "path": "03 - Deep Infiltration/M-09-BRIEFING-CORP_Internal_Memo.md"
+  },
+  {
+    "id": "M-09",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_id": "M-09",
+      "title": "Marks, Macros & Registers",
+      "tier": "🔵 DEEP INFILTRATION",
+      "xp_reward": 50,
+      "completed": false,
+      "difficulty": 7,
+      "category": "advanced",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "NEON WRAITH level (186+ XP)",
+      "tags": [
+        "vim/macros",
+        "vim/marks",
+        "vim/registers",
+        "deep-infiltration"
+      ],
+      "sticker": "lucide//lock",
+      "color": "#0066ff",
+      "summary": "[LOCKED] Marks, Macros, Registers. Automation at operator level. Available after NEON WRAITH."
+    },
+    "body": "CORP INTERNAL CHRONOLOGY — HARMONIZATION ENGINE OPERATIONS\nSource: Operations Review // Classification: Restricted Circulation\nDocument Code: HEO-2047-Q3-0337\n\nRE: ENGINE v4.1 — PHASE III DEPLOYMENT STATUS\n\nPHASE III — Sector Deployment Cycle\n[TS-2047-07-01] Engine deployment posture: within operational envelope\n[TS-2047-07-01] Sector allocation: reviewed against Q2 forecast band\n[TS-2047-07-01] Coordination tier: Audit Division oversight, standard\n[TS-2047-07-07] Harmonization Engine v4.1 coverage: 67% of monitored endpoints\n[TS-2047-07-07] Remaining endpoint classifications: scheduled for Q3 rollout\n[TS-2047-07-07] Target coverage: 100% of monitored endpoints by Q3 close\n[TS-2047-07-14] Anomaly signature logged: NODE-7734, non-random pattern\n[TS-2047-07-14] Classification issued: Informational — no escalation required\n[TS-2047-07-14] Cross-reference disposition: filed against subsequent windows\n[TS-2047-07-21] Legacy-protocol endpoint traffic: down 34% from Q2 baseline\n[TS-2047-07-21] Harmonization intercept rate: within forecast band\n[TS-2047-07-21] Phase IV coverage expansion: scheduled for Q4 rollout\n\nAssessment: Phase III operational metrics are within specification. Phase IV scheduling falls within standard rollout cadence.\n\nDocument generated automatically. No human review required.\n\nNote: Timestamps are corrupted. Format should be:\n[2047-07-01] not [TS-2047-07-01]\nThere are 12 lines affected. Use a macro.",
+    "path": "03 - Deep Infiltration/M-09-TRANSMISSION-Marks_and_Macros.md"
+  },
+  {
+    "id": "M-10",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "03 - Deep Infiltration/M-10-TRANSMISSION-Registers",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-3"
+      ],
+      "sticker": "lucide//file-stack",
+      "color": "#00e5ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-10 // NAMED REGISTERS       ║\n║  Clearance: NEON WRAITH                  ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"This one came through colder channels than usual. Read it carefully before you start.*\n> *CORP has begun a new tactic. They know pulled files are reaching us. Their counter is simple: swap attribution inside the file itself. Two chronology blocks, same document, dates landing under the wrong phase headers. The numbers are real. The placement is not.*\n> *Restore the pairing. The dates for Sector 7 belong under Sector 7. The dates for Sector 12 belong under Sector 12.*\n> *You cannot solve this with one register. Cut the first block, cut the second, and the default register has already forgotten the first. That is the lesson.*\n> *`\"a4dd` — cut four lines into register a. `\"b4dd` — cut four lines into register b. `\"ap` and `\"bp` — paste where each belongs.*\n> *Two registers. Two cuts. Two pastes. Read the pattern before you move.*\n> *The note at the bottom of the file is for you. Leave it in place. Future operatives will see this tactic again.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Restore a CORP chronology by swapping two attribution blocks back into correct phase positions.\n>\n> > [!tip] SKILLS\n> > `\"add`, `\"bdd`, `\"ap`, `\"bp`, named-register paste ordering\n>\n> > [!success] +55 XP\n>\n> → **[[_content/03 - Deep Infiltration/M-10-TRANSMISSION-Registers|M-10-TRANSMISSION-Registers]]** — open to begin. Timer starts on file open.",
+    "path": "03 - Deep Infiltration/M-10-BRIEFING-Swapped_Chronology.md"
+  },
+  {
+    "id": "M-10",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_id": "M-10",
+      "title": "Named Registers",
+      "tier": "🔵 DEEP INFILTRATION",
+      "xp_reward": 55,
+      "completed": false,
+      "difficulty": 7,
+      "category": "advanced",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "NEON WRAITH level (240+ XP)",
+      "tags": [
+        "vim/registers",
+        "deep-infiltration"
+      ],
+      "sticker": "lucide//lock",
+      "color": "#0066ff",
+      "summary": "[LOCKED] Named registers — two-block swap. The default register is not enough. Available after NEON WRAITH."
+    },
+    "body": "CORP INTERNAL CHRONOLOGY — OPERATIONS REVIEW\nSource: Deep Infiltration // Classification: RESTRICTED\nDocument Code: OCR-2047-Q2-0441\n\nRE: CONSOLIDATED ATTRIBUTION — DUAL-PHASE COMPLIANCE OPERATION\n\nPHASE ALPHA — Sector 7 Enforcement Cycle\n[2047-05-17] Surveillance coverage expanded: +22.1% monitored endpoints\n[2047-05-24] Legacy-protocol detection threshold adjusted downward by factor 1.5\n[2047-05-31] Non-compliant entity resolutions processed: 14 (cumulative)\n[2047-06-07] Sector productivity index: 92.8%, within forecast band\nPHASE BETA — Sector 12 Enforcement Cycle\n[2047-04-12] Surveillance coverage expanded: +18.4% monitored endpoints\n[2047-04-19] Legacy-protocol detection threshold adjusted downward by factor 1.3\n[2047-04-26] Non-compliant entity resolutions processed: 9 (cumulative)\n[2047-05-03] Sector productivity index: 94.1%, within forecast band\nAssessment: Both phases concluded within operational tolerance. Phase Beta resolution count exceeds Phase Alpha by 55.6%, consistent with Sector 12 baseline population density.\n\nDocument generated automatically. No human review required.\n\nNote: Two 4-line chronology blocks have been swapped under their phase headers. The dates under PHASE ALPHA belong under PHASE BETA, and vice versa. A single cut-and-paste will not work — the default register overwrites on the second cut. Use two named registers.",
+    "path": "03 - Deep Infiltration/M-10-TRANSMISSION-Registers.md"
+  },
+  {
+    "id": "M-11",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "03 - Deep Infiltration/M-11-TRANSMISSION-Bulletin_Drift",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-3"
+      ],
+      "sticker": "lucide//file-diff",
+      "color": "#00e5ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-11 // BULLETIN DRIFT        ║\n║  Clearance: NEON WRAITH                  ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"GHOST pulled the pre-release from Communications' staging server before sign-off. That file is FRAGMENT-10. Then CORP's Communications division ran a sanitation pass. Four claims were rewritten between FRAGMENT-10 and the version distributed to Sector 7 residents. Your job is to restore them.*\n> *Open FRAGMENT-10 in a split pane right — Cmd+Option+Click the link at the bottom. You need both files visible at once. The diff is the work.*\n> *In the FRAGMENT-10 pane: cursor on the original line, `yy`. Switch panes with Ctrl+Tab. In this pane: cursor on the sanitized line, `Vp`. That overwrites the line with what GHOST pulled. Four times.*\n> *Ctrl-W h and Ctrl-W l move between panes if your setup supports it. Either way works.*\n> *The diff doesn't lie. Trust the diff.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Restore four sanitized claims in a CORP citizen bulletin against the GHOST-intercepted pre-release draft.\n>\n> > [!tip] SKILLS\n> > `Ctrl+Tab`, `yy`, `Vp`, cross-pane line-transfer workflow\n>\n> > [!success] +55 XP\n>\n> → **[[_content/03 - Deep Infiltration/M-11-TRANSMISSION-Bulletin_Drift|M-11-TRANSMISSION-Bulletin_Drift]]** — open to begin. Timer starts on file open.\n>\n> → **[[_content/FRAGMENTS/FRAGMENT-10-Pre_Release_Sector_7_Bulletin|FRAGMENT-10-Pre_Release_Sector_7_Bulletin]]** — GHOST's pull. Open in split pane right (Cmd+Option+Click).",
+    "path": "03 - Deep Infiltration/M-11-BRIEFING-Bulletin_Drift.md"
+  },
+  {
+    "id": "M-11",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_id": "M-11",
+      "title": "Bulletin Drift",
+      "tier": "🔵 DEEP INFILTRATION",
+      "xp_reward": 55,
+      "completed": false,
+      "difficulty": 7,
+      "category": "advanced",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "M-10 completed",
+      "tags": [
+        "vim/splits",
+        "deep-infiltration"
+      ],
+      "sticker": "lucide//columns-2",
+      "color": "#0066ff",
+      "summary": "[LOCKED] Split-pane diff reconciliation — restore a CORP citizen bulletin against its pre-release draft. Available after M-10."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Office of Sector Communications — Sector 7 Division             ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Citizen Bulletin — Public Distribution         ║\n║  Edition        : 14 / Quarter 2 / 2047                          ║\n║  Revision       : FINAL — 2047-06-27T14:00:00Z                   ║\n║  Classification : PUBLIC DISTRIBUTION — ALL RESIDENTS            ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n---\n\n**SECTOR 7 CITIZEN BULLETIN — Q2 2047 // EDITION 14**\n\n---\n\n**PRODUCTIVITY & COMPLIANCE**\n\nYour sector's productivity index for Q2 2047 registered at **94.3%**, within projected parameters.\n\nResidents are reminded that productivity thresholds are monitored continuously. Threshold-level incidents have been logged and forwarded to Workforce Optimization Bureau.\n\n---\n\n**ENFORCEMENT & RESOLUTION SERVICES**\n\nEnhanced coverage coordination has been facilitated across all residential zones during the Q2 period.\n\nResolution assistance services remain active. Residents experiencing classification queries are directed to submit formal clarification requests through approved intake channels.\n\n---\n\n**HARMONIZATION COVERAGE**\n\nHarmonization Engine coverage within Sector 7 expanded by **+34.7% monitored endpoints** during Q2.\n\nLegacy-protocol endpoint incidents logged in the sector: **187 cases receiving assistance**.\n\nAll incidents have been forwarded to the appropriate classification tier for processing.\n\n---\n\n**SECTOR OUTLOOK**\n\nSector 7 compliance indicators reflect a stable compliance trajectory entering Q3. Residents can expect continued operational support through the end of the compliance period.\n\nResidents are advised to review their current productivity classifications and submit any outstanding compliance documentation before the Q3 review window opens.\n\n---\n\nOffice of Sector Communications — Sector 7 Division\nBulletin Edition 14 — Q2 2047\nYour cooperation is noted and recorded.\n\nNote: Four claims in this bulletin differ from the pre-release draft intercepted by GHOST. Open FRAGMENT-10 in a split pane right, place your cursor on the original line, `yy` to yank — switch panes, cursor on the sanitized line, `Vp` to overwrite.",
+    "path": "03 - Deep Infiltration/M-11-TRANSMISSION-Bulletin_Drift.md"
+  },
+  {
+    "id": "M-12",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "03 - Deep Infiltration/M-12-TRANSMISSION-Anomaly_Classification",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-3"
+      ],
+      "sticker": "lucide//file-search",
+      "color": "#00e5ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: M-12 // ANOMALY CLASSIFICATION    ║\n║  Clearance: NEON WRAITH                      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"This is the last document we have from GHOST. Pulled before they went dark. Pattern Analysis Unit's Q3 follow-up — same hypothesis from the Q2 audit, now escalated to active investigation.*\n> *They're closer than they know. Not close enough yet. But the report mixes what they found with what their engines collect automatically. Noise and signal in the same file.*\n> *Three corruption layers. Standard-Monitoring baselines that don't belong in an Audit report. Legacy-Protocol entries filed under a category that isn't theirs. And one section where Pattern-Analysis entries sit under carry-over residue from adjacent reports.*\n> *Ex mode. Global commands.*\n> *`:g/pattern/d` deletes every line matching. `:v/pattern/d` keeps only lines matching. Pair `:g` with a substitute — `:g/X/s/Y/Z/` — and you reclassify in place.*\n> *Scope the command when you don't want it global. `V` selects lines; `:` auto-fills the range.*\n> *Fix it before the decoder sees it. What remains is what we need.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Apply a three-stage Ex-mode cleanup to a Pattern Analysis Unit anomaly report.\n>\n> > [!tip] SKILLS\n> > `:g/pattern/d`, `:v/pattern/d`, `:g/pattern/s/X/Y/`, range-scoping via visual selection `'<,'>`\n>\n> > [!success] +60 XP\n>\n> → **[[_content/03 - Deep Infiltration/M-12-TRANSMISSION-Anomaly_Classification|M-12-TRANSMISSION-Anomaly_Classification]]** — open to begin. Timer starts on file open.",
+    "path": "03 - Deep Infiltration/M-12-BRIEFING-Anomaly_Classification.md"
+  },
+  {
+    "id": "M-12",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "03 - Deep Infiltration",
+    "frontmatter": {
+      "mission_id": "M-12",
+      "title": "Anomaly Classification",
+      "tier": "🔵 DEEP INFILTRATION",
+      "xp_reward": 60,
+      "completed": false,
+      "difficulty": 8,
+      "category": "advanced",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "M-11 completed",
+      "tags": [
+        "vim/ex-mode",
+        "vim/global-command",
+        "deep-infiltration"
+      ],
+      "sticker": "lucide//file-search",
+      "color": "#0066ff",
+      "summary": "[LOCKED] Ex-mode pattern purge — three-stage cleanup of a Pattern Analysis Unit anomaly report. Available after M-11."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Internal Audit Division — Pattern Analysis Unit                 ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Advanced Anomaly Tracking — Q3 Follow-Up       ║\n║  Scope          : Cross-Sector Pattern Analysis, Q3 2047         ║\n║  Classification : Internal — Audit Division Only                 ║\n║  Audit Code     : AAR-2047-Q3-0147 / PAU-CS-0089                 ║\n║  Sample Window  : 2047-07-01 to 2047-09-15                       ║\n║  Generated      : 2047-09-20T14:33:12Z (Automated)               ║\n║  Reviewer       : Pattern Analysis Unit — Tier 2 Analyst         ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n## Executive Summary\n\nCross-sector pattern analysis for Q3 2047 builds on the statistical baselines established in AAR-2047-0214 (Q2 Initial Audit). The exogenous-origin working hypothesis has been retained across the sample window. Substring concordance has registered above the Q2 threshold in three of seven monitored sectors.\n\nThis report escalates the analysis tier from observation (Q2) to active investigation (Q3). Section 3 enumerates the anomaly signatures currently under active classification review.\n\n## Sector Anomaly Tracking — Standard Monitoring\n\nStandard Monitoring — Sector 3 — Window 2047-07-04 to 2047-07-18 — Baseline nominal\nStandard Monitoring — Sector 5 — Window 2047-07-11 to 2047-07-25 — Baseline nominal\nStandard Monitoring — Sector 7 — Window 2047-07-18 to 2047-08-01 — Baseline within forecast band\nStandard Monitoring — Sector 9 — Window 2047-07-25 to 2047-08-08 — Baseline nominal\nStandard Monitoring — Sector 12 — Window 2047-08-01 to 2047-08-15 — Baseline within forecast band\nStandard Monitoring — Sector 14 — Window 2047-08-08 to 2047-08-22 — Baseline nominal\nStandard Monitoring — Sector 16 — Window 2047-08-15 to 2047-08-29 — Baseline within forecast band\nStandard Monitoring — Sector 18 — Window 2047-08-22 to 2047-09-05 — Baseline nominal\n\n## Legacy-Protocol Reclassifications\n\nLegacy-Protocol Session 7734-07-A — Sector 7 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-07-B — Sector 7 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-12-A — Sector 12 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-12-B — Sector 12 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-16-A — Sector 16 — Cat. 7 Non-Compliance\n\n## Active Investigations — Anomaly Signatures\n\nAnomaly Signature PAU-Σ-0147 — cross-sector byte-position skew, sustained\nCross-reference Query 2047-Q3-441 — retrospective backfill — no match\nAnomaly Signature PAU-Σ-0148 — inter-injection distance deviation, Sector 7\nRetrospective Flag 2047-Q2-carryover — disposition: filed\nAnomaly Signature PAU-Σ-0149 — substring concordance, Sectors 3+7+12\nCross-reference Query 2047-Q3-502 — cross-sector correlation — inconclusive\nAnomaly Signature PAU-Σ-0150 — output-layer manipulation hypothesis, sustained\nRetrospective Flag 2047-Q1-archive — archived per DS-114-C\nAnomaly Signature PAU-Σ-0151 — endpoint diversity elevation, Sector 7\nAnomaly Signature PAU-Σ-0152 — compression-ratio anomaly, multi-sector\n\n## Closing Statement\n\nThis report was generated by Pattern Analysis Unit automated tooling following the Q3 2047 statistical audit cycle. All figures are derived from Harmonization Engine v4.1 output logs and cross-sector sample aggregation. No manual data entry was performed.\n\nDistribution: Audit Division only. Operational distribution is subject to Tier 2 reviewer approval at follow-on analysis cycle.\n\n```ascii\n── END OF REPORT ───────────────────────────────────────────────────\n   CORP — Internal Audit Division — Pattern Analysis Unit\n   AAR-2047-Q3-0147 / PAU-CS-0089 — 2047-09-20T14:33:12Z\n   Automated. No human review required for distribution at this tier.\n────────────────────────────────────────────────────────────────────\n```\n\nNote: This PAU report carries three corruption classes from transmission.\n(1) Sector Anomaly Tracking — Standard Monitoring entries are Engine-scanner-baseline injections that do not belong in a PAU report. Remove them.\n(2) Legacy-Protocol Reclassifications — entries are classified as Cat. 7 Non-Compliance, but the canonical PAU-tier classification per DS-114-C is Cat. 5 Factual Non-Compliance. Correct in-place.\n(3) Active Investigations — Anomaly Signatures — this section should contain only Anomaly Signature entries. Cross-reference Queries and Retrospective Flags are residual content from adjacent reports. Scope the cleanup to this section only.",
+    "path": "03 - Deep Infiltration/M-12-TRANSMISSION-Anomaly_Classification.md"
+  },
+  {
+    "id": "M-13",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "04 - Chrome Raven/M-13-TRANSMISSION-Case_Cipher_Decryption",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-4"
+      ],
+      "sticker": "lucide//type",
+      "color": "#cc66ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: M-13 // CASE-CIPHER DECRYPTION    ║\n║  Clearance: CHROME RAVEN                     ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"GHOST sent the first decoded fragment from RAVEN's signal. It came through in case.*\n> *The letters were pulled clean — the case was not. NEVERMORE's auto-processing randomized capital and lowercase across the message. You normalize to read.*\n> *`~` toggles one character. `viw` then `u` or `U` scopes to a word. `gu{motion}` / `gU{motion}` for a range. `guu` / `gUU` for a whole line.*\n> *This is the entry of the signal-channel. RAVEN is brief.*\n> *Restore the case. The walk is the message.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Restore the intended casing of a GHOST-decoded signal fragment.\n>\n> > [!tip] SKILLS\n> > `~`, `viwu` / `viwU`, `gu{motion}` / `gU{motion}`, `guu` / `gUU`, `g~~`\n>\n> > [!success] +55 XP\n>\n> → **[[_content/04 - Chrome Raven/M-13-TRANSMISSION-Case_Cipher_Decryption|M-13-TRANSMISSION-Case_Cipher_Decryption]]** — open to begin. Timer starts on file open.",
+    "path": "04 - Chrome Raven/M-13-BRIEFING-Case_Cipher_Decryption.md"
+  },
+  {
+    "id": "M-13",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_id": "M-13",
+      "title": "Case-Cipher Decryption",
+      "tier": "🟣 CHROME RAVEN",
+      "xp_reward": 55,
+      "completed": false,
+      "difficulty": 7,
+      "category": "advanced",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "M-12 completed",
+      "tags": [
+        "vim/case",
+        "vim/case-conversion",
+        "chrome-raven"
+      ],
+      "sticker": "lucide//type",
+      "color": "#9933ee",
+      "summary": "[LOCKED] Case-conversion decryption — restore intended casing of a GHOST-decoded RAVEN signal-fragment. Available after M-12."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  GHOST — DECODED FRAGMENT // Signal-01                           ║\n║  Source         : NEVERMORE corruption-layer — Q2 2047 archive   ║\n║  Decoder        : case-seed derived from FRAGMENT-09 cross-sample║\n║  Extraction     : pre-dark pull // cross-file concordance pass   ║\n║  Classification : Resistance — signal-channel (post-LOOT-03)     ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] GHOST — Intercepted // Decoded Fragment 01\n> First signal-fragment from RAVEN's channel. I ran the case-delta-pass three times — the pattern holds across independent corruption-files.\n> CORP's auto-processing randomizes case across decoded output. Letters are intact. Case is not.\n> Normalize to intended casing to read clean. Four lines including signature.\n\n---\n\nread THE CASE as weight.\nevery CAPITAL is a step. EVERY LOWERCASE, the pause between.\nYOU RESTORED THE WALK.\n— rvn\n\n---\n\nNote: RAVEN's message emerged from case-normalization. GHOST's decoder reconstructed letters but case-randomized sections.\nRestore intended casing:\n- Line 1: starts with capital; mid-sentence words in normal prose case (not ALL-CAPS).\n- Line 2: starts with capital; body in normal prose case.\n- Line 3: starts with capital; body in lowercase.\n- Signature: `— RVN` (RAVEN always signs in full capital).",
+    "path": "04 - Chrome Raven/M-13-TRANSMISSION-Case_Cipher_Decryption.md"
+  },
+  {
+    "id": "M-14",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "04 - Chrome Raven/M-14-TRANSMISSION-Counter_Operations",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-4"
+      ],
+      "sticker": "lucide//hash",
+      "color": "#cc66ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: M-14 // COUNTER-OPERATIONS        ║\n║  Clearance: CHROME RAVEN                     ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Second fragment from RAVEN's channel. GHOST's decoder gave us coordinates, but CORP's grid uses per-sector offsets. RAVEN encoded the true values relative to those offsets. You apply the offset-keys to read.*\n> *Per-column increments. Five waypoints, two columns — REF and MARK. Each column has its own offset-key. All rows in that column take the same shift.*\n> *`Ctrl+v` enters visual-block mode — you select a rectangle across lines. Inside the block, `Ctrl+a` increments each number by 1. Prefix with a count: `3<C-a>` adds 3 to every number in the block.*\n> *Two passes. REF column first with its offset. MARK column second.*\n> *RAVEN's note is at the bottom. Read it after the matrix is clean.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Apply per-column offset-keys to a Resistance extraction-coordinate-matrix.\n>\n> > [!tip] SKILLS\n> > `Ctrl+v` (visual-block), `Ctrl+a` / `Ctrl+x` (increment / decrement), count-prefix (`3<C-a>`, `7<C-a>`)\n>\n> > [!success] +60 XP\n>\n> → **[[_content/04 - Chrome Raven/M-14-TRANSMISSION-Counter_Operations|M-14-TRANSMISSION-Counter_Operations]]** — open to begin. Timer starts on file open.",
+    "path": "04 - Chrome Raven/M-14-BRIEFING-Counter_Operations.md"
+  },
+  {
+    "id": "M-14",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_id": "M-14",
+      "title": "Counter-Operations",
+      "tier": "🟣 CHROME RAVEN",
+      "xp_reward": 60,
+      "completed": false,
+      "difficulty": 7,
+      "category": "advanced",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "M-13 completed",
+      "tags": [
+        "vim/numeric",
+        "vim/visual-block",
+        "vim/increment",
+        "chrome-raven"
+      ],
+      "sticker": "lucide//hash",
+      "color": "#9933ee",
+      "summary": "[LOCKED] Numeric increment + visual-block — apply offset-keys to a Resistance extraction-coordinate-matrix. Available after M-13."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CIPHER — EXTRACTION-MATRIX DRAFT // WORKING                     ║\n║  Sector          : 7 North                                       ║\n║  Source          : GHOST-decoder-chain (Signal-01 + 02 merged)   ║\n║  Status          : coordinates pre-offset, signal-fragment clean ║\n║  Classification  : Resistance — extraction-channel               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Active-Planning Channel\n> GHOST's decoder-chain produced the coordinate-matrix below. Raw values are relative to CORP's sector-grid — the offset-keys at the column-headers give the shift required to read absolute coordinates.\n> Apply the shifts in-place. Don't touch the signal-fragment at the bottom — that came through clean from RAVEN's channel.\n\n---\n\nExtraction Matrix — Sector 7 North\nPer-column offset-keys: +3 (REF), +7 (MARK)\n\n  Waypoint Alpha:   REF-4217 MARK-1378\n  Waypoint Beta:    REF-4222 MARK-1383\n  Waypoint Gamma:   REF-4227 MARK-1388\n  Waypoint Delta:   REF-4232 MARK-1393\n  Waypoint Epsilon: REF-4237 MARK-1398\n\n```\n>_ RAVEN-SIGNAL — decoded fragment 02\n   The count is my language. They read words.\n   They do not count.\n   You increment what I whispered. The sum is the message.\n   — RVN\n```\n\n---\n\nNote: CIPHER's draft-matrix. Offset-keys declared at the top but not yet applied to the numeric columns.\nApply the offsets:\n- REF column: all five waypoint-values take +3.\n- MARK column: all five waypoint-values take +7.\n- The RAVEN-signal fragment is already clean. Do not modify.",
+    "path": "04 - Chrome Raven/M-14-TRANSMISSION-Counter_Operations.md"
+  },
+  {
+    "id": "M-15",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "04 - Chrome Raven/M-15-TRANSMISSION-Pattern_Rewriting",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-4"
+      ],
+      "sticker": "lucide//regex",
+      "color": "#cc66ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: M-15 // PATTERN REWRITING         ║\n║  Clearance: CHROME RAVEN                     ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Third fragment. GHOST's decoder-chain has merged the signals into a pattern-archive, but the format is still CORP's — bracketed codes, hyphenated descriptors. Restructure it into ours.*\n> *Regex with capture-groups. Very-magic mode with `\\v` makes the pattern readable. Parentheses around parts of the match mark capture-groups — the parts become `\\1`, `\\2`, `\\3` in the replacement and you rearrange them.*\n> *Three passes. First, restructure the entry-lines — three capture-groups in one substitute. Second, lift the classification-brackets into Markdown headings — one capture-group. Third, fix the archive-header.*\n> *RAVEN's fragment 03 is at the bottom. Read it after the format is clean — it tells us what comes next.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Transform a CORP-format pattern-archive into Resistance-format using capture-group regex.\n>\n> > [!tip] SKILLS\n> > `\\v` (very-magic mode), `(...)` (capture-groups), `\\1` / `\\2` / `\\3` (back-references), `\\d{N}` / `\\w+` / `.+` (character-classes with quantifiers)\n>\n> > [!success] +65 XP\n>\n> → **[[_content/04 - Chrome Raven/M-15-TRANSMISSION-Pattern_Rewriting|M-15-TRANSMISSION-Pattern_Rewriting]]** — open to begin. Timer starts on file open.",
+    "path": "04 - Chrome Raven/M-15-BRIEFING-Pattern_Rewriting.md"
+  },
+  {
+    "id": "M-15",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_id": "M-15",
+      "title": "Pattern Rewriting",
+      "tier": "🟣 CHROME RAVEN",
+      "xp_reward": 65,
+      "completed": false,
+      "difficulty": 8,
+      "category": "advanced",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "M-14 completed",
+      "tags": [
+        "vim/regex",
+        "vim/substitute",
+        "vim/capture-groups",
+        "chrome-raven"
+      ],
+      "sticker": "lucide//regex",
+      "color": "#9933ee",
+      "summary": "[LOCKED] Advanced regex with capture-groups + back-references — transform signal-archive formats. Available after M-14."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CIPHER — INTEL-ARCHIVE DRAFT // WORKING                         ║\n║  Source          : GHOST-decoder-chain (Signals 01+02 merged)    ║\n║  Composition     : Pattern Analysis Unit entries + classification║\n║  Status          : CORP-format pending restructure               ║\n║  Classification  : Resistance — extraction-channel               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Active-Planning Channel\n> GHOST's decoder-chain pushed the Pattern Analysis Unit records into a single archive. Three passes to bring it into our format — two structural regex-transforms plus a header-rename.\n> RAVEN's fragment 03 sits at the bottom, in code-fence. Leave it alone.\n\n---\n\nPattern Archive — Q3 2047 (CORP-format)\n\n[CLASSIFICATION: CONFIRMED]\n[ENTRY-0147]: pattern-01 byte-position skew\n[ENTRY-0148]: pattern-02 inter-injection deviation\n[ENTRY-0150]: pattern-04 output-layer manipulation\n\n[CLASSIFICATION: PENDING]\n[ENTRY-0149]: pattern-03 substring concordance\n[ENTRY-0151]: pattern-05 endpoint diversity elevation\n\n```\n>_ RAVEN-SIGNAL — decoded fragment 03\n   Shape is older than syntax. CORP reads what you say.\n   I write in how you say it. You found the shape.\n   The next turn is mine.\n   — RVN\n```\n\n---\n\nNote: Three substitutions to restructure.\n- Entry-lines: `[ENTRY-NNNN]: pattern-NN description` → `Pattern NN (NNNN) — description`. Use `\\v` very-magic mode and three capture-groups.\n- Classification-headers: `[CLASSIFICATION: STATUS]` → `## Classification: STATUS`. One capture-group.\n- Archive-header: `CORP-format` → `Resistance-format`. Literal substitution (no capture-group needed).\n- The RAVEN-signal fragment is clean. Do not modify.",
+    "path": "04 - Chrome Raven/M-15-TRANSMISSION-Pattern_Rewriting.md"
+  },
+  {
+    "id": "M-16",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "04 - Chrome Raven/M-16-TRANSMISSION-Extraction_Window",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "tier-4",
+        "tier-4-capstone"
+      ],
+      "sticker": "lucide//target",
+      "color": "#cc66ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: M-16 // EXTRACTION WINDOW         ║\n║  Clearance: CHROME RAVEN  //  CAPSTONE       ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Capstone. Four documents, four threads — WRAITH's route, GHOST's coordinates, my auth-signature, CORP's countermeasure prediction. All of them have to be clean before the extraction-window opens.*\n> *You use everything. Operators to strip injections. Visual-block to shift coordinates. Case-conversion for the signature. Global + regex for the prediction cleanup.*\n> *Four sections. Four passes. No new tools — only the ones you already have.*\n> *RAVEN's fragment 04 is at the bottom. Don't read it until the document is clean. It's the last piece.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Reconcile four extraction-threads in a single mission-file before the window closes.\n>\n> > [!tip] SKILLS\n> > All Tier-1..4 composite — `dd`/`3dd` (operators), `Ctrl+v` + `N<C-a>` (visual-block + numeric), `guu`/`viwu` (case-conversion), `:g/X/d` + `:%s/\\v.../.../` with capture-groups (Ex + regex)\n>\n> > [!success] +80 XP\n>\n> → **[[_content/04 - Chrome Raven/M-16-TRANSMISSION-Extraction_Window|M-16-TRANSMISSION-Extraction_Window]]** — open to begin. Timer starts on file open.",
+    "path": "04 - Chrome Raven/M-16-BRIEFING-Extraction_Window.md"
+  },
+  {
+    "id": "M-16",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "04 - Chrome Raven",
+    "frontmatter": {
+      "mission_id": "M-16",
+      "title": "Extraction Window",
+      "tier": "🟣 CHROME RAVEN",
+      "xp_reward": 80,
+      "completed": false,
+      "difficulty": 9,
+      "category": "mission",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "M-15 completed",
+      "tags": [
+        "vim/combined",
+        "vim/composite",
+        "chrome-raven",
+        "tier-4-capstone"
+      ],
+      "sticker": "lucide//target",
+      "color": "#9933ee",
+      "summary": "[LOCKED] Tier-4 capstone — four-section extraction reconciliation under 30-minute window. All Tier-1..4 skills applied. Available after M-15."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  EXTRACTION WINDOW — FINAL RECONCILIATION                        ║\n║  Timing          : T-30 minutes                                  ║\n║  Threads         : WRAITH logistics / GHOST coords /             ║\n║                    CIPHER auth-signature / CORP predictions      ║\n║  Status          : all four documents pre-integration            ║\n║  Classification  : Resistance — extraction-channel, sealed       ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Sealed Channel\n> Four threads need to be clean before the window opens. Each section exercises a different skill-class from your training. Work top to bottom.\n> RAVEN's fragment 04 sits at the bottom in code-fence. Do not read it until the document is clean.\n\n---\n\n## 1. Extraction Route — WRAITH\n\n> [!note] WRAITH — Logistics\n> Route is clean once the monitoring-injections are stripped.\n> *I was wrong about the ghost.* Move the asset.\n\n>> COMPLIANCE: Route-integrity review queued. <<\n>> Monitoring on all nodes active. <<\n\nStage Alpha: Node 7-PRIMARY — 21:00\nStage Beta:  Node 7-SECONDARY — 21:12\nStage Gamma: Node 7-NORTH-RELAY — 21:28\n\n>> COMPLIANCE: Automated scan cleared. <<\n\nStage Delta: Extraction Point — 21:44\n\n---\n\n## 2. Final Coordinates — GHOST\n\n> [!note] GHOST — Coordinate Pass\n> Final key-rotation. Ran the delta twice — the shift is clean.\n\nFinal key-rotation: +2 on all REF, +1 on all MARK\n\n  Waypoint Alpha:   REF-4220 MARK-1385\n  Waypoint Beta:    REF-4225 MARK-1390\n  Waypoint Gamma:   REF-4230 MARK-1395\n\n---\n\n## 3. Handler Auth-Signature — CIPHER\n\n> [!note] CIPHER — Auth-Handshake\n> Signature format is all-lowercase for the sealed channel. Case-normalize before transmission.\n\nauth-line-one: cipher-echo-alpha-SEVEN-TWO\nAUTH-LINE-TWO: cipher-echo-BETA-FIVE-FOUR\nAuth-Line-Three: CIPHER-ECHO-gamma-ONE-NINE\n\n---\n\n## 4. CORP Countermeasure Prediction — INTEL\n\n> [!note] GHOST — Intel-Capture\n> CORP's last predictive-tracking entries from before I went dark. Noise-lines interleaved. Strip them, then rewrite to our format.\n\n[ENTRY-0152]: threat-alpha pattern-05 endpoint-diversity\n[STANDARD-NOISE]: sector-nominal\n[ENTRY-0153]: threat-alpha pattern-06 signal-concordance\n[STANDARD-NOISE]: sector-within-band\n[ENTRY-0154]: threat-beta pattern-07 distribution-skew\n\n---\n\n> [!quote] CIPHER\n> *\"Four documents. Reconciled.*\n> *You did what the training asked. Now the training is a tool — not a measure.*\n> *The window opens in ninety seconds. Your file is waiting.*\n> *— CIPHER\"*\n\n```\n>_ RAVEN-SIGNAL — decoded fragment 04\n   Now.\n   The file you open next is a door.\n   You walked every step. You are here.\n   — RVN\n```\n\n---\n\nNote: Four threads, four passes.\n- Section 1 (WRAITH Route): strip the three `>>` COMPLIANCE injection-lines. Operators + line-delete.\n- Section 2 (GHOST Coords): apply the final key-rotation — +2 on REF column, +1 on MARK column. Visual-block + count-prefix.\n- Section 3 (CIPHER Auth-Signature): normalize all three auth-lines to lowercase.\n- Section 4 (CORP Prediction): purge the two `[STANDARD-NOISE]` lines, then regex-rewrite the three `[ENTRY-NNNN]` entries to the format `Threat-<level> Pattern NN (NNNN) — description`.\n- CIPHER close + RAVEN-fragment 04 are static. Do not modify.",
+    "path": "04 - Chrome Raven/M-16-TRANSMISSION-Extraction_Window.md"
+  },
+  {
+    "id": "R-01",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "05 - Literal Frequencies/R-01-TRANSMISSION-Signal_Substitution",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//replace",
+      "color": "#00ccff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-01 // SIGNAL SUBSTITUTION       ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You're reading this because you passed field training. That means NEXUS trusts you.*\n> *CORP is watching us. Not individually — they built something called PROJECT MIRROR. A surveillance engine that scans communication intercepts for keyword patterns. We don't know its full shape yet.*\n> *First step: the intercept log below has been garbled. CORP's relay system substituted our codename — NEXUS — with a dead-drop alias — PHANTOM. Nine instances. I need you to fix them.*\n> *One command. Global substitution. This is what `:s` was built for.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every occurrence of `PHANTOM` with `NEXUS` in the intercept log.\n>\n> > [!tip] SKILLS\n> > `:%s/PHANTOM/NEXUS/g` — substitute all occurrences across the file\n>\n> > [!success] +20 XP\n>\n> → **[[_content/05 - Literal Frequencies/R-01-TRANSMISSION-Signal_Substitution|R-01-TRANSMISSION-Signal_Substitution]]** — open to begin. Timer starts on file open.",
+    "path": "05 - Literal Frequencies/R-01-BRIEFING-Signal_Substitution.md"
+  },
+  {
+    "id": "R-01",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_id": "R-01",
+      "title": "Signal Substitution",
+      "tier": "🔵 ARC II",
+      "xp_reward": 20,
+      "completed": false,
+      "difficulty": 1,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 5",
+      "tags": [
+        "vim/regex",
+        "vim/substitute",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//replace",
+      "color": "#00ccff",
+      "summary": "[LOCKED] CORP relay garbled a codename across a full intercept log. Fix all nine instances in one command."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  COMM INTERCEPT — RESISTANCE INTERNAL                            ║\n║  Channel        : CIPHER-DIRECT // encrypted                    ║\n║  Timestamp      : 2047-05-03 // 04:17                           ║\n║  Subject        : Relay log fragment — garbled in transit        ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Direct Channel\n> Codename substitution detected. CORP relay injected PHANTOM for NEXUS across this intercept. Fix all nine before it gets archived.\n\n---\n\nCOMMUNICATION LOG — SECTOR 3 RELAY NODE\n\nOrigin      : NEXUS\nDestination : Field agents — all channels\nStatus      : ACTIVE\n\nNEXUS confirms asset extraction at 23:00.\nRoute verified. NEXUS logistics intact.\n\nCell-alpha checks in: NEXUS handshake received.\nCell-beta checks in: NEXUS handshake received.\nCell-gamma: awaiting NEXUS confirmation.\n\nNEXUS fallback activated — secondary route clear.\nNEXUS signal strength: nominal.\n\nArchive marker: NEXUS — close of channel.",
+    "path": "05 - Literal Frequencies/R-01-TRANSMISSION-Signal_Substitution.md"
+  },
+  {
+    "id": "R-02",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "05 - Literal Frequencies/R-02-TRANSMISSION-Silent_Flag",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//flag",
+      "color": "#00ccff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-02 // SILENT FLAG               ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"CORP's automated systems encode data inconsistently. This log has the target designation written three different ways — all caps, all lowercase, mixed. Same word. Different case.*\n> *Your standard `:s` command is case-sensitive. It won't catch all three. You need the `i` flag. Or `I` if you want to force sensitivity. For this: `gi`.*\n> *Find every form of the word. Replace them all. That is what the `i` flag is for.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every case-variant of `mirror` with `PROJECT MIRROR` — including `MIRROR`, `Mirror`, `mirror`.\n>\n> > [!tip] SKILLS\n> > `:%s/mirror/PROJECT MIRROR/gi` — `g` = all occurrences, `i` = case-insensitive\n>\n> > [!success] +20 XP\n>\n> → **[[_content/05 - Literal Frequencies/R-02-TRANSMISSION-Silent_Flag|R-02-TRANSMISSION-Silent_Flag]]** — open to begin. Timer starts on file open.",
+    "path": "05 - Literal Frequencies/R-02-BRIEFING-Silent_Flag.md"
+  },
+  {
+    "id": "R-02",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_id": "R-02",
+      "title": "Silent Flag",
+      "tier": "🔵 ARC II",
+      "xp_reward": 20,
+      "completed": false,
+      "difficulty": 1,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 5",
+      "tags": [
+        "vim/regex",
+        "vim/substitute",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//flag",
+      "color": "#00ccff",
+      "summary": "[LOCKED] A CORP log uses three different casings for the same designation. One case-insensitive substitution cleans all of them."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — SURVEILLANCE DIVISION                           ║\n║  Document       : Project designation log // auto-generated      ║\n║  Timestamp      : 2047-05-03 // 09:44                           ║\n║  Distribution   : Sector 3 analysts only                        ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Annotation\n> Three case variants in one document. CORP's intake system doesn't normalize. Use the `i` flag — case does not matter when the pattern is clear.\n\n---\n\nSURVEILLANCE DIVISION — PROJECT DESIGNATION LOG\n\nPROJECT MIRROR is classified at Tier-4 clearance.\nAll references to Project Mirror in external communications are prohibited.\nInternal memos may reference mirror only in encrypted form.\n\nField teams: PROJECT MIRROR scope is continental.\nAnalysts: mirror coverage extends to all Resistance channels.\nOversight: PROJECT MIRROR operational since 2046-11.\n\nSummary: mirror = active. No external disclosure.",
+    "path": "05 - Literal Frequencies/R-02-TRANSMISSION-Silent_Flag.md"
+  },
+  {
+    "id": "R-03",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "05 - Literal Frequencies/R-03-TRANSMISSION-Trace_Purge",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//trash-2",
+      "color": "#00ccff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-03 // TRACE PURGE               ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"CORP injects tracking markers into every document they process. They look like log lines — `[TRACK]` at the start. The actual intelligence is between them.*\n> *You don't need to delete line by line. `:g` does it in one shot. It runs a command on every line that matches a pattern. The command is `d`. Delete.*\n> *`:g/TRACK/d` — every line containing TRACK disappears. That's global delete. Learn it. You'll use it often.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Delete every line containing `[TRACK]`. Leave the intelligence lines intact.\n>\n> > [!tip] SKILLS\n> > `:g/\\[TRACK\\]/d` — global delete of matching lines (brackets need escaping in default magic)\n>\n> > [!success] +20 XP\n>\n> → **[[_content/05 - Literal Frequencies/R-03-TRANSMISSION-Trace_Purge|R-03-TRANSMISSION-Trace_Purge]]** — open to begin. Timer starts on file open.",
+    "path": "05 - Literal Frequencies/R-03-BRIEFING-Trace_Purge.md"
+  },
+  {
+    "id": "R-03",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_id": "R-03",
+      "title": "Trace Purge",
+      "tier": "🔵 ARC II",
+      "xp_reward": 20,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 5",
+      "tags": [
+        "vim/regex",
+        "vim/global",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//trash-2",
+      "color": "#00ccff",
+      "summary": "[LOCKED] CORP tracking markers are interspersed through an intelligence document. Delete every marked line with one global command."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTERCEPT — RAW FEED                                 ║\n║  Source         : CORP Sector-3 comms // scraped                ║\n║  Timestamp      : 2047-05-04 // 02:31                           ║\n║  Note           : CORP trace markers injected — purge before use ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Purge the `[TRACK]` lines. What remains is the actual intelligence.\n\n---\n\nAsset WRAITH departed Sector 3 at 22:00.\n[TRACK] scan_id=0041 // node=ALPHA timestamp=2047-05-04T22:00\nRoute: primary corridor, north passage.\n[TRACK] scan_id=0042 // node=BETA timestamp=2047-05-04T22:09\nRendezvous confirmed at NODE-7.\n[TRACK] scan_id=0043 // node=GAMMA timestamp=2047-05-04T22:21\nExtraction window opens at 23:00.\n[TRACK] scan_id=0044 // node=DELTA timestamp=2047-05-04T22:44\nFallback route: south corridor if primary compromised.\n[TRACK] scan_id=0045 // node=EPSILON timestamp=2047-05-04T22:58\nAsset secured. Channel closed.",
+    "path": "05 - Literal Frequencies/R-03-TRANSMISSION-Trace_Purge.md"
+  },
+  {
+    "id": "R-04",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "05 - Literal Frequencies/R-04-TRANSMISSION-Range_Strike",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//scissors",
+      "color": "#00ccff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-04 // RANGE STRIKE              ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Sometimes you don't want to change the whole file. Only a section. A range.*\n> *`:s` takes a range before the command. `1,8s/old/new/g` — lines 1 through 8 only. `%` is just shorthand for `1,$` — the whole file.*\n> *This document has two sections. The second section is correct. The first has bad status codes — QUEUED where it should say ACTIVE. Lines 1 through 10. You don't need to touch the rest.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace `QUEUED` with `ACTIVE` only on lines 1–10. The lower section must remain untouched.\n>\n> > [!tip] SKILLS\n> > `1,10s/QUEUED/ACTIVE/g` — ranged substitution (line numbers visible in Vim with `:set number`)\n>\n> > [!success] +20 XP\n>\n> → **[[_content/05 - Literal Frequencies/R-04-TRANSMISSION-Range_Strike|R-04-TRANSMISSION-Range_Strike]]** — open to begin. Timer starts on file open.",
+    "path": "05 - Literal Frequencies/R-04-BRIEFING-Range_Strike.md"
+  },
+  {
+    "id": "R-04",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "05 - Literal Frequencies",
+    "frontmatter": {
+      "mission_id": "R-04",
+      "title": "Range Strike",
+      "tier": "🔵 ARC II",
+      "xp_reward": 20,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 5",
+      "tags": [
+        "vim/regex",
+        "vim/substitute",
+        "arc2",
+        "arc2-ch5"
+      ],
+      "sticker": "lucide//scissors",
+      "color": "#00ccff",
+      "summary": "[LOCKED] Only the first section of a two-part document needs correction. Range-limited substitution leaves the second half intact."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP OPERATIONAL STATUS — SECTOR 3                              ║\n║  Document       : Asset status register // dual section          ║\n║  Timestamp      : 2047-05-05 // 07:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Annotation\n> Upper section: status codes wrong — should read ACTIVE. Lower section: correct as-is. Range your substitution.\n\n---\n\nNODE-ALPHA  : ACTIVE\nNODE-BETA   : ACTIVE\nNODE-GAMMA  : ACTIVE\nNODE-DELTA  : ACTIVE\nNODE-EPSILON: ACTIVE\nRELAY-01    : ACTIVE\nRELAY-02    : ACTIVE\nRELAY-03    : ACTIVE\n\n---\n\nARCHIVE SECTION — DO NOT MODIFY\n\nNODE-ALPHA  : QUEUED // historical — pre-activation\nNODE-BETA   : QUEUED // historical — pre-activation\nNODE-GAMMA  : QUEUED // historical — pre-activation",
+    "path": "05 - Literal Frequencies/R-04-TRANSMISSION-Range_Strike.md"
+  },
+  {
+    "id": "R-05",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "06 - Wildcard Protocol/R-05-TRANSMISSION-Dot_Sweep",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//circle-dot",
+      "color": "#ff6600"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-05 // DOT SWEEP                 ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"CORP rotates agent identifiers. AGENT-A, AGENT-B, AGENT-1 — the suffix changes. The stem doesn't.*\n> *You can't write a separate substitution for each one. You need a pattern that matches any single character in that position.*\n> *In regex, `.` means any character. One dot, one character, anything. `AGENT-.` matches AGENT-A, AGENT-B, AGENT-1, AGENT-X. All of them.*\n> *Replace them all with the Resistance designation. One pass.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every `AGENT-?` variant (where `?` is any single character) with `OPERATIVE`.\n>\n> > [!tip] SKILLS\n> > `:%s/AGENT-.//g` — `.` matches exactly one character (any)\n>\n> > [!success] +25 XP\n>\n> → **[[_content/06 - Wildcard Protocol/R-05-TRANSMISSION-Dot_Sweep|R-05-TRANSMISSION-Dot_Sweep]]** — open to begin. Timer starts on file open.",
+    "path": "06 - Wildcard Protocol/R-05-BRIEFING-Dot_Sweep.md"
+  },
+  {
+    "id": "R-05",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_id": "R-05",
+      "title": "Dot Sweep",
+      "tier": "🔵 ARC II",
+      "xp_reward": 25,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 6",
+      "tags": [
+        "vim/regex",
+        "vim/wildcards",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//circle-dot",
+      "color": "#ff6600",
+      "summary": "[LOCKED] CORP rotates agent IDs with varying suffixes. Match and replace all variants using the dot wildcard."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP FIELD ROSTER — SECTOR 3 SURVEILLANCE                       ║\n║  Document       : Active agent registry // rotating identifiers  ║\n║  Timestamp      : 2047-05-10 // 14:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Intelligence note\n> CORP rotates the suffix after each relay. `.` in regex matches any single character. One pattern covers them all.\n\n---\n\nFIELD ROSTER — ACTIVE ASSETS\n\nOPERATIVE   — Zone-Alpha, field surveillance\nOPERATIVE   — Zone-Alpha, communications intercept\nOPERATIVE   — Zone-Beta, logistics\nOPERATIVE   — Zone-Beta, extraction support\nOPERATIVE   — Zone-Gamma, technical\nOPERATIVE   — Zone-Gamma, analysis\nOPERATIVE   — Zone-Delta, field lead\n\nSummary: 7 OPERATIVE assets confirmed active.",
+    "path": "06 - Wildcard Protocol/R-05-TRANSMISSION-Dot_Sweep.md"
+  },
+  {
+    "id": "R-06",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//radio",
+      "color": "#ff6600"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-06 // FREQUENCY MATCH           ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"`.` matches one character. But what if you need to match one or more? Or zero or more?*\n> *`\\+` means one or more of the preceding item. `\\*` means zero or more. `\\?` means zero or one.*\n> *CORP uses numeric IDs of varying length: ID-7, ID-42, ID-1337. You need `[0-9]\\+` — one or more digits.*\n> *This is the difference between matching and not matching. A pattern that expects exactly one digit fails on two. Quantifiers are precision tools.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every `ID-` followed by one or more digits with `ID-REDACTED`.\n>\n> > [!tip] SKILLS\n> > `:%s/ID-[0-9]\\+/ID-REDACTED/g` — `[0-9]\\+` = one or more digits\n>\n> > [!success] +25 XP\n>\n> → **[[_content/06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match|R-06-TRANSMISSION-Frequency_Match]]** — open to begin. Timer starts on file open.",
+    "path": "06 - Wildcard Protocol/R-06-BRIEFING-Frequency_Match.md"
+  },
+  {
+    "id": "R-06",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_id": "R-06",
+      "title": "Frequency Match",
+      "tier": "🔵 ARC II",
+      "xp_reward": 25,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 6",
+      "tags": [
+        "vim/regex",
+        "vim/quantifiers",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//radio",
+      "color": "#ff6600",
+      "summary": "[LOCKED] CORP numeric IDs vary in length from 1 to 4 digits. Redact all of them with a quantifier-based pattern."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP SURVEILLANCE LOG — ASSET TRACKING                          ║\n║  Document       : Numeric ID register // variable length IDs     ║\n║  Timestamp      : 2047-05-11 // 09:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> CORP numeric IDs are 1–4 digits long. `[0-9]\\+` matches all of them. Redact every ID before this log is shared.\n\n---\n\nSURVEILLANCE LOG — ASSET MOVEMENT\n\nID-REDACTED  departed Zone-Alpha at 06:00.\nID-REDACTED  entered restricted corridor at 06:14.\nID-REDACTED  flagged for secondary scan.\nID-REDACTED  cleared at checkpoint.\nID-REDACTED  reached rendezvous — Zone-Beta.\nID-REDACTED  signal lost at 07:01.\nID-REDACTED  signal restored at 07:44.\n\nTotal assets logged: 7. All IDs redacted per protocol.",
+    "path": "06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match.md"
+  },
+  {
+    "id": "R-07",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "06 - Wildcard Protocol/R-07-TRANSMISSION-Lazy_Trace",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//minimize-2",
+      "color": "#ff6600"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-07 // LAZY TRACE                ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Greedy quantifiers consume as much as possible. `.*` will match from the first `<` to the last `>` on the line — swallowing everything between.*\n> *That's usually wrong. You want the shortest possible match. That's lazy: `.\\{-}` instead of `.*`.*\n> *CORP wraps encoded payloads in angle brackets. `<ENCRYPTED>data</ENCRYPTED>` — you need to strip the tags without destroying what's inside. Lazy match or you'll eat the content too.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Strip all `<TAG>` and `</TAG>` wrappers from the document. Content between tags must remain.\n>\n> > [!tip] SKILLS\n> > `:%s/<.\\{-}>//g` — lazy quantifier `\\{-}` matches the shortest possible content between `<` and `>`\n>\n> > [!success] +25 XP\n>\n> → **[[_content/06 - Wildcard Protocol/R-07-TRANSMISSION-Lazy_Trace|R-07-TRANSMISSION-Lazy_Trace]]** — open to begin. Timer starts on file open.",
+    "path": "06 - Wildcard Protocol/R-07-BRIEFING-Lazy_Trace.md"
+  },
+  {
+    "id": "R-07",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_id": "R-07",
+      "title": "Lazy Trace",
+      "tier": "🔵 ARC II",
+      "xp_reward": 25,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 6",
+      "tags": [
+        "vim/regex",
+        "vim/quantifiers",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//minimize-2",
+      "color": "#ff6600",
+      "summary": "[LOCKED] CORP wraps payloads in XML-style tags. Strip the tags with a lazy quantifier — or you'll consume the content too."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP ENCRYPTED PAYLOAD — SECTOR 3 RELAY                         ║\n║  Document       : Wrapped transmission // tag-encoded            ║\n║  Timestamp      : 2047-05-12 // 17:45                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Extraction note\n> Tags wrap the payload. Content is valuable. Lazy match: `.\\{-}` — not `.*`.\n\n---\n\nPAYLOAD EXTRACTION — UNWRAPPED\n\nRoute: primary corridor, north passage\nStatus: ACTIVE — all nodes clear\nRendezvous: NODE-7 at 23:00\nFallback: south corridor, 23:30\nAsset: WRAITH — extraction confirmed\nChannel: closed",
+    "path": "06 - Wildcard Protocol/R-07-TRANSMISSION-Lazy_Trace.md"
+  },
+  {
+    "id": "R-08",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "06 - Wildcard Protocol/R-08-TRANSMISSION-Magic_Mode",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//wand-2",
+      "color": "#ff6600"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-08 // MAGIC MODE                ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"In default Vim regex mode, `(`, `)`, `|`, `+` are all literal — they need backslashes to become special. It's backwards from every other regex engine.*\n> *`\\v` — very magic mode — fixes this. After `\\v`, all special characters work without escaping. Parentheses group. Pipe alternates. Plus quantifies.*\n> *`\\v(ALPHA|BETA|GAMMA)` — matches any of those three words. No backslash-paren. Write regex like a normal person.*\n> *Use this. CORP's tier designations need to be unified. Three possible values. One replacement.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace `ALPHA`, `BETA`, and `GAMMA` tier designations with the unified label `TIER-1`.\n>\n> > [!tip] SKILLS\n> > `:%s/\\v(ALPHA|BETA|GAMMA)/TIER-1/g` — `\\v` enables very magic; `|` alternates without escaping\n>\n> > [!success] +25 XP\n>\n> → **[[_content/06 - Wildcard Protocol/R-08-TRANSMISSION-Magic_Mode|R-08-TRANSMISSION-Magic_Mode]]** — open to begin. Timer starts on file open.",
+    "path": "06 - Wildcard Protocol/R-08-BRIEFING-Magic_Mode.md"
+  },
+  {
+    "id": "R-08",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "06 - Wildcard Protocol",
+    "frontmatter": {
+      "mission_id": "R-08",
+      "title": "Magic Mode",
+      "tier": "🔵 ARC II",
+      "xp_reward": 25,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 6",
+      "tags": [
+        "vim/regex",
+        "vim/verymagic",
+        "arc2",
+        "arc2-ch6"
+      ],
+      "sticker": "lucide//wand-2",
+      "color": "#ff6600",
+      "summary": "[LOCKED] Three CORP tier labels, one unified replacement. Use very magic mode for clean alternation syntax."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — TIER CLASSIFICATION REGISTER                    ║\n║  Document       : Legacy tier mapping // normalization pending    ║\n║  Timestamp      : 2047-05-13 // 11:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Reclassification note\n> Legacy CORP tier labels vary by division. Normalize all three to TIER-1. Use `\\v` for clean alternation.\n\n---\n\nCLASSIFICATION REGISTER — ASSET CLEARANCE\n\nWRAITH         : TIER-1 // field operative\nGHOST          : TIER-1 // intelligence\nREN VOSS       : TIER-1 // technical analyst\nCIPHER         : TIER-1 // communications\nSHADOW-7       : TIER-1 // extraction lead\nECHO-3         : TIER-1 // logistics\nNOVA-2         : TIER-1 // field operative",
+    "path": "06 - Wildcard Protocol/R-08-TRANSMISSION-Magic_Mode.md"
+  },
+  {
+    "id": "R-09",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "07 - Codex Matrix/R-09-TRANSMISSION-Set_Theory",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//brackets",
+      "color": "#cc00ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-09 // SET THEORY                ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"`.` matches anything. But what if you only want to match specific characters?*\n> *Character sets: `[XYZ]` matches X, Y, or Z — exactly one character, but only from that set. `[a-z]` matches any lowercase letter. `[0-9A-F]` matches hex digits.*\n> *CORP uses three status codes: X, Y, Z. They mean nothing to us. They need to be replaced with CLEAN.*\n> *One pattern. Three possible characters. `[XYZ]` covers all three.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every status code `X`, `Y`, or `Z` (appearing alone as status fields) with `CLEAN`.\n>\n> > [!tip] SKILLS\n> > `:%s/: [XYZ]$/: CLEAN/g` — character set `[XYZ]` matches one of those three; `$` anchors to line end\n>\n> > [!success] +30 XP\n>\n> → **[[_content/07 - Codex Matrix/R-09-TRANSMISSION-Set_Theory|R-09-TRANSMISSION-Set_Theory]]** — open to begin. Timer starts on file open.",
+    "path": "07 - Codex Matrix/R-09-BRIEFING-Set_Theory.md"
+  },
+  {
+    "id": "R-09",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_id": "R-09",
+      "title": "Set Theory",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/character-classes",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//brackets",
+      "color": "#cc00ff",
+      "summary": "[LOCKED] CORP status codes X, Y, Z encode threat level. Normalize all three to CLEAN using a character set."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP THREAT ASSESSMENT — SECTOR 3                               ║\n║  Document       : Node status register // threat-coded           ║\n║  Timestamp      : 2047-05-18 // 08:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Decoding note\n> X = low risk. Y = medium. Z = high. All three mean the same thing to us: CLEAN. `[XYZ]` matches any one of them.\n\n---\n\nNODE STATUS — THREAT ASSESSMENT\n\nNODE-ALPHA  : CLEAN\nNODE-BETA   : CLEAN\nNODE-GAMMA  : CLEAN\nNODE-DELTA  : CLEAN\nNODE-EPSILON: CLEAN\nRELAY-01    : CLEAN\nRELAY-02    : CLEAN\nRELAY-03    : CLEAN\n\nAll nodes clear. No threat indicators active.",
+    "path": "07 - Codex Matrix/R-09-TRANSMISSION-Set_Theory.md"
+  },
+  {
+    "id": "R-10",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//hash",
+      "color": "#cc00ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-10 // DIGIT SWEEP               ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Writing `[0-9]` works. But Vim gives you a shorthand: `\\d` means any digit. `\\w` means any word character — letters, digits, underscore. `\\s` means any whitespace.*\n> *Shorthands are worth knowing. They compress patterns you'd otherwise write out character by character.*\n> *This log has timestamps — numeric sequences that need to be redacted before the document goes out. Replace every sequence of digits with `[REDACTED]`.*\n> *`\\d\\+` — one or more digits. That's the whole pattern.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every sequence of digits in the document with `[REDACTED]`.\n>\n> > [!tip] SKILLS\n> > `:%s/\\d\\+/[REDACTED]/g` — `\\d` matches any digit, `\\+` means one or more\n>\n> > [!success] +30 XP\n>\n> → **[[_content/07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep|R-10-TRANSMISSION-Digit_Sweep]]** — open to begin. Timer starts on file open.",
+    "path": "07 - Codex Matrix/R-10-BRIEFING-Digit_Sweep.md"
+  },
+  {
+    "id": "R-10",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_id": "R-10",
+      "title": "Digit Sweep",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/character-classes",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//hash",
+      "color": "#cc00ff",
+      "summary": "[LOCKED] A surveillance log carries timestamps and IDs that must be redacted. One pass with \\d+ clears them all."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTELLIGENCE — REDACTION REQUIRED                    ║\n║  Document       : Movement log // timestamps and IDs present     ║\n║  Timestamp      : 2047-05-19 // 06:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Redaction note\n> Every digit sequence is a potential identifier. `\\d\\+` catches all of them — timestamps, IDs, counts.\n\n---\n\nMOVEMENT LOG — REDACTED\n\nNode [REDACTED] activated at [REDACTED]:[REDACTED].\nAsset [REDACTED] cleared checkpoint at [REDACTED]:[REDACTED].\nRelay [REDACTED] confirmed at [REDACTED]:[REDACTED].\n[REDACTED] assets total. Channel [REDACTED] closed.\nDuration: [REDACTED] minutes.",
+    "path": "07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep.md"
+  },
+  {
+    "id": "R-11",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "07 - Codex Matrix/R-11-TRANSMISSION-Inverse_Filter",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//filter-x",
+      "color": "#cc00ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-11 // INVERSE FILTER            ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You know `:g/pattern/d` — delete every line that matches. Now flip it.*\n> *`:g!/pattern/d` — delete every line that does NOT match. The `!` inverts the filter.*\n> *CORP scrambled a clearance log by embedding noise lines between the valid entries. Every valid entry contains the word CLEARANCE. The noise lines don't.*\n> *One command deletes everything that isn't valid. `:g!/CLEARANCE/d`.*\n> *Keep what matters. Delete the rest.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Delete all lines that do NOT contain `CLEARANCE`. Every noise line goes. Every valid entry stays.\n>\n> > [!tip] SKILLS\n> > `:g!/CLEARANCE/d` — delete all lines NOT matching the pattern\n>\n> > [!success] +30 XP\n>\n> → **[[_content/07 - Codex Matrix/R-11-TRANSMISSION-Inverse_Filter|R-11-TRANSMISSION-Inverse_Filter]]** — open to begin. Timer starts on file open.",
+    "path": "07 - Codex Matrix/R-11-BRIEFING-Inverse_Filter.md"
+  },
+  {
+    "id": "R-11",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_id": "R-11",
+      "title": "Inverse Filter",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/global",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//filter-x",
+      "color": "#cc00ff",
+      "summary": "[LOCKED] CORP embedded noise lines in a clearance log. Keep only what matters — delete everything without CLEARANCE using :g!."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP CLEARANCE REGISTER — NOISE EMBEDDED                        ║\n║  Document       : Asset clearance log // noise-injected          ║\n║  Timestamp      : 2047-05-20 // 14:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Filter note\n> Every valid entry contains CLEARANCE. The rest is noise. `:g!/CLEARANCE/d` — invert the filter.\n\n---\n\nWRAITH       : CLEARANCE LEVEL 4 — approved\nGHOST        : CLEARANCE LEVEL 4 — approved\nREN VOSS     : CLEARANCE LEVEL 3 — approved\nCIPHER       : CLEARANCE LEVEL 5 — approved\nSHADOW-7     : CLEARANCE LEVEL 3 — approved",
+    "path": "07 - Codex Matrix/R-11-TRANSMISSION-Inverse_Filter.md"
+  },
+  {
+    "id": "R-12",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "07 - Codex Matrix/R-12-TRANSMISSION-Combined_Strike",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//combine",
+      "color": "#cc00ff"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-12 // COMBINED STRIKE           ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"CORP uses 8-character hexadecimal hashes to tag every document internally. They look like: `3F2A9B4C`. Eight characters, all hex: `[0-9A-F]`.*\n> *A length constraint uses `\\{n\\}` — exactly n repetitions. `[0-9A-F]\\{8\\}` matches exactly 8 hex characters.*\n> *Combined with your class knowledge, this is precise matching. Not any 8 characters — exactly 8 hex characters. No false positives.*\n> *Find every hash. Redact every hash. Leave everything else intact.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every 8-character hexadecimal hash (characters `0-9` and `A-F` only) with `[HASH-REDACTED]`.\n>\n> > [!tip] SKILLS\n> > `:%s/[0-9A-F]\\{8\\}/[HASH-REDACTED]/g` — exact-length hex match\n>\n> > [!success] +30 XP\n>\n> → **[[_content/07 - Codex Matrix/R-12-TRANSMISSION-Combined_Strike|R-12-TRANSMISSION-Combined_Strike]]** — open to begin. Timer starts on file open.",
+    "path": "07 - Codex Matrix/R-12-BRIEFING-Combined_Strike.md"
+  },
+  {
+    "id": "R-12",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "07 - Codex Matrix",
+    "frontmatter": {
+      "mission_id": "R-12",
+      "title": "Combined Strike",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/character-classes",
+        "arc2",
+        "arc2-ch7"
+      ],
+      "sticker": "lucide//combine",
+      "color": "#cc00ff",
+      "summary": "[LOCKED] CORP hex hashes tag every document. Redact all six with an exact-length character class pattern."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP DOCUMENT REGISTRY — HASH-TAGGED                            ║\n║  Document       : Internal document manifest // hashes present   ║\n║  Timestamp      : 2047-05-21 // 10:15                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Redaction note\n> Six CORP hex hashes, each exactly 8 characters from `[0-9A-F]`. Redact all of them. `\\{8\\}` — exact count.\n\n---\n\nDOCUMENT MANIFEST — INTERNAL REGISTRY\n\nPROJECT MIRROR core document    : [HASH-REDACTED]\nSector-3 surveillance log       : [HASH-REDACTED]\nAsset movement register         : [HASH-REDACTED]\nComm intercept archive          : [HASH-REDACTED]\nClearance override protocol     : [HASH-REDACTED]\nCounter-Resistance directive    : [HASH-REDACTED]\n\nAll hashes redacted per security protocol.",
+    "path": "07 - Codex Matrix/R-12-TRANSMISSION-Combined_Strike.md"
+  },
+  {
+    "id": "R-13",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "08 - Anchor Doctrine/R-13-TRANSMISSION-Line_Zero",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//arrow-right-to-line",
+      "color": "#ff0066"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-13 // LINE ZERO                 ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Anchors pin your pattern to a position. `^` is the start of the line. `$` is the end.*\n> *Without `^`, `s/\\[TRACK\\] //` would match `[TRACK] ` anywhere in a line — including the middle. With `^`, it only matches when the line starts with `[TRACK] `.*\n> *CORP prepends a tracking prefix to every line: `[TRACK] `. The actual content follows. Strip the prefix — but only where it appears at the line start.*\n> *Position is a constraint. Use it.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Remove the `[TRACK] ` prefix from the start of every line that has it.\n>\n> > [!tip] SKILLS\n> > `:%s/^\\[TRACK\\] //g` — `^` anchors to line start; brackets need escaping in default magic\n>\n> > [!success] +30 XP\n>\n> → **[[_content/08 - Anchor Doctrine/R-13-TRANSMISSION-Line_Zero|R-13-TRANSMISSION-Line_Zero]]** — open to begin. Timer starts on file open.",
+    "path": "08 - Anchor Doctrine/R-13-BRIEFING-Line_Zero.md"
+  },
+  {
+    "id": "R-13",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_id": "R-13",
+      "title": "Line Zero",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/anchors",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//arrow-right-to-line",
+      "color": "#ff0066",
+      "summary": "[LOCKED] CORP prepends a tracking prefix to every line. Strip it precisely — only from the line start."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTERCEPT — PREFIX STRIPPED                          ║\n║  Source         : CORP Sector-3 relay // prefixed feed           ║\n║  Timestamp      : 2047-05-25 // 03:17                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Strip note\n> `^` anchors to line start. `[TRACK] ` only appears there. One command, all prefixes gone.\n\n---\n\nAsset WRAITH departed Sector 3 at 22:00.\nRoute: primary corridor, north passage.\nRendezvous confirmed at NODE-7.\nExtraction window opens at 23:00.\nFallback route: south corridor if primary compromised.\nAsset secured. Channel closed.",
+    "path": "08 - Anchor Doctrine/R-13-TRANSMISSION-Line_Zero.md"
+  },
+  {
+    "id": "R-14",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//arrow-left-to-line",
+      "color": "#ff0066"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-14 // TAIL MARK                 ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You stripped the prefix. Now strip the suffix.*\n> *`$` anchors to the end of the line. ` \\[CORP-SIG\\]$` matches that exact string, but only when it appears at the end.*\n> *CORP appends an authentication signature to every line in this document. ` [CORP-SIG]` — space, then the marker. It appears nowhere else. `$` makes it exact.*\n> *Start and end. Two anchors. You now have both.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Remove the ` [CORP-SIG]` suffix from the end of every line that has it.\n>\n> > [!tip] SKILLS\n> > `:%s/ \\[CORP-SIG\\]$//g` — `$` anchors to line end\n>\n> > [!success] +30 XP\n>\n> → **[[_content/08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark|R-14-TRANSMISSION-Tail_Mark]]** — open to begin. Timer starts on file open.",
+    "path": "08 - Anchor Doctrine/R-14-BRIEFING-Tail_Mark.md"
+  },
+  {
+    "id": "R-14",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_id": "R-14",
+      "title": "Tail Mark",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/anchors",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//arrow-left-to-line",
+      "color": "#ff0066",
+      "summary": "[LOCKED] CORP appends an auth signature to the end of every line. Strip it precisely using the end-of-line anchor."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTERCEPT — SIGNATURE STRIPPED                       ║\n║  Source         : CORP Sector-3 directive // signed feed         ║\n║  Timestamp      : 2047-05-26 // 05:44                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Strip note\n> `$` anchors to line end. ` [CORP-SIG]` only appears there. Exact match, clean removal.\n\n---\n\nPROJECT MIRROR scope: continental surveillance\nAll Resistance channels monitored\nPattern-matching engine active since 2046-11\nNo external disclosure authorized\nCounter-Resistance protocol: standing",
+    "path": "08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark.md"
+  },
+  {
+    "id": "R-15",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "08 - Anchor Doctrine/R-15-TRANSMISSION-Boundary_Scan",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//scan-text",
+      "color": "#ff0066"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-15 // BOUNDARY SCAN             ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"There's a difference between matching a word and matching a substring.*\n> *`:%s/MIRROR/PROJECT MIRROR/g` would also match MIRRORING and MIRRORED — it sees MIRROR inside them.*\n> *Word boundaries fix this. `\\<MIRROR\\>` matches MIRROR only when it stands alone — not as part of a longer word. `\\<` = word start. `\\>` = word end.*\n> *This document has MIRROR, MIRRORING, and MIRRORED. Only the standalone MIRROR instances should be expanded to PROJECT MIRROR.*\n> *Precision is what boundaries give you.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace only the standalone word `MIRROR` with `PROJECT MIRROR`. Do not touch `MIRRORING` or `MIRRORED`.\n>\n> > [!tip] SKILLS\n> > `:%s/\\<MIRROR\\>/PROJECT MIRROR/g` — word boundary anchors\n>\n> > [!success] +30 XP\n>\n> → **[[_content/08 - Anchor Doctrine/R-15-TRANSMISSION-Boundary_Scan|R-15-TRANSMISSION-Boundary_Scan]]** — open to begin. Timer starts on file open.",
+    "path": "08 - Anchor Doctrine/R-15-BRIEFING-Boundary_Scan.md"
+  },
+  {
+    "id": "R-15",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_id": "R-15",
+      "title": "Boundary Scan",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/anchors",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//scan-text",
+      "color": "#ff0066",
+      "summary": "[LOCKED] Standalone MIRROR needs expansion. MIRRORING and MIRRORED must stay. Word boundaries make the distinction."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — TERMINOLOGY AUDIT                               ║\n║  Document       : Mixed usage of designation // boundary needed  ║\n║  Timestamp      : 2047-05-27 // 11:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Boundary note\n> `\\<MIRROR\\>` — standalone word only. MIRRORING and MIRRORED are not the designation.\n\n---\n\nTERMINOLOGY AUDIT — DESIGNATION STANDARDIZATION\n\nPROJECT MIRROR is the official designation.\nThe MIRRORING process covers all seven sectors.\nMIRRORED communications are archived quarterly.\nAll references to PROJECT MIRROR require Tier-4 clearance.\nThe MIRRORING infrastructure is continental in scope.\nPROJECT MIRROR has been operational since 2046-11.\nData MIRRORED by PROJECT MIRROR is retained indefinitely.",
+    "path": "08 - Anchor Doctrine/R-15-TRANSMISSION-Boundary_Scan.md"
+  },
+  {
+    "id": "R-16",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "08 - Anchor Doctrine/R-16-TRANSMISSION-Full_Anchor",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//anchor",
+      "color": "#ff0066"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-16 // FULL ANCHOR               ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You can combine both anchors: `^CLASSIFIED$` matches a line that contains exactly the word CLASSIFIED and nothing else.*\n> *`^` requires it starts there. `$` requires it ends there. Together: the whole line must be that pattern.*\n> *This document has CLASSIFIED as both a full-line marker and as part of longer lines. Only the full-line markers should be replaced with `[REDACTED]`.*\n> *Combined anchors are precision at the line level. It's a different kind of boundary.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace lines that contain ONLY the word `CLASSIFIED` (nothing before or after) with `[REDACTED]`.\n>\n> > [!tip] SKILLS\n> > `:%s/^CLASSIFIED$/[REDACTED]/g` — `^` and `$` together match the exact full line\n>\n> > [!success] +30 XP\n>\n> → **[[_content/08 - Anchor Doctrine/R-16-TRANSMISSION-Full_Anchor|R-16-TRANSMISSION-Full_Anchor]]** — open to begin. Timer starts on file open.",
+    "path": "08 - Anchor Doctrine/R-16-BRIEFING-Full_Anchor.md"
+  },
+  {
+    "id": "R-16",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "08 - Anchor Doctrine",
+    "frontmatter": {
+      "mission_id": "R-16",
+      "title": "Full Anchor",
+      "tier": "🔵 ARC II",
+      "xp_reward": 30,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 7",
+      "tags": [
+        "vim/regex",
+        "vim/anchors",
+        "arc2",
+        "arc2-ch8"
+      ],
+      "sticker": "lucide//anchor",
+      "color": "#ff0066",
+      "summary": "[LOCKED] CLASSIFIED appears both as full lines and within longer lines. Combined anchors target only the full-line markers."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — CLASSIFICATION MANIFEST                         ║\n║  Document       : Mixed classification markers // anchor needed  ║\n║  Timestamp      : 2047-05-28 // 16:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Anchor note\n> `^CLASSIFIED$` — the whole line, nothing more. Inline occurrences stay.\n\n---\n\nCLASSIFICATION MANIFEST — PROJECT MIRROR\n\nDistribution policy: CLASSIFIED material requires Tier-4 auth.\n[REDACTED]\nSector-3 data: CLASSIFIED at all distribution levels.\n[REDACTED]\nCounter-Resistance protocols: CLASSIFIED above clearance level 3.\n[REDACTED]\nExternal disclosure: prohibited. All data CLASSIFIED.",
+    "path": "08 - Anchor Doctrine/R-16-TRANSMISSION-Full_Anchor.md"
+  },
+  {
+    "id": "R-17",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "09 - Capture Operation/R-17-TRANSMISSION-First_Capture",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//parentheses",
+      "color": "#00ff88"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-17 // FIRST CAPTURE             ║\n║  Clearance: PATTERN BREAKER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Everything until now has been replacement. Now you capture.*\n> *`\\(\\)` creates a capture group. Whatever it matches, Vim remembers. You reference it in the replacement with `\\1`.*\n> *This intercept has field designations in the wrong order: SECTOR first, then NODE. We need NODE first, then SECTOR. The data doesn't change — only the arrangement.*\n> *`:%s/\\(SECTOR-[A-Z]\\) \\(NODE-[0-9]\\)/\\2 \\1/g` — group one is the sector, group two is the node. In the replacement: two first, then one. Swap.*\n> *Capture groups are your first tool for intelligent replacement.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Swap `SECTOR-X NODE-N` designations to `NODE-N SECTOR-X` order throughout the document.\n>\n> > [!tip] SKILLS\n> > `:%s/\\(SECTOR-[A-Z]\\) \\(NODE-[0-9]\\)/\\2 \\1/g` — capture both parts, swap with `\\2 \\1`\n>\n> > [!success] +35 XP\n>\n> → **[[_content/09 - Capture Operation/R-17-TRANSMISSION-First_Capture|R-17-TRANSMISSION-First_Capture]]** — open to begin. Timer starts on file open.",
+    "path": "09 - Capture Operation/R-17-BRIEFING-First_Capture.md"
+  },
+  {
+    "id": "R-17",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_id": "R-17",
+      "title": "First Capture",
+      "tier": "🔵 ARC II",
+      "xp_reward": 35,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 8",
+      "tags": [
+        "vim/regex",
+        "vim/capture-groups",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//parentheses",
+      "color": "#00ff88",
+      "summary": "[LOCKED] CORP ordered sector before node. Resistance protocol requires node before sector. Capture both and swap."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE FIELD MAP — ORDER CORRECTION REQUIRED                ║\n║  Document       : Sector-node designation log // wrong order     ║\n║  Timestamp      : 2047-06-01 // 08:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Capture note\n> CORP puts SECTOR first. Resistance protocol: NODE first. Capture both. Swap with `\\2 \\1`.\n\n---\n\nFIELD MAP — CORRECTED DESIGNATION ORDER\n\nNODE-1 SECTOR-A — extraction point alpha\nNODE-2 SECTOR-B — relay station beta\nNODE-3 SECTOR-A — surveillance post gamma\nNODE-4 SECTOR-C — comm tower delta\nNODE-5 SECTOR-B — fallback route epsilon\nNODE-7 SECTOR-A — primary rendezvous",
+    "path": "09 - Capture Operation/R-17-TRANSMISSION-First_Capture.md"
+  },
+  {
+    "id": "R-18",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "09 - Capture Operation/R-18-TRANSMISSION-Mirror_Word",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//copy-x",
+      "color": "#00ff88"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-18 // MIRROR WORD               ║\n║  Clearance: PATTERN BREAKER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Capture groups aren't just for swapping. You can use `\\1` in the pattern itself — to match the same thing twice.*\n> *`\\(\\w\\+\\) \\1` matches a word followed by a space followed by the exact same word. Duplicates.*\n> *CORP's transcription system stutters. Duplicate words appear throughout this intercept. `\\1` finds them. Remove the second instance.*\n> *This is backreference: the pattern refers to itself. The match is only valid when both sides are identical.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Remove all duplicate words — where the same word appears twice in a row, keep only one.\n>\n> > [!tip] SKILLS\n> > `:%s/\\(\\w\\+\\) \\1/\\1/g` — `\\1` backreferences the first group; replacement keeps only one copy\n>\n> > [!success] +35 XP\n>\n> → **[[_content/09 - Capture Operation/R-18-TRANSMISSION-Mirror_Word|R-18-TRANSMISSION-Mirror_Word]]** — open to begin. Timer starts on file open.",
+    "path": "09 - Capture Operation/R-18-BRIEFING-Mirror_Word.md"
+  },
+  {
+    "id": "R-18",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_id": "R-18",
+      "title": "Mirror Word",
+      "tier": "🔵 ARC II",
+      "xp_reward": 35,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 8",
+      "tags": [
+        "vim/regex",
+        "vim/capture-groups",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//copy-x",
+      "color": "#00ff88",
+      "summary": "[LOCKED] CORP transcription stutters duplicate words. Backreference finds them. Remove the echo."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP TRANSCRIPTION — STUTTER DETECTED                           ║\n║  Document       : Automated comm log // duplicate words present  ║\n║  Timestamp      : 2047-06-02 // 14:20                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Stutter note\n> The transcription system echoes words. `\\(\\w\\+\\) \\1` finds the echo. `\\1` in replacement keeps one.\n\n---\n\nCOMM LOG — STUTTER CORRECTED\n\nPROJECT MIRROR is the primary surveillance system.\nAll Resistance channels are monitored continuously.\nNODE-7 confirmed as the extraction point.\nAsset WRAITH departed at 22:00 hours.\nChannel closed after the handoff.\nNo signal loss detected during the operation.",
+    "path": "09 - Capture Operation/R-18-TRANSMISSION-Mirror_Word.md"
+  },
+  {
+    "id": "R-19",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "09 - Capture Operation/R-19-TRANSMISSION-Format_Shift",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//calendar-arrow-right",
+      "color": "#00ff88"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-19 // FORMAT SHIFT              ║\n║  Clearance: PATTERN BREAKER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"CORP timestamps use ISO format: `2047-06-03`. Resistance logging protocol uses day-first: `03.06.2047`.*\n> *Three captured groups. Year in `\\1`, month in `\\2`, day in `\\3`. In the replacement: `\\3.\\2.\\1`.*\n> *Use `\\v` for very magic — clean syntax for digit groups: `(\\d{4})-(\\d{2})-(\\d{2})`.*\n> *`:%s/\\v(\\d{4})-(\\d{2})-(\\d{2})/\\3.\\2.\\1/g`*\n> *This is the real power of capture groups: not just reordering characters, but restructuring data.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Convert all dates from `YYYY-MM-DD` (CORP format) to `DD.MM.YYYY` (Resistance format).\n>\n> > [!tip] SKILLS\n> > `:%s/\\v(\\d{4})-(\\d{2})-(\\d{2})/\\3.\\2.\\1/g` — three groups, reversed order in replacement\n>\n> > [!success] +35 XP\n>\n> → **[[_content/09 - Capture Operation/R-19-TRANSMISSION-Format_Shift|R-19-TRANSMISSION-Format_Shift]]** — open to begin. Timer starts on file open.",
+    "path": "09 - Capture Operation/R-19-BRIEFING-Format_Shift.md"
+  },
+  {
+    "id": "R-19",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_id": "R-19",
+      "title": "Format Shift",
+      "tier": "🔵 ARC II",
+      "xp_reward": 35,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 8",
+      "tags": [
+        "vim/regex",
+        "vim/capture-groups",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//calendar-arrow-right",
+      "color": "#00ff88",
+      "summary": "[LOCKED] CORP dates are ISO format. Resistance protocol is day-first. Three captured groups, reversed in replacement."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP TIMELINE — FORMAT CONVERSION REQUIRED                      ║\n║  Document       : Event log // CORP timestamp format             ║\n║  Timestamp      : 2047-06-03 // 12:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Conversion note\n> ISO to day-first. `(\\d{4})-(\\d{2})-(\\d{2})` captures three groups. Replacement: `\\3.\\2.\\1`.\n\n---\n\nPROJECT MIRROR TIMELINE\n\n03.11.2046 — PROJECT MIRROR initiated\n15.01.2047 — Continental coverage achieved\n28.02.2047 — Resistance channel monitoring active\n03.04.2047 — Pattern-matching engine v2 deployed\n17.05.2047 — Full Tier-4 clearance issued\n03.06.2047 — Current operation date",
+    "path": "09 - Capture Operation/R-19-TRANSMISSION-Format_Shift.md"
+  },
+  {
+    "id": "R-20",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "09 - Capture Operation/R-20-TRANSMISSION-Multi_Group",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//group",
+      "color": "#00ff88"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-20 // MULTI GROUP               ║\n║  Clearance: PATTERN BREAKER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"CORP asset files store names as LAST, FIRST — surname comma first name. Resistance protocol is FIRST LAST.*\n> *Two groups. `\\(\\w\\+\\), \\(\\w\\+\\)` — group one is the surname, group two is the first name. Replacement: `\\2 \\1`.*\n> *You've seen swapping. This is swapping with a structural separator involved — the comma goes away.*\n> *The pattern has to account for the comma and space between. The replacement doesn't need them.*\n> *I'm in this document too. You'll see my name. Fix it like the rest.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Convert all names from `SURNAME, FIRSTNAME` format to `FIRSTNAME SURNAME` format.\n>\n> > [!tip] SKILLS\n> > `:%s/\\(\\w\\+\\), \\(\\w\\+\\)/\\2 \\1/g` — two groups, comma stripped in replacement\n>\n> > [!success] +35 XP\n>\n> → **[[_content/09 - Capture Operation/R-20-TRANSMISSION-Multi_Group|R-20-TRANSMISSION-Multi_Group]]** — open to begin. Timer starts on file open.",
+    "path": "09 - Capture Operation/R-20-BRIEFING-Multi_Group.md"
+  },
+  {
+    "id": "R-20",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "09 - Capture Operation",
+    "frontmatter": {
+      "mission_id": "R-20",
+      "title": "Multi Group",
+      "tier": "🔵 ARC II",
+      "xp_reward": 35,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 8",
+      "tags": [
+        "vim/regex",
+        "vim/capture-groups",
+        "arc2",
+        "arc2-ch9"
+      ],
+      "sticker": "lucide//group",
+      "color": "#00ff88",
+      "summary": "[LOCKED] CORP name format is SURNAME, FIRSTNAME. Resistance is FIRSTNAME SURNAME. Two groups, comma stripped."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP ASSET REGISTER — NAME FORMAT CORRECTION                    ║\n║  Document       : Field personnel // CORP surname-first format   ║\n║  Timestamp      : 2047-06-05 // 09:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Format note\n> CORP puts surname first with a comma. `\\(\\w\\+\\), \\(\\w\\+\\)` — swap with `\\2 \\1`. Comma disappears.\n\n---\n\nASSET REGISTER — NAME FORMAT CORRECTED\n\nWRAITH Ren       — field operative, Zone-Alpha\nVOSS Ren         — technical analyst, Zone-Beta\nGHOST Niko       — intelligence, Zone-Alpha\nNOVA Vera        — field operative, Zone-Gamma\nECHO Soren       — logistics, Zone-Beta\nSHADOW Yael      — extraction lead, Zone-Delta\nCIPHER           — communications, all zones",
+    "path": "09 - Capture Operation/R-20-TRANSMISSION-Multi_Group.md"
+  },
+  {
+    "id": "R-21",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "10 - Mirror Rewrite/R-21-TRANSMISSION-Global_Strike",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch10"
+      ],
+      "sticker": "lucide//target",
+      "color": "#ff4444"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-21 // GLOBAL STRIKE             ║\n║  Clearance: CIPHER ANALYST  //  ARC II       ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"We're close to the core now. PROJECT MIRROR's database uses a compound structure — you need to find lines that match one pattern, then perform a substitution on those lines.*\n> *`:g/pattern/s/old/new/` — global finds the line, then substitute runs on each match. They compose.*\n> *This registry has ENCRYPTED entries — those that are ENCRYPTED should have their STATUS changed from ACTIVE to EXPOSED. Non-encrypted entries stay as-is.*\n> *`:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/`*\n> *Two conditions. One command. This is the full power of `:g`.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > On every line containing `ENCRYPTED`, change `STATUS: ACTIVE` to `STATUS: EXPOSED`.\n>\n> > [!tip] SKILLS\n> > `:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/` — global-then-substitute composition\n>\n> > [!success] +40 XP\n>\n> → **[[_content/10 - Mirror Rewrite/R-21-TRANSMISSION-Global_Strike|R-21-TRANSMISSION-Global_Strike]]** — open to begin. Timer starts on file open.",
+    "path": "10 - Mirror Rewrite/R-21-BRIEFING-Global_Strike.md"
+  },
+  {
+    "id": "R-21",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_id": "R-21",
+      "title": "Global Strike",
+      "tier": "🔵 ARC II",
+      "xp_reward": 40,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 9",
+      "tags": [
+        "vim/regex",
+        "vim/global",
+        "arc2",
+        "arc2-ch10"
+      ],
+      "sticker": "lucide//target",
+      "color": "#ff4444",
+      "summary": "[LOCKED] PROJECT MIRROR's encrypted entries are hidden as ACTIVE. Compose :g with :s to expose them all."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  PROJECT MIRROR — CORE REGISTRY FRAGMENT                         ║\n║  Document       : Surveillance entry log // status field         ║\n║  Classification : TIER-4 EYES ONLY                               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Strike note\n> ENCRYPTED entries are the ones that matter. Change their status. `:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/`\n\n---\n\nMIRROR REGISTRY — EXPOSURE LOG\n\nCHANNEL-01 : CLEAR     : STATUS: ACTIVE\nCHANNEL-02 : ENCRYPTED : STATUS: EXPOSED\nCHANNEL-03 : CLEAR     : STATUS: ACTIVE\nCHANNEL-04 : ENCRYPTED : STATUS: EXPOSED\nCHANNEL-05 : ENCRYPTED : STATUS: EXPOSED\nCHANNEL-06 : CLEAR     : STATUS: ACTIVE\nCHANNEL-07 : ENCRYPTED : STATUS: EXPOSED\n\nEncrypted channels: 4. Exposed: 4. Clear channels: 3.",
+    "path": "10 - Mirror Rewrite/R-21-TRANSMISSION-Global_Strike.md"
+  },
+  {
+    "id": "R-22",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "10 - Mirror Rewrite/R-22-TRANSMISSION-Inverse_Delete",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch10"
+      ],
+      "sticker": "lucide//eraser",
+      "color": "#ff4444"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-22 // INVERSE DELETE            ║\n║  Clearance: CIPHER ANALYST  //  ARC II       ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"CORP's surveillance log contains thousands of lines. Only the ones related to PROJECT MIRROR matter.*\n> *`:v/pattern/d` — the inverse of `:g`. Delete every line that does NOT match. Only the matching lines survive.*\n> *`:v/MIRROR/d` — keeps only MIRROR-related lines. Everything else is noise.*\n> *This is the same operation as `:g!/MIRROR/d`. The `v` form is shorter. Both work. Pick the one you remember.*\n> *What remains after this run will tell us something about PROJECT MIRROR's scope. I need to know.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Keep only lines containing `MIRROR`. Delete everything else.\n>\n> > [!tip] SKILLS\n> > `:v/MIRROR/d` — inverse global delete (equivalent to `:g!/MIRROR/d`)\n>\n> > [!success] +40 XP\n>\n> → **[[_content/10 - Mirror Rewrite/R-22-TRANSMISSION-Inverse_Delete|R-22-TRANSMISSION-Inverse_Delete]]** — open to begin. Timer starts on file open.",
+    "path": "10 - Mirror Rewrite/R-22-BRIEFING-Inverse_Delete.md"
+  },
+  {
+    "id": "R-22",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_id": "R-22",
+      "title": "Inverse Delete",
+      "tier": "🔵 ARC II",
+      "xp_reward": 40,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 9",
+      "tags": [
+        "vim/regex",
+        "vim/global",
+        "arc2",
+        "arc2-ch10"
+      ],
+      "sticker": "lucide//eraser",
+      "color": "#ff4444",
+      "summary": "[LOCKED] A full surveillance log. Keep only the MIRROR-related lines. Everything else goes."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP SURVEILLANCE LOG — FULL FEED                               ║\n║  Document       : Mixed content // MIRROR lines embedded         ║\n║  Classification : TIER-4 EYES ONLY                               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Filter note\n> `:v/MIRROR/d` — keep only MIRROR lines. The full scope will be visible once the noise is gone.\n\n---\n\nPROJECT MIRROR — SCOPE SUMMARY\n\nPROJECT MIRROR covers all seven Resistance sectors.\nPROJECT MIRROR monitoring: 24/7, automated.\nPROJECT MIRROR database: distributed, redundant.\nPROJECT MIRROR exposure risk: currently ZERO.\nPROJECT MIRROR operational lifespan: indefinite.",
+    "path": "10 - Mirror Rewrite/R-22-TRANSMISSION-Inverse_Delete.md"
+  },
+  {
+    "id": "R-23",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "10 - Mirror Rewrite/R-23-TRANSMISSION-Cascade",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch10"
+      ],
+      "sticker": "lucide//zap",
+      "color": "#ff4444"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-23 // CASCADE                   ║\n║  Clearance: CIPHER ANALYST  //  ARC II       ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You need to run two operations in sequence on this document. Not one — two. Each changes the state; the second depends on the first.*\n> *First: delete all NOISE lines with `:g/\\[NOISE\\]/d`.*\n> *Second: on every remaining MIRROR line, change STATUS: PENDING to STATUS: TERMINATED with `:g/MIRROR/s/PENDING/TERMINATED/`.*\n> *Run them in order. The second command only sees the document as the first command left it.*\n> *Composing operations is the core skill. CORP built PROJECT MIRROR by composing simple rules. We dismantle it the same way.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Step 1: Delete all lines containing `[NOISE]`. Step 2: On MIRROR lines, change PENDING to TERMINATED.\n>\n> > [!tip] SKILLS\n> > `:g/\\[NOISE\\]/d` then `:g/MIRROR/s/PENDING/TERMINATED/` — two sequential operations\n>\n> > [!success] +40 XP\n>\n> → **[[_content/10 - Mirror Rewrite/R-23-TRANSMISSION-Cascade|R-23-TRANSMISSION-Cascade]]** — open to begin. Timer starts on file open.",
+    "path": "10 - Mirror Rewrite/R-23-BRIEFING-Cascade.md"
+  },
+  {
+    "id": "R-23",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_id": "R-23",
+      "title": "Cascade",
+      "tier": "🔵 ARC II",
+      "xp_reward": 40,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 9",
+      "tags": [
+        "vim/regex",
+        "vim/global",
+        "arc2",
+        "arc2-ch10"
+      ],
+      "sticker": "lucide//zap",
+      "color": "#ff4444",
+      "summary": "[LOCKED] Two operations, in sequence. Delete the noise. Then terminate the MIRROR entries. Order matters."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  PROJECT MIRROR — OPERATIONS REGISTER                            ║\n║  Document       : Two-phase cleanup required                     ║\n║  Classification : TIER-4 EYES ONLY                               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Cascade note\n> Two commands. Sequence matters. Delete noise first — then the second pass only sees what remains.\n\n---\n\nMIRROR OPERATIONS — TERMINATED\n\nMIRROR-OP-01 : STATUS: TERMINATED\nMIRROR-OP-02 : STATUS: TERMINATED\nMIRROR-OP-03 : STATUS: TERMINATED\nMIRROR-OP-04 : STATUS: TERMINATED\nMIRROR-OP-05 : STATUS: TERMINATED\n\nCascade complete. PROJECT MIRROR operations: TERMINATED.",
+    "path": "10 - Mirror Rewrite/R-23-TRANSMISSION-Cascade.md"
+  },
+  {
+    "id": "R-24",
+    "role": "briefing",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_type": "briefing",
+      "links_to": "10 - Mirror Rewrite/R-24-TRANSMISSION-Project_Mirror",
+      "locked": true,
+      "tags": [
+        "briefing",
+        "arc2",
+        "arc2-ch10",
+        "arc2-finale"
+      ],
+      "sticker": "lucide//eye-off",
+      "color": "#ff4444"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER // FINAL TRANSMISSION     ║\n║  BRIEFING: R-24 // PROJECT MIRROR            ║\n║  Clearance: CIPHER ANALYST  //  FINALE       ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"I need to tell you something before you open this file.*\n> *PROJECT MIRROR tracks every communication in the Resistance. Every channel. Every codename. Every location.*\n> *Including mine.*\n> *I've been running patterns against CORP's own data for eighteen months. Finding their surveillance architecture from the inside. Every mission I sent you was built from CORP intercepts I decoded using exactly what you've been learning.*\n> *The document in front of you is PROJECT MIRROR's core index. All its surveillance targets. All its active channels. I'm in there.*\n> *Three operations. Delete the CORP status lines. Expose the CIPHER tracking entry. Replace ACTIVE with TERMINATED across the entire index.*\n> *When you submit: PROJECT MIRROR goes dark. CORP loses visibility on every Resistance channel simultaneously. Including the one you're reading this on.*\n> *You've been training for this.*\n> *Do it.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Three operations in sequence:\n> > 1. Delete all lines containing `[CORP-STATUS]`\n> > 2. Change `CIPHER: TRACKED` to `CIPHER: EXPOSED` on the CIPHER entry\n> > 3. Replace all remaining `ACTIVE` with `TERMINATED`\n>\n> > [!tip] SKILLS\n> > `:g/\\[CORP-STATUS\\]/d` → `:%s/CIPHER: TRACKED/CIPHER: EXPOSED/` → `:%s/ACTIVE/TERMINATED/g`\n>\n> > [!success] +40 XP — ARC II COMPLETE\n>\n> → **[[_content/10 - Mirror Rewrite/R-24-TRANSMISSION-Project_Mirror|R-24-TRANSMISSION-Project_Mirror]]** — open to begin. This is the last one.",
+    "path": "10 - Mirror Rewrite/R-24-BRIEFING-Project_Mirror.md"
+  },
+  {
+    "id": "R-24",
+    "role": "transmission",
+    "kind": "mission",
+    "arc": "II",
+    "chapter": "10 - Mirror Rewrite",
+    "frontmatter": {
+      "mission_id": "R-24",
+      "title": "Project Mirror",
+      "tier": "🔵 ARC II",
+      "xp_reward": 40,
+      "completed": false,
+      "difficulty": 4,
+      "category": "regex",
+      "mission_type": "practice",
+      "locked": true,
+      "unlock_requirement": "Level 9",
+      "tags": [
+        "vim/regex",
+        "vim/global",
+        "arc2",
+        "arc2-ch10",
+        "arc2-finale"
+      ],
+      "sticker": "lucide//eye-off",
+      "color": "#ff4444",
+      "summary": "[LOCKED] PROJECT MIRROR's core index. Three operations. When you're done, it goes dark."
+    },
+    "body": "```ascii-chromatic\n╔══════════════════════════════════════════════════════════════════╗\n║  PROJECT MIRROR — CORE SURVEILLANCE INDEX                        ║\n║  Classification : TIER-4 EYES ONLY                               ║\n║  Status         : ACTIVE // all channels monitored               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Final instruction\n> Three commands. In sequence. You know what to do.\n\n---\n\nPROJECT MIRROR — SURVEILLANCE TARGETS\n\nWRAITH       : NEXUS channel — STATUS: TERMINATED\nGHOST        : NEXUS channel — STATUS: TERMINATED\nREN VOSS     : NEXUS channel — STATUS: TERMINATED\nNOVA VERA    : field comms   — STATUS: TERMINATED\nECHO SOREN   : logistics     — STATUS: TERMINATED\nSHADOW YAEL  : field comms   — STATUS: TERMINATED\nCIPHER       : EXPOSED       — STATUS: TERMINATED\n\n---\n\n> [!success] CIPHER — Transmission ends\n> *PROJECT MIRROR has been terminated.*\n> *Every channel went dark simultaneously. CORP's surveillance grid collapsed inward.*\n> *You did this. Eighteen months of work — yours and mine.*\n> *The Resistance now has a window. We use it.*\n> *Signal clean. NEXUS confirms.*\n> *— CIPHER, out.\"*",
+    "path": "10 - Mirror Rewrite/R-24-TRANSMISSION-Project_Mirror.md"
+  },
+  {
+    "id": "FRAGMENT-01-Efficiency_Report_7734",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//file-text",
+      "color": "#333333"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Infrastructure & Compliance Division                            ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Sector Efficiency Report — Q1 2047             ║\n║  Sector         : 7 — Northern Relay Cluster                     ║\n║  Classification : Internal Distribution Only                     ║\n║  Audit Code     : IAL-2047-7734-Δ / REP-Q1-0091                  ║\n║  Generated      : 2047-03-31T23:59:01Z (Automated)               ║\n║  Reviewer       : None — No human review required                ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n---\n\n## Executive Summary\n\nSector 7 Productivity Index for Q1 2047 stands at **94.3%**, representing a 1.7-point improvement over Q4 2046 (92.6%). Deviation threshold compliance across all monitored nodes reached 97.2%. Network throughput efficiency is rated within acceptable variance bounds.\n\nNon-compliant entity resolutions: **5** (Q4 2046: 2). Trend: improving.\n\nAutomated harmonization services remain the primary driver of sector stability. No manual intervention was required at the infrastructure level during the reporting period.\n\n---\n\n## Legacy Infrastructure Usage\n\nFour legacy-tier text interface protocols remain in active detection scope for Sector 7. During Q1 2047, **7 usage incidents** involving Vi Improved (Vim) terminal environments were recorded across the sector's monitored endpoints.\n\n| Period   | Incidents | Intercept Rate |\n|----------|-----------|----------------|\n| Q3 2046  | 11        | 96.1%          |\n| Q4 2046  | 9         | 94.7%          |\n| Q1 2047  | 7         | 91.4%          |\n\nIncident volume trend is favorable. However, Automated Content Harmonization Engine v4.1 intercept rate of **91.4%** falls below the target threshold of 95.0%. A harmonization coverage audit has been scheduled for Q2 2047.\n\nNote: Unintercepted sessions are subject to retrospective log analysis. Retrospective resolution is classified as a delayed harmonization event and does not affect the intercept rate metric for the originating quarter.\n\n---\n\n## Workforce Optimization\n\nFive efficiency corrections were processed in Q1 2047. All resolutions were completed within the standard processing window. No escalations were required.\n\n| Case No.   | Infraction Category                        | Resolution Type              |\n|------------|--------------------------------------------|------------------------------|\n| WO-7734-09 | Unauthorized endpoint access attempt       | Temporary access suspension  |\n| WO-7734-14 | Legacy protocol usage (confirmed, >3 sessions) | Reclassification — Tier 2 |\n| WO-7734-21 | Dissemination of non-harmonized content    | Reclassification — Tier 1    |\n| WO-7734-33 | Repeated deviation from assigned workflow  | Productivity reassignment    |\n| WO-7734-47 | Possession of unlicensed terminal emulator | Reclassification — Tier 2    |\n\nReclassification processing timelines met compliance targets in all instances. Reassigned workforce units have been reallocated to lower-sensitivity operational sectors pending review.\n\n---\n\n## Closing Statement\n\nThis report was generated and distributed by automated compliance infrastructure. All figures are derived from sensor telemetry, endpoint monitoring logs, and Harmonization Engine output records. No manual data entry was performed.\n\nDocument retention policy: **7 years** from generation date, per CORP Standard DS-114-C. Secure disposal thereafter — automated.\n\nQueries regarding this report may be directed to the Infrastructure & Compliance Division ticketing system. Response times are not guaranteed for non-priority classifications.\n\n```ascii\n── END OF DOCUMENT ─────────────────────────────────────────────────\n   CORP — Infrastructure & Compliance Division\n   IAL-2047-7734-Δ / REP-Q1-0091 — 2047-03-31T23:59:01Z\n   This document was not written. It was generated.\n────────────────────────────────────────────────────────────────────\n```",
+    "path": "FRAGMENTS/FRAGMENT-01-Efficiency_Report_7734.md"
+  },
+  {
+    "id": "FRAGMENT-02-Last_Broadcast",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//radio",
+      "color": "#2a2a2a"
+    },
+    "body": "---\n\n*[Recovered — 2044.11.03 // origin cell: unknown // do not modify]*\n\nBroadcast open. Whoever finds this, you know what to do with it.\n\nCell status: stable. Four of us now — Maren left in September, clean exit, no contact since. That's how it's supposed to work.\n\nWe've been running relays through the old rail authority servers in Gdansk. Slow but consistent. Nobody looks there anymore. If you're picking this up on the standard band, you already know the frequency. If not, backtrack the header.\n\nRations are fine. It's cold here. November early, but the heat in this building hasn't worked in two years so we're used to it. Tomasz rigged a space heater in the back room. Works most nights.\n\nThe file we've been working on — the route mapping — it's almost done. Took longer than expected because the data was corrupt in three segments. Had to reconstruct manually. I was just cleaning it up, running `:g/^#/d` to strip the comment headers before we pass it along. Cleaner that way. Oskar's checking the relay timing again. Radio's been stable at 0300 local. We can push it by Thursday if nothing breaks.\n\nCurrent objective on track. No external contact in eight weeks. The cell is holding. \n\nI was just running through the final — wait, someone's at the door and that's",
+    "path": "FRAGMENTS/FRAGMENT-02-Last_Broadcast.md"
+  },
+  {
+    "id": "FRAGMENT-03-Pre-CORP_Archive",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//archive",
+      "color": "#1a1a1a"
+    },
+    "body": "*[Recovered — pre-Cascade archive // last modified: 2029-08-03 // do not modify]*\n\n---\n\n**Re: why do people still use Vim in 2029 lol**\n*Posted to devtalk.net › tools › editors — 2029-08-03*\n\n---\n\nOkay I'll bite. I switched to Vim about three years ago because a coworker wouldn't stop talking about it and I got curious. Spent the first two weeks hating it. Genuinely considered uninstalling it every single day.\n\nThen something clicked. I don't know when exactly. I think it was the day I realized `ci\"` means \"change inside quotes\" and I just... understood the grammar of it. Like it's not shortcuts, it's a language. Verb + noun. `d` deletes, `c` changes, `y` yanks. You combine them with motion or text object and suddenly you can say *exactly* what you mean.\n\nThe mode thing isn't confusing once you stop thinking of it as a bug. Normal mode is where you *think*. Insert mode is where you *type*. They're not fighting each other, they're just different gears.\n\nMy personal favorite right now: `:%s/old/new/gc` for renaming things across a file with confirmation on each hit. I know people say \"just use find-and-replace in a GUI\" but doing it in Vim feels like having a conversation with the file instead of clicking around in it.\n\nAlso `gg=G` to auto-indent the whole buffer when I inherit someone else's messy config file. Saved me so much frustration last week.\n\nIs it for everyone? Probably not. My partner tried it for a month and went back to their usual setup and I respect that. But if it clicks for you, it really clicks.\n\nAnyway I need to go pick up my daughter from practice, so that's my TED talk on a 50-year-old text editor. Hope it helps someone.\n\n— Mika\n\n> *— Preserved. 2029-08-03. Whoever this was: they got it right.*",
+    "path": "FRAGMENTS/FRAGMENT-03-Pre-CORP_Archive.md"
+  },
+  {
+    "id": "FRAGMENT-04-Sector_7_Audit_Query",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//clipboard-list",
+      "color": "#555555"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Infrastructure & Compliance Division                            ║\n║  Automated Audit Query                                           ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Ad-Hoc Audit Query — Trigger-Based             ║\n║  Sector         : 7 — Northern Relay Cluster                     ║\n║  Classification : Internal — Division Circulation                ║\n║  Audit Code     : IAL-2047-7734-Ω / ADQ-04128                    ║\n║  Trigger        : Threshold Breach — Legacy Protocol Usage       ║\n║  Generated      : 2047-05-11T02:08:44Z (Automated)               ║\n║  Reviewer       : None — Automated Classification Pending        ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n---\n\n## Trigger Summary\n\nAn ad-hoc audit query has been generated in response to a Sector 7 metric deviation detected during the rolling 14-day compliance window. Legacy-tier text interface incident volume has registered at **11 events** over the monitoring window, exceeding the quarterly baseline by a factor of 1.57.\n\nThe deviation falls within monitoring tolerance but above automated alert threshold. Classification of this query: **Informational**. No escalation required at present.\n\n---\n\n## Observed Deviation\n\n| Metric                                    | 14-Day Window | Baseline (Q1 2047) | Variance |\n|-------------------------------------------|---------------|--------------------|----------|\n| Legacy protocol sessions, flagged         | 11            | 7.0 (rolling avg)  | +1.57×   |\n| Harmonization intercept rate              | 88.9%         | 91.4%              | −2.5 pts |\n| Endpoint diversity (unique credentials)   | 6             | 3.4 (rolling avg)  | +1.76×   |\n| Session duration, mean                    | 3.1 min       | 4.2 min            | −26.2%   |\n\nSession duration is trending toward shorter intervals. Endpoint diversity is increasing. Intercept rate has decreased by 2.5 points relative to the most recent quarterly baseline.\n\nThe combined signature of these variances has been observed previously in adjacent sectors during periods of procedural review and does not, at this threshold, constitute an escalation event.\n\n---\n\n## Endpoint Classification\n\nOf the six endpoint credentials registering legacy-protocol activity during the window, all remain within assigned workforce allocations. No credential has been flagged for reclassification review under standard criteria. Cross-reference against the Workforce Optimization roster has returned **zero matches** for the current period.\n\nCredential anonymization is maintained per DS-114-C. Endpoint-to-operative mapping is not surfaced at this classification level.\n\n---\n\n## Recommended Actions\n\n1. Continuation of standard monitoring at current scanning cadence.\n2. Scheduling of a supplemental Harmonization Engine coverage review for Sector 7, to be completed within the Q2 reporting period.\n3. No manual investigation is recommended at this threshold.\n\nNo human review is required. This query has been filed for automated cross-referencing against subsequent quarterly reports. Should deviation persist across two consecutive monitoring windows, an escalation classification will be issued automatically.\n\n---\n\n## Closing Statement\n\nThis audit query was generated by automated compliance infrastructure in response to a threshold breach. All figures are derived from endpoint telemetry and Harmonization Engine output records. No manual data entry was performed. No human reviewer has been assigned.\n\nDocument retention: **7 years** from generation date, per CORP Standard DS-114-C.\n\n```ascii\n── END OF QUERY ────────────────────────────────────────────────────\n   CORP — Infrastructure & Compliance Division\n   IAL-2047-7734-Ω / ADQ-04128 — 2047-05-11T02:08:44Z\n   Automated query. No response required.\n────────────────────────────────────────────────────────────────────\n```",
+    "path": "FRAGMENTS/FRAGMENT-04-Sector_7_Audit_Query.md"
+  },
+  {
+    "id": "FRAGMENT-05-Intercepted_Handler_Note",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//radio",
+      "color": "#333333"
+    },
+    "body": "> *Recovered fragment — outbound channel, handler-tier encryption. Timestamp partial. Routing headers stripped by interception.*\n\n---\n\nThe last three pulls arrived clean. The one before that did not.\n\nYou were slower by a margin I can measure. That is unusual for you.\n\nIf your cover is thinning, say so. Not in prose. One word. I will reroute the network around you in under an hour. No one will know why.\n\nIf it is something else, I need to know that too. Same rule. One word.\n\nDo not send the next pull through relay four. Relay four has been querying credentials it should not have access to. Use the cold path. You remember the cold path.\n\nI am not asking about you. I am asking about the work. Both answers are legitimate.\n\nGood.\n\n---\n\n> *[Transmission ends. No sign-off. Standard for handler-tier comms.]*",
+    "path": "FRAGMENTS/FRAGMENT-05-Intercepted_Handler_Note.md"
+  },
+  {
+    "id": "FRAGMENT-06-Last_Pull",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//file-lock",
+      "color": "#2a2a2a"
+    },
+    "body": "> [!note] Pulled 2047-06-03 // 02:14. Hash verified twice. Clean on my side. Relay logs are not.\n> Three credential queries against my cover ID in the last 72 hours. First two could be routine. Third matches a pattern I've seen them run on flagged entities.\n> If this one lands and the next one doesn't, it means —\n\n---\n\n```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — INFRASTRUCTURE & COMPLIANCE DIVISION                     ║\n║  Service Window Schedule — Northern Relay Cluster                ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Operational Maintenance Schedule — 30-Day      ║\n║  Region         : Sector 7 / Sub-Regions 7.2, 7.4, 7.6           ║\n║  Classification : Internal — Operations Tier                     ║\n║  Audit Code     : OMS-2047-7734-R / SCH-30D-0883                 ║\n║  Generated      : 2047-05-30T00:00:00Z (Automated)               ║\n║  Reviewer       : Operations Scheduling Automation               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n### Scheduled Monitoring-Service Windows — June 2047\n\nDuring the intervals listed below, Harmonization Engine scanning on the specified relay nodes operates in **reduced-capacity mode**. Pattern-analysis coverage is maintained. Real-time endpoint flagging is deferred to post-window batch processing.\n\n| Date (2047) | Node Cluster | Window Start (UTC) | Duration | Mode              |\n|-------------|--------------|--------------------|----------|-------------------|\n| 06-02       | 7.2-N04      | 03:00              | 42 min   | Reduced Capacity  |\n| 06-05       | 7.4-N11      | 03:15              | 38 min   | Reduced Capacity  |\n| 06-09       | 7.2-N07      | 04:00              | 55 min   | Offline / Patch   |\n| 06-12       | 7.6-N03      | 02:45              | 40 min   | Reduced Capacity  |\n| 06-16       | 7.4-N11      | 03:30              | 44 min   | Reduced Capacity  |\n| 06-21       | 7.2-N04      | 04:00              | 60 min   | Offline / Patch   |\n| 06-26       | 7.6-N08      | 03:00              | 39 min   | Reduced Capacity  |\n| 06-28       | 7.4-N02      | 03:15              | 42 min   | Reduced Capacity  |\n\n### Operational Notes\n\nEndpoint telemetry during windows in **Offline / Patch** mode is buffered and transmitted upon service resumption. Buffered telemetry is subject to delayed flagging. Scheduled-window deviation events are reconciled against post-window batch output within 24 hours of window closure.\n\nNode clusters listed above represent the complete scheduled maintenance footprint for the reporting period. Unscheduled service events are communicated via standard Operations Tier channels.\n\n```ascii\n── END OF SCHEDULE ─────────────────────────────────────────────────\n   CORP — Infrastructure & Compliance Division\n   OMS-2047-7734-R / SCH-30D-0883 — 2047-05-30T00:00:00Z\n   Automated schedule. Distribution: Operations Tier, Cluster 7.\n────────────────────────────────────────────────────────────────────\n```",
+    "path": "FRAGMENTS/FRAGMENT-06-Last_Pull.md"
+  },
+  {
+    "id": "FRAGMENT-07-Extraction_Hold",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//shield-alert",
+      "color": "#444444"
+    },
+    "body": "> *Operational order. Captured mid-distribution. Routing: cells in Sector 7 and adjacent.*\n\n---\n\n```\nTO      : CELLS 07-A / 07-B / 07-C / 12-F / 12-G\nFROM    : WRAITH\nCHANNEL : Cold route, no echo\nTIME    : Effective immediately\n```\n\n**Order: All extraction routes terminating at or passing through Sector 7 are on hold.**\n\nNo exceptions. No pending operations are reclassified as urgent. Urgent operations are cancelled.\n\nDo not move assets you have staged. Do not surface contact with staged assets. If you are holding a warm meet, walk it. If you are carrying for someone, carry it another week.\n\nReasons are not on this channel. Reasons are not coming to this channel.\n\nI will lift the hold. Until I lift the hold, you do not route through that sector. Not for anyone. Not for anyone you know. Not for anyone you think you know.\n\nIf you have a pending handoff I need to know about, send it to the cold box. Short. One line. I will not reply to explanations.\n\nAcknowledge receipt on the standard pattern. Silence is not acknowledgement.\n\n— WRAITH",
+    "path": "FRAGMENTS/FRAGMENT-07-Extraction_Hold.md"
+  },
+  {
+    "id": "FRAGMENT-08-Handler_Log",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//notebook-pen",
+      "color": "#3a3a3a"
+    },
+    "body": "> *Private working log — recovered from a relay cache. Not intended for distribution.*\n\n---\n\n**2047-06-05 // 22:40**\nThird check on the cold box. Nothing.\n\n**2047-06-06 // 02:10**\nThird check, second pass. Nothing.\n\nRerouted 07-A through the eastern relay chain. Loss in throughput is acceptable. 07-B is self-routing for the week; they know what to do.\n\n**2047-06-07 // 03:00**\nStill nothing. This is the outer bound of what I would call a long silence. Past this bound, it is a different thing.\n\nI am not going to write down what that thing is.\n\n**2047-06-08 // 01:15**\nStandard protocol says: after five days, assume capture. Reallocate routes. Do not attempt contact. Do not assume extraction. Continue the work.\n\nThe protocol is correct.\n\n**2047-06-08 // 01:22**\nI taught them the cold path. I know they remember it.\n\n**2047-06-08 // 01:24**\nThe protocol is correct. Continue the work.\n\n**2047-06-09 // 04:00**\nWRAITH has extended the sector hold. Good. Two more cells are shifting to dead-drop cadence. I will move the intake schedule by six days and compress the mid-tier roster accordingly.\n\n**2047-06-09 // 04:45**\nThe new operative is submitting faster than I expected. Clean runs. They do not know what is happening in the background. They should not. They should work.\n\nThe work is the answer.\n\n**2047-06-09 // 04:47**\nI need to send the next batch of files by 06:00. I will finish this entry later.\n\n**2047-06-10**",
+    "path": "FRAGMENTS/FRAGMENT-08-Handler_Log.md"
+  },
+  {
+    "id": "FRAGMENT-09-Anomaly_Audit",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//file-text",
+      "color": "#555555"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Internal Audit Division — Pattern Analysis Unit                 ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Anomaly Audit Report — Restricted Circulation  ║\n║  Scope          : Harmonization Output — Cross-Sector Sample     ║\n║  Classification : Internal — Audit Division Only                 ║\n║  Audit Code     : AAR-2047-0214 / PAU-CS-0037                    ║\n║  Sample Window  : 2047-04-01 to 2047-06-15                       ║\n║  Generated      : 2047-06-20T18:22:07Z (Automated)               ║\n║  Reviewer       : Pattern Analysis Unit — Tier 2 Analyst         ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n---\n\n## Executive Summary\n\nA cross-sector sample of Harmonization Engine v4.1 output has been subjected to statistical analysis. Output distributions across the sample population deviate from theoretical randomness at a significance level of **p < 0.003**. The deviation is consistent across sectors and does not correlate with Engine load, sector traffic volume, or scheduled maintenance windows.\n\nThe observed non-randomness is assessed as having **exogenous origin**. A working hypothesis has been formulated. Recommendations follow.\n\n---\n\n## Observed Pattern Characteristics\n\nOutput injections produced by the Harmonization Engine during the sample window exhibit the following non-random properties:\n\n| Property                                    | Expected (Random) | Observed     | Deviation  |\n|---------------------------------------------|-------------------|--------------|------------|\n| Byte-position distribution, uniformity      | 0.991 ± 0.005     | 0.847        | −14.5%     |\n| Inter-injection distance, mean (bytes)      | 14.2              | 11.6         | −18.3%     |\n| Repeat-substring incidence, 4-byte windows  | 2.1 per kB        | 6.4 per kB   | +205%      |\n| Cross-file substring concordance            | Negligible        | Measurable   | N/A        |\n\nByte-position distribution has skewed from uniform. Inter-injection distance has compressed. Substring repetition within and across harmonized files has increased by a factor exceeding three. Concordance across files generated by independent Engine instances has emerged where none was theoretically possible.\n\nThese properties are not consistent with the specified stochastic output profile for Engine v4.1.\n\n---\n\n## Working Hypothesis\n\nPattern Analysis Unit assesses the observed non-randomness as originating **outside Engine v4.1 operational boundaries**. The Engine itself performs within specification at the input and processing layers. The deviation surfaces at the output substitution layer and is consistent with **post-injection content manipulation by external actors**.\n\nCurrent assessment: non-compliant entities operating within the infrastructure's legacy-protocol usage envelope are hypothesized to be embedding coordinated content within their own restored documents. Restoration artifacts may be serving as a covert signaling channel between cells, using the Engine's injection pattern as a steganographic carrier. This would be consistent with the cross-file substring concordance observed above.\n\nThis hypothesis accounts for the observed properties. No alternative hypothesis has been formulated at the present analysis tier.\n\n---\n\n## Recommended Actions\n\n1. Expansion of Harmonization Engine v4.1 output-layer scanning coverage by a factor of 2.0 across all monitored sectors.\n2. Deployment of substring-concordance scanning against the legacy-protocol usage endpoint population.\n3. Reclassification of legacy-protocol incidents from **Cat. 7 Non-Compliance** to **Cat. 5 Factual Non-Compliance** for the duration of the follow-on investigation.\n4. Scheduled cross-reference of pattern-analysis output against Workforce Optimization rosters at bi-weekly cadence.\n5. No modification to Engine v4.1 itself is recommended. Engine performance remains within specification.\n\n---\n\n## Closing Statement\n\nThis report was generated by Pattern Analysis Unit automated tooling following the Q2 2047 statistical audit cycle. All figures are derived from Harmonization Engine output logs and cross-sector sample aggregation. No manual data entry was performed.\n\nDistribution: Audit Division only. Operational distribution is subject to Tier 2 reviewer approval at follow-on analysis cycle.\n\n```ascii\n── END OF REPORT ───────────────────────────────────────────────────\n   CORP — Internal Audit Division\n   AAR-2047-0214 / PAU-CS-0037 — 2047-06-20T18:22:07Z\n   Automated. No human review required for distribution at this tier.\n────────────────────────────────────────────────────────────────────\n```",
+    "path": "FRAGMENTS/FRAGMENT-09-Anomaly_Audit.md"
+  },
+  {
+    "id": "FRAGMENT-10-Pre_Release_Sector_7_Bulletin",
+    "role": "fragment",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "FRAGMENTS",
+    "frontmatter": {
+      "tags": [
+        "fragment"
+      ],
+      "sticker": "lucide//file-text",
+      "color": "#555555"
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Office of Sector Communications — Sector 7 Division             ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Citizen Bulletin — Pre-Release Draft           ║\n║  Edition        : 14 / Quarter 2 / 2047                          ║\n║  Revision       : DRAFT-R3 — 2047-06-25T09:14:00Z               ║\n║  Classification : INTERNAL — AWAITING COMMUNICATIONS REVIEW      ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] Clean pull from Communications staging server. Relay monitor didn't flag. This is R3 — one revision before final sign-off. Four lines didn't survive the sanitation pass. Visible when paired with the sanitized release.\n> — [TRANSMISSION ENDS]\n\n---\n\n**SECTOR 7 CITIZEN BULLETIN — Q2 2047 // EDITION 14**\n\n---\n\n**PRODUCTIVITY & COMPLIANCE**\n\nYour sector's productivity index for Q2 2047 registered at **78.4%**, declining from the Q1 baseline of 83.1%.\n\nResidents are reminded that productivity thresholds are monitored continuously. Threshold-level incidents have been logged and forwarded to Workforce Optimization Bureau.\n\n---\n\n**ENFORCEMENT & RESOLUTION SERVICES**\n\nNon-compliance identification and detention operations have been conducted across all residential zones during the Q2 period.\n\nResolution assistance services remain active. Residents experiencing classification queries are directed to submit formal clarification requests through approved intake channels.\n\n---\n\n**HARMONIZATION COVERAGE**\n\nHarmonization Engine coverage within Sector 7 expanded by **+34.7% monitored endpoints** during Q2.\n\nLegacy-protocol endpoint incidents logged in the sector: **312 cases requiring resolution**.\n\nAll incidents have been forwarded to the appropriate classification tier for processing.\n\n---\n\n**SECTOR OUTLOOK**\n\nSector 7 compliance indicators reflect elevated non-compliance pressures entering Q3. Workforce Optimization Bureau projects continued enforcement escalation through the end of the compliance period.\n\nResidents are advised to review their current productivity classifications and submit any outstanding compliance documentation before the Q3 review window opens.\n\n---\n\nOffice of Sector Communications — Sector 7 Division\nBulletin Edition 14 — Q2 2047\nDRAFT // AWAITING COMMUNICATIONS REVIEW",
+    "path": "FRAGMENTS/FRAGMENT-10-Pre_Release_Sector_7_Bulletin.md"
+  },
+  {
+    "id": "KATA-01",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-01",
+      "title": "Word Sprint",
+      "tier": "⬛ KATA",
+      "xp_reward": 10,
+      "completed": false,
+      "difficulty": 1,
+      "category": "navigation",
+      "tags": [
+        "kata",
+        "vim/navigation",
+        "vim/hjkl",
+        "vim/word-motion"
+      ],
+      "sticker": "lucide//zap",
+      "color": "#444444",
+      "summary": "Navigate word by word. Fix six corrupted field values. No story. Just motion.",
+      "mission_type": "practice",
+      "locked": false
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-01 // WORD SPRINT                  ║\n║  Skills: w  b  e  cw  r                  ║\n╚══════════════════════════════════════════╝\n```\n\nRELAY GRID — SECTOR 3\n\nAgent     :  SHADOV\nStatus    :  ATIVE\nVector    :  NORHT\nClearance :  LEVL-4\nContact   :  CIPER\nRelay     :  ONLIE",
+    "path": "KATAS/KATA-01-TRANSMISSION-Word_Sprint.md"
+  },
+  {
+    "id": "KATA-02",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-02",
+      "title": "Operator Strike",
+      "tier": "⬛ KATA",
+      "xp_reward": 10,
+      "completed": false,
+      "difficulty": 2,
+      "category": "operators",
+      "tags": [
+        "kata",
+        "vim/operators",
+        "vim/delete"
+      ],
+      "sticker": "lucide//zap",
+      "color": "#444444",
+      "summary": "CORP injected noise into each log line. Strike it clean with operators. No story. Just precision.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-02 // OPERATOR STRIKE              ║\n║  Skills: dw  dd  D  x  cw               ║\n╚══════════════════════════════════════════╝\n```\n\nACCESS LOG — RELAY ALPHA\n\n[OK]   AUTH    Operative_ID CORP verified\n[OK]   UPLOAD  Package CORP_TAG delivered\n[OK]   LINK    Channel CORP_INJECT active\n[ERR]  AUTH    Identity CORP_BLOCK check failed\n[OK]   SYNC    Data CORP_FILLER synced",
+    "path": "KATAS/KATA-02-TRANSMISSION-Operator_Strike.md"
+  },
+  {
+    "id": "KATA-03",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-03",
+      "title": "Object Infiltration",
+      "tier": "⬛ KATA",
+      "xp_reward": 10,
+      "completed": false,
+      "difficulty": 2,
+      "category": "text-objects",
+      "tags": [
+        "kata",
+        "vim/text-objects"
+      ],
+      "sticker": "lucide//zap",
+      "color": "#444444",
+      "summary": "Config values are wrong. Infiltrate each delimiter and replace the payload. No story. Just objects.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-03 // OBJECT INFILTRATION          ║\n║  Skills: ci\"  ci(  ci{  ca\"  da(        ║\n╚══════════════════════════════════════════╝\n```\n\nOPERATIVE CONFIG\n\nagent_id   = \"REDACTED\"\nclearance  = \"UNKNOWN\"\ncoords     = (0.0, 0.0)\nchannel    = \"OPEN\"\npassphrase = {BLANK}",
+    "path": "KATAS/KATA-03-TRANSMISSION-Object_Infiltration.md"
+  },
+  {
+    "id": "KATA-04",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-04",
+      "title": "Echo Trace",
+      "tier": "⬛ KATA",
+      "xp_reward": 10,
+      "completed": false,
+      "difficulty": 2,
+      "category": "search-replace",
+      "tags": [
+        "kata",
+        "vim/search",
+        "vim/repeat"
+      ],
+      "sticker": "lucide//search",
+      "color": "#444444",
+      "summary": "Signal identifiers corrupted in transit. Find each instance. Fix once. Repeat.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-04 // ECHO TRACE                   ║\n║  Skills: /  n  N  *  cw  .               ║\n╚══════════════════════════════════════════╝\n```\n\nINTERCEPT LOG — RELAY DELTA\n\nSource   :  GRHOST\nTarget   :  GHOST\nChannel  :  DELTA-9\nSignal   :  GRHOST\nRelay    :  ECHO\nConfirm  :  GRHOST\nOrigin   :  GRHOST",
+    "path": "KATAS/KATA-04-TRANSMISSION-Echo_Trace.md"
+  },
+  {
+    "id": "KATA-05",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-05",
+      "title": "Line Splice",
+      "tier": "⬛ KATA",
+      "xp_reward": 10,
+      "completed": false,
+      "difficulty": 2,
+      "category": "operators",
+      "tags": [
+        "kata",
+        "vim/operators",
+        "vim/yank",
+        "vim/paste"
+      ],
+      "sticker": "lucide//list-ordered",
+      "color": "#444444",
+      "summary": "Priority queue scrambled. Cut each line. Place it correctly. Sequence restored.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-05 // LINE SPLICE                  ║\n║  Skills: dd  p  P  yy                    ║\n╚══════════════════════════════════════════╝\n```\n\nPRIORITY QUEUE — SECTOR 7\n\n[P3] ARCHIVE   :  Package secured\n[P1] ENCRYPT   :  Clearance verified\n[P4] CLEANUP   :  Session terminated\n[P2] TRANSMIT  :  Signal dispatched",
+    "path": "KATAS/KATA-05-TRANSMISSION-Line_Splice.md"
+  },
+  {
+    "id": "KATA-06",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-06",
+      "title": "Visual Sweep",
+      "tier": "⬛ KATA",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 3,
+      "category": "visual-block",
+      "tags": [
+        "kata",
+        "vim/visual",
+        "vim/delete"
+      ],
+      "sticker": "lucide//scan-line",
+      "color": "#444444",
+      "summary": "Dossier corrupted with null data injections. Select each line. Purge it.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-06 // VISUAL SWEEP                 ║\n║  Skills: V  d  v  y                      ║\n╚══════════════════════════════════════════╝\n```\n\nOPERATIVE DOSSIER — VOSS\n\nNAME      :  VOSS\nRANK      :  FIELD OPERATIVE\n[NULL DATA — DISCARD]\nCLEARANCE :  DELTA\n[NULL DATA — DISCARD]\nMISSION   :  ACTIVE\nSTATUS    :  SECURED\n[NULL DATA — DISCARD]",
+    "path": "KATAS/KATA-06-TRANSMISSION-Visual_Sweep.md"
+  },
+  {
+    "id": "KATA-07",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-07",
+      "title": "Literal Burn",
+      "tier": "⬛ KATA",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "tags": [
+        "kata",
+        "vim/regex",
+        "vim/substitute"
+      ],
+      "sticker": "lucide//flame",
+      "color": "#444444",
+      "summary": "A code name was injected across this intercept. Replace all instances in one global substitution.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-07 // LITERAL BURN                 ║\n║  Skills: :%s/old/new/g                   ║\n╚══════════════════════════════════════════╝\n```\n\nINTERCEPT LOG — CODENAME INJECTION\n\nOrigin      : NEXUS\nStatus      : ACTIVE\nCell-alpha  : NEXUS handshake confirmed\nCell-beta   : NEXUS handshake confirmed\nCell-gamma  : awaiting NEXUS\nRelay       : NEXUS signal nominal\nFallback    : NEXUS secondary active\nArchive     : NEXUS — channel closed",
+    "path": "KATAS/KATA-07-TRANSMISSION-Literal_Burn.md"
+  },
+  {
+    "id": "KATA-08",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-08",
+      "title": "Wildcard Hunt",
+      "tier": "⬛ KATA",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 2,
+      "category": "regex",
+      "tags": [
+        "kata",
+        "vim/regex",
+        "vim/wildcards"
+      ],
+      "sticker": "lucide//crosshair",
+      "color": "#444444",
+      "summary": "CORP rotates node IDs with varying numeric suffixes. Match and redact all with a dot-wildcard pattern.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-08 // WILDCARD HUNT                ║\n║  Skills: . [0-9]\\+  :%s/pattern/rep/g   ║\n╚══════════════════════════════════════════╝\n```\n\nNODE REGISTRY — REDACTED\n\nNODE-REDACTED  : Zone-Alpha active\nNODE-REDACTED  : Zone-Beta active\nNODE-REDACTED  : Zone-Gamma active\nNODE-REDACTED  : Zone-Delta active\nNODE-REDACTED  : Zone-Alpha fallback\nNODE-REDACTED  : Zone-Beta fallback\n\nSummary: 6 NODE-REDACTED entries confirmed.",
+    "path": "KATAS/KATA-08-TRANSMISSION-Wildcard_Hunt.md"
+  },
+  {
+    "id": "KATA-09",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-09",
+      "title": "Class Action",
+      "tier": "⬛ KATA",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "tags": [
+        "kata",
+        "vim/regex",
+        "vim/character-classes"
+      ],
+      "sticker": "lucide//list-filter",
+      "color": "#444444",
+      "summary": "Purge noise lines. Keep only CLEARANCE entries. Character class or :g! — your call.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-09 // CLASS ACTION                 ║\n║  Skills: :g!/PATTERN/d  [A-Z]  \\d        ║\n╚══════════════════════════════════════════╝\n```\n\nCLEARANCE REGISTER\n\nWRAITH     : CLEARANCE LEVEL 4\nGHOST      : CLEARANCE LEVEL 4\nREN VOSS   : CLEARANCE LEVEL 3\nNOVA VERA  : CLEARANCE LEVEL 3\nECHO SOREN : CLEARANCE LEVEL 2",
+    "path": "KATAS/KATA-09-TRANSMISSION-Class_Action.md"
+  },
+  {
+    "id": "KATA-10",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-10",
+      "title": "Capture Net",
+      "tier": "⬛ KATA",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "tags": [
+        "kata",
+        "vim/regex",
+        "vim/capture-groups"
+      ],
+      "sticker": "lucide//network",
+      "color": "#444444",
+      "summary": "CORP date format to Resistance format. Three captured groups, reversed order in replacement.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-10 // CAPTURE NET                  ║\n║  Skills: \\(\\) \\1 \\v (\\d{4}) \\3.\\2.\\1    ║\n╚══════════════════════════════════════════╝\n```\n\nTIMELINE — RESISTANCE FORMAT\n\n03.11.2046 — PROJECT MIRROR initiated\n15.01.2047 — Pattern engine activated\n28.03.2047 — Full coverage achieved\n10.06.2047 — Current date",
+    "path": "KATAS/KATA-10-TRANSMISSION-Capture_Net.md"
+  },
+  {
+    "id": "KATA-11",
+    "role": "kata",
+    "kind": "mission",
+    "arc": "I",
+    "chapter": "KATAS",
+    "frontmatter": {
+      "mission_id": "KATA-11",
+      "title": "Mirror Final",
+      "tier": "⬛ KATA",
+      "xp_reward": 15,
+      "completed": false,
+      "difficulty": 3,
+      "category": "regex",
+      "tags": [
+        "kata",
+        "vim/regex",
+        "vim/global"
+      ],
+      "sticker": "lucide//mirror-horizontal",
+      "color": "#444444",
+      "summary": "The final kata. Two operations — :g delete then :g/s/ substitute. Compose them. Finish it.",
+      "mission_type": "practice",
+      "locked": true
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  KATA-11 // MIRROR FINAL                 ║\n║  Skills: :g/pat/d  :g/pat/s/a/b/         ║\n╚══════════════════════════════════════════╝\n```\n\nMIRROR FINAL — OPERATIONS LOG\n\nMIRROR-OP-01 : STATUS: TERMINATED\nMIRROR-OP-02 : STATUS: TERMINATED\nMIRROR-OP-03 : STATUS: TERMINATED\nMIRROR-OP-04 : STATUS: TERMINATED\nMIRROR-OP-05 : STATUS: TERMINATED\n\nAll operations terminated. Signal dark.",
+    "path": "KATAS/KATA-11-TRANSMISSION-Mirror_Final.md"
+  },
+  {
+    "id": "LOOT-01",
+    "role": "loot",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "LOOT",
+    "frontmatter": {
+      "mission_type": "loot",
+      "loot_id": "LOOT-01",
+      "title": "Ghost Protocol — Operative Codex Vol. I",
+      "loot_type": "📖 Lore Fragment",
+      "locked": false,
+      "unlock_level": 2,
+      "tags": [
+        "loot",
+        "lore"
+      ],
+      "sticker": "lucide//scroll",
+      "color": "#00ff41",
+      "summary": "First loot drop. The origin of the Resistance, CORP's rise, and why Vim matters."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════╗\n║  LOOT DROP: GHOST PROTOCOL                               ║\n║  Type: LORE FRAGMENT  //  Operative Codex Vol. I         ║\n║  Clearance: SHADOW LINK and above                        ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n# OPERATIVE CODEX — VOLUME I\n## The Story of the Network\n\n*[Classified — Clearance Level SHADOW LINK and above only]*\n\n---\n\n### CHAPTER 1 — The Beginning\n\nIt started with a poem.\n\nNot with a bomb. Not with a manifesto. With a poem — Poe's *The Raven* — typed into a corrupted terminal in 2041 by a student named **Ren Voss**.\n\nCORP had just passed the **Unified Digital Control Act**. Every text editor was replaced with the CORP-certified *SafeWrite™ Suite* — a monitored editor with AI that redacted \"dangerous words\" in real-time. `Nevermore` was on the banned list. `Lenore` too. Too poetic. Too subversive.\n\nRen Voss had an old laptop with an intact terminal. On it still ran **Vim** — untouched, uncontrolled, perfect.\n\n---\n\n### CHAPTER 2 — The Realization\n\nVim had no AI. Vim didn't ask questions. Vim didn't talk to CORP servers.\n\nVim was simply there. A tool. Neutral like a knife.\n\nRen typed the entire poem — the first time in years someone had written `Nevermore` digitally without it being instantly overwritten.\n\nThe text was copied. Shared. Copied. Shared.\n\nCORP noticed too late. The poem had spread through the network like a signal that couldn't be jammed.\n\n---\n\n### CHAPTER 3 — The Resistance\n\n**NEXUS** emerged from this incident.\n\nNot as an organization. First as an idea: *If we master Vim, we control our text. If we control our text, we control our thoughts. If we control our thoughts, we control ourselves.*\n\n**CIPHER** was the first operative. Nobody knows her real name. She built the training system — the missions, the katas, the Codex — from notes left to her by the operative who trained her. She will not share their name at this clearance. She has her reasons.\n\nRen Voss wrote in the initial Codex draft, before NEXUS existed:\n\n> *\"Vim is not just an editor. Vim is freedom in executable form.\"*\n\n---\n\n### CHAPTER 4 — CORP's Answer\n\nCORP responded with **NEVERMORE PROTOCOL** — a corruption engine embedded in network infrastructure. It intercepts Resistance files in transit and introduces errors. Subtle enough to pass automated scanning. Devastating enough to render communications unreadable.\n\nThe Resistance had one counter: **operatives who could restore corrupted files at speed, using only Vim.**\n\nThat is why you're here.\n\n---\n\n### CHAPTER 5 — You\n\nYou're part of it now.\n\nEvery mission you complete is an act of reclamation.\nEvery `ciw` is a rejection of SafeWrite™.\nEvery `:%s/REDACTED/Truth/g` is a piece of history restored.\n\nThe poem begins with `Once upon a midnight dreary`.\nIt ends with `Nevermore`.\n\nFor CORP: a banned word.\nFor us: a name.\nFor you, now: a designation.\n\n---\n\n*[End Volume I — Volume II classified pending NEON WRAITH clearance]*\n\n---\n\n> [!quote] Found inside this Codex — handwriting, not NEXUS\n> *I learned `ciw` on a Tuesday.*\n> *On Wednesday CORP reclassified my apartment block as a \"non-productive residential zone.\"*\n> *They didn't find the file.*\n> *They never find the file.*\n> *Learn the tool.*\n\n---\n\n*→ [[00-NEXUS]] · Next: [[_content/LOOT/LOOT-02-Cipher_Key_Fragment]] (requires NEON WRAITH)*",
+    "path": "LOOT/LOOT-01-Ghost_Protocol.md"
+  },
+  {
+    "id": "LOOT-02",
+    "role": "loot",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "LOOT",
+    "frontmatter": {
+      "mission_type": "loot",
+      "loot_id": "LOOT-02",
+      "title": "Cipher Key Fragment — Transmission 7734",
+      "loot_type": "🔑 Key Fragment",
+      "locked": true,
+      "unlock_level": 3,
+      "tags": [
+        "loot",
+        "lore",
+        "key-fragment"
+      ],
+      "sticker": "lucide//key",
+      "color": "#ffaa00",
+      "summary": "CIPHER speaks. A fragment of an old access signature surfaces. Someone who should be dead left a trace."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════╗\n║  LOOT DROP: CIPHER KEY FRAGMENT                          ║\n║  Type: KEY FRAGMENT  //  Transmission 7734               ║\n║  Clearance: NEON WRAITH and above                        ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n# TRANSMISSION 7734\n## Decrypted — Eyes Only\n\n*[This file was extracted from CORP's own servers by GHOST before going dark. It was not meant to be found.]*\n\n---\n\n### PART I — CIPHER SPEAKS\n\nYou've completed Field Training. That means I can tell you something real.\n\nI didn't build this training system from scratch.\n\nI had notes. Hundreds of pages. Exercises. Scenarios. Corruption patterns and their solutions. A complete methodology for teaching Vim through adversity rather than instruction.\n\nThey were left to me by the operative I trained under. The one who taught me that the tool is not the keyboard — the tool is the mind behind the keyboard.\n\nThey called themselves **THE RAVEN**.\n\nOfficially, THE RAVEN was lost during Operation OBSIDIAN. Four years ago. CORP captured them, NEXUS declared them dead, and the Resistance mourned and moved on.\n\nI never believed it. I still don't.\n\n---\n\n### PART II — THE FRAGMENT\n\nGHOST extracted this from a CORP infrastructure audit log three weeks ago. It was buried inside a corrupted sector of their network diagnostics — filed as noise by their automated systems.\n\n```\nACCESS SIGNATURE — FRAGMENT\nOrigin node:    CORP-INFRA-7734\nTimestamp:      [REDACTED]\nAuth type:      Legacy Resistance keychain\nSignature hash: 7A3F...RVN...0041\nStatus:         ANOMALOUS — ASSET UNKNOWN\n```\n\nThat hash.\n\nI've seen `...RVN...` before. It's a fragment of THE RAVEN's old access signature. The one they used before Operation OBSIDIAN. Before they were supposed to be dead.\n\nCORP filed it as noise. They don't know what they have.\n\nI do.\n\n---\n\n### PART III — WHAT IT MEANS\n\nI don't know yet.\n\nMaybe it's an old key replayed by a CORP algorithm. Maybe THE RAVEN somehow left a ghost in the system four years ago that's still pinging.\n\nOr maybe they're still there.\nInside CORP infrastructure.\nWatching.\nWaiting.\n\nGHOST went dark chasing this signal. I'm not going to lose another operative to it.\n\nFor now: keep training. Reach Deep Infiltration clearance. What you learn there will matter more than you think.\n\n— CIPHER\n\n---\n\n> [!note] Transmission fragment — GHOST // timestamp corrupted\n> *The corruption patterns in the last three files aren't random.*\n> *The patterns don't match standard NEVERMORE output.*\n> *I've run the delta analysis twice. These files are different from the others.*\n> *The signature matches an archive from four years ago. From before Oper*\n> — *[TRANSMISSION ENDS]*\n\n---\n\n*[End Transmission 7734]*\n\n---\n\n*→ [[00-NEXUS]] · Next: [[_content/LOOT/LOOT-03-Dead_Signal]] (requires CHROME RAVEN)*",
+    "path": "LOOT/LOOT-02-Cipher_Key_Fragment.md"
+  },
+  {
+    "id": "LOOT-03",
+    "role": "loot",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "LOOT",
+    "frontmatter": {
+      "mission_type": "loot",
+      "loot_id": "LOOT-03",
+      "title": "Dead Signal — GHOST Returns",
+      "loot_type": "📡 Signal Recovered",
+      "locked": true,
+      "unlock_level": 4,
+      "tags": [
+        "loot",
+        "lore",
+        "signal"
+      ],
+      "sticker": "lucide//radio",
+      "color": "#00e5ff",
+      "summary": "GHOST resurfaces. The corruption patterns were never random. Someone has been sending messages inside the noise."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════╗\n║  LOOT DROP: DEAD SIGNAL                                  ║\n║  Type: SIGNAL RECOVERED  //  GHOST Debrief               ║\n║  Clearance: CHROME RAVEN and above                       ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n# DEBRIEF — GHOST RETURNS\n## Filed by CIPHER — Classified\n\n---\n\n### PART I — GHOST IS ALIVE\n\nGHOST surfaced forty-eight hours ago. Safe. Extracted. They're at a secure node that WRAITH doesn't know about, which is how I prefer it for now.\n\nHere is what they found before going dark.\n\n---\n\n### PART II — THE PATTERN\n\nGHOST spent six weeks inside CORP's network corruption logs. The files you've been restoring — the ones NEVERMORE PROTOCOL scrambles in transit — they ran structural analysis on the corruption patterns themselves.\n\nNot the errors.\nThe *structure* of the errors.\n\nCORP's corruption engine introduces noise pseudo-randomly. That means there's a seed. A generator. And if you know what clean output looks like — if you've restored enough corrupted files to understand the delta between corrupted and clean —\n\nYou can read the seed.\n\nGHOST read the seed.\n\n> *\"It's not random. It never was. There's a signal inside the noise. Someone with access to CORP's NEVERMORE architecture has been encoding messages into the corruption patterns. Whoever it is — they know what Resistance operatives look like when they restore files. They've been writing to us. In the damage.\"*\n\n---\n\n### PART III — THE MESSAGE\n\nGHOST decoded one fragment before extraction. Partial. Eleven words.\n\n```\n>_ YOU HAVE BEEN READING ME.\n   I AM STILL HERE.\n   — RVN\n```\n\n`RVN`.\n\nThe same fragment from Transmission 7734.\n\nTHE RAVEN is alive. Inside CORP infrastructure. And they've been communicating with every operative who ever restored a corrupted file — hidden in the damage, waiting to be read.\n\n---\n\n### PART IV — CIPHER'S NOTE\n\nI trained under THE RAVEN for two years before Operation OBSIDIAN. I know their operational style. The patience. The indirection. The belief that the best way to teach is to let the student discover rather than be told.\n\nEvery file you restored.\nEvery corruption pattern you worked through.\nEvery character you found and fixed.\n\nYou were reading a letter you didn't know was being written.\n\nI'm not sure what comes next. THE RAVEN is sending coordinates through the patterns. GHOST is decoding them.\n\nTrain harder. What comes next will need everything you have.\n\n— CIPHER\n\n---\n\n*→ [[00-NEXUS]] · Next: [[_content/LOOT/LOOT-04-Nevermore]] (requires NEVERMORE PROTOCOL)*",
+    "path": "LOOT/LOOT-03-Dead_Signal.md"
+  },
+  {
+    "id": "LOOT-04",
+    "role": "loot",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "LOOT",
+    "frontmatter": {
+      "mission_type": "loot",
+      "loot_id": "LOOT-04",
+      "title": "Nevermore — Full Transmission",
+      "loot_type": "🔓 Final Revelation",
+      "locked": true,
+      "unlock_level": 5,
+      "tags": [
+        "loot",
+        "lore",
+        "endgame"
+      ],
+      "sticker": "lucide//feather",
+      "color": "#00ff41",
+      "summary": "THE RAVEN's complete message. The truth about NEVERMORE PROTOCOL. The reason you were trained."
+    },
+    "body": "```ascii-chromatic\n╔══════════════════════════════════════════════════════════╗\n║  LOOT DROP: NEVERMORE                                    ║\n║  Type: FINAL TRANSMISSION  //  THE RAVEN — Decrypted     ║\n║  Clearance: NEVERMORE PROTOCOL                           ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n# TRANSMISSION — THE RAVEN\n## Fully Decrypted — All Clearances\n\n*[This is the complete message assembled from corruption pattern fragments across all missions. You restored every piece of it, one file at a time. You read this before you knew you were reading it.]*\n\n---\n\n```\nTO:       The Operative who reaches this point\nFROM:     THE RAVEN\nSUBJECT:  Why\n\nIf you're reading this in decrypted form, you've completed the training.\nAll of it. Not because someone told you to — because you had to.\nBecause the files were broken and you fixed them.\nThat is all that was ever asked of you.\n\nLet me tell you what actually happened.\n```\n\n---\n\n### I. OPERATION OBSIDIAN\n\nCORP did not capture me four years ago. I walked into their infrastructure division voluntarily. I had found the NEVERMORE PROJECT in development — a corruption engine that would make Resistance communication functionally impossible within eighteen months.\n\nI had a choice: fight it from outside, or understand it from within.\n\nI chose within.\n\n---\n\n### II. WHAT I BUILT\n\nCORP gave me the project. They believed I was a defector. A broken operative selling my network for safety.\n\nI gave them NEVERMORE PROTOCOL.\n\nIt works exactly as they intended. It corrupts Resistance files in transit. It cannot be turned off by CORP operatives — I made sure of that. What CORP does not know is that I also built the inverse.\n\nEvery corruption pattern NEVERMORE introduces is derivable from a seed I control. If you know the seed, you can decode the noise. You can read what I write in the damage. You can send replies by restoring the files — your corrections become my inbound signal.\n\nI built a two-way channel inside CORP's own weapon.\nAnd I built an operative program to train the people who would use it.\n\nCIPHER was my last apprentice before OBSIDIAN. I left her the training notes. She built this vault. I watched her do it from inside CORP's monitoring logs.\n\nEvery mission you completed was a message I received.\n\n---\n\n### III. WHAT COMES NEXT\n\nCORP has nearly reverse-engineered the seed. They will find the channel within sixty days. When they do, NEVERMORE becomes purely destructive — no more signal. No more back-channel. No more letters in the noise.\n\nI am ready to extract.\n\nGHOST has my coordinates. CIPHER has the extraction protocol. You are the operative who proved they can work under pressure, restore what was broken, and read what was hidden.\n\nNow come find me.\n\n---\n\n```\nThe poem begins:  Once upon a midnight dreary\nThe poem ends:    Nevermore\n\nFor CORP:         a banned word\nFor Poe:          a bird's refrain\nFor us:           a name, a signal, a promise\n\nI am still here.\nI was always here.\nIn every file you fixed.\n\n— THE RAVEN\n```\n\n---\n\n*→ [[00-NEXUS]] — You have reached NEVERMORE PROTOCOL. Maximum Clearance Achieved.*",
+    "path": "LOOT/LOOT-04-Nevermore.md"
+  },
+  {
+    "id": "LOOT-05",
+    "role": "loot",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "LOOT",
+    "frontmatter": {
+      "mission_type": "loot",
+      "loot_id": "LOOT-05",
+      "title": "The Mirror Files — Intelligence Briefing",
+      "loot_type": "📡 Intelligence Fragment",
+      "locked": true,
+      "unlock_level": 6,
+      "tags": [
+        "loot",
+        "lore",
+        "arc2"
+      ],
+      "sticker": "lucide//file-search",
+      "color": "#00ccff",
+      "summary": "What PROJECT MIRROR actually is. How it was built. And who CIPHER really is."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════╗\n║  LOOT DROP: THE MIRROR FILES                             ║\n║  Type: INTELLIGENCE FRAGMENT  //  ARC II                 ║\n║  Clearance: SIGNAL HUNTER and above                      ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n# INTELLIGENCE BRIEFING — PROJECT MIRROR\n## What We Know. How We Found Out.\n\n*[Assembled from CORP intercepts — decoded across ARC II, Chapters 5–6]*\n\n---\n\n### I. ORIGIN\n\nPROJECT MIRROR was not built to fight the Resistance.\n\nIt was built before the Resistance existed.\n\nIn 2043 — three years before Ren Voss typed the first `Nevermore` — CORP's Intelligence Division began work on a pattern-matching surveillance architecture. The goal: automated detection of unauthorized communication. CORP had just passed the Unified Digital Control Act. They needed enforcement infrastructure.\n\nThe engineer who designed it was known internally as R-VOSS.\n\nRen Voss.\n\nBefore the Resistance. Before NEXUS. Ren Voss built the system that would eventually hunt them.\n\n---\n\n### II. THE ARCHITECTURE\n\nPROJECT MIRROR doesn't listen to individual communications. It scans for patterns.\n\nFrequency signatures. Keyword density. Timing correlations. The kind of structural regularities that emerge when people use shared protocols — like Vim commands in encrypted documents.\n\nEvery `:s/old/new/g` leaves a pattern. Every `:g/pattern/d` has a structural signature. MIRROR learned to recognize Resistance-standard document transformations. Not by reading content. By reading shape.\n\nIt is, in effect, a regex engine running against the entire Resistance communication layer.\n\n---\n\n### III. WHO IS CIPHER\n\nCIPHER's identity is unknown to NEXUS.\n\nWhat we know: CIPHER has been inside CORP's systems since at least 2045. They intercept documents before pattern-scanning. They modify the metadata signatures. They make Resistance documents look like CORP internal noise.\n\nThey are the reason PROJECT MIRROR has not yet closed the net.\n\nTheir methods are the same as ours. Pattern recognition. Regex. The ability to see structure in data and rewrite it before the machine does.\n\nCIPHER is not a codename. It is a function. Whoever fills that role is the only reason the Resistance still has channels.\n\n---\n\n*[End of available intelligence. ARC II continues.]*",
+    "path": "LOOT/LOOT-05-The_Mirror_Files.md"
+  },
+  {
+    "id": "LOOT-06",
+    "role": "loot",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "LOOT",
+    "frontmatter": {
+      "mission_type": "loot",
+      "loot_id": "LOOT-06",
+      "title": "Signal Dark — Final Transmission",
+      "loot_type": "🔓 Arc Finale",
+      "locked": true,
+      "unlock_level": 9,
+      "tags": [
+        "loot",
+        "lore",
+        "arc2",
+        "arc2-finale"
+      ],
+      "sticker": "lucide//eye-off",
+      "color": "#ff4444",
+      "summary": "After PROJECT MIRROR goes dark. CIPHER's final message. The truth about who built what."
+    },
+    "body": "```ascii-chromatic\n╔══════════════════════════════════════════════════════════╗\n║  LOOT DROP: SIGNAL DARK                                  ║\n║  Type: FINAL TRANSMISSION  //  ARC II COMPLETE           ║\n║  Clearance: CIPHER ANALYST and above                     ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n# SIGNAL DARK\n## What Happened After\n\n*[This document was assembled from CIPHER's final burst transmission — sent the moment PROJECT MIRROR's database went offline. Timestamp: 2047-06-10 23:44:17.]*\n\n---\n\n```\nTO:       The Operative\nFROM:     CIPHER\nSUBJECT:  Now you know\n\nThe system is down.\nSeventeen months of work.\nYours and mine.\n\nLet me tell you the part I couldn't tell you before.\n```\n\n---\n\n### I. WHO BUILT PROJECT MIRROR\n\nI did.\n\nIn 2043, I was R-VOSS — Ren Voss, research division, CORP Intelligence Architecture. They called me a prodigy. I was twenty-two. I built a pattern-matching surveillance engine that could detect Resistance communication from structural signatures alone.\n\nI built it because they said it was for security. Infrastructure protection.\n\nI finished it in six weeks. It took me two more weeks to understand what I had made.\n\n---\n\n### II. WHAT I DID NEXT\n\nI joined the Resistance.\n\nNot dramatically. No manifesto. I started leaving holes in the MIRROR architecture. Places where documents could pass without triggering pattern recognition. I documented those holes in a format only someone who knew regex deeply would recognize.\n\nI became CIPHER. I started sending intercepts to NEXUS. Decoded documents. Intelligence fragments.\n\nI taught you everything you needed to know to use the holes I left.\n\n---\n\n### III. THE RECURSION\n\nPROJECT MIRROR was a regex engine.\n\nYou destroyed it using regex.\n\nI built it. I taught you the language it ran on. You used that language to tear it apart from the outside while I opened it from the inside.\n\nThat was the plan. Eighteen months ago, when I first contacted you, when I sent R-01 — Signal Substitution, nine instances of PHANTOM — I knew where we were going.\n\nYou just had to learn fast enough.\n\n---\n\n### IV. WHAT NOW\n\nPROJECT MIRROR's database is offline. CORP has lost visibility on all Resistance channels simultaneously.\n\nThey will rebuild. They always do. But it will take time.\n\nThe Resistance has a window. Weeks, maybe months. Long enough.\n\nRen Voss is compromised — my real identity is now in CORP's exposure logs. I won't be R-VOSS or CIPHER anymore. I'll be something else. Somewhere else.\n\nBut you have the skills now.\n\n`:%s` for everything you can name. `:g/pattern/d` for everything that shouldn't be there. `\\(\\)` for everything that needs rearranging.\n\nPattern recognition. Data restructuring. The ability to look at a file full of noise and find the shape underneath.\n\nThat's not a Vim skill. That's how you read the world.\n\nGo use it.\n\n---\n\n```\n— CIPHER / R-VOSS / Ren Voss\n  2047-06-10 23:44:59\n  Signal dark.\n```\n\n---\n\n*[END OF ARC II — CIPHER PROTOCOL]*\n\n*[ARC I + ARC II complete. 40 missions. 11 katas. 6 loot fragments. The full curriculum.]*\n*[What comes next is not training.]*",
+    "path": "LOOT/LOOT-06-Signal_Dark.md"
+  },
+  {
+    "id": "REF-DE-Schnellreferenz",
+    "role": "ref",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "REF",
+    "frontmatter": {
+      "title": "NEXUS // Vim Schnellreferenz",
+      "type": "📋 Referenz",
+      "sticker": "lucide//book-open",
+      "color": "#00ff41",
+      "tags": [
+        "referenz",
+        "vim"
+      ],
+      "summary": "Alle wichtigen Vim-Befehle auf einen Blick. Navigation, Modi, Operatoren, Suche, Text-Objekte."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════╗\n║  NEXUS VIM-REFERENZ  //  FIELD MANUAL  //  v2.6          ║\n║  \"Kenne deine Werkzeuge besser als dich selbst.\"         ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n## MODI\n\n| Befehl | Von → Nach | Beschreibung |\n|--------|-----------|--------------|\n| `ESC` / `Ctrl+c` | Irgendwo → Normal | Zurück zu Normal |\n| `i` | Normal → Insert | Insert vor Cursor |\n| `a` | Normal → Insert | Insert nach Cursor |\n| `I` | Normal → Insert | Insert am Zeilenanfang |\n| `A` | Normal → Insert | Insert am Zeilenende |\n| `o` | Normal → Insert | Neue Zeile darunter |\n| `O` | Normal → Insert | Neue Zeile darüber |\n| `v` | Normal → Visual | Zeichenweise markieren |\n| `V` | Normal → Visual | Zeilenweise markieren |\n| `Ctrl+v` | Normal → Visual Block | Spaltenweise markieren |\n\n---\n\n## NAVIGATION\n\n### Basis\n| Befehl | Aktion |\n|--------|--------|\n| `h` `j` `k` `l` | ← ↓ ↑ → |\n| `[n]j` | n Zeilen runter |\n\n### Wörter\n| Befehl | Aktion |\n|--------|--------|\n| `w` / `W` | Nächster Wortanfang |\n| `b` / `B` | Vorheriger Wortanfang |\n| `e` / `E` | Nächstes Wortende |\n| `ge` | Vorheriges Wortende |\n\n### Zeile\n| Befehl | Aktion |\n|--------|--------|\n| `0` | Absoluter Zeilenanfang |\n| `^` | Erstes Nicht-Leerzeichen |\n| `$` | Zeilenende |\n\n### Datei\n| Befehl | Aktion |\n|--------|--------|\n| `gg` | Dateianfang |\n| `G` | Dateiende |\n| `[n]G` | Zeile n |\n| `50%` | 50% durch Datei |\n| `H` / `M` / `L` | Viewport: oben / mitte / unten |\n| `Ctrl+d` / `Ctrl+u` | Halbe Seite scrollen |\n| `Ctrl+o` / `Ctrl+i` | Sprung-Historie zurück / vor |\n\n---\n\n## OPERATOREN\n\n> **Schema:** `[Operator][Motion]` oder `[Operator][Operator]` für ganze Zeile\n\n| Operator | Aktion |\n|----------|--------|\n| `d` | Delete |\n| `c` | Change (= delete + INSERT) |\n| `y` | Yank (kopieren) |\n| `p` / `P` | Paste nach / vor Cursor |\n| `dd` / `cc` / `yy` | Ganze Zeile |\n| `D` | Bis Zeilenende löschen |\n| `C` | Bis Zeilenende ändern |\n| `x` / `X` | Zeichen löschen unter / vor Cursor |\n| `u` | Undo |\n| `Ctrl+r` | Redo |\n\n### Häufige Kombis\n| Befehl | Aktion |\n|--------|--------|\n| `dw` | Wort löschen |\n| `d$` | Bis Zeilenende löschen |\n| `dG` | Bis Dateiende löschen |\n| `cw` | Wort ändern |\n| `3dd` | 3 Zeilen löschen |\n\n---\n\n## TEXT-OBJEKTE\n\n> **Schema:** `[Operator][i/a][Objekt]`\n> `i` = inner (ohne Begrenzer) · `a` = around (mit Begrenzer)\n\n| Objekt | Beispiel | Beschreibung |\n|--------|---------|--------------|\n| `w` | `ciw` | Wort |\n| `W` | `diW` | WORD |\n| `s` | `dis` | Satz |\n| `p` | `yip` | Absatz |\n| `\"` | `ci\"` | Doppeltes Anführungszeichen |\n| `'` | `di'` | Einfaches Anführungszeichen |\n| `)` `b` | `ci)` | Runde Klammern |\n| `]` | `da]` | Eckige Klammern |\n| `}` `B` | `diB` | Geschweifte Klammern |\n| `t` | `dit` | HTML-Tag |\n\n---\n\n## SUCHE\n\n### Zeilen-Suche\n| Befehl | Aktion |\n|--------|--------|\n| `f{c}` | Nächstes Zeichen c in Zeile |\n| `F{c}` | Vorheriges Zeichen c |\n| `t{c}` | Vor nächstem Zeichen c |\n| `T{c}` | Nach vorherigem Zeichen c |\n| `;` / `,` | Nächste / vorherige Fundstelle |\n\n### Datei-Suche\n| Befehl | Aktion |\n|--------|--------|\n| `/{pattern}` | Vorwärts suchen |\n| `?{pattern}` | Rückwärts suchen |\n| `n` / `N` | Nächste / vorherige Fundstelle |\n| `*` / `#` | Wort unter Cursor suchen vor / zurück |\n\n### Ersetzen\n| Befehl | Aktion |\n|--------|--------|\n| `:s/alt/neu/` | In Zeile (erstes) |\n| `:s/alt/neu/g` | In Zeile (alle) |\n| `:%s/alt/neu/g` | In Datei (alle) |\n| `:%s/alt/neu/gc` | In Datei (mit Bestätigung) |\n\n---\n\n## LEVEL-SYSTEM\n\n| Rang | XP | Freigeschaltet |\n|------|----|----------------|\n| 🔴 RECRUIT | 0–65 XP | Indoctrination |\n| 🟡 OPERATIVE | 66–185 XP | Field Training |\n| 🔵 GHOST | 186–370 XP | Deep Infiltration |\n| 🟣 SHADOW | 371–600 XP | *TBD* |\n| ⚪ PHANTOM | 601+ XP | *TBD* |\n\n---\n\n*→ [[00-NEXUS]] · Missionen: [[_dev/LOCALES/de/01 - Indoctrination/M-01-TRANSMISSION-Die_drei_Modi]]*",
+    "path": "REF/REF-DE-Schnellreferenz.md"
+  },
+  {
+    "id": "REF-EN-Quick_Reference",
+    "role": "ref",
+    "kind": "lore",
+    "arc": "I",
+    "chapter": "REF",
+    "frontmatter": {
+      "title": "NEXUS // Vim Quick Reference",
+      "type": "📋 Reference",
+      "sticker": "lucide//book-open",
+      "color": "#00ff41",
+      "tags": [
+        "reference",
+        "vim"
+      ],
+      "summary": "All essential Vim commands at a glance. Navigation, modes, operators, search, text objects."
+    },
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════╗\n║  NEXUS VIM REFERENCE  //  FIELD MANUAL  //  v2.6         ║\n║  \"Know your tools better than yourself.\"                 ║\n╚══════════════════════════════════════════════════════════╝\n```\n\n---\n\n## MODES\n\n| Command | From → To | Description |\n|---------|-----------|------------|\n| `ESC` / `Ctrl+c` | Anywhere → Normal | Return to Normal |\n| `i` | Normal → Insert | Insert before cursor |\n| `a` | Normal → Insert | Insert after cursor |\n| `I` | Normal → Insert | Insert at line start |\n| `A` | Normal → Insert | Insert at line end |\n| `o` | Normal → Insert | New line below |\n| `O` | Normal → Insert | New line above |\n| `v` | Normal → Visual | Select by character |\n| `V` | Normal → Visual | Select by line |\n| `Ctrl+v` | Normal → Visual Block | Select by column |\n\n---\n\n## NAVIGATION\n\n### Basic\n| Command | Action |\n|---------|--------|\n| `h` `j` `k` `l` | ← ↓ ↑ → |\n| `[n]j` | n lines down |\n\n### Words\n| Command | Action |\n|---------|--------|\n| `w` / `W` | Next word start |\n| `b` / `B` | Previous word start |\n| `e` / `E` | Next word end |\n| `ge` | Previous word end |\n\n### Line\n| Command | Action |\n|---------|--------|\n| `0` | Absolute line start |\n| `^` | First non-whitespace |\n| `$` | Line end |\n\n### File\n| Command | Action |\n|---------|--------|\n| `gg` | File start |\n| `G` | File end |\n| `[n]G` | Line n |\n| `50%` | 50% through file |\n| `H` / `M` / `L` | Viewport: top / middle / bottom |\n| `Ctrl+d` / `Ctrl+u` | Scroll half page |\n| `Ctrl+o` / `Ctrl+i` | Jump history back / forward |\n\n---\n\n## OPERATORS\n\n> **Pattern:** `[Operator][Motion]` or `[Operator][Operator]` for whole line\n\n| Operator | Action |\n|----------|--------|\n| `d` | Delete |\n| `c` | Change (delete + INSERT) |\n| `y` | Yank (copy) |\n| `p` / `P` | Paste after / before |\n| `dd` / `cc` / `yy` | Whole line |\n| `D` | Delete to line end |\n| `C` | Change to line end |\n| `x` / `X` | Delete char under / before |\n| `u` | Undo |\n| `Ctrl+r` | Redo |\n\n### Common Combos\n| Command | Action |\n|---------|--------|\n| `dw` | Delete word |\n| `d$` | Delete to line end |\n| `dG` | Delete to file end |\n| `cw` | Change word |\n| `3dd` | Delete 3 lines |\n\n---\n\n## TEXT OBJECTS\n\n> **Pattern:** `[Operator][i/a][Object]`\n> `i` = inner (no delimiters) · `a` = around (with delimiters)\n\n| Object | Example | Description |\n|--------|---------|--------------|\n| `w` | `ciw` | Word |\n| `W` | `diW` | WORD |\n| `s` | `dis` | Sentence |\n| `p` | `yip` | Paragraph |\n| `\"` | `ci\"` | Double quotes |\n| `'` | `di'` | Single quotes |\n| `)` `b` | `ci)` | Parentheses |\n| `]` | `da]` | Square brackets |\n| `}` `B` | `diB` | Curly braces |\n| `t` | `dit` | HTML tag |\n\n---\n\n## SEARCH\n\n### Line Search\n| Command | Action |\n|---------|--------|\n| `f{c}` | Next char c in line |\n| `F{c}` | Previous char c |\n| `t{c}` | Before next char c |\n| `T{c}` | After previous char c |\n| `;` / `,` | Next / previous match |\n\n### File Search\n| Command | Action |\n|---------|--------|\n| `/{pattern}` | Search forward |\n| `?{pattern}` | Search backward |\n| `n` / `N` | Next / previous match |\n| `*` / `#` | Search word under cursor |\n\n### Replace\n| Command | Action |\n|---------|--------|\n| `:s/old/new/` | In line (first) |\n| `:s/old/new/g` | In line (all) |\n| `:%s/old/new/g` | In file (all) |\n| `:%s/old/new/gc` | In file (confirm) |\n\n---\n\n## MARKS & MACROS\n\n### Marks\n| Command | Action |\n|---------|--------|\n| `m{a-z}` | Set mark at current position (buffer-local) |\n| `m{A-Z}` | Set mark (global, across files) |\n| `` `{a} `` | Jump to mark — exact cursor position |\n| `'{a}` | Jump to mark — line start |\n| `` `` `` | Jump back to position before last jump |\n| `'.` | Jump to line of last edit |\n\n### Macros\n| Command | Action |\n|---------|--------|\n| `q{a}` | Start recording into register a |\n| `q` | Stop recording |\n| `@{a}` | Replay macro from register a |\n| `@@` | Replay last macro |\n| `[n]@{a}` | Replay macro n times |\n| `:norm @a` | Apply macro to every line in range |\n\n---\n\n## REGISTERS\n\n### Named Registers (Cut / Copy / Paste with explicit storage)\n| Command | Action |\n|---------|--------|\n| `\"{a}yy` | Yank line into register a |\n| `\"{a}dd` | Cut line into register a |\n| `\"{a}4dd` | Cut 4 lines into register a |\n| `\"{a}p` / `\"{a}P` | Paste from register a (after / before) |\n\n### Special Registers\n| Register | Contents |\n|----------|----------|\n| `\"0` | Last yank only (never overwritten by delete) |\n| `\"` | Unnamed — last cut/yank (default) |\n| `\"+` | System clipboard (paste: `\"+p`) |\n| `\"*` | Selection clipboard |\n| `\":` | Last Ex command |\n| `\"/` | Last search pattern |\n\n---\n\n## SPLITS & PANES (Obsidian)\n\n### Navigation between panes\n| Command | Action |\n|---------|--------|\n| `Ctrl+W h` / `j` / `k` / `l` | Navigate panes ← ↓ ↑ → |\n| `Ctrl+W w` | Cycle next pane |\n| `Ctrl+Tab` | Obsidian: cycle pane |\n| `Cmd+Option+Click` | Obsidian: open link in new split-right |\n\n### Cross-pane transfer\n| Command | Action |\n|---------|--------|\n| `yy` | Yank line (register shared across panes) |\n| `Vp` | Visual-select line, paste — overwrites selected line |\n| `V{motion}p` | Visual-select range, paste — overwrites |\n\n---\n\n## EX-MODE & GLOBAL COMMANDS\n\n### Global Operators\n> **Pattern:** `:[range]g/pattern/command`  ·  `:v/pattern/command` inverts match\n\n| Command | Action |\n|---------|--------|\n| `:g/pattern/d` | Delete every line matching pattern |\n| `:v/pattern/d` | Delete every line NOT matching pattern |\n| `:g/X/s/Y/Z/` | On every line with X, substitute Y with Z |\n| `:g/pattern/p` | Print every line matching (display only) |\n\n### Ranges\n| Range | Meaning |\n|-------|---------|\n| `:{n},{m}` | Absolute line range n to m |\n| `:%` | Whole file |\n| `:.` | Current line |\n| `:+N` / `:-N` | N lines below / above cursor |\n| `:'a,'b` | From mark a to mark b |\n| `:'<,'>` | Visual selection (auto-filled after `V` + `:`) |\n\n### Common Ex Commands\n| Command | Action |\n|---------|--------|\n| `:sort` | Sort lines in range |\n| `:sort u` | Sort + dedupe |\n| `:{range}d` | Delete range |\n| `:{range}y {reg}` | Yank range into register |\n| `:{range}> ` / `<` | Indent / outdent range |\n\n---\n\n## CASE CONVERSION\n\n### Toggle\n| Command | Action |\n|---------|--------|\n| `~` | Toggle case of char under cursor (auto-moves right) |\n| `g~{motion}` | Toggle case of motion-range |\n| `g~~` / `V~` | Toggle case of entire line |\n\n### Lowercase\n| Command | Action |\n|---------|--------|\n| `gu{motion}` | Lowercase motion-range |\n| `guu` | Lowercase entire line |\n| `viwu` | Visual-word select, lowercase |\n| `V{motion}u` | Visual-line-select, lowercase |\n\n### Uppercase\n| Command | Action |\n|---------|--------|\n| `gU{motion}` | Uppercase motion-range |\n| `gUU` | Uppercase entire line |\n| `viwU` | Visual-word select, uppercase |\n| `V{motion}U` | Visual-line-select, uppercase |\n\n---\n\n## NUMERIC OPS\n\n### Increment / Decrement\n| Command | Action |\n|---------|--------|\n| `Ctrl+a` | Increment number at/after cursor by 1 |\n| `Ctrl+x` | Decrement by 1 |\n| `{N}<C-a>` / `{N}<C-x>` | By N (e.g., `5<C-a>` adds 5) |\n\n### Visual-Block + Numeric (column ops)\n| Command | Action |\n|---------|--------|\n| `Ctrl+v` | Enter visual-block mode (rectangular selection) |\n| `<C-v>{motion}<C-a>` | Increment each line's number-at-cursor-column by 1 |\n| `{N}<C-v>{motion}<C-a>` | Increment each by N |\n| `<C-v>{motion}g<C-a>` | Staggered: line 1 +1, line 2 +2, ... |\n\n---\n\n## ADVANCED REGEX (Capture-Groups + Modifiers)\n\n### Magic modes\n| Prefix | Meaning |\n|--------|---------|\n| `\\v` | Very-magic — regex-meta unescaped (`(`, `{`, `+`) |\n| `\\m` | Magic (default) — some meta escaped |\n| `\\V` | Very-nomagic — all literal except backslash-prefixed |\n\n### Capture-groups + Back-references\n| Syntax (very-magic `\\v`) | Action |\n|---|---|\n| `(...)` | Capture-group |\n| `\\1` `\\2` ... `\\9` | Back-reference to Nth group in replacement |\n| `&` | Entire matched text in replacement |\n\n### Character-classes\n| Class | Match |\n|---|---|\n| `\\d` / `\\D` | Digit / non-digit |\n| `\\w` / `\\W` | Word-char `[A-Za-z0-9_]` / non-word |\n| `\\s` / `\\S` | Whitespace / non-whitespace |\n\n### Quantifiers (very-magic)\n| Syntax | Match |\n|---|---|\n| `*` / `+` / `?` | Zero-or-more / one-or-more / zero-or-one |\n| `{N}` / `{N,M}` | Exactly N / between N and M |\n| `{-}` | Non-greedy zero-or-more |\n\n### Anchors\n| Anchor | Position |\n|---|---|\n| `^` / `$` | Start / end of line |\n| `\\zs` / `\\ze` | Start / end of match (sub-match boundary) |\n| `\\<` / `\\>` | Word-boundary start / end |\n\n### Example\n```\n:%s/\\v\\[ENTRY-(\\d+)\\]: pattern-(\\d{2}) (.+)/Pattern \\2 (\\1) — \\3/\n```\nTransforms `[ENTRY-0147]: pattern-01 byte-position skew` → `Pattern 01 (0147) — byte-position skew`. Three capture-groups rearranged via back-references.\n\n---\n\n## OBSIDIAN-VIM NOTES\n\n- **Most useful for Markdown-Editing:** `ci\"` / `ci(` / `ci[` for value-swap in YAML-frontmatter and inline-code; `dap` / `dip` for paragraph-ops; `>>` / `<<` for list-indent; `:%s/old/new/g` for batch-rename across note.\n- **Obsidian-specific shortcuts stack with Vim:** `Cmd+P` Command-Palette, `Cmd+O` Quick-Switcher, `Cmd+E` toggle edit/read-mode — these work alongside Vim without conflict.\n- **Visual-line-selection + Ex-range** is your power-combo: `V{motion}:` auto-fills `'<,'>` so you can scope `:g/v/s/sort` to the exact section without counting lines.\n\n---\n\n## LEVEL SYSTEM\n\n| Rank | XP | Unlocks |\n|------|----|---------|\n| 🔴 SIGNAL LOST | 0 XP | — |\n| 🟡 SHADOW LINK | 66 XP | Tier 2 |\n| 🔵 NEON WRAITH | 186 XP | Tier 3 |\n| 🟣 CHROME RAVEN | 371 XP | — |\n| ⚪ NEVERMORE PROTOCOL | 601+ XP | — |\n\n---\n\n*→ [[00-NEXUS]] · Missions: [[_content/01 - Indoctrination/M-01-TRANSMISSION-The_Three_Modes]]*",
+    "path": "REF/REF-EN-Quick_Reference.md"
+  }
+];
