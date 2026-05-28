@@ -11,9 +11,13 @@
     "packages/adapter-web"
   ],
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "dev": "npm run dev --workspace @neurovim/adapter-web",
+    "build:web": "npm run build --workspace @neurovim/adapter-web",
+    "build:plugin": "npm run build --workspace @neurovim/adapter-obsidian",
+    "build:content": "npm run build --workspace @neurovim/content",
+    "build": "npm run build:content && npm run build:plugin && npm run build:web",
+    "typecheck": "npm run typecheck --workspace @neurovim/core && npm run typecheck --workspace @neurovim/content && npm run typecheck --workspace @neurovim/adapter-obsidian && npm run typecheck --workspace @neurovim/adapter-web",
+    "test": "npm test --workspaces --if-present"
   },
   "devDependencies": {
     "typescript": "^5.0.0"

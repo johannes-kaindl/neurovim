@@ -38,6 +38,32 @@ Abgeleitet aus dem Obsidian-Plugin `neurovim-trainer` v1.0.0 (Source: `32_NeuroV
 
 > Passt zur 26-039-Migration auf Open-Source-Hosting (df.eu/Microsoft → mailbox.org/Codeberg).
 
+## Quickstart (Dev)
+
+```bash
+cd /Users/Shared/code/neurovim-standalone
+npm install
+npm run dev          # → http://localhost:5173/
+```
+
+`npm run dev` im Repo-**Root** ist ein Alias auf den `adapter-web`-Workspace (`npm run dev --workspace @neurovim/adapter-web`) — kein `--workspace`-Flag nötig.
+
+### Root-Convenience-Scripts
+
+Alle vom Repo-Root aus aufrufbar (`npm run <script>`):
+
+| Script | Wirkung |
+|---|---|
+| `dev` | Vite-Dev-Server für die Web-App (`adapter-web`), http://localhost:5173/ |
+| `build` | Voller Build in Reihenfolge: `content` → `plugin` → `web` |
+| `build:content` | Nur `@neurovim/content` (gray-matter → `src/generated/content.ts`) |
+| `build:plugin` | Nur `@neurovim/adapter-obsidian` (esbuild → `dist/main.js`) |
+| `build:web` | Nur `@neurovim/adapter-web` (Vite → `dist/`) |
+| `typecheck` | `tsc --noEmit` über alle vier Workspaces (core → content → plugin → web) |
+| `test` | `jest` über alle Workspaces mit Tests (`--if-present`) |
+
+> Build-Reihenfolge ist nicht beliebig: `content` generiert `content.ts`, das `plugin` und `web` importieren — deshalb läuft `content` zuerst.
+
 ## Setup (Jay copy-paste — Repos müssen vorher manuell angelegt werden)
 
 ```bash
