@@ -1,19 +1,22 @@
 {
   "name": "@neurovim/adapter-obsidian",
   "version": "0.0.0",
-  "description": "Obsidian-Plugin-Adapter: implementiert die @neurovim/core Port-Interfaces gegen die Obsidian-API.",
+  "description": "Obsidian-Plugin-Target: Game-Logic aus @neurovim/core gegen die Obsidian-API verdrahtet.",
   "license": "MIT",
   "type": "module",
-  "main": "src/index.ts",
   "scripts": {
-    "build": "echo \"(Phase 3: esbuild → 32_NeuroVim/.obsidian/plugins/neurovim-trainer/main.js)\""
+    "typecheck": "tsc --noEmit",
+    "build": "node esbuild.config.mjs production"
   },
   "dependencies": {
     "@neurovim/core": "*",
-    "@neurovim/content": "*"
-  },
-  "peerDependencies": {
-    "obsidian": "*",
     "preact": "^10.29.1"
+  },
+  "devDependencies": {
+    "obsidian": "^1.4.0",
+    "@codemirror/state": "^6.0.0",
+    "@codemirror/view": "^6.0.0",
+    "builtin-modules": "^3.3.0",
+    "esbuild": "^0.20.0"
   }
 }

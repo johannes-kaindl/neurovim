@@ -2,11 +2,16 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src"
+
+    "baseUrl": ".",
+    "composite": false,
+    "paths": {
+      "react": ["../../node_modules/preact/compat"],
+      "react-dom": ["../../node_modules/preact/compat"],
+      "react-dom/client": ["../../node_modules/preact/compat/client"],
+      "react/jsx-runtime": ["../../node_modules/preact/jsx-runtime"],
+      "@neurovim/core": ["../core/src/index.ts"]
+    }
   },
-  "references": [
-    { "path": "../core" },
-    { "path": "../content" }
-  ],
   "include": ["src"]
 }
