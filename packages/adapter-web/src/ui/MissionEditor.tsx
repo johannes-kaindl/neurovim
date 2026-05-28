@@ -14,10 +14,9 @@ interface Props {
   mission: MissionDoc;
   onSubmit: (content: string) => void;
   onBack: () => void;
-  feedback: string | null;
 }
 
-export function MissionEditor({ mission, onSubmit, onBack, feedback }: Props) {
+export function MissionEditor({ mission, onSubmit, onBack }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const view = useRef<EditorView | null>(null);
 
@@ -57,7 +56,6 @@ export function MissionEditor({ mission, onSubmit, onBack, feedback }: Props) {
           Submit (verify)
         </button>
       </div>
-      {feedback && <div class="nv-feedback">{feedback}</div>}
       <div ref={host} class="nv-cm-host" />
     </div>
   );

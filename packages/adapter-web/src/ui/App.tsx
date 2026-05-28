@@ -11,12 +11,20 @@ import {
 } from '@neurovim/core';
 import { listMissions, getMission } from '@neurovim/content';
 import { WebStorage } from '../ports/WebStorage';
+import { MissionResult, type MissionResultData } from './MissionResult';
 
 // CM6 + @replit/codemirror-vim sind das schwerste Dep-Bündel und nur im Editor
 // nötig — lazy laden, damit Picker/NEXUS sie nicht im Initial-Bundle tragen (Code-Splitting).
 const MissionEditor = lazy(() =>
   import('./MissionEditor').then((m) => ({ default: m.MissionEditor })),
 );
+
+/** Nächste spielbare Mission im selben Arc (für den „Next Mission"-Button). */
+function nextMissionId(id: string): string | null {
+  const list = listMissions('I');
+  const i = list.findIndex((m) => m.mission_id === id);
+  return i >= 0 && i < list.length - 1 ? list[i + 1].mission_id : null;
+}
 
 const storage = new WebStorage();
 const audio = new AudioEngine();
@@ -26,7 +34,7 @@ export function App() {
   const [data, setData] = useState<PluginData>({ ...DEFAULT_PLUGIN_DATA });
   const [view, setView] = useState<'nexus' | 'mission'>('nexus');
   const [mission, setMission] = useState<MissionDoc | null>(null);
-  const [feedback, setFeedback] = useState<string | null>(null);
+  const [result, setResult] = useState<MissionResultData | null>(null);
 
   useEffect(() => {
     storage.loadData<PluginData>().then((d) => { if (d) setData({ ...DEFAULT_PLUGIN_DATA, ...d }); });
@@ -42,7 +50,7 @@ export function App() {
   function selectMission(id: string) {
     unlockAudio();
     setMission(getMission(id));
-    setFeedback(null);
+    setResult(null);
     setView('mission');
   }
 
@@ -51,7 +59,7 @@ export function App() {
     const diff = MissionEngine.verify(content, mission.solution ?? '');
     if (!diff.matches) {
       SoundCues.wrongAttempt(audio);
-      setFeedback(`✗ ${diff.lines_off} line${diff.lines_off !== 1 ? 's' : ''} differ — keep going`);
+      setResult({ status: 'fail', linesOff: diff.lines_off });
       return;
     }
     SoundCues.missionComplete(audio);
@@ -68,14 +76,26 @@ export function App() {
     setData(next);
     await storage.saveData(next);
     if (level_up) SoundCues.levelUp(audio);
-    setFeedback(`✓ COMPLETE  +${mission.xp_reward} XP${level_up ? `  · LEVEL UP → ${level_up.new_level}` : ''}`);
+    setResult({ status: 'complete', xp: mission.xp_reward, levelUp: level_up ? level_up.new_level : null });
   }
 
   if (view === 'mission' && mission) {
     return (
-      <Suspense fallback={<div class="nv-loading">loading editor…</div>}>
-        <MissionEditor mission={mission} onSubmit={submit} onBack={() => setView('nexus')} feedback={feedback} />
-      </Suspense>
+      <>
+        <Suspense fallback={<div class="nv-loading">loading editor…</div>}>
+          <MissionEditor mission={mission} onSubmit={submit} onBack={() => setView('nexus')} />
+        </Suspense>
+        {result && (
+          <MissionResult
+            result={result}
+            missionTitle={mission.title}
+            hasNext={result.status === 'complete' && nextMissionId(mission.mission_id) !== null}
+            onRetry={() => setResult(null)}
+            onNext={() => { const n = nextMissionId(mission.mission_id); if (n) selectMission(n); }}
+            onNexus={() => { setResult(null); setView('nexus'); }}
+          />
+        )}
+      </>
     );
   }
 

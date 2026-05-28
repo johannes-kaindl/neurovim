@@ -35,5 +35,19 @@ button { font-family: inherit; cursor: pointer; }
 .nv-editor-bar button { background: var(--nv-panel); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 6px 12px; }
 .nv-submit { border-color: var(--nv-accent) !important; color: var(--nv-accent) !important; margin-left: auto; }
 .nv-editor-title { color: var(--nv-muted); font-size: 13px; }
-.nv-feedback { padding: 8px 12px; margin-bottom: 8px; background: var(--nv-panel); border-left: 2px solid var(--nv-accent); border-radius: 3px; font-size: 13px; }
 .nv-cm-host { border-radius: 4px; overflow: hidden; }
+
+/* Result-Modal (nach Submit) */
+.nv-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.72); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.nv-modal { background: var(--nv-panel); border: 1px solid var(--nv-border); border-radius: 8px; padding: 24px 28px; max-width: 420px; width: calc(100% - 32px); text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+.nv-modal-title { margin: 0 0 4px; font-size: 20px; letter-spacing: 1px; }
+.nv-modal-title.nv-ok { color: var(--nv-accent); }
+.nv-modal-title.nv-fail { color: #ff6b6b; }
+.nv-modal-sub { margin: 0 0 16px; color: var(--nv-muted); font-size: 13px; }
+.nv-modal-body { margin: 12px 0 20px; color: var(--nv-text); font-size: 14px; }
+.nv-modal-xp { font-size: 28px; color: var(--nv-accent); font-weight: bold; }
+.nv-modal-levelup { margin-top: 6px; color: var(--nv-accent); font-size: 13px; letter-spacing: 1px; }
+.nv-modal-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.nv-modal-actions button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 8px 14px; }
+.nv-modal-actions button:hover { border-color: var(--nv-accent); }
+.nv-modal-primary { border-color: var(--nv-accent) !important; color: var(--nv-accent) !important; }
