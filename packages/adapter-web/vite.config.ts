@@ -10,6 +10,10 @@ export default defineConfig({
       '@neurovim/core': new URL('../core/src/index.ts', import.meta.url).pathname,
       '@neurovim/content': new URL('../content/src/index.ts', import.meta.url).pathname,
     },
+    // CM6 bricht mit "multiple instances of @codemirror/state" sobald state/view
+    // doppelt aufgelöst werden (Monorepo: @codemirror/commands zieht eine nested
+    // Kopie). Single-Instanz erzwingen — sonst wirft EditorState.create (instanceof).
+    dedupe: ['@codemirror/state', '@codemirror/view'],
   },
   build: {
     outDir: 'dist',
