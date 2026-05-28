@@ -42,10 +42,12 @@ export function getMission(id: string): MissionDoc {
   );
   if (!main) throw new Error(`Mission nicht gefunden: ${id}`);
   const briefing = ENTRIES.find((e) => e.role === 'briefing' && e.id === id);
+  const solution = ENTRIES.find((e) => e.role === 'solution' && e.id === id);
   return {
     ...toSummary(main),
     transmissionBody: main.body,
     briefingBody: briefing?.body ?? '',
+    solution: solution?.body,
   };
 }
 

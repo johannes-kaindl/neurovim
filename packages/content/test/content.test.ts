@@ -1,11 +1,11 @@
 import { ENTRIES, listMissions, getMission, getLore } from '../src/index';
 
 describe('@neurovim/content manifest', () => {
-  it('hat alle 109 Content-Einträge', () => {
-    expect(ENTRIES.length).toBe(109);
+  it('hat alle 159 Content-Einträge (109 content + 50 solutions)', () => {
+    expect(ENTRIES.length).toBe(159);
   });
 
-  it('Rollen-Verteilung stimmt mit Curriculum (40 transmission, 40 briefing, 11 kata, 6 loot, 10 fragment, 2 ref)', () => {
+  it('Rollen-Verteilung stimmt mit Curriculum (40 transmission, 40 briefing, 11 kata, 6 loot, 10 fragment, 2 ref, 50 solution)', () => {
     const count = (role: string) => ENTRIES.filter((e) => e.role === role).length;
     expect(count('transmission')).toBe(40);
     expect(count('briefing')).toBe(40);
@@ -13,6 +13,7 @@ describe('@neurovim/content manifest', () => {
     expect(count('loot')).toBe(6);
     expect(count('fragment')).toBe(10);
     expect(count('ref')).toBe(2);
+    expect(count('solution')).toBe(50);
   });
 });
 
@@ -40,6 +41,7 @@ describe('getMission', () => {
     const doc = getMission('M-01');
     expect(doc.transmissionBody.length).toBeGreaterThan(0);
     expect(doc.briefingBody.length).toBeGreaterThan(0);
+    expect(doc.solution && doc.solution.length).toBeGreaterThan(0);
     expect(doc.title).toBeTruthy();
   });
 

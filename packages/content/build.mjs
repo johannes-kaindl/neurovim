@@ -67,13 +67,33 @@ for (const abs of files) {
   });
 }
 
+// Solutions (clean target text für MissionEngine.verify) — D18.
+const SOLUTIONS_DIR = join(ROOT, 'src', 'solutions');
+try {
+  for (const abs of walk(SOLUTIONS_DIR).sort()) {
+    const raw = readFileSync(abs, 'utf8');
+    const { data: fm, content: body } = matter(raw);
+    const m = basename(abs, '.md').match(/^((?:M|R|KATA)-\d+)/);
+    entries.push({
+      id: m ? m[1] : basename(abs, '.md'),
+      role: 'solution',
+      kind: 'mission',
+      arc: m && m[1].startsWith('R-') ? 'II' : 'I',
+      chapter: 'solutions',
+      frontmatter: fm,
+      body: body.trim(),
+      path: 'solutions/' + basename(abs),
+    });
+  }
+} catch { /* solutions/ optional */ }
+
 mkdirSync(OUT_DIR, { recursive: true });
 const header = `// AUTO-GENERATED von build.mjs — NICHT manuell editieren.\n` +
   `// Quelle: src/content/*.md (SSOT). Regenerieren: npm run build --workspace @neurovim/content\n` +
   `// Generiert: ${entries.length} Einträge.\n\n` +
   `export interface RawContentEntry {\n` +
   `  id: string;\n` +
-  `  role: 'briefing' | 'transmission' | 'kata' | 'loot' | 'fragment' | 'ref';\n` +
+  `  role: 'briefing' | 'transmission' | 'kata' | 'loot' | 'fragment' | 'ref' | 'solution';\n` +
   `  kind: 'mission' | 'lore';\n` +
   `  arc: 'I' | 'II';\n` +
   `  chapter: string;\n` +
