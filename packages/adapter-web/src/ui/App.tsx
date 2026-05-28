@@ -4,13 +4,19 @@
  * Web-Port-Impls. Game-Flow: pick → edit → submit→verify→XP→save.
  */
 import { useEffect, useState } from 'preact/hooks';
+import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc,
 } from '@neurovim/core';
 import { listMissions, getMission } from '@neurovim/content';
 import { WebStorage } from '../ports/WebStorage';
-import { MissionEditor } from './MissionEditor';
+
+// CM6 + @replit/codemirror-vim sind das schwerste Dep-Bündel und nur im Editor
+// nötig — lazy laden, damit Picker/NEXUS sie nicht im Initial-Bundle tragen (Code-Splitting).
+const MissionEditor = lazy(() =>
+  import('./MissionEditor').then((m) => ({ default: m.MissionEditor })),
+);
 
 const storage = new WebStorage();
 const audio = new AudioEngine();
@@ -66,7 +72,11 @@ export function App() {
   }
 
   if (view === 'mission' && mission) {
-    return <MissionEditor mission={mission} onSubmit={submit} onBack={() => setView('nexus')} feedback={feedback} />;
+    return (
+      <Suspense fallback={<div class="nv-loading">loading editor…</div>}>
+        <MissionEditor mission={mission} onSubmit={submit} onBack={() => setView('nexus')} feedback={feedback} />
+      </Suspense>
+    );
   }
 
   const level = ProgressionEngine.getLevelForXp(data.total_xp);

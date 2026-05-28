@@ -28,6 +28,8 @@ button { font-family: inherit; cursor: pointer; }
 .nv-mxp { color: var(--nv-muted); font-size: 12px; }
 .nv-done { color: var(--nv-accent); }
 
+.nv-loading { max-width: 900px; margin: 0 auto; padding: 24px 16px; color: var(--nv-muted); }
+
 .nv-editor { max-width: 900px; margin: 0 auto; padding: 16px; }
 .nv-editor-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .nv-editor-bar button { background: var(--nv-panel); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 6px 12px; }
