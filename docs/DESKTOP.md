@@ -57,11 +57,10 @@ git tag v0.1.0 && git push github v0.1.0   # or the mirror remote name
 
 ## Icons
 
-The app icon is the `>_` NeuroVim mark in `src-tauri/icons/`, generated from
-`docs/design-source/brand/icon.svg`. To regenerate after editing the source:
+The app icon (the Chrome Raven mark) in `src-tauri/icons/` is generated from the
+brand kit at `docs/brand/`. To regenerate from the 1024×1024 source:
 
 ```bash
-rsvg-convert -w 1024 -h 1024 docs/design-source/brand/icon.svg -o docs/design-source/brand/icon-1024.png
-cd packages/adapter-web && npx tauri icon ../../docs/design-source/brand/icon-1024.png
+cd packages/adapter-web && npx tauri icon ../../docs/brand/icon-1024.png
 rm -rf src-tauri/icons/android src-tauri/icons/ios   # desktop-only
 ```

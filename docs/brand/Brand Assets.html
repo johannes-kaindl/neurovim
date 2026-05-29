@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NeuroVim — Brand Assets // Icon &amp; Open Graph</title>
+<link rel="icon" type="image/png" href="favicon-32.png" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" />
+<style>
+:root{
+  --signal-crimson:#d4203a; --signal-phosphor:#39ff7a; --signal-spectre:#a878ff;
+  --signal-circuit:#4ac8d8; --signal-pearl:#e8e4d8;
+  --void-050:#060709; --void-100:#0b0d11; --void-150:#11141a; --void-200:#181c24;
+  --void-300:#22272f; --void-400:#2e343d; --void-700:#828a97; --void-600:#5a6170;
+  --font-sans:'Space Grotesk',sans-serif; --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(0.2,0.8,0.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void-050);color:var(--signal-pearl);font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;}
+body{
+  background-image:
+    linear-gradient(var(--void-300) 1px,transparent 1px),
+    linear-gradient(90deg,var(--void-300) 1px,transparent 1px);
+  background-size:48px 48px;
+  background-position:center;
+  position:relative;
+}
+body::before{ /* dim the grid into a vignette */
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 80% 70% at 50% 30%,rgba(6,7,9,0.55),var(--void-050) 80%);
+}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:72px 40px 120px;}
+
+/* ---------- header ---------- */
+.eyebrow{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:0.32em;
+  text-transform:uppercase;color:var(--signal-phosphor);opacity:0.85;}
+.eyebrow .dot{color:var(--void-600);margin:0 10px;}
+h1{font-family:var(--font-sans);font-weight:600;font-size:52px;letter-spacing:-0.02em;
+  line-height:1.05;margin:18px 0 14px;}
+h1 .mark{color:var(--signal-phosphor);text-shadow:0 0 24px rgba(57,255,122,0.4);}
+.lede{font-size:17px;line-height:1.6;color:var(--void-700);max-width:620px;}
+.lede b{color:var(--signal-pearl);font-weight:500;}
+
+/* ---------- section scaffold ---------- */
+.section{margin-top:80px;}
+.sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--void-300);
+  padding-bottom:14px;margin-bottom:32px;}
+.sec-no{font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;color:var(--signal-phosphor);}
+.sec-title{font-family:var(--font-sans);font-weight:600;font-size:24px;letter-spacing:-0.01em;}
+.sec-meta{margin-left:auto;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--void-600);}
+
+/* ---------- cards ---------- */
+.card{background:var(--void-150);border:1px solid var(--void-300);border-radius:10px;
+  box-shadow:0 1px 0 0 rgba(255,255,255,0.03) inset,0 8px 24px -12px rgba(0,0,0,0.6);}
+.card.top-phosphor{border-top:2px solid var(--signal-phosphor);}
+.card.top-crimson{border-top:2px solid var(--signal-crimson);}
+
+.grid-2{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;}
+.pad{padding:32px;}
+.cap{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--void-600);margin-bottom:6px;}
+.note{font-size:14px;line-height:1.65;color:var(--void-700);}
+.note b{color:var(--signal-pearl);font-weight:500;}
+
+/* icon showcase */
+.icon-stage{display:flex;align-items:center;justify-content:center;padding:40px;
+  background:radial-gradient(circle at 50% 42%,#0d1411,#060709 78%);border-radius:10px 10px 0 0;}
+.icon-hero{width:240px;height:240px;border-radius:54px;display:block;
+  box-shadow:0 24px 60px -20px rgba(0,0,0,0.9),0 0 0 1px rgba(255,255,255,0.04);}
+.size-strip{display:flex;align-items:flex-end;gap:28px;padding:28px 32px;flex-wrap:wrap;}
+.size-item{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.size-item img{border-radius:22%;display:block;image-rendering:auto;}
+.size-item span{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--void-600);}
+
+/* favicon browser mock */
+.browser{background:var(--void-100);border:1px solid var(--void-300);border-radius:10px;overflow:hidden;}
+.browser-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--void-200);
+  border-bottom:1px solid var(--void-300);}
+.dots{display:flex;gap:6px;}
+.dots i{width:11px;height:11px;border-radius:50%;display:block;}
+.tab{display:flex;align-items:center;gap:9px;background:var(--void-100);border:1px solid var(--void-300);
+  border-bottom:none;border-radius:8px 8px 0 0;padding:9px 16px 11px;margin-left:14px;
+  font-family:var(--font-mono);font-size:12px;color:var(--signal-pearl);position:relative;top:1px;}
+.tab img{width:16px;height:16px;border-radius:4px;}
+.tab .x{color:var(--void-600);margin-left:6px;}
+.browser-body{padding:30px 26px;display:flex;align-items:center;gap:18px;}
+.browser-body .url{font-family:var(--font-mono);font-size:12px;color:var(--void-700);
+  background:var(--void-050);border:1px solid var(--void-300);border-radius:999px;padding:9px 16px;flex:1;}
+.browser-body .url b{color:var(--signal-phosphor);font-weight:500;}
+
+/* OG */
+.og-frame{padding:26px;background:radial-gradient(circle at 50% 30%,#0c1310,#060709 80%);border-radius:10px 10px 0 0;}
+.og-frame img{width:100%;display:block;border-radius:6px;border:1px solid var(--void-300);
+  box-shadow:0 20px 50px -18px rgba(0,0,0,0.85);}
+/* link unfurl mock */
+.unfurl{max-width:512px;border:1px solid var(--void-300);border-radius:12px;overflow:hidden;background:var(--void-100);}
+.unfurl img{width:100%;display:block;border-bottom:1px solid var(--void-300);}
+.unfurl .meta{padding:14px 16px;}
+.unfurl .host{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;color:var(--void-600);text-transform:uppercase;}
+.unfurl .ut{font-family:var(--font-sans);font-weight:600;font-size:16px;margin:5px 0 4px;color:var(--signal-pearl);}
+.unfurl .ud{font-size:13px;line-height:1.5;color:var(--void-700);}
+
+/* swatches */
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.sw{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;color:var(--void-700);}
+.sw i{width:14px;height:14px;border-radius:3px;display:block;border:1px solid rgba(255,255,255,0.08);}
+
+.files{font-family:var(--font-mono);font-size:12px;color:var(--void-700);line-height:1.9;margin-top:14px;}
+.files b{color:var(--signal-phosphor);font-weight:500;}
+@media(max-width:880px){.grid-2{grid-template-columns:1fr;}h1{font-size:40px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header data-screen-label="Header">
+    <div class="eyebrow">KURO SIGNAL PROTOCOL <span class="dot">・</span> GUARDIAN <span class="dot">・</span> BRAND</div>
+    <h1><span class="mark">&gt;_</span> NeuroVim — Icon &amp; Open Graph</h1>
+    <p class="lede">Two marks for two distances. The <b>corvid</b> — Kuro, the familiar that watches the vault — carries the app at large sizes; the crimson eye is the single point of focus. The <b>&gt;_ terminal glyph</b> carries it small, where photographic detail would muddy. Phosphor signals <i>active</i>; crimson signals <i>focus</i>. Built on the void ground, JetBrains Mono witnesses.</p>
+  </header>
+
+  <!-- ICON -->
+  <section class="section" data-screen-label="App icon">
+    <div class="sec-head">
+      <span class="sec-no">01</span>
+      <span class="sec-title">App Icon — the familiar</span>
+      <span class="sec-meta">1024px source ・ squircle ・ desktop / store / Tauri</span>
+    </div>
+    <div class="grid-2">
+      <div class="card top-crimson">
+        <div class="icon-stage"><img class="icon-hero" src="icon-1024.png" alt="NeuroVim corvid app icon" /></div>
+        <div class="size-strip">
+          <div class="size-item"><img src="icon-128.png" width="96" height="96" alt="" /><span>96</span></div>
+          <div class="size-item"><img src="icon-128.png" width="64" height="64" alt="" /><span>64</span></div>
+          <div class="size-item"><img src="icon-128.png" width="48" height="48" alt="" /><span>48</span></div>
+        </div>
+      </div>
+      <div class="card pad">
+        <div class="cap">Concept</div>
+        <p class="note">Kuro at silhouette — the mechanical corvid reading at its eye, lit only where the light catches. A faint <b>phosphor circuit ring</b> marks the Guardian aspect; an additive <b>crimson bloom</b> earns the eye its place as the one bright thing in a dark chamber.</p>
+        <div class="cap" style="margin-top:24px;">Signals in use</div>
+        <div class="swatches">
+          <span class="sw"><i style="background:#d4203a"></i>Crimson · focus / eye</span>
+          <span class="sw"><i style="background:#39ff7a"></i>Phosphor · active ring</span>
+          <span class="sw"><i style="background:#060709"></i>Void · the chamber</span>
+        </div>
+        <div class="cap" style="margin-top:24px;">Files</div>
+        <p class="files"><b>icon-1024.png</b> — feed to <span style="color:var(--void-600)">npx tauri icon</span><br/><b>icon-128 / 64 / 32.png</b> — raster fallbacks</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAVICON -->
+  <section class="section" data-screen-label="Favicon">
+    <div class="sec-head">
+      <span class="sec-no">02</span>
+      <span class="sec-title">Favicon — the glyph</span>
+      <span class="sec-meta">512px source ・ legible to 16px</span>
+    </div>
+    <div class="grid-2">
+      <div class="card pad">
+        <div class="browser">
+          <div class="browser-bar">
+            <div class="dots"><i style="background:#d4203a"></i><i style="background:#ffb442"></i><i style="background:#39ff7a"></i></div>
+            <div class="tab"><img src="favicon-32.png" alt="" />NeuroVim <span class="x">✕</span></div>
+          </div>
+          <div class="browser-body">
+            <div class="url">jkaindl.codeberg.page<b>/NeuroVIM</b></div>
+          </div>
+        </div>
+        <div class="size-strip" style="padding-left:0;padding-right:0;">
+          <div class="size-item"><img src="favicon-64.png" width="48" height="48" alt="" /><span>48</span></div>
+          <div class="size-item"><img src="favicon-32.png" width="32" height="32" alt="" /><span>32</span></div>
+          <div class="size-item"><img src="favicon-16.png" width="16" height="16" alt="" /><span>16</span></div>
+        </div>
+      </div>
+      <div class="card pad">
+        <div class="cap">Why a second mark</div>
+        <p class="note">At a 16px tab the corvid collapses to noise — <b>honesty (Law 6)</b> says a mark that can't be read shouldn't pretend to be one. The <b>&gt;_</b> prompt is NeuroVim's terminal identity distilled: phosphor on void, glowing, unmistakable down to 16px. Same squircle, same ground — one family, two scales.</p>
+        <div class="cap" style="margin-top:24px;">Files</div>
+        <p class="files"><b>favicon-512.png</b> · <b>favicon-180.png</b> (apple-touch)<br/><b>favicon-64 / 48 / 32 / 16.png</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OG -->
+  <section class="section" data-screen-label="Open Graph card">
+    <div class="sec-head">
+      <span class="sec-no">03</span>
+      <span class="sec-title">Open Graph card</span>
+      <span class="sec-meta">1200 × 630 ・ link unfurl / itch.io / Codeberg</span>
+    </div>
+    <div class="card top-phosphor">
+      <div class="og-frame"><img src="og.png" alt="NeuroVim open graph card" /></div>
+      <div class="pad" style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;">
+        <div style="flex:1;min-width:280px;">
+          <div class="cap">Composition</div>
+          <p class="note">Key art reserved for the hero moment, per protocol — the familiar perched on the right, melted into the void by a <b>protection gradient</b> so the wordmark breathes. Scanlines and corner brackets carry the diegetic HUD; the <b>CIPHER</b> line keeps the spy-thriller voice.</p>
+        </div>
+        <div style="min-width:300px;">
+          <div class="cap" style="margin-bottom:12px;">As a link unfurl</div>
+          <div class="unfurl">
+            <img src="og.png" alt="" />
+            <div class="meta">
+              <div class="host">codeberg.org</div>
+              <div class="ut">NeuroVim</div>
+              <div class="ud">A Vim-learning game wrapped in a cyberpunk spy-thriller.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
