@@ -41,7 +41,7 @@
   --nv-glow: 0.9;                                   /* glow multiplier (0 = flat) */
   --nv-backdrop: rgba(0, 0, 0, 0.72);               /* modal backdrop (was inline) */
   --nv-modal-shadow: rgba(0, 0, 0, 0.6);            /* modal shadow (was inline) */
-  --nv-scan: 0.14;                                  /* CRT scanline opacity (0 = off; 0.10–0.20 tasteful, 0.6 = heavy mockup look) */
+  --nv-scan: 0;                                     /* CRT scanline opacity (0 = off; try 0.10) */
 
   --nv-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -307,10 +307,9 @@ body::after {
 .nv-co-quote::before { content: '“'; color: var(--nv-accent); }
 .nv-co { display: inline; }
 
-/* ASCII-art fences — the box-drawing IS the frame, so the <pre> stays a flat,
-   dark canvas (no second border / inset) and lets the green box-art be the hero. */
-.nv-md pre { background: #060807; border: 1px solid var(--nv-border); border-radius: 4px; padding: 16px 18px; overflow-x: auto; line-height: 1.45; }
-.nv-md pre code { font-family: ui-monospace, monospace; font-size: 12px; color: var(--nv-accent); white-space: pre; letter-spacing: 0; text-shadow: 0 0 calc(5px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 40%, transparent); }
+/* ASCII-art fences — lean into them */
+.nv-md pre { background: var(--nv-panel); border: 1px solid var(--nv-line-hot); border-radius: 4px; padding: 14px; overflow-x: auto; box-shadow: inset 0 0 0 4px var(--nv-bg); }
+.nv-md pre code { font-family: ui-monospace, monospace; font-size: 12px; color: var(--nv-accent); white-space: pre; text-shadow: 0 0 calc(5px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 40%, transparent); }
 .nv-md code { font-family: ui-monospace, monospace; background: var(--nv-panel); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; color: var(--nv-accent); }
 .nv-md hr { border: none; border-top: 1px solid var(--nv-border); margin: 16px 0; }
 

@@ -6,8 +6,9 @@
  * überbrücken Obsidian-Spezifika:
  *  - Wikilinks `[[pfad|label]]` / `[[pfad]]` → reiner Label-/Basename-Text
  *    (im Web gibt es keine Vault-Routen, also keine echten Links).
- *  - Callout-Header `> [!type] Titel` → `> **Titel**` (Struktur als Blockquote
- *    bleibt, Typ-Farbe entfällt — siehe D25).
+ *  - Callout-Header `> [!type] Titel` → `> <span class="nv-co nv-co-type"></span>**Titel**`.
+ *    Der Typ wird als Inline-Marker-Span durchgereicht; styles.css färbt via
+ *    `:has()` das ganze Callout type-aware ein + setzt ein Leit-Glyph (D25 restored).
  *
  * Quelle ist gebündelter, build-time-vertrauenswürdiger Content (kein User-Input),
  * daher ist dangerouslySetInnerHTML in den Views vertretbar.
@@ -22,7 +23,8 @@ function preprocess(md: string): string {
     .replace(/\[\[([^\]]+)\]\]/g, (_m, p: string) => p.split('/').pop() ?? p)
     .replace(/^((?:>\s*)+)\[!(\w+)\]([+-]?)\s*(.*)$/gm, (_m, quote: string, type: string, _fold: string, title: string) => {
       const label = title && title.trim() ? title.trim() : type.toUpperCase();
-      return `${quote}**${label}**`;
+      const t = type.toLowerCase();
+      return `${quote}<span class="nv-co nv-co-${t}"></span>**${label}**`;
     });
 }
 

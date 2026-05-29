@@ -46,6 +46,13 @@ export function App() {
   const [view, setView] = useState<'welcome' | 'nexus' | 'briefing' | 'mission' | 'sandbox'>('welcome');
   const [mission, setMission] = useState<MissionDoc | null>(null);
   const [result, setResult] = useState<MissionResultData | null>(null);
+  // XP-Gain-Flash: kurzer Aufleuchten der XP-Bar beim NEXUS-Rückkehr nach frischem Clear.
+  const [xpFlash, setXpFlash] = useState(false);
+
+  function flashXp() {
+    setXpFlash(true);
+    window.setTimeout(() => setXpFlash(false), 700);
+  }
 
   useEffect(() => {
     storage.loadData<PluginData>().then((d) => { if (d) setData({ ...DEFAULT_PLUGIN_DATA, ...d }); });
@@ -137,7 +144,7 @@ export function App() {
             hasNext={result.status === 'complete' && nextMissionId(mission.mission_id) !== null}
             onRetry={() => setResult(null)}
             onNext={() => { const n = nextMissionId(mission.mission_id); if (n) selectMission(n); }}
-            onNexus={() => { setResult(null); setView('nexus'); }}
+            onNexus={() => { const gained = result.status === 'complete'; setResult(null); setView('nexus'); if (gained) flashXp(); }}
           />
         )}
       </>
@@ -173,7 +180,7 @@ export function App() {
               : `${data.total_xp} XP · MAX`}
           </span>
         </div>
-        <div class="nv-xpbar"><div class="nv-xpbar-fill" style={{ width: `${progress.pct}%` }} /></div>
+        <div class="nv-xpbar"><div class={`nv-xpbar-fill${xpFlash ? ' nv-gained' : ''}`} style={{ width: `${progress.pct}%` }} /></div>
         <div class="nv-stats">
           <span>Cleared {cleared}/{missions.length}</span>
           <span>Streak {data.streak_current}</span>
@@ -183,23 +190,33 @@ export function App() {
       <section class="nv-picker">
         <h2>ARC I — Indoctrination <span class="nv-arc-prog">{cleared}/{missions.length} cleared</span></h2>
         <ul>
-          {missions.map((m) => {
-            const rec = data.missions[m.mission_id];
-            const done = data.completed_missions.includes(m.mission_id);
-            return (
-              <li key={m.mission_id}>
-                <button onClick={() => selectMission(m.mission_id)}>
-                  <span class="nv-mid">{m.mission_id}</span>
-                  <span class="nv-mtitle">{m.title}</span>
-                  {done && (rec?.best_time_ms ?? 0) > 0 && (
-                    <span class="nv-mbest">{fmtTime(rec!.best_time_ms)} · {rec!.best_keystrokes}ks</span>
-                  )}
-                  <span class="nv-mxp">{m.xp_reward} XP</span>
-                  {done && <span class="nv-done">✓</span>}
-                </button>
-              </li>
-            );
-          })}
+          {(() => {
+            // Web: ALLE Missionen frei spielbar (kein Unlock-Gating — der Web-Build ist
+            // ein offener Demo-Build, Progression-Locks gehören nur in den Obsidian-Adapter).
+            // „Aktive" Mission = erste noch nicht abgeschlossene (▸-Highlight + Glow).
+            const activeId = missions.find(
+              (m) => !data.completed_missions.includes(m.mission_id),
+            )?.mission_id ?? null;
+            return missions.map((m) => {
+              const rec = data.missions[m.mission_id];
+              const done = data.completed_missions.includes(m.mission_id);
+              const active = m.mission_id === activeId;
+              const cls = [done && 'nv-done-row', active && 'nv-active'].filter(Boolean).join(' ');
+              return (
+                <li key={m.mission_id} class={cls || undefined}>
+                  <button onClick={() => selectMission(m.mission_id)}>
+                    <span class="nv-mid">{m.mission_id}</span>
+                    <span class="nv-mtitle">{m.title}</span>
+                    {done && (rec?.best_time_ms ?? 0) > 0 && (
+                      <span class="nv-mbest">{fmtTime(rec!.best_time_ms)} · {rec!.best_keystrokes}ks</span>
+                    )}
+                    <span class="nv-mxp">{m.xp_reward} XP</span>
+                    {done && <span class="nv-done">✓</span>}
+                  </button>
+                </li>
+              );
+            });
+          })()}
         </ul>
       </section>
       <section class="nv-picker">

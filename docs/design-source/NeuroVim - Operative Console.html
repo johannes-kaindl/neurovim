@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NeuroVim — Operative Console</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%2307090a'/%3E%3Ctext%20x='3'%20y='23'%20font-family='monospace'%20font-size='20'%20font-weight='700'%20fill='%2300ff41'%3E%3E_%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500&family=VT323&family=Share+Tech+Mono&display=swap" />
+<link rel="stylesheet" href="console/console.css" />
+</head>
+<body>
+
+<!-- ===== Boot intro overlay ===== -->
+<div class="boot" id="boot">
+  <pre id="boot-pre"></pre>
+  <div class="boot-skip">click or press any key to skip</div>
+</div>
+
+<!-- ===== Persistent chrome ===== -->
+<button class="audio-toggle" id="audio-toggle" aria-pressed="false" title="Toggle ambient audio">
+  <span class="glyph" id="audio-glyph">♪</span>
+  <span id="audio-label">AUDIO OFF</span>
+</button>
+<div class="audio-hint" id="audio-hint" hidden>
+  <span class="x" id="audio-hint-x">✕</span>
+  <b>♪ Ambient is off.</b> NeuroVim plays fully silent — every cue has a visual pendant. Toggle sound here anytime.
+</div>
+
+<!-- ===== App stage ===== -->
+<main id="stage">
+
+  <!-- ============ WELCOME ============ -->
+  <section class="view" id="view-welcome" data-screen-label="WELCOME">
+    <div class="wrap">
+      <h1 class="hero-mark"><span class="gt">&gt;_</span> NEUROVIM<span class="cur"></span></h1>
+      <div class="hero-sub">OPERATIVE TRAINING SYSTEM <span class="sep">//</span> RESISTANCE TOOLING <span class="sep">//</span> v0.4.7</div>
+
+      <blockquote class="callout-cipher">
+        <span class="who">CIPHER</span> You were invited. That means someone trusts you. It also means you are now a target. Before you do anything — learn your tool. <b>VIM is our tool.</b> <b>Master it, or die typing.</b>
+      </blockquote>
+
+      <div class="hero-body">
+        <p>A Vim-training game wrapped in a spy-thriller. Clear missions, earn XP, and <span class="accent">restore corrupted transmissions</span> — burning Vim into muscle memory without ever feeling like you're "practicing".</p>
+        <p>Three modes. One tool. Begin.</p>
+      </div>
+
+      <hr class="hero-rule" />
+      <div class="hero-cta-row">
+        <button class="btn-primary pulse" data-go="nexus">Enter NEXUS →</button>
+        <span class="hero-hint">or press <kbd>↵</kbd> to authenticate</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEXUS ============ -->
+  <section class="view" id="view-nexus" data-screen-label="NEXUS">
+    <div class="wrap">
+      <header class="nexus-head">
+        <div class="nexus-title"><span class="prompt"><span class="gt">&gt;_</span> NEXUS</span></div>
+        <div class="nexus-status">
+          <span class="lvl">LVL <b id="lvl">1</b> · <span id="rank">SIGNAL LOST</span></span>
+          <span class="next"><b id="xp-have">0</b> / <span id="xp-need">66</span> XP → <span id="next-rank">GHOST OPERATIVE</span></span>
+        </div>
+        <div class="xpbar"><div class="xpbar-fill" id="xpfill"></div></div>
+        <div class="nexus-stats">
+          <span>CLEARED <b id="stat-cleared">0</b>/27</span>
+          <span>STREAK <b id="stat-streak">0</b></span>
+          <span>FASTEST <b id="stat-fast">—</b></span>
+        </div>
+      </header>
+
+      <div id="tiers"></div>
+
+      <div class="tier" style="margin-top:40px">
+        <div class="tier-head">
+          <span class="name">SANDBOX</span>
+          <span class="line"></span>
+        </div>
+        <button class="sandbox-entry" data-go="sandbox">
+          <span class="tag">RAVEN</span>
+          <span class="lbl">Glitch Drill <span class="sub">— free-play restoration against the clock</span></span>
+          <span class="go">ENTER →</span>
+        </button>
+      </div>
+
+      <div class="nexus-foot"></div>
+    </div>
+  </section>
+
+  <!-- ============ BRIEFING ============ -->
+  <section class="view" id="view-briefing" data-screen-label="BRIEFING">
+    <div class="wrap">
+      <div class="topbar">
+        <button class="btn ghost" data-go="nexus">← NEXUS</button>
+        <span class="title" id="brief-crumb"></span>
+        <span class="spacer"></span>
+        <button class="btn-primary" id="brief-begin-top">Begin Mission →</button>
+      </div>
+      <div id="brief-body"></div>
+      <div class="brief-foot">
+        <button class="btn-primary" id="brief-begin">Begin Mission →</button>
+        <button class="btn ghost" data-go="nexus">← Back to NEXUS</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDITOR ============ -->
+  <section class="view" id="view-editor" data-screen-label="EDITOR">
+    <div class="ed-wrap" style="padding-bottom:8vh">
+      <div class="topbar">
+        <button class="btn ghost" data-go="nexus">← NEXUS</button>
+        <span class="title" id="ed-crumb"></span>
+        <span class="spacer"></span>
+        <button class="btn-primary" id="ed-submit">Submit (verify)</button>
+      </div>
+
+      <div class="ed-host">
+        <div class="ed-gutter" id="ed-gutter"></div>
+        <div class="ed-code" id="ed-code"></div>
+      </div>
+      <div class="ed-status">
+        <span class="mode-chip" id="mode-chip" data-mode="NORMAL">NORMAL</span>
+        <span class="file" id="ed-file">M-01-TRANSMISSION-The_Three_Modes</span>
+        <span class="spacer"></span>
+        <span class="hud">
+          <span class="cell">LN <b id="hud-ln">1</b>:<b id="hud-col">1</b></span>
+          <span class="cell warn">NOISE <b id="hud-noise">13</b></span>
+          <span class="cell">⏱ <b id="hud-timer">0.0s</b></span>
+          <span class="cell">⌁ <b id="hud-keys">0</b></span>
+        </span>
+      </div>
+
+      <div class="ed-hint">
+        <kbd>i</kbd> insert · <kbd>esc</kbd> normal · <kbd>v</kbd> visual · <kbd>h j k l</kbd> move · <kbd>x</kbd> drop noise · or click <b>Submit</b> to run the demo restore
+      </div>
+      <div class="ed-mobile-note"><b>Best on desktop.</b> Vim is a keyboard tool — on a phone you can read the briefing and watch the restore, but real editing needs a physical keyboard. Tap <b>Submit</b> to run the demo restore.</div>
+    </div>
+  </section>
+
+  <!-- ============ SANDBOX ============ -->
+  <section class="view" id="view-sandbox" data-screen-label="SANDBOX">
+    <div class="wrap">
+      <div class="topbar">
+        <button class="btn ghost" data-go="nexus">← NEXUS</button>
+        <span class="spacer"></span>
+      </div>
+      <div class="sb-mark"><span class="prompt"><span class="gt">&gt;_</span> RAVEN SANDBOX</span></div>
+      <p class="sb-intro">Free-play restoration. CORP injects <span class="accent">N glitches</span> into a live transmission; you fix every one against the clock. No briefing, no story — just you, the tool, and the timer. <span class="accent">Beat your personal best.</span></p>
+
+      <div class="sb-grid">
+        <button class="sb-tile easy" data-diff="EASY">
+          <div class="diff">EASY</div>
+          <div class="gc"><b>6</b> glitches · short transmission</div>
+          <div class="menace"><i style="width:33%"></i></div>
+          <div class="pb">PB <b>—</b></div>
+        </button>
+        <button class="sb-tile normal" data-diff="NORMAL">
+          <div class="diff">NORMAL</div>
+          <div class="gc"><b>13</b> glitches · standard archive</div>
+          <div class="menace"><i style="width:62%"></i></div>
+          <div class="pb">PB <b>—</b></div>
+        </button>
+        <button class="sb-tile hard" data-diff="HARD">
+          <div class="diff">HARD</div>
+          <div class="gc"><b>27</b> glitches · deep corruption</div>
+          <div class="menace"><i style="width:100%"></i></div>
+          <div class="pb">PB <b>—</b></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Sandbox live run HUD ===== -->
+<div class="sb-hud" id="sb-hud" aria-live="polite">
+  <span class="tag">RAVEN<br>LIVE</span>
+  <div class="cell"><div class="v" id="sbh-time">0.0</div><div class="k">Elapsed</div></div>
+  <div class="cell rem"><div class="v" id="sbh-rem">0</div><div class="k">Glitches left</div></div>
+</div>
+
+<!-- ===== Result modal ===== -->
+<div class="modal-backdrop" id="result">
+  <div class="modal" id="result-card" role="dialog" aria-modal="true" aria-labelledby="result-verdict">
+    <span class="settle-ring"></span>
+    <div class="verdict" id="result-verdict"><span class="tick">✓</span>SIGNAL RESTORED</div>
+    <div class="mtitle" id="result-title">The Three Modes</div>
+    <div class="xp" id="result-xp">+15</div>
+    <div class="lockline" id="result-lock">XP LOCKED IN</div>
+    <div class="levelup" id="result-levelup" hidden>
+      <div class="ru-k">▲ Rank Established</div>
+      <div class="ru-rank" id="result-rank">GHOST OPERATIVE</div>
+    </div>
+    <div class="metrics">
+      <div class="m"><div class="v" id="rm-time">1.5s</div><div class="k">Time</div><div class="best" id="rm-time-best">best 1.5s</div></div>
+      <div class="m"><div class="v" id="rm-keys">14</div><div class="k">Keystrokes</div><div class="best" id="rm-keys-best">best 14</div></div>
+      <div class="m"><div class="v" id="rm-acc">100%</div><div class="k">Restored</div><div class="best" id="rm-acc-best">13/13</div></div>
+    </div>
+    <div class="actions">
+      <button class="btn ghost" id="result-review">Review</button>
+      <button class="btn-primary" id="result-next">Next Mission →</button>
+      <button class="btn ghost" data-go="nexus" id="result-nexus">← NEXUS</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Tweaks ===== -->
+<div class="tweaks" id="tweaks">
+  <div class="tweaks-head"><span>◆ TWEAKS // CONSOLE</span><button class="tweaks-close" id="tweaks-close">✕</button></div>
+
+  <div class="tw-sec">Phosphor</div>
+  <div class="tw-row"><label>Hue</label><input type="range" id="tw-hue" min="95" max="175" step="1" value="145"><span class="tw-val" id="tv-hue">145</span></div>
+  <div class="tw-row"><label>Glow</label><input type="range" id="tw-glow" min="0" max="2.2" step="0.05" value="1"><span class="tw-val" id="tv-glow">1.0</span></div>
+  <div class="tw-row"><label>Bloom</label><input type="range" id="tw-bloom" min="0" max="3" step="0.1" value="1.3"><span class="tw-val" id="tv-bloom">1.3</span></div>
+  <div class="tw-row" style="margin-top:2px"><label>Mono</label><div class="tw-seg" id="tw-mono" style="flex:1"><button data-mono="on" class="on">Phosphor</button><button data-mono="off">Full colour</button></div></div>
+
+  <div class="tw-sec">CRT</div>
+  <div class="tw-row"><label>Scanlines</label><input type="range" id="tw-scan" min="0" max="1" step="0.02" value="0.62"><span class="tw-val" id="tv-scan">0.62</span></div>
+  <div class="tw-row"><label>Vignette</label><input type="range" id="tw-vig" min="0" max="0.9" step="0.02" value="0.72"><span class="tw-val" id="tv-vig">0.72</span></div>
+
+  <div class="tw-sec">Terminal font</div>
+  <div class="tw-seg" id="tw-font">
+    <button data-font="vt">VT323</button>
+    <button data-font="tech" class="on">Tech</button>
+    <button data-font="jb">Mono</button>
+  </div>
+
+  <div class="tw-sec">Motion</div>
+  <div class="tw-seg" id="tw-motion">
+    <button data-motion="on" class="on">On</button>
+    <button data-motion="off">Reduced</button>
+  </div>
+</div>
+
+<!-- ===== CRT FX overlays ===== -->
+<div class="fx fx-phosphor"></div>
+<div class="fx fx-flicker"></div>
+<div class="fx fx-scanlines"></div>
+<div class="fx fx-vignette"></div>
+
+<script src="console/console.js"></script>
+</body>
+</html>

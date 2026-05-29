@@ -2,7 +2,7 @@
 
 Monorepo für **NeuroVim** — ein Vim-Lernspiel mit Spy-Thriller-Narrativ. Eine Codebase, zwei Auslieferungs-Targets: Obsidian-Plugin + Standalone-Web-App.
 
-> **Status: Skelett (Phase 2).** Noch kein portierter Code — die Packages sind Stubs mit dokumentiertem Intent. Das eigentliche Refactoring (Phase 3) folgt nach Architektur-Freigabe.
+> **Status: Phase 3 (lauffähig).** Core vollständig portiert, beide Adapter funktional, Web-App feature-complete (Welcome → NEXUS → Briefing → Editor → Result + Sandbox) inkl. Polish-Pass aus `docs/DESIGN-SPEC.md`. 150 Tests grün, 4-Workspace-Typecheck grün. Build: `npm run build`.
 
 ## Architektur
 

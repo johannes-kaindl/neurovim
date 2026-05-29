@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<title>NeuroVim — Boot Sequence</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=VT323&family=Share+Tech+Mono&display=swap" />
+<style>
+  /* =========================================================
+     NeuroVim Boot Sequence — Werkzeug-Schema (kein Cinematic)
+     Anker: R (der Raum). Phasen exakt aus UI-Guide §III.
+     ========================================================= */
+
+  :root {
+    /* NV palette — aus AESTHETIC PRIMER */
+    --nv-resistance-green: #00ff41;
+    --nv-corp-amber:       #ffaa00;
+    --nv-glass-black:      #060606;
+    --nv-alert-red:        #ff4444;
+    --nv-phosphor-dim:     #003d10;
+    --nv-cipher-amber-dim: #cc7700;
+
+    /* Easing */
+    --nv-ease-phosphor:   cubic-bezier(0.16, 1, 0.3, 1);
+    --nv-ease-corp:       cubic-bezier(0.4, 0, 0.6, 1);
+    --nv-ease-resistance: cubic-bezier(0.34, 1.2, 0.64, 1);
+
+    /* Dauern */
+    --nv-dur-instant: 80ms;
+    --nv-dur-quick:   220ms;
+    --nv-dur-beat:    600ms;
+    --nv-dur-decay:   1200ms;
+    --nv-dur-mirror:  2400ms;
+
+    /* Frequenzen */
+    --nv-pulse-cursor:  0.8s;
+    --nv-pulse-ambient: 4s;
+
+    --nv-ls-resistance: 0.05em;
+    --nv-ls-corp:       0.14em;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: var(--nv-resistance-green);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    overflow: hidden;
+  }
+
+  /* The chamber. Glass-black ground — warm, beengt, nicht clean. */
+  .stage {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 50% 55%,
+        #0a0c0a 0%,
+        var(--nv-glass-black) 55%,
+        #000 100%
+      );
+    overflow: hidden;
+  }
+
+  /* Ambient room glow — fensterlose Wohneinheit, einzige Lichtquelle */
+  .ambient-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 50% 35% at 50% 50%,
+      rgba(0, 255, 65, 0.025),
+      transparent 70%
+    );
+    opacity: 0;
+    animation: ambient-rise 1600ms var(--nv-ease-phosphor) 1200ms forwards,
+               ambient-breathe var(--nv-pulse-ambient) ease-in-out 2800ms infinite;
+  }
+  @keyframes ambient-rise {
+    to { opacity: 1; }
+  }
+  @keyframes ambient-breathe {
+    0%, 100% { filter: brightness(0.97); }
+    50%      { filter: brightness(1.03); }
+  }
+
+  /* Permanent scanlines — Welt, kein Effekt. Nicht animiert. */
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.18) 3px
+    );
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+    z-index: 50;
+  }
+
+  /* Subtle screen curvature — phosphor CRT */
+  .crt-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 50%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+    z-index: 51;
+  }
+
+  /* ========================
+     Frame container
+     ======================== */
+  .frame-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(880px, 88vw);
+    color: var(--nv-resistance-green);
+  }
+
+  /* The box-drawing frame — ASCII grammar.
+     Each row is rendered as a span sequence so we can reveal char-by-char. */
+  .frame {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(11px, 1.15vw, 14px);
+    line-height: 1.32;
+    letter-spacing: var(--nv-ls-resistance);
+    white-space: pre;
+    text-shadow:
+      0 0 4px rgba(0, 255, 65, 0.45),
+      0 0 12px rgba(0, 255, 65, 0.18);
+  }
+
+  .frame .row {
+    display: block;
+    color: var(--nv-resistance-green);
+    opacity: 0;
+    /* step-start reveal: each line rasts as a unit — kein smooth fill */
+    animation: row-rast 1ms step-start forwards;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes row-rast {
+    to { opacity: 1; }
+  }
+
+  /* The very first phosphor flash — single ┌ at T+200ms */
+  .first-tick {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    color: var(--nv-resistance-green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(11px, 1.15vw, 14px);
+    line-height: 1.32;
+    opacity: 0;
+    text-shadow:
+      0 0 6px rgba(0, 255, 65, 0.7),
+      0 0 18px rgba(0, 255, 65, 0.3);
+    animation: first-tick-flash 1200ms var(--nv-ease-phosphor) 200ms forwards;
+  }
+  @keyframes first-tick-flash {
+    0%   { opacity: 0; }
+    20%  { opacity: 1; }   /* T+440 */
+    35%  { opacity: 0.35; }/* small drift */
+    100% { opacity: 0; }   /* dies into the proper char-reveal that overtakes it */
+  }
+
+  /* ========================
+     HUD tokens — appear individually after frame stands
+     T+1400 base, 60ms versatz pro Token
+     ======================== */
+  .hud {
+    position: absolute;
+    top: -28px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: var(--nv-ls-resistance);
+    color: var(--nv-resistance-green);
+  }
+  .hud-spacer { flex: 1; }
+
+  .token {
+    opacity: 0;
+    /* step-start reveal — kein Fade */
+    animation: token-rast 1ms step-start forwards;
+  }
+  .token.t-time { animation-delay: 1400ms; }
+  .token.t-mode { animation-delay: 1460ms; }
+  .token.t-xp   { animation-delay: 1520ms; }
+  .token.t-sec  { animation-delay: 1580ms; }
+  @keyframes token-rast {
+    to { opacity: 1; }
+  }
+
+  .token .label {
+    color: rgba(0, 255, 65, 0.55);
+    margin-right: 6px;
+  }
+  .token .value {
+    color: var(--nv-resistance-green);
+    text-shadow:
+      0 0 4px rgba(0, 255, 65, 0.5),
+      0 0 12px rgba(0, 255, 65, 0.18);
+  }
+  .token.status .value {
+    background: rgba(0, 255, 65, 0.12);
+    border: 1px solid rgba(0, 255, 65, 0.35);
+    padding: 2px 8px 1px;
+    text-shadow: none;
+    /* Resistance-overshoot bei reveal */
+    animation: token-pulse var(--nv-dur-quick) var(--nv-ease-resistance) 1480ms backwards;
+  }
+  @keyframes token-pulse {
+    0%   { background: rgba(0, 255, 65, 0.45); border-color: rgba(0,255,65,0.9); }
+    100% { background: rgba(0, 255, 65, 0.12); border-color: rgba(0,255,65,0.35); }
+  }
+
+  /* Lower HUD line — sector + audit */
+  .hud-bottom {
+    position: absolute;
+    bottom: -28px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: var(--nv-ls-resistance);
+    color: rgba(0, 255, 65, 0.55);
+  }
+  .hud-bottom .left, .hud-bottom .right {
+    opacity: 0;
+    animation: token-rast 1ms step-start forwards;
+  }
+  .hud-bottom .left  { animation-delay: 1640ms; }
+  .hud-bottom .right { animation-delay: 1700ms; }
+
+  /* ========================
+     Cursor — appears T+2000, blinks step-start 0.8s
+     This is the heartbeat of the operative-layer.
+     ======================== */
+  .cursor-line {
+    position: relative;
+    margin-top: 14px;
+    padding-left: 2ch;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(11px, 1.15vw, 14px);
+    color: var(--nv-resistance-green);
+    letter-spacing: var(--nv-ls-resistance);
+    opacity: 0;
+    animation: token-rast 1ms step-start 2000ms forwards;
+  }
+  .cursor-line .prompt {
+    color: rgba(0, 255, 65, 0.55);
+    margin-right: 8px;
+  }
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    vertical-align: -2px;
+    background: var(--nv-resistance-green);
+    box-shadow:
+      0 0 4px rgba(0, 255, 65, 0.6),
+      0 0 12px rgba(0, 255, 65, 0.25);
+    animation: cursor-blink var(--nv-pulse-cursor) step-start 2000ms infinite;
+  }
+  @keyframes cursor-blink {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* ========================
+     Phase log — quiet annotation in the corner.
+     Shows what the system is doing, in operative-voice.
+     Anker: R — knapp, ohne Geste.
+     ======================== */
+  .phase-log {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: var(--nv-ls-resistance);
+    color: rgba(0, 255, 65, 0.4);
+    line-height: 1.7;
+    z-index: 30;
+    pointer-events: none;
+  }
+  .phase-log .line {
+    opacity: 0;
+    animation: token-rast 1ms step-start forwards;
+  }
+
+  /* Hum visualizer — appears at T+1200 */
+  .hum-meter {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: var(--nv-ls-resistance);
+    color: rgba(0, 255, 65, 0.45);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: token-rast 1ms step-start 1200ms forwards;
+    z-index: 30;
+  }
+  .hum-meter .bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 10px;
+  }
+  .hum-meter .bars span {
+    display: inline-block;
+    width: 2px;
+    background: var(--nv-resistance-green);
+    opacity: 0.55;
+    animation: hum-flicker 2.4s ease-in-out infinite;
+  }
+  .hum-meter .bars span:nth-child(1) { height: 30%; animation-delay: -0.0s; }
+  .hum-meter .bars span:nth-child(2) { height: 55%; animation-delay: -0.4s; }
+  .hum-meter .bars span:nth-child(3) { height: 38%; animation-delay: -0.8s; }
+  .hum-meter .bars span:nth-child(4) { height: 65%; animation-delay: -1.2s; }
+  .hum-meter .bars span:nth-child(5) { height: 42%; animation-delay: -1.6s; }
+  .hum-meter .bars span:nth-child(6) { height: 30%; animation-delay: -2.0s; }
+  @keyframes hum-flicker {
+    0%, 100% { transform: scaleY(0.85); opacity: 0.4; }
+    50%      { transform: scaleY(1.1);  opacity: 0.7; }
+  }
+  .hum-meter .bars { transform-origin: center bottom; }
+
+  /* ========================
+     Replay control — bottom right, very subtle
+     ======================== */
+  .replay {
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: var(--nv-ls-resistance);
+    color: rgba(0, 255, 65, 0.35);
+    background: transparent;
+    border: 1px solid rgba(0, 255, 65, 0.15);
+    padding: 5px 10px 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: border-color var(--nv-dur-quick) var(--nv-ease-resistance),
+                color var(--nv-dur-quick) var(--nv-ease-resistance);
+    opacity: 0;
+    animation: token-rast 1ms step-start 2400ms forwards;
+  }
+  .replay:hover {
+    border-color: rgba(0, 255, 65, 0.45);
+    color: rgba(0, 255, 65, 0.8);
+  }
+  .replay .glyph {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+  }
+
+  /* Initial-state cleanup so nothing flashes pre-animation */
+  body.booting .frame .row .ch,
+  body.booting .token,
+  body.booting .hud-bottom .left,
+  body.booting .hud-bottom .right,
+  body.booting .cursor-line,
+  body.booting .hum-meter,
+  body.booting .ambient-glow,
+  body.booting .replay {
+    opacity: 0;
+  }
+</style>
+</head>
+<body class="booting">
+
+  <div class="stage">
+    <div class="ambient-glow"></div>
+
+    <!-- Phase log — operative-voice annotations -->
+    <div class="phase-log" id="phaseLog"></div>
+
+    <!-- Hum meter -->
+    <div class="hum-meter" aria-hidden="true">
+      <span>50/60 HZ</span>
+      <span class="bars">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </span>
+      <span>−45 dB</span>
+    </div>
+
+    <div class="frame-wrap">
+
+      <!-- HUD top -->
+      <div class="hud" aria-hidden="true">
+        <div class="token t-time">
+          <span class="label">T+</span><span class="value" id="tplus">00:00:00</span>
+        </div>
+        <div class="token t-mode status">
+          <span class="label">MODE</span><span class="value">NORMAL</span>
+        </div>
+        <div class="token t-xp">
+          <span class="label">XP</span><span class="value">0271</span>
+        </div>
+        <div class="hud-spacer"></div>
+        <div class="token t-sec">
+          <span class="label">SEC</span><span class="value">7.4-N11</span>
+        </div>
+      </div>
+
+      <!-- Box-drawing frame, char-by-char reveal -->
+      <div class="frame" id="frame" aria-hidden="true">
+        <span class="first-tick">┌</span>
+      </div>
+
+      <!-- Cursor line — appears last -->
+      <div class="cursor-line">
+        <span class="prompt">~/vault/sec-7.4-n11 $</span><span class="cursor"></span>
+      </div>
+
+      <!-- HUD bottom -->
+      <div class="hud-bottom" aria-hidden="true">
+        <div class="left">IAL-2047-Q1-0271 · OPERATIVE LAYER</div>
+        <div class="right">03:47 LOCAL · NORTHERN RELAY CLUSTER</div>
+      </div>
+    </div>
+
+    <button class="replay" id="replayBtn" type="button" aria-label="Replay boot">
+      <span class="glyph"></span> REPLAY
+    </button>
+
+    <div class="crt-vignette"></div>
+    <div class="scanlines"></div>
+  </div>
+
+<script>
+/* =============================================================
+   Boot Sequence Driver
+   - Builds the box-drawing frame text
+   - Reveals it char-by-char with step-start (~25 chars/s = 40ms)
+     starting at T+400ms
+   - Drives the T+ counter once cursor appears
+   - Replay re-runs the whole sequence
+   ============================================================= */
+
+const FRAME_LINES = [
+  "┌─ NEUROVIM ─ vim.exe ─ resistance.tools ────────────────────────────┐",
+  "│                                                                    │",
+  "│  ~ /vault/sec-7.4-n11/                                             │",
+  "│                                                                    │",
+  "│  > terminal initialised                                            │",
+  "│  > phosphor calibration ............................. ok           │",
+  "│  > scanline overlay ................................. ok           │",
+  "│  > ambient layer .................................... pending      │",
+  "│  > resistance heartbeat ............................. 0.8 hz       │",
+  "│  > corp surveillance ................................ idle         │",
+  "│                                                                    │",
+  "│  files restored this session ........................ 0            │",
+  "│  endpoint diversity ................................. nominal      │",
+  "│  audit-codes outstanding ............................ —            │",
+  "│                                                                    │",
+  "│  press : to begin                                                  │",
+  "│                                                                    │",
+  "└────────────────────────────────────────────────────────────────────┘",
+];
+
+const PHASE_LOG = [
+  { t: 200,  text: "[T+0.20]  phosphor flicker"     },
+  { t: 420,  text: "[T+0.42]  frame build_start"    },
+  { t: 1200, text: "[T+1.20]  ambient_layer engaged"},
+  { t: 1400, text: "[T+1.40]  hud_tokens visible"   },
+  { t: 1640, text: "[T+1.64]  audit refs loaded"    },
+  { t: 2000, text: "[T+2.00]  cursor live · ready"  },
+];
+
+const FRAME_BUILD_START = 400;     // T+400 — frame begins to land
+const LINE_INTERVAL     = 45;      // 18 lines × 45ms = 810ms → frame steht bei T+1210
+const CURSOR_AT         = 2000;    // T+2000
+
+const frameEl = document.getElementById('frame');
+const phaseLogEl = document.getElementById('phaseLog');
+const tplusEl = document.getElementById('tplus');
+const replayBtn = document.getElementById('replayBtn');
+
+let counterRaf = null;
+let counterStart = null;
+
+function buildFrame() {
+  // wipe everything except the very first phosphor-tick
+  // we'll let the first-tick keep its short flash; the proper line-reveal
+  // overtakes it shortly after.
+  const tick = frameEl.querySelector('.first-tick');
+  frameEl.innerHTML = '';
+  if (tick) frameEl.appendChild(tick);
+
+  for (let r = 0; r < FRAME_LINES.length; r++) {
+    const row = document.createElement('span');
+    row.className = 'row';
+    row.textContent = FRAME_LINES[r];
+    const delay = FRAME_BUILD_START + (r * LINE_INTERVAL);
+    row.style.setProperty('--d', delay + 'ms');
+    row.style.animationDelay = delay + 'ms';
+    frameEl.appendChild(row);
+  }
+}
+
+function buildPhaseLog() {
+  phaseLogEl.innerHTML = '';
+  PHASE_LOG.forEach(entry => {
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.textContent = entry.text;
+    line.style.animationDelay = entry.t + 'ms';
+    phaseLogEl.appendChild(line);
+  });
+}
+
+function startCounter() {
+  cancelAnimationFrame(counterRaf);
+  counterStart = performance.now();
+  function tick(now) {
+    const elapsed = (now - counterStart) / 1000;
+    const m = Math.floor(elapsed / 60);
+    const s = Math.floor(elapsed % 60);
+    const cs = Math.floor((elapsed * 100) % 100);
+    tplusEl.textContent =
+      String(m).padStart(2, '0') + ':' +
+      String(s).padStart(2, '0') + ':' +
+      String(cs).padStart(2, '0');
+    counterRaf = requestAnimationFrame(tick);
+  }
+  counterRaf = requestAnimationFrame(tick);
+}
+
+function runBoot() {
+  document.body.classList.add('booting');
+  buildFrame();
+  buildPhaseLog();
+
+  // Force reflow so animations restart cleanly
+  void document.body.offsetWidth;
+
+  document.body.classList.remove('booting');
+
+  // Start the T+ counter when the cursor goes live
+  setTimeout(startCounter, CURSOR_AT);
+}
+
+replayBtn.addEventListener('click', () => {
+  // Re-run by re-applying booting class then removing — restarts CSS animations
+  // by replacing nodes with fresh clones.
+  document.body.classList.add('booting');
+  cancelAnimationFrame(counterRaf);
+  tplusEl.textContent = '00:00:00';
+
+  // Replace the frame-wrap and stage elements with clones to reset animations
+  const stage = document.querySelector('.stage');
+  const fresh = stage.cloneNode(true);
+  stage.parentNode.replaceChild(fresh, stage);
+
+  // Re-bind references after clone
+  rebind();
+  runBoot();
+});
+
+function rebind() {
+  // Refresh element refs after stage replacement
+  window._frameEl = document.getElementById('frame');
+  window._phaseLogEl = document.getElementById('phaseLog');
+  window._tplusEl = document.getElementById('tplus');
+  window._replayBtn = document.getElementById('replayBtn');
+
+  // Reassign module-scope vars (since we used `const` we need to use the lookups directly)
+  // Rebuild listener
+  document.getElementById('replayBtn').addEventListener('click', replayHandler);
+}
+
+// Re-implement replay using fresh queries each time, no const aliases
+function replayHandler() {
+  const stage = document.querySelector('.stage');
+  const fresh = stage.cloneNode(true);
+  stage.parentNode.replaceChild(fresh, stage);
+  cancelAnimationFrame(counterRaf);
+
+  // Rebuild from scratch with fresh lookups
+  const frameEl2 = document.getElementById('frame');
+  const phaseLogEl2 = document.getElementById('phaseLog');
+  const tplusEl2 = document.getElementById('tplus');
+
+  // wipe + rebuild frame (line-by-line)
+  const tick = frameEl2.querySelector('.first-tick');
+  frameEl2.innerHTML = '';
+  if (tick) frameEl2.appendChild(tick);
+
+  for (let r = 0; r < FRAME_LINES.length; r++) {
+    const row = document.createElement('span');
+    row.className = 'row';
+    row.textContent = FRAME_LINES[r];
+    const delay = FRAME_BUILD_START + (r * LINE_INTERVAL);
+    row.style.setProperty('--d', delay + 'ms');
+    row.style.animationDelay = delay + 'ms';
+    frameEl2.appendChild(row);
+  }
+
+  phaseLogEl2.innerHTML = '';
+  PHASE_LOG.forEach(entry => {
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.textContent = entry.text;
+    line.style.animationDelay = entry.t + 'ms';
+    phaseLogEl2.appendChild(line);
+  });
+
+  tplusEl2.textContent = '00:00:00';
+
+  // Counter binding
+  counterStart = performance.now();
+  function tickC(now) {
+    const elapsed = (now - counterStart) / 1000;
+    const m = Math.floor(elapsed / 60);
+    const s = Math.floor(elapsed % 60);
+    const cs = Math.floor((elapsed * 100) % 100);
+    const el = document.getElementById('tplus');
+    if (el) el.textContent =
+      String(m).padStart(2, '0') + ':' +
+      String(s).padStart(2, '0') + ':' +
+      String(cs).padStart(2, '0');
+    counterRaf = requestAnimationFrame(tickC);
+  }
+  setTimeout(() => {
+    counterRaf = requestAnimationFrame(tickC);
+  }, CURSOR_AT);
+
+  // Reattach replay listener on the fresh button
+  document.getElementById('replayBtn').addEventListener('click', replayHandler);
+}
+
+// Initial run
+buildFrame();
+buildPhaseLog();
+setTimeout(startCounter, CURSOR_AT);
+
+// Override the simple click handler with the proper replay
+replayBtn.removeEventListener('click', () => {});
+document.getElementById('replayBtn').addEventListener('click', replayHandler);
+
+</script>
+</body>
+</html>

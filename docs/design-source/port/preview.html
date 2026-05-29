@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NeuroVim — Port Preview (real selectors)</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* preview-only scaffolding (NOT part of the port) */
+  body { padding: 0; }
+  .pv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 1320px; margin: 0 auto; padding: 28px 20px 80px; align-items: start; }
+  .pv-card { border: 1px dashed var(--nv-border); border-radius: 8px; padding: 18px; }
+  .pv-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--nv-muted); margin-bottom: 14px; }
+  .pv-modal-wrap { position: relative; min-height: 440px; background: var(--nv-bg); border-radius: 6px; }
+  .pv-modal-wrap .nv-modal-backdrop { position: absolute; border-radius: 6px; }
+  .pv-full { grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+<div class="pv-grid">
+
+  <!-- NEXUS -->
+  <section class="pv-card">
+    <div class="pv-label">NEXUS · header + tiers + states</div>
+    <div class="nv-app" style="padding:0">
+      <div class="nv-nexus-head">
+        <h1>NEXUS</h1>
+        <div class="nv-lvl-row">
+          <span class="nv-lvl">LVL <strong>1</strong> · SIGNAL LOST</span>
+          <span class="nv-lvl-next"><strong>50</strong> / 66 XP → GHOST OPERATIVE</span>
+        </div>
+        <div class="nv-xpbar"><div class="nv-xpbar-fill" style="width:76%"></div></div>
+        <div class="nv-stats"><span>CLEARED <strong>3</strong>/27</span><span>STREAK <strong>3</strong></span><span>FASTEST <strong>1.2s</strong></span></div>
+      </div>
+      <div class="nv-picker">
+        <h2>ARC I · Indoctrination</h2>
+        <ul>
+          <li class="nv-done-row"><button><span class="nv-mid">M-01</span><span class="nv-mtitle">The Three Modes</span><span class="nv-mbest">★ 1.2s · 14ks</span><span class="nv-done">✓</span></button></li>
+          <li class="nv-active"><button><span class="nv-mid">M-04</span><span class="nv-mtitle">Lines and Jumps</span><span class="nv-mxp"><strong>15</strong> XP</span></button></li>
+          <li><button><span class="nv-mid">M-05</span><span class="nv-mtitle">Operators — d c y p</span><span class="nv-mxp"><strong>25</strong> XP</span></button></li>
+          <li class="nv-locked"><button><span class="nv-mid">M-09</span><span class="nv-mtitle">Marks, Macros &amp; Registers</span><span class="nv-mxp">⊘ LOCKED</span></button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT MODAL -->
+  <section class="pv-card">
+    <div class="pv-label">Result modal · level-up beat</div>
+    <div class="pv-modal-wrap">
+      <div class="nv-modal-backdrop">
+        <div class="nv-modal">
+          <div class="nv-modal-title nv-ok">✓ SIGNAL RESTORED</div>
+          <div class="nv-modal-sub">The Three Modes</div>
+          <div class="nv-modal-xp">+15</div>
+          <div class="nv-modal-levelup">▲ Rank Established<strong>GHOST OPERATIVE</strong></div>
+          <div class="nv-modal-metrics"><span>1.4s</span><span>14 ks</span><span>100%</span></div>
+          <div class="nv-modal-actions"><button>Review</button><button class="nv-modal-primary">Next Mission →</button><button>← NEXUS</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITOR -->
+  <section class="pv-card pv-full">
+    <div class="pv-label">Editor · bar + status chip (CM6 host themed separately by cm6-theme.ts)</div>
+    <div class="nv-editor" style="padding:0">
+      <div class="nv-editor-bar">
+        <button>← NEXUS</button>
+        <span class="nv-editor-title">M-01 · The Three Modes</span>
+        <button class="nv-submit">Submit (verify)</button>
+      </div>
+      <div class="nv-cm-host" style="background:#060807;border:1px solid var(--nv-border);border-bottom:none;padding:14px 16px;font-family:ui-monospace,monospace;font-size:14px;line-height:1.7;color:#cdd8cd;white-space:pre">FROM: CIPHER
+TO: [PENDING DESIGNATION] — NEW OPERATIVE
+
+YoXur induction doZcument has been comprXomized in tranZsit.
+You must useX the tooXl to reZmove it.</div>
+      <div class="nv-editor-status">
+        <span class="nv-mode-chip" data-mode="NORMAL">NORMAL</span>
+        <span class="nv-file">M-01-TRANSMISSION</span>
+        <span class="nv-hud"><span>⏱ <strong>5.3s</strong></span><span class="nv-noise">NOISE <strong>29</strong></span><span>⌁ <strong>12</strong></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIEFING callouts -->
+  <section class="pv-card">
+    <div class="pv-label">Briefing · type-aware callouts (D25)</div>
+    <div class="nv-md">
+      <blockquote><p><span class="nv-co nv-co-quote"></span><strong>CIPHER</strong> <em>You were referred. Someone vouched. Restore it. Use Vim. Nothing else.</em></p></blockquote>
+      <blockquote><p><span class="nv-co nv-co-warning"></span><strong>CLEARANCE</strong> SHADOW LINK is one-time. If verification fails, the channel burns.</p></blockquote>
+      <blockquote><p><span class="nv-co nv-co-tip"></span><strong>HINT</strong> Every Nevermore you recover is the same word. Work fast, work clean.</p></blockquote>
+    </div>
+  </section>
+
+  <!-- SANDBOX -->
+  <section class="pv-card">
+    <div class="pv-label">Sandbox · difficulty tiles + run HUD</div>
+    <div class="nv-sandbox-hud" aria-live="polite">
+      <div class="nv-cell"><div class="nv-v">5.0s</div><div class="nv-k">Elapsed</div></div>
+      <div class="nv-cell nv-rem"><div class="nv-v">30</div><div class="nv-k">Glitches left</div></div>
+    </div>
+    <div class="nv-sandbox-diffs">
+      <button class="nv-sandbox-diff"><span class="nv-sandbox-diff-name">EASY</span><span class="nv-sandbox-diff-count">6 glitches</span><span class="nv-sandbox-diff-pb">PB —</span></button>
+      <button class="nv-sandbox-diff"><span class="nv-sandbox-diff-name">NORMAL</span><span class="nv-sandbox-diff-count">13 glitches</span><span class="nv-sandbox-diff-pb">PB —</span></button>
+      <button class="nv-sandbox-diff"><span class="nv-sandbox-diff-name">HARD</span><span class="nv-sandbox-diff-count">27 glitches</span><span class="nv-sandbox-diff-pb">PB —</span></button>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

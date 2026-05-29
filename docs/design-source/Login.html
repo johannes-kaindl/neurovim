@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<title>NeuroVim — Login // Intercepted Feed</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=VT323&family=Share+Tech+Mono&display=swap" />
+<style>
+:root {
+  --nv-resistance-green: #00ff41;
+  --nv-resistance-dim:   #00b82e;
+  --nv-resistance-faint: #003d10;
+  --nv-corp-amber:       #ffaa00;
+  --nv-corp-amber-dim:   #cc7700;
+  --nv-glass-black:      #060606;
+  --nv-alert-red:        #ff4444;
+
+  --nv-ease-phosphor:   cubic-bezier(0.16, 1, 0.3, 1);
+  --nv-ease-resistance: cubic-bezier(0.34, 1.2, 0.64, 1);
+
+  --nv-pulse-cursor:  0.8s;
+  --nv-pulse-corp:    1.0s;
+  --nv-pulse-alert:   0.4s;
+
+  --nv-ls-resistance: 0.05em;
+  --nv-ls-corp:       0.14em;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  background: #000;
+  color: var(--nv-resistance-green);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  overflow: hidden;
+}
+
+/* ============================================================
+   LAYER 0 — The intercepted CORP city feed
+   Three.js renders an amber surveillance flyover; we then tint
+   it green via blend-mode and add aberration (the resistance
+   has hijacked the feed; phosphor is forcing its way through).
+   ============================================================ */
+.feed {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+#feed-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* The phosphor wash — converts amber CORP feed into resistance-green operative-view */
+.feed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 55%, rgba(0, 255, 65, 0.18), transparent 70%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, transparent 30%, transparent 70%, rgba(0, 0, 0, 0.7) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* ============================================================
+   LAYER 1 — CORP scan visualization (SVG, on top of feed)
+   Target reticle, ortungspings, CORP-unit markers
+   ============================================================ */
+.scan-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.scan-layer svg { width: 100%; height: 100%; }
+
+/* CORP elements use amber, but slightly desaturated through phosphor wash */
+.corp-stroke { stroke: var(--nv-corp-amber); }
+.corp-fill   { fill:   var(--nv-corp-amber); }
+.res-stroke  { stroke: var(--nv-resistance-green); }
+.res-fill    { fill:   var(--nv-resistance-green); }
+
+/* Sweep ring */
+@keyframes sweep-pulse {
+  0%   { r: 0;   opacity: 0.7; stroke-width: 1.5; }
+  100% { r: 180; opacity: 0;   stroke-width: 0.5; }
+}
+.sweep-ring {
+  fill: none;
+  stroke: var(--nv-corp-amber);
+  animation: sweep-pulse 2.4s linear infinite;
+  transform-box: fill-box;
+}
+.sweep-ring.delay-1 { animation-delay: 0.8s; }
+.sweep-ring.delay-2 { animation-delay: 1.6s; }
+
+/* Target lock reticle — corner brackets */
+@keyframes target-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+.target-bracket {
+  fill: none;
+  stroke: var(--nv-alert-red);
+  stroke-width: 1.5;
+  animation: target-pulse var(--nv-pulse-alert) ease-in-out infinite;
+}
+.target-cross {
+  stroke: var(--nv-alert-red);
+  stroke-width: 1;
+  opacity: 0.55;
+  stroke-dasharray: 2 3;
+}
+
+/* Ping markers */
+@keyframes ping-expand {
+  0%   { r: 2;  opacity: 0.95; }
+  100% { r: 22; opacity: 0; }
+}
+.ping {
+  fill: none;
+  stroke: var(--nv-corp-amber);
+  stroke-width: 1;
+  animation: ping-expand 1.6s ease-out infinite;
+  transform-box: fill-box;
+}
+.ping-dot {
+  fill: var(--nv-corp-amber);
+  r: 1.5;
+}
+
+/* CORP unit markers — geometric chevrons */
+.corp-unit {
+  fill: rgba(255, 170, 0, 0.12);
+  stroke: var(--nv-corp-amber);
+  stroke-width: 1;
+}
+.corp-unit-label {
+  fill: var(--nv-corp-amber);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+/* Vector tracks — paths CORP units have moved along */
+.track {
+  fill: none;
+  stroke: var(--nv-corp-amber);
+  stroke-width: 0.5;
+  stroke-dasharray: 4 3;
+  opacity: 0.5;
+}
+
+/* Anomaly grid — surveillance overlay tagging buildings */
+.tag-box {
+  fill: none;
+  stroke: var(--nv-corp-amber);
+  stroke-width: 0.5;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   LAYER 2 — Permanent grain + scanlines (the screen between us)
+   ============================================================ */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 3px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+.crt-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 50%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}
+
+/* Subtle interference bar that drifts down */
+@keyframes interference {
+  0%   { top: -8%; opacity: 0; }
+  10%  { opacity: 0.18; }
+  90%  { opacity: 0.18; }
+  100% { top: 108%; opacity: 0; }
+}
+.interference {
+  position: fixed;
+  left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.06) 30%,
+    rgba(0, 255, 65, 0.12) 50%,
+    rgba(0, 255, 65, 0.06) 70%,
+    transparent 100%);
+  z-index: 42;
+  pointer-events: none;
+  animation: interference 9s linear infinite;
+}
+
+/* ============================================================
+   GLOBAL HUD — frame edge readouts (CORP voice, intercepted)
+   ============================================================ */
+.hud-edge {
+  position: fixed;
+  z-index: 30;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: var(--nv-ls-corp);
+  color: var(--nv-corp-amber);
+  text-shadow: 0 0 6px rgba(255, 170, 0, 0.35);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.hud-edge .v { color: #ffe2a3; }
+
+.hud-tl { top: 14px; left: 18px; }
+.hud-tl > div { line-height: 1.7; }
+.hud-tl .corp-mark {
+  display: inline-block;
+  border: 1px solid var(--nv-corp-amber);
+  padding: 2px 6px 1px;
+  margin-right: 8px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.hud-bl {
+  bottom: 14px;
+  left: 18px;
+  font-size: 10px;
+  color: rgba(255, 170, 0, 0.7);
+  line-height: 1.7;
+}
+
+.hud-br {
+  bottom: 14px;
+  right: 18px;
+  text-align: right;
+  font-size: 10px;
+  color: rgba(255, 170, 0, 0.7);
+  line-height: 1.7;
+}
+
+/* Resistance interception banner — bridging the corp HUD */
+.intercept-banner {
+  position: fixed;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  z-index: 30;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--nv-resistance-green);
+  text-shadow: 0 0 6px rgba(0, 255, 65, 0.5);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.intercept-banner::before {
+  content: '◆ ';
+  color: var(--nv-resistance-green);
+  margin-right: 4px;
+}
+
+/* ============================================================
+   LOGIN — center stage, operative-layer
+   ============================================================ */
+.login-wrap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: min(440px, 92vw);
+}
+
+.login-frame {
+  position: relative;
+  background: rgba(6, 6, 6, 0.82);
+  border: 1px solid rgba(0, 255, 65, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 65, 0.08),
+    0 0 32px -4px rgba(0, 255, 65, 0.18),
+    0 0 1px rgba(0, 255, 65, 0.55) inset;
+  padding: 28px 30px 26px;
+  backdrop-filter: blur(2px);
+}
+
+.login-frame::before,
+.login-frame::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--nv-resistance-green);
+  border-style: solid;
+}
+.login-frame::before {
+  top: -1px; left: -1px;
+  border-width: 1px 0 0 1px;
+  box-shadow: -1px -1px 0 0 var(--nv-resistance-green);
+}
+.login-frame::after {
+  bottom: -1px; right: -1px;
+  border-width: 0 1px 1px 0;
+  box-shadow: 1px 1px 0 0 var(--nv-resistance-green);
+}
+.login-corner-tr,
+.login-corner-bl {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: solid var(--nv-resistance-green);
+}
+.login-corner-tr {
+  top: -1px; right: -1px;
+  border-width: 1px 1px 0 0;
+}
+.login-corner-bl {
+  bottom: -1px; left: -1px;
+  border-width: 0 0 1px 1px;
+}
+
+.login-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(0, 255, 65, 0.55);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.login-meta .id {
+  color: rgba(0, 255, 65, 0.75);
+}
+.login-meta .ch {
+  color: var(--nv-resistance-green);
+}
+
+.login-title {
+  font-family: 'VT323', monospace;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--nv-resistance-green);
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 0 6px rgba(0, 255, 65, 0.5),
+    0 0 18px rgba(0, 255, 65, 0.18);
+  margin-bottom: 4px;
+}
+.login-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(0, 255, 65, 0.55);
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+.field label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: rgba(0, 255, 65, 0.7);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.field-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  background: rgba(0, 20, 5, 0.55);
+  padding: 8px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--nv-resistance-green);
+  letter-spacing: var(--nv-ls-resistance);
+  transition: border-color 0.22s var(--nv-ease-resistance);
+}
+.field-input:focus-within {
+  border-color: var(--nv-resistance-green);
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.4),
+              0 0 16px -2px rgba(0, 255, 65, 0.35);
+}
+.field-input .prompt {
+  color: rgba(0, 255, 65, 0.55);
+  margin-right: 8px;
+  user-select: none;
+}
+.field-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--nv-resistance-green);
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+}
+.field-input input::placeholder {
+  color: rgba(0, 255, 65, 0.25);
+}
+
+.field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: rgba(0, 255, 65, 0.6);
+  margin: 6px 2px 18px;
+}
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+  white-space: nowrap;
+}
+.checkbox-box {
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgba(0, 255, 65, 0.55);
+  display: inline-grid;
+  place-items: center;
+  background: transparent;
+  flex-shrink: 0;
+}
+.checkbox.checked .checkbox-box::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--nv-resistance-green);
+  box-shadow: 0 0 6px var(--nv-resistance-green);
+}
+.help-link {
+  color: rgba(0, 255, 65, 0.55);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0, 255, 65, 0.3);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.help-link:hover {
+  color: var(--nv-resistance-green);
+  border-bottom-color: var(--nv-resistance-green);
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--nv-resistance-green);
+  border: 1px solid var(--nv-resistance-green);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-shadow: 0 0 4px rgba(0, 255, 65, 0.5);
+  transition: all 0.22s var(--nv-ease-resistance);
+}
+.btn-primary:hover {
+  background: rgba(0, 255, 65, 0.22);
+  box-shadow: 0 0 0 1px var(--nv-resistance-green),
+              0 0 20px -2px rgba(0, 255, 65, 0.45);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.login-foot {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(0, 255, 65, 0.45);
+  text-transform: uppercase;
+}
+.login-foot .status-ok {
+  color: var(--nv-resistance-green);
+  text-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+}
+
+/* Cursor blink that lives on the final character of input */
+.fld-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background: var(--nv-resistance-green);
+  vertical-align: -2px;
+  box-shadow: 0 0 4px rgba(0, 255, 65, 0.6);
+  animation: blink var(--nv-pulse-cursor) step-start infinite;
+  margin-left: 2px;
+}
+@keyframes blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ============================================================
+   BOOT INLAY — top right corner
+   ============================================================ */
+.boot-inlay {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 60;
+  width: 320px;
+  background: rgba(6, 6, 6, 0.85);
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.06),
+              0 0 18px -4px rgba(0, 255, 65, 0.25);
+  padding: 8px 10px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--nv-resistance-green);
+  letter-spacing: var(--nv-ls-resistance);
+}
+.boot-inlay-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  color: rgba(0, 255, 65, 0.55);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 255, 65, 0.25);
+  padding-bottom: 5px;
+  margin-bottom: 7px;
+  white-space: nowrap;
+}
+.boot-inlay-head .live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.boot-inlay-head .live-dot {
+  width: 6px; height: 6px;
+  background: var(--nv-resistance-green);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--nv-resistance-green);
+  animation: live-pulse 1.4s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.85); }
+  50%      { opacity: 1;   transform: scale(1.1); }
+}
+
+.boot-frame {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  line-height: 1.4;
+  color: rgba(0, 255, 65, 0.85);
+  white-space: pre;
+  text-shadow: 0 0 3px rgba(0, 255, 65, 0.35);
+  height: 138px;
+  overflow: hidden;
+}
+.boot-frame .row {
+  display: block;
+}
+
+.boot-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 9px;
+  background: var(--nv-resistance-green);
+  box-shadow: 0 0 4px rgba(0, 255, 65, 0.6);
+  animation: blink var(--nv-pulse-cursor) step-start infinite;
+  margin-left: 1px;
+  vertical-align: -1px;
+}
+
+.boot-mini-hud {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0, 255, 65, 0.15);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: rgba(0, 255, 65, 0.55);
+  text-transform: uppercase;
+}
+.boot-mini-hud .v {
+  color: var(--nv-resistance-green);
+  text-shadow: 0 0 3px rgba(0, 255, 65, 0.4);
+}
+
+/* ============================================================
+   TWEAKS PANEL — operative-styled, bottom-right
+   ============================================================ */
+.tweaks-panel {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 500;
+  width: 260px;
+  background: rgba(4,6,4,0.97);
+  border: 1px solid rgba(0,255,65,0.55);
+  box-shadow: 0 0 0 1px rgba(0,255,65,0.07), 0 0 28px -4px rgba(0,255,65,0.22);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--nv-resistance-green);
+  letter-spacing: 0.05em;
+  padding: 10px 12px 12px;
+  backdrop-filter: blur(4px);
+}
+.tweaks-panel.visible { display: block; }
+.tweaks-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0,255,65,0.7);
+  border-bottom: 1px solid rgba(0,255,65,0.25);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+.tweaks-close {
+  cursor: pointer;
+  color: rgba(0,255,65,0.5);
+  background: none; border: none;
+  font-family: inherit; font-size: 13px;
+  line-height: 1; padding: 0 2px;
+}
+.tweaks-close:hover { color: var(--nv-resistance-green); }
+.tw-section {
+  font-size: 8px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0,255,65,0.4);
+  margin: 9px 0 5px;
+}
+.tw-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px; gap: 8px;
+}
+.tw-row label {
+  flex: 0 0 auto;
+  color: rgba(0,255,65,0.75);
+  white-space: nowrap; font-size: 9px;
+}
+.tw-val {
+  flex: 0 0 38px; text-align: right;
+  color: var(--nv-resistance-green);
+  font-size: 9px;
+  text-shadow: 0 0 4px rgba(0,255,65,0.4);
+}
+.tw-row input[type=range] {
+  flex: 1; -webkit-appearance: none; appearance: none;
+  height: 2px; background: rgba(0,255,65,0.22);
+  outline: none; cursor: pointer; border-radius: 0;
+}
+.tw-row input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 9px; height: 9px;
+  background: var(--nv-resistance-green);
+  box-shadow: 0 0 5px rgba(0,255,65,0.6);
+  cursor: pointer;
+}
+.tw-row input[type=range]::-moz-range-thumb {
+  width: 9px; height: 9px;
+  background: var(--nv-resistance-green);
+  border: none;
+}
+.tw-divider {
+  border: none;
+  border-top: 1px solid rgba(0,255,65,0.12);
+  margin: 7px 0;
+}
+
+/* ============================================================
+   CORP transmission feed — bottom left ticker
+   ============================================================ */
+.corp-feed {
+  position: fixed;
+  bottom: 50px;
+  left: 18px;
+  z-index: 30;
+  width: 360px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--nv-corp-amber);
+  text-shadow: 0 0 4px rgba(255, 170, 0, 0.3);
+  line-height: 1.7;
+  pointer-events: none;
+}
+.corp-feed .head {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 170, 0, 0.55);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 170, 0, 0.25);
+  padding-bottom: 3px;
+  margin-bottom: 5px;
+}
+.corp-feed-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(2px);
+  animation: feed-arrive 360ms var(--nv-ease-phosphor) forwards;
+}
+@keyframes feed-arrive {
+  to { opacity: 1; transform: translateY(0); }
+}
+.corp-feed-line.fade { color: rgba(255, 170, 0, 0.45); }
+.corp-feed-line.fade2 { color: rgba(255, 170, 0, 0.25); }
+
+/* ============================================================
+   Resistance margin annotations — quiet operator commentary
+   over CORP voice (the doppelte Stimme)
+   ============================================================ */
+.margin-note {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: var(--nv-ls-resistance);
+  color: var(--nv-resistance-green);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.45);
+  pointer-events: none;
+  opacity: 0;
+  animation: margin-fade 600ms var(--nv-ease-phosphor) forwards;
+}
+@keyframes margin-fade {
+  to { opacity: 1; }
+}
+.margin-note::before {
+  content: '┐ ';
+  color: rgba(0, 255, 65, 0.55);
+}
+
+/* ============================================================
+   DATA HUD top center — feed origin
+   ============================================================ */
+.feed-origin {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 170, 0, 0.6);
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.feed-origin .corp-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 10px 2px;
+  border: 1px solid rgba(255, 170, 0, 0.4);
+  background: rgba(20, 12, 0, 0.6);
+}
+.feed-origin .corp-source .dot {
+  width: 6px; height: 6px;
+  background: var(--nv-corp-amber);
+  border-radius: 50%;
+  animation: corp-dot var(--nv-pulse-corp) ease-in-out infinite;
+}
+@keyframes corp-dot {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1;   box-shadow: 0 0 8px var(--nv-corp-amber); }
+}
+.feed-origin .intercepted {
+  display: block;
+  margin-top: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--nv-resistance-green);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.45);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== Layer 0: city flyover feed ===== -->
+<div class="feed">
+  <canvas id="feed-canvas"></canvas>
+</div>
+
+<!-- ===== Layer 1: CORP scan overlay ===== -->
+<div class="scan-layer" aria-hidden="true">
+  <svg id="scan-svg" preserveAspectRatio="xMidYMid slice"></svg>
+</div>
+
+<!-- ===== Top-edge HUD: CORP voice ===== -->
+<div class="hud-edge hud-tl">
+  <div><span class="corp-mark">CORP</span>SECTOR <span class="v">7.4-N11</span> · COMPLIANCE WING</div>
+  <div>RECON FEED · UNIT <span class="v">CW-2241</span> · ALT <span class="v" id="hud-alt">0042M</span></div>
+  <div>HDG <span class="v" id="hud-hdg">271°</span> · SPD <span class="v" id="hud-spd">0.18</span> · T+<span class="v" id="hud-time">00:00:00</span></div>
+</div>
+
+<div class="feed-origin">
+  <span class="corp-source"><span class="dot"></span>CORP-CW · LIVE COCKPIT FEED</span>
+  <span class="intercepted">◆ INTERCEPTED · PHOSPHOR LAYER ENGAGED ◆</span>
+</div>
+
+<div class="hud-edge hud-bl">
+  <div>PATTERN ANALYSIS UNIT <span class="v">PAU-CS-0037</span></div>
+  <div>ANOMALY THRESHOLD · <span class="v" id="hud-thr">+1.76×</span> BASELINE</div>
+  <div>ENDPOINTS TRACKED · <span class="v" id="hud-eps">000241</span></div>
+</div>
+
+<div class="hud-edge hud-br">
+  <div>03:47 LOCAL · NORTHERN RELAY CLUSTER</div>
+  <div>AAR-2047-0214 / PAU-CS-0037</div>
+  <div><span style="color: var(--nv-resistance-green); text-shadow: 0 0 4px rgba(0,255,65,.4)">SIGNAL DRIFT · −2.4 dB</span></div>
+</div>
+
+<div class="intercept-banner">SIGNAL HIJACK · IAL-2047-Q1-0271 · OPERATIVE LAYER</div>
+
+<!-- ===== Boot inlay top right ===== -->
+<div class="boot-inlay">
+  <div class="boot-inlay-head">
+    <span class="live"><span class="live-dot"></span>BOOT // OPERATIVE</span>
+    <span>~/sec-7.4-n11</span>
+  </div>
+  <div class="boot-frame" id="boot-frame"></div>
+  <div class="boot-mini-hud">
+    <span>T+ <span class="v" id="boot-time">00:00:04</span></span>
+    <span>MODE <span class="v">NORMAL</span></span>
+    <span>XP <span class="v">0271</span></span>
+  </div>
+</div>
+
+<!-- ===== Login form ===== -->
+<div class="login-wrap">
+  <div class="login-frame">
+    <div class="login-corner-tr"></div>
+    <div class="login-corner-bl"></div>
+
+    <div class="login-meta">
+      <span class="id">IAL-2047-Q1-0271</span>
+      <span class="ch">◆ SECURE CHANNEL</span>
+    </div>
+
+    <div class="login-title">NEUROVIM</div>
+    <div class="login-subtitle">Operative Authentication · Resistance Tools</div>
+
+    <form id="login-form" autocomplete="off">
+      <div class="field">
+        <label for="callsign">Operative Callsign</label>
+        <div class="field-input">
+          <span class="prompt">~$</span>
+          <input id="callsign" type="text" placeholder="enter callsign" spellcheck="false" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="cipher">Cipher Phrase</label>
+        <div class="field-input">
+          <span class="prompt">::</span>
+          <input id="cipher" type="password" placeholder="• • • • • • • •" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="checkbox checked" id="trust-toggle">
+          <span class="checkbox-box"></span>
+          <span>Trust this endpoint</span>
+        </div>
+        <a class="help-link">Phrase forgotten?</a>
+      </div>
+
+      <button type="submit" class="btn-primary">▸ Enter Vault</button>
+    </form>
+
+    <div class="login-foot">
+      <span>v0.4.7 · BUILD 2047.Q1</span>
+      <span class="status-ok">◆ LINK NOMINAL</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Permanent overlays ===== -->
+<!-- ===== Tweaks Panel ===== -->
+<div class="tweaks-panel" id="tweaks-panel">
+  <div class="tweaks-head">
+    <span>◆ Tweaks // Camera Feed</span>
+    <button class="tweaks-close" id="tweaks-close">✕</button>
+  </div>
+
+  <div class="tw-section">Camera</div>
+  <div class="tw-row"><label>Height</label><input type="range" id="tw-height" min="5" max="120" step="1" value="35"><span class="tw-val" id="tv-height">35</span></div>
+  <div class="tw-row"><label>Pitch °</label><input type="range" id="tw-pitch" min="-80" max="-5" step="1" value="-22"><span class="tw-val" id="tv-pitch">-22°</span></div>
+  <div class="tw-row"><label>Focal</label><input type="range" id="tw-focal" min="120" max="1200" step="10" value="480"><span class="tw-val" id="tv-focal">480</span></div>
+  <div class="tw-row"><label>Horizon</label><input type="range" id="tw-horizon" min="0" max="90" step="1" value="42"><span class="tw-val" id="tv-horizon">42%</span></div>
+  <hr class="tw-divider">
+
+  <div class="tw-section">Motion</div>
+  <div class="tw-row"><label>Speed</label><input type="range" id="tw-speed" min="0.05" max="3.0" step="0.05" value="0.55"><span class="tw-val" id="tv-speed">0.55</span></div>
+  <div class="tw-row"><label>Sway</label><input type="range" id="tw-sway" min="0" max="30" step="0.5" value="5"><span class="tw-val" id="tv-sway">5</span></div>
+  <div class="tw-row"><label>Roll</label><input type="range" id="tw-roll" min="0" max="0.1" step="0.002" value="0.012"><span class="tw-val" id="tv-roll">0.012</span></div>
+  <hr class="tw-divider">
+
+  <div class="tw-section">Scene</div>
+  <div class="tw-row"><label>Grid α</label><input type="range" id="tw-grid" min="0" max="1" step="0.01" value="0.35"><span class="tw-val" id="tv-grid">0.35</span></div>
+  <div class="tw-row"><label>Build H</label><input type="range" id="tw-buildh" min="10" max="120" step="1" value="65"><span class="tw-val" id="tv-buildh">65</span></div>
+  <div class="tw-row"><label>Windows</label><input type="range" id="tw-win" min="0.0" max="1.0" step="0.01" value="0.42"><span class="tw-val" id="tv-win">0.42</span></div>
+  <div class="tw-row"><label>Traffic</label><input type="range" id="tw-traffic" min="0" max="200" step="5" value="60"><span class="tw-val" id="tv-traffic">60</span></div>
+  <hr class="tw-divider">
+
+  <div class="tw-section">Overlay</div>
+  <div class="tw-row"><label>Phosphor</label><input type="range" id="tw-phosphor" min="0" max="0.5" step="0.01" value="0.18"><span class="tw-val" id="tv-phosphor">0.18</span></div>
+</div>
+
+<div class="interference"></div>
+<div class="scanlines"></div>
+<div class="crt-vignette"></div>
+
+<!-- ============================================================
+     City flyover renderer — Canvas-2D wireframe projection
+     CORP cockpit view. Amber lines, perspective-projected, with
+     forward camera motion through a procedural city block grid.
+     ============================================================ -->
+<script>
+(function () {
+  const cv = document.getElementById('feed-canvas');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize() {
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * DPR; cv.height = H * DPR;
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ---- Procedural building generation ----
+  const STREET = 22;     // street half-width along X
+  const BL = 36;         // block length along Z
+  const NB = 64;         // number of blocks ahead
+  const blocks = [];
+  // deterministic-ish: seed with block index so layout is stable
+  function rng(seed) {
+    let x = Math.sin(seed * 9301 + 49297) * 233280;
+    return x - Math.floor(x);
+  }
+  for (let b = 0; b < NB; b++) {
+    const baseZ = -b * BL - 24;
+    for (const side of [-1, 1]) {
+      const n = 2 + Math.floor(rng(b * 3 + side) * 2);
+      for (let i = 0; i < n; i++) {
+        const w = 8 + rng(b * 7 + side * 11 + i) * 14;
+        const h = 14 + rng(b * 13 + side * 17 + i * 5) * 70;
+        const d = 8 + rng(b * 19 + side * 23 + i) * 12;
+        const cx = side * (STREET + 6 + w / 2);
+        const cz = baseZ + i * (BL / n) + BL / n / 2;
+        // window grid (deterministic mask)
+        const cols = Math.max(2, Math.floor(w / 3.6));
+        const rows = Math.max(3, Math.floor(h / 3.6));
+        const wmask = [];
+        for (let r2 = 0; r2 < rows; r2++) {
+          const row = [];
+          for (let c2 = 0; c2 < cols; c2++) {
+            row.push(rng(b * 31 + side * 37 + i * 41 + r2 * 7 + c2) < 0.42);
+          }
+          wmask.push(row);
+        }
+        blocks.push({ cx, cz, w, h, d, side, wmask, cols, rows });
+      }
+    }
+    // Sky bridge every 3 blocks
+    if (b % 3 === 1) {
+      blocks.push({
+        bridge: true,
+        z: baseZ,
+        leftX: -STREET - 8, leftY: 18 + rng(b) * 16,
+        midY: 14 + rng(b + 99) * 8,
+        rightX: STREET + 8, rightY: 18 + rng(b + 199) * 16,
+      });
+    }
+  }
+
+  // ---- Tweakable config (exposed to tweaks panel via window.NV_CAM) ----
+  const CAM = window.NV_CAM = {
+    height:      35,    // camera Y above ground
+    pitch:      -0.38,  // radians downward (negative = down)
+    focal:       480,   // focal length in px
+    horizonY:    0.42,  // fraction from top where horizon sits
+    speed:       0.55,  // forward flight speed
+    rollAmp:     0.012, // max roll oscillation
+    yawAmp:      0.04,  // max yaw oscillation
+    sway:        5,     // camera X sway amplitude
+    gridOpacity: 0.35,  // ground grid opacity
+    trafficCount:60,    // moving motes
+    winDensity:  0.42,  // window lit fraction 0–1
+    buildMaxH:   65,    // tallest building height
+    phosphor:    0.18,  // phosphor overlay intensity
+  };
+
+  const camera = { x:0, y: CAM.height, z:0, pitch: CAM.pitch, yaw:0, roll:0 };
+
+  // World→camera→screen projection
+  function project(wx, wy, wz) {
+    // translate
+    let x = wx - camera.x;
+    let y = wy - camera.y;
+    let z = wz - camera.z;
+    // yaw around Y
+    const cy = Math.cos(camera.yaw), sy = Math.sin(camera.yaw);
+    let xz = x * cy - z * sy;
+    let zz = x * sy + z * cy;
+    x = xz; z = zz;
+    // pitch around X
+    const cp = Math.cos(camera.pitch), sp = Math.sin(camera.pitch);
+    let yz = y * cp - z * sp;
+    let zp = y * sp + z * cp;
+    y = yz; z = zp;
+    // We want the camera looking down -Z (z negative is in front)
+    // After translation, in-front points have z < 0.
+    if (z >= -0.5) return null;
+    const f = CAM.focal / (-z);
+    // roll
+    const cr = Math.cos(camera.roll), sr = Math.sin(camera.roll);
+    const rx = x * cr - y * sr;
+    const ry = x * sr + y * cr;
+    return {
+      sx: W * 0.5 + rx * f,
+      sy: H * CAM.horizonY - ry * f,
+      depth: -z,
+    };
+  }
+
+  function drawLine(a, b, alpha) {
+    if (!a || !b) return;
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.moveTo(a.sx, a.sy);
+    ctx.lineTo(b.sx, b.sy);
+    ctx.stroke();
+  }
+
+  // ---- Render loop ----
+  let t = 0;
+  function frame() {
+    t += 1 / 60;
+
+    // camera flies forward along -Z
+    camera.z -= CAM.speed;
+    camera.y = CAM.height + Math.sin(t * 0.27) * (CAM.height * 0.06);
+    camera.x = Math.sin(t * 0.09) * CAM.sway;
+    camera.roll  = Math.sin(t * 0.15) * CAM.rollAmp;
+    camera.yaw   = Math.sin(t * 0.08) * CAM.yawAmp;
+    camera.pitch = CAM.pitch + Math.sin(t * 0.19) * 0.02;
+    // wrap
+    if (camera.z < -NB * BL + 80) camera.z = 0;
+
+    // ---- Clear with deep void ----
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    const g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#04050a');
+    g.addColorStop(0.55, '#06070b');
+    g.addColorStop(1, '#020203');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    // ---- Ground grid (perspective fan) ----
+    ctx.strokeStyle = `rgba(255,170,0,${CAM.gridOpacity})`;
+    ctx.lineWidth = 0.6;
+    const horizonZ = camera.z - 560;
+    // long X-direction lines
+    for (let xLine = -320; xLine <= 320; xLine += 24) {
+      const a = project(xLine, 0, camera.z - 2);
+      const b = project(xLine, 0, horizonZ);
+      drawLine(a, b, 0.38);
+    }
+    // perpendicular Z-direction rungs (every 16m)
+    const startZ = Math.floor(camera.z / 16) * 16;
+    for (let zL = startZ; zL > camera.z - 560; zL -= 16) {
+      const a = project(-320, 0, zL);
+      const b = project(320, 0, zL);
+      const fade = Math.max(0, 1 - (camera.z - zL) / 560);
+      drawLine(a, b, 0.35 * fade);
+    }
+
+    // ---- Buildings ----
+    // sort by depth so distant draws first
+    const visible = [];
+    for (const blk of blocks) {
+      if (blk.bridge) {
+        const dz = blk.z - camera.z;
+        if (dz < 4 && dz > -560) visible.push(blk);
+        continue;
+      }
+      const dz = blk.cz - camera.z;
+      if (dz < 4 && dz > -560) visible.push(blk);
+    }
+    visible.sort((a, b) => {
+      const az = a.bridge ? a.z : a.cz;
+      const bz = b.bridge ? b.z : b.cz;
+      return az - bz; // farthest (most negative) first
+    });
+
+    for (const blk of visible) {
+      if (blk.bridge) {
+        // arch line: 3 control points
+        const a = project(blk.leftX, blk.leftY, blk.z);
+        const m = project(0, blk.midY, blk.z);
+        const c = project(blk.rightX, blk.rightY, blk.z);
+        ctx.strokeStyle = 'rgba(255,170,0,0.55)';
+        ctx.lineWidth = 0.9;
+        if (a && m && c) {
+          ctx.globalAlpha = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(a.sx, a.sy);
+          ctx.quadraticCurveTo(m.sx, m.sy, c.sx, c.sy);
+          ctx.stroke();
+        }
+        continue;
+      }
+
+      const { cx, cz, w, h, d, wmask, cols, rows } = blk;
+      const halfW = w / 2, halfD = d / 2;
+      // 8 corners
+      const c000 = project(cx - halfW, 0, cz - halfD);
+      const c100 = project(cx + halfW, 0, cz - halfD);
+      const c110 = project(cx + halfW, 0, cz + halfD);
+      const c010 = project(cx - halfW, 0, cz + halfD);
+      const c001 = project(cx - halfW, h, cz - halfD);
+      const c101 = project(cx + halfW, h, cz - halfD);
+      const c111 = project(cx + halfW, h, cz + halfD);
+      const c011 = project(cx - halfW, h, cz + halfD);
+
+      const dist = Math.abs(cz - camera.z);
+      const fade = Math.max(0.05, Math.min(1, 1 - dist / 560));
+
+      // Rooftop fill — faint amber plane seen from above
+      if (c001 && c101 && c111 && c011) {
+        ctx.globalAlpha = 0.05 * fade;
+        ctx.fillStyle = '#ffaa00';
+        ctx.beginPath();
+        ctx.moveTo(c001.sx, c001.sy);
+        ctx.lineTo(c101.sx, c101.sy);
+        ctx.lineTo(c111.sx, c111.sy);
+        ctx.lineTo(c011.sx, c011.sy);
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+
+      // wireframe edges
+      ctx.strokeStyle = 'rgba(255,170,0,0.85)';
+      ctx.lineWidth = 0.9;
+      // bottom
+      drawLine(c000, c100, 0.4 * fade);
+      drawLine(c100, c110, 0.4 * fade);
+      drawLine(c110, c010, 0.4 * fade);
+      drawLine(c010, c000, 0.4 * fade);
+      // top
+      drawLine(c001, c101, 0.85 * fade);
+      drawLine(c101, c111, 0.85 * fade);
+      drawLine(c111, c011, 0.85 * fade);
+      drawLine(c011, c001, 0.85 * fade);
+      // verticals
+      drawLine(c000, c001, 0.7 * fade);
+      drawLine(c100, c101, 0.7 * fade);
+      drawLine(c110, c111, 0.7 * fade);
+      drawLine(c010, c011, 0.7 * fade);
+
+      // Lit windows on facing side (the side toward street center)
+      // For side=-1, windows on +X face; side=+1, windows on -X face
+      const facing = blk.side;
+      const winFaceX = cx - facing * halfW; // surface plane X
+      ctx.fillStyle = 'rgba(255,200,80,0.95)';
+      ctx.globalAlpha = 0.9 * fade;
+      for (let r2 = 0; r2 < rows; r2++) {
+        for (let c2 = 0; c2 < cols; c2++) {
+          if (!wmask[r2][c2]) continue;
+          const wy = 2 + r2 * (h - 4) / rows;
+          const wz = cz - halfD + 1 + c2 * (d - 2) / cols;
+          const p = project(winFaceX, wy, wz);
+          if (!p) continue;
+          // size scales with f
+          const sz = Math.max(0.5, Math.min(3.5, 600 / p.depth));
+          ctx.fillRect(p.sx - sz / 2, p.sy - sz / 2, sz, sz);
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // ---- Distant skyline silhouette ----
+    ctx.strokeStyle = 'rgba(255,170,0,0.35)';
+    ctx.lineWidth = 0.7;
+    ctx.globalAlpha = 0.45;
+    ctx.beginPath();
+    let started = false;
+    for (let xS = -320; xS <= 320; xS += 8) {
+      const sky = Math.abs(Math.sin(xS * 0.07 + camera.z * 0.005) +
+                           Math.cos(xS * 0.13 - camera.z * 0.003)) * 18;
+      const p = project(xS, sky, camera.z - 520);
+      if (!p) continue;
+      if (!started) { ctx.moveTo(p.sx, p.sy); started = true; }
+      else ctx.lineTo(p.sx, p.sy);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    // ---- Traffic motes along the street ----
+    ctx.fillStyle = 'rgba(255,200,80,0.9)';
+    for (let i = 0; i < CAM.trafficCount; i++) {
+      const lane = (i % 4 < 2) ? -1 : 1;
+      const xJ = (rng(i * 13) - 0.5) * 4 + lane * 8;
+      const speed = 0.7 + rng(i * 7) * 0.6;
+      const baseZ = camera.z - ((i * 11 + (t * 22 * speed)) % 360) - 8;
+      const p = project(xJ, 1.0, baseZ);
+      if (!p) continue;
+      const sz = Math.max(0.4, Math.min(2.4, 180 / p.depth));
+      ctx.globalAlpha = Math.min(1, 240 / p.depth);
+      ctx.fillRect(p.sx - sz / 2, p.sy - sz / 2, sz, sz);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function loop() {
+    frame();
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+
+<!-- ============================================================
+     CORP scan layer — SVG overlay, refreshed reactively
+     ============================================================ -->
+<script>
+(function () {
+  const svg = document.getElementById('scan-svg');
+  const SVGNS = 'http://www.w3.org/2000/svg';
+
+  function sizeSvg() {
+    const w = window.innerWidth, h = window.innerHeight;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+  }
+  sizeSvg();
+  window.addEventListener('resize', () => { sizeSvg(); rebuild(); });
+
+  // Returns a deterministic but interesting set of scan elements
+  function rebuild() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const W = window.innerWidth, H = window.innerHeight;
+
+    // ---- Anomaly tag boxes scattered across feed ----
+    const tags = [
+      { x: 0.12, y: 0.30, w: 0.08, h: 0.16, code: 'AN-7734' },
+      { x: 0.71, y: 0.22, w: 0.10, h: 0.20, code: 'AN-7811' },
+      { x: 0.20, y: 0.62, w: 0.07, h: 0.10, code: 'AN-7902' },
+      { x: 0.62, y: 0.66, w: 0.11, h: 0.14, code: 'AN-8014' },
+      { x: 0.86, y: 0.50, w: 0.06, h: 0.18, code: 'AN-8120' },
+    ];
+    tags.forEach(t => {
+      const x = t.x * W, y = t.y * H, w = t.w * W, h = t.h * H;
+      const r = document.createElementNS(SVGNS, 'rect');
+      r.setAttribute('x', x); r.setAttribute('y', y);
+      r.setAttribute('width', w); r.setAttribute('height', h);
+      r.setAttribute('class', 'tag-box');
+      svg.appendChild(r);
+      // tick at corner
+      const tk = document.createElementNS(SVGNS, 'text');
+      tk.setAttribute('x', x + 4); tk.setAttribute('y', y - 4);
+      tk.setAttribute('class', 'corp-unit-label');
+      tk.textContent = t.code;
+      tk.style.opacity = 0.55;
+      svg.appendChild(tk);
+    });
+
+    // ---- Sweep ring (CORP pattern analysis) ----
+    const sweepCx = W * 0.5, sweepCy = H * 0.55;
+    for (let i = 0; i < 3; i++) {
+      const r = document.createElementNS(SVGNS, 'circle');
+      r.setAttribute('cx', sweepCx); r.setAttribute('cy', sweepCy);
+      r.setAttribute('class', 'sweep-ring' + (i ? ' delay-' + i : ''));
+      svg.appendChild(r);
+    }
+
+    // ---- Target-acquisition reticle ----
+    const tx = W * 0.36, ty = H * 0.48;
+    const tSize = 76;
+    // dashed crosshair
+    const ch = document.createElementNS(SVGNS, 'line');
+    ch.setAttribute('x1', tx - tSize); ch.setAttribute('y1', ty);
+    ch.setAttribute('x2', tx + tSize); ch.setAttribute('y2', ty);
+    ch.setAttribute('class', 'target-cross');
+    svg.appendChild(ch);
+    const cv2 = document.createElementNS(SVGNS, 'line');
+    cv2.setAttribute('x1', tx); cv2.setAttribute('y1', ty - tSize);
+    cv2.setAttribute('x2', tx); cv2.setAttribute('y2', ty + tSize);
+    cv2.setAttribute('class', 'target-cross');
+    svg.appendChild(cv2);
+
+    // 4 corner brackets
+    const br = 14;
+    const halfH = tSize - 6;
+    const corners = [
+      [tx - halfH, ty - halfH, [[br, 0], [0, 0], [0, br]]],         // tl
+      [tx + halfH, ty - halfH, [[-br, 0], [0, 0], [0, br]]],         // tr
+      [tx - halfH, ty + halfH, [[br, 0], [0, 0], [0, -br]]],        // bl
+      [tx + halfH, ty + halfH, [[-br, 0], [0, 0], [0, -br]]],        // br
+    ];
+    corners.forEach(([cx, cy, segs]) => {
+      const path = document.createElementNS(SVGNS, 'path');
+      const d = `M ${cx + segs[0][0]} ${cy + segs[0][1]}
+                 L ${cx + segs[1][0]} ${cy + segs[1][1]}
+                 L ${cx + segs[2][0]} ${cy + segs[2][1]}`;
+      path.setAttribute('d', d);
+      path.setAttribute('class', 'target-bracket');
+      svg.appendChild(path);
+    });
+
+    // Target label
+    const tLabel = document.createElementNS(SVGNS, 'text');
+    tLabel.setAttribute('x', tx + halfH + 6);
+    tLabel.setAttribute('y', ty - halfH);
+    tLabel.setAttribute('fill', '#ff4444');
+    tLabel.setAttribute('font-family', 'Share Tech Mono, monospace');
+    tLabel.setAttribute('font-size', '10');
+    tLabel.setAttribute('letter-spacing', '0.18em');
+    tLabel.style.textShadow = '0 0 6px #ff4444';
+    tLabel.textContent = 'TGT-LOCK · IAL-0271';
+    svg.appendChild(tLabel);
+
+    const tLabel2 = document.createElementNS(SVGNS, 'text');
+    tLabel2.setAttribute('x', tx + halfH + 6);
+    tLabel2.setAttribute('y', ty - halfH + 12);
+    tLabel2.setAttribute('fill', 'rgba(255,68,68,0.7)');
+    tLabel2.setAttribute('font-family', 'Share Tech Mono, monospace');
+    tLabel2.setAttribute('font-size', '8');
+    tLabel2.setAttribute('letter-spacing', '0.14em');
+    tLabel2.textContent = 'CONFIDENCE 0.71';
+    svg.appendChild(tLabel2);
+
+    // ---- Ortungspings — small ping cells ----
+    const pings = [
+      { x: 0.14, y: 0.40 },
+      { x: 0.78, y: 0.30 },
+      { x: 0.55, y: 0.70 },
+      { x: 0.27, y: 0.78 },
+      { x: 0.84, y: 0.62 },
+      { x: 0.43, y: 0.20 },
+    ];
+    pings.forEach((p, i) => {
+      const cx = p.x * W, cy = p.y * H;
+      const ring = document.createElementNS(SVGNS, 'circle');
+      ring.setAttribute('cx', cx); ring.setAttribute('cy', cy);
+      ring.setAttribute('class', 'ping');
+      ring.style.animationDelay = (i * 0.25) + 's';
+      svg.appendChild(ring);
+      const dot = document.createElementNS(SVGNS, 'circle');
+      dot.setAttribute('cx', cx); dot.setAttribute('cy', cy);
+      dot.setAttribute('class', 'ping-dot');
+      svg.appendChild(dot);
+    });
+
+    // ---- CORP units in deployment ----
+    const units = [
+      { x: 0.18, y: 0.50, code: 'CW-2241', vec: [0.04, -0.03] },
+      { x: 0.30, y: 0.30, code: 'CW-2247', vec: [0.06, 0.02]  },
+      { x: 0.74, y: 0.42, code: 'CW-2253', vec: [-0.05, 0.04] },
+      { x: 0.66, y: 0.78, code: 'GS-1814', vec: [-0.04, -0.05] },
+      { x: 0.92, y: 0.70, code: 'GS-1820', vec: [-0.06, -0.02] },
+    ];
+    units.forEach(u => {
+      const cx = u.x * W, cy = u.y * H;
+
+      // movement track (where they came from)
+      const trackEnd = [cx + u.vec[0] * W, cy + u.vec[1] * H];
+      const tr = document.createElementNS(SVGNS, 'line');
+      tr.setAttribute('x1', trackEnd[0]); tr.setAttribute('y1', trackEnd[1]);
+      tr.setAttribute('x2', cx); tr.setAttribute('y2', cy);
+      tr.setAttribute('class', 'track');
+      svg.appendChild(tr);
+
+      // chevron (triangle pointing along vec)
+      const ang = Math.atan2(-u.vec[1], -u.vec[0]) * 180 / Math.PI;
+      const g = document.createElementNS(SVGNS, 'g');
+      g.setAttribute('transform', `translate(${cx} ${cy}) rotate(${ang})`);
+      const tri = document.createElementNS(SVGNS, 'polygon');
+      tri.setAttribute('points', '8,0 -5,5 -5,-5');
+      tri.setAttribute('class', 'corp-unit');
+      g.appendChild(tri);
+      svg.appendChild(g);
+
+      // label
+      const lbl = document.createElementNS(SVGNS, 'text');
+      lbl.setAttribute('x', cx + 12);
+      lbl.setAttribute('y', cy + 4);
+      lbl.setAttribute('class', 'corp-unit-label');
+      lbl.textContent = u.code;
+      svg.appendChild(lbl);
+
+      // velocity tick under label
+      const v = document.createElementNS(SVGNS, 'text');
+      v.setAttribute('x', cx + 12);
+      v.setAttribute('y', cy + 14);
+      v.setAttribute('class', 'corp-unit-label');
+      v.style.opacity = 0.5;
+      v.textContent = '▸ 0.' + (12 + Math.floor(Math.random() * 30));
+      svg.appendChild(v);
+    });
+
+    // ---- Sector grid lines (faint amber crosshatch in corners) ----
+    const grid = document.createElementNS(SVGNS, 'g');
+    grid.setAttribute('opacity', '0.08');
+    for (let i = 0; i < 20; i++) {
+      const v = document.createElementNS(SVGNS, 'line');
+      v.setAttribute('x1', (W / 20) * i); v.setAttribute('x2', (W / 20) * i);
+      v.setAttribute('y1', 0); v.setAttribute('y2', H);
+      v.setAttribute('stroke', '#ffaa00'); v.setAttribute('stroke-width', '0.5');
+      grid.appendChild(v);
+    }
+    for (let i = 0; i < 12; i++) {
+      const h2 = document.createElementNS(SVGNS, 'line');
+      h2.setAttribute('y1', (H / 12) * i); h2.setAttribute('y2', (H / 12) * i);
+      h2.setAttribute('x1', 0); h2.setAttribute('x2', W);
+      h2.setAttribute('stroke', '#ffaa00'); h2.setAttribute('stroke-width', '0.5');
+      grid.appendChild(h2);
+    }
+    svg.insertBefore(grid, svg.firstChild);
+  }
+
+  rebuild();
+})();
+</script>
+
+<!-- ============================================================
+     Boot inlay sequence + HUD counters + CORP feed ticker
+     ============================================================ -->
+<script>
+(function () {
+  const FRAME_LINES = [
+    '┌─ NEUROVIM · OPERATIVE ──────────────────┐',
+    '│                                         │',
+    '│ > terminal initialised                  │',
+    '│ > phosphor calibration ............ ok  │',
+    '│ > scanline overlay ................. ok │',
+    '│ > ambient layer ............... engaged │',
+    '│ > resistance heartbeat ........ 0.8 hz  │',
+    '│ > corp surveillance ........... hijack  │',
+    '│                                         │',
+    '│ press : to begin                        │',
+    '│                                         │',
+    '└─────────────────────────────────────────┘',
+  ];
+  const frameEl = document.getElementById('boot-frame');
+  let charDelay = 60;
+
+  // line-by-line step-start reveal — frame stands quickly
+  FRAME_LINES.forEach((text, r) => {
+    const row = document.createElement('span');
+    row.className = 'row';
+    row.textContent = text;
+    row.style.opacity = '0';
+    frameEl.appendChild(row);
+    setTimeout(() => { row.style.opacity = '1'; }, 200 + r * 50);
+  });
+
+  // little blinking cursor on last line after frame
+  setTimeout(() => {
+    const cursor = document.createElement('span');
+    cursor.className = 'boot-cursor';
+    frameEl.appendChild(cursor);
+  }, 200 + FRAME_LINES.length * 50 + 100);
+
+  // boot counter
+  const bt = document.getElementById('boot-time');
+  const start = performance.now();
+  function tickBoot(now) {
+    const e = (now - start) / 1000 + 4;
+    const m = Math.floor(e / 60), s = Math.floor(e % 60), cs = Math.floor((e * 100) % 100);
+    bt.textContent =
+      String(m).padStart(2, '0') + ':' +
+      String(s).padStart(2, '0') + ':' +
+      String(cs).padStart(2, '0');
+    requestAnimationFrame(tickBoot);
+  }
+  requestAnimationFrame(tickBoot);
+
+  // ---- Top hud counters (CORP voice) ----
+  const elAlt = document.getElementById('hud-alt');
+  const elHdg = document.getElementById('hud-hdg');
+  const elSpd = document.getElementById('hud-spd');
+  const elTime = document.getElementById('hud-time');
+  const elThr = document.getElementById('hud-thr');
+  const elEps = document.getElementById('hud-eps');
+  const t0 = Date.now();
+  let epsBase = 241;
+  setInterval(() => {
+    const e = Date.now() - t0;
+    elAlt.textContent = String(42 + Math.round(Math.sin(e * 0.0003) * 12)).padStart(4, '0') + 'M';
+    elHdg.textContent = Math.floor((270 + Math.sin(e * 0.00012) * 15 + 360) % 360) + '°';
+    elSpd.textContent = (0.18 + Math.random() * 0.01).toFixed(2);
+    const sec = Math.floor(e / 1000);
+    elTime.textContent =
+      String(Math.floor(sec / 3600)).padStart(2, '0') + ':' +
+      String(Math.floor(sec / 60) % 60).padStart(2, '0') + ':' +
+      String(sec % 60).padStart(2, '0');
+    elThr.textContent = '+' + (1.5 + Math.random() * 0.6).toFixed(2) + '×';
+    epsBase += Math.random() < 0.4 ? 1 : 0;
+    elEps.textContent = String(epsBase).padStart(6, '0');
+  }, 200);
+
+  // ---- Trust toggle ----
+  const trust = document.getElementById('trust-toggle');
+  trust.addEventListener('click', () => {
+    trust.classList.toggle('checked');
+  });
+
+  // ---- Submit gentle feedback ----
+  document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-primary');
+    btn.textContent = '◆ Authenticating · cipher accepted';
+    btn.style.background = 'rgba(0, 255, 65, 0.3)';
+    setTimeout(() => {
+      btn.textContent = '▸ Enter Vault';
+      btn.style.background = '';
+    }, 2400);
+  });
+})();
+</script>
+
+<!-- ============================================================
+     Tweaks panel wiring
+     ============================================================ -->
+<script>
+(function () {
+  const panel = document.getElementById('tweaks-panel');
+
+  // Tweaks protocol
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode')   panel.classList.add('visible');
+    if (e.data?.type === '__deactivate_edit_mode') panel.classList.remove('visible');
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  document.getElementById('tweaks-close').addEventListener('click', () => {
+    panel.classList.remove('visible');
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  });
+
+  // Helper: wire a slider to NV_CAM + display
+  function wire(id, camKey, display, fmt) {
+    const input = document.getElementById('tw-' + id);
+    const val   = document.getElementById('tv-' + id);
+    function update() {
+      const v = parseFloat(input.value);
+      if (window.NV_CAM) window.NV_CAM[camKey] = v;
+      val.textContent = fmt(v);
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [camKey]: v } }, '*');
+    }
+    input.addEventListener('input', update);
+    val.textContent = fmt(parseFloat(input.value));
+  }
+
+  // Camera
+  wire('height',  'height',      'tv-height',   v => v);
+  wire('pitch',   'pitch',       'tv-pitch',    v => { const deg = Math.round(v); document.getElementById('tv-pitch').textContent = deg + '°'; return deg + '°'; });
+  wire('focal',   'focal',       'tv-focal',    v => v);
+  wire('horizon', 'horizonY',    'tv-horizon',  v => v + '%');
+  // Motion
+  wire('speed',   'speed',       'tv-speed',    v => v.toFixed(2));
+  wire('sway',    'sway',        'tv-sway',     v => v);
+  wire('roll',    'rollAmp',     'tv-roll',     v => v.toFixed(3));
+  // Scene
+  wire('grid',    'gridOpacity', 'tv-grid',     v => v.toFixed(2));
+  wire('buildh',  'buildMaxH',   'tv-buildh',   v => v);
+  wire('win',     'winDensity',  'tv-win',      v => v.toFixed(2));
+  wire('traffic', 'trafficCount','tv-traffic',  v => v);
+  // Overlay
+  wire('phosphor','phosphor',    'tv-phosphor', v => v.toFixed(2));
+
+  // Pitch special: slider is in degrees, NV_CAM needs radians
+  document.getElementById('tw-pitch').addEventListener('input', function () {
+    const deg = parseFloat(this.value);
+    const rad = deg * Math.PI / 180;
+    if (window.NV_CAM) window.NV_CAM.pitch = rad;
+    document.getElementById('tv-pitch').textContent = deg + '°';
+  });
+
+  // Horizon special: slider is %, NV_CAM needs 0–1
+  document.getElementById('tw-horizon').addEventListener('input', function () {
+    const pct = parseFloat(this.value);
+    if (window.NV_CAM) window.NV_CAM.horizonY = pct / 100;
+    document.getElementById('tv-horizon').textContent = pct + '%';
+  });
+
+  // Apply phosphor to the feed overlay dynamically
+  document.getElementById('tw-phosphor').addEventListener('input', function () {
+    const v = parseFloat(this.value);
+    document.querySelector('.feed::after') // can't target pseudo, use overlay div
+    // fallback: update CSS variable
+    document.documentElement.style.setProperty('--phosphor-intensity', v);
+  });
+
+  // Keyboard shortcut: T toggles panel
+  document.addEventListener('keydown', e => {
+    if (e.key === 't' || e.key === 'T') {
+      panel.classList.toggle('visible');
+    }
+  });
+})();
+</script>
+</body>
+</html>

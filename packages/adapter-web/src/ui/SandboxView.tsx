@@ -13,6 +13,7 @@ import { vim } from '@replit/codemirror-vim';
 import { GlitchEngine, type SandboxDifficulty, type SandboxBests } from '@neurovim/core';
 import { getSandboxSource } from '@neurovim/content';
 import { fmtTime } from './format';
+import { neurovimTheme } from './cm6-theme';
 
 const { original, pool } = getSandboxSource();
 const DIFFS: SandboxDifficulty[] = ['easy', 'normal', 'hard'];
@@ -32,6 +33,8 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
   const [round, setRound] = useState(0);
   const [remaining, setRemaining] = useState<number | null>(null);
   const [resultMsg, setResultMsg] = useState<string | null>(null);
+  const [elapsed, setElapsed] = useState(0);
+  const [injected, setInjected] = useState(0);
 
   // (Re-)Mount des Editors bei jedem Runden-Start (start/again/harder).
   useEffect(() => {
@@ -40,6 +43,9 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
     const selected = GlitchEngine.selectGlitches(pool, count);
     const { text } = GlitchEngine.applyGlitches(original, selected);
     startedAt.current = Date.now();
+    setInjected(count);
+    setElapsed(0);
+    const timer = window.setInterval(() => setElapsed((Date.now() - startedAt.current) / 1000), 100);
     const v = new EditorView({
       parent: host.current,
       state: EditorState.create({
@@ -48,15 +54,12 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
           vim(), lineNumbers(), history(),
           keymap.of([...defaultKeymap, ...historyKeymap]),
           EditorView.lineWrapping,
-          EditorView.theme({
-            '&': { fontSize: '14px', height: '60vh', border: '1px solid #1f2a1c' },
-            '.cm-content': { fontFamily: 'ui-monospace, monospace' },
-          }),
+          neurovimTheme,
         ],
       }),
     });
     view.current = v;
-    return () => v.destroy();
+    return () => { window.clearInterval(timer); v.destroy(); };
   }, [round]);
 
   function begin(d: SandboxDifficulty) {
@@ -119,6 +122,12 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
         </span>
         {phase === 'active' && <button class="nv-submit" onClick={submit}>SUBMIT</button>}
       </div>
+      {phase === 'active' && (
+        <div class="nv-sandbox-hud" aria-live="polite">
+          <div class="nv-cell"><div class="nv-v">{elapsed.toFixed(1)}s</div><div class="nv-k">Elapsed</div></div>
+          <div class="nv-cell nv-rem"><div class="nv-v">{remaining ?? injected}</div><div class="nv-k">Glitches left</div></div>
+        </div>
+      )}
       <div ref={host} class="nv-cm-host" />
       {phase === 'result' && (
         <div class="nv-sandbox-result">
