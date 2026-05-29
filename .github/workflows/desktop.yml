@@ -1,0 +1,77 @@
+# Desktop-Builds (Tauri) für macOS / Windows / Linux.
+#
+# WICHTIG: Läuft NUR auf GitHub Actions — Codeberg/Forgejo-Shared-Runner sind
+# Linux-only und können keine macOS-DMG / Windows-.exe bauen. Diese Datei greift,
+# sobald der GitHub-Mirror existiert (ADR-001 D5). Ein Codeberg-Forgejo-Workflow
+# könnte höchstens das Linux-Artefakt bauen.
+#
+# Trigger: Tag `v*` (erstellt einen Draft-Release mit den Installern) oder manuell.
+# Artefakte: macOS .dmg (universal), Windows .exe/.msi, Linux .AppImage/.deb.
+# Builds sind UNSIGNIERT (kein Apple-Developer-Account) — Gatekeeper zeigt beim
+# ersten Start eine Warnung. Siehe docs/DESKTOP.md.
+
+name: desktop
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-latest
+            args: '--target universal-apple-darwin'
+            rust-targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
+          - platform: ubuntu-22.04
+            args: ''
+            rust-targets: ''
+          - platform: windows-latest
+            args: ''
+            rust-targets: ''
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux system deps
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust-targets }}
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './packages/adapter-web/src-tauri -> target'
+
+      - name: Install JS deps
+        run: npm ci
+
+      - name: Generate bundled content
+        run: npm run build:content
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: packages/adapter-web
+          tagName: ${{ github.ref_name }}
+          releaseName: 'NeuroVim ${{ github.ref_name }}'
+          releaseDraft: true
+          prerelease: false
+          args: ${{ matrix.args }}
