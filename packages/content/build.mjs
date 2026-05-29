@@ -106,6 +106,18 @@ try {
   console.warn('[content build] sandbox skip:', e.message);
 }
 
+// Welcome (Startseite) — player-facing Intro-Markdown.
+try {
+  const welcome = readFileSync(join(ROOT, 'src', 'welcome.md'), 'utf8').replace(/\s+$/, '');
+  writeFileSync(join(OUT_DIR, 'welcome.ts'),
+    `// AUTO-GENERATED von build.mjs — NICHT manuell editieren.\n` +
+    `// Quelle: src/welcome.md. Regenerieren: npm run build --workspace @neurovim/content\n\n` +
+    `export const WELCOME_BODY = ${JSON.stringify(welcome)};\n`);
+  console.log(`[content build] welcome → ${welcome.length} chars`);
+} catch (e) {
+  console.warn('[content build] welcome skip:', e.message);
+}
+
 const header = `// AUTO-GENERATED von build.mjs — NICHT manuell editieren.\n` +
   `// Quelle: src/content/*.md (SSOT). Regenerieren: npm run build --workspace @neurovim/content\n` +
   `// Generiert: ${entries.length} Einträge.\n\n` +

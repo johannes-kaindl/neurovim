@@ -9,6 +9,7 @@
 import type { MissionSummary, MissionDoc, LoreDoc, GlitchDefinition } from '@neurovim/core';
 import { ENTRIES, type RawContentEntry } from './generated/content';
 import { RAVEN_ORIGINAL, RAVEN_GLITCH_POOL } from './generated/sandbox';
+import { WELCOME_BODY } from './generated/welcome';
 
 export { ENTRIES };
 export type { RawContentEntry };
@@ -16,6 +17,11 @@ export type { RawContentEntry };
 /** THE RAVEN Sandbox-Quelle (M-08): sauberer Original-Text + Glitch-Pool. */
 export function getSandboxSource(): { original: string; pool: GlitchDefinition[] } {
   return { original: RAVEN_ORIGINAL, pool: RAVEN_GLITCH_POOL };
+}
+
+/** Startseiten-Intro (Markdown) für die Welcome-View. */
+export function getWelcome(): string {
+  return WELCOME_BODY;
 }
 
 function toSummary(e: RawContentEntry): MissionSummary {
