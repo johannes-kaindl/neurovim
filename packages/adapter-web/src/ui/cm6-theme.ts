@@ -29,11 +29,11 @@ export const neurovimTheme: Extension = EditorView.theme(
       borderRadius: '4px 4px 0 0',
     },
     '.cm-content': {
-      fontFamily: 'ui-monospace, monospace',
+      fontFamily: 'var(--nv-mono)',
       caretColor: 'var(--nv-accent-hot, var(--nv-accent))',
       padding: '12px 0',
     },
-    '.cm-scroller': { fontFamily: 'ui-monospace, monospace', lineHeight: '1.7' },
+    '.cm-scroller': { fontFamily: 'var(--nv-mono)', lineHeight: '1.7' },
 
     /* gutter: dark, muted line numbers, accented active line */
     '.cm-gutters': {
@@ -79,8 +79,8 @@ export const neurovimTheme: Extension = EditorView.theme(
     '.cm-panels': { backgroundColor: 'var(--nv-panel)', color: 'var(--nv-text)', borderTop: '1px solid var(--nv-border)' },
 
     /* vim command line (":", "/") rendered by the vim plugin */
-    '.cm-vim-panel': { backgroundColor: '#0a0d0b', color: 'var(--nv-accent)', padding: '4px 8px', fontFamily: 'ui-monospace, monospace' },
-    '.cm-vim-panel input': { color: 'var(--nv-accent)', fontFamily: 'ui-monospace, monospace' },
+    '.cm-vim-panel': { backgroundColor: '#0a0d0b', color: 'var(--nv-accent)', padding: '4px 8px', fontFamily: 'var(--nv-mono)' },
+    '.cm-vim-panel input': { color: 'var(--nv-accent)', fontFamily: 'var(--nv-mono)' },
 
     /* matching brackets */
     '.cm-matchingBracket': { backgroundColor: 'color-mix(in oklab, var(--nv-accent) 22%, transparent)', color: 'var(--nv-accent-hot)' },
