@@ -1,6 +1,6 @@
 # Codeberg / Forgejo Actions — CI
-# Gitea-kompatible Syntax; Codeberg liest .gitea/workflows/ und .forgejo/workflows/.
-# Install → Typecheck (core+adapter) → Test (core+adapter) → Build (adapter → main.js).
+# Gitea-compatible syntax; Codeberg reads .gitea/workflows/ and .forgejo/workflows/.
+# Install → typecheck (all workspaces) → test → build (content → plugin → web).
 
 name: CI
 

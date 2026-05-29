@@ -1,14 +1,14 @@
-# Desktop-Builds (Tauri) für macOS / Windows / Linux.
+# Desktop builds (Tauri) for macOS / Windows / Linux.
 #
-# WICHTIG: Läuft NUR auf GitHub Actions — Codeberg/Forgejo-Shared-Runner sind
-# Linux-only und können keine macOS-DMG / Windows-.exe bauen. Diese Datei greift,
-# sobald der GitHub-Mirror existiert (ADR-001 D5). Ein Codeberg-Forgejo-Workflow
-# könnte höchstens das Linux-Artefakt bauen.
+# IMPORTANT: runs ONLY on GitHub Actions — the Codeberg/Forgejo shared runners are
+# Linux-only and can't build a macOS DMG / Windows .exe. This file takes effect
+# now that the GitHub mirror exists (ADR-001 D5). A Codeberg/Forgejo workflow could
+# at most build the Linux artifact.
 #
-# Trigger: Tag `v*` (erstellt einen Draft-Release mit den Installern) oder manuell.
-# Artefakte: macOS .dmg (universal), Windows .exe/.msi, Linux .AppImage/.deb.
-# Builds sind UNSIGNIERT (kein Apple-Developer-Account) — Gatekeeper zeigt beim
-# ersten Start eine Warnung. Siehe docs/DESKTOP.md.
+# Trigger: tag `v*` (creates a draft release with the installers) or manual dispatch.
+# Artifacts: macOS .dmg (universal), Windows .exe/.msi, Linux .AppImage/.deb.
+# Builds are UNSIGNED (no Apple Developer account) — Gatekeeper shows a warning on
+# first launch. See docs/DESKTOP.md.
 
 name: desktop
 

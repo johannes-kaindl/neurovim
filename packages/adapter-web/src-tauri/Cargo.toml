@@ -1,7 +1,7 @@
 [package]
 name = "neurovim"
 version = "0.1.0"
-description = "NeuroVim — Vim-Lernspiel (Tauri-Desktop-Wrapper für den Web-Build)"
+description = "NeuroVim — a Vim-learning game (Tauri desktop wrapper around the web build)"
 authors = ["jkaindl"]
 license = "MIT"
 repository = "https://codeberg.org/jkaindl/NeuroVIM"
