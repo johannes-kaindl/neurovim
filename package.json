@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "NeuroVim — a Vim-learning game. Monorepo: platform-neutral core + Obsidian/web adapters.",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "repository": { "type": "git", "url": "https://codeberg.org/jkaindl/NeuroVIM.git" },
   "homepage": "https://codeberg.org/jkaindl/NeuroVIM",
   "workspaces": [

@@ -2,7 +2,7 @@
   "name": "@neurovim/adapter-obsidian",
   "version": "0.0.0",
   "description": "Obsidian-plugin target: wires @neurovim/core game logic against the Obsidian API.",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",

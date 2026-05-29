@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Changed
+- **Relicensed from MIT to GNU AGPL-3.0** (network copyleft), matching the project family.
+- README rewritten reader-first (internal/maintainer detail moved to `AGENTS.md`).
+
 ## [0.1.0] — 2026-05-29
 
 First public release of the standalone monorepo.
