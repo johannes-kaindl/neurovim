@@ -64,6 +64,22 @@ Alle vom Repo-Root aus aufrufbar (`npm run <script>`):
 
 > Build-Reihenfolge ist nicht beliebig: `content` generiert `content.ts`, das `plugin` und `web` importieren — deshalb läuft `content` zuerst.
 
+## Web-App-Flow (`@neurovim/adapter-web`)
+
+```mermaid
+flowchart LR
+  welcome["Welcome<br/>(Startseite)"] -->|Enter NEXUS| nexus["NEXUS<br/>(Picker + Dashboard)"]
+  nexus -->|Mission wählen| briefing["Briefing"]
+  nexus -->|RAVEN| sandbox["Sandbox"]
+  briefing -->|Begin Mission| editor["Mission-Editor<br/>(CM6 + vim)"]
+  briefing -->|Back| nexus
+  editor -->|"Submit → Complete → Next"| briefing
+  editor -->|Back| nexus
+  sandbox -->|Back| nexus
+```
+
+App-Start zeigt **Welcome**; jede Mission läuft über die **Briefing**-Seite vor den Editor. Welcome/Briefing/Editor/Sandbox sind lazy-geladene Chunks (Code-Splitting), der Markdown-Renderer (`marked`) liegt im geteilten Briefing/Welcome-Chunk.
+
 ## Setup (Jay copy-paste — Repos müssen vorher manuell angelegt werden)
 
 > **Bequemer:** `scripts/setup-remotes.sh` — `CODEBERG_USER`/`GITHUB_USER` oben ausfüllen, dann `bash scripts/setup-remotes.sh`. Das Script setzt die Remotes (kein Push, keine Repo-Erstellung) und gibt die zwei Push-Befehle aus, die Du selbst ausführst. Die manuellen Schritte unten sind die Langform desselben.
