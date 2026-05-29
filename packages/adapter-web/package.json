@@ -11,16 +11,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@neurovim/core": "*",
-    "@neurovim/content": "*",
-    "preact": "^10.29.1",
+    "@codemirror/commands": "^6.10.3",
     "@codemirror/state": "^6.5.0",
     "@codemirror/view": "^6.38.6",
-    "@codemirror/commands": "^6.10.3",
-    "@replit/codemirror-vim": "^6.3.0"
+    "@neurovim/content": "*",
+    "@neurovim/core": "*",
+    "@replit/codemirror-vim": "^6.3.0",
+    "marked": "^18.0.4",
+    "preact": "^10.29.1"
   },
   "devDependencies": {
-    "vite": "^5.4.21",
-    "@preact/preset-vite": "^2.10.5"
+    "@preact/preset-vite": "^2.10.5",
+    "vite": "^5.4.21"
   }
 }

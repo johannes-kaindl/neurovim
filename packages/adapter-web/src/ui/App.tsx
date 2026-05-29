@@ -23,6 +23,12 @@ const MissionEditor = lazy(() =>
 const SandboxView = lazy(() =>
   import('./SandboxView').then((m) => ({ default: m.SandboxView })),
 );
+const WelcomeView = lazy(() =>
+  import('./WelcomeView').then((m) => ({ default: m.WelcomeView })),
+);
+const BriefingView = lazy(() =>
+  import('./BriefingView').then((m) => ({ default: m.BriefingView })),
+);
 
 /** Nächste spielbare Mission im selben Arc (für den „Next Mission"-Button). */
 function nextMissionId(id: string): string | null {
@@ -37,7 +43,7 @@ let audioUnlocked = false;
 
 export function App() {
   const [data, setData] = useState<PluginData>({ ...DEFAULT_PLUGIN_DATA });
-  const [view, setView] = useState<'nexus' | 'mission' | 'sandbox'>('nexus');
+  const [view, setView] = useState<'welcome' | 'nexus' | 'briefing' | 'mission' | 'sandbox'>('welcome');
   const [mission, setMission] = useState<MissionDoc | null>(null);
   const [result, setResult] = useState<MissionResultData | null>(null);
 
@@ -56,7 +62,7 @@ export function App() {
     unlockAudio();
     setMission(getMission(id));
     setResult(null);
-    setView('mission');
+    setView('briefing');
   }
 
   async function submit(content: string, metrics: MetricsResult) {
@@ -94,6 +100,28 @@ export function App() {
     setData(next);
     SoundCues.transmissionRestored(audio);
     await storage.saveData(next);
+  }
+
+  if (view === 'welcome') {
+    return (
+      <Suspense fallback={<div class="nv-loading">loading…</div>}>
+        <WelcomeView onEnter={() => { unlockAudio(); setView('nexus'); }} />
+      </Suspense>
+    );
+  }
+
+  if (view === 'briefing' && mission) {
+    return (
+      <Suspense fallback={<div class="nv-loading">loading briefing…</div>}>
+        <BriefingView
+          missionId={mission.mission_id}
+          title={mission.title}
+          briefingBody={mission.briefingBody}
+          onBegin={() => setView('mission')}
+          onBack={() => setView('nexus')}
+        />
+      </Suspense>
+    );
   }
 
   if (view === 'mission' && mission) {
