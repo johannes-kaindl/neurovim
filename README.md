@@ -139,8 +139,10 @@ deploys under any sub-path).
   push to `main` via `.github/workflows/pages.yml` (requires repo Settings → Pages →
   Source = "GitHub Actions").
 - **Codeberg Pages** → https://jkaindl.codeberg.page/neurovim/ — served from the `pages`
-  branch. Codeberg lowercases the repo in the URL (`/neurovim/`, not `/NeuroVIM/`).
-  Refresh it after app changes with the manual deploy below.
+  branch (Codeberg lowercases the repo in the URL: `/neurovim/`, not `/NeuroVIM/`).
+  An auto-deploy workflow exists (`.forgejo/workflows/pages.yml`) but only runs once the
+  repo has access to a Codeberg shared Actions runner (opt-in / approval). Until then,
+  refresh it with the manual deploy below.
 
 Manual Codeberg deploy (refreshes the `pages` branch):
 
