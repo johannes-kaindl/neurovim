@@ -22,6 +22,23 @@ One codebase, three delivery targets: an Obsidian plugin + a standalone web app
 > including the polish pass from `docs/DESIGN-SPEC.md`. 150 tests green,
 > 4-workspace typecheck green. Build: `npm run build`.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/01-welcome.png" width="380" alt="Welcome"><br><sub>Welcome — CIPHER intro</sub></td>
+    <td align="center"><img src="docs/screenshots/02-nexus-picker.png" width="380" alt="NEXUS"><br><sub>NEXUS — mission picker + status</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/03-briefing.png" width="380" alt="Briefing"><br><sub>Briefing — story before each mission</sub></td>
+    <td align="center"><img src="docs/screenshots/04-editor.png" width="380" alt="Editor"><br><sub>Editor — CodeMirror 6 + Vim</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/05-result-modal.png" width="380" alt="Result"><br><sub>Result — mission complete</sub></td>
+    <td align="center"><img src="docs/screenshots/06-sandbox.png" width="380" alt="Sandbox"><br><sub>THE RAVEN — free-play sandbox</sub></td>
+  </tr>
+</table>
+
 ## Architecture
 
 Platform-neutral core + thin adapters over four port interfaces (`VimModeSource`,
