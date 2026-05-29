@@ -1,8 +1,18 @@
-# neurovim-standalone
+<p align="center">
+  <img src="docs/brand/og.png" alt="NeuroVim — a Vim-learning game wrapped in a cyberpunk spy-thriller" width="680">
+</p>
+
+<h1 align="center">neurovim-standalone</h1>
+
+<p align="center">
+  <b>▶ <a href="https://johannes-kaindl.github.io/NeuroVIM/">Play in the browser</a></b>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/johannes-kaindl/NeuroVIM/releases">Desktop downloads</a> (macOS / Windows / Linux)
+</p>
 
 Monorepo for **NeuroVim** — a Vim-learning game with a spy-thriller narrative.
-One codebase, two delivery targets: an Obsidian plugin + a standalone web app
-(plus a native desktop app via Tauri).
+One codebase, three delivery targets: an Obsidian plugin + a standalone web app
++ a native desktop app via Tauri.
 
 > **Status: Phase 3 (working).** Core fully ported, both adapters functional, web
 > app feature-complete (Welcome → NEXUS → Briefing → Editor → Result + Sandbox)
