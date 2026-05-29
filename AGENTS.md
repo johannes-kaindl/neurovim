@@ -176,7 +176,7 @@ sein. Bei content-Änderungen zusätzlich `npm run build:content`, sonst sind
 ## Remotes & Distribution (ADR-001 D5)
 
 - **Primary:** `codeberg.org/jkaindl/NeuroVIM` (live; git remote `codeberg`, `main` getrackt)
-- **Mirror:** `github.com/jay/neurovim-standalone` *(TODO: Repo + Mirror)*
+- **Mirror:** `github.com/johannes-kaindl/NeuroVIM` (live; git remote `github`) — hier läuft die Desktop-CI
 - **CI:** Codeberg/Forgejo-Actions-Stub unter `.gitea/workflows/` (Build + Typecheck) — geplant
 - Setup-Helfer: `scripts/setup-remotes.sh`. Passt zur 26-039-Migration auf
   Open-Source-Hosting (df.eu/Microsoft → mailbox.org/Codeberg).

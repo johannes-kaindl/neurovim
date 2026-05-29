@@ -23,5 +23,9 @@ mac/win. Greift erst, wenn der GitHub-Mirror existiert (ADR-001 D5, noch TODO).
 **Unsigniert** (kein Apple-Developer-Account) → Gatekeeper-Warnung beim ersten Start
 (Rechtsklick→Öffnen oder `xattr -dr com.apple.quarantine`). Doku: `docs/DESKTOP.md`.
 
-**TODO:** echtes `>_`-Icon (`tauri icon <png>` statt Default-Tauri-Logo); GitHub-Mirror
-für die CI; ggf. Signing/Notarization wenn warnungsfreie Distribution gewünscht.
+**Icon:** echtes `>_`-Kuro-Mark (Quelle `docs/design-source/brand/icon.svg` →
+`tauri icon`). DMG ~3,3 MB. **GitHub-Mirror live:** `github.com/johannes-kaindl/NeuroVIM`
+(remote `github`) — dort läuft die Desktop-CI (Tag `v*` → Draft-Release).
+
+**TODO:** ggf. Signing/Notarization für warnungsfreie Distribution; OG-Image-Host in
+`index.html` auf finale Deploy-URL anpassen (aktuell Codeberg-Pages-Platzhalter).
