@@ -44,7 +44,7 @@ function playResistanceTone(
 ): void {
   const t = ac.currentTime + delay;
 
-  // Pre-attack noise burst: leichtes Rauschen vor dem Anklang
+  // Pre-attack noise burst: slight noise before the onset
   const preNoiseDur = 0.015;
   const noiseBufSize = Math.max(Math.ceil(ac.sampleRate * preNoiseDur), 1);
   const noiseBuf = ac.createBuffer(1, noiseBufSize, ac.sampleRate);
@@ -75,14 +75,14 @@ function playResistanceTone(
     // Frequency sweep: intentional motion, no additional drift
     osc.frequency.linearRampToValueAtTime(freqEndHz, t + duration);
   } else {
-    // Frequency drift in decay: minimale Tonhöhen-Drift im Decay — phosphor analog
+    // Frequency drift in decay: minimal pitch drift in the decay — phosphor analog
     const drift = (Math.random() > 0.5 ? 1 : -1) * (4 + Math.random() * 7);
     const driftStart = t + duration * 0.4;
     osc.frequency.setValueAtTime(freq, driftStart);
     osc.frequency.linearRampToValueAtTime(freq + drift, t + duration);
   }
 
-  // Phosphor-decay envelope: fast attack, logarithmic-ish release with Restleuchten
+  // Phosphor-decay envelope: fast attack, logarithmic-ish release with afterglow
   const attack = Math.min(0.012, duration * 0.1);
   const releaseStart = Math.max(t + attack, t + duration * 0.3);
   gainNode.gain.setValueAtTime(0, t);
@@ -269,25 +269,25 @@ export class SoundCues {
     playResistanceTone(ac, engine.master!, 392, 'sine', 0.14, 0.16);
   }
 
-  // Undo: F4→G3 — rückwärts durch die Zeit, mit Wärme
+  // Undo: F4→G3 — backwards through time, with warmth
   static commandUndo(engine: AudioEngine): void {
     const ac = this.guard(engine); if (!ac) return;
     playResistanceTone(ac, engine.master!, 349, 'sine', 0.22, 0.14, 0, 196);
   }
 
-  // Redo: G3→G4 — vorwärts, aufsteigend
+  // Redo: G3→G4 — forwards, ascending
   static commandRedo(engine: AudioEngine): void {
     const ac = this.guard(engine); if (!ac) return;
     playResistanceTone(ac, engine.master!, 196, 'sine', 0.22, 0.14, 0, 392);
   }
 
-  // gg: tiefer Anker — Dokument-Anfang, schwer, lang
+  // gg: low anchor — start of document, heavy, long
   static commandGotoStart(engine: AudioEngine): void {
     const ac = this.guard(engine); if (!ac) return;
     playResistanceTone(ac, engine.master!, 196, 'triangle', 0.28, 0.18);
   }
 
-  // G: hohes Ziel — Dokument-Ende, offen
+  // G: high target — end of document, open
   static commandGotoEnd(engine: AudioEngine): void {
     const ac = this.guard(engine); if (!ac) return;
     playResistanceTone(ac, engine.master!, 392, 'triangle', 0.28, 0.18);

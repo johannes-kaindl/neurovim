@@ -1,7 +1,7 @@
 {
   "name": "@neurovim/adapter-web",
   "version": "0.0.0",
-  "description": "Standalone-Web-App-Target (Vite-SPA): implementiert die @neurovim/core Ports für den Browser.",
+  "description": "Standalone web-app target (Vite SPA): implements the @neurovim/core ports for the browser.",
   "license": "MIT",
   "type": "module",
   "scripts": {

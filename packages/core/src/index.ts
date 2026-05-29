@@ -1,31 +1,31 @@
 /**
- * @neurovim/core — plattform-neutraler Kern (Phase 3 Schritt 2a).
+ * @neurovim/core — platform-neutral core (Phase 3 step 2a).
  *
- * Re-exportiert: State-Schema (types), Ports, Game-Logic (engine), Daten (data),
- * Utils, Web-Audio (audio) und Preact-UI (views). Hängt NIEMALS an `obsidian` —
- * Plattform-Spezifik kommt über die Ports, die adapter-obsidian / adapter-web
- * implementieren. ADR-001 §Decisions.
+ * Re-exports: state schema (types), ports, game logic (engine), data (data),
+ * utils, web audio (audio) and Preact UI (views). NEVER depends on `obsidian` —
+ * platform specifics come through the ports that adapter-obsidian / adapter-web
+ * implement. ADR-001 §Decisions.
  *
- * Hinweis: Die Ports (StoragePort/ContentPort/VimModeSource/UiHost) werden von den
- * Adaptern implementiert, nicht von der Game-Logic konsumiert (Engines sind reine
- * Funktionen — D17). AudioPort wurde entfernt (D19e): AudioEngine ist bereits
- * plattform-neutral + injizierbar, der Port-Wrapper war redundant.
+ * Note: The ports (StoragePort/ContentPort/VimModeSource/UiHost) are implemented by
+ * the adapters, not consumed by the game logic (engines are pure
+ * functions — D17). AudioPort was removed (D19e): AudioEngine is already
+ * platform-neutral + injectable, the port wrapper was redundant.
  */
 
-// ── State-Schema + Ports ─────────────────────────────────────
+// ── State schema + ports ─────────────────────────────────────
 export * from './types';
 export * from './ports/StoragePort';
 export * from './ports/ContentPort';
 export * from './ports/VimModeSource';
 export * from './ports/UiHost';
 
-// ── Engine (Game-Logic) ──────────────────────────────────────
+// ── Engine (game logic) ──────────────────────────────────────
 export * from './engine/MetricsTracker';
 export * from './engine/MissionEngine';
 export * from './engine/ProgressionEngine';
 export * from './engine/GlitchEngine';
 
-// ── Daten ────────────────────────────────────────────────────
+// ── Data ─────────────────────────────────────────────────────
 export * from './data/chapters';
 export * from './data/levels';
 export * from './data/cheatsheet';
@@ -37,13 +37,13 @@ export * from './utils/time';
 export * from './utils/hints';
 export * from './utils/chapterNav';
 
-// ── Web-Audio (plattform-neutral) ────────────────────────────
+// ── Web audio (platform-neutral) ─────────────────────────────
 export * from './audio/AudioEngine';
 export * from './audio/SoundCues';
 export * from './audio/AmbientLayer';
 export * from './audio/CommandListener';
 
-// ── Preact-UI ────────────────────────────────────────────────
+// ── Preact UI ────────────────────────────────────────────────
 export * from './views/FloatHUD';
 export * from './views/SandboxHUD';
 export * from './views/components/AsciiArt';

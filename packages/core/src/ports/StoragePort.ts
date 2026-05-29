@@ -1,23 +1,23 @@
 /**
- * StoragePort — Persistenz-Abstraktion (ADR-001 §P3 / Decisions D5).
+ * StoragePort — persistence abstraction (ADR-001 §P3 / Decisions D5).
  *
- * Kapselt das Laden/Speichern des persistenten Spieler-States (`PluginData`).
+ * Encapsulates loading/saving the persistent player state (`PluginData`).
  * - adapter-obsidian: `plugin.loadData()` / `plugin.saveData()` (→ data.json)
- * - adapter-web:      IndexedDB (+ einmaliger data.json-Import für Bestand-User)
+ * - adapter-web:      IndexedDB (+ one-time data.json import for legacy users)
  *
- * Generisch gehalten (`<T>`), damit auch Teil-States (z.B. Audio-Settings)
- * unter eigenen Keys ablegbar sind. Der Haupt-State ist `PluginData` (types.ts).
+ * Kept generic (`<T>`) so that partial states (e.g. audio settings)
+ * can also be stored under their own keys. The main state is `PluginData` (types.ts).
  */
 export interface StoragePort {
-  /** Lädt den unter `key` abgelegten State; `null`/Default-Handling beim Aufrufer. */
+  /** Loads the state stored under `key`; `null`/default handling is up to the caller. */
   loadData<T>(key?: string): Promise<T | null>;
 
-  /** Persistiert `data` unter `key` (Default-Key = Haupt-State). */
+  /** Persists `data` under `key` (default key = main state). */
   saveData<T>(data: T, key?: string): Promise<void>;
 
-  /** Alle vorhandenen Keys (für Migration / Debug). */
+  /** All existing keys (for migration / debug). */
   keys(): Promise<string[]>;
 
-  /** Entfernt einen Key (für Reset / Migration). */
+  /** Removes a key (for reset / migration). */
   delete(key: string): Promise<void>;
 }

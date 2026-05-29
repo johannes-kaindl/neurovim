@@ -1,17 +1,17 @@
 /**
- * @neurovim/adapter-web — Standalone-Web-App-Target (NEU, kein Bestand-Code).
+ * @neurovim/adapter-web — standalone web-app target (NEW, no legacy code).
  *
- * Implementiert (Phase 3) die vier @neurovim/core Ports für den Browser:
+ * Implements (Phase 3) the four @neurovim/core ports for the browser:
  *  - VimModeSource  → CodeMirror 6 + @replit/codemirror-vim ('vim-mode-change')
- *  - StateStore     → IndexedDB (+ einmaliger data.json-Import für Bestand-User)
- *  - ContentSource  → gebündeltes @neurovim/content (Markdown→JSON)
- *  - UiHost         → DOM-<div>-Overlays / Routen
+ *  - StateStore     → IndexedDB (+ one-time data.json import for legacy users)
+ *  - ContentSource  → bundled @neurovim/content (Markdown→JSON)
+ *  - UiHost         → DOM <div> overlays / routes
  *
- * Plus: Vite-SPA-Bootstrap (ersetzt main.ts-Orchestrierung) + Web-NEXUS-Dashboard-Mount.
+ * Plus: Vite SPA bootstrap (replaces main.ts orchestration) + web NEXUS dashboard mount.
  *
- * Acceptance Phase-3-Schritt 4: ARC I M-01 im Browser spielbar.
- * Offene Geschmacks-Fragen (ADR Open Questions): CM6-Vim-Parität, NEXUS-Redesign,
- * Audio-Default, Distribution-Channel.
+ * Acceptance Phase-3 step 4: ARC I M-01 playable in the browser.
+ * Open questions (ADR Open Questions): CM6 vim parity, NEXUS redesign,
+ * audio default, distribution channel.
  */
 export {};
-// TODO Phase 3: Vite-Bootstrap + 4 Web-Adapter-Impls + NexusDashboard-Mount + Migration-Helper.
+// TODO Phase 3: Vite bootstrap + 4 web adapter impls + NexusDashboard mount + migration helper.

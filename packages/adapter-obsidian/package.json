@@ -1,7 +1,7 @@
 {
   "name": "@neurovim/adapter-obsidian",
   "version": "0.0.0",
-  "description": "Obsidian-Plugin-Target: Game-Logic aus @neurovim/core gegen die Obsidian-API verdrahtet.",
+  "description": "Obsidian-plugin target: wires @neurovim/core game logic against the Obsidian API.",
   "license": "MIT",
   "type": "module",
   "scripts": {

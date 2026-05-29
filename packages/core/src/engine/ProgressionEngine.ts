@@ -57,9 +57,9 @@ export class ProgressionEngine {
   }
 
   /**
-   * XP-Fortschritt innerhalb des aktuellen Levels (für den NEXUS-Progress-Bar).
-   * `into`/`span` = XP seit Level-Start / bis zum nächsten Level; `pct` 0..100.
-   * Auf Max-Level: pct=100, nextLevelXp=null, nextTitle=null.
+   * XP progress within the current level (for the NEXUS progress bar).
+   * `into`/`span` = XP since level start / until the next level; `pct` 0..100.
+   * At max level: pct=100, nextLevelXp=null, nextTitle=null.
    */
   static getXpProgress(xp: number): {
     level: number; into: number; span: number; pct: number;
@@ -76,10 +76,10 @@ export class ProgressionEngine {
   }
 
   /**
-   * Personal-Best-Update für eine Mission nach einem erfolgreichen Run.
-   * best_time_ms / best_keystrokes = Minimum (kleiner = besser; 0 = noch kein Best),
-   * best_ks_per_min = Maximum (höherer Durchsatz). `runs` inkrementiert.
-   * `today` ist injizierbar (Tests übergeben ein festes Datum).
+   * Personal-best update for a mission after a successful run.
+   * best_time_ms / best_keystrokes = minimum (smaller = better; 0 = no best yet),
+   * best_ks_per_min = maximum (higher throughput). `runs` is incremented.
+   * `today` is injectable (tests pass in a fixed date).
    */
   static recordMissionRun(
     prev: MissionRecord | undefined,

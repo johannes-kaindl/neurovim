@@ -1,27 +1,27 @@
 /**
- * ContentPort — Zugriff auf Missions-/Lore-Content (ADR-001 §P4 / Decisions D3).
+ * ContentPort — access to mission/lore content (ADR-001 §P4 / Decisions D3).
  *
- * - adapter-obsidian: Vault-File-API + Pfad-Mapping aus `data/chapters.ts`.
- * - adapter-web:      gebündeltes `@neurovim/content` (Markdown→JSON-Build, D3).
+ * - adapter-obsidian: Vault file API + path mapping from `data/chapters.ts`.
+ * - adapter-web:      bundled `@neurovim/content` (Markdown→JSON build, D3).
  *
- * Liefert sowohl Mission-Bodies (Briefing/Transmission) als auch Lore-Artefakte
- * (Fragments, Loot, Characters), die heute als Vault-Notes vorliegen.
+ * Provides both mission bodies (briefing/transmission) and lore artifacts
+ * (fragments, loot, characters), which today exist as vault notes.
  */
 import type { MissionFrontmatter } from '../types';
 
-/** Leichte Mission-Übersicht (für Listen/NEXUS-Dashboard, ohne Body). */
+/** Lightweight mission overview (for lists/NEXUS dashboard, without body). */
 export interface MissionSummary extends MissionFrontmatter {
   arc: 'I' | 'II';
   chapter: string;
 }
 
-/** Vollständige Mission inkl. Briefing-/Transmission-Body + Lösung. */
+/** Full mission incl. briefing/transmission body + solution. */
 export interface MissionDoc extends MissionSummary {
   briefingBody: string;
   transmissionBody: string;
-  /** Soll-Lösung (Dev-SOLUTIONS) — für Diff-Validierung. */
+  /** Target solution (Dev-SOLUTIONS) — for diff validation. */
   solution?: string;
-  /** Korrupte Ausgangsfassung (falls Mission-Typ Korrektur). */
+  /** Corrupt initial version (if mission type is correction). */
   corrupted?: string;
 }
 
@@ -33,15 +33,15 @@ export interface LoreDoc {
 }
 
 export interface ContentPort {
-  /** Alle Missionen, optional auf einen Arc gefiltert. */
+  /** All missions, optionally filtered to a single arc. */
   listMissions(arc?: 'I' | 'II'): Promise<MissionSummary[]>;
 
-  /** Volle Mission (Briefing + Transmission + ggf. Lösung). */
+  /** Full mission (briefing + transmission + solution if any). */
   getMission(id: string): Promise<MissionDoc>;
 
-  /** Lore-Artefakt (Fragment/Loot/Character/Organization/Ref). */
+  /** Lore artifact (fragment/loot/character/organization/ref). */
   getLore(id: string): Promise<LoreDoc>;
 
-  /** Optional: rohe Datei lesen (Sandbox THE_RAVEN, REF-Blätter). */
+  /** Optional: read a raw file (sandbox THE_RAVEN, REF sheets). */
   getRaw?(path: string): Promise<string>;
 }

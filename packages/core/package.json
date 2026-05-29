@@ -1,7 +1,7 @@
 {
   "name": "@neurovim/core",
   "version": "0.0.0",
-  "description": "Plattform-neutraler Kern: Game-Logic, Web-Audio, Preact-UI, Port-Interfaces.",
+  "description": "Platform-neutral core: game logic, Web Audio, Preact UI, port interfaces.",
   "license": "MIT",
   "type": "module",
   "main": "src/index.ts",

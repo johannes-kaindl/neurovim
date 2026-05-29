@@ -1,16 +1,16 @@
 /**
- * @neurovim/core — kanonisches State-Schema.
+ * @neurovim/core — canonical state schema.
  *
- * Plattform-neutrale, reine TS-Interfaces (keine Klassen, keine Implementation,
- * keine Obsidian-Abhängigkeit). Quelle der Wahrheit für `StoragePort` (Persistenz),
- * Engine-Logik und Adapter. Portiert aus dem Bestand-Plugin
- * `32_NeuroVim/_dev/plugin-src/src/types.ts` (v1.0.0) — der Bestand bleibt unangetastet,
- * diese Datei ist der Monorepo-Contract.
+ * Platform-neutral, pure TS interfaces (no classes, no implementation,
+ * no Obsidian dependency). Source of truth for `StoragePort` (persistence),
+ * engine logic and adapters. Ported from the legacy plugin
+ * `32_NeuroVim/_dev/plugin-src/src/types.ts` (v1.0.0) — the legacy version stays untouched,
+ * this file is the monorepo contract.
  *
- * Siehe ADR-001 §Decisions (D1 Curriculum, D4 Audio-Constraint).
+ * See ADR-001 §Decisions (D1 curriculum, D4 audio constraint).
  */
 
-// ── Mission-Identität & Frontmatter ──────────────────────────
+// ── Mission identity & frontmatter ───────────────────────────
 export type MissionStatus = 'idle' | 'active' | 'result';
 export type HudMode = 'guide-onboard' | 'guide-idle' | 'mission';
 export type MissionType = 'practice' | 'briefing' | 'loot' | 'sandbox';
@@ -25,7 +25,7 @@ export interface MissionFrontmatter {
   tier: string;
 }
 
-// ── Lauf-Ergebnis & Records ──────────────────────────────────
+// ── Run result & records ─────────────────────────────────────
 export interface RunResult {
   mission_id: string;
   elapsed_ms: number;
@@ -47,7 +47,7 @@ export interface MissionRecord {
   last_run: string;
 }
 
-// ── Persistenter Spieler-State (= StoragePort-Payload) ───────
+// ── Persistent player state (= StoragePort payload) ──────────
 export interface PluginData {
   missions: Record<string, MissionRecord>;
   total_xp: number;
@@ -77,7 +77,7 @@ export interface LevelUpResult {
   unlocked_loot: string[];
 }
 
-// ── Laufzeit-State (nicht persistiert) ───────────────────────
+// ── Runtime state (not persisted) ────────────────────────────
 export interface MissionState {
   status: MissionStatus;
   mission_id: string | null;

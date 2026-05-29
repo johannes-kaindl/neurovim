@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 #
-# setup-remotes.sh — Codeberg (primary) + GitHub (mirror) remotes verdrahten.
+# setup-remotes.sh — wire up the Codeberg (primary) + GitHub (mirror) remotes.
 #
-# Dieses Script erstellt KEINE Accounts und KEINE Repos und pusht NICHTS.
-# Es setzt nur die git-Remotes. Repos vorher in den Web-UIs anlegen, Push
-# danach selbst auslösen (siehe Ausgabe am Ende).
+# This script creates NO accounts and NO repos and pushes NOTHING.
+# It only sets the git remotes. Create the repos in the web UIs first, then run
+# the pushes yourself (see the output at the end).
 #
-# Benutzung:
-#   1. CODEBERG_USER / GITHUB_USER unten ausfüllen.
-#   2. Leere Repos "neurovim-standalone" auf codeberg.org + github.com anlegen.
+# Usage:
+#   1. Fill in CODEBERG_USER / GITHUB_USER below.
+#   2. Create empty "neurovim-standalone" repos on codeberg.org + github.com.
 #   3. bash scripts/setup-remotes.sh
-#   4. Die zwei git-push-Befehle aus der Ausgabe selbst ausführen.
+#   4. Run the two git push commands from the output yourself.
 #
 set -euo pipefail
 
-# ── Ausfüllen ──────────────────────────────────────────────────
-CODEBERG_USER="CHANGEME"   # ← Codeberg-Username oder Org
-GITHUB_USER="CHANGEME"     # ← GitHub-Username oder Org
+# ── Fill in ────────────────────────────────────────────────────
+CODEBERG_USER="CHANGEME"   # ← Codeberg username or org
+GITHUB_USER="CHANGEME"     # ← GitHub username or org
 REPO="neurovim-standalone"
 # ───────────────────────────────────────────────────────────────
 
 if [[ "$CODEBERG_USER" == "CHANGEME" || "$GITHUB_USER" == "CHANGEME" ]]; then
-  echo "✗ Bitte zuerst CODEBERG_USER und GITHUB_USER oben im Script ausfüllen." >&2
+  echo "✗ Please fill in CODEBERG_USER and GITHUB_USER at the top of the script first." >&2
   exit 1
 fi
 
@@ -39,13 +39,13 @@ set_remote() {
 set_remote origin "git@codeberg.org:${CODEBERG_USER}/${REPO}.git"
 set_remote github "git@github.com:${GITHUB_USER}/${REPO}.git"
 
-echo "✓ Remotes gesetzt:"
+echo "✓ Remotes set:"
 git remote -v
 echo
-echo "Jetzt selbst pushen (Branch: $(git branch --show-current)):"
+echo "Now push yourself (branch: $(git branch --show-current)):"
 echo "  git push -u origin main      # primary  → Codeberg"
 echo "  git push github main         # mirror   → GitHub"
 echo
-echo "Mirror automatisieren (optional, eine der beiden Varianten):"
-echo "  • Codeberg → Settings → Repository Mirroring (Push-Mirror auf GitHub)"
+echo "Automate the mirror (optional, one of the two options):"
+echo "  • Codeberg → Settings → Repository Mirroring (push mirror to GitHub)"
 echo "  • git remote set-url --add --push origin git@github.com:${GITHUB_USER}/${REPO}.git"

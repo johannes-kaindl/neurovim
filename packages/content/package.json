@@ -1,7 +1,7 @@
 {
   "name": "@neurovim/content",
   "version": "0.0.0",
-  "description": "Versionierte Content-Quelle: Missionen, Katas, Loot, Fragments, Story-Bible (Markdown SSOT + generiertes typed-JSON).",
+  "description": "Versioned content source: missions, katas, loot, fragments, story bible (Markdown SSOT + generated typed JSON).",
   "license": "MIT",
   "type": "module",
   "main": "src/index.ts",

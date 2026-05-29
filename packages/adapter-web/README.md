@@ -1,13 +1,13 @@
 # @neurovim/adapter-web
 
-**NEU** für die Standalone-Auslieferung. Vite-SPA, die die vier `@neurovim/core`-Ports für den Browser implementiert — kein Obsidian nötig.
+**NEW** for the standalone distribution. A Vite SPA that implements the four `@neurovim/core` ports for the browser — no Obsidian needed.
 
-Schlüssel-Bausteine (Phase 3):
-- CodeMirror 6 + `@replit/codemirror-vim` (Vim-Engine + Mode-Events)
-- IndexedDB (State) + `data.json`-Import-Helper (Bestand-User-Migration)
-- gebündeltes `@neurovim/content`
-- Web-NEXUS-Dashboard (Neubau des dataviewjs-Hubs)
+Key building blocks (Phase 3):
+- CodeMirror 6 + `@replit/codemirror-vim` (Vim engine + mode events)
+- IndexedDB (state) + `data.json` import helper (existing-user migration)
+- bundled `@neurovim/content`
+- web NEXUS dashboard (rebuild of the dataviewjs hub)
 
-⚠️ Höchstes Port-Risiko: CM6-Vim-Parität zur Obsidian-Vim-Engine — früh prototypen (ADR Open Question 1).
+⚠️ Highest port risk: CM6 Vim parity with the Obsidian Vim engine — prototype early (ADR Open Question 1).
 
-→ ADR-001 für Details.
+→ ADR-001 for details.

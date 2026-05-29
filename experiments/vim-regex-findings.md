@@ -1,43 +1,45 @@
-# Vim-Regex-Parität — Findings (Phase-3-Schritt-0)
+# Vim regex parity — findings (Phase 3 step 0)
 
-> Empirischer Test: deckt `@replit/codemirror-vim` den Vim-Regex-Flavor ab, den ARC II unterrichtet?
-> Harness: `experiments/vim-regex-harness/` — `npm install && npm run harness` → Browser öffnet, drei `:%s`-Kommandos manuell tippen.
-> Spalte **Prediction** = statische Analyse (CM6-Vim-Domänenwissen). Spalte **Befund** = nach echtem Run von Jay/CC auszufüllen.
+> Empirical test: does `@replit/codemirror-vim` cover the Vim regex flavor that ARC II teaches?
+> Harness: `experiments/vim-regex-harness/` — `npm install && npm run harness` → the browser opens, type the three `:%s` commands manually.
+> The **Prediction** column = static analysis (CM6-vim domain knowledge). The **Finding** column = filled in after a real run.
 
-## Test-Cases (aus dem ARC-II-Curriculum)
+## Test cases (from the ARC II curriculum)
 
-| # | Mission | Kommando | Erwartetes Vim-Verhalten | Prediction (statisch) | Befund (Run 2026-05-28, CC headless-Browser) |
+| # | Mission | Command | Expected Vim behavior | Prediction (static) | Finding (run 2026-05-28, CC headless browser) |
 |---|---|---|---|---|---|
-| 1 | **R-08** Magic Mode | `:%s/\v(ALPHA\|BETA\|GAMMA)-TIER/TIER-1/g` | Alle drei Tier-Labels → `TIER-1`. `\v` = very-magic, `(` und `\|` ohne Backslash-Magie. | ✅ wahrscheinlich OK — CM-vim übersetzt `\v` + Gruppen/Alternation. **Verify:** funktioniert `\v` ohne `\(`/`\|`-Escapes? | **Klasse b (Config).** Default (`pcre` an): `No matches for /\v(ALPHA\|BETA\|GAMMA)-TIER/m (set nopcre to use vim regexps)` — `\v` wird als JS-Regex interpretiert (`\v` = vertical tab), kein Match. Nach `:set nopcre`: **3 Matches, alle drei → `TIER-1`** ✅. |
-| 2 | **R-07** Lazy Trace | `:%s/<.\{-}>//g` | Tags entfernt, Payload bleibt (lazy `.\{-}` ≠ greedy `.*`). | ⚠️ Risiko-Item — `\{-}` muss zu JS `*?` übersetzt werden. CM-vim *sollte* das können. **Verify:** wird wirklich lazy gematcht (nicht alles bis zum letzten `>`)? | **Klasse c / b-hart (Gap).** Auch unter `nopcre`: `No matches for /<.{-}>/m` — CM-vim übersetzt `\{-}` NICHT (strippt nur den Backslash → literales `{-}`, kein lazy-Quantor). Einziger echter Gap der drei. Fix = Translate-Extension (`\{-}` → lazy) **oder** Curriculum-Anpassung. |
-| 3 | **R-10** Capture+Backref | `:%s/\(\w\+\): \(\w\+\)/\2 = \1/` | `KEY: value` → `value = KEY` (Magic-Mode-Default `\(` Gruppen, `\2 \1` Backrefs im Replacement). | ✅ wahrscheinlich OK — Backref-Syntax `\1`/`\2` im Replacement. **Verify:** `\1`-Syntax (Vim) vs. `$1` (JS) — akzeptiert CM-vim `\1`? | **Klasse a (nach nopcre).** Unter `nopcre`: `CHANNEL: encrypted` → `encrypted = CHANNEL`, `TIMESTAMP: 0417` → `0417 = TIMESTAMP`, `OPERATOR: raven` → `raven = OPERATOR` ✅. `\(\)`-Gruppen + `\1`/`\2`-Backrefs im Replacement funktionieren. |
+| 1 | **R-08** Magic Mode | `:%s/\v(ALPHA\|BETA\|GAMMA)-TIER/TIER-1/g` | All three tier labels → `TIER-1`. `\v` = very-magic, `(` and `\|` without backslash magic. | ✅ likely OK — CM-vim translates `\v` + groups/alternation. **Verify:** does `\v` work without `\(`/`\|` escapes? | **Class b (config).** Default (`pcre` on): `No matches for /\v(ALPHA\|BETA\|GAMMA)-TIER/m (set nopcre to use vim regexps)` — `\v` is interpreted as a JS regex (`\v` = vertical tab), no match. After `:set nopcre`: **3 matches, all three → `TIER-1`** ✅. |
+| 2 | **R-07** Lazy Trace | `:%s/<.\{-}>//g` | Tags removed, payload stays (lazy `.\{-}` ≠ greedy `.*`). | ⚠️ risk item — `\{-}` must be translated to JS `*?`. CM-vim *should* handle this. **Verify:** is it really matched lazily (not everything up to the last `>`)? | **Class c / hard-b (gap).** Even under `nopcre`: `No matches for /<.{-}>/m` — CM-vim does NOT translate `\{-}` (it only strips the backslash → literal `{-}`, no lazy quantifier). The only real gap of the three. Fix = translate extension (`\{-}` → lazy) **or** curriculum adjustment. |
+| 3 | **R-10** Capture+backref | `:%s/\(\w\+\): \(\w\+\)/\2 = \1/` | `KEY: value` → `value = KEY` (magic-mode-default `\(` groups, `\2 \1` backrefs in the replacement). | ✅ likely OK — backref syntax `\1`/`\2` in the replacement. **Verify:** `\1` syntax (Vim) vs. `$1` (JS) — does CM-vim accept `\1`? | **Class a (after nopcre).** Under `nopcre`: `CHANNEL: encrypted` → `encrypted = CHANNEL`, `TIMESTAMP: 0417` → `0417 = TIMESTAMP`, `OPERATOR: raven` → `raven = OPERATOR` ✅. `\(\)` groups + `\1`/`\2` backrefs in the replacement work. |
 
-## Klassifikation pro Befund (nach Run ausfüllen)
-- **a (out-of-the-box):** funktioniert wie Vim, keine Maßnahme.
-- **b (Übersetzungs-Schicht):** weicht ab, aber durch dünne Regex-Translate-Extension fixbar.
-- **c (genuiner Gap):** nicht reproduzierbar → Curriculum-Anpassung oder Custom-CM-Extension nötig.
+## Classification per finding
 
-## Entscheidung (Run 2026-05-28)
+- **a (out-of-the-box):** works like Vim, no action needed.
+- **b (translation layer):** deviates, but fixable with a thin regex-translate extension.
+- **c (genuine gap):** not reproducible → curriculum adjustment or custom CM extension required.
 
-**codemirror-vim braucht `nopcre` als Default + eine kleine Translate-Extension für `\{-}`.**
+## Decision (run 2026-05-28)
 
-1. **`pcre` aus (`:set nopcre` bzw. `Vim.setOption('pcre', false)` beim Editor-Setup) ist Pflicht für ARC II.** Default-`pcre` interpretiert Vim-Magie (`\v`, `\(`, `\1`) als JS-Regex → R-08 bricht. Mit `nopcre` sind R-08 (very-magic) **und** R-10 (Gruppen + Backrefs) Klasse a/b — out-of-the-box korrekt.
-2. **Einziger echter Gap: `\{-}` lazy (R-07).** Selbst unter `nopcre` nicht übersetzt. Optionen:
-   - **(a) Translate-Extension** in der Web-`VimModeSource`: Such-Pattern vor der Übergabe pre-processen, `\{-}` → lazy-Äquivalent. Dünn, isoliert auf adapter-web.
-   - **(b) Curriculum-Anpassung**: R-07 lehrt `\{-}` mit explizitem Hinweis oder alternativer Übung. Billiger, aber didaktisch ärmer (lazy ist ein Kern-Vim-Konzept).
-   → Empfehlung: (a) als TODO bei ARC-II-Web-Enablement; bis dahin kein Code-Change.
-3. **⚠️ `nopcre` ändert auch `/search`-Interpretation** (nicht nur `:%s`). ARC-I M-07 (`Search and Replace — f / ?`) nutzt Such-Pattern → **vor Default-Aktivierung von `nopcre` gegen ARC-I-Such-Missionen gegentesten**, sonst Regressionsgefahr. Deshalb wurde `nopcre` in diesem Spike NICHT blind in den Editor verdrahtet.
+**codemirror-vim needs `nopcre` as the default + a small translate extension for `\{-}`.**
 
-**Kein Klasse-c-Showstopper** — alle drei Pattern sind über Config + dünne Extension erreichbar. ARC-II-Web bleibt machbar.
+1. **`pcre` off (`:set nopcre` / `Vim.setOption('pcre', false)` at editor setup) is mandatory for ARC II.** Default `pcre` interprets Vim magic (`\v`, `\(`, `\1`) as a JS regex → R-08 breaks. With `nopcre`, R-08 (very-magic) **and** R-10 (groups + backrefs) are class a/b — correct out-of-the-box.
+2. **The only real gap: `\{-}` lazy (R-07).** Not translated even under `nopcre`. Options:
+   - **(a) Translate extension** in the web `VimModeSource`: pre-process the search pattern before handing it over, `\{-}` → lazy equivalent. Thin, isolated to adapter-web.
+   - **(b) Curriculum adjustment:** R-07 teaches `\{-}` with an explicit note or an alternative exercise. Cheaper, but didactically poorer (lazy is a core Vim concept).
+   → Recommendation: (a) as a TODO at ARC II web enablement; no code change until then.
+3. **⚠️ `nopcre` also changes `/search` interpretation** (not just `:%s`). ARC I M-07 (`Search and Replace — f / ?`) uses search patterns → **regression-test against the ARC I search missions before making `nopcre` the default**, otherwise there's a regression risk. That's why `nopcre` was NOT blindly wired into the editor in this spike.
 
-**Aktion-Items (für ARC-II-Web-Enablement, nicht jetzt):**
-- [ ] `nopcre` im Web-Editor-Setup default (nach ARC-I-Search-Regressionstest)
-- [ ] `\{-}`-Translate-Extension oder R-07-Curriculum-Entscheidung
-- [ ] Restliche ARC-II-Substitutions-Missionen (M-11…M-16) analog durchspielen
+**No class-c showstopper** — all three patterns are reachable via config + a thin extension. ARC II on the web stays feasible.
 
-**Wichtig:** Egal welcher Befund — die Adapter-Boundary bleibt identisch. Der Spike betrifft nur die **Web-`VimModeSource`-Implementierung** in `@neurovim/adapter-web`, nicht den Core oder das ADR. (ADR-001 D1.)
+**Action items (for ARC II web enablement, not now):**
+- [ ] Default `nopcre` in the web editor setup (after the ARC I search regression test)
+- [ ] `\{-}` translate extension or an R-07 curriculum decision
+- [ ] Play through the remaining ARC II substitution missions (M-11…M-16) the same way
 
-## Notizen zum Harness
-- `vim()` steht in `main.ts` VOR den anderen Keymaps (Vim muss Tasten zuerst sehen).
-- Drei Fixtures in einem Buffer mit Kommentar-Headern; `:%s` wirkt auf alle Zeilen — beim Testen ggf. Range einschränken (z.B. `:2,4s/...`) um Fixtures isoliert zu prüfen.
-- Browser-Konsole offen lassen für etwaige CM-vim-Fehlermeldungen bei nicht-übersetzbaren Pattern.
+**Important:** whatever the finding — the adapter boundary stays identical. The spike only affects the **web `VimModeSource` implementation** in `@neurovim/adapter-web`, not the core or the ADR. (ADR-001 D1.)
+
+## Notes on the harness
+
+- `vim()` comes BEFORE the other keymaps in `main.ts` (Vim must see the keys first).
+- Three fixtures in one buffer with comment headers; `:%s` acts on all lines — when testing, narrow the range (e.g. `:2,4s/...`) to check fixtures in isolation.
+- Keep the browser console open for any CM-vim error messages on untranslatable patterns.

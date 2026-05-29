@@ -1,130 +1,126 @@
 # neurovim-standalone
 
-Monorepo für **NeuroVim** — ein Vim-Lernspiel mit Spy-Thriller-Narrativ. Eine Codebase, zwei Auslieferungs-Targets: Obsidian-Plugin + Standalone-Web-App.
+Monorepo for **NeuroVim** — a Vim-learning game with a spy-thriller narrative.
+One codebase, two delivery targets: an Obsidian plugin + a standalone web app
+(plus a native desktop app via Tauri).
 
-> **Status: Phase 3 (lauffähig).** Core vollständig portiert, beide Adapter funktional, Web-App feature-complete (Welcome → NEXUS → Briefing → Editor → Result + Sandbox) inkl. Polish-Pass aus `docs/DESIGN-SPEC.md`. 150 Tests grün, 4-Workspace-Typecheck grün. Build: `npm run build`.
+> **Status: Phase 3 (working).** Core fully ported, both adapters functional, web
+> app feature-complete (Welcome → NEXUS → Briefing → Editor → Result + Sandbox)
+> including the polish pass from `docs/DESIGN-SPEC.md`. 150 tests green,
+> 4-workspace typecheck green. Build: `npm run build`.
 
-## Architektur
+## Architecture
 
-Plattform-neutraler Core + dünne Adapter über vier Port-Interfaces (`VimModeSource`, `StateStore`, `ContentSource`, `UiHost`). Vollständige Begründung im ADR:
-
-→ `/Users/Shared/20_Claude/neurovim-standalone-prep/40_deliverables/ADR-001-Adapter-Architektur.md`
+Platform-neutral core + thin adapters over four port interfaces (`VimModeSource`,
+`StoragePort`, `ContentPort`, `UiHost`). The core never depends on `obsidian` or
+the browser DOM — platform specifics come in through the ports. Full rationale
+lives in ADR-001 (in the separate design-prep workspace, not in this repo);
+`AGENTS.md` has the working summary.
 
 ## Packages
 
-| Package | Rolle |
+| Package | Role |
 |---|---|
-| [`@neurovim/core`](packages/core) | Game-Logic, Web-Audio, Preact-UI, Port-Interfaces, NEXUS-Dashboard |
-| [`@neurovim/content`](packages/content) | Missionen, Katas, Loot, Story-Bible als versionierte Daten |
-| [`@neurovim/adapter-obsidian`](packages/adapter-obsidian) | Obsidian-Plugin-Implementierung der Port-Interfaces |
-| [`@neurovim/adapter-web`](packages/adapter-web) | Web-App (Vite-SPA) — NEU für Standalone |
+| [`@neurovim/core`](packages/core) | Game logic, Web Audio, Preact UI, port interfaces, NEXUS dashboard |
+| [`@neurovim/content`](packages/content) | Missions, katas, loot, story bible as versioned data |
+| [`@neurovim/adapter-obsidian`](packages/adapter-obsidian) | Obsidian-plugin implementation of the port interfaces |
+| [`@neurovim/adapter-web`](packages/adapter-web) | Web app (Vite SPA) + Tauri desktop wrapper |
 
-## Herkunft
+## Origin
 
-Abgeleitet aus dem Obsidian-Plugin `neurovim-trainer` v1.0.0 (Source: `32_NeuroVim/_dev/plugin-src/`). Scan + Coupling-Analyse: siehe Prep-Habitat `20_Claude/neurovim-standalone-prep/`.
+Derived from the Obsidian plugin `neurovim-trainer` v1.0.0. The original plugin is
+left untouched; this monorepo is the contract. See `docs/PLUGIN-SWAP.md` for
+swapping the refactored build into the original vault.
 
 ## Tooling
 
-- **npm workspaces** (kein pnpm — nicht installiert; siehe Decision-Log D1)
+- **npm workspaces** (no pnpm — not installed; see decision log D1)
 - **TypeScript** project references (`tsconfig.base.json`)
-- Build: esbuild (Lib-Packages) / Vite (adapter-web) — siehe Decision-Log D4
+- Build: esbuild (library packages) / Vite (adapter-web); Tauri v2 for desktop
+- Bundled monospace: self-hosted JetBrains Mono (`packages/adapter-web/src/fonts/`)
 
-## Remotes & Distribution (ADR-001 D5)
-
-- **Primary remote:** `codeberg.org/jay/neurovim-standalone` *(TODO: Repo von Jay anlegen — Platzhalter-URL)*
-- **Mirror:** `github.com/jay/neurovim-standalone` *(TODO: Repo + Mirror anlegen — Platzhalter-URL)*
-- **Distribution:** Codeberg-Releases als primäre Source · GitHub-Mirror für Visibility · ggf. itch.io für Game-Audience-Reach
-- **CI:** Codeberg/Forgejo-Actions-Stub unter `.gitea/workflows/` (Build + Typecheck)
-
-> Passt zur 26-039-Migration auf Open-Source-Hosting (df.eu/Microsoft → mailbox.org/Codeberg).
-
-## Quickstart (Dev)
+## Quickstart (dev)
 
 ```bash
-cd /Users/Shared/code/neurovim-standalone
 npm install
 npm run dev          # → http://localhost:5173/
 ```
 
-`npm run dev` im Repo-**Root** ist ein Alias auf den `adapter-web`-Workspace (`npm run dev --workspace @neurovim/adapter-web`) — kein `--workspace`-Flag nötig.
+`npm run dev` from the repo **root** is an alias for the `adapter-web` workspace —
+no `--workspace` flag needed.
 
-### Root-Convenience-Scripts
+### Root convenience scripts
 
-Alle vom Repo-Root aus aufrufbar (`npm run <script>`):
+All callable from the repo root (`npm run <script>`):
 
-| Script | Wirkung |
+| Script | Effect |
 |---|---|
-| `dev` | Vite-Dev-Server für die Web-App (`adapter-web`), http://localhost:5173/ |
-| `build` | Voller Build in Reihenfolge: `content` → `plugin` → `web` |
-| `build:content` | Nur `@neurovim/content` (gray-matter → `src/generated/content.ts`) |
-| `build:plugin` | Nur `@neurovim/adapter-obsidian` (esbuild → `dist/main.js`) |
-| `build:web` | Nur `@neurovim/adapter-web` (Vite → `dist/`) |
-| `typecheck` | `tsc --noEmit` über alle vier Workspaces (core → content → plugin → web) |
-| `test` | `jest` über alle Workspaces mit Tests (`--if-present`) |
+| `dev` | Vite dev server for the web app (`adapter-web`), http://localhost:5173/ |
+| `build` | Full build in order: `content` → `plugin` → `web` |
+| `build:content` | Only `@neurovim/content` (gray-matter → `src/generated/*.ts`) |
+| `build:plugin` | Only `@neurovim/adapter-obsidian` (esbuild → `dist/main.js`) |
+| `build:web` | Only `@neurovim/adapter-web` (Vite → `dist/`) |
+| `build:dmg` | Native desktop app + macOS DMG (Tauri) — see `docs/DESKTOP.md` |
+| `desktop:dev` | Tauri desktop app with HMR |
+| `typecheck` | `tsc --noEmit` across all four workspaces |
+| `test` | `jest` across all workspaces with tests (`--if-present`) |
 
-> Build-Reihenfolge ist nicht beliebig: `content` generiert `content.ts`, das `plugin` und `web` importieren — deshalb läuft `content` zuerst.
+> The build order matters: `content` generates the manifest that `plugin` and
+> `web` import, so `content` runs first.
 
-## Web-App-Flow (`@neurovim/adapter-web`)
+## Web-app flow (`@neurovim/adapter-web`)
 
 ```mermaid
 flowchart LR
-  welcome["Welcome<br/>(Startseite)"] -->|Enter NEXUS| nexus["NEXUS<br/>(Picker + Dashboard)"]
-  nexus -->|Mission wählen| briefing["Briefing"]
+  welcome["Welcome<br/>(landing)"] -->|Enter NEXUS| nexus["NEXUS<br/>(picker + dashboard)"]
+  nexus -->|pick mission| briefing["Briefing"]
   nexus -->|RAVEN| sandbox["Sandbox"]
-  briefing -->|Begin Mission| editor["Mission-Editor<br/>(CM6 + vim)"]
+  briefing -->|Begin Mission| editor["Mission editor<br/>(CM6 + vim)"]
   briefing -->|Back| nexus
   editor -->|"Submit → Complete → Next"| briefing
   editor -->|Back| nexus
   sandbox -->|Back| nexus
 ```
 
-App-Start zeigt **Welcome**; jede Mission läuft über die **Briefing**-Seite vor den Editor. Welcome/Briefing/Editor/Sandbox sind lazy-geladene Chunks (Code-Splitting), der Markdown-Renderer (`marked`) liegt im geteilten Briefing/Welcome-Chunk.
+Launch shows **Welcome**; every mission goes through the **Briefing** page before
+the editor. Welcome/Briefing/Editor/Sandbox are lazy-loaded chunks (code
+splitting); the Markdown renderer (`marked`) sits in the shared Briefing/Welcome
+chunk.
 
-## Setup (Jay copy-paste — Repos müssen vorher manuell angelegt werden)
+## Desktop app (Tauri)
 
-> **Bequemer:** `scripts/setup-remotes.sh` — `CODEBERG_USER`/`GITHUB_USER` oben ausfüllen, dann `bash scripts/setup-remotes.sh`. Das Script setzt die Remotes (kein Push, keine Repo-Erstellung) und gibt die zwei Push-Befehle aus, die Du selbst ausführst. Die manuellen Schritte unten sind die Langform desselben.
+Native app wrapping the web build via Tauri v2 — uses the OS WebView, so the macOS
+DMG is ~3 MB. Build locally with `npm run build:dmg`; multi-OS installers
+(macOS/Windows/Linux) are built in CI on a `v*` tag. Details, including the
+unsigned-Gatekeeper note, in `docs/DESKTOP.md`.
+
+## Remotes & distribution (ADR-001 D5)
+
+- **Primary:** `codeberg.org/jkaindl/NeuroVIM` (git remote `codeberg`)
+- **Mirror:** `github.com/johannes-kaindl/NeuroVIM` (git remote `github`) — runs the desktop CI
+- **Distribution:** Codeberg releases as the primary source · GitHub mirror for visibility · possibly itch.io for game-audience reach
+
+### Deploy the web app
+
+`packages/adapter-web/dist/` is a **static site** (relative `base: './'`, so it
+deploys under any sub-path).
+
+**Codeberg Pages** (primary): push the `dist/` contents to a `pages` branch.
 
 ```bash
-# Repo ist bereits lokal git-initialisiert (scaffold-Commit liegt vor).
-# 1. Auf codeberg.org + github.com je ein leeres Repo "neurovim-standalone" anlegen (Web-UI).
-# 2. Remotes setzen (codeberg = origin, github = mirror):
-git -C /Users/Shared/code/neurovim-standalone remote add origin   git@codeberg.org:jay/neurovim-standalone.git
-git -C /Users/Shared/code/neurovim-standalone remote add github   git@github.com:jay/neurovim-standalone.git
-# 3. Primary push:
-git -C /Users/Shared/code/neurovim-standalone push -u origin main
-# 4. Mirror push:
-git -C /Users/Shared/code/neurovim-standalone push github main
-# 5. (optional) Mirror automatisieren — entweder Codeberg "Repository Mirroring" (Settings → Mirror)
-#    oder beide Remotes an origin koppeln: git remote set-url --add --push origin <github-url>
-```
-
-> ⚠️ URLs sind Platzhalter (`jay/...`) — vor dem Push durch die echten Account-/Org-Namen ersetzen. Branch heißt `main` (Default dieses Repos prüfen mit `git -C … branch`).
-
-## Web-App lokal + Deploy (`@neurovim/adapter-web`)
-
-```bash
-cd /Users/Shared/code/neurovim-standalone
-npm install
-# Lokal entwickeln (öffnet localhost:5173):
-npm run dev --workspace @neurovim/adapter-web
-# Production-Build → packages/adapter-web/dist/ (statische Site, ~744KB / 228KB gzip):
-npm run build --workspace @neurovim/adapter-web
-```
-
-`dist/` ist eine **statische Site** (relative `base: './'` → unter beliebigem Unterpfad deploybar).
-
-**Codeberg Pages** (primär): den `dist/`-Inhalt in einen `pages`-Branch des Repos pushen.
-```bash
-cd /Users/Shared/code/neurovim-standalone/packages/adapter-web
-npx vite build
-# pages-Branch befüllen (orphan, nur dist-Inhalt):
-git -C /Users/Shared/code/neurovim-standalone worktree add /tmp/nv-pages --orphan pages
+cd packages/adapter-web && npx vite build
+git -C ../.. worktree add /tmp/nv-pages --orphan pages
 cp -R dist/. /tmp/nv-pages/ && touch /tmp/nv-pages/.nojekyll
 git -C /tmp/nv-pages add -A && git -C /tmp/nv-pages commit -m "deploy web app"
-git -C /tmp/nv-pages push origin pages   # → https://<user>.codeberg.page/neurovim-standalone/
-git -C /Users/Shared/code/neurovim-standalone worktree remove /tmp/nv-pages
+git -C /tmp/nv-pages push codeberg pages   # → https://jkaindl.codeberg.page/NeuroVIM/
+git -C ../.. worktree remove /tmp/nv-pages
 ```
 
-**GitHub Pages** (Mirror): identisch, aber Push auf `github`-Remote `pages`-Branch + in den GitHub-Repo-Settings Pages-Source = `pages`-Branch setzen. Alternativ ein `.github/workflows/pages.yml` (Build + `actions/deploy-pages`) — TODO.
+**GitHub Pages** (mirror): same, but push the `pages` branch to the `github`
+remote and set Pages source = `pages` branch in the repo settings.
 
-**itch.io** (Game-Audience, TODO): `dist/` als ZIP packen (`cd dist && zip -r ../neurovim-web.zip .`) → auf itch.io als HTML5-Game hochladen, „This file will be played in the browser" aktivieren. (Vorbereiten wenn Distribution-Channel bestätigt.)
+**itch.io** (game audience, TODO): zip `dist/` (`cd dist && zip -r ../neurovim-web.zip .`)
+and upload as an HTML5 game with "This file will be played in the browser" enabled.
+
+> After deploying, update the `og:image`/`og:url` host in
+> `packages/adapter-web/index.html` to the final URL so link unfurls show the card.

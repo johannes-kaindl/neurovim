@@ -1,10 +1,10 @@
 /**
- * @neurovim/content — versionierte Content-Quelle (Phase 3 Schritt 3).
+ * @neurovim/content — versioned content source (Phase 3 step 3).
  *
- * SSOT = src/content/*.md. Build (build.mjs) generiert src/generated/content.ts.
- * Dieses Modul liefert ContentPort-konforme Helper über das generierte Manifest —
- * bundler-tauglich, kein Runtime-fs (web-fähig). Konsumiert via adapter-web (Phase 4)
- * oder direkt; der Obsidian-Adapter nutzt weiter Vault-Reads (ObsidianContent).
+ * SSOT = src/content/*.md. The build (build.mjs) generates src/generated/content.ts.
+ * This module exposes ContentPort-conformant helpers over the generated manifest —
+ * bundler-friendly, no runtime fs (web-ready). Consumed via adapter-web (Phase 4)
+ * or directly; the Obsidian adapter still uses vault reads (ObsidianContent).
  */
 import type { MissionSummary, MissionDoc, LoreDoc, GlitchDefinition } from '@neurovim/core';
 import { ENTRIES, type RawContentEntry } from './generated/content';
@@ -14,12 +14,12 @@ import { WELCOME_BODY } from './generated/welcome';
 export { ENTRIES };
 export type { RawContentEntry };
 
-/** THE RAVEN Sandbox-Quelle (M-08): sauberer Original-Text + Glitch-Pool. */
+/** THE RAVEN sandbox source (M-08): clean original text + glitch pool. */
 export function getSandboxSource(): { original: string; pool: GlitchDefinition[] } {
   return { original: RAVEN_ORIGINAL, pool: RAVEN_GLITCH_POOL };
 }
 
-/** Startseiten-Intro (Markdown) für die Welcome-View. */
+/** Landing-page intro (Markdown) for the Welcome view. */
 export function getWelcome(): string {
   return WELCOME_BODY;
 }
@@ -39,7 +39,7 @@ function toSummary(e: RawContentEntry): MissionSummary {
   };
 }
 
-/** Alle spielbaren Missionen (Transmission + Kata), optional auf Arc gefiltert. */
+/** All playable missions (transmission + kata), optionally filtered by arc. */
 export function listMissions(arc?: 'I' | 'II'): MissionSummary[] {
   return ENTRIES
     .filter((e) => e.role === 'transmission' || e.role === 'kata')
@@ -47,12 +47,12 @@ export function listMissions(arc?: 'I' | 'II'): MissionSummary[] {
     .map(toSummary);
 }
 
-/** Volle Mission: Transmission/Kata-Body + ggf. zugehöriger Briefing-Body. */
+/** Full mission: transmission/kata body + the associated briefing body, if any. */
 export function getMission(id: string): MissionDoc {
   const main = ENTRIES.find(
     (e) => (e.role === 'transmission' || e.role === 'kata') && e.id === id,
   );
-  if (!main) throw new Error(`Mission nicht gefunden: ${id}`);
+  if (!main) throw new Error(`Mission not found: ${id}`);
   const briefing = ENTRIES.find((e) => e.role === 'briefing' && e.id === id);
   const solution = ENTRIES.find((e) => e.role === 'solution' && e.id === id);
   return {
@@ -63,12 +63,12 @@ export function getMission(id: string): MissionDoc {
   };
 }
 
-/** Lore-Artefakt (Loot/Fragment/Ref). */
+/** Lore artifact (loot/fragment/ref). */
 export function getLore(id: string): LoreDoc {
   const e = ENTRIES.find(
     (x) => x.kind === 'lore' && x.id === id,
   );
-  if (!e) throw new Error(`Lore nicht gefunden: ${id}`);
+  if (!e) throw new Error(`Lore not found: ${id}`);
   return {
     id: e.id,
     kind: e.role === 'loot' ? 'loot' : e.role === 'fragment' ? 'fragment' : 'ref',

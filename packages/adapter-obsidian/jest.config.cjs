@@ -1,4 +1,4 @@
-// CJS weil package.json "type": "module". Adapter-Tests brauchen obsidian-Mock.
+// CJS because package.json has "type": "module". Adapter tests need the obsidian mock.
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',

@@ -1,9 +1,9 @@
 /**
- * Vim-Regex-Parität-Spike — Phase-3-Schritt-0.
+ * Vim regex parity spike — Phase 3 step 0.
  *
- * Minimaler CodeMirror-6-Editor mit @replit/codemirror-vim. Vorgeladen mit drei
- * ARC-II-Fixtures aus dem NeuroVim-Curriculum. Manuell durchspielen, Befund in
- * experiments/vim-regex-findings.md eintragen.
+ * Minimal CodeMirror 6 editor with @replit/codemirror-vim. Preloaded with three
+ * ARC II fixtures from the NeuroVim curriculum. Play through them manually and
+ * record the findings in experiments/vim-regex-findings.md.
  */
 import { EditorView, keymap } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
@@ -15,7 +15,7 @@ INTERCEPT: clearance ALPHA-TIER granted
 INTERCEPT: clearance BETA-TIER granted
 INTERCEPT: clearance GAMMA-TIER granted
 
-# R-07 — lazy quantifier  →  :%s/<.\\{-}>//g   (tags weg, payload bleibt)
+# R-07 — lazy quantifier  →  :%s/<.\\{-}>//g   (tags removed, payload stays)
 <header>CIPHER-DIRECT</header><payload>signal dark</payload><footer>eof</footer>
 
 # R-10 — capture + backref  →  :%s/\\(\\w\\+\\): \\(\\w\\+\\)/\\2 = \\1/
@@ -24,7 +24,7 @@ TIMESTAMP: 0417
 OPERATOR: raven
 `;
 
-// vim() muss VOR den anderen Keymaps stehen, damit Vim die Tasten zuerst sieht.
+// vim() must come BEFORE the other keymaps so Vim sees the keys first.
 new EditorView({
   state: EditorState.create({
     doc: FIXTURE,

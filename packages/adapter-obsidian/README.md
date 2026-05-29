@@ -1,7 +1,7 @@
 # @neurovim/adapter-obsidian
 
-Obsidian-Plugin-Target. Implementiert die vier `@neurovim/core`-Ports gegen die Obsidian-API und enthält die Plugin-Lifecycle-Klasse (Nachfolger von `main.ts`).
+Obsidian plugin target. Implements the four `@neurovim/core` ports against the Obsidian API and contains the plugin lifecycle class (successor to `main.ts`).
 
-Build-Ziel (Phase 3): esbuild-Bundle → `32_NeuroVim/.obsidian/plugins/neurovim-trainer/main.js` (wie heute, nur aus dem Monorepo statt aus `_dev/plugin-src/`).
+Build target (Phase 3): esbuild bundle → `32_NeuroVim/.obsidian/plugins/neurovim-trainer/main.js` (as today, just from the monorepo instead of from `_dev/plugin-src/`).
 
-→ ADR-001 für die Adapter-Boundary.
+→ ADR-001 for the adapter boundary.

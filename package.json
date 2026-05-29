@@ -2,7 +2,7 @@
   "name": "neurovim-standalone",
   "version": "0.0.0",
   "private": true,
-  "description": "NeuroVim — Vim-Lernspiel. Monorepo: plattform-neutraler Core + Obsidian-/Web-Adapter.",
+  "description": "NeuroVim — a Vim-learning game. Monorepo: platform-neutral core + Obsidian/web adapters.",
   "license": "MIT",
   "workspaces": [
     "packages/core",

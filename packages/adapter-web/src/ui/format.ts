@@ -1,4 +1,4 @@
-/** Millisekunden → kompakte Spielzeit: <60s → "12.3s", sonst "m:ss". */
+/** Milliseconds → compact play time: <60s → "12.3s", otherwise "m:ss". */
 export function fmtTime(ms: number): string {
   if (ms < 60_000) return `${(ms / 1000).toFixed(1)}s`;
   const s = Math.round(ms / 1000);

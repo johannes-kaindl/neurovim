@@ -1,7 +1,7 @@
 /**
- * BriefingView — Story-Briefing vor dem Mission-Editor.
- * Rendert den (in der MissionDoc bereits enthaltenen) briefingBody als Markdown.
- * Buttons: Begin Mission → Editor, ← NEXUS → Picker.
+ * BriefingView — story briefing shown before the mission editor.
+ * Renders the briefingBody (already contained in the MissionDoc) as Markdown.
+ * Buttons: Begin Mission → editor, ← NEXUS → picker.
  */
 import { renderMarkdown } from './markdown';
 

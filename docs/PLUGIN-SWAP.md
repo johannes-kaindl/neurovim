@@ -1,58 +1,58 @@
-# Obsidian-Plugin-Swap — HOWTO (5 Min, für Jay)
+# Obsidian Plugin Swap — HOWTO (5 min, for Jay)
 
-Tauscht den **refaktorierten** `@neurovim/adapter-obsidian`-Build gegen das
-Bestand-Plugin `neurovim-trainer` im NeuroVim-Vault. Reversibel via Backup.
+Swaps the **refactored** `@neurovim/adapter-obsidian` build in for the existing
+`neurovim-trainer` plugin in the NeuroVim vault. Reversible via backup.
 
-> **Warum manuell?** Cowork kann Obsidian nicht visuell prüfen und arbeitet
-> READ-ONLY auf dem Vault. Der Swap schreibt in den Vault — das machst Du.
-> Cowork hält nur den Build aktuell + liefert Script & Checkliste.
+> **Why manual?** Cowork can't visually inspect Obsidian and works READ-ONLY on
+> the vault. The swap writes to the vault — you do that part. Cowork only keeps
+> the build current and provides the script & checklist.
 
-## Was passiert
+## What happens
 
-- Getauscht wird **nur `main.js`** (Monorepo liefert kein eigenes manifest/styles).
-- **Unangetastet:** `manifest.json`, `styles.css` und `data.json` (= Dein Spielstand!).
-- Vorher wird der ganze Plugin-Ordner nach `…neurovim-trainer.backup-<timestamp>` kopiert.
+- Only **`main.js`** is swapped (the monorepo ships no manifest/styles of its own).
+- **Untouched:** `manifest.json`, `styles.css` and `data.json` (= your save game!).
+- Beforehand, the entire plugin folder is copied to `…neurovim-trainer.backup-<timestamp>`.
 
-## Schritte
+## Steps
 
-1. Build frisch ziehen:
+1. Pull a fresh build:
    ```bash
    cd /Users/Shared/code/neurovim-standalone
    npm run build:plugin
    ```
-2. Swap + Backup (ein Befehl):
+2. Swap + backup (one command):
    ```bash
    bash scripts/swap-obsidian-plugin.sh
    ```
-3. In Obsidian neu laden: **Settings → Community Plugins → NeuroVim Trainer** aus- und wieder einschalten (oder `Cmd+R` / „Reload app without saving").
+3. Reload in Obsidian: **Settings → Community Plugins → NeuroVim Trainer** off and back on (or `Cmd+R` / "Reload app without saving").
 
-## Smoke-Test-Checkliste
+## Smoke test checklist
 
-Nach dem Reload der Reihe nach prüfen — bei *irgendeinem* ✗ → Rollback (unten):
+After the reload, check in order — on *any* ✗ → rollback (below):
 
-- [ ] Plugin lädt ohne Fehler (Console `Cmd+Opt+I` → keine roten NeuroVim-Errors)
-- [ ] `00-NEXUS.md` öffnen → Sidebar-HUD/Dashboard erscheint, XP/Level stimmen (Spielstand aus `data.json` da)
-- [ ] Eine Mission öffnen (z.B. M-01) → Timer/HUD startet, Vim-Mode aktiv
-- [ ] Vim-Editing funktioniert (`i`/`Esc`/`x`), Mission lösen → Submit → XP/Completion bucht
-- [ ] Highscore/Metrics werden angezeigt und persistiert (Reload → bleiben erhalten)
-- [ ] `99-THE_RAVEN.md` (Sandbox) öffnen → Difficulty wählbar, Glitches injizieren, Submit zählt
-- [ ] ASCII-Art-Fences (CORP-Dokumente) rendern wie gewohnt
+- [ ] Plugin loads without errors (console `Cmd+Opt+I` → no red NeuroVim errors)
+- [ ] Open `00-NEXUS.md` → sidebar HUD/dashboard appears, XP/level are correct (save game from `data.json` present)
+- [ ] Open a mission (e.g. M-01) → timer/HUD starts, Vim mode active
+- [ ] Vim editing works (`i`/`Esc`/`x`), solve mission → Submit → XP/completion is recorded
+- [ ] Highscore/metrics are displayed and persisted (reload → they remain)
+- [ ] Open `99-THE_RAVEN.md` (sandbox) → difficulty selectable, glitches injectable, Submit counts
+- [ ] ASCII-art fences (CORP documents) render as usual
 
-## Rollback (falls etwas ✗ ist)
+## Rollback (if something is ✗)
 
-Das Script gibt am Ende den genauen Befehl mit dem Backup-Pfad aus. Generisch:
+The script prints the exact command with the backup path at the end. Generically:
 
 ```bash
 PLUGIN="/Users/Shared/10_ObsidianVaults/32_NeuroVim/.obsidian/plugins/neurovim-trainer"
 cp "${PLUGIN}.backup-<timestamp>/main.js" "${PLUGIN}/main.js"
-# dann Plugin in Obsidian neu laden
+# then reload the plugin in Obsidian
 ```
 
-`data.json` wurde nie angefasst — der Spielstand ist in jedem Fall sicher.
+`data.json` was never touched — the save game is safe in any case.
 
-## Bekanntes Risiko
+## Known risk
 
-Phase 3 war „extract package, keep behavior" — die CSS-Klassen sollten unverändert
-sein, also passt die Bestand-`styles.css` zum neuen `main.js`. Falls Styling kaputt
-aussieht: das ist der wahrscheinlichste Bruchpunkt → Rollback + an Cowork melden
-(dann braucht der Swap auch eine neue `styles.css` aus dem Monorepo).
+Phase 3 was "extract package, keep behavior" — the CSS classes should be unchanged,
+so the existing `styles.css` matches the new `main.js`. If the styling looks broken:
+that's the most likely break point → rollback + report to Cowork (then the swap will
+also need a new `styles.css` from the monorepo).

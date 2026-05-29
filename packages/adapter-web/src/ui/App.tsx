@@ -1,7 +1,7 @@
 /**
- * App — Web-Orchestrierung (D17: eigener picker-getriebener Flow, NICHT der
- * file-open-getriebene Obsidian-main.ts). Konsumiert reine core-Engines +
- * Web-Port-Impls. Game-Flow: pick → edit → submit→verify→XP→save.
+ * App — web orchestration (D17: its own picker-driven flow, NOT the
+ * file-open-driven Obsidian main.ts). Consumes pure core engines +
+ * web port impls. Game flow: pick → edit → submit→verify→XP→save.
  */
 import { useEffect, useState } from 'preact/hooks';
 import { lazy, Suspense } from 'preact/compat';
@@ -15,8 +15,8 @@ import { WebStorage } from '../ports/WebStorage';
 import { MissionResult, type MissionResultData } from './MissionResult';
 import { fmtTime } from './format';
 
-// CM6 + @replit/codemirror-vim sind das schwerste Dep-Bündel und nur im Editor
-// nötig — lazy laden, damit Picker/NEXUS sie nicht im Initial-Bundle tragen (Code-Splitting).
+// CM6 + @replit/codemirror-vim are the heaviest dep bundle and only needed in
+// the editor — load them lazily so the picker/NEXUS don't carry them in the initial bundle (code splitting).
 const MissionEditor = lazy(() =>
   import('./MissionEditor').then((m) => ({ default: m.MissionEditor })),
 );
@@ -30,7 +30,7 @@ const BriefingView = lazy(() =>
   import('./BriefingView').then((m) => ({ default: m.BriefingView })),
 );
 
-/** Nächste spielbare Mission im selben Arc (für den „Next Mission"-Button). */
+/** Next playable mission in the same arc (for the "Next Mission" button). */
 function nextMissionId(id: string): string | null {
   const list = listMissions('I');
   const i = list.findIndex((m) => m.mission_id === id);
@@ -46,7 +46,7 @@ export function App() {
   const [view, setView] = useState<'welcome' | 'nexus' | 'briefing' | 'mission' | 'sandbox'>('welcome');
   const [mission, setMission] = useState<MissionDoc | null>(null);
   const [result, setResult] = useState<MissionResultData | null>(null);
-  // XP-Gain-Flash: kurzer Aufleuchten der XP-Bar beim NEXUS-Rückkehr nach frischem Clear.
+  // XP-gain flash: a brief flash of the XP bar when returning to NEXUS after a fresh clear.
   const [xpFlash, setXpFlash] = useState(false);
 
   function flashXp() {
@@ -58,11 +58,11 @@ export function App() {
     storage.loadData<PluginData>().then((d) => { if (d) setData({ ...DEFAULT_PLUGIN_DATA, ...d }); });
   }, []);
 
-  // D4: Audio erst nach erster User-Geste initialisieren (non-intrusive, kein Auto-Play).
+  // D4: initialize audio only after the first user gesture (non-intrusive, no auto-play).
   function unlockAudio() {
     if (audioUnlocked) return;
     audioUnlocked = true;
-    audio.init().catch(() => { /* User-Gesture-Race, silent */ });
+    audio.init().catch(() => { /* user-gesture race, silent */ });
   }
 
   function selectMission(id: string) {
@@ -191,9 +191,9 @@ export function App() {
         <h2>ARC I — Indoctrination <span class="nv-arc-prog">{cleared}/{missions.length} cleared</span></h2>
         <ul>
           {(() => {
-            // Web: ALLE Missionen frei spielbar (kein Unlock-Gating — der Web-Build ist
-            // ein offener Demo-Build, Progression-Locks gehören nur in den Obsidian-Adapter).
-            // „Aktive" Mission = erste noch nicht abgeschlossene (▸-Highlight + Glow).
+            // Web: ALL missions are freely playable (no unlock gating — the web build is
+            // an open demo build, progression locks belong only in the Obsidian adapter).
+            // "Active" mission = the first not-yet-completed one (▸ highlight + glow).
             const activeId = missions.find(
               (m) => !data.completed_missions.includes(m.mission_id),
             )?.mission_id ?? null;

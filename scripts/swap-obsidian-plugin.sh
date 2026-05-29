@@ -1,32 +1,32 @@
 #!/usr/bin/env bash
 #
-# swap-obsidian-plugin.sh — den frisch gebauten adapter-obsidian main.js in das
-# Live-NeuroVim-Vault-Plugin tauschen, mit automatischem Timestamp-Backup.
+# swap-obsidian-plugin.sh — swap the freshly built adapter-obsidian main.js into
+# the live NeuroVim vault plugin, with an automatic timestamped backup.
 #
-# SELBST ausführen (das Script schreibt in den Vault). Es tauscht NUR main.js —
-# manifest.json, styles.css und data.json (Spielstand!) bleiben unangetastet.
+# Run this YOURSELF (the script writes into the vault). It swaps ONLY main.js —
+# manifest.json, styles.css and data.json (your save!) are left untouched.
 #
-# Vorher:  npm run build:plugin     (erzeugt packages/adapter-obsidian/dist/main.js)
-# Danach:  Obsidian → Plugin aus/an (oder Cmd+R), dann Smoke-Test (siehe docs/PLUGIN-SWAP.md)
+# Before:  npm run build:plugin     (produces packages/adapter-obsidian/dist/main.js)
+# After:   Obsidian → toggle the plugin off/on (or Cmd+R), then smoke-test (see docs/PLUGIN-SWAP.md)
 #
 set -euo pipefail
 
 VAULT_PLUGIN="/Users/Shared/10_ObsidianVaults/32_NeuroVim/.obsidian/plugins/neurovim-trainer"
 BUILT="$(cd "$(dirname "$0")/.." && pwd)/packages/adapter-obsidian/dist/main.js"
 
-[[ -f "$BUILT" ]] || { echo "✗ Build fehlt: $BUILT — erst 'npm run build:plugin'." >&2; exit 1; }
-[[ -d "$VAULT_PLUGIN" ]] || { echo "✗ Plugin-Dir nicht gefunden: $VAULT_PLUGIN" >&2; exit 1; }
+[[ -f "$BUILT" ]] || { echo "✗ Build missing: $BUILT — run 'npm run build:plugin' first." >&2; exit 1; }
+[[ -d "$VAULT_PLUGIN" ]] || { echo "✗ Plugin dir not found: $VAULT_PLUGIN" >&2; exit 1; }
 
 STAMP="$(date +%Y%m%d-%H%M%S)"
 BACKUP="${VAULT_PLUGIN}.backup-${STAMP}"
 cp -R "$VAULT_PLUGIN" "$BACKUP"
-echo "✓ Backup angelegt: $BACKUP"
+echo "✓ Backup created: $BACKUP"
 
 cp "$BUILT" "${VAULT_PLUGIN}/main.js"
-echo "✓ main.js getauscht ($(wc -c < "$BUILT") bytes) — manifest/styles/data unangetastet."
+echo "✓ main.js swapped ($(wc -c < "$BUILT") bytes) — manifest/styles/data untouched."
 echo
-echo "Jetzt in Obsidian neu laden: Settings → Community Plugins → NeuroVim Trainer aus/an"
-echo "(oder Cmd+R / 'Reload app without saving'). Dann Smoke-Test: docs/PLUGIN-SWAP.md"
+echo "Now reload in Obsidian: Settings → Community Plugins → NeuroVim Trainer off/on"
+echo "(or Cmd+R / 'Reload app without saving'). Then smoke-test: docs/PLUGIN-SWAP.md"
 echo
-echo "Rollback bei Problemen:"
-echo "  cp \"${BACKUP}/main.js\" \"${VAULT_PLUGIN}/main.js\"   # danach Plugin neu laden"
+echo "Rollback if something breaks:"
+echo "  cp \"${BACKUP}/main.js\" \"${VAULT_PLUGIN}/main.js\"   # then reload the plugin"

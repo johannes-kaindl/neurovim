@@ -1,7 +1,7 @@
 /**
- * WelcomeView — Startseite beim App-Start (vor dem NEXUS-Picker).
- * Rendert das Welcome-Intro (aus @neurovim/content) als Markdown.
- * Button: Enter NEXUS → Picker.
+ * WelcomeView — landing page at app start (before the NEXUS picker).
+ * Renders the welcome intro (from @neurovim/content) as Markdown.
+ * Button: Enter NEXUS → picker.
  */
 import { getWelcome } from '@neurovim/content';
 import { renderMarkdown } from './markdown';

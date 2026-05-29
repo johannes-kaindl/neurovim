@@ -1,17 +1,17 @@
 /**
- * Obsidian-Markdown → HTML für Welcome- + Briefing-Views.
+ * Obsidian Markdown → HTML for the Welcome and Briefing views.
  *
- * `marked` rendert den Standard-Teil (Überschriften, bold/italic, Listen,
- * verschachtelte Blockquotes, ```ascii-Fences → <pre>). Zwei Pre-Process-Schritte
- * überbrücken Obsidian-Spezifika:
- *  - Wikilinks `[[pfad|label]]` / `[[pfad]]` → reiner Label-/Basename-Text
- *    (im Web gibt es keine Vault-Routen, also keine echten Links).
- *  - Callout-Header `> [!type] Titel` → `> <span class="nv-co nv-co-type"></span>**Titel**`.
- *    Der Typ wird als Inline-Marker-Span durchgereicht; styles.css färbt via
- *    `:has()` das ganze Callout type-aware ein + setzt ein Leit-Glyph (D25 restored).
+ * `marked` renders the standard part (headings, bold/italic, lists,
+ * nested blockquotes, ```ascii fences → <pre>). Two pre-process steps
+ * bridge Obsidian specifics:
+ *  - Wikilinks `[[path|label]]` / `[[path]]` → plain label/basename text
+ *    (there are no vault routes on the web, hence no real links).
+ *  - Callout headers `> [!type] Title` → `> <span class="nv-co nv-co-type"></span>**Title**`.
+ *    The type is passed through as an inline marker span; styles.css colors
+ *    the whole callout type-aware via `:has()` + sets a leading glyph (D25 restored).
  *
- * Quelle ist gebündelter, build-time-vertrauenswürdiger Content (kein User-Input),
- * daher ist dangerouslySetInnerHTML in den Views vertretbar.
+ * The source is bundled, build-time-trusted content (no user input),
+ * so dangerouslySetInnerHTML in the views is acceptable.
  */
 import { marked } from 'marked';
 

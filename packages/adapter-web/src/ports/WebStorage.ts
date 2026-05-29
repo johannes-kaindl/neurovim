@@ -1,6 +1,6 @@
 /**
- * WebStorage — StoragePort gegen IndexedDB (D18, native API, keine Extra-Dep).
- * Ersetzt Obsidians loadData/saveData. Cross-Reload-persistent.
+ * WebStorage — StoragePort backed by IndexedDB (D18, native API, no extra dep).
+ * Replaces Obsidian's loadData/saveData. Persists across reloads.
  */
 import type { StoragePort } from '@neurovim/core';
 

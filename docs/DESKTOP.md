@@ -1,62 +1,67 @@
-# Desktop-App (Tauri)
+# Desktop App (Tauri)
 
-NeuroVim als native Desktop-App — derselbe Web-Build (`@neurovim/adapter-web`),
-verpackt mit [Tauri v2](https://tauri.app). Tauri nutzt das **OS-eigene WebView**
-(WKWebView/WebView2/WebKitGTK), daher sind die Installer klein (~8–15 MB statt
-~100 MB bei Electron). Tauri-Projekt: `packages/adapter-web/src-tauri/`.
+NeuroVim as a native desktop app — the same web build (`@neurovim/adapter-web`),
+packaged with [Tauri v2](https://tauri.app). Tauri uses the **OS-native WebView**
+(WKWebView/WebView2/WebKitGTK), so the installers are small (~8–15 MB instead of
+~100 MB with Electron). Tauri project: `packages/adapter-web/src-tauri/`.
 
-## Lokal bauen
+## Building locally
 
-**Voraussetzungen:** Node + npm, Rust (`rustup`), Xcode Command Line Tools (macOS).
+**Prerequisites:** Node + npm, Rust (`rustup`), Xcode Command Line Tools (macOS).
 
 ```bash
 npm install
-npm run build:dmg        # = build:content + tauri build (→ vite build + Bundle)
+npm run build:dmg        # = build:content + tauri build (→ vite build + bundle)
 ```
 
-Ergebnis (macOS):
+Output (macOS):
 - `.app`: `packages/adapter-web/src-tauri/target/release/bundle/macos/NeuroVim.app`
 - `.dmg`: `packages/adapter-web/src-tauri/target/release/bundle/dmg/NeuroVim_<version>_<arch>.dmg`
 
-Entwicklung mit Hot-Reload im nativen Fenster:
+Development with hot reload in the native window:
 
 ```bash
-npm run desktop:dev      # = build:content + tauri dev (Vite-HMR im WebView)
+npm run desktop:dev      # = build:content + tauri dev (Vite HMR in the WebView)
 ```
 
-## Unsigniert — Gatekeeper-Hinweis
+## Unsigned — Gatekeeper note
 
-Die Builds sind **nicht code-signiert/notarisiert** (kein Apple-Developer-Account).
-Beim ersten Start meldet macOS „unbekannter Entwickler". Öffnen per:
+The builds are **not code-signed/notarized** (no Apple Developer account).
+On first launch, macOS reports an "unknown developer". Open it via:
 
-- **Rechtsklick auf die App → „Öffnen"** → im Dialog „Öffnen" bestätigen, **oder**
-- Quarantäne-Flag entfernen:
+- **Right-click the app → "Open"** → confirm "Open" in the dialog, **or**
+- Remove the quarantine flag:
   ```bash
   xattr -dr com.apple.quarantine /Applications/NeuroVim.app
   ```
 
-Für einen warnungsfreien Start bräuchte es einen Apple-Developer-Account (99 $/Jahr)
-+ Developer-ID-Signing + Notarization.
+A warning-free launch would require an Apple Developer account ($99/year)
++ Developer ID signing + notarization.
 
-## CI — alle Plattformen
+## CI — all platforms
 
-`.github/workflows/desktop.yml` baut bei einem `v*`-Tag (oder manuell) macOS-DMG
-(universal), Windows-.exe/.msi und Linux-.AppImage/.deb und legt sie als
-Draft-GitHub-Release ab.
+`.github/workflows/desktop.yml` builds a macOS DMG (universal),
+Windows .exe/.msi and Linux .AppImage/.deb on a `v*` tag (or manually) and
+publishes them as a draft GitHub release.
 
-> **Läuft nur auf GitHub Actions.** macOS-/Windows-Installer brauchen macOS-/Windows-
-> Runner, die Codeberg/Forgejo-Shared-Runner nicht bieten. Der Workflow greift,
-> sobald der GitHub-Mirror existiert (ADR-001 D5). Auf Codeberg ließe sich höchstens
-> das Linux-Artefakt via Forgejo-Actions bauen.
+> **Runs only on GitHub Actions.** macOS/Windows installers need macOS/Windows
+> runners, which the Codeberg/Forgejo shared runners don't provide. The workflow
+> takes effect once the GitHub mirror exists (ADR-001 D5). On Codeberg, at most
+> the Linux artifact could be built via Forgejo Actions.
 
-Release auslösen:
+Trigger a release:
 
 ```bash
-git tag v0.1.0 && git push github v0.1.0   # bzw. den Mirror-Remote-Namen
+git tag v0.1.0 && git push github v0.1.0   # or the mirror remote name
 ```
 
 ## Icons
 
-Aktuell die Tauri-Default-Icons (`src-tauri/icons/`). Für ein echtes `>_`-NeuroVim-Mark:
-ein 1024×1024-PNG bereitstellen und `npx tauri icon <pfad.png>` (regeneriert alle
-Größen inkl. `.icns`/`.ico`).
+The app icon is the `>_` NeuroVim mark in `src-tauri/icons/`, generated from
+`docs/design-source/brand/icon.svg`. To regenerate after editing the source:
+
+```bash
+rsvg-convert -w 1024 -h 1024 docs/design-source/brand/icon.svg -o docs/design-source/brand/icon-1024.png
+cd packages/adapter-web && npx tauri icon ../../docs/design-source/brand/icon-1024.png
+rm -rf src-tauri/icons/android src-tauri/icons/ios   # desktop-only
+```

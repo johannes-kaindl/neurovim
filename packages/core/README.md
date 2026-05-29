@@ -1,11 +1,11 @@
 # @neurovim/core
 
-Plattform-neutraler Kern des NeuroVim-Trainers. Game-Logic, Web-Audio, Preact-UI und die vier Port-Interfaces. Kennt weder Obsidian noch Browser-Spezifika direkt — alles läuft über `ports/`.
+Platform-neutral core of the NeuroVim trainer. Game logic, Web Audio, Preact UI and the four port interfaces. Knows neither Obsidian nor browser specifics directly — everything goes through `ports/`.
 
-## Inhalt (Ziel nach Phase 3)
-- `engine/` · `data/` · `audio/` · `utils/` · `ui/` — aus `32_NeuroVim/_dev/plugin-src/src/` (~23 portable Files)
-- `ports/` — `VimModeSource`, `StateStore`, `ContentSource`, `UiHost` ✅ (Stubs angelegt)
-- **NEU:** `ui/NexusDashboard` — ersetzt das dataviewjs-NEXUS (das im Plugin gar kein Code war, sondern in `00-NEXUS.md` lebte)
+## Contents (target after Phase 3)
+- `engine/` · `data/` · `audio/` · `utils/` · `ui/` — from `32_NeuroVim/_dev/plugin-src/src/` (~23 portable files)
+- `ports/` — `VimModeSource`, `StateStore`, `ContentSource`, `UiHost` ✅ (stubs created)
+- **NEW:** `ui/NexusDashboard` — replaces the dataviewjs NEXUS (which wasn't code in the plugin at all, but lived in `00-NEXUS.md`)
 
-## Architektur
+## Architecture
 → ADR-001: `/Users/Shared/20_Claude/neurovim-standalone-prep/40_deliverables/ADR-001-Adapter-Architektur.md`

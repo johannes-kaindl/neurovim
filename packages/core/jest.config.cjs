@@ -1,5 +1,5 @@
-// CJS (.cjs) weil package.json "type": "module" — jest-Config muss CommonJS sein.
-// Aus Bestand-Plugin übernommen; obsidian-Mapping entfällt (core hat keinen obsidian-Import).
+// CJS (.cjs) because package.json "type": "module" — jest config must be CommonJS.
+// Taken from the legacy plugin; obsidian mapping is omitted (core has no obsidian import).
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
@@ -19,7 +19,7 @@ module.exports = {
         esModuleInterop: true,
         strictNullChecks: true,
         strict: false,
-        // tsconfig.base setzt types:[] (deaktiviert Auto-Include) — jest/node hier explizit.
+        // tsconfig.base sets types:[] (disables auto-include) — jest/node specified explicitly here.
         types: ['jest', 'node'],
       },
     }],

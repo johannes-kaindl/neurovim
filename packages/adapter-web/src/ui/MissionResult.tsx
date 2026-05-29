@@ -1,22 +1,22 @@
 /**
- * MissionResult — Overlay-Modal nach Submit (ersetzt das Inline-Feedback).
- * Complete-State: XP-Gain + ggf. Level-Up. Fail-State: wie viele Zeilen noch
- * abweichen. Buttons: Retry/Review (Modal schließen), Next Mission, ← NEXUS.
- * Metrics-Felder (Zeit/Keystrokes) werden gerendert, sobald gesetzt (Item 6).
+ * MissionResult — overlay modal after submit (replaces the inline feedback).
+ * Complete state: XP gain + optionally level-up. Fail state: how many lines still
+ * differ. Buttons: Retry/Review (close modal), Next Mission, ← NEXUS.
+ * Metrics fields (time/keystrokes) are rendered as soon as they are set (Item 6).
  */
 import { fmtTime } from './format';
 
 export interface MissionResultData {
   status: 'complete' | 'fail';
   xp?: number;
-  /** Neues Level, falls dieser Run ein Level-Up auslöste. */
+  /** New level, if this run triggered a level-up. */
   levelUp?: number | null;
-  /** Fail: Anzahl noch abweichender Zeilen. */
+  /** Fail: number of lines still differing. */
   linesOff?: number;
-  /** Metrics dieses Runs (complete). */
+  /** Metrics for this run (complete). */
   timeMs?: number;
   keystrokes?: number;
-  /** Persönliche Bestwerte nach diesem Run. */
+  /** Personal best values after this run. */
   bestTimeMs?: number;
   bestKeystrokes?: number;
 }

@@ -1,12 +1,12 @@
 /**
- * ObsidianContent — ContentPort-Implementierung gegen die Obsidian-Vault-API.
+ * ObsidianContent — ContentPort implementation against the Obsidian vault API.
  *
- * Liest Mission-/Lore-Content aus den Vault-`_content/`-Notes (= Bestand-Plugin-Verhalten,
- * unverändert). Findet Files über `metadataCache`-Frontmatter (mission_id / loot_id),
- * wie es main.ts bereits tut — kein zusätzliches Pfad-Mapping nötig.
+ * Reads mission/lore content from the vault's `_content/` notes (= existing plugin behavior,
+ * unchanged). Finds files via `metadataCache` frontmatter (mission_id / loot_id),
+ * as main.ts already does — no additional path mapping needed.
  *
- * Noch NICHT in main.ts verdrahtet — Port-Consumption ist Schritt 2.5. Diese Impl
- * stabilisiert die Schnittstelle und ist test-/wiederverwendbar.
+ * NOT yet wired into main.ts — port consumption is step 2.5. This impl
+ * stabilizes the interface and is testable/reusable.
  * ADR-001 §P4 / D3 / D15.
  */
 import { App, TFile } from 'obsidian';
@@ -53,7 +53,7 @@ export class ObsidianContent implements ContentPort {
       (f) => String(this.fm(f).mission_id ?? '') === id
         && (f.path.includes('TRANSMISSION') || f.path.includes('KATA')),
     );
-    if (!main) throw new Error(`Mission nicht gefunden: ${id}`);
+    if (!main) throw new Error(`Mission not found: ${id}`);
     const briefing = files.find(
       (f) => String(this.fm(f).mission_id ?? '') === id && f.path.includes('BRIEFING'),
     );
@@ -69,7 +69,7 @@ export class ObsidianContent implements ContentPort {
       const fm = this.fm(f);
       return String(fm.loot_id ?? '') === id || f.basename.startsWith(id);
     });
-    if (!file) throw new Error(`Lore nicht gefunden: ${id}`);
+    if (!file) throw new Error(`Lore not found: ${id}`);
     const fm = this.fm(file);
     const kind: LoreDoc['kind'] = file.path.includes('/LOOT/') ? 'loot'
       : file.path.includes('/FRAGMENTS/') ? 'fragment' : 'ref';

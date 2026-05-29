@@ -1,9 +1,9 @@
 /**
- * SandboxView — THE RAVEN (M-08-Sandbox), web-native.
- * Picker (easy/normal/hard) → GlitchEngine injiziert N Glitches in den
- * RAVEN-Original-Text → CM6/vim-Editor → SUBMIT prüft via diffCount → bei 0
- * verbleibenden Glitches: Zeit gegen Personal-Best, sonst „N remaining".
- * Wiederverwendet die reine core-Logik (GlitchEngine) + MetricsTracker.
+ * SandboxView — THE RAVEN (M-08 sandbox), web-native.
+ * Picker (easy/normal/hard) → GlitchEngine injects N glitches into the
+ * RAVEN original text → CM6/vim editor → SUBMIT checks via diffCount → with 0
+ * remaining glitches: time against personal best, otherwise "N remaining".
+ * Reuses the pure core logic (GlitchEngine) + MetricsTracker.
  */
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { EditorView, keymap, lineNumbers } from '@codemirror/view';
@@ -36,7 +36,7 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
   const [elapsed, setElapsed] = useState(0);
   const [injected, setInjected] = useState(0);
 
-  // (Re-)Mount des Editors bei jedem Runden-Start (start/again/harder).
+  // (Re)mount the editor on every round start (start/again/harder).
   useEffect(() => {
     if (round === 0 || !host.current || !difficulty) return;
     const count = GlitchEngine.countForDifficulty(difficulty);
@@ -133,7 +133,7 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
         <div class="nv-sandbox-result">
           <span class="nv-sandbox-result-msg">✓ TRANSMISSION RESTORED · {resultMsg}</span>
           <div class="nv-sandbox-result-actions">
-            <button onClick={() => begin(difficulty!)}>NOCHMAL</button>
+            <button onClick={() => begin(difficulty!)}>AGAIN</button>
             <button class="nv-modal-primary" onClick={harder}>HARDER →</button>
             <button onClick={onExit}>← NEXUS</button>
           </div>

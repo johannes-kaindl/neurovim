@@ -26,14 +26,14 @@ export function FloatHUD({
       <div className="nv-float-hud nv-guide">
         <div className="nv-guide-header">// NEXUS-7 INITIALIZING</div>
         <div className="nv-guide-body">
-          <div>&gt; Agent. Erstkontakt.</div>
-          <div>&gt; Kontrollzentrum: linkes Panel.</div>
+          <div>&gt; Agent. First contact.</div>
+          <div>&gt; Control center: left panel.</div>
         </div>
         <div className="nv-guide-footer">
           <button className="nv-btn nv-btn-guide-cta" onClick={onOpenSidebar}>
-            Strg+P → Open Sidebar
+            Ctrl+P → Open Sidebar
           </button>
-          <div className="nv-guide-cursor">█ warte auf bestätigung_</div>
+          <div className="nv-guide-cursor">█ awaiting confirmation_</div>
         </div>
       </div>
     );
@@ -44,10 +44,10 @@ export function FloatHUD({
       <div className="nv-float-hud nv-guide">
         <div className="nv-guide-header">// NEXUS-7</div>
         <div className="nv-guide-body">
-          <div>&gt; Bereit.</div>
-          <div>&gt; Missionen im Kontrollzentrum.</div>
+          <div>&gt; Ready.</div>
+          <div>&gt; Missions in the control center.</div>
         </div>
-        <div className="nv-guide-hint-text">→ Strg+P → &quot;Open Sidebar&quot;</div>
+        <div className="nv-guide-hint-text">→ Ctrl+P → &quot;Open Sidebar&quot;</div>
       </div>
     );
   }

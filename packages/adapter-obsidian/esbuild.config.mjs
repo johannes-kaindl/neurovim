@@ -20,7 +20,7 @@ const ctx = await esbuild.context({
   logLevel: 'info',
   sourcemap: prod ? false : 'inline',
   treeShaking: true,
-  // Output ins lokale dist/ — NICHT in den Vault. Plugin-Swap macht Jay manuell.
+  // Output into the local dist/ — NOT into the vault. Jay does the plugin swap manually.
   outfile: 'dist/main.js',
   jsx: 'automatic',
   jsxImportSource: 'preact',
