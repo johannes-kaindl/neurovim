@@ -5,10 +5,8 @@
 <h1 align="center">neurovim-standalone</h1>
 
 <p align="center">
-  <b>▶ Play in the browser:</b>
-  <a href="https://jkaindl.codeberg.page/neurovim/">Codeberg Pages</a>
-  ·
-  <a href="https://johannes-kaindl.github.io/NeuroVIM/">GitHub Pages</a>
+  <b>▶ <a href="https://jkaindl.codeberg.page/neurovim/">Play in the browser</a></b>
+  <sub>(<a href="https://johannes-kaindl.github.io/NeuroVIM/">GitHub Pages mirror</a>)</sub>
   &nbsp;·&nbsp;
   <a href="https://github.com/johannes-kaindl/NeuroVIM/releases">Desktop downloads</a> (macOS / Windows / Linux)
 </p>
@@ -157,5 +155,6 @@ git worktree remove /tmp/nv-pages --force
 **itch.io** (game audience, TODO): zip `dist/` (`cd dist && zip -r ../neurovim-web.zip .`)
 and upload as an HTML5 game with "This file will be played in the browser" enabled.
 
-> The `og:image`/`og:url` host in `packages/adapter-web/index.html` points at GitHub
-> Pages (the always-fresh auto-deploy). Switch it if you make Codeberg canonical.
+> Canonical host is **Codeberg Pages** — `og:url`/`og:image` and `<link rel="canonical">`
+> in `packages/adapter-web/index.html` point there. GitHub Pages serves the same build as
+> a backup mirror.
