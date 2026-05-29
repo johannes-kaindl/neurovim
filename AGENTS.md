@@ -116,7 +116,14 @@ npm run build:content        # content/build.mjs — IMMER zuerst (erzeugt src/g
 npm run build:plugin         # esbuild → packages/adapter-obsidian/dist/main.js
 npm run build:web            # vite build → packages/adapter-web/dist/
 npm run build                # content → plugin → web (in dieser Reihenfolge)
+
+npm run desktop:dev          # Tauri-Desktop-App mit HMR (braucht Rust + Xcode CLT)
+npm run build:dmg            # native App + macOS-DMG (Tauri v2) → packages/adapter-web/src-tauri/target/…
 ```
+
+**Desktop (Tauri v2):** `packages/adapter-web/src-tauri/` verpackt den Vite-Build als
+native App (OS-WebView, DMG ~3 MB). Multi-OS-Installer via `.github/workflows/desktop.yml`
+(nur GitHub Actions). Details: `docs/DESKTOP.md`.
 
 **Test-Verteilung:** `core` 136, `content` 8, `adapter-obsidian` 6 (= 150).
 `adapter-web` hat keine Test-Suite (UI-Layer; verifiziert via dev-Server + Typecheck).
