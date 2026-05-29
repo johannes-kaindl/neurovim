@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: docker
+    runs-on: codeberg-small
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
