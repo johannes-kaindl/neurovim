@@ -5,7 +5,10 @@
 <h1 align="center">neurovim-standalone</h1>
 
 <p align="center">
-  <b>▶ <a href="https://johannes-kaindl.github.io/NeuroVIM/">Play in the browser</a></b>
+  <b>▶ Play in the browser:</b>
+  <a href="https://jkaindl.codeberg.page/neurovim/">Codeberg Pages</a>
+  ·
+  <a href="https://johannes-kaindl.github.io/NeuroVIM/">GitHub Pages</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/johannes-kaindl/NeuroVIM/releases">Desktop downloads</a> (macOS / Windows / Linux)
 </p>
@@ -115,22 +118,26 @@ unsigned-Gatekeeper note, in `docs/DESKTOP.md`.
 `packages/adapter-web/dist/` is a **static site** (relative `base: './'`, so it
 deploys under any sub-path).
 
-**Codeberg Pages** (primary): push the `dist/` contents to a `pages` branch.
+- **GitHub Pages** → https://johannes-kaindl.github.io/NeuroVIM/ — **auto-deploys** on
+  push to `main` via `.github/workflows/pages.yml` (requires repo Settings → Pages →
+  Source = "GitHub Actions").
+- **Codeberg Pages** → https://jkaindl.codeberg.page/neurovim/ — served from the `pages`
+  branch. Codeberg lowercases the repo in the URL (`/neurovim/`, not `/NeuroVIM/`).
+  Refresh it after app changes with the manual deploy below.
+
+Manual Codeberg deploy (refreshes the `pages` branch):
 
 ```bash
-cd packages/adapter-web && npx vite build
-git -C ../.. worktree add /tmp/nv-pages --orphan pages
-cp -R dist/. /tmp/nv-pages/ && touch /tmp/nv-pages/.nojekyll
+npm run build:content && npm run build:web
+git worktree add --orphan -b pages /tmp/nv-pages
+cp -R packages/adapter-web/dist/. /tmp/nv-pages/ && touch /tmp/nv-pages/.nojekyll
 git -C /tmp/nv-pages add -A && git -C /tmp/nv-pages commit -m "deploy web app"
-git -C /tmp/nv-pages push codeberg pages   # → https://jkaindl.codeberg.page/NeuroVIM/
-git -C ../.. worktree remove /tmp/nv-pages
+git -C /tmp/nv-pages push -f codeberg pages
+git worktree remove /tmp/nv-pages --force
 ```
-
-**GitHub Pages** (mirror): same, but push the `pages` branch to the `github`
-remote and set Pages source = `pages` branch in the repo settings.
 
 **itch.io** (game audience, TODO): zip `dist/` (`cd dist && zip -r ../neurovim-web.zip .`)
 and upload as an HTML5 game with "This file will be played in the browser" enabled.
 
-> After deploying, update the `og:image`/`og:url` host in
-> `packages/adapter-web/index.html` to the final URL so link unfurls show the card.
+> The `og:image`/`og:url` host in `packages/adapter-web/index.html` points at GitHub
+> Pages (the always-fresh auto-deploy). Switch it if you make Codeberg canonical.
