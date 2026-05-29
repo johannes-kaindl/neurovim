@@ -49,10 +49,20 @@ Locked Missionen sind auf Web jetzt **nicht mehr spielbar** (vorher konnte man j
 anklicken). Das macht die Level-/XP-Progression wirksam und matcht den Obsidian-Adapter.
 Falls unerwünscht: Gating in `App.tsx` (`disabled={locked}` + `if (!locked)`) entfernen.
 
+## Nachtrag — User-Feedback umgesetzt + Codeberg-Push (selbe Session)
+
+- **Web = alle Missionen unlocked** (Lock-Gating aus App.tsx-Picker entfernt; Locks bleiben Obsidian-only).
+- **CRT-Scanline an** (`--nv-scan: 0.14`).
+- **ASCII-Box-Fix:** doppelter `pre`-Rahmen entfernt (flacher dunkler Canvas) + **JetBrains Mono
+  selbst-gehostet** (`src/fonts/`, OFL, ~42 KB, `--nv-mono`-Token) → Box-Zeichen + em-dash
+  cell-aligned. CM6 nutzt denselben Stack.
+- **Gepusht:** `codeberg.org/jkaindl/NeuroVIM`, `main`. Drei Commits (scaffolding, polish, font).
+  Token NICHT in `.git/config` persistiert; ⚠ Token war im Chat → rotieren.
+
 ## Offen für nächste Session
 
-- [ ] **Visuelles Review** über `npm run dev` (http://localhost:5173) — Screenshots in
-      `docs/screenshots/` ggf. neu erzeugen (Spec §10).
-- [ ] **Rest der DESIGN-SPEC** (nicht im Port-Package): Audio-Toggle + visuelle Pendants (§6),
-      OG-Image/Favicon-`>_`-Mark (§8), Mobile-Stance-Entscheidung (§7), Designer-Fragen §9.
-- [ ] Commit-Entscheidung durch Johannes (siehe unten).
+- [ ] **Visuelles Review** über `npm run dev` (http://localhost:5173) — Scanline-Stärke
+      (`--nv-scan`) + ASCII-Box-Alignment final eyeballen, Screenshots `docs/screenshots/` neu (Spec §10).
+- [ ] **GitHub-Mirror** anlegen (ADR-001 D5) + Forgejo-CI-Stub `.gitea/workflows/`.
+- [ ] **Rest der DESIGN-SPEC**: Audio-Toggle + visuelle Pendants (§6), OG-Image/Favicon-`>_` (§8),
+      Mobile-Stance (§7), Designer-Fragen §9.

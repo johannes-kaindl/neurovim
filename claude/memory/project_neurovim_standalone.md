@@ -27,6 +27,17 @@ type-aware via `:has()`). Markup-Änderungen: App.tsx Missions-State-Klassen
 150 Tests + `build:web` (65 Module, Code-Splitting intakt) grün. README-Status
 korrigiert (war fälschlich „Skelett Phase 2").
 
+**Web-Demo-Entscheidungen (2026-05-29, nach User-Feedback):**
+- **Alle Missionen unlocked auf Web** — kein Progression-Gating im offenen Demo-Build
+  (Locks bleiben Obsidian-only). WebStorage persistiert zwar via IndexedDB, ist aber egal.
+- **CRT-Scanline an** (`--nv-scan: 0.14`).
+- **ASCII-Boxen:** doppelter `pre`-Rahmen entfernt + **JetBrains Mono selbst-gehostet**
+  (OFL, latin-subset Regular+Bold ~42 KB, `--nv-mono`-Token) — System-Mono verzerrte
+  Box-Zeichen/em-dash. Token `--nv-mono` ist jetzt der Mono-Stack überall (CSS + CM6).
+
+**Remote:** live auf `codeberg.org/jkaindl/NeuroVIM` (git remote `codeberg`, `main`).
+⚠ Der initiale Codeberg-Token wurde im Chat geteilt → sollte rotiert werden.
+
 **Noch offen aus der DESIGN-SPEC (nicht im Port-Package):** Audio-Toggle + visuelle
 Audio-Pendants (§6), OG-Image/Favicon-Mark (§8), echte Mobile-Entscheidung (§7), die
 6 offenen Designer-Fragen (§9, z.B. Welcome-Boot-Typing-Intro, Result-Celebration-Tone).
