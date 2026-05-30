@@ -231,6 +231,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative; background: var(--nv-panel); border: 1px solid var(--nv-line-hot); border-radius: 8px;
   padding: 30px 30px 24px; max-width: 420px; width: calc(100% - 32px); text-align: center;
   box-shadow: 0 8px 40px var(--nv-modal-shadow), 0 0 calc(60px * var(--nv-glow)) -20px color-mix(in oklab, var(--nv-accent) 40%, transparent);
+  animation: nv-modal-in .25s var(--nv-ease) both;
 }
 /* corner brackets — the diegetic frame */
 .nv-modal::before, .nv-modal::after { content: ''; position: absolute; width: 14px; height: 14px; border: solid var(--nv-accent); }
@@ -260,8 +261,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 @keyframes nv-sweep { from { left: -40%; } to { left: 120%; } }
 
-/* modal entrance (both states) */
-.nv-modal { animation: nv-modal-in .25s var(--nv-ease) both; }
+/* modal entrance (both states) — animation property is on the .nv-modal rule above */
 @keyframes nv-modal-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
 
 /* success: a clean "lock-in" settle on the title + an XP pop */
