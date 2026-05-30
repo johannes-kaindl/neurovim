@@ -260,6 +260,30 @@ button { font-family: inherit; cursor: pointer; }
 }
 @keyframes nv-sweep { from { left: -40%; } to { left: 120%; } }
 
+/* modal entrance (both states) */
+.nv-modal { animation: nv-modal-in .25s var(--nv-ease) both; }
+@keyframes nv-modal-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
+
+/* success: a clean "lock-in" settle on the title + an XP pop */
+.nv-modal-title.nv-ok { animation: nv-lockin .5s var(--nv-ease) both; }
+@keyframes nv-lockin {
+  0%   { opacity: 0; transform: scale(.92); letter-spacing: 7px; filter: brightness(2.2); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: none; letter-spacing: 2px; filter: none; }
+}
+.nv-modal-xp { animation: nv-xp-pop .55s var(--nv-ease) .12s both; }
+@keyframes nv-xp-pop { 0% { opacity: 0; transform: translateY(8px) scale(.8); } 100% { opacity: 1; transform: none; } }
+
+/* fail: brief RGB-split glitch-in on the title, settling to the resting red glow */
+.nv-modal-title.nv-fail { animation: nv-glitch .45s steps(2, jump-end) both; }
+@keyframes nv-glitch {
+  0%   { transform: translateX(-3px); text-shadow: 2px 0 var(--nv-fail), -2px 0 var(--nv-accent); }
+  25%  { transform: translateX(3px);  text-shadow: -2px 0 var(--nv-fail), 2px 0 var(--nv-accent); }
+  50%  { transform: translateX(-1px); text-shadow: 1px 0 var(--nv-fail); }
+  75%  { transform: translateX(1px);  text-shadow: -1px 0 var(--nv-accent); }
+  100% { transform: none; text-shadow: 0 0 14px color-mix(in oklab, var(--nv-fail) 50%, transparent); }
+}
+
 .nv-modal-metrics { margin-top: 16px; display: flex; justify-content: center; gap: 0; border: 1px solid var(--nv-border); border-radius: 4px; overflow: hidden; }
 .nv-modal-metrics > * { padding: 10px 16px; border-left: 1px solid var(--nv-border); color: var(--nv-text); font-size: 13px; }
 .nv-modal-metrics > *:first-child { border-left: none; }
