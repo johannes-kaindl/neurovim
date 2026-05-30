@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//clipboard-list
 color: "#555555"
+title: "Sector 7 Audit Query"
+summary: "An automated CORP query flagging a spike in legacy-protocol sessions across Sector 7 endpoints."
 ---
 
 ```ascii

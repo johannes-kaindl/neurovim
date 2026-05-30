@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//radio
 color: "#333333"
+title: "Intercepted Handler Note"
+summary: "An encrypted handler message warning an operative off a compromised relay and onto the cold path."
 ---
 
 > *Recovered fragment — outbound channel, handler-tier encryption. Timestamp partial. Routing headers stripped by interception.*

@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//archive
 color: "#1a1a1a"
+title: "Pre-CORP Archive: Why People Still Use Vim"
+summary: "A preserved 2029 forum post where a coder explains how Vim's grammar finally clicked."
 ---
 
 *[Recovered — pre-Cascade archive // last modified: 2029-08-03 // do not modify]*

@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//notebook-pen
 color: "#3a3a3a"
+title: "Handler Log"
+summary: "A handler's private log tracking days of silence from a missing operative as protocol demands the work continue."
 ---
 
 > *Private working log — recovered from a relay cache. Not intended for distribution.*

@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//shield-alert
 color: "#444444"
+title: "Extraction Hold"
+summary: "A captured WRAITH order freezing all extraction routes through Sector 7 until further notice."
 ---
 
 > *Operational order. Captured mid-distribution. Routing: cells in Sector 7 and adjacent.*

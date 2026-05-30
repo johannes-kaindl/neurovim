@@ -76,3 +76,29 @@ export function getLore(id: string): LoreDoc {
     body: e.body,
   };
 }
+
+/** Index entry for the lore archive (no body — see getLore(id) for the full doc). */
+export interface LoreSummary {
+  id: string;
+  kind: 'loot' | 'fragment' | 'ref';
+  title: string;
+  summary: string;
+  /** LOOT only: the level at which it unlocks in the campaign (legibility badge). null for fragment/ref. */
+  unlockLevel: number | null;
+}
+
+/** All lore artifacts (loot + fragment + ref) as index summaries, in manifest order. */
+export function listLore(): LoreSummary[] {
+  return ENTRIES
+    .filter((e) => e.kind === 'lore')
+    .map((e) => ({
+      id: e.id,
+      kind: e.role === 'loot' ? 'loot' : e.role === 'fragment' ? 'fragment' : 'ref',
+      title: String(e.frontmatter.title ?? e.id),
+      summary: String(e.frontmatter.summary ?? ''),
+      unlockLevel:
+        e.role === 'loot' && e.frontmatter.unlock_level != null
+          ? Number(e.frontmatter.unlock_level)
+          : null,
+    }));
+}

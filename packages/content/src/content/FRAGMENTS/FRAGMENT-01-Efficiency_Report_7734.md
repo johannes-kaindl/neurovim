@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//file-text
 color: "#333333"
+title: "Efficiency Report 7734"
+summary: "An automated CORP Q1 2047 sector report tallying Vim intercepts and workforce reclassifications."
 ---
 
 ```ascii

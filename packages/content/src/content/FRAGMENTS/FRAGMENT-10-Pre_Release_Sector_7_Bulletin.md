@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//file-text
 color: "#555555"
+title: "Pre-Release Sector 7 Bulletin"
+summary: "An unsanitized draft citizen bulletin exposing Sector 7's falling productivity and rising enforcement."
 ---
 
 ```ascii

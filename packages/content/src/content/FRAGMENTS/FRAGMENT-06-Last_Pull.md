@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//file-lock
 color: "#2a2a2a"
+title: "The Last Pull"
+summary: "An operative's final note on credential queries against their cover, wrapped around a CORP maintenance schedule."
 ---
 
 > [!note] Pulled 2047-06-03 // 02:14. Hash verified twice. Clean on my side. Relay logs are not.

@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//file-text
 color: "#555555"
+title: "Anomaly Audit"
+summary: "A CORP audit report suspecting the Harmonization Engine's glitches are a covert signaling channel between cells."
 ---
 
 ```ascii

@@ -2,6 +2,8 @@
 tags: [fragment]
 sticker: lucide//radio
 color: "#2a2a2a"
+title: "The Last Broadcast"
+summary: "A resistance cell's relay transmission that breaks off mid-sentence as someone reaches the door."
 ---
 
 ---
