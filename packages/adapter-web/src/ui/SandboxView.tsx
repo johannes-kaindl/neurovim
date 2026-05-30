@@ -32,6 +32,7 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
   const [difficulty, setDifficulty] = useState<SandboxDifficulty | null>(null);
   const [round, setRound] = useState(0);
   const [remaining, setRemaining] = useState<number | null>(null);
+  const [missKey, setMissKey] = useState(0);
   const [resultMsg, setResultMsg] = useState<string | null>(null);
   const [elapsed, setElapsed] = useState(0);
   const [injected, setInjected] = useState(0);
@@ -65,6 +66,7 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
   function begin(d: SandboxDifficulty) {
     setDifficulty(d);
     setRemaining(null);
+    setMissKey(0);
     setResultMsg(null);
     setPhase('active');
     setRound((r) => r + 1);
@@ -76,6 +78,7 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
     const left = GlitchEngine.diffCount(body, original);
     if (left > 0) {
       setRemaining(left);
+      setMissKey((k) => k + 1);
       return;
     }
     const elapsed = Date.now() - startedAt.current;
@@ -93,11 +96,11 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
 
   if (phase === 'pick') {
     return (
-      <div class="nv-app nv-crt nv-hud-frame">
-        <div class="nv-scan" /><div class="nv-vig" /><span class="nv-br-bl" /><span class="nv-br-br" />
-        <div class="nv-statusstrip"><span class="nv-label">Kuro Signal Protocol // Sandbox</span><span class="nv-label nv-link">◢ THE RAVEN</span></div>
-        <h1 class="nv-wordmark nv-text-glow">&gt;_ RAVEN<span class="nv-caret">_</span></h1>
-        <p class="nv-sandbox-intro">CORP injected noise into the transmission. Restore it with Vim. Beat the clock.</p>
+      <div class="nv-app">
+        <header class="nv-nexus-head">
+          <h1>&gt;_ RAVEN SANDBOX</h1>
+          <p class="nv-sandbox-intro">CORP injected noise into the transmission. Restore it with Vim. Beat the clock.</p>
+        </header>
         <div class="nv-sandbox-diffs">
           {DIFFS.map((d) => (
             <button key={d} class="nv-sandbox-diff" onClick={() => begin(d)}>
@@ -125,7 +128,9 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
       {phase === 'active' && (
         <div class="nv-sandbox-hud" aria-live="polite">
           <div class="nv-cell"><div class="nv-v">{elapsed.toFixed(1)}s</div><div class="nv-k">Elapsed</div></div>
-          <div class="nv-cell nv-rem"><div class="nv-v">{remaining ?? injected}</div><div class="nv-k">Glitches left</div></div>
+          <div class={`nv-cell nv-rem${missKey ? ' nv-flash' : ''}`} key={missKey}>
+            <div class="nv-v">{remaining ?? injected}</div><div class="nv-k">Glitches left</div>
+          </div>
         </div>
       )}
       <div ref={host} class="nv-cm-host" />
