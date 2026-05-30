@@ -312,15 +312,15 @@ button { font-family: inherit; cursor: pointer; }
 .nv-doc-foot button:hover { border-color: var(--nv-accent); color: var(--nv-accent); }
 
 /* Welcome hero */
-.nv-welcome { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; }
+.nv-welcome { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; padding: 0 var(--nv-s4); }
 .nv-welcome .nv-md h1 {
-  font-size: clamp(46px, 9vw, 96px); line-height: 0.95; letter-spacing: 2px; margin: 0 0 18px;
-  text-shadow: 0 0 calc(16px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 40%, transparent),
-               0 0 calc(48px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 18%, transparent);
+  font-family: var(--nv-display); font-weight: 400;
+  font-size: clamp(56px, 12vw, 110px); line-height: .9; letter-spacing: 2px;
+  color: var(--nv-accent-hot); margin: 0 0 var(--nv-s4);
+  text-shadow: 0 0 calc(18px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 80%, transparent),
+               0 0 calc(48px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 30%, transparent);
 }
-.nv-welcome .nv-md h1::after {
-  content: '_'; margin-left: 0.08em; color: var(--nv-accent-hot); animation: nv-blink 1s steps(1) infinite;
-}
+.nv-welcome .nv-md h1::after { content: '_'; margin-left: .06em; color: var(--nv-accent-hot); animation: nv-blink 1.1s steps(1) infinite; }
 .nv-welcome-enter {
   font-size: 15px; padding: 13px 26px; border-color: var(--nv-accent) !important; color: var(--nv-accent) !important;
   background: color-mix(in oklab, var(--nv-accent) 8%, transparent) !important;
