@@ -16,7 +16,8 @@ interface Props {
 export function BriefingView({ missionId, title, briefingBody, onBegin, onBack }: Props) {
   const html = renderMarkdown(briefingBody?.trim() || '_No briefing on file for this mission._');
   return (
-    <div class="nv-doc">
+    <div class="nv-doc nv-crt nv-hud-frame">
+      <div class="nv-scan" /><div class="nv-vig" /><span class="nv-br-bl" /><span class="nv-br-br" />
       <div class="nv-doc-bar">
         <button onClick={onBack}>← NEXUS</button>
         <span class="nv-doc-title">{missionId} · {title}</span>

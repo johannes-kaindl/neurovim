@@ -357,23 +357,24 @@ button { font-family: inherit; cursor: pointer; }
 .nv-md blockquote blockquote { margin: 8px 0; border-left-color: var(--nv-muted); }
 .nv-md blockquote strong:first-child { letter-spacing: 0.5px; }
 
-/* type-aware callouts (restores D25)  [needs renderer change]: see port/markdown-callouts.md
-   The renderer emits <span class="nv-co nv-co-TYPE"> at the head of the blockquote;
+/* type-aware callouts (D25) — semantic palette  [needs renderer change]: see port/markdown-callouts.md
+   The renderer emits <span class=”nv-co nv-co-TYPE”> at the head of the blockquote;
    :has() lights up the whole callout, and the span renders a small leading marker. */
-.nv-md blockquote:has(.nv-co-warning) { border-left-color: var(--nv-warn); background: linear-gradient(90deg, color-mix(in oklab, var(--nv-warn) 8%, transparent), transparent 90%); }
-.nv-md blockquote:has(.nv-co-warning) strong:first-of-type { color: var(--nv-warn); }
-.nv-md blockquote:has(.nv-co-tip) { border-left-color: var(--nv-tip); }
-.nv-md blockquote:has(.nv-co-tip) strong:first-of-type { color: var(--nv-tip); }
-.nv-md blockquote:has(.nv-co-success) { border-left-color: var(--nv-co-success); }
+.nv-md blockquote:has(.nv-co-warning), .nv-md blockquote:has(.nv-co-caution) {
+  border-left-color: var(--nv-amber);
+  background: linear-gradient(90deg, color-mix(in oklab, var(--nv-amber) 8%, transparent), transparent 90%); }
+.nv-md blockquote:has(.nv-co-warning) strong:first-of-type, .nv-md blockquote:has(.nv-co-caution) strong:first-of-type { color: var(--nv-amber); }
+.nv-md blockquote:has(.nv-co-tip), .nv-md blockquote:has(.nv-co-hint) { border-left-color: var(--nv-accent); }
+.nv-md blockquote:has(.nv-co-tip) strong:first-of-type, .nv-md blockquote:has(.nv-co-hint) strong:first-of-type { color: var(--nv-accent); }
+.nv-md blockquote:has(.nv-co-success), .nv-md blockquote:has(.nv-co-check) { border-left-color: var(--nv-accent-hot); }
+.nv-md blockquote:has(.nv-co-success) strong:first-of-type, .nv-md blockquote:has(.nv-co-check) strong:first-of-type { color: var(--nv-accent-hot); }
 .nv-md blockquote:has(.nv-co-quote) { background: linear-gradient(90deg, var(--nv-faint), transparent 90%); }
 .nv-md blockquote:has(.nv-co-quote) em, .nv-md blockquote:has(.nv-co-quote) { font-style: italic; }
-.nv-co { display: none; }
-.nv-co-warning::before, .nv-co-tip::before, .nv-co-success::before, .nv-co-quote::before { display: inline; margin-right: 6px; }
-.nv-co-warning::before { content: '⚠'; color: var(--nv-warn); }
-.nv-co-tip::before { content: '◆'; color: var(--nv-tip); }
-.nv-co-success::before { content: '✓'; color: var(--nv-co-success); }
-.nv-co-quote::before { content: '“'; color: var(--nv-accent); }
 .nv-co { display: inline; }
+.nv-co-warning::before, .nv-co-caution::before { content: '⚠ '; color: var(--nv-amber); }
+.nv-co-tip::before, .nv-co-hint::before { content: '◆ '; color: var(--nv-accent); }
+.nv-co-success::before, .nv-co-check::before { content: '✓ '; color: var(--nv-accent-hot); }
+.nv-co-quote::before { content: '”'; color: var(--nv-accent); }
 
 /* ASCII-art fences — the box-drawing IS the frame, so the <pre> stays a flat,
    dark canvas (no second border / inset) and lets the green box-art be the hero. */
