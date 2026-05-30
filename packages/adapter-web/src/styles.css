@@ -399,12 +399,17 @@ button { font-family: inherit; cursor: pointer; }
 .nv-co-warning::before, .nv-co-caution::before { content: '⚠ '; color: var(--nv-amber); }
 .nv-co-tip::before, .nv-co-hint::before { content: '◆ '; color: var(--nv-accent); }
 .nv-co-success::before, .nv-co-check::before { content: '✓ '; color: var(--nv-accent-hot); }
-.nv-co-quote::before { content: '”'; color: var(--nv-accent); }
+/* quote/CIPHER: no leading glyph — the label gets a HUD-style " //" separator instead */
+.nv-md blockquote:has(.nv-co-quote) strong:first-of-type::after { content: ' //'; color: var(--nv-muted); font-weight: 400; }
 
 /* ASCII-art fences — the box-drawing IS the frame, so the <pre> stays a flat,
    dark canvas (no second border / inset) and lets the green box-art be the hero. */
 .nv-md pre { background: #060807; border: 1px solid var(--nv-border); border-radius: 4px; padding: 16px 18px; overflow-x: auto; line-height: 1.45; }
-.nv-md pre code { font-family: var(--nv-mono); font-size: 12px; color: var(--nv-accent); white-space: pre; letter-spacing: 0; text-shadow: 0 0 calc(5px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 40%, transparent); }
+/* ASCII art uses the COMPLETE system monospace (not the subsetted JetBrains Mono,
+   whose latin subset lacks box-drawing U+2500+ — those would fall back to a wider
+   font and break box alignment). System mono renders letters + box-drawing + em-dash
+   at one uniform cell width, so the ╔══╗ frames line up. */
+.nv-md pre code { font-family: ui-monospace, monospace; font-size: 12px; color: var(--nv-accent); white-space: pre; letter-spacing: 0; text-shadow: 0 0 calc(5px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 40%, transparent); }
 .nv-md code { font-family: var(--nv-mono); background: var(--nv-panel); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; color: var(--nv-accent); }
 .nv-md hr { border: none; border-top: 1px solid var(--nv-border); margin: 16px 0; }
 
