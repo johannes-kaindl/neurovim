@@ -349,6 +349,31 @@ button { font-family: inherit; cursor: pointer; }
 .nv-doc-foot button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 9px 15px; }
 .nv-doc-foot button:hover { border-color: var(--nv-accent); color: var(--nv-accent); }
 
+/* =============================================================================
+   LORE ARCHIVE (index of artifacts → reader; reader reuses .nv-doc/.nv-md)
+   ============================================================================= */
+.nv-archive { max-width: 820px; }
+.nv-archive-intro { color: var(--nv-muted); font-size: var(--nv-fs-body); margin: var(--nv-s2) 0 var(--nv-s5); max-width: 60ch; }
+.nv-archive-group { margin-top: var(--nv-s5); }
+.nv-archive-group > .nv-label { display: block; margin-bottom: var(--nv-s3); }
+.nv-cards { display: grid; gap: var(--nv-s3); }
+.nv-card {
+  display: grid; grid-template-columns: 1fr auto; gap: 4px var(--nv-s3); align-items: baseline;
+  text-align: left; background: var(--nv-panel); border: 1px solid var(--nv-border);
+  border-radius: 6px; padding: var(--nv-s3) var(--nv-s4);
+  transition: border-color .15s, color .15s;
+}
+.nv-card:hover, .nv-card:focus-visible { border-color: var(--nv-accent); }
+.nv-card-t { color: var(--nv-text); font-size: var(--nv-fs-body); }
+.nv-card:hover .nv-card-t, .nv-card:focus-visible .nv-card-t { color: var(--nv-accent); }
+.nv-card-s { grid-column: 1 / -1; color: var(--nv-muted); font-size: var(--nv-fs-sm); }
+.nv-card-badge {
+  font-size: var(--nv-fs-micro); letter-spacing: var(--nv-ls-label); text-transform: uppercase;
+  color: var(--nv-muted); border: 1px solid var(--nv-border); border-radius: 3px;
+  padding: 1px 6px; white-space: nowrap;
+}
+.nv-card-badge.nv-amber { color: var(--nv-amber); border-color: color-mix(in oklab, var(--nv-amber) 40%, var(--nv-border)); }
+
 /* Welcome hero */
 .nv-welcome { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; padding: 0 var(--nv-s4); }
 .nv-welcome .nv-md h1 {

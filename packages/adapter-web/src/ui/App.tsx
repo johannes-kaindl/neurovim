@@ -10,7 +10,7 @@ import {
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
   type SandboxDifficulty,
 } from '@neurovim/core';
-import { listMissions, getMission } from '@neurovim/content';
+import { listMissions, getMission, listLore } from '@neurovim/content';
 import { WebStorage } from '../ports/WebStorage';
 import { MissionResult, type MissionResultData } from './MissionResult';
 import { fmtTime } from './format';
@@ -31,6 +31,9 @@ const WelcomeView = lazy(() =>
 const BriefingView = lazy(() =>
   import('./BriefingView').then((m) => ({ default: m.BriefingView })),
 );
+const LoreView = lazy(() =>
+  import('./LoreView').then((m) => ({ default: m.LoreView })),
+);
 
 /** Next playable mission in the same arc (for the "Next Mission" button). */
 function nextMissionId(id: string): string | null {
@@ -45,7 +48,7 @@ let audioUnlocked = false;
 
 export function App() {
   const [data, setData] = useState<PluginData>({ ...DEFAULT_PLUGIN_DATA });
-  const [view, setView] = useState<'welcome' | 'nexus' | 'briefing' | 'mission' | 'sandbox'>('welcome');
+  const [view, setView] = useState<'welcome' | 'nexus' | 'briefing' | 'mission' | 'sandbox' | 'lore'>('welcome');
   const [mission, setMission] = useState<MissionDoc | null>(null);
   const [result, setResult] = useState<MissionResultData | null>(null);
   // XP-gain flash: a brief flash of the XP bar when returning to NEXUS after a fresh clear.
@@ -171,6 +174,14 @@ export function App() {
     );
   }
 
+  if (view === 'lore') {
+    return (
+      <Suspense fallback={<div class="nv-loading">loading archive…</div>}>
+        <LoreView onExit={() => setView('nexus')} />
+      </Suspense>
+    );
+  }
+
   const progress = ProgressionEngine.getXpProgress(data.total_xp);
   const levelData = ProgressionEngine.getLevelData(progress.level);
   const arc1 = listMissions('I');
@@ -260,6 +271,15 @@ export function App() {
           {data.sandbox_bests.normal != null
             ? <span class="nv-row-meta">PB {fmtTime(data.sandbox_bests.normal)}</span>
             : <span class="nv-row-meta">free play</span>}
+        </button>
+      </section>
+
+      <section class="nv-tier">
+        <div class="nv-tier-label nv-label">Archive</div>
+        <button class="nv-row" onClick={() => { unlockAudio(); setView('lore'); }}>
+          <span class="nv-row-id">LORE</span>
+          <span class="nv-row-t">Recovered artifacts — loot, fragments, reference</span>
+          <span class="nv-row-meta">{listLore().length} files</span>
         </button>
       </section>
     </div>
