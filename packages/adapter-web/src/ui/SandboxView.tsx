@@ -96,11 +96,11 @@ export function SandboxView({ bests, onNewBest, onExit }: Props) {
 
   if (phase === 'pick') {
     return (
-      <div class="nv-app">
-        <header class="nv-nexus-head">
-          <h1>&gt;_ RAVEN SANDBOX</h1>
-          <p class="nv-sandbox-intro">CORP injected noise into the transmission. Restore it with Vim. Beat the clock.</p>
-        </header>
+      <div class="nv-app nv-crt nv-hud-frame">
+        <div class="nv-scan" /><div class="nv-vig" /><span class="nv-br-bl" /><span class="nv-br-br" />
+        <div class="nv-statusstrip"><span class="nv-label">Kuro Signal Protocol // Sandbox</span><span class="nv-label nv-link">◢ THE RAVEN</span></div>
+        <h1 class="nv-wordmark nv-text-glow">&gt;_ RAVEN<span class="nv-caret">_</span></h1>
+        <p class="nv-sandbox-intro">CORP injected noise into the transmission. Restore it with Vim. Beat the clock.</p>
         <div class="nv-sandbox-diffs">
           {DIFFS.map((d) => (
             <button key={d} class="nv-sandbox-diff" onClick={() => begin(d)}>

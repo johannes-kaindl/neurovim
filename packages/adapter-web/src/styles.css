@@ -138,12 +138,6 @@ button { font-family: inherit; cursor: pointer; }
    NEXUS — hub
    ============================================================================= */
 
-/* .nv-nexus-head h1 is kept: SandboxView (pick phase) still uses .nv-nexus-head */
-.nv-nexus-head h1 {
-  color: var(--nv-accent); margin: 0 0 8px; letter-spacing: 2px; font-size: clamp(30px, 5vw, 44px);
-  text-shadow: 0 0 calc(16px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 45%, transparent);
-}
-
 .nv-nexus { padding: var(--nv-s6) var(--nv-s4) var(--nv-s6); }
 .nv-statusstrip { display: flex; justify-content: space-between; gap: var(--nv-s3); }
 .nv-statusstrip .nv-link { color: var(--nv-accent); }
@@ -297,7 +291,7 @@ button { font-family: inherit; cursor: pointer; }
    SANDBOX (THE RAVEN)
    ============================================================================= */
 .nv-sandbox-intro { color: var(--nv-muted); font-size: 13px; margin: 0 0 4px; max-width: 60ch; }
-.nv-sandbox-diffs { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+.nv-sandbox-diffs { display: flex; flex-wrap: wrap; gap: 12px; margin: var(--nv-s4) 0 18px; }
 .nv-sandbox-diff { position: relative; display: flex; flex-direction: column; gap: 4px; min-width: 150px; background: var(--nv-panel); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 6px; padding: 16px; text-align: left; transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s; }
 .nv-sandbox-diff:hover { border-color: var(--nv-accent); transform: translateY(-2px); box-shadow: 0 0 26px -10px color-mix(in oklab, var(--nv-accent) 50%, transparent); }
 .nv-sandbox-diff-name { color: var(--nv-accent); letter-spacing: 2px; font-size: 18px; }
