@@ -13,12 +13,18 @@ export function BootIntro({ onDone }: Props) {
   const [shown, setShown] = useState<string[]>([]);
   const [done, setDone] = useState(false);
   const timers = useRef<number[]>([]);
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
 
   useEffect(() => {
     let i = 0; let acc: string[] = [];
     const step = () => {
       if (i >= LINES.length) {
-        const t = window.setTimeout(() => { setDone(true); window.setTimeout(onDone, 450); }, 350);
+        const t = window.setTimeout(() => {
+          setDone(true);
+          const t2 = window.setTimeout(() => onDoneRef.current(), 450);
+          timers.current.push(t2);
+        }, 350);
         timers.current.push(t);
         return;
       }
