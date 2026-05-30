@@ -14,6 +14,8 @@ import { listMissions, getMission } from '@neurovim/content';
 import { WebStorage } from '../ports/WebStorage';
 import { MissionResult, type MissionResultData } from './MissionResult';
 import { fmtTime } from './format';
+import { loadSettings, saveSettings, applyEffects } from './settings';
+import { ControlCluster } from './Chrome';
 
 // CM6 + @replit/codemirror-vim are the heaviest dep bundle and only needed in
 // the editor — load them lazily so the picker/NEXUS don't carry them in the initial bundle (code splitting).
@@ -48,6 +50,7 @@ export function App() {
   const [result, setResult] = useState<MissionResultData | null>(null);
   // XP-gain flash: a brief flash of the XP bar when returning to NEXUS after a fresh clear.
   const [xpFlash, setXpFlash] = useState(false);
+  const [ui, setUi] = useState(loadSettings());
 
   function flashXp() {
     setXpFlash(true);
@@ -58,12 +61,20 @@ export function App() {
     storage.loadData<PluginData>().then((d) => { if (d) setData({ ...DEFAULT_PLUGIN_DATA, ...d }); });
   }, []);
 
+  useEffect(() => { applyEffects(ui.reduceEffects); }, [ui.reduceEffects]);
+
   // D4: initialize audio only after the first user gesture (non-intrusive, no auto-play).
   function unlockAudio() {
     if (audioUnlocked) return;
     audioUnlocked = true;
     audio.init().catch(() => { /* user-gesture race, silent */ });
   }
+
+  function toggleAudio() {
+    const next = { ...ui, audioOn: !ui.audioOn }; setUi(next); saveSettings(next);
+    if (next.audioOn) { unlockAudio(); audio.setMuted(false); } else { audio.setMuted(true); }
+  }
+  function toggleEffects() { const next = { ...ui, reduceEffects: !ui.reduceEffects }; setUi(next); saveSettings(next); }
 
   function selectMission(id: string) {
     unlockAudio();
@@ -186,6 +197,8 @@ export function App() {
         <span class="nv-label">Kuro Signal Protocol // Guardian</span>
         <span class="nv-label nv-link">◢ Link Secure</span>
       </div>
+      <ControlCluster audioOn={ui.audioOn} reduceEffects={ui.reduceEffects}
+        onToggleAudio={toggleAudio} onToggleEffects={toggleEffects} />
 
       <h1 class="nv-wordmark nv-text-glow">&gt;_ NEXUS<span class="nv-caret">_</span></h1>
 

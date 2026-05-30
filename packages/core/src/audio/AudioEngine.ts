@@ -1,6 +1,7 @@
 export class AudioEngine {
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
+  private muted = false;
   private readonly contextFactory: () => AudioContext;
 
   constructor(contextFactory?: () => AudioContext) {
@@ -10,6 +11,14 @@ export class AudioEngine {
   get context(): AudioContext | null { return this.ctx; }
   get master(): GainNode | null { return this.masterGain; }
   get isReady(): boolean { return this.ctx !== null && this.ctx.state !== 'closed'; }
+
+  /** Mute or unmute by zeroing / restoring the master gain. Safe to call before init(). */
+  setMuted(muted: boolean): void {
+    this.muted = muted;
+    if (this.masterGain) {
+      this.masterGain.gain.value = muted ? 0 : 0.35;
+    }
+  }
 
   async init(): Promise<void> {
     if (this.ctx) {
@@ -25,7 +34,7 @@ export class AudioEngine {
     this.ctx = this.contextFactory();
     if (this.ctx.state === 'suspended') await this.ctx.resume();
     this.masterGain = this.ctx.createGain();
-    this.masterGain.gain.value = 0.35;
+    this.masterGain.gain.value = this.muted ? 0 : 0.35;
     this.masterGain.connect(this.ctx.destination);
   }
 
