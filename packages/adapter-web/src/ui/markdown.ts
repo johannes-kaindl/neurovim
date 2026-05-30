@@ -17,8 +17,32 @@ import { marked } from 'marked';
 
 marked.setOptions({ gfm: true, breaks: false });
 
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/**
+ * Box-drawing "terminal boxes" (```ascii framed with ╔═╗ ║ ╚═╝) → a CSS-drawn box.
+ * The borders are NOT rendered as glyphs (box-drawing chars render at a different
+ * advance width than Latin text in the bundled font, so a glyph frame never aligns).
+ * Instead the inner text rows are extracted and the frame is drawn with CSS (.nv-termbox),
+ * which always aligns and themes via --nv-* tokens. Non-box ``` blocks are left untouched.
+ */
+function termBoxes(md: string): string {
+  return md.replace(/```(?:ascii)?[ \t]*\r?\n([\s\S]*?)\r?\n```/g, (m, body: string) => {
+    const lines = body.split('\n');
+    if (!lines[0] || !lines[0].trimStart().startsWith('╔')) return m; // not a box → leave as code
+    const inner = lines.slice(1, -1).map((l) =>
+      l.replace(/^\s*║\s?/, '').replace(/\s*║\s*$/, '').trimEnd());
+    const rows = inner
+      .map((t, i) => `<div class="nv-termbox-row${i === 0 ? ' nv-termbox-head' : ''}">${escapeHtml(t) || '&nbsp;'}</div>`)
+      .join('');
+    return `<div class="nv-termbox">${rows}</div>`;
+  });
+}
+
 function preprocess(md: string): string {
-  return md
+  return termBoxes(md)
     .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
     .replace(/\[\[([^\]]+)\]\]/g, (_m, p: string) => p.split('/').pop() ?? p)
     .replace(/^((?:>\s*)+)\[!(\w+)\]([+-]?)\s*(.*)$/gm, (_m, quote: string, type: string, _fold: string, title: string) => {

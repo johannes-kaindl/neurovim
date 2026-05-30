@@ -497,6 +497,21 @@ button { font-family: inherit; cursor: pointer; }
    font and break box alignment). System mono renders letters + box-drawing + em-dash
    at one uniform cell width, so the ╔══╗ frames line up. */
 .nv-md pre code { font-family: ui-monospace, monospace; font-size: 12px; color: var(--nv-accent); white-space: pre; letter-spacing: 0; text-shadow: 0 0 calc(5px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 40%, transparent); }
+
+/* terminal box — CSS-drawn double-line frame (replaces glyph ╔═╗ boxes; always aligned).
+   Produced by markdown.ts termBoxes(): .nv-termbox > .nv-termbox-row[.nv-termbox-head]. */
+.nv-md .nv-termbox {
+  position: relative; margin: var(--nv-s4) 0; padding: var(--nv-s3) var(--nv-s4);
+  border: 1px solid var(--nv-accent);
+  background: color-mix(in oklab, var(--nv-accent) 7%, var(--nv-bg));
+  box-shadow: 0 0 calc(16px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 25%, transparent);
+}
+.nv-md .nv-termbox::before {                 /* inner line → double-frame terminal look */
+  content: ""; position: absolute; inset: 3px; pointer-events: none;
+  border: 1px solid color-mix(in oklab, var(--nv-accent) 55%, transparent);
+}
+.nv-md .nv-termbox-row { font-family: var(--nv-mono); font-size: var(--nv-fs-sm); letter-spacing: 1px; line-height: 1.7; color: var(--nv-accent); }
+.nv-md .nv-termbox-head { color: var(--nv-accent-hot); text-transform: uppercase; }
 .nv-md code { font-family: var(--nv-mono); background: var(--nv-panel); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; color: var(--nv-accent); }
 .nv-md hr { border: none; border-top: 1px solid var(--nv-border); margin: 16px 0; }
 
