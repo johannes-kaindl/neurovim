@@ -38,7 +38,7 @@
   --nv-border: #1f2a1c;
   --nv-line-hot: #2c4a2f;
   --nv-text: #cfe0cf;
-  --nv-muted: #8aa68a;          /* verify ≥4.5:1 on --nv-bg; bump toward #9bb39b if it fails */
+  --nv-muted: #8aa68a;          /* AA-verified: 7.51:1 on --nv-bg, 6.90:1 on --nv-panel (worst case) */
 
   /* ---- semantic accents (story-coupled) ---- */
   --nv-visual: #b388ff;         /* Vim VISUAL mode violet */
@@ -76,7 +76,6 @@
   --nv-warn: var(--nv-amber);   /* alias: rules using --nv-warn keep working */
   --nv-tip: #6dffa6;            /* tip / success callouts */
   --nv-faint: #0f1810;          /* faint accent wash on panels */
-  --nv-co-success: var(--nv-accent-hot);  /* callout success marker colour */
 }
 
 /* "Reduce effects" user setting (toggled later by settings.ts). */
@@ -140,7 +139,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .nv-nexus { padding: var(--nv-s6) var(--nv-s4) var(--nv-s6); }
 .nv-statusstrip { display: flex; justify-content: space-between; gap: var(--nv-s3); }
-.nv-statusstrip .nv-link { color: var(--nv-accent); }
+.nv-link { color: var(--nv-accent); }
 .nv-wordmark { font-family: var(--nv-display); font-size: var(--nv-fs-display); line-height: .9;
   letter-spacing: 1px; color: var(--nv-accent-hot); margin: var(--nv-s2) 0 var(--nv-s1);
   text-shadow: 0 0 calc(16px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 80%, transparent),
