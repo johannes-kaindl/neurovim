@@ -201,7 +201,7 @@ export function App() {
       <ControlCluster audioOn={ui.audioOn} reduceEffects={ui.reduceEffects}
         onToggleAudio={toggleAudio} onToggleEffects={toggleEffects} />
 
-      <h1 class="nv-wordmark nv-text-glow">&gt;_ NEXUS<span class="nv-caret">_</span></h1>
+      <h1 class="nv-wordmark">&gt;_ NEXUS<span class="nv-caret">_</span></h1>
 
       <div class="nv-ops">
         <span class="nv-label">LVL {progress.level} · {levelData.title}</span>

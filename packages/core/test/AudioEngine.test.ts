@@ -51,4 +51,27 @@ describe('AudioEngine', () => {
     const { engine } = makeEngine();
     expect(() => engine.dispose()).not.toThrow();
   });
+
+  // D4 regression: setMuted() must be honoured across init() and after init.
+  it('setMuted(true) before init → master gain is 0 after init', async () => {
+    const { engine } = makeEngine();
+    engine.setMuted(true);
+    await engine.init();
+    expect(engine.master!.gain.value).toBe(0);
+  });
+
+  it('setMuted(true) after init → master gain is 0', async () => {
+    const { engine } = makeEngine();
+    await engine.init();
+    engine.setMuted(true);
+    expect(engine.master!.gain.value).toBe(0);
+  });
+
+  it('setMuted(false) after init → master gain restores to 0.35', async () => {
+    const { engine } = makeEngine();
+    await engine.init();
+    engine.setMuted(true);
+    engine.setMuted(false);
+    expect(engine.master!.gain.value).toBe(0.35);
+  });
 });
