@@ -26,40 +26,54 @@
 }
 
 :root {
-  /* ---- The six canonical tokens (unchanged values) ---- */
-  --nv-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --nv-bg: #0b0e0c;
+  /* ---- canonical surface ---- */
+  --nv-bg: #070908;
   --nv-panel: #11160f;
   --nv-border: #1f2a1c;
-  --nv-accent: #39ff7a;
-  --nv-text: #d7e0d7;
-  --nv-muted: #8aa68a;
+  --nv-line-hot: #2c4a2f;
+  --nv-text: #cfe0cf;
+  --nv-muted: #8aa68a;          /* verify ≥4.5:1 on --nv-bg; bump toward #9bb39b if it fails */
 
-  /* ---- New tokens (additive — keep using tokens, not hex) ---- */
-  --nv-accent-hot: #6dffa6;     /* high-emphasis accent (success lock-in, hero) */
-  --nv-accent-dim: #2bbe5e;     /* pressed / secondary accent */
-  --nv-faint: #0f1810;          /* faint accent wash on panels */
-  --nv-line-hot: #2c4a2f;       /* brighter border (focus, active, dividers) */
+  /* ---- semantic accents (story-coupled) ---- */
+  --nv-accent: #39ff7a;         /* Resistance / you / primary */
+  --nv-accent-hot: #9dffc2;     /* hero / active / success lock-in */
+  --nv-accent-dim: #2bbe5e;
+  --nv-amber: #ffb02e;          /* CORP / locked / caution */
+  --nv-fail: #ff5b5b;           /* fail / glitch / corruption */
 
-  /* status (was hardcoded — now tokenised, per spec §3) */
-  --nv-fail: #ff6b6b;           /* error / corruption (was #ff6b6b) */
-  --nv-warn: #ffaa00;           /* CORP / caution callouts + locked state */
-  --nv-tip: #6dffa6;            /* tip / success callouts */
+  /* ---- type ---- */
+  --nv-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --nv-display: 'VT323', var(--nv-mono);
+  --nv-fs-display: clamp(44px, 8vw, 64px);
+  --nv-fs-h1: 28px;
+  --nv-fs-h2: 20px;
+  --nv-fs-body: 15px;
+  --nv-fs-sm: 13px;
+  --nv-fs-micro: 11px;          /* uppercase HUD labels */
+  --nv-ls-label: 3px;           /* letter-spacing for HUD labels */
 
-  /* callout type accents (restores D25 — type-aware briefings) */
-  --nv-co-quote: var(--nv-accent);
-  --nv-co-warning: var(--nv-warn);
-  --nv-co-tip: var(--nv-tip);
-  --nv-co-success: var(--nv-accent-hot);
+  /* ---- spacing scale ---- */
+  --nv-s1: 4px; --nv-s2: 8px; --nv-s3: 12px; --nv-s4: 16px; --nv-s5: 24px; --nv-s6: 32px;
 
-  /* effects */
-  --nv-glow: 0.9;                                   /* glow multiplier (0 = flat) */
-  --nv-backdrop: rgba(0, 0, 0, 0.72);               /* modal backdrop (was inline) */
-  --nv-modal-shadow: rgba(0, 0, 0, 0.6);            /* modal shadow (was inline) */
-  --nv-scan: 0.14;                                  /* CRT scanline opacity (0 = off; 0.10–0.20 tasteful, 0.6 = heavy mockup look) */
+  /* ---- effect dials (gated by data-fx + reduced-motion) ---- */
+  --nv-glow: 1;                 /* glow multiplier; 0 = flat */
+  --nv-scan: 0.12;              /* scanline opacity; 0 = off */
+  --nv-vignette: 0.7;           /* inner vignette strength 0..1 */
 
+  /* ---- existing add-ons kept ---- */
+  --nv-backdrop: rgba(0,0,0,0.72);
+  --nv-modal-shadow: rgba(0,0,0,0.6);
   --nv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- legacy tokens kept (still referenced in rules below) ---- */
+  --nv-warn: var(--nv-amber);   /* alias: rules using --nv-warn keep working */
+  --nv-tip: #6dffa6;            /* tip / success callouts */
+  --nv-faint: #0f1810;          /* faint accent wash on panels */
+  --nv-co-success: var(--nv-accent-hot);  /* callout success marker colour */
 }
+
+/* "Reduce effects" user setting (toggled later by settings.ts). */
+html[data-fx="off"] { --nv-glow: 0; --nv-scan: 0; --nv-vignette: 0; }
 
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--nv-bg); color: var(--nv-text); font-family: var(--nv-mono); }
