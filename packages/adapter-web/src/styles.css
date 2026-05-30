@@ -332,7 +332,6 @@ button { font-family: inherit; cursor: pointer; }
   30% { transform: translateX(3px); }
   55% { transform: translateX(-1px); background: color-mix(in oklab, var(--nv-fail) 12%, transparent); }
 }
-.nv-sandbox-hud .nv-cell.nv-flash .nv-v { color: var(--nv-fail); }
 
 /* "transmission restored" — restrained signal-lock celebration */
 .nv-sandbox-result { animation: nv-restore .5s var(--nv-ease) both; }
