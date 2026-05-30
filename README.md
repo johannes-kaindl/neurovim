@@ -39,6 +39,10 @@ plugin**, and a **native desktop app**.
     <td align="center"><img src="docs/screenshots/05-result-modal.png" width="380" alt="Result"><br><sub>Result — mission complete</sub></td>
     <td align="center"><img src="docs/screenshots/06-sandbox.png" width="380" alt="Sandbox"><br><sub>THE RAVEN — free-play sandbox</sub></td>
   </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/07-archive-index.png" width="380" alt="Lore Archive"><br><sub>Archive — unlockable lore &amp; loot</sub></td>
+    <td align="center"><img src="docs/screenshots/09-cheatsheet.png" width="380" alt="Cheatsheet"><br><sub>Cheatsheet — Vim keymap overlay</sub></td>
+  </tr>
 </table>
 
 ## Features

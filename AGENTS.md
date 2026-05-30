@@ -19,10 +19,12 @@ Vim is the disguised core loop; the story is the motivation layer.
 over four port interfaces. Target 1 = Obsidian plugin (origin), target 2 =
 standalone web app, target 3 = native desktop app (Tauri wrapper around the web app).
 
-> **Status (2026-05-29):** Phase 3 largely complete — core fully ported, both
-> adapters functional, web app feature-complete (Welcome → NEXUS → Briefing →
-> Editor → Result + Sandbox) including the polish pass. 150 tests green,
-> 4-workspace typecheck green. Live on Codeberg (primary) + GitHub (mirror).
+> **Status (2026-05-30):** v0.2.0 shipped — the cinematic-CRT **visual overhaul**
+> is complete across every surface (Welcome → NEXUS → Briefing → Editor → Result →
+> Sandbox) plus two new ones: a **Lore Archive** (index → reader) and a **Cheatsheet
+> overlay**. Rounded out by an a11y pass (WCAG-AA contrast, ≥44px mobile tap targets,
+> reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 153 tests
+> green, 4-workspace typecheck green. Live on Codeberg (primary) + GitHub (mirror).
 
 ## Architecture — adapter pattern (ADR-001)
 
@@ -195,8 +197,10 @@ green. For content changes also run `npm run build:content`, otherwise
 
 ## Roadmap
 
-- **Remaining DESIGN-SPEC items** (not in the port package): audio toggle + visual
-  audio cues (§6), OG/Pages deploy + final host (§8), mobile stance (§7), the six
-  open designer questions (§9).
-- **First release tag** `v0.1.0` → triggers the desktop CI (macOS/Windows/Linux installers).
+- **Shipped in v0.2.0** (visual overhaul, `docs/superpowers/specs/2026-05-29-visual-overhaul-design.md`
+  + plans 1–6): redesign of all surfaces, Lore Archive + Cheatsheet, audio toggle +
+  visual audio-cue pendants (§6), mobile stance + ≥44px tap targets (§7), WCAG-AA
+  contrast pass (§5), web deploy on Codeberg + GitHub Pages (§8).
+- **Release tags** `v0.1.0` (initial) and `v0.2.0` (overhaul) trigger the desktop CI
+  (macOS/Windows/Linux installers via GitHub Actions → GitHub release).
 - **itch.io** distribution of the web build, if pursued.
