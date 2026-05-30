@@ -161,77 +161,92 @@ export function App() {
 
   const progress = ProgressionEngine.getXpProgress(data.total_xp);
   const levelData = ProgressionEngine.getLevelData(progress.level);
-  const missions = listMissions('I');
-  const cleared = missions.filter((m) => data.completed_missions.includes(m.mission_id)).length;
-  const times = missions
-    .map((m) => data.missions[m.mission_id]?.best_time_ms ?? 0)
-    .filter((t) => t > 0);
+  const arc1 = listMissions('I');
+  const arc2 = listMissions('II');
+  const cleared = arc1.filter((m) => data.completed_missions.includes(m.mission_id)).length;
+  const times = arc1.map((m) => data.missions[m.mission_id]?.best_time_ms ?? 0).filter((t) => t > 0);
   const fastest = times.length ? Math.min(...times) : null;
+  const activeId = arc1.find((m) => !data.completed_missions.includes(m.mission_id))?.mission_id ?? null;
+
+  // Group ARC I by chapter (e.g. "01 - Indoctrination" -> "Indoctrination"), preserving order.
+  const chapterName = (c: string) => c.replace(/^\d+\s*[-–]\s*/, '');
+  const arc1Groups: { name: string; items: typeof arc1 }[] = [];
+  for (const m of arc1) {
+    const name = chapterName(m.chapter);
+    let g = arc1Groups.find((x) => x.name === name);
+    if (!g) { g = { name, items: [] }; arc1Groups.push(g); }
+    g.items.push(m);
+  }
 
   return (
-    <div class="nv-app" onPointerDown={unlockAudio}>
-      <header class="nv-nexus-head">
-        <h1>&gt;_ NEXUS</h1>
-        <div class="nv-lvl-row">
-          <span class="nv-lvl">LVL {progress.level} · {levelData.title}</span>
-          <span class="nv-lvl-next">
-            {progress.nextTitle
-              ? `${data.total_xp} / ${progress.nextLevelXp} XP → ${progress.nextTitle}`
-              : `${data.total_xp} XP · MAX`}
-          </span>
-        </div>
-        <div class="nv-xpbar"><div class={`nv-xpbar-fill${xpFlash ? ' nv-gained' : ''}`} style={{ width: `${progress.pct}%` }} /></div>
-        <div class="nv-stats">
-          <span>Cleared {cleared}/{missions.length}</span>
-          <span>Streak {data.streak_current}</span>
-          {fastest != null && <span>Fastest {fmtTime(fastest)}</span>}
-        </div>
-      </header>
-      <section class="nv-picker">
-        <h2>ARC I — Indoctrination <span class="nv-arc-prog">{cleared}/{missions.length} cleared</span></h2>
-        <ul>
-          {(() => {
-            // Web: ALL missions are freely playable (no unlock gating — the web build is
-            // an open demo build, progression locks belong only in the Obsidian adapter).
-            // "Active" mission = the first not-yet-completed one (▸ highlight + glow).
-            const activeId = missions.find(
-              (m) => !data.completed_missions.includes(m.mission_id),
-            )?.mission_id ?? null;
-            return missions.map((m) => {
-              const rec = data.missions[m.mission_id];
-              const done = data.completed_missions.includes(m.mission_id);
-              const active = m.mission_id === activeId;
-              const cls = [done && 'nv-done-row', active && 'nv-active'].filter(Boolean).join(' ');
-              return (
-                <li key={m.mission_id} class={cls || undefined}>
-                  <button onClick={() => selectMission(m.mission_id)}>
-                    <span class="nv-mid">{m.mission_id}</span>
-                    <span class="nv-mtitle">{m.title}</span>
-                    {done && (rec?.best_time_ms ?? 0) > 0 && (
-                      <span class="nv-mbest">{fmtTime(rec!.best_time_ms)} · {rec!.best_keystrokes}ks</span>
-                    )}
-                    <span class="nv-mxp">{m.xp_reward} XP</span>
-                    {done && <span class="nv-done">✓</span>}
-                  </button>
-                </li>
-              );
-            });
-          })()}
-        </ul>
+    <div class="nv-app nv-nexus nv-crt nv-hud-frame" onPointerDown={unlockAudio}>
+      <div class="nv-scan" /><div class="nv-vig" /><span class="nv-br-bl" /><span class="nv-br-br" />
+
+      <div class="nv-statusstrip">
+        <span class="nv-label">Kuro Signal Protocol // Guardian</span>
+        <span class="nv-label nv-link">◢ Link Secure</span>
+      </div>
+
+      <h1 class="nv-wordmark nv-text-glow">&gt;_ NEXUS<span class="nv-caret">_</span></h1>
+
+      <div class="nv-ops">
+        <span class="nv-label">LVL {progress.level} · {levelData.title}</span>
+        <span class="nv-ops-xp">
+          {progress.nextTitle
+            ? `${data.total_xp} / ${progress.nextLevelXp} XP → ${progress.nextTitle}`
+            : `${data.total_xp} XP · MAX`}
+        </span>
+      </div>
+      <div class="nv-xpbar"><div class={`nv-xpbar-fill${xpFlash ? ' nv-gained' : ''}`} style={{ width: `${progress.pct}%` }} /></div>
+      <div class="nv-stats">
+        <span>Cleared <b>{cleared}</b>/{arc1.length}</span>
+        <span>Streak <b>{data.streak_current}</b></span>
+        {fastest != null && <span>Fastest <b>{fmtTime(fastest)}</b></span>}
+      </div>
+
+      {arc1Groups.map((g) => (
+        <section class="nv-tier" key={g.name}>
+          <div class="nv-tier-label nv-label">{g.name}</div>
+          {g.items.map((m) => {
+            const rec = data.missions[m.mission_id];
+            const done = data.completed_missions.includes(m.mission_id);
+            const active = m.mission_id === activeId;
+            const cls = ['nv-row', done && 'nv-row-done', active && 'nv-row-active'].filter(Boolean).join(' ');
+            return (
+              <button class={cls} key={m.mission_id} onClick={() => selectMission(m.mission_id)}>
+                <span class="nv-row-id">{active ? '▸ ' : ''}{m.mission_id}</span>
+                <span class="nv-row-t">{m.title}</span>
+                {done && (rec?.best_time_ms ?? 0) > 0
+                  ? <span class="nv-row-meta">{fmtTime(rec!.best_time_ms)} · {rec!.best_keystrokes}ks</span>
+                  : <span class="nv-row-meta">{m.xp_reward} XP</span>}
+                {done && <span class="nv-row-x">✓</span>}
+              </button>
+            );
+          })}
+        </section>
+      ))}
+
+      <section class="nv-tier">
+        <div class="nv-tier-label nv-label">Arc II — Encrypted</div>
+        {arc2.map((m) => (
+          <button class="nv-row nv-row-locked" key={m.mission_id} disabled aria-disabled="true"
+                  title="ARC II — not yet available on the web build">
+            <span class="nv-row-id">{m.mission_id}</span>
+            <span class="nv-row-t">{m.title} · ARC II</span>
+            <span class="nv-row-meta nv-row-lock">🔒</span>
+          </button>
+        ))}
       </section>
-      <section class="nv-picker">
-        <h2>SANDBOX</h2>
-        <ul>
-          <li>
-            <button onClick={() => { unlockAudio(); setView('sandbox'); }}>
-              <span class="nv-mid">RAVEN</span>
-              <span class="nv-mtitle">Glitch Drill — restore the transmission</span>
-              {data.sandbox_bests.normal != null && (
-                <span class="nv-mbest">PB {fmtTime(data.sandbox_bests.normal)}</span>
-              )}
-            </button>
-          </li>
-        </ul>
+
+      <section class="nv-tier">
+        <div class="nv-tier-label nv-label">Sandbox</div>
+        <button class="nv-row" onClick={() => { unlockAudio(); setView('sandbox'); }}>
+          <span class="nv-row-id">RAVEN</span>
+          <span class="nv-row-t">Glitch Drill — restore the transmission</span>
+          {data.sandbox_bests.normal != null
+            ? <span class="nv-row-meta">PB {fmtTime(data.sandbox_bests.normal)}</span>
+            : <span class="nv-row-meta">free play</span>}
+        </button>
       </section>
     </div>
   );
