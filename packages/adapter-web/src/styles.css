@@ -186,6 +186,28 @@ button { font-family: inherit; cursor: pointer; }
 .nv-ctl:focus-visible { outline: 2px solid var(--nv-accent); outline-offset: 2px; }
 .nv-ctl-mute { text-decoration: line-through; text-decoration-thickness: 2px; }
 
+/* first-run audio hint — one-time, persisted via PluginData.onboarded; non-blocking, no backdrop */
+.nv-audiohint {
+  position: absolute; top: 48px; right: 36px; z-index: 4; max-width: 240px;
+  display: flex; gap: var(--nv-s2); align-items: flex-start;
+  background: color-mix(in oklab, var(--nv-panel) 92%, var(--nv-bg));
+  border: 1px solid color-mix(in oklab, var(--nv-accent) 40%, var(--nv-border));
+  border-radius: 4px; padding: var(--nv-s2) var(--nv-s3);
+  color: var(--nv-text); font-size: var(--nv-fs-sm); line-height: 1.4;
+  animation: nv-modal-in .18s var(--nv-ease) both;
+}
+.nv-audiohint b { color: var(--nv-accent); }
+.nv-audiohint-x { background: none; border: none; color: var(--nv-muted); font-size: 16px; line-height: 1; cursor: pointer; padding: 0 2px; }
+.nv-audiohint-x:hover, .nv-audiohint-x:focus-visible { color: var(--nv-accent); }
+
+/* all-cleared badge — Arc I fully restored (additive, gentle) */
+.nv-allclear {
+  margin-top: var(--nv-s3); padding: var(--nv-s2) var(--nv-s3); border-radius: 4px;
+  color: var(--nv-accent); font-size: var(--nv-fs-sm);
+  border: 1px solid color-mix(in oklab, var(--nv-accent) 45%, var(--nv-border));
+  background: color-mix(in oklab, var(--nv-accent) 8%, transparent);
+}
+
 /* =============================================================================
    EDITOR
    ============================================================================= */

@@ -16,3 +16,13 @@ export function ControlCluster({ audioOn, reduceEffects, onToggleAudio, onToggle
     </div>
   );
 }
+
+/** One-time first-run cue: audio is off by default; points at the ♪ control. Non-blocking (role=status). */
+export function AudioHint({ onDismiss }: { onDismiss: () => void }) {
+  return (
+    <div class="nv-audiohint" role="status" aria-live="polite">
+      <span>Audio is off — click <b>♪</b> above to bring the signal online.</span>
+      <button class="nv-audiohint-x" aria-label="Dismiss hint" onClick={onDismiss}>×</button>
+    </div>
+  );
+}

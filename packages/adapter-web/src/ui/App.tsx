@@ -15,7 +15,7 @@ import { WebStorage } from '../ports/WebStorage';
 import { MissionResult, type MissionResultData } from './MissionResult';
 import { fmtTime } from './format';
 import { loadSettings, saveSettings, applyEffects } from './settings';
-import { ControlCluster } from './Chrome';
+import { ControlCluster, AudioHint } from './Chrome';
 
 // CM6 + @replit/codemirror-vim are the heaviest dep bundle and only needed in
 // the editor — load them lazily so the picker/NEXUS don't carry them in the initial bundle (code splitting).
@@ -81,8 +81,16 @@ export function App() {
   function toggleAudio() {
     const next = { ...ui, audioOn: !ui.audioOn }; setUi(next); saveSettings(next);
     if (next.audioOn) { unlockAudio(); audio.setMuted(false); } else { audio.setMuted(true); }
+    markOnboarded();
   }
   function toggleEffects() { const next = { ...ui, reduceEffects: !ui.reduceEffects }; setUi(next); saveSettings(next); }
+
+  async function markOnboarded() {
+    if (data.onboarded) return;
+    const next = { ...data, onboarded: true };
+    setData(next);
+    await storage.saveData(next);
+  }
 
   function selectMission(id: string) {
     unlockAudio();
@@ -220,6 +228,7 @@ export function App() {
       </div>
       <ControlCluster audioOn={ui.audioOn} reduceEffects={ui.reduceEffects}
         onToggleAudio={toggleAudio} onToggleEffects={toggleEffects} onCheatsheet={() => setCheatOpen(true)} />
+      {!data.onboarded && <AudioHint onDismiss={markOnboarded} />}
 
       <h1 class="nv-wordmark">&gt;_ NEXUS<span class="nv-caret">_</span></h1>
 
@@ -237,6 +246,10 @@ export function App() {
         <span>Streak <b>{data.streak_current}</b></span>
         {fastest != null && <span>Fastest <b>{fmtTime(fastest)}</b></span>}
       </div>
+
+      {arc1.length > 0 && cleared === arc1.length && (
+        <div class="nv-allclear">✓ Arc I complete — every transmission restored. THE RAVEN awaits.</div>
+      )}
 
       {arc1Groups.map((g) => (
         <section class="nv-tier" key={g.name}>
