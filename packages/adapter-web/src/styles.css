@@ -41,6 +41,7 @@
   --nv-muted: #8aa68a;          /* verify ≥4.5:1 on --nv-bg; bump toward #9bb39b if it fails */
 
   /* ---- semantic accents (story-coupled) ---- */
+  --nv-visual: #b388ff;         /* Vim VISUAL mode violet */
   --nv-accent: #39ff7a;         /* Resistance / you / primary */
   --nv-accent-hot: #9dffc2;     /* hero / active / success lock-in */
   --nv-accent-dim: #2bbe5e;
@@ -195,7 +196,7 @@ button { font-family: inherit; cursor: pointer; }
 /* =============================================================================
    EDITOR
    ============================================================================= */
-.nv-editor { max-width: 900px; margin: 0 auto; padding: 16px; }
+.nv-editor { max-width: 900px; margin: 0 auto; padding: 16px; position: relative; }
 .nv-editor-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .nv-editor-bar button { background: var(--nv-panel); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 7px 13px; transition: border-color 0.15s, color 0.15s; }
 .nv-editor-bar button:hover { border-color: var(--nv-accent); color: var(--nv-accent); }
@@ -214,7 +215,7 @@ button { font-family: inherit; cursor: pointer; }
   color: #03110a; background: var(--nv-accent); transition: background 0.15s;
 }
 .nv-mode-chip[data-mode="INSERT"] { background: var(--nv-warn); }
-.nv-mode-chip[data-mode="VISUAL"] { background: #b388ff; }
+.nv-mode-chip[data-mode="VISUAL"] { background: var(--nv-visual); }
 .nv-mode-chip[data-mode="REPLACE"] { background: var(--nv-fail); }
 .nv-editor-status .nv-file { padding: 7px 14px; color: var(--nv-muted); letter-spacing: 1px; }
 .nv-editor-status .nv-hud { margin-left: auto; display: flex; }

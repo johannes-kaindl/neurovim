@@ -71,7 +71,8 @@ export function MissionEditor({ mission, onSubmit, onBack }: Props) {
   }, [mission.mission_id]);
 
   return (
-    <div class="nv-editor">
+    <div class="nv-editor nv-hud-frame">
+      <span class="nv-br-bl" /><span class="nv-br-br" />
       <div class="nv-editor-bar">
         <button onClick={onBack}>← NEXUS</button>
         <span class="nv-editor-title">{mission.mission_id} · {mission.title}</span>
