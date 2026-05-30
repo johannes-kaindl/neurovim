@@ -496,4 +496,12 @@ button { font-family: inherit; cursor: pointer; }
   .nv-editor-status .nv-hud { width: 100%; margin-left: 0; border-top: 1px solid var(--nv-border); }
   .nv-editor-status .nv-hud span { flex: 1; text-align: center; }
   .nv-sandbox-diff { min-width: 0; flex: 1 1 100%; }
+  /* tap targets ≥44px (a11y §6) */
+  .nv-ctl { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 3px 10px; }
+  .nv-row { min-height: 44px; }
+  .nv-card { min-height: 44px; }
+  .nv-sheet-x, .nv-editor-keys, .nv-doc-bar button, .nv-sandbox-back { min-height: 44px; }
+  /* cheatsheet drawer goes full-screen on a phone; hint clears the now-taller controls */
+  .nv-sheet { width: 100%; }
+  .nv-audiohint { top: 64px; right: 12px; left: 12px; max-width: none; }
 }
