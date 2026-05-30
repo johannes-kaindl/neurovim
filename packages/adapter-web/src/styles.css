@@ -107,11 +107,14 @@ button { font-family: inherit; cursor: pointer; }
 .nv-crt > .nv-scan {
   background: repeating-linear-gradient(180deg, transparent 0 2px, rgba(0,0,0,0.5) 3px);
   opacity: var(--nv-scan); z-index: 1;
+  mix-blend-mode: multiply; /* darken-only blend */
 }
-.nv-crt > .nv-vig { box-shadow: inset 0 0 90px rgba(0,0,0,calc(var(--nv-vignette) * 1)); z-index: 1; }
+.nv-crt > .nv-vig { box-shadow: inset 0 0 90px rgba(0,0,0,var(--nv-vignette)); z-index: 1; }
 .nv-crt > * { position: relative; z-index: 2; }   /* content above overlays */
 
-/* Corner bracket frame — four pseudo-elements/spans form a HUD border */
+/* Corner bracket frame — four pseudo-elements/spans form a HUD border.
+   Top-left/top-right corners use ::before/::after; bottom corners require
+   child elements <span class="nv-br-bl"> and <span class="nv-br-br">. */
 .nv-hud-frame::before, .nv-hud-frame::after,
 .nv-hud-frame > .nv-br-bl, .nv-hud-frame > .nv-br-br {
   content: ''; position: absolute; width: 15px; height: 15px; border: solid var(--nv-line-hot); z-index: 3;
@@ -125,7 +128,7 @@ button { font-family: inherit; cursor: pointer; }
 .nv-label { font-size: var(--nv-fs-micro); letter-spacing: var(--nv-ls-label); text-transform: uppercase; color: var(--nv-muted); }
 
 /* Glow helper (reserved for hero/state moments only). */
-.nv-glow { text-shadow: 0 0 calc(16px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 70%, transparent); }
+.nv-text-glow { text-shadow: 0 0 calc(16px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 70%, transparent); }
 
 /* =============================================================================
    NEXUS — hub
