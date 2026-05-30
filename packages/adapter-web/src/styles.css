@@ -374,6 +374,34 @@ button { font-family: inherit; cursor: pointer; }
 }
 .nv-card-badge.nv-amber { color: var(--nv-amber); border-color: color-mix(in oklab, var(--nv-amber) 40%, var(--nv-border)); }
 
+/* =============================================================================
+   CHEATSHEET OVERLAY (drawer over NEXUS / editor; canvas stays calm underneath)
+   ============================================================================= */
+.nv-sheet-backdrop { position: fixed; inset: 0; background: var(--nv-backdrop); backdrop-filter: blur(3px); display: flex; justify-content: flex-end; z-index: 60; }
+.nv-sheet {
+  position: relative; width: min(460px, 100%); height: 100%; display: flex; flex-direction: column;
+  background: var(--nv-panel); border-left: 1px solid var(--nv-line-hot);
+  box-shadow: -8px 0 40px var(--nv-modal-shadow);
+  animation: nv-sheet-in .25s var(--nv-ease) both;
+}
+@keyframes nv-sheet-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+.nv-sheet-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--nv-s3); padding: var(--nv-s3) var(--nv-s4); border-bottom: 1px solid var(--nv-border); position: sticky; top: 0; background: var(--nv-panel); z-index: 1; }
+.nv-sheet-title { margin: 0; font-size: var(--nv-fs-h2); letter-spacing: 2px; text-transform: uppercase; color: var(--nv-accent); }
+.nv-sheet-x { background: var(--nv-bg); color: var(--nv-muted); border: 1px solid var(--nv-border); border-radius: 4px; padding: 6px 10px; font-size: var(--nv-fs-sm); transition: border-color .15s, color .15s; }
+.nv-sheet-x:hover, .nv-sheet-x:focus-visible { border-color: var(--nv-accent); color: var(--nv-accent); }
+.nv-sheet-body { overflow-y: auto; padding: var(--nv-s4); }
+.nv-sheet-cat { margin-bottom: var(--nv-s5); }
+.nv-sheet-cat-label { display: block; color: var(--nv-accent); margin-bottom: var(--nv-s2); }
+.nv-sheet-group { margin: var(--nv-s3) 0; }
+.nv-sheet-group-label { color: var(--nv-muted); font-size: var(--nv-fs-sm); margin-bottom: 4px; }
+.nv-kv { display: grid; grid-template-columns: minmax(72px, auto) 1fr; gap: var(--nv-s3); align-items: baseline; padding: 3px 0; }
+.nv-kv-k { justify-self: start; color: var(--nv-accent); background: var(--nv-bg); border: 1px solid var(--nv-border); border-radius: 3px; padding: 1px 7px; font-family: var(--nv-mono); font-size: 12px; white-space: nowrap; }
+.nv-kv-d { color: var(--nv-text); font-size: var(--nv-fs-sm); }
+
+/* editor-bar cheatsheet button (matches the bar's existing button recipe) */
+.nv-editor-keys { background: var(--nv-bg); color: var(--nv-muted); border: 1px solid var(--nv-border); border-radius: 4px; padding: 6px 10px; font-size: var(--nv-fs-sm); transition: border-color .15s, color .15s; }
+.nv-editor-keys:hover, .nv-editor-keys:focus-visible { border-color: var(--nv-accent); color: var(--nv-accent); }
+
 /* Welcome hero */
 .nv-welcome { min-height: 78vh; display: flex; flex-direction: column; justify-content: center; padding: 0 var(--nv-s4); }
 .nv-welcome .nv-md h1 {

@@ -20,9 +20,10 @@ interface Props {
   mission: MissionDoc;
   onSubmit: (content: string, metrics: MetricsResult) => void;
   onBack: () => void;
+  onCheatsheet?: () => void;
 }
 
-export function MissionEditor({ mission, onSubmit, onBack }: Props) {
+export function MissionEditor({ mission, onSubmit, onBack, onCheatsheet }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const view = useRef<EditorView | null>(null);
   const metrics = useRef(new MetricsTracker());
@@ -76,6 +77,9 @@ export function MissionEditor({ mission, onSubmit, onBack }: Props) {
       <div class="nv-editor-bar">
         <button onClick={onBack}>← NEXUS</button>
         <span class="nv-editor-title">{mission.mission_id} · {mission.title}</span>
+        {onCheatsheet && (
+          <button class="nv-editor-keys" onClick={onCheatsheet} aria-label="Vim cheatsheet" title="Vim cheatsheet (keys)">⌨ Keys</button>
+        )}
         <button
           class="nv-submit"
           onClick={() => onSubmit(view.current?.state.doc.toString() ?? '', metrics.current.getResult())}

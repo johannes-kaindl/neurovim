@@ -34,6 +34,9 @@ const BriefingView = lazy(() =>
 const LoreView = lazy(() =>
   import('./LoreView').then((m) => ({ default: m.LoreView })),
 );
+const CheatsheetOverlay = lazy(() =>
+  import('./CheatsheetOverlay').then((m) => ({ default: m.CheatsheetOverlay })),
+);
 
 /** Next playable mission in the same arc (for the "Next Mission" button). */
 function nextMissionId(id: string): string | null {
@@ -54,6 +57,7 @@ export function App() {
   // XP-gain flash: a brief flash of the XP bar when returning to NEXUS after a fresh clear.
   const [xpFlash, setXpFlash] = useState(false);
   const [ui, setUi] = useState(loadSettings());
+  const [cheatOpen, setCheatOpen] = useState(false);
 
   function flashXp() {
     setXpFlash(true);
@@ -150,7 +154,7 @@ export function App() {
     return (
       <>
         <Suspense fallback={<div class="nv-loading">loading editor…</div>}>
-          <MissionEditor mission={mission} onSubmit={submit} onBack={() => setView('nexus')} />
+          <MissionEditor mission={mission} onSubmit={submit} onBack={() => setView('nexus')} onCheatsheet={() => setCheatOpen(true)} />
         </Suspense>
         {result && (
           <MissionResult
@@ -161,6 +165,11 @@ export function App() {
             onNext={() => { const n = nextMissionId(mission.mission_id); if (n) selectMission(n); }}
             onNexus={() => { const gained = result.status === 'complete'; setResult(null); setView('nexus'); if (gained) flashXp(); }}
           />
+        )}
+        {cheatOpen && (
+          <Suspense fallback={null}>
+            <CheatsheetOverlay activeCategory={mission.category} onClose={() => setCheatOpen(false)} />
+          </Suspense>
         )}
       </>
     );
@@ -210,7 +219,7 @@ export function App() {
         <span class="nv-label nv-link">◢ Link Secure</span>
       </div>
       <ControlCluster audioOn={ui.audioOn} reduceEffects={ui.reduceEffects}
-        onToggleAudio={toggleAudio} onToggleEffects={toggleEffects} />
+        onToggleAudio={toggleAudio} onToggleEffects={toggleEffects} onCheatsheet={() => setCheatOpen(true)} />
 
       <h1 class="nv-wordmark">&gt;_ NEXUS<span class="nv-caret">_</span></h1>
 
@@ -282,6 +291,12 @@ export function App() {
           <span class="nv-row-meta">{listLore().length} files</span>
         </button>
       </section>
+
+      {cheatOpen && (
+        <Suspense fallback={null}>
+          <CheatsheetOverlay onClose={() => setCheatOpen(false)} />
+        </Suspense>
+      )}
     </div>
   );
 }
