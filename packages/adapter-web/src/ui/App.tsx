@@ -62,6 +62,7 @@ export function App() {
   }, []);
 
   useEffect(() => { applyEffects(ui.reduceEffects); }, [ui.reduceEffects]);
+  useEffect(() => { audio.setMuted(!ui.audioOn); }, [ui.audioOn]);
 
   // D4: initialize audio only after the first user gesture (non-intrusive, no auto-play).
   function unlockAudio() {
