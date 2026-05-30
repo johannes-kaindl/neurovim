@@ -1,14 +1,12 @@
 /* =============================================================================
-   NeuroVim — adapter-web · styles.css  (POLISH PASS — drop-in replacement)
+   NeuroVim — adapter-web · styles.css
    -----------------------------------------------------------------------------
-   Lineage: the "Kuro" terminal theme. Restrained, type-led, monospace-only —
-   NO web-font load (respects the bundle budget). Everything funnels through the
-   six --nv-* tokens; new colours are added as :root vars (never inlined).
+   Lineage: the "Kuro" terminal theme. Self-hosted fonts: JetBrains Mono (body,
+   400/700) + VT323 (display/wordmark). Everything funnels through the --nv-*
+   token system; new colours are added as :root vars (never inlined).
 
-   This file is a SUPERSET of the original styles.css: every original selector
-   is preserved (and enhanced), so it can replace the file wholesale. Rules that
-   need a small markup/renderer change to take effect are marked  [needs markup]
-   and documented in port/README.md.
+   Rules that need a markup/renderer change to take effect are marked
+   [needs markup] and documented in port/README.md.
    ============================================================================= */
 
 /* JetBrains Mono (OFL) — self-hosted latin subset. Uniform box-drawing + em-dash
@@ -23,6 +21,14 @@
   font-family: 'JetBrains Mono';
   font-style: normal; font-weight: 700; font-display: swap;
   src: url('./fonts/jetbrains-mono-700.woff2') format('woff2');
+}
+
+/* VT323 (OFL) — self-hosted latin subset. Display/wordmark font; wired via
+   the --nv-display token. See src/fonts/README.md. */
+@font-face {
+  font-family: 'VT323';
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url('./fonts/vt323-400.woff2') format('woff2');
 }
 
 :root {
