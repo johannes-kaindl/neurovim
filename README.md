@@ -63,8 +63,9 @@ plugin**, and a **native desktop app**.
 
 - **Browser:** **https://jkaindl.codeberg.page/neurovim/** — nothing to install.
 - **Desktop:** download an installer from the [latest release](https://github.com/johannes-kaindl/NeuroVIM/releases)
-  (macOS `.dmg`, Windows `.exe`/`.msi`, Linux `.AppImage`/`.deb`/`.rpm`). Builds are
-  unsigned — see [`docs/DESKTOP.md`](docs/DESKTOP.md) for the one-time Gatekeeper step.
+  (macOS `.dmg`, Windows `.exe`/`.msi`, Linux `.AppImage`/`.deb`/`.rpm`). CI installers
+  are currently unsigned — see [`docs/DESKTOP.md`](docs/DESKTOP.md) for the one-time
+  Gatekeeper step (and how to produce a notarized macOS build).
 
 ## Run from source
 

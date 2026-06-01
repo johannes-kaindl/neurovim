@@ -24,6 +24,7 @@ desktop). You'll get an acknowledgement as soon as possible.
 
 ## Note on desktop builds
 
-Release installers are **unsigned** (no Apple Developer / code-signing certificate).
-Verify downloads come from the official releases, and see `docs/DESKTOP.md` for the
-Gatekeeper note.
+CI release installers are currently **unsigned** — the GitHub Actions workflow is
+not yet wired for code signing. A **notarized** macOS build (Developer ID + Apple
+notarization) can be produced locally; see `docs/DESKTOP.md`. Verify downloads come
+from the official releases.

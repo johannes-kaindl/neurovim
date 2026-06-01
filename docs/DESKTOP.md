@@ -24,19 +24,36 @@ Development with hot reload in the native window:
 npm run desktop:dev      # = build:content + tauri dev (Vite HMR in the WebView)
 ```
 
-## Unsigned — Gatekeeper note
+## Code signing & notarization
 
-The builds are **not code-signed/notarized** (no Apple Developer account).
-On first launch, macOS reports an "unknown developer". Open it via:
+A **notarized** build (Developer ID-signed, Apple-notarized, stapled) opens with
+no Gatekeeper warning — online or offline. Signing + notarization are driven by
+environment variables at `tauri build` time; without them the build is unsigned
+(fine for local development — if macOS blocks an unsigned build, clear the
+quarantine flag: `xattr -dr com.apple.quarantine /Applications/NeuroVim.app`).
 
-- **Right-click the app → "Open"** → confirm "Open" in the dialog, **or**
-- Remove the quarantine flag:
-  ```bash
-  xattr -dr com.apple.quarantine /Applications/NeuroVim.app
-  ```
+A notarized build needs a **Developer ID Application** certificate in the login
+keychain plus notarization credentials. The recommended secret-free path uses an
+**App Store Connect API key** (`.p8`):
 
-A warning-free launch would require an Apple Developer account ($99/year)
-+ Developer ID signing + notarization.
+```bash
+export APPLE_SIGNING_IDENTITY="Developer ID Application: <NAME> (<TEAM_ID>)"
+export APPLE_API_ISSUER="<issuer-uuid>"
+export APPLE_API_KEY="<key-id>"
+export APPLE_API_KEY_PATH="$HOME/.appstoreconnect/private_keys/AuthKey_<key-id>.p8"
+npm run build:dmg
+```
+
+(Alternative credential: an app-specific password — `APPLE_ID` + `APPLE_PASSWORD`
++ `APPLE_TEAM_ID` instead of the three `APPLE_API_*` vars.) Tauri then signs with
+the Hardened Runtime + a secure timestamp, notarizes, and staples both the `.app`
+and the `.dmg`. Verify: `spctl -a -t exec <app>` → `accepted, source=Notarized
+Developer ID`.
+
+> **CI releases are not signed yet.** The `desktop.yml` GitHub Actions workflow
+> builds and publishes installers **unsigned** — wiring it for signing means
+> adding the Developer ID cert (base64) and the API key as repository secrets and
+> exporting the same `APPLE_*` vars in the macOS job.
 
 ## CI — all platforms
 
