@@ -100,7 +100,15 @@ Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) first.
 
 ## License
 
-[GNU AGPL-3.0](LICENSE) — copyleft with the network-use clause: if you host a
-modified version so others can use it over the network, the source of your variant
-must also be made available under the AGPL. The bundled JetBrains Mono font is under
-the [SIL Open Font License](packages/adapter-web/src/fonts/OFL.txt).
+NeuroVim is **dual-licensed** — see [`LICENSING.md`](LICENSING.md).
+
+- **Open source:** [GNU AGPL-3.0](LICENSE) — copyleft with the network-use clause:
+  if you host a modified version so others can use it over the network, the source
+  of your variant must also be made available under the AGPL.
+- **Commercial license:** for uses that the AGPL does not fit — e.g. a proprietary
+  or closed-source product, or an Apple App Store build (App Store terms are
+  incompatible with the AGPL) — a separate commercial license is available. See
+  [`LICENSING.md`](LICENSING.md); contributions are covered by the [CLA](CLA.md).
+
+The bundled JetBrains Mono font is under the
+[SIL Open Font License](packages/adapter-web/src/fonts/OFL.txt).
