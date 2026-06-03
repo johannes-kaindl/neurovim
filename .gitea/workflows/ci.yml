@@ -19,6 +19,13 @@ jobs:
           node-version: "20"
       - name: Install
         run: npm install
+      - name: Content up-to-date
+        # Generated content is committed (D15) — fail loudly if a source edit landed
+        # without re-running build:content, instead of relying on memory (AGENTS.md gate).
+        run: |
+          npm run build:content
+          git diff --exit-code -- packages/content/src/generated \
+            || (echo "::error::Generated content is stale — run 'npm run build:content' and commit packages/content/src/generated" && exit 1)
       - name: Typecheck
         run: npm run typecheck
       - name: Test
