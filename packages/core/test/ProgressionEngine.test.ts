@@ -1,5 +1,6 @@
 import { ProgressionEngine } from '../src/engine/ProgressionEngine';
 import { DEFAULT_PLUGIN_DATA } from '../src/types';
+import { unlockLevelFor } from '../src/data/levels';
 
 function makeData(xp: number) {
   return { ...DEFAULT_PLUGIN_DATA, total_xp: xp };
@@ -182,5 +183,39 @@ describe('ProgressionEngine', () => {
       expect(p.nextLevelXp).toBeNull();
       expect(p.nextTitle).toBeNull();
     });
+  });
+});
+
+describe('ProgressionEngine.backfillUnlocks', () => {
+  it('at level 1 yields exactly the defaults', () => {
+    const d = ProgressionEngine.backfillUnlocks({ ...DEFAULT_PLUGIN_DATA });
+    expect(new Set(d.unlocked)).toEqual(new Set(DEFAULT_PLUGIN_DATA.unlocked));
+  });
+  it('at level 3 includes the level-2 and level-3 unlocks', () => {
+    const d = ProgressionEngine.backfillUnlocks({ ...DEFAULT_PLUGIN_DATA, total_xp: 186 });
+    expect(d.unlocked).toEqual(expect.arrayContaining(['M-05', 'KATA-12', 'LOOT-01', 'M-09', 'KATA-13', 'LOOT-02']));
+    expect(d.unlocked).not.toContain('M-13');
+  });
+  it('preserves completed missions even if not otherwise unlocked', () => {
+    const d = ProgressionEngine.backfillUnlocks({ ...DEFAULT_PLUGIN_DATA, completed_missions: ['R-20'] });
+    expect(d.unlocked).toContain('R-20');
+  });
+  it('is idempotent', () => {
+    const once = ProgressionEngine.backfillUnlocks({ ...DEFAULT_PLUGIN_DATA, total_xp: 601 });
+    const twice = ProgressionEngine.backfillUnlocks(once);
+    expect(new Set(twice.unlocked)).toEqual(new Set(once.unlocked));
+  });
+});
+
+describe('unlockLevelFor', () => {
+  it('returns the level that first unlocks an id', () => {
+    expect(unlockLevelFor('M-05')).toBe(2);
+    expect(unlockLevelFor('KATA-12')).toBe(2);
+    expect(unlockLevelFor('KATA-13')).toBe(3);
+    expect(unlockLevelFor('R-01')).toBe(5);
+  });
+  it('returns null for default-unlocked or unknown ids', () => {
+    expect(unlockLevelFor('M-01')).toBeNull();
+    expect(unlockLevelFor('NOPE')).toBeNull();
   });
 });

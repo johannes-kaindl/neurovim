@@ -1,4 +1,4 @@
-import { PluginData, LevelUpResult, MissionRecord } from '../types';
+import { PluginData, LevelUpResult, MissionRecord, DEFAULT_PLUGIN_DATA } from '../types';
 import { LEVELS, UNLOCK_MAP } from '../data/levels';
 import type { MetricsResult } from './MetricsTracker';
 
@@ -41,6 +41,23 @@ export class ProgressionEngine {
       new_data: { ...data, total_xp: new_xp, unlocked: new_unlocked },
       level_up,
     };
+  }
+
+  /**
+   * Ensure `unlocked` holds everything the player is entitled to: the defaults, every
+   * UNLOCK_MAP level up to their current level, and any completed mission (so a migrated
+   * save never shows a completed mission as locked). Idempotent.
+   */
+  static backfillUnlocks(data: PluginData): PluginData {
+    const unlocked = new Set(data.unlocked);
+    for (const id of DEFAULT_PLUGIN_DATA.unlocked) unlocked.add(id);
+    const level = this.getLevelForXp(data.total_xp);
+    for (let lvl = 2; lvl <= level; lvl++) {
+      const u = UNLOCK_MAP[lvl] ?? { missions: [], loot: [] };
+      for (const id of [...u.missions, ...u.loot]) unlocked.add(id);
+    }
+    for (const id of data.completed_missions) unlocked.add(id);
+    return { ...data, unlocked: [...unlocked] };
   }
 
   static recordCompletion(data: PluginData): PluginData {

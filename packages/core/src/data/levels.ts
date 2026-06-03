@@ -23,3 +23,12 @@ export const UNLOCK_MAP: Record<number, { missions: string[]; loot: string[] }> 
   8: { missions: ['R-17', 'R-18', 'R-19', 'R-20', 'KATA-10'],                            loot: [] },
   9: { missions: ['R-21', 'R-22', 'R-23', 'R-24', 'KATA-11'],                            loot: ['LOOT-06'] },
 };
+
+/** The level whose UNLOCK_MAP first lists `id` (mission or loot), or null if not gated. */
+export function unlockLevelFor(id: string): number | null {
+  for (const lvl of Object.keys(UNLOCK_MAP).map(Number).sort((a, b) => a - b)) {
+    const u = UNLOCK_MAP[lvl];
+    if (u.missions.includes(id) || u.loot.includes(id)) return lvl;
+  }
+  return null;
+}
