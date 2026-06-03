@@ -338,6 +338,8 @@ button { font-family: inherit; cursor: pointer; }
   100% { opacity: 1; transform: none; box-shadow: none; }
 }
 html[data-fx="off"] .nv-just-unlocked { animation: none; }
+.nv-card-locked { opacity: 0.55; border-style: dashed; border-color: color-mix(in oklab, var(--nv-amber) 35%, var(--nv-border)); cursor: default; }
+.nv-card-locked .nv-card-t { color: var(--nv-amber); }
 .nv-modal-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
 .nv-modal-actions button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 9px 15px; transition: border-color 0.15s, color 0.15s; }
 .nv-modal-actions button:hover { border-color: var(--nv-accent); color: var(--nv-accent); }

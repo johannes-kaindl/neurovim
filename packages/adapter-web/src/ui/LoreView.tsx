@@ -10,6 +10,8 @@ import { renderMarkdown } from './markdown';
 
 interface Props {
   onExit: () => void;
+  /** Player's unlocked ids — LOOT artifacts gate on this (FRAGMENT/REF always open). */
+  unlocked: string[];
 }
 
 const GROUPS: { kind: LoreSummary['kind']; label: string }[] = [
@@ -18,7 +20,7 @@ const GROUPS: { kind: LoreSummary['kind']; label: string }[] = [
   { kind: 'ref', label: 'Reference' },
 ];
 
-export function LoreView({ onExit }: Props) {
+export function LoreView({ onExit, unlocked }: Props) {
   const [current, setCurrent] = useState<LoreSummary | null>(null);
   const items = listLore();
 
@@ -57,15 +59,27 @@ export function LoreView({ onExit }: Props) {
           <section class="nv-archive-group" key={g.kind}>
             <div class="nv-label">{g.label}</div>
             <div class="nv-cards">
-              {inGroup.map((it) => (
-                <button class="nv-card" key={it.id} onClick={() => setCurrent(it)}>
-                  <span class="nv-card-t">{it.title}</span>
-                  {it.unlockLevel != null
-                    ? <span class="nv-card-badge nv-amber">LVL {it.unlockLevel}</span>
-                    : <span class="nv-card-badge">{it.kind === 'ref' ? 'REF' : 'INTEL'}</span>}
-                  {it.summary && <span class="nv-card-s">{it.summary}</span>}
-                </button>
-              ))}
+              {inGroup.map((it) => {
+                const locked = it.kind === 'loot' && !unlocked.includes(it.id);
+                if (locked) {
+                  return (
+                    <div class="nv-card nv-card-locked" key={it.id} aria-disabled="true">
+                      <span class="nv-card-t">🔒 {it.title}</span>
+                      <span class="nv-card-badge nv-amber">LVL {it.unlockLevel}</span>
+                      <span class="nv-card-s">Locked — unlock by reaching level {it.unlockLevel}.</span>
+                    </div>
+                  );
+                }
+                return (
+                  <button class="nv-card" key={it.id} onClick={() => setCurrent(it)}>
+                    <span class="nv-card-t">{it.title}</span>
+                    {it.unlockLevel != null
+                      ? <span class="nv-card-badge nv-amber">LVL {it.unlockLevel}</span>
+                      : <span class="nv-card-badge">{it.kind === 'ref' ? 'REF' : 'INTEL'}</span>}
+                    {it.summary && <span class="nv-card-s">{it.summary}</span>}
+                  </button>
+                );
+              })}
             </div>
           </section>
         );

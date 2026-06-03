@@ -208,7 +208,7 @@ export function App() {
   if (view === 'lore') {
     return (
       <Suspense fallback={<div class="nv-loading">loading archive…</div>}>
-        <LoreView onExit={() => setView('nexus')} />
+        <LoreView unlocked={data.unlocked} onExit={() => setView('nexus')} />
       </Suspense>
     );
   }
