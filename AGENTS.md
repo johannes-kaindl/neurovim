@@ -23,7 +23,7 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > is complete across every surface (Welcome → NEXUS → Briefing → Editor → Result →
 > Sandbox) plus two new ones: a **Lore Archive** (index → reader) and a **Cheatsheet
 > overlay**. Rounded out by an a11y pass (WCAG-AA contrast, ≥44px mobile tap targets,
-> reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 153 tests
+> reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 160 tests
 > green, 4-workspace typecheck green. Live on Codeberg (primary) + GitHub (mirror).
 
 ## Architecture — adapter pattern (ADR-001)
@@ -112,7 +112,7 @@ design-prep workspace, not in this repo.
 ```bash
 npm install                  # install workspaces
 npm run typecheck            # all 4 workspaces (tsc --noEmit) — must stay green
-npm test                     # jest in core/content/adapter-obsidian (150 tests) — adapter-web has none
+npm test                     # jest across all 4 workspaces (160 tests)
 
 npm run dev                  # adapter-web Vite dev server → http://localhost:5173/ (HMR)
 npm run build:content        # content/build.mjs — ALWAYS first (produces src/generated/*)
@@ -128,8 +128,10 @@ npm run build:dmg            # native app + macOS DMG (Tauri v2)
 native app (OS WebView, DMG ~3 MB). Multi-OS installers via
 `.github/workflows/desktop.yml` (GitHub Actions only). Details: `docs/DESKTOP.md`.
 
-**Test distribution:** `core` 136, `content` 8, `adapter-obsidian` 6 (= 150).
-`adapter-web` has no test suite (UI layer; verified via dev server + typecheck).
+**Test distribution:** `core` 139, `content` 8, `adapter-obsidian` 6, `adapter-web` 7
+(= 160). `adapter-web` covers the WebStorage persistence layer + the submit-flow
+progression contract (fake-indexeddb, no UI/CM6 rendering — those stay verified via
+dev server + typecheck).
 
 **Quality gate before every commit:** `npm run typecheck && npm test` must be
 green. For content changes also run `npm run build:content`, otherwise
@@ -160,6 +162,15 @@ green. For content changes also run `npm run build:content`, otherwise
   v1.0.0. The original stays unchanged; this monorepo is the contract. The
   plugin swap into the vault is run manually (the repo never writes into the
   vault) — see `docs/PLUGIN-SWAP.md`.
+- **Obsidian posture — web-first, logic-parity only:** the Obsidian adapter is kept
+  at *functional* parity by routing game logic through the shared pure core (engines,
+  `ProgressionEngine`, etc.) — it is **not** a visual-parity target. The v0.2.0
+  cinematic-CRT overhaul was deliberately web-only (its spec scopes it to
+  `adapter-web`; `core/src/views` and `adapter-obsidian` were untouched). New UI/UX
+  work lands web-first and is **not** back-ported unless explicitly decided, so don't
+  "fix" the Obsidian UI to match the web app — that divergence is intentional. The
+  live vault still runs the original v1.0.0; the refactored build is built-but-unverified
+  pending a manual swap (`docs/PLUGIN-SWAP.md`).
 
 ## Glossary
 
