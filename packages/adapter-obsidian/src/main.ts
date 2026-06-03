@@ -421,6 +421,10 @@ export default class NeuroVimPlugin extends Plugin {
     const metricsResult = this.metrics.getResult(elapsed_ms);
     const oldRecord = this.data.missions[mission_id];
 
+    // is_new_best_* / delta_* describe THIS run vs the previous record (consumed by
+    // the ResultModal). The stored record itself comes from the shared core function
+    // so Obsidian and web persist identical bests — notably best_ks_per_min is the
+    // max throughput ever, not the value tied to the fastest time (the old divergence).
     const is_new_best_time = !oldRecord || elapsed_ms < oldRecord.best_time_ms;
     const is_new_best_ks = !oldRecord || metricsResult.keystrokes < oldRecord.best_keystrokes;
 
@@ -437,13 +441,7 @@ export default class NeuroVimPlugin extends Plugin {
       delta_ks_per_min: oldRecord ? metricsResult.ks_per_min - oldRecord.best_ks_per_min : 0,
     };
 
-    const newRecord: MissionRecord = {
-      best_time_ms: is_new_best_time ? elapsed_ms : (oldRecord?.best_time_ms ?? elapsed_ms),
-      best_keystrokes: is_new_best_ks ? metricsResult.keystrokes : (oldRecord?.best_keystrokes ?? metricsResult.keystrokes),
-      best_ks_per_min: is_new_best_time ? metricsResult.ks_per_min : (oldRecord?.best_ks_per_min ?? metricsResult.ks_per_min),
-      runs: (oldRecord?.runs ?? 0) + 1,
-      last_run: new Date().toISOString().slice(0, 10),
-    };
+    const newRecord: MissionRecord = ProgressionEngine.recordMissionRun(oldRecord, metricsResult);
 
     this.data = {
       ...this.data,
