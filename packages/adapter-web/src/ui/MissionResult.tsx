@@ -79,6 +79,17 @@ export function MissionResult({ result, missionTitle, hasNext, onRetry, onNext, 
         {complete ? (
           <div class="nv-modal-body">
             <div class="nv-modal-xp">+{result.xp ?? 0} XP</div>
+            {result.tier && (
+              <div class={`nv-tier-badge nv-tier-${result.tier}`}>
+                {result.tier === 'gold' ? '★' : result.tier === 'silver' ? '◆' : '▲'} {result.tier.toUpperCase()}
+                <span class="nv-tier-par"> · {result.keystrokes}/{result.parKeystrokes} ks</span>
+              </div>
+            )}
+            {result.toNextTier && (
+              <div class="nv-tier-nudge">
+                {Math.ceil(result.toNextTier.delta)} keystroke{Math.ceil(result.toNextTier.delta) !== 1 ? 's' : ''} from {result.toNextTier.nextTier} — retry?
+              </div>
+            )}
             {result.levelUp != null && (
               <div class="nv-modal-levelup">LEVEL UP → {result.levelUp}</div>
             )}
