@@ -7,8 +7,9 @@
 #
 # Trigger: tag `v*` (creates a draft release with the installers) or manual dispatch.
 # Artifacts: macOS .dmg (universal), Windows .exe/.msi, Linux .AppImage/.deb.
-# Builds are UNSIGNED (no Apple Developer account) — Gatekeeper shows a warning on
-# first launch. See docs/DESKTOP.md.
+# macOS Developer ID signing + notarization is wired below via the APPLE_* secrets; if
+# those repo secrets are unset the macOS build is simply UNSIGNED (Gatekeeper warning on
+# first launch, same as before — no breakage). Windows is still unsigned. See docs/DESKTOP.md.
 
 name: desktop
 
@@ -68,6 +69,15 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # macOS Developer ID signing + notarization. Only consumed on the macOS job —
+          # on Linux/Windows these are empty and ignored. If unset everywhere, the macOS
+          # build stays unsigned (no failure). All are plain-string repo secrets.
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         with:
           projectPath: packages/adapter-web
           tagName: ${{ github.ref_name }}

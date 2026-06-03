@@ -50,10 +50,25 @@ the Hardened Runtime + a secure timestamp, notarizes, and staples both the `.app
 and the `.dmg`. Verify: `spctl -a -t exec <app>` → `accepted, source=Notarized
 Developer ID`.
 
-> **CI releases are not signed yet.** The `desktop.yml` GitHub Actions workflow
-> builds and publishes installers **unsigned** — wiring it for signing means
-> adding the Developer ID cert (base64) and the API key as repository secrets and
-> exporting the same `APPLE_*` vars in the macOS job.
+> **CI signing is wired — it activates as soon as the repository secrets exist.**
+> The `desktop.yml` macOS job passes the `APPLE_*` vars to `tauri-action`; until the
+> secrets are set the macOS build is simply unsigned (no failure). To enable signed +
+> notarized releases, add these **GitHub → Settings → Secrets and variables → Actions**
+> repository secrets (all plain strings — no file handling needed):
+>
+> | Secret | What it is |
+> |---|---|
+> | `APPLE_CERTIFICATE` | base64 of the exported **Developer ID Application** `.p12` |
+> | `APPLE_CERTIFICATE_PASSWORD` | password set when exporting that `.p12` |
+> | `APPLE_SIGNING_IDENTITY` | `Developer ID Application: <NAME> (<TEAM_ID>)` |
+> | `APPLE_ID` | your Apple ID email |
+> | `APPLE_PASSWORD` | an **app-specific password** (appleid.apple.com → Sign-In & Security) |
+> | `APPLE_TEAM_ID` | your 10-char Developer Team ID |
+>
+> Export the `.p12` as base64 with `base64 -i cert.p12 | pbcopy`. (The local-build
+> API-key path above — `APPLE_API_*` — also works in CI, but needs the `.p8` written
+> to disk first; the app-specific-password set keeps CI to string-only secrets.) The
+> next `v*` tag pushed after the secrets exist produces a notarized DMG.
 
 ## CI — all platforms
 
