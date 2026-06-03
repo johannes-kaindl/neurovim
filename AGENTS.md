@@ -23,7 +23,7 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > is complete across every surface (Welcome → NEXUS → Briefing → Editor → Result →
 > Sandbox) plus two new ones: a **Lore Archive** (index → reader) and a **Cheatsheet
 > overlay**. Rounded out by an a11y pass (WCAG-AA contrast, ≥44px mobile tap targets,
-> reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 160 tests
+> reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 175 tests
 > green, 4-workspace typecheck green. Live on Codeberg (primary) + GitHub (mirror).
 
 ## Architecture — adapter pattern (ADR-001)
@@ -128,8 +128,8 @@ npm run build:dmg            # native app + macOS DMG (Tauri v2)
 native app (OS WebView, DMG ~3 MB). Multi-OS installers via
 `.github/workflows/desktop.yml` (GitHub Actions only). Details: `docs/DESKTOP.md`.
 
-**Test distribution:** `core` 139, `content` 8, `adapter-obsidian` 6, `adapter-web` 7
-(= 160). `adapter-web` covers the WebStorage persistence layer + the submit-flow
+**Test distribution:** `core` 153, `content` 9, `adapter-obsidian` 6, `adapter-web` 7
+(= 175). `adapter-web` covers the WebStorage persistence layer + the submit-flow
 progression contract (fake-indexeddb, no UI/CM6 rendering — those stay verified via
 dev server + typecheck).
 
