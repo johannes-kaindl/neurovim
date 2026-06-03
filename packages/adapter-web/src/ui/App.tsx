@@ -263,11 +263,15 @@ export function App() {
             const rec = data.missions[m.mission_id];
             const done = data.completed_missions.includes(m.mission_id);
             const active = m.mission_id === activeId;
+            const bestTier = done && (rec?.best_keystrokes ?? 0) > 0
+              ? tierFor(rec!.best_keystrokes, resolvePar({ parOverride: m.par_keystrokes, difficulty: m.difficulty }))
+              : null;
             const cls = ['nv-row', done && 'nv-row-done', active && 'nv-row-active'].filter(Boolean).join(' ');
             return (
               <button class={cls} key={m.mission_id} onClick={() => selectMission(m.mission_id)}>
                 <span class="nv-row-id">{active ? '▸ ' : ''}{m.mission_id}</span>
                 <span class="nv-row-t">{m.title}</span>
+                {bestTier && <span class={`nv-row-tier nv-tier-${bestTier}`} title={`best: ${bestTier}`}>{bestTier === 'gold' ? '★' : bestTier === 'silver' ? '◆' : '▲'}</span>}
                 {done && (rec?.best_time_ms ?? 0) > 0
                   ? <span class="nv-row-meta">{fmtTime(rec!.best_time_ms)} · {rec!.best_keystrokes}ks</span>
                   : <span class="nv-row-meta">{m.xp_reward} XP</span>}
