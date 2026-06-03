@@ -65,6 +65,17 @@ export const CHEATSHEET: CheatsheetCategory[] = [
         ],
       },
       {
+        label: 'FIND CHAR',
+        keys: [
+          { key: 'f',  description: 'jump to next <char>' },
+          { key: 'F',  description: 'jump to previous <char>' },
+          { key: 't',  description: 'jump just before next <char>' },
+          { key: 'T',  description: 'jump just before previous <char>' },
+          { key: ';',  description: 'repeat last f/F/t/T' },
+          { key: ',',  description: 'repeat it, reversed' },
+        ],
+      },
+      {
         label: 'SCROLL',
         keys: [
           { key: 'Ctrl+d', description: 'half page down' },

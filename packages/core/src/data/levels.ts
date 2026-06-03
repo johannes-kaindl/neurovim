@@ -14,8 +14,8 @@ export const LEVELS: Level[] = [
 ];
 
 export const UNLOCK_MAP: Record<number, { missions: string[]; loot: string[] }> = {
-  2: { missions: ['M-05', 'M-06', 'M-07', 'M-08', 'KATA-02', 'KATA-03'],                 loot: ['LOOT-01'] },
-  3: { missions: ['M-09', 'M-10', 'M-11', 'M-12', 'KATA-04'],                            loot: ['LOOT-02'] },
+  2: { missions: ['M-05', 'M-06', 'M-07', 'M-08', 'KATA-02', 'KATA-03', 'KATA-12'],      loot: ['LOOT-01'] },
+  3: { missions: ['M-09', 'M-10', 'M-11', 'M-12', 'KATA-04', 'KATA-13'],                 loot: ['LOOT-02'] },
   4: { missions: ['M-13', 'M-14', 'M-15', 'KATA-05'],                                    loot: ['LOOT-03'] },
   5: { missions: ['M-16', 'KATA-06', 'R-01', 'R-02', 'R-03', 'R-04'],                   loot: ['LOOT-04'] },
   6: { missions: ['R-05', 'R-06', 'R-07', 'R-08', 'KATA-07'],                            loot: ['LOOT-05'] },
