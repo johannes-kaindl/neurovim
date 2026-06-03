@@ -34,6 +34,8 @@ function toSummary(e: RawContentEntry): MissionSummary {
     xp_reward: Number(fm.xp_reward ?? 0),
     locked: Boolean(fm.locked ?? false),
     tier: String(fm.tier ?? ''),
+    difficulty: fm.difficulty != null ? Number(fm.difficulty) : undefined,
+    par_keystrokes: fm.par_keystrokes != null ? Number(fm.par_keystrokes) : undefined,
     arc: e.arc,
     chapter: e.chapter,
   };

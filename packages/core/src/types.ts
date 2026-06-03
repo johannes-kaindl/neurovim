@@ -23,6 +23,10 @@ export interface MissionFrontmatter {
   xp_reward: number;
   locked: boolean;
   tier: string;
+  /** Mission difficulty (1..N) — drives the computed par-tier default. Optional. */
+  difficulty?: number;
+  /** Hand-tuned keystroke par override (gold threshold). Optional; else computed from difficulty. */
+  par_keystrokes?: number;
 }
 
 // ── Run result & records ─────────────────────────────────────

@@ -48,6 +48,11 @@ describe('getMission', () => {
   it('throws on an unknown ID', () => {
     expect(() => getMission('M-99')).toThrow();
   });
+
+  it('surfaces difficulty from frontmatter on mission summaries', () => {
+    const m = getMission('R-03');
+    expect(m.difficulty).toBe(2);
+  });
 });
 
 describe('getLore', () => {
