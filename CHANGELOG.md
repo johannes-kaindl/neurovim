@@ -6,9 +6,50 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-06-03
+
+### Added
+- adapter-web test suite — WebStorage IndexedDB round-trip + a progression-persistence
+  contract test (the submit-flow's `addXp → recordCompletion → recordMissionRun` chain
+  through a real round-trip), the web target's first automated coverage.
+- CI gate that fails when `packages/content/src/generated` is stale (drifted from its
+  Markdown source), replacing the manual "always rebuild content" discipline.
+- Documented macOS Developer ID signing + notarization for the desktop build
+  (`docs/DESKTOP.md`).
+
 ### Changed
-- **Relicensed from MIT to GNU AGPL-3.0** (network copyleft), matching the project family.
+- **Relicensed from MIT to GNU AGPL-3.0**, then established a **dual-licensing model**
+  (open-source AGPL + a separate commercial license) with a Contributor License
+  Agreement — see `LICENSING.md`.
 - README rewritten reader-first (internal/maintainer detail moved to `AGENTS.md`).
+- The Obsidian adapter now persists mission bests via the shared core
+  `ProgressionEngine.recordMissionRun` instead of a hand-rolled copy. Both targets now
+  store identical bests — notably `best_ks_per_min` is the max throughput across all
+  runs, not the value tied to the fastest time (the two adapters could previously
+  record a different "best" for the same run).
+- Workspace package versions reconciled to a single source of truth (were `0.0.0`).
+
+### Fixed
+- The mission Result modal is now keyboard- and screen-reader-dismissable — Escape to
+  close, a Tab focus-trap, focus restored on close, and initial focus on the primary
+  action (it previously required a mouse click, against the design spec's a11y contract).
+- Favicon and Apple touch-icon paths now resolve under the Pages sub-paths
+  (`/neurovim/`, `/NeuroVIM/`); they were absolute and 404'd on both hosted deploys.
+
+## [0.2.0] — 2026-05-30
+
+Cinematic-CRT visual overhaul.
+
+### Added
+- Two new surfaces: a **Lore Archive** (index → reader) and a **Cheatsheet** overlay.
+- First-run audio hint; audio + reduce-effects toggles with visual audio-cue pendants.
+
+### Changed
+- Full cinematic-CRT redesign across every surface (Welcome → NEXUS → Briefing →
+  Editor → Result → Sandbox): VT323 display + JetBrains Mono body, disciplined glow,
+  story-coupled colors (green = resistance, amber = CORP/locked, red = fail).
+- Accessibility pass: WCAG-AA contrast, ≥44px mobile tap targets, reduced-motion.
+- Header / terminal boxes drawn as CSS frames instead of box-drawing glyphs.
 
 ## [0.1.0] — 2026-05-29
 
@@ -25,5 +66,7 @@ First public release of the standalone monorepo.
 - Native desktop app via Tauri v2 (macOS DMG ~3 MB) + multi-OS build CI.
 - Brand kit: Chrome Raven app icon, favicons, OpenGraph card.
 
-[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.1.0...HEAD
+[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.1...HEAD
+[0.2.1]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.0...v0.2.1
+[0.2.0]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.1.0...v0.2.0
 [0.1.0]: https://codeberg.org/jkaindl/NeuroVIM/releases/tag/v0.1.0
