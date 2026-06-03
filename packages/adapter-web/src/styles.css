@@ -327,6 +327,17 @@ button { font-family: inherit; cursor: pointer; }
 .nv-tier-par { font-size: 12px; letter-spacing: 1px; font-weight: normal; color: var(--nv-muted); }
 .nv-tier-nudge { margin-top: 8px; font-size: 12px; color: var(--nv-muted); }
 .nv-row-tier { font-size: var(--nv-fs-sm); line-height: 1; }
+
+/* Story-Mode: unlock feedback (animation gated by data-fx + reduced-motion) */
+.nv-modal-unlocked { margin-top: 10px; font-size: 13px; color: var(--nv-accent); letter-spacing: 0.5px; }
+.nv-row-unlocked { margin-left: auto; padding-right: 8px; color: var(--nv-accent-hot); font-size: var(--nv-fs-micro); letter-spacing: var(--nv-ls-label); }
+.nv-just-unlocked { animation: nv-unlock-reveal 1.6s var(--nv-ease) both; }
+@keyframes nv-unlock-reveal {
+  0%   { opacity: 0; transform: translateX(-6px); }
+  35%  { opacity: 1; box-shadow: 0 0 calc(16px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 55%, transparent); }
+  100% { opacity: 1; transform: none; box-shadow: none; }
+}
+html[data-fx="off"] .nv-just-unlocked { animation: none; }
 .nv-modal-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
 .nv-modal-actions button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 9px 15px; transition: border-color 0.15s, color 0.15s; }
 .nv-modal-actions button:hover { border-color: var(--nv-accent); color: var(--nv-accent); }

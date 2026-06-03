@@ -139,6 +139,7 @@ export function App() {
       tier: tierFor(metrics.keystrokes, par),
       parKeystrokes: par,
       toNextTier: keystrokesToNextTier(metrics.keystrokes, par),
+      unlocked: level_up ? level_up.unlocked_missions : undefined,
     });
   }
 

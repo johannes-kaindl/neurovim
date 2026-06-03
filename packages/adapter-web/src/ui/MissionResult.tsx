@@ -95,6 +95,9 @@ export function MissionResult({ result, missionTitle, hasNext, onRetry, onNext, 
             {result.levelUp != null && (
               <div class="nv-modal-levelup">LEVEL UP → {result.levelUp}</div>
             )}
+            {result.unlocked && result.unlocked.length > 0 && (
+              <div class="nv-modal-unlocked">UNLOCKED: {result.unlocked.join(' · ')}</div>
+            )}
             {result.timeMs != null && (
               <div class="nv-modal-metrics">
                 <span>{fmtTime(result.timeMs)}</span>
