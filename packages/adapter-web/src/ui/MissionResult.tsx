@@ -27,6 +27,8 @@ export interface MissionResultData {
   parKeystrokes?: number;
   /** Next better tier + keystrokes to shave, for the nudge. null when gold/absent. */
   toNextTier?: { nextTier: Exclude<Tier, null>; delta: number } | null;
+  /** Mission ids newly unlocked by this run's level-up (for the UNLOCKED line + NEXUS reveal). */
+  unlocked?: string[];
 }
 
 interface Props {
