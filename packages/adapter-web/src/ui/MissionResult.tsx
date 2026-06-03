@@ -4,6 +4,7 @@
  * differ. Buttons: Retry/Review (close modal), Next Mission, ← NEXUS.
  * Metrics fields (time/keystrokes) are rendered as soon as they are set (Item 6).
  */
+import { useEffect, useRef } from 'preact/hooks';
 import { fmtTime } from './format';
 
 export interface MissionResultData {
@@ -32,9 +33,37 @@ interface Props {
 
 export function MissionResult({ result, missionTitle, hasNext, onRetry, onNext, onNexus }: Props) {
   const complete = result.status === 'complete';
+  const panel = useRef<HTMLDivElement>(null);
+
+  // a11y: Escape-to-dismiss + Tab focus-trap + focus-restore, initial focus on the
+  // primary action — mirrors CheatsheetOverlay (spec §4 Result, §5 a11y). onRetry is
+  // the dismiss path (same as the backdrop click) for both complete and fail states.
+  useEffect(() => {
+    const prev = document.activeElement as HTMLElement | null;
+    const focusFirst = () =>
+      panel.current?.querySelector<HTMLElement>('.nv-modal-primary') ??
+      panel.current?.querySelector<HTMLElement>('button');
+    focusFirst()?.focus();
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') { e.preventDefault(); onRetry(); return; }
+      if (e.key === 'Tab' && panel.current) {
+        const f = Array.from(
+          panel.current.querySelectorAll<HTMLElement>('button, [href], [tabindex]:not([tabindex="-1"])'),
+        );
+        if (f.length === 0) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    document.addEventListener('keydown', onKey);
+    return () => { document.removeEventListener('keydown', onKey); prev?.focus?.(); };
+  }, [onRetry]);
+
   return (
     <div class="nv-modal-backdrop" onClick={onRetry}>
-      <div class="nv-modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+      <div ref={panel} class="nv-modal" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
         <h2 class={complete ? 'nv-modal-title nv-ok' : 'nv-modal-title nv-fail'}>
           {complete ? '✓ MISSION COMPLETE' : '✗ TRY AGAIN'}
         </h2>
