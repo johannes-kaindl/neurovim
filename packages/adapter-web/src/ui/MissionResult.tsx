@@ -5,6 +5,7 @@
  * Metrics fields (time/keystrokes) are rendered as soon as they are set (Item 6).
  */
 import { useEffect, useRef } from 'preact/hooks';
+import type { Tier } from '@neurovim/core';
 import { fmtTime } from './format';
 
 export interface MissionResultData {
@@ -20,6 +21,12 @@ export interface MissionResultData {
   /** Personal best values after this run. */
   bestTimeMs?: number;
   bestKeystrokes?: number;
+  /** Tier earned on this run (gold/silver/bronze) or null = completed, no tier. */
+  tier?: Tier;
+  /** Resolved par for the mission (gold threshold), for the badge subtitle. */
+  parKeystrokes?: number;
+  /** Next better tier + keystrokes to shave, for the nudge. null when gold/absent. */
+  toNextTier?: { nextTier: Exclude<Tier, null>; delta: number } | null;
 }
 
 interface Props {

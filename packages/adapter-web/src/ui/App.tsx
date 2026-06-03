@@ -7,6 +7,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
+  resolvePar, tierFor, keystrokesToNextTier,
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
   type SandboxDifficulty,
 } from '@neurovim/core';
@@ -118,6 +119,7 @@ export function App() {
     setData(next);
     await storage.saveData(next);
     if (level_up) SoundCues.levelUp(audio);
+    const par = resolvePar({ parOverride: mission.par_keystrokes, difficulty: mission.difficulty });
     setResult({
       status: 'complete',
       xp: mission.xp_reward,
@@ -126,6 +128,9 @@ export function App() {
       keystrokes: metrics.keystrokes,
       bestTimeMs: record.best_time_ms,
       bestKeystrokes: record.best_keystrokes,
+      tier: tierFor(metrics.keystrokes, par),
+      parKeystrokes: par,
+      toNextTier: keystrokesToNextTier(metrics.keystrokes, par),
     });
   }
 
