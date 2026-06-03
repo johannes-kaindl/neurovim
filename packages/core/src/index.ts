@@ -24,6 +24,7 @@ export * from './engine/MetricsTracker';
 export * from './engine/MissionEngine';
 export * from './engine/ProgressionEngine';
 export * from './engine/GlitchEngine';
+export * from './engine/ParTier';
 
 // ── Data ─────────────────────────────────────────────────────
 export * from './data/chapters';
