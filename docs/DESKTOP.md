@@ -50,11 +50,11 @@ the Hardened Runtime + a secure timestamp, notarizes, and staples both the `.app
 and the `.dmg`. Verify: `spctl -a -t exec <app>` → `accepted, source=Notarized
 Developer ID`.
 
-> **CI signing is wired — it activates as soon as the repository secrets exist.**
-> The `desktop.yml` macOS job passes the `APPLE_*` vars to `tauri-action`; until the
-> secrets are set the macOS build is simply unsigned (no failure). To enable signed +
-> notarized releases, add these **GitHub → Settings → Secrets and variables → Actions**
-> repository secrets (all plain strings — no file handling needed):
+> **CI signing is active and verified (2026-06-03): every tagged macOS build is
+> Developer ID-signed + notarized.** The `desktop.yml` macOS job passes the `APPLE_*`
+> vars to `tauri-action`; if the secrets are ever removed the build falls back to
+> unsigned (no failure). The six **GitHub → Settings → Secrets and variables → Actions**
+> repository secrets (all plain strings — no file handling needed) are:
 >
 > | Secret | What it is |
 > |---|---|
@@ -65,10 +65,14 @@ Developer ID`.
 > | `APPLE_PASSWORD` | an **app-specific password** (appleid.apple.com → Sign-In & Security) |
 > | `APPLE_TEAM_ID` | your 10-char Developer Team ID |
 >
-> Export the `.p12` as base64 with `base64 -i cert.p12 | pbcopy`. (The local-build
-> API-key path above — `APPLE_API_*` — also works in CI, but needs the `.p8` written
-> to disk first; the app-specific-password set keeps CI to string-only secrets.) The
-> next `v*` tag pushed after the secrets exist produces a notarized DMG.
+> **Important — export only ONE identity.** The `.p12` for `APPLE_CERTIFICATE` must
+> contain *only* the Developer ID Application cert. `security export -t identities`
+> bundles every identity (including your Apple Development cert) and the build then fails
+> with `certificate … does not match provided identity`. Export the single cert from
+> **Keychain Access** (login → My Certificates → right-click the Developer ID cert →
+> Export …) and base64 it with `base64 -i cert.p12 | pbcopy`. (The local-build API-key
+> path above — `APPLE_API_*` — also works in CI but needs the `.p8` on disk; the
+> app-specific-password set keeps CI to string-only secrets.)
 
 ## CI — all platforms
 

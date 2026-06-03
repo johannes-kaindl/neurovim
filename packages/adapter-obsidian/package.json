@@ -1,6 +1,6 @@
 {
   "name": "@neurovim/adapter-obsidian",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Obsidian-plugin target: wires @neurovim/core game logic against the Obsidian API.",
   "license": "AGPL-3.0-only",
   "type": "module",

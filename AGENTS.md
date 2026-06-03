@@ -25,6 +25,11 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > overlay**. Rounded out by an a11y pass (WCAG-AA contrast, ≥44px mobile tap targets,
 > reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 175 tests
 > green, 4-workspace typecheck green. Live on Codeberg (primary) + GitHub (mirror).
+>
+> **Since (2026-06-03):** **v0.2.1** (post-release hardening — Result-modal a11y, web↔Obsidian
+> record parity, first adapter-web tests, CI content-gate) and **v0.2.2** (**par-tiers** —
+> keystroke gold/silver/bronze scoring, web-only UI, pure-core `ParTier`) shipped. macOS
+> desktop builds are now **Developer ID-signed + notarized** in CI (`docs/DESKTOP.md`).
 
 ## Architecture — adapter pattern (ADR-001)
 

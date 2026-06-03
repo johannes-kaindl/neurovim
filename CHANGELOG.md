@@ -6,6 +6,21 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.2.2] — 2026-06-03
+
+### Added
+- **Par-tiers** — successful runs are scored by keystrokes against a per-mission par and
+  earn a **gold / silver / bronze** tier. Surfaced as a badge with an "almost there"
+  nudge in the result modal and a best-tier chip in the NEXUS list. Par is a deliberately
+  generous, difficulty-scaled default, overridable per mission via a `par_keystrokes`
+  frontmatter field; mission `difficulty` is now surfaced to the app. Pure core logic
+  (`ParTier`), web-only UI.
+
+### Changed
+- **macOS desktop builds are now Developer ID-signed + notarized** — the `.dmg` opens
+  without a Gatekeeper warning. Wired into the desktop CI via the `APPLE_*` repository
+  secrets (`docs/DESKTOP.md`). Windows installers remain unsigned.
+
 ## [0.2.1] — 2026-06-03
 
 ### Added
@@ -66,7 +81,8 @@ First public release of the standalone monorepo.
 - Native desktop app via Tauri v2 (macOS DMG ~3 MB) + multi-OS build CI.
 - Brand kit: Chrome Raven app icon, favicons, OpenGraph card.
 
-[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.1...HEAD
+[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.2...HEAD
+[0.2.2]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.1...v0.2.2
 [0.2.1]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.0...v0.2.1
 [0.2.0]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.1.0...v0.2.0
 [0.1.0]: https://codeberg.org/jkaindl/NeuroVIM/releases/tag/v0.1.0
