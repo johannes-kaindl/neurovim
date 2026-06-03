@@ -17,7 +17,6 @@ import { MetricsTracker } from '@neurovim/core';
 import { MissionEngine } from '@neurovim/core';
 import { getMissionById, getMissionByPath, isBriefingPath, RAVEN_PATH } from '@neurovim/core';
 import { ProgressionEngine } from '@neurovim/core';
-import { UNLOCK_MAP } from '@neurovim/core';
 import { getDiff } from '@neurovim/core';
 import { FloatHUD } from '@neurovim/core';
 import { SandboxHUD } from '@neurovim/core';
@@ -189,20 +188,8 @@ export default class NeuroVimPlugin extends Plugin {
       },
       healedFrontmatters: { ...(saved?.healedFrontmatters ?? {}) },
     };
-    // Ensure default unlocks are always present (forward-migration for new content)
-    for (const id of DEFAULT_PLUGIN_DATA.unlocked) {
-      if (!merged.unlocked.includes(id)) merged.unlocked.push(id);
-    }
-    // Backfill level-based unlocks — ensures new content added to UNLOCK_MAP
-    // reaches existing players without requiring another level-up event
-    const currentLevel = ProgressionEngine.getLevelForXp(merged.total_xp);
-    for (let lvl = 2; lvl <= currentLevel; lvl++) {
-      const unlocks = UNLOCK_MAP[lvl] ?? { missions: [], loot: [] };
-      for (const id of [...unlocks.missions, ...unlocks.loot]) {
-        if (!merged.unlocked.includes(id)) merged.unlocked.push(id);
-      }
-    }
-    this.data = merged;
+    // Backfill unlocks (defaults + level-based + completed) via the shared core helper.
+    this.data = ProgressionEngine.backfillUnlocks(merged);
   }
 
   private async saveData_() {
