@@ -17,6 +17,9 @@ import { MissionResult, type MissionResultData } from './MissionResult';
 import { fmtTime } from './format';
 import { loadSettings, saveSettings, applyEffects } from './settings';
 import { ControlCluster, AudioHint } from './Chrome';
+import { playCue as playSfxCue } from '../cinematic/audio';
+import type { SfxCue } from '../cinematic/cutscene';
+import { CinematicIntro } from '../cinematic/CinematicIntro';
 
 // CM6 + @replit/codemirror-vim are the heaviest dep bundle and only needed in
 // the editor — load them lazily so the picker/NEXUS don't carry them in the initial bundle (code splitting).
@@ -60,6 +63,8 @@ export function App() {
   const [ui, setUi] = useState(loadSettings());
   const [cheatOpen, setCheatOpen] = useState(false);
   const [justUnlocked, setJustUnlocked] = useState<string[]>([]);
+  const [replayIntro, setReplayIntro] = useState(false);
+  const [dataReady, setDataReady] = useState(false);
 
   function flashXp() {
     setXpFlash(true);
@@ -74,7 +79,7 @@ export function App() {
   useEffect(() => {
     storage.loadData<PluginData>().then((d) => {
       if (d) setData(ProgressionEngine.backfillUnlocks({ ...DEFAULT_PLUGIN_DATA, ...d }));
-    });
+    }).finally(() => setDataReady(true));
   }, []);
 
   useEffect(() => { applyEffects(ui.reduceEffects); }, [ui.reduceEffects]);
@@ -99,6 +104,18 @@ export function App() {
     const next = { ...data, onboarded: true };
     setData(next);
     await storage.saveData(next);
+  }
+
+  async function markIntroSeen() {
+    if (data.introSeen) return;
+    const next = { ...data, introSeen: true };
+    setData(next);
+    await storage.saveData(next);
+  }
+
+  /** Fire a cinematic cue, gated on the audio toggle. */
+  function introCue(cue: SfxCue) {
+    if (ui.audioOn) playSfxCue(cue, audio);
   }
 
   function selectMission(id: string) {
@@ -153,7 +170,14 @@ export function App() {
   if (view === 'welcome') {
     return (
       <Suspense fallback={<div class="nv-loading">loading…</div>}>
-        <WelcomeView onEnter={() => { unlockAudio(); setView('nexus'); }} />
+        <WelcomeView
+          onEnter={() => { unlockAudio(); setView('nexus'); }}
+          dataReady={dataReady}
+          introSeen={data.introSeen}
+          onIntroDone={markIntroSeen}
+          onUnlockAudio={unlockAudio}
+          playCue={introCue}
+        />
       </Suspense>
     );
   }
@@ -270,13 +294,17 @@ export function App() {
   return (
     <div class="nv-app nv-nexus nv-crt nv-hud-frame" onPointerDown={unlockAudio}>
       <div class="nv-scan" /><div class="nv-vig" /><span class="nv-br-bl" /><span class="nv-br-br" />
+      {replayIntro && (
+        <CinematicIntro playCue={introCue} onUnlockAudio={unlockAudio} onDone={() => setReplayIntro(false)} />
+      )}
 
       <div class="nv-statusstrip">
         <span class="nv-label">Kuro Signal Protocol // Guardian</span>
         <span class="nv-label nv-link">◢ Link Secure</span>
       </div>
       <ControlCluster audioOn={ui.audioOn} reduceEffects={ui.reduceEffects}
-        onToggleAudio={toggleAudio} onToggleEffects={toggleEffects} onCheatsheet={() => setCheatOpen(true)} />
+        onToggleAudio={toggleAudio} onToggleEffects={toggleEffects} onCheatsheet={() => setCheatOpen(true)}
+        onReplayIntro={() => { unlockAudio(); setReplayIntro(true); }} />
       {!data.onboarded && <AudioHint onDismiss={markOnboarded} />}
 
       <h1 class="nv-wordmark">&gt;_ NEXUS<span class="nv-caret">_</span></h1>

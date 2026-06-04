@@ -2,10 +2,15 @@ interface Props {
   audioOn: boolean; reduceEffects: boolean;
   onToggleAudio: () => void; onToggleEffects: () => void;
   onCheatsheet: () => void;
+  /** optional: replay the first-run cinematic intro on demand */
+  onReplayIntro?: () => void;
 }
-export function ControlCluster({ audioOn, reduceEffects, onToggleAudio, onToggleEffects, onCheatsheet }: Props) {
+export function ControlCluster({ audioOn, reduceEffects, onToggleAudio, onToggleEffects, onCheatsheet, onReplayIntro }: Props) {
   return (
     <div class="nv-controls">
+      {onReplayIntro && (
+        <button class="nv-ctl" aria-label="Replay intro" title="Replay intro" onClick={onReplayIntro}>⟳</button>
+      )}
       <button class="nv-ctl" aria-label="Vim cheatsheet" title="Vim cheatsheet" onClick={onCheatsheet}>⌨</button>
       <button class="nv-ctl" aria-pressed={audioOn} aria-label={audioOn ? 'Sound on' : 'Sound off'} title={audioOn ? 'Sound on' : 'Sound off'} onClick={onToggleAudio}>
         {audioOn ? <span>♪</span> : <span class="nv-ctl-mute">♪</span>}
