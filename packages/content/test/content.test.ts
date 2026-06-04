@@ -1,25 +1,25 @@
 import { ENTRIES, listMissions, getMission, getLore } from '../src/index';
 
 describe('@neurovim/content manifest', () => {
-  it('has all 163 content entries (111 content + 52 solutions)', () => {
-    expect(ENTRIES.length).toBe(163);
+  it('has all 165 content entries (112 content + 53 solutions)', () => {
+    expect(ENTRIES.length).toBe(165);
   });
 
-  it('role distribution matches the curriculum (40 transmission, 40 briefing, 13 kata, 6 loot, 10 fragment, 2 ref, 52 solution)', () => {
+  it('role distribution matches the curriculum (40 transmission, 40 briefing, 14 kata, 6 loot, 10 fragment, 2 ref, 53 solution)', () => {
     const count = (role: string) => ENTRIES.filter((e) => e.role === role).length;
     expect(count('transmission')).toBe(40);
     expect(count('briefing')).toBe(40);
-    expect(count('kata')).toBe(13);
+    expect(count('kata')).toBe(14);
     expect(count('loot')).toBe(6);
     expect(count('fragment')).toBe(10);
     expect(count('ref')).toBe(2);
-    expect(count('solution')).toBe(52);
+    expect(count('solution')).toBe(53);
   });
 });
 
 describe('listMissions', () => {
-  it('returns 53 playable missions (40 transmission + 13 kata)', () => {
-    expect(listMissions().length).toBe(53);
+  it('returns 54 playable missions (40 transmission + 14 kata)', () => {
+    expect(listMissions().length).toBe(54);
   });
 
   it('arc filter: ARC I = M-* + katas, ARC II = R-*', () => {

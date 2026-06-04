@@ -88,6 +88,7 @@ export const KATAS: KataDefinition[] = [
   { id: 'KATA-11', title: 'MIRROR FINAL',        path: `${K}/KATA-11-TRANSMISSION-Mirror_Final.md`,        solution_path: `${KS}/KATA-11-SOLUTION-Mirror_Final.md`,        corrupted_path: `${KS}/KATA-11-CORRUPTED-Mirror_Final.md`,        category: 'regex',          xp_reward: 15, difficulty: 3 },
   { id: 'KATA-12', title: 'TARGET LOCK',         path: `${K}/KATA-12-TRANSMISSION-Target_Lock.md`,         solution_path: `${KS}/KATA-12-SOLUTION-Target_Lock.md`,         corrupted_path: `${KS}/KATA-12-CORRUPTED-Target_Lock.md`,         category: 'navigation',   xp_reward: 10, difficulty: 1 },
   { id: 'KATA-13', title: 'ECHO',                path: `${K}/KATA-13-TRANSMISSION-Echo.md`,                solution_path: `${KS}/KATA-13-SOLUTION-Echo.md`,                corrupted_path: `${KS}/KATA-13-CORRUPTED-Echo.md`,                category: 'fundamentals', xp_reward: 10, difficulty: 2 },
+  { id: 'KATA-14', title: 'DRAGNET',             path: `${K}/KATA-14-TRANSMISSION-Dragnet.md`,             solution_path: `${KS}/KATA-14-SOLUTION-Dragnet.md`,             corrupted_path: `${KS}/KATA-14-CORRUPTED-Dragnet.md`,             category: 'ex-commands',  xp_reward: 10, difficulty: 3 },
 ];
 
 const A2 = '_content';
