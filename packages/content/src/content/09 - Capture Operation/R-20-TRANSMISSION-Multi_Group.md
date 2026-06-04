@@ -4,7 +4,7 @@ title: "Multi Group"
 tier: "🔵 ARC II"
 xp_reward: 35
 completed: false
-difficulty: 3
+difficulty: 4
 category: regex
 mission_type: practice
 locked: true

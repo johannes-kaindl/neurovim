@@ -4,7 +4,7 @@ title: "Trace Purge"
 tier: "🔵 ARC II"
 xp_reward: 20
 completed: false
-difficulty: 2
+difficulty: 1
 category: regex
 mission_type: practice
 locked: true

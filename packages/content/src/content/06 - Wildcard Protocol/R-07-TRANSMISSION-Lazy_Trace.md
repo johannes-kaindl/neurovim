@@ -4,7 +4,7 @@ title: "Lazy Trace"
 tier: "🔵 ARC II"
 xp_reward: 25
 completed: false
-difficulty: 3
+difficulty: 2
 category: regex
 mission_type: practice
 locked: true

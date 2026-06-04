@@ -28,6 +28,16 @@ describe('listMissions', () => {
     expect(arc2.every((m) => m.mission_id.startsWith('R-'))).toBe(true);
   });
 
+  it('Arc II difficulty is a monotonic non-decreasing ramp', () => {
+    const arc2 = [...listMissions('II')].sort((a, b) => a.mission_id.localeCompare(b.mission_id));
+    const diffs = arc2.map((m) => m.difficulty ?? 0);
+    for (let i = 1; i < diffs.length; i++) {
+      expect(diffs[i]).toBeGreaterThanOrEqual(diffs[i - 1]);
+    }
+    expect(diffs[0]).toBe(1);
+    expect(diffs[diffs.length - 1]).toBe(5);
+  });
+
   it('frontmatter typed: xp_reward is number, locked is boolean', () => {
     const m = listMissions().find((x) => x.mission_id === 'M-01')!;
     expect(typeof m.xp_reward).toBe('number');
@@ -50,8 +60,9 @@ describe('getMission', () => {
   });
 
   it('surfaces difficulty from frontmatter on mission summaries', () => {
-    const m = getMission('R-03');
-    expect(m.difficulty).toBe(2);
+    const m = getMission('R-05');
+    expect(typeof m.difficulty).toBe('number');
+    expect(m.difficulty).toBeGreaterThan(0);
   });
 });
 

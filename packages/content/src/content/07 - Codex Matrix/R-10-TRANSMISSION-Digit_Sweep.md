@@ -4,7 +4,7 @@ title: "Digit Sweep"
 tier: "🔵 ARC II"
 xp_reward: 30
 completed: false
-difficulty: 2
+difficulty: 3
 category: regex
 mission_type: practice
 locked: true

@@ -4,7 +4,7 @@ title: "Project Mirror"
 tier: "🔵 ARC II"
 xp_reward: 40
 completed: false
-difficulty: 4
+difficulty: 5
 category: regex
 mission_type: practice
 locked: true
