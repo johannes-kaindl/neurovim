@@ -98,9 +98,9 @@ export function CutscenePlayer({ cutscene, playCue, onDone, seed = 1337 }: Props
   }, []);
 
   return (
-    <div class={`nv-cine${out ? ' nv-cine-out' : ''}`} aria-hidden="true">
-      <canvas ref={glRef} class="nv-cine-canvas" />
-      <button class="nv-cine-skip" onClick={() => finishRef.current()}>
+    <div class={`nv-cine${out ? ' nv-cine-out' : ''}`}>
+      <canvas ref={glRef} class="nv-cine-canvas" aria-hidden="true" />
+      <button class="nv-cine-skip" aria-label="Skip intro" onClick={() => finishRef.current()}>
         skip ▸
       </button>
     </div>
