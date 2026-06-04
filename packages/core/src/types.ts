@@ -62,6 +62,8 @@ export interface PluginData {
   completed_missions: string[];
   sandbox_bests: SandboxBests;
   onboarded: boolean;
+  /** First-run cinematic intro has played once. Gates the intro; a Replay button ignores it. */
+  introSeen: boolean;
   healedFrontmatters: Record<string, string>;
   ambient_enabled: boolean;
 }
@@ -152,6 +154,7 @@ export const DEFAULT_PLUGIN_DATA: PluginData = {
   completed_missions: [],
   sandbox_bests: { easy: null, normal: null, hard: null },
   onboarded: false,
+  introSeen: false,
   healedFrontmatters: {},
   ambient_enabled: false,
 };
