@@ -1471,10 +1471,10 @@ export const ENTRIES: RawContentEntry[] = [
         "arc2",
         "arc2-ch8"
       ],
-      "sticker": "lucide//arrow-left-to-line",
-      "color": "#ff0066"
+      "sticker": "lucide//clipboard-copy",
+      "color": "#ff6600"
     },
-    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-14 // TAIL MARK                 ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"You stripped the prefix. Now strip the suffix.*\n> *`$` anchors to the end of the line. ` \\[CORP-SIG\\]$` matches that exact string, but only when it appears at the end.*\n> *CORP appends an authentication signature to every line in this document. ` [CORP-SIG]` — space, then the marker. It appears nowhere else. `$` makes it exact.*\n> *Start and end. Two anchors. You now have both.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Remove the ` [CORP-SIG]` suffix from the end of every line that has it.\n>\n> > [!tip] SKILLS\n> > `:%s/ \\[CORP-SIG\\]$//g` — `$` anchors to line end\n>\n> > [!success] +30 XP\n>\n> → **[[_content/08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark|R-14-TRANSMISSION-Tail_Mark]]** — open to begin. Timer starts on file open.",
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-14 // DEAD DROP                 ║\n║  Clearance: PATTERN BREAKER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"The unnamed register is a single clipboard — every delete and yank overwrites it. When you need a value to survive a sequence of edits, name it.*\n> *`\"ayiw` yanks the inner word into register a. `\"ap` pastes from register a. Register a holds until you yank into it again — paste it as many times as you like.*\n> *One master key, four dead drops. Yank once, drop it everywhere.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Fill every `____` with the master key `K7741`.\n>\n> > [!tip] SKILLS\n> > `\"ayiw` on the key → on each slot `cw`<Esc> then `\"ap` (or replace `____` and paste from register a)\n>\n> > [!success] +30 XP\n>\n> → **[[_content/08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark|R-14-TRANSMISSION-Tail_Mark]]** — open to begin. Timer starts on file open.",
     "path": "08 - Anchor Doctrine/R-14-BRIEFING-Tail_Mark.md"
   },
   {
@@ -1485,26 +1485,26 @@ export const ENTRIES: RawContentEntry[] = [
     "chapter": "08 - Anchor Doctrine",
     "frontmatter": {
       "mission_id": "R-14",
-      "title": "Tail Mark",
+      "title": "Dead Drop",
       "tier": "🔵 ARC II",
       "xp_reward": 30,
       "completed": false,
       "difficulty": 3,
-      "category": "regex",
+      "category": "registers",
+      "par_keystrokes": 30,
       "mission_type": "practice",
       "locked": true,
-      "unlock_requirement": "Level 7",
+      "unlock_requirement": "Level 8",
       "tags": [
-        "vim/regex",
-        "vim/anchors",
+        "vim/registers",
         "arc2",
         "arc2-ch8"
       ],
-      "sticker": "lucide//arrow-left-to-line",
-      "color": "#ff0066",
-      "summary": "[LOCKED] CORP appends an auth signature to the end of every line. Strip it precisely using the end-of-line anchor."
+      "sticker": "lucide//clipboard-copy",
+      "color": "#ff6600",
+      "summary": "[LOCKED] One master key, four empty slots. Yank the key into a named register once, then drop it into every slot."
     },
-    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTERCEPT — SIGNATURE STRIPPED                       ║\n║  Source         : CORP Sector-3 directive // signed feed         ║\n║  Timestamp      : 2047-05-26 // 05:44                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Strip note\n> `$` anchors to line end. ` [CORP-SIG]` only appears there. Exact match, clean removal.\n\n---\n\nPROJECT MIRROR scope: continental surveillance\nAll Resistance channels monitored\nPattern-matching engine active since 2046-11\nNo external disclosure authorized\nCounter-Resistance protocol: standing",
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE KEY DISTRIBUTION — DEAD DROP                         ║\n║  Document       : Master key + empty slots // fill all slots     ║\n║  Timestamp      : 2047-05-26 // 05:44                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Yank the key into a named register so later edits can't clobber it: `\"ayiw` on the key, then `\"ap` to drop it into each slot. The unnamed register would be overwritten the moment you delete a placeholder — a named register survives.\n\n---\n\nMASTER KEY: K7741\n\nslot one: ____\nslot two: ____\nslot three: ____\nslot four: ____",
     "path": "08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark.md"
   },
   {
@@ -3173,7 +3173,7 @@ export const ENTRIES: RawContentEntry[] = [
     "arc": "II",
     "chapter": "solutions",
     "frontmatter": {},
-    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTERCEPT — SIGNATURE STRIPPED                       ║\n║  Source         : CORP Sector-3 directive // signed feed         ║\n║  Timestamp      : 2047-05-26 // 05:44                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Strip note\n> `$` anchors to line end. ` [CORP-SIG]` only appears there. Exact match, clean removal.\n\n---\n\nPROJECT MIRROR scope: continental surveillance\nAll Resistance channels monitored\nPattern-matching engine active since 2046-11\nNo external disclosure authorized\nCounter-Resistance protocol: standing",
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE KEY DISTRIBUTION — DEAD DROP                         ║\n║  Document       : Master key + empty slots // fill all slots     ║\n║  Timestamp      : 2047-05-26 // 05:44                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Yank the key into a named register so later edits can't clobber it: `\"ayiw` on the key, then `\"ap` to drop it into each slot. The unnamed register would be overwritten the moment you delete a placeholder — a named register survives.\n\n---\n\nMASTER KEY: K7741\n\nslot one: K7741\nslot two: K7741\nslot three: K7741\nslot four: K7741",
     "path": "solutions/R-14-SOLUTION-Tail_Mark.md"
   },
   {

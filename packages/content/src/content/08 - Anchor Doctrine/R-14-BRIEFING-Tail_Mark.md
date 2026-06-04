@@ -3,31 +3,30 @@ mission_type: briefing
 links_to: "08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark"
 locked: true
 tags: [briefing, arc2, arc2-ch8]
-sticker: lucide//arrow-left-to-line
-color: "#ff0066"
+sticker: lucide//clipboard-copy
+color: "#ff6600"
 ---
 
 ```ascii
 ╔══════════════════════════════════════════════╗
 ║  INCOMING — CIPHER                           ║
-║  BRIEFING: R-14 // TAIL MARK                 ║
-║  Clearance: PROTOCOL READER  //  ARC II      ║
+║  BRIEFING: R-14 // DEAD DROP                 ║
+║  Clearance: PATTERN BREAKER  //  ARC II      ║
 ╚══════════════════════════════════════════════╝
 ```
 
 > [!quote] CIPHER
-> *"You stripped the prefix. Now strip the suffix.*
-> *`$` anchors to the end of the line. ` \[CORP-SIG\]$` matches that exact string, but only when it appears at the end.*
-> *CORP appends an authentication signature to every line in this document. ` [CORP-SIG]` — space, then the marker. It appears nowhere else. `$` makes it exact.*
-> *Start and end. Two anchors. You now have both."*
+> *"The unnamed register is a single clipboard — every delete and yank overwrites it. When you need a value to survive a sequence of edits, name it.*
+> *`"ayiw` yanks the inner word into register a. `"ap` pastes from register a. Register a holds until you yank into it again — paste it as many times as you like.*
+> *One master key, four dead drops. Yank once, drop it everywhere."*
 
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Remove the ` [CORP-SIG]` suffix from the end of every line that has it.
+> > Fill every `____` with the master key `K7741`.
 >
 > > [!tip] SKILLS
-> > `:%s/ \[CORP-SIG\]$//g` — `$` anchors to line end
+> > `"ayiw` on the key → on each slot `cw`<Esc> then `"ap` (or replace `____` and paste from register a)
 >
 > > [!success] +30 XP
 >
