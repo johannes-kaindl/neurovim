@@ -3,31 +3,30 @@ mission_type: briefing
 links_to: "07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep"
 locked: true
 tags: [briefing, arc2, arc2-ch7]
-sticker: lucide//hash
-color: "#cc00ff"
+sticker: lucide//repeat
+color: "#ff6600"
 ---
 
 ```ascii
 ╔══════════════════════════════════════════════╗
 ║  INCOMING — CIPHER                           ║
-║  BRIEFING: R-10 // DIGIT SWEEP               ║
+║  BRIEFING: R-10 // ECHO CHAMBER              ║
 ║  Clearance: PROTOCOL READER  //  ARC II      ║
 ╚══════════════════════════════════════════════╝
 ```
 
 > [!quote] CIPHER
-> *"Writing `[0-9]` works. But Vim gives you a shorthand: `\d` means any digit. `\w` means any word character — letters, digits, underscore. `\s` means any whitespace.*
-> *Shorthands are worth knowing. They compress patterns you'd otherwise write out character by character.*
-> *This log has timestamps — numeric sequences that need to be redacted before the document goes out. Replace every sequence of digits with `[REDACTED]`.*
-> *`\d\+` — one or more digits. That's the whole pattern."*
+> *"When every line needs the same multi-step edit, don't repeat yourself — record yourself.*
+> *`qa` starts recording into register a. Do the edit on the first line, end with the cursor on the next line, then `q` to stop. Now `@a` replays it; `@@` repeats the last replay; `4@a` runs it four times.*
+> *Five relay lines, the same two edits each. Record once. Echo down."*
 
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace every sequence of digits in the document with `[REDACTED]`.
+> > Make each line read `# relay <name> [OK]` (prefix `# `, change `active` to `[OK]`).
 >
 > > [!tip] SKILLS
-> > `:%s/\d\+/[REDACTED]/g` — `\d` matches any digit, `\+` means one or more
+> > `qa` `I# `<Esc> `$` `ciw[OK]`<Esc> `0j` `q` — then `4@a`
 >
 > > [!success] +30 XP
 >

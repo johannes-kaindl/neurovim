@@ -1,40 +1,38 @@
 ---
 mission_id: R-10
-title: "Digit Sweep"
+title: "Echo Chamber"
 tier: "🔵 ARC II"
 xp_reward: 30
 completed: false
 difficulty: 3
-category: regex
+category: marks-macros
+par_keystrokes: 24
 mission_type: practice
 locked: true
 unlock_requirement: "Level 7"
 tags:
-  - vim/regex
-  - vim/character-classes
+  - vim/macros
   - arc2
   - arc2-ch7
-sticker: lucide//hash
-color: "#cc00ff"
-summary: "[LOCKED] A surveillance log carries timestamps and IDs that must be redacted. One pass with \\d+ clears them all."
+sticker: lucide//repeat
+color: "#ff6600"
+summary: "[LOCKED] Five relay lines need the same two edits. Record the fix once as a macro, then echo it down the list."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
-║  RESISTANCE INTELLIGENCE — REDACTION REQUIRED                    ║
-║  Document       : Movement log // timestamps and IDs present     ║
+║  RESISTANCE RELAY ROSTER — BULK REFORMAT                         ║
+║  Document       : Relay status list // same edit, every line     ║
 ║  Timestamp      : 2047-05-19 // 06:30                           ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
-> [!note] CIPHER — Redaction note
-> Every digit sequence is a potential identifier. `\d\+` catches all of them — timestamps, IDs, counts.
+> [!note] CIPHER — Processing note
+> Each line needs the same two edits: comment it with `# ` and flip `active` to `[OK]`. Record it once with `qa … q`, then replay with `@a` down the rest.
 
 ---
 
-MOVEMENT LOG — REDACTED
-
-Node [REDACTED] activated at [REDACTED]:[REDACTED].
-Asset [REDACTED] cleared checkpoint at [REDACTED]:[REDACTED].
-Relay [REDACTED] confirmed at [REDACTED]:[REDACTED].
-[REDACTED] assets total. Channel [REDACTED] closed.
-Duration: [REDACTED] minutes.
+relay alpha active
+relay bravo active
+relay charlie active
+relay delta active
+relay echo active

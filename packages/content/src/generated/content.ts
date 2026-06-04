@@ -1267,10 +1267,10 @@ export const ENTRIES: RawContentEntry[] = [
         "arc2",
         "arc2-ch7"
       ],
-      "sticker": "lucide//hash",
-      "color": "#cc00ff"
+      "sticker": "lucide//repeat",
+      "color": "#ff6600"
     },
-    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-10 // DIGIT SWEEP               ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Writing `[0-9]` works. But Vim gives you a shorthand: `\\d` means any digit. `\\w` means any word character — letters, digits, underscore. `\\s` means any whitespace.*\n> *Shorthands are worth knowing. They compress patterns you'd otherwise write out character by character.*\n> *This log has timestamps — numeric sequences that need to be redacted before the document goes out. Replace every sequence of digits with `[REDACTED]`.*\n> *`\\d\\+` — one or more digits. That's the whole pattern.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every sequence of digits in the document with `[REDACTED]`.\n>\n> > [!tip] SKILLS\n> > `:%s/\\d\\+/[REDACTED]/g` — `\\d` matches any digit, `\\+` means one or more\n>\n> > [!success] +30 XP\n>\n> → **[[_content/07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep|R-10-TRANSMISSION-Digit_Sweep]]** — open to begin. Timer starts on file open.",
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-10 // ECHO CHAMBER              ║\n║  Clearance: PROTOCOL READER  //  ARC II      ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"When every line needs the same multi-step edit, don't repeat yourself — record yourself.*\n> *`qa` starts recording into register a. Do the edit on the first line, end with the cursor on the next line, then `q` to stop. Now `@a` replays it; `@@` repeats the last replay; `4@a` runs it four times.*\n> *Five relay lines, the same two edits each. Record once. Echo down.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Make each line read `# relay <name> [OK]` (prefix `# `, change `active` to `[OK]`).\n>\n> > [!tip] SKILLS\n> > `qa` `I# `<Esc> `$` `ciw[OK]`<Esc> `0j` `q` — then `4@a`\n>\n> > [!success] +30 XP\n>\n> → **[[_content/07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep|R-10-TRANSMISSION-Digit_Sweep]]** — open to begin. Timer starts on file open.",
     "path": "07 - Codex Matrix/R-10-BRIEFING-Digit_Sweep.md"
   },
   {
@@ -1281,26 +1281,26 @@ export const ENTRIES: RawContentEntry[] = [
     "chapter": "07 - Codex Matrix",
     "frontmatter": {
       "mission_id": "R-10",
-      "title": "Digit Sweep",
+      "title": "Echo Chamber",
       "tier": "🔵 ARC II",
       "xp_reward": 30,
       "completed": false,
       "difficulty": 3,
-      "category": "regex",
+      "category": "marks-macros",
+      "par_keystrokes": 24,
       "mission_type": "practice",
       "locked": true,
       "unlock_requirement": "Level 7",
       "tags": [
-        "vim/regex",
-        "vim/character-classes",
+        "vim/macros",
         "arc2",
         "arc2-ch7"
       ],
-      "sticker": "lucide//hash",
-      "color": "#cc00ff",
-      "summary": "[LOCKED] A surveillance log carries timestamps and IDs that must be redacted. One pass with \\d+ clears them all."
+      "sticker": "lucide//repeat",
+      "color": "#ff6600",
+      "summary": "[LOCKED] Five relay lines need the same two edits. Record the fix once as a macro, then echo it down the list."
     },
-    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTELLIGENCE — REDACTION REQUIRED                    ║\n║  Document       : Movement log // timestamps and IDs present     ║\n║  Timestamp      : 2047-05-19 // 06:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Redaction note\n> Every digit sequence is a potential identifier. `\\d\\+` catches all of them — timestamps, IDs, counts.\n\n---\n\nMOVEMENT LOG — REDACTED\n\nNode [REDACTED] activated at [REDACTED]:[REDACTED].\nAsset [REDACTED] cleared checkpoint at [REDACTED]:[REDACTED].\nRelay [REDACTED] confirmed at [REDACTED]:[REDACTED].\n[REDACTED] assets total. Channel [REDACTED] closed.\nDuration: [REDACTED] minutes.",
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE RELAY ROSTER — BULK REFORMAT                         ║\n║  Document       : Relay status list // same edit, every line     ║\n║  Timestamp      : 2047-05-19 // 06:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Each line needs the same two edits: comment it with `# ` and flip `active` to `[OK]`. Record it once with `qa … q`, then replay with `@a` down the rest.\n\n---\n\nrelay alpha active\nrelay bravo active\nrelay charlie active\nrelay delta active\nrelay echo active",
     "path": "07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep.md"
   },
   {
@@ -3133,7 +3133,7 @@ export const ENTRIES: RawContentEntry[] = [
     "arc": "II",
     "chapter": "solutions",
     "frontmatter": {},
-    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTELLIGENCE — REDACTION REQUIRED                    ║\n║  Document       : Movement log // timestamps and IDs present     ║\n║  Timestamp      : 2047-05-19 // 06:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Redaction note\n> Every digit sequence is a potential identifier. `\\d\\+` catches all of them — timestamps, IDs, counts.\n\n---\n\nMOVEMENT LOG — REDACTED\n\nNode [REDACTED] activated at [REDACTED]:[REDACTED].\nAsset [REDACTED] cleared checkpoint at [REDACTED]:[REDACTED].\nRelay [REDACTED] confirmed at [REDACTED]:[REDACTED].\n[REDACTED] assets total. Channel [REDACTED] closed.\nDuration: [REDACTED] minutes.",
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE RELAY ROSTER — BULK REFORMAT                         ║\n║  Document       : Relay status list // same edit, every line     ║\n║  Timestamp      : 2047-05-19 // 06:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Each line needs the same two edits: comment it with `# ` and flip `active` to `[OK]`. Record it once with `qa … q`, then replay with `@a` down the rest.\n\n---\n\n# relay alpha [OK]\n# relay bravo [OK]\n# relay charlie [OK]\n# relay delta [OK]\n# relay echo [OK]",
     "path": "solutions/R-10-SOLUTION-Digit_Sweep.md"
   },
   {
