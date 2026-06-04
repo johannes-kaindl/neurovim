@@ -34,6 +34,7 @@
 :root {
   /* ---- canonical surface ---- */
   --nv-bg: #070908;
+  --nv-black: #000;             /* absolute black — cinematic void, not theme --nv-bg */
   --nv-panel: #11160f;
   --nv-border: #1f2a1c;
   --nv-line-hot: #2c4a2f;
@@ -47,6 +48,7 @@
   --nv-accent-dim: #2bbe5e;
   --nv-amber: #ffb02e;          /* CORP / locked / caution */
   --nv-fail: #ff5b5b;           /* fail / glitch / corruption */
+  --nv-cipher: #46e8ff;         /* CIPHER signal-bleed cyan (cinematic only) */
   --nv-gold: #ffd24a;           /* tier: gold */
   --nv-silver: #c8d6c8;         /* tier: silver */
   --nv-bronze: #cd7f4f;         /* tier: bronze */
@@ -578,4 +580,63 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
   /* cheatsheet drawer goes full-screen on a phone; hint clears the now-taller controls */
   .nv-sheet { width: 100%; }
   .nv-audiohint { top: 64px; right: 12px; left: 12px; max-width: none; }
+}
+
+/* ============================================================
+   CINEMATIC INTRO  (cutscene #1) — overlay above WelcomeView
+   ============================================================ */
+.nv-cine {
+  position: fixed; inset: 0; z-index: 20;
+  background: var(--nv-black);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .5s var(--nv-ease);
+}
+.nv-cine-out { opacity: 0; pointer-events: none; }
+.nv-cine-canvas { width: 100%; height: 100%; display: block; }
+.nv-cine-load { position: fixed; inset: 0; z-index: 20; background: var(--nv-black); }
+
+/* skip hint */
+.nv-cine-skip {
+  position: fixed; bottom: 18px; right: 18px; z-index: 21;
+  font-family: var(--nv-mono); font-size: var(--nv-fs-sm);
+  color: var(--nv-muted); background: transparent;
+  border: 1px solid var(--nv-border); border-radius: 4px;
+  padding: 8px 14px; min-height: 44px; cursor: pointer;
+  opacity: .65; transition: opacity .2s var(--nv-ease);
+}
+.nv-cine-skip:hover { opacity: 1; color: var(--nv-accent); }
+
+/* power-on gate */
+.nv-poweron {
+  position: fixed; inset: 0; z-index: 20; background: var(--nv-black);
+  display: flex; flex-direction: column; gap: var(--nv-s5);
+  align-items: center; justify-content: center;
+}
+.nv-poweron-btn {
+  font-family: var(--nv-display); font-size: 30px; letter-spacing: .06em;
+  color: var(--nv-accent); background: transparent;
+  border: 1px solid var(--nv-accent-dim); border-radius: 6px;
+  padding: 18px 34px; min-height: 44px; cursor: pointer;
+  text-shadow: 0 0 calc(10px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 60%, transparent);
+  animation: nv-pulse 2.6s ease-in-out infinite;
+}
+.nv-poweron-btn:hover { color: var(--nv-accent-hot); border-color: var(--nv-accent); }
+.nv-poweron-sub { font-family: var(--nv-mono); font-size: var(--nv-fs-sm); color: var(--nv-muted); }
+@keyframes nv-pulse { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
+
+/* static fallback (reduced-motion / no-WebGL) */
+.nv-cine-fallback {
+  position: fixed; inset: 0; z-index: 20; background: var(--nv-bg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--nv-s4); padding: var(--nv-s6);
+  font-family: var(--nv-mono); color: var(--nv-accent);
+  text-shadow: 0 0 calc(6px * var(--nv-glow)) color-mix(in oklab, var(--nv-accent) 50%, transparent);
+}
+.nv-cine-fallback .nv-fb-line { font-size: var(--nv-fs-body); line-height: 1.8; text-align: center; max-width: 60ch; }
+.nv-cine-fallback .nv-fb-cipher { color: var(--nv-cipher); }
+.nv-cine-fallback .nv-fb-warn { color: var(--nv-fail); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nv-poweron-btn { animation: none; }
+  .nv-cine, .nv-cine-out { transition: none; }
 }
