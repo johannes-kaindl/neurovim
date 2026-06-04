@@ -26,10 +26,14 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 182 tests
 > green, 4-workspace typecheck green. Live on Codeberg (primary) + GitHub (mirror).
 >
-> **Since (2026-06-03):** **v0.2.1** (post-release hardening — Result-modal a11y, web↔Obsidian
-> record parity, first adapter-web tests, CI content-gate) and **v0.2.2** (**par-tiers** —
-> keystroke gold/silver/bronze scoring, web-only UI, pure-core `ParTier`) shipped. macOS
-> desktop builds are now **Developer ID-signed + notarized** in CI (`docs/DESKTOP.md`).
+> **Since v0.2.0 (2026-06-03 → 06-04), current release v0.2.3:** **v0.2.1** (hardening —
+> Result-modal a11y, web↔Obsidian record parity, first adapter-web tests, CI content-gate),
+> **v0.2.2** (**par-tiers** — keystroke gold/silver/bronze scoring), **Story-Mode** (the web
+> now unlocks missions/KATAs/LOOT **progressively** as you level up — replaced the
+> all-unlocked demo; NEXUS gates from `data.unlocked`, level-ups reveal content), **Arc-2
+> rebalance** (monotonic 1→5 difficulty + 3 regex missions re-themed to visual-block/macro/
+> register), and new **KATAs** (find-char, dot, `:g`). macOS desktop builds are now
+> **Developer ID-signed + notarized** (`docs/DESKTOP.md`); v0.2.3 is the first signed release.
 
 ## Architecture — adapter pattern (ADR-001)
 
@@ -213,10 +217,12 @@ green. For content changes also run `npm run build:content`, otherwise
 
 ## Roadmap
 
-- **Shipped in v0.2.0** (visual overhaul, `docs/superpowers/specs/2026-05-29-visual-overhaul-design.md`
-  + plans 1–6): redesign of all surfaces, Lore Archive + Cheatsheet, audio toggle +
-  visual audio-cue pendants (§6), mobile stance + ≥44px tap targets (§7), WCAG-AA
-  contrast pass (§5), web deploy on Codeberg + GitHub Pages (§8).
-- **Release tags** `v0.1.0` (initial) and `v0.2.0` (overhaul) trigger the desktop CI
-  (macOS/Windows/Linux installers via GitHub Actions → GitHub release).
-- **itch.io** distribution of the web build, if pursued.
+- **Shipped:** v0.2.0 (visual overhaul) → v0.2.1 (hardening) → v0.2.2 (par-tiers) →
+  **v0.2.3** (Story-Mode progressive unlock, Arc-2 rebalance, find-char/dot/`:g` KATAs).
+  Each cycle has a spec + plan under `docs/superpowers/{specs,plans}/`.
+- **Release tags** `v0.1.0`…`v0.2.3` trigger the desktop CI (macOS/Windows/Linux installers
+  via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
+  `APPLE_*` repo secrets were added (v0.2.3 onward).
+- **Open:** navigation skills (folding / jumps / marks) need a new gameplay verb to be
+  teachable (the verb is "fix text, diff against solution"); Obsidian plugin-swap
+  verification (`docs/PLUGIN-SWAP.md`); Windows code signing; itch.io distribution.

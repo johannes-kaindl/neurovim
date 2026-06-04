@@ -47,12 +47,14 @@ plugin**, and a **native desktop app**.
 
 ## Features
 
-- **Story-driven campaign** — a curriculum of Vim missions (motions, operators,
-  text objects, search & replace, macros, registers, regex) wrapped in a narrative.
+- **Story-driven campaign** — a curriculum of Vim missions (motions, find-char, the dot
+  command, operators, text objects, search & replace, macros, registers, visual-block,
+  global commands, regex) wrapped in a narrative that **unlocks progressively** as you level up.
 - **Real editor** — CodeMirror 6 with actual Vim keybindings, not a fake terminal.
 - **THE RAVEN sandbox** — free-play: fix N injected glitches against the clock,
   beat your best (EASY / NORMAL / HARD).
-- **Progression** — XP, levels, streaks, per-mission best times; progress saved
+- **Progression & mastery** — XP, levels, progressive mission unlock, streaks, and
+  **gold/silver/bronze par-tiers** that score each run by keystrokes; progress saved
   locally in your browser.
 - **Terminal / CRT aesthetic** — restrained phosphor-green "Kuro" theme, monospace,
   optional scanline.
