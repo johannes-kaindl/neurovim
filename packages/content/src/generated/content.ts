@@ -1063,10 +1063,10 @@ export const ENTRIES: RawContentEntry[] = [
         "arc2",
         "arc2-ch6"
       ],
-      "sticker": "lucide//radio",
+      "sticker": "lucide//columns-3",
       "color": "#ff6600"
     },
-    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-06 // FREQUENCY MATCH           ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"`.` matches one character. But what if you need to match one or more? Or zero or more?*\n> *`\\+` means one or more of the preceding item. `\\*` means zero or more. `\\?` means zero or one.*\n> *CORP uses numeric IDs of varying length: ID-7, ID-42, ID-1337. You need `[0-9]\\+` — one or more digits.*\n> *This is the difference between matching and not matching. A pattern that expects exactly one digit fails on two. Quantifiers are precision tools.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Replace every `ID-` followed by one or more digits with `ID-REDACTED`.\n>\n> > [!tip] SKILLS\n> > `:%s/ID-[0-9]\\+/ID-REDACTED/g` — `[0-9]\\+` = one or more digits\n>\n> > [!success] +25 XP\n>\n> → **[[_content/06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match|R-06-TRANSMISSION-Frequency_Match]]** — open to begin. Timer starts on file open.",
+    "body": "```ascii\n╔══════════════════════════════════════════════╗\n║  INCOMING — CIPHER                           ║\n║  BRIEFING: R-06 // COLUMN STRIKE             ║\n║  Clearance: SIGNAL HUNTER  //  ARC II        ║\n╚══════════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Patterns work on text. But some corruption is structural — a whole column wedged into an aligned grid.*\n> *`Ctrl-V` is visual-block mode. Move down to extend the selection over the rows, move right to set its width, then operate: `d` deletes the block, `I` inserts before it, `A` appends after it.*\n> *CORP slipped a status column into the relay grid. Carve it out in one strike — no substitution will do this cleanly.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Delete the `X | ` column so each row reads `NODE | <name> online`.\n>\n> > [!tip] SKILLS\n> > `Ctrl-V` (visual-block) → select the column down all rows → `d`\n>\n> > [!success] +25 XP\n>\n> → **[[_content/06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match|R-06-TRANSMISSION-Frequency_Match]]** — open to begin. Timer starts on file open.",
     "path": "06 - Wildcard Protocol/R-06-BRIEFING-Frequency_Match.md"
   },
   {
@@ -1077,26 +1077,26 @@ export const ENTRIES: RawContentEntry[] = [
     "chapter": "06 - Wildcard Protocol",
     "frontmatter": {
       "mission_id": "R-06",
-      "title": "Frequency Match",
+      "title": "Column Strike",
       "tier": "🔵 ARC II",
       "xp_reward": 25,
       "completed": false,
       "difficulty": 2,
-      "category": "regex",
+      "category": "visual-block",
+      "par_keystrokes": 14,
       "mission_type": "practice",
       "locked": true,
       "unlock_requirement": "Level 6",
       "tags": [
-        "vim/regex",
-        "vim/quantifiers",
+        "vim/visual-block",
         "arc2",
         "arc2-ch6"
       ],
-      "sticker": "lucide//radio",
+      "sticker": "lucide//columns-3",
       "color": "#ff6600",
-      "summary": "[LOCKED] CORP numeric IDs vary in length from 1 to 4 digits. Redact all of them with a quantifier-based pattern."
+      "summary": "[LOCKED] CORP wedged a status column into the relay grid. A pattern can't carve a column — drop into visual-block and strike it out."
     },
-    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP SURVEILLANCE LOG — ASSET TRACKING                          ║\n║  Document       : Numeric ID register // variable length IDs     ║\n║  Timestamp      : 2047-05-11 // 09:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> CORP numeric IDs are 1–4 digits long. `[0-9]\\+` matches all of them. Redact every ID before this log is shared.\n\n---\n\nSURVEILLANCE LOG — ASSET MOVEMENT\n\nID-REDACTED  departed Zone-Alpha at 06:00.\nID-REDACTED  entered restricted corridor at 06:14.\nID-REDACTED  flagged for secondary scan.\nID-REDACTED  cleared at checkpoint.\nID-REDACTED  reached rendezvous — Zone-Beta.\nID-REDACTED  signal lost at 07:01.\nID-REDACTED  signal restored at 07:44.\n\nTotal assets logged: 7. All IDs redacted per protocol.",
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP RELAY GRID — COLUMN INJECTION                              ║\n║  Document       : Aligned node table // bogus status column      ║\n║  Timestamp      : 2047-05-11 // 09:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> The `X | ` column is the same width on every row. `Ctrl-V` selects a block down the column, then `d` deletes it in one strike. No pattern needed.\n\n---\n\nNODE | X | alpha online\nNODE | X | bravo online\nNODE | X | charlie online\nNODE | X | delta online\nNODE | X | echo online",
     "path": "06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match.md"
   },
   {
@@ -3093,7 +3093,7 @@ export const ENTRIES: RawContentEntry[] = [
     "arc": "II",
     "chapter": "solutions",
     "frontmatter": {},
-    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP SURVEILLANCE LOG — ASSET TRACKING                          ║\n║  Document       : Numeric ID register // variable length IDs     ║\n║  Timestamp      : 2047-05-11 // 09:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> CORP numeric IDs are 1–4 digits long. `[0-9]\\+` matches all of them. Redact every ID before this log is shared.\n\n---\n\nSURVEILLANCE LOG — ASSET MOVEMENT\n\nID-REDACTED  departed Zone-Alpha at 06:00.\nID-REDACTED  entered restricted corridor at 06:14.\nID-REDACTED  flagged for secondary scan.\nID-REDACTED  cleared at checkpoint.\nID-REDACTED  reached rendezvous — Zone-Beta.\nID-REDACTED  signal lost at 07:01.\nID-REDACTED  signal restored at 07:44.\n\nTotal assets logged: 7. All IDs redacted per protocol.",
+    "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP RELAY GRID — COLUMN INJECTION                              ║\n║  Document       : Aligned node table // bogus status column      ║\n║  Timestamp      : 2047-05-11 // 09:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> The `X | ` column is the same width on every row. `Ctrl-V` selects a block down the column, then `d` deletes it in one strike. No pattern needed.\n\n---\n\nNODE | alpha online\nNODE | bravo online\nNODE | charlie online\nNODE | delta online\nNODE | echo online",
     "path": "solutions/R-06-SOLUTION-Frequency_Match.md"
   },
   {

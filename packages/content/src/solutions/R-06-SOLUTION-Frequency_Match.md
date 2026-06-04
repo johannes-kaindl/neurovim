@@ -1,24 +1,18 @@
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
-║  CORP SURVEILLANCE LOG — ASSET TRACKING                          ║
-║  Document       : Numeric ID register // variable length IDs     ║
+║  CORP RELAY GRID — COLUMN INJECTION                              ║
+║  Document       : Aligned node table // bogus status column      ║
 ║  Timestamp      : 2047-05-11 // 09:30                           ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
 > [!note] CIPHER — Processing note
-> CORP numeric IDs are 1–4 digits long. `[0-9]\+` matches all of them. Redact every ID before this log is shared.
+> The `X | ` column is the same width on every row. `Ctrl-V` selects a block down the column, then `d` deletes it in one strike. No pattern needed.
 
 ---
 
-SURVEILLANCE LOG — ASSET MOVEMENT
-
-ID-REDACTED  departed Zone-Alpha at 06:00.
-ID-REDACTED  entered restricted corridor at 06:14.
-ID-REDACTED  flagged for secondary scan.
-ID-REDACTED  cleared at checkpoint.
-ID-REDACTED  reached rendezvous — Zone-Beta.
-ID-REDACTED  signal lost at 07:01.
-ID-REDACTED  signal restored at 07:44.
-
-Total assets logged: 7. All IDs redacted per protocol.
+NODE | alpha online
+NODE | bravo online
+NODE | charlie online
+NODE | delta online
+NODE | echo online
