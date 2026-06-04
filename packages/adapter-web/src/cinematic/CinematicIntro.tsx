@@ -13,7 +13,7 @@ const CutscenePlayer = lazy(() =>
 
 interface Props {
   playCue: (cue: SfxCue) => void;
-  onUnlockAudio: () => void;
+  onUnlockAudio: () => void | Promise<void>;
   onDone: () => void;
 }
 
@@ -31,7 +31,8 @@ export function CinematicIntro({ playCue, onUnlockAudio, onDone }: Props) {
 
   if (!cinematic) return <CinematicFallback onDone={onDone} />;
   if (!powered) {
-    return <PowerOn onPowerOn={() => { onUnlockAudio(); setPowered(true); }} />;
+    // await the audio unlock so beat 0's opening cue isn't dropped before the context is ready
+    return <PowerOn onPowerOn={async () => { await onUnlockAudio(); setPowered(true); }} />;
   }
   return (
     <Suspense fallback={<div class="nv-cine-load" />}>

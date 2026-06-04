@@ -18,7 +18,7 @@ interface Props {
   introSeen: boolean;
   /** persist introSeen=true after the cinematic finishes */
   onIntroDone: () => void;
-  onUnlockAudio: () => void;
+  onUnlockAudio: () => void | Promise<void>;
   playCue: (cue: SfxCue) => void;
 }
 

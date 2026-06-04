@@ -86,10 +86,11 @@ export function App() {
   useEffect(() => { audio.setMuted(!ui.audioOn); }, [ui.audioOn]);
 
   // D4: initialize audio only after the first user gesture (non-intrusive, no auto-play).
-  function unlockAudio() {
-    if (audioUnlocked) return;
+  // Returns the init promise so the cinematic can await it before firing its opening cue.
+  function unlockAudio(): Promise<void> {
+    if (audioUnlocked) return Promise.resolve();
     audioUnlocked = true;
-    audio.init().catch(() => { /* user-gesture race, silent */ });
+    return audio.init().catch(() => { /* user-gesture race, silent */ });
   }
 
   function toggleAudio() {

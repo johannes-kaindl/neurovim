@@ -1,7 +1,7 @@
 # Cinematic Intro — Design Spec
 
 > **Date:** 2026-06-04 · **Status:** approved (brainstorm), pending implementation plan
-> **Goal:** replace the 3-line `BootIntro` with a ~16s cinematic first-run sequence that
+> **Goal:** replace the 3-line `BootIntro` with a ~22s cinematic first-run sequence that
 > dramatises the Compliance-Handbook story — a CORP terminal boots compliant, glitches
 > through the "Fault Conditions" (the hidden Vim syllabus), screams *UNPLUG AND REPORT*,
 > is overridden by CIPHER's signal ("let it run"), and unlocks NeuroVIM. Built as
@@ -104,7 +104,7 @@ The runner is **deterministic** (fixed order, fixed/seeded timing) — not kuro'
 time-driven phase machine. Per-beat `glitch` + `typing` + `theme` give the ROUTINE→PANIC
 escalation feel without the full persona engine.
 
-## 4. The intro (cutscene #1) — beats & pacing (~16s, skippable anytime)
+## 4. The intro (cutscene #1) — beats & pacing (~22s, skippable anytime)
 
 | # | theme | ~dur | content (verbatim from handbook) |
 |---|---|---|---|

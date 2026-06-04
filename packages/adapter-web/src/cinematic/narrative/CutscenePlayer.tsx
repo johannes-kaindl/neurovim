@@ -84,14 +84,18 @@ export function CutscenePlayer({ cutscene, playCue, onDone, seed = 1337 }: Props
 
     const onKey = (e: KeyboardEvent) => { if (!e.repeat) finish(); };
     const onClick = () => finish();
+    // GPU context loss mid-cutscene: end gracefully instead of freezing on the last frame.
+    const onCtxLost = (e: Event) => { e.preventDefault(); finish(); };
     window.addEventListener('keydown', onKey);
     glCanvas.addEventListener('click', onClick);
+    glCanvas.addEventListener('webglcontextlost', onCtxLost);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', sync);
       window.removeEventListener('keydown', onKey);
       glCanvas.removeEventListener('click', onClick);
+      glCanvas.removeEventListener('webglcontextlost', onCtxLost);
       crt.dispose();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
