@@ -6,6 +6,28 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.2.3] — 2026-06-04
+
+First **signed + notarized** desktop release (the macOS signing wired in 0.2.2 is now
+active with credentials in place — the `.dmg` opens without a Gatekeeper warning).
+
+### Added
+- **Story-Mode** — the web app now unlocks missions, KATAs, and LOOT **progressively** as
+  you level up, instead of everything being open. The NEXUS gates from your unlock state
+  (locked rows show the level they need), level-ups reveal new content with a "mission
+  unlocked" animation + an unlocked-list in the result modal, and LOOT artifacts unlock as
+  rewards. Existing saves migrate cleanly.
+- **Three new KATAs** closing curriculum gaps: find-char motions `f/F/t/T/;/,` (Target
+  Lock), the dot command `.` (Echo), and the global command `:g` (Dragnet).
+- Mission **par-tier badges** surface on the NEXUS list (best gold/silver/bronze per
+  mission), not just in the result modal.
+
+### Changed
+- **Arc 2 rebalanced** — the 24 encrypted missions now ramp smoothly in difficulty (1→5)
+  instead of plateauing, and three of them were re-themed away from regex into a
+  **visual-block** drill (Column Strike), a **macro** drill (Echo Chamber), and a
+  **named-register** drill (Dead Drop) to break the all-regex monoculture.
+
 ## [0.2.2] — 2026-06-03
 
 ### Added
@@ -81,7 +103,8 @@ First public release of the standalone monorepo.
 - Native desktop app via Tauri v2 (macOS DMG ~3 MB) + multi-OS build CI.
 - Brand kit: Chrome Raven app icon, favicons, OpenGraph card.
 
-[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.2...HEAD
+[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.3...HEAD
+[0.2.3]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.2...v0.2.3
 [0.2.2]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.1...v0.2.2
 [0.2.1]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.0...v0.2.1
 [0.2.0]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.1.0...v0.2.0
