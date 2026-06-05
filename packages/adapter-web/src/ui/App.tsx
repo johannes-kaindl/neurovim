@@ -144,8 +144,14 @@ export function App() {
     await storage.saveData(next);
     if (level_up) SoundCues.levelUp(audio);
     const par = resolvePar({ parOverride: mission.par_keystrokes, difficulty: mission.difficulty });
+    const guidance = deriveGuidance({
+      category: mission.category, summary: mission.summary, why: mission.why,
+      next: nextSummary(mission.mission_id), cheatsheet: CHEATSHEET,
+      level: ProgressionEngine.getXpProgress(next.total_xp).level, pin: data.railPin ?? null,
+    });
     setResult({
       status: 'complete',
+      debrief: guidance.debrief,
       xp: mission.xp_reward,
       levelUp: level_up ? level_up.new_level : null,
       timeMs: metrics.elapsed_ms,
@@ -178,14 +184,26 @@ export function App() {
     return (
       <>
         <Suspense fallback={<div class="nv-loading">loading briefing…</div>}>
-          <BriefingView
-            missionId={mission.mission_id}
-            title={mission.title}
-            briefingBody={mission.briefingBody}
-            onBegin={() => setView('mission')}
-            onBack={() => setView('nexus')}
-            onReference={() => setCheatOpen(true)}
-          />
+          {(() => {
+            const g = deriveGuidance({
+              category: mission.category, summary: mission.summary, why: mission.why,
+              next: nextSummary(mission.mission_id), cheatsheet: CHEATSHEET,
+              level: ProgressionEngine.getXpProgress(data.total_xp).level, pin: data.railPin ?? null,
+            });
+            return (
+              <BriefingView
+                missionId={mission.mission_id}
+                title={mission.title}
+                briefingBody={mission.briefingBody}
+                skillTag={g.skillTag}
+                why={g.why}
+                leadsTo={g.leadsTo}
+                onBegin={() => setView('mission')}
+                onBack={() => setView('nexus')}
+                onReference={() => setCheatOpen(true)}
+              />
+            );
+          })()}
         </Suspense>
         {cheatOpen && (
           <Suspense fallback={null}>

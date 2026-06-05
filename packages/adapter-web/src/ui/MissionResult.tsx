@@ -29,6 +29,8 @@ export interface MissionResultData {
   toNextTier?: { nextTier: Exclude<Tier, null>; delta: number } | null;
   /** Mission ids newly unlocked by this run's level-up (for the UNLOCKED line + NEXUS reveal). */
   unlocked?: string[];
+  /** CIPHER debrief: "you can use X now → next Y". */
+  debrief?: string;
 }
 
 interface Props {
@@ -80,6 +82,7 @@ export function MissionResult({ result, missionTitle, hasNext, onRetry, onNext, 
 
         {complete ? (
           <div class="nv-modal-body">
+            {result.debrief && <div class="nv-modal-debrief">{result.debrief}</div>}
             <div class="nv-modal-xp">+{result.xp ?? 0} XP</div>
             {result.tier && (
               <div class={`nv-tier-badge nv-tier-${result.tier}`}>
