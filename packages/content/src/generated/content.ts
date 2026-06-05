@@ -55,6 +55,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//radio",
       "color": "#ff4444",
       "summary": "Learn Vim's three modes — Normal, Insert, Visual. Without this foundation, you're blind.",
+      "why": "Modes are the spine of everything you'll touch. Get them wrong and the tool fights you.",
       "mission_type": "practice",
       "locked": false
     },

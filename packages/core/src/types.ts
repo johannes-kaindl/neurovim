@@ -27,6 +27,10 @@ export interface MissionFrontmatter {
   difficulty?: number;
   /** Hand-tuned keystroke par override (gold threshold). Optional; else computed from difficulty. */
   par_keystrokes?: number;
+  /** One-line mission summary (existing in markdown; now typed). */
+  summary?: string;
+  /** Authored CIPHER "why this skill matters" line. Optional; GuidanceEngine falls back to guideWhyFor. */
+  why?: string;
 }
 
 // ── Run result & records ─────────────────────────────────────
@@ -64,6 +68,10 @@ export interface PluginData {
   onboarded: boolean;
   healedFrontmatters: Record<string, string>;
   ambient_enabled: boolean;
+  /** First-run "What is Vim" primer gate. */
+  vimPrimerSeen: boolean;
+  /** Comms-Rail user override of the adaptive default. */
+  railPin: 'open' | 'quiet' | null;
 }
 
 // ── Level / Progression ──────────────────────────────────────
@@ -154,6 +162,8 @@ export const DEFAULT_PLUGIN_DATA: PluginData = {
   onboarded: false,
   healedFrontmatters: {},
   ambient_enabled: false,
+  vimPrimerSeen: false,
+  railPin: null,
 };
 
 export const DEFAULT_MISSION_STATE: MissionState = {

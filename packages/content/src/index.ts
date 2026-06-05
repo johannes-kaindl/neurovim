@@ -24,6 +24,12 @@ export function getWelcome(): string {
   return WELCOME_BODY;
 }
 
+/** The comprehensive Vim reference manual (EN) body — for the Reference overlay's Manual tab. */
+export function getManual(): string {
+  const e = ENTRIES.find((x) => x.role === 'ref' && x.id.includes('EN'));
+  return e ? e.body : '';
+}
+
 function toSummary(e: RawContentEntry): MissionSummary {
   const fm = e.frontmatter;
   return {
@@ -36,6 +42,8 @@ function toSummary(e: RawContentEntry): MissionSummary {
     tier: String(fm.tier ?? ''),
     difficulty: fm.difficulty != null ? Number(fm.difficulty) : undefined,
     par_keystrokes: fm.par_keystrokes != null ? Number(fm.par_keystrokes) : undefined,
+    summary: fm.summary != null ? String(fm.summary) : undefined,
+    why: fm.why != null ? String(fm.why) : undefined,
     arc: e.arc,
     chapter: e.chapter,
   };
