@@ -35,8 +35,8 @@ const BriefingView = lazy(() =>
 const LoreView = lazy(() =>
   import('./LoreView').then((m) => ({ default: m.LoreView })),
 );
-const CheatsheetOverlay = lazy(() =>
-  import('./CheatsheetOverlay').then((m) => ({ default: m.CheatsheetOverlay })),
+const ReferenceOverlay = lazy(() =>
+  import('./ReferenceOverlay').then((m) => ({ default: m.ReferenceOverlay })),
 );
 
 /** Next playable mission in the same arc (for the "Next Mission" button). */
@@ -160,15 +160,23 @@ export function App() {
 
   if (view === 'briefing' && mission) {
     return (
-      <Suspense fallback={<div class="nv-loading">loading briefing…</div>}>
-        <BriefingView
-          missionId={mission.mission_id}
-          title={mission.title}
-          briefingBody={mission.briefingBody}
-          onBegin={() => setView('mission')}
-          onBack={() => setView('nexus')}
-        />
-      </Suspense>
+      <>
+        <Suspense fallback={<div class="nv-loading">loading briefing…</div>}>
+          <BriefingView
+            missionId={mission.mission_id}
+            title={mission.title}
+            briefingBody={mission.briefingBody}
+            onBegin={() => setView('mission')}
+            onBack={() => setView('nexus')}
+            onReference={() => setCheatOpen(true)}
+          />
+        </Suspense>
+        {cheatOpen && (
+          <Suspense fallback={null}>
+            <ReferenceOverlay activeCategory={mission.category} onClose={() => setCheatOpen(false)} />
+          </Suspense>
+        )}
+      </>
     );
   }
 
@@ -190,7 +198,7 @@ export function App() {
         )}
         {cheatOpen && (
           <Suspense fallback={null}>
-            <CheatsheetOverlay activeCategory={mission.category} onClose={() => setCheatOpen(false)} />
+            <ReferenceOverlay activeCategory={mission.category} onClose={() => setCheatOpen(false)} />
           </Suspense>
         )}
       </>
@@ -334,7 +342,7 @@ export function App() {
 
       {cheatOpen && (
         <Suspense fallback={null}>
-          <CheatsheetOverlay onClose={() => setCheatOpen(false)} />
+          <ReferenceOverlay onClose={() => setCheatOpen(false)} />
         </Suspense>
       )}
     </div>

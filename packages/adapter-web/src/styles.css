@@ -579,3 +579,11 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
   .nv-sheet { width: 100%; }
   .nv-audiohint { top: 64px; right: 12px; left: 12px; max-width: none; }
 }
+
+/* Reference overlay — tabbed Cheat-Sheet | Manual */
+.nv-ref-tabs { display: flex; gap: 0.5rem; }
+.nv-ref-tab {
+  background: transparent; border: 1px solid var(--nv-border); color: var(--nv-text);
+  font: inherit; padding: 0.2rem 0.7rem; border-radius: 4px; cursor: pointer; opacity: 0.7;
+}
+.nv-ref-tab-on { color: var(--nv-text); border-color: var(--nv-accent); opacity: 1; box-shadow: 0 0 8px var(--nv-accent); }
