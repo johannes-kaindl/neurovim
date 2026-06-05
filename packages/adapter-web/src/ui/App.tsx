@@ -8,7 +8,7 @@ import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
   resolvePar, tierFor, keystrokesToNextTier, unlockLevelFor,
-  deriveGuidance, CHEATSHEET,
+  deriveGuidance, CHEATSHEET, skillTagFor, verbosityTier,
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
   type MissionSummary, type SandboxDifficulty,
 } from '@neurovim/core';
@@ -297,6 +297,8 @@ export function App() {
     }
     const active = m.mission_id === activeId;
     const justUp = justUnlocked.includes(m.mission_id);
+    const level = ProgressionEngine.getXpProgress(data.total_xp).level;
+    const showTag = verbosityTier(level) < 2;
     const bestTier = done && (rec?.best_keystrokes ?? 0) > 0
       ? tierFor(rec!.best_keystrokes, resolvePar({ parOverride: m.par_keystrokes, difficulty: m.difficulty }))
       : null;
@@ -304,7 +306,11 @@ export function App() {
     return (
       <button class={cls} key={m.mission_id} onClick={() => selectMission(m.mission_id)}>
         <span class="nv-row-id">{active ? '▸ ' : ''}{m.mission_id}</span>
-        <span class="nv-row-t">{m.title}</span>
+        <span class="nv-row-t">
+          {m.title}
+          {showTag && !done && <span class="nv-row-skill">{skillTagFor(m.category)}</span>}
+        </span>
+        {active && <span class="nv-row-start">START HERE</span>}
         {justUp && <span class="nv-row-unlocked">▸ UNLOCKED</span>}
         {bestTier && <span class={`nv-row-tier nv-tier-${bestTier}`} title={`best: ${bestTier}`}>{bestTier === 'gold' ? '★' : bestTier === 'silver' ? '◆' : '▲'}</span>}
         {done && (rec?.best_time_ms ?? 0) > 0
@@ -342,6 +348,13 @@ export function App() {
         <span>Cleared <b>{cleared}</b>/{arc1.length}</span>
         <span>Streak <b>{data.streak_current}</b></span>
         {fastest != null && <span>Fastest <b>{fmtTime(fastest)}</b></span>}
+      </div>
+
+      <div class="nv-legend nv-label">
+        <span><b>M</b> story mission</span>
+        <span><b>KATA</b> free drill</span>
+        <span><b>RAVEN</b> sandbox</span>
+        <span><b>Archive</b> lore + reference</span>
       </div>
 
       {arc1.length > 0 && cleared === arc1.length && (
