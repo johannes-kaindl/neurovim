@@ -587,3 +587,30 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
   font: inherit; padding: 0.2rem 0.7rem; border-radius: 4px; cursor: pointer; opacity: 0.7;
 }
 .nv-ref-tab-on { color: var(--nv-text); border-color: var(--nv-accent); opacity: 1; box-shadow: 0 0 8px var(--nv-accent); }
+
+/* Comms-Rail (CIPHER guidance beside the editor) */
+.nv-editor-main { display: flex; gap: 0; align-items: stretch; }
+.nv-editor-main .nv-cm-host { flex: 1; min-width: 0; }
+.nv-rail {
+  flex: 0 0 11rem; border-left: 1px solid var(--nv-accent);
+  background: rgba(57, 255, 122, 0.05);
+  padding: 0.5rem 0.6rem; font-size: 0.72rem; color: var(--nv-text);
+}
+.nv-rail-spine { flex-basis: 1.6rem; padding: 0.4rem 0; text-align: center; }
+.nv-rail-glyph, .nv-rail-pin, .nv-rail-link {
+  background: transparent; border: none; color: var(--nv-accent); cursor: pointer; font: inherit;
+}
+.nv-rail-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+.nv-rail-cipher { color: var(--nv-accent); font-weight: 700; }
+.nv-rail-k { color: var(--nv-accent); text-transform: uppercase; font-size: 0.6rem; letter-spacing: 1px; margin-top: 0.5rem; }
+.nv-rail-v { color: var(--nv-text); line-height: 1.35; }
+.nv-rail-keys span {
+  display: inline-block; border: 1px solid var(--nv-accent); border-radius: 3px;
+  padding: 0 0.3rem; margin: 0.15rem 0.15rem 0 0; color: var(--nv-text);
+}
+.nv-rail-actions { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.6rem; }
+.nv-rail-link { text-align: left; }
+.nv-rail-link-on { color: var(--nv-text); text-decoration: underline; }
+/* Reveal-corruption line highlight */
+.nv-reveal-line { background: rgba(255, 90, 90, 0.14); }
+@media (max-width: 720px) { .nv-rail { flex-basis: 8rem; } }

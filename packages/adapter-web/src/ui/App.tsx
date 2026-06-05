@@ -8,6 +8,7 @@ import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
   resolvePar, tierFor, keystrokesToNextTier, unlockLevelFor,
+  deriveGuidance, CHEATSHEET,
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
   type MissionSummary, type SandboxDifficulty,
 } from '@neurovim/core';
@@ -44,6 +45,15 @@ function nextMissionId(id: string): string | null {
   const list = listMissions(id.startsWith('R-') ? 'II' : 'I');
   const i = list.findIndex((m) => m.mission_id === id);
   return i >= 0 && i < list.length - 1 ? list[i + 1].mission_id : null;
+}
+
+/** Next mission's id+title+category (for guidance "leads to"). */
+function nextSummary(id: string): { mission_id: string; title: string; category: string } | null {
+  const list = listMissions(id.startsWith('R-') ? 'II' : 'I');
+  const i = list.findIndex((m) => m.mission_id === id);
+  if (i < 0 || i >= list.length - 1) return null;
+  const n = list[i + 1];
+  return { mission_id: n.mission_id, title: n.title, category: n.category };
 }
 
 const storage = new WebStorage();
@@ -97,6 +107,12 @@ export function App() {
   async function markOnboarded() {
     if (data.onboarded) return;
     const next = { ...data, onboarded: true };
+    setData(next);
+    await storage.saveData(next);
+  }
+
+  async function setRailPin(p: 'open' | 'quiet' | null) {
+    const next = { ...data, railPin: p };
     setData(next);
     await storage.saveData(next);
   }
@@ -181,10 +197,16 @@ export function App() {
   }
 
   if (view === 'mission' && mission) {
+    const level = ProgressionEngine.getXpProgress(data.total_xp).level;
+    const guidance = deriveGuidance({
+      category: mission.category, summary: mission.summary, why: mission.why,
+      next: nextSummary(mission.mission_id), cheatsheet: CHEATSHEET, level, pin: data.railPin ?? null,
+    });
     return (
       <>
         <Suspense fallback={<div class="nv-loading">loading editor…</div>}>
-          <MissionEditor mission={mission} onSubmit={submit} onBack={() => setView('nexus')} onCheatsheet={() => setCheatOpen(true)} />
+          <MissionEditor mission={mission} guidance={guidance} pin={data.railPin ?? null} onPin={setRailPin}
+                         onSubmit={submit} onBack={() => setView('nexus')} onCheatsheet={() => setCheatOpen(true)} />
         </Suspense>
         {result && (
           <MissionResult
