@@ -17,6 +17,7 @@ tags:
 sticker: lucide//calendar-arrow-right
 color: "#00ff88"
 summary: "[LOCKED] CORP dates are ISO format. Resistance protocol is day-first. Three captured groups, reversed in replacement."
+why: "Three groups in, reordered out — ISO becomes day-first because capture remembers what you matched."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

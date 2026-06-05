@@ -13,6 +13,7 @@ tags:
 sticker: lucide//zap
 color: "#444444"
 summary: CORP injected noise into each log line. Strike it clean with operators. No story. Just precision.
+why: "An operator plus a motion strikes the noise clean — drill d until the verb is reflex."
 mission_type: practice
 locked: true
 ---

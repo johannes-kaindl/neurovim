@@ -16,6 +16,7 @@ tags:
 sticker: lucide//file-search
 color: "#0066ff"
 summary: "[LOCKED] Ex-mode pattern purge — three-stage cleanup of a Pattern Analysis Unit anomaly report. Available after M-11."
+why: "A noisy report doesn't get cleaned line by line — :g runs one verdict across every matching line at once."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

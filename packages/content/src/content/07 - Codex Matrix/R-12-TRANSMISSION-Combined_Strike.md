@@ -17,6 +17,7 @@ tags:
 sticker: lucide//combine
 color: "#cc00ff"
 summary: "[LOCKED] CORP hex hashes tag every document. Redact all six with an exact-length character class pattern."
+why: "A fixed-length class counts the hex for you — six hashes redacted, none of the real text touched."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

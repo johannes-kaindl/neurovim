@@ -13,6 +13,7 @@ tags:
 sticker: lucide//zap
 color: "#ffaa00"
 summary: First real mission. CORP corrupted a Resistance transmission. Repair it with everything you've learned.
+why: "First live repair: CORP corrupted the signal, and only everything you've drilled puts it back together."
 mission_type: practice
 locked: true
 ---

@@ -17,6 +17,7 @@ tags:
 sticker: lucide//scissors
 color: "#00ccff"
 summary: "[LOCKED] Only the first section of a two-part document needs correction. Range-limited substitution leaves the second half intact."
+why: "A substitution doesn't have to touch the whole file — give it a line range and the rest stays untouched."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

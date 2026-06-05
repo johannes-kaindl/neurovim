@@ -17,6 +17,7 @@ tags:
 sticker: lucide//eraser
 color: "#ff4444"
 summary: "[LOCKED] A full surveillance log. Keep only the MIRROR-related lines. Everything else goes."
+why: ":v keeps only what matches and burns the rest — the fastest way to isolate the signal in a flood."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

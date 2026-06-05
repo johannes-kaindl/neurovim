@@ -17,6 +17,7 @@ tags:
 sticker: lucide//target
 color: "#9933ee"
 summary: "[LOCKED] Tier-4 capstone — four-section extraction reconciliation under 30-minute window. All Tier-1..4 skills applied. Available after M-15."
+why: "The capstone gives you thirty minutes and four sections — everything you've learned, or the window closes."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -17,6 +17,7 @@ tags:
 sticker: lucide//target
 color: "#ff4444"
 summary: "[LOCKED] PROJECT MIRROR's encrypted entries are hidden as ACTIVE. Compose :g with :s to expose them all."
+why: "Compose :g with :s and the global command becomes a scalpel — find the hidden lines, then rewrite each."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

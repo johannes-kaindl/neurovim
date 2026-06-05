@@ -17,6 +17,7 @@ tags:
 sticker: lucide//circle-dot
 color: "#ff6600"
 summary: "[LOCKED] CORP rotates agent IDs with varying suffixes. Match and replace all variants using the dot wildcard."
+why: "The dot matches anything CORP rotates into a suffix — one pattern, every variant, no exceptions."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -14,6 +14,7 @@ tags:
 sticker: lucide//repeat
 color: "#444444"
 summary: The same junk tag, five times over. Fix it once, then let the dot command (.) echo the change down the list. No story. Just precision.
+why: "Fix the junk tag once, then let . echo the exact change down the list — repetition without retyping."
 mission_type: practice
 locked: true
 ---

@@ -17,6 +17,7 @@ tags:
 sticker: lucide//group
 color: "#00ff88"
 summary: "[LOCKED] CORP name format is SURNAME, FIRSTNAME. Resistance is FIRSTNAME SURNAME. Two groups, comma stripped."
+why: "Two captured names, comma dropped — SURNAME, FIRSTNAME becomes FIRSTNAME SURNAME in one rule."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

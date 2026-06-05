@@ -17,6 +17,7 @@ tags:
 sticker: lucide//replace
 color: "#00ccff"
 summary: "[LOCKED] CORP relay garbled a codename across a full intercept log. Fix all nine instances in one command."
+why: ":%s — the most powerful line in any file. Garble it nine times, fix it once."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -14,6 +14,7 @@ tags:
 sticker: lucide//filter
 color: "#444444"
 summary: A trace flood buried the real log. One global command — :g/TRACE/d — nets every junk line at once. (:v keeps only matches; :g//normal runs an edit on each.) No story. Just precision.
+why: "One :g/TRACE/d nets every junk line at once — the global command is a dragnet, not a hunt."
 mission_type: practice
 locked: true
 ---

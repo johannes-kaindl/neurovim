@@ -13,6 +13,7 @@ tags:
 sticker: lucide//align-left
 color: "#ff4444"
 summary: Line start, line end, jump to any line. Learn to teleport through files.
+why: "A file is not a wall of text; with line-start, line-end and :n you teleport, you don't scroll."
 mission_type: practice
 locked: false
 ---

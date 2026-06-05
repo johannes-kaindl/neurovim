@@ -15,6 +15,7 @@ tags:
 sticker: lucide//columns-2
 color: "#0066ff"
 summary: "[LOCKED] Split-pane diff reconciliation — restore a CORP citizen bulletin against its pre-release draft. Available after M-10."
+why: "Two panes, one truth — Ctrl-W lets you read the draft and rebuild the leak side by side without losing your place."
 ---
 
 ```ascii

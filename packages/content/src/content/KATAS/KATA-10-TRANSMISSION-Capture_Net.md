@@ -13,6 +13,7 @@ tags:
 sticker: lucide//network
 color: "#444444"
 summary: CORP date format to Resistance format. Three captured groups, reversed order in replacement.
+why: "Three captured groups, reversed on output — the date reformats itself once you name the parts."
 mission_type: practice
 locked: true
 ---

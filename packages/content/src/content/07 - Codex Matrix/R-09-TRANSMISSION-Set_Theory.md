@@ -17,6 +17,7 @@ tags:
 sticker: lucide//brackets
 color: "#cc00ff"
 summary: "[LOCKED] CORP status codes X, Y, Z encode threat level. Normalize all three to CLEAN using a character set."
+why: "A character set folds X, Y and Z into one match — three threat codes normalized in a single rule."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -17,6 +17,7 @@ tags:
 sticker: lucide//arrow-right-to-line
 color: "#ff0066"
 summary: "[LOCKED] CORP prepends a tracking prefix to every line. Strip it precisely — only from the line start."
+why: "Anchor to ^ and the prefix dies only at the line start — never mid-text where it would do damage."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

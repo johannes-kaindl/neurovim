@@ -13,6 +13,7 @@ tags:
 sticker: lucide//search
 color: "#444444"
 summary: Signal identifiers corrupted in transit. Find each instance. Fix once. Repeat.
+why: "Find it once, fix it, then n and . carry the same edit to every other instance."
 mission_type: practice
 locked: true
 ---

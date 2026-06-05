@@ -104,6 +104,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//move",
       "color": "#ff4444",
       "summary": "Arrow keys are your enemy. hjkl are your allies. Learn them until your fingers dream.",
+      "why": "Reach for the arrow keys and your hand leaves home row — hjkl keeps it there, where speed lives.",
       "mission_type": "practice",
       "locked": false
     },
@@ -152,6 +153,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//fast-forward",
       "color": "#ff4444",
       "summary": "hjkl is slow. Jumping word by word makes you fast. w, b, e are your turbochargers.",
+      "why": "Crawling character by character is how you lose a window — w, b, e jump you word by word.",
       "mission_type": "practice",
       "locked": false
     },
@@ -200,6 +202,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//align-left",
       "color": "#ff4444",
       "summary": "Line start, line end, jump to any line. Learn to teleport through files.",
+      "why": "A file is not a wall of text; with line-start, line-end and :n you teleport, you don't scroll.",
       "mission_type": "practice",
       "locked": false
     },
@@ -249,6 +252,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//scissors",
       "color": "#ffaa00",
       "summary": "Delete, copy, paste. The building blocks of text manipulation. Operators + Motions = Power.",
+      "why": "d, c, y — the three verbs. Pair them with a motion and you stop nudging text and start commanding it.",
       "mission_type": "practice",
       "locked": true
     },
@@ -297,6 +301,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//target",
       "color": "#ffaa00",
       "summary": "Text objects are Vim's superpower. No matter where the cursor is — you hit the target. iw, aw, i(, a\", is, as.",
+      "why": "ci( hits the target no matter where the cursor sits — stop aiming, start naming what you want.",
       "mission_type": "practice",
       "locked": true
     },
@@ -345,6 +350,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//search",
       "color": "#ffaa00",
       "summary": "Find targets in seconds. f, F, /, ?, n, N, * and :s/old/new/ — tracking like a Ghost.",
+      "why": "f, /, n — you don't read a file looking for the mark, you tell the tool to put the cursor on it.",
       "mission_type": "practice",
       "locked": true
     },
@@ -393,6 +399,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//zap",
       "color": "#ffaa00",
       "summary": "First real mission. CORP corrupted a Resistance transmission. Repair it with everything you've learned.",
+      "why": "First live repair: CORP corrupted the signal, and only everything you've drilled puts it back together.",
       "mission_type": "practice",
       "locked": true
     },
@@ -444,7 +451,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//lock",
       "color": "#0066ff",
-      "summary": "[LOCKED] Marks, Macros, Registers. Automation at operator level. Available after NEON WRAITH."
+      "summary": "[LOCKED] Marks, Macros, Registers. Automation at operator level. Available after NEON WRAITH.",
+      "why": "Record the fix once, mark your ground, and let q and @ do the same work CORP would make you do by hand."
     },
     "body": "CORP INTERNAL CHRONOLOGY — HARMONIZATION ENGINE OPERATIONS\nSource: Operations Review // Classification: Restricted Circulation\nDocument Code: HEO-2047-Q3-0337\n\nRE: ENGINE v4.1 — PHASE III DEPLOYMENT STATUS\n\nPHASE III — Sector Deployment Cycle\n[TS-2047-07-01] Engine deployment posture: within operational envelope\n[TS-2047-07-01] Sector allocation: reviewed against Q2 forecast band\n[TS-2047-07-01] Coordination tier: Audit Division oversight, standard\n[TS-2047-07-07] Harmonization Engine v4.1 coverage: 67% of monitored endpoints\n[TS-2047-07-07] Remaining endpoint classifications: scheduled for Q3 rollout\n[TS-2047-07-07] Target coverage: 100% of monitored endpoints by Q3 close\n[TS-2047-07-14] Anomaly signature logged: NODE-7734, non-random pattern\n[TS-2047-07-14] Classification issued: Informational — no escalation required\n[TS-2047-07-14] Cross-reference disposition: filed against subsequent windows\n[TS-2047-07-21] Legacy-protocol endpoint traffic: down 34% from Q2 baseline\n[TS-2047-07-21] Harmonization intercept rate: within forecast band\n[TS-2047-07-21] Phase IV coverage expansion: scheduled for Q4 rollout\n\nAssessment: Phase III operational metrics are within specification. Phase IV scheduling falls within standard rollout cadence.\n\nDocument generated automatically. No human review required.\n\nNote: Timestamps are corrupted. Format should be:\n[2047-07-01] not [TS-2047-07-01]\nThere are 12 lines affected. Use a macro.",
     "path": "03 - Deep Infiltration/M-09-TRANSMISSION-Marks_and_Macros.md"
@@ -492,7 +500,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//lock",
       "color": "#0066ff",
-      "summary": "[LOCKED] Named registers — two-block swap. The default register is not enough. Available after NEON WRAITH."
+      "summary": "[LOCKED] Named registers — two-block swap. The default register is not enough. Available after NEON WRAITH.",
+      "why": "The default register is one slot; name your own and you can hold two payloads and swap them clean."
     },
     "body": "CORP INTERNAL CHRONOLOGY — OPERATIONS REVIEW\nSource: Deep Infiltration // Classification: RESTRICTED\nDocument Code: OCR-2047-Q2-0441\n\nRE: CONSOLIDATED ATTRIBUTION — DUAL-PHASE COMPLIANCE OPERATION\n\nPHASE ALPHA — Sector 7 Enforcement Cycle\n[2047-05-17] Surveillance coverage expanded: +22.1% monitored endpoints\n[2047-05-24] Legacy-protocol detection threshold adjusted downward by factor 1.5\n[2047-05-31] Non-compliant entity resolutions processed: 14 (cumulative)\n[2047-06-07] Sector productivity index: 92.8%, within forecast band\nPHASE BETA — Sector 12 Enforcement Cycle\n[2047-04-12] Surveillance coverage expanded: +18.4% monitored endpoints\n[2047-04-19] Legacy-protocol detection threshold adjusted downward by factor 1.3\n[2047-04-26] Non-compliant entity resolutions processed: 9 (cumulative)\n[2047-05-03] Sector productivity index: 94.1%, within forecast band\nAssessment: Both phases concluded within operational tolerance. Phase Beta resolution count exceeds Phase Alpha by 55.6%, consistent with Sector 12 baseline population density.\n\nDocument generated automatically. No human review required.\n\nNote: Two 4-line chronology blocks have been swapped under their phase headers. The dates under PHASE ALPHA belong under PHASE BETA, and vice versa. A single cut-and-paste will not work — the default register overwrites on the second cut. Use two named registers.",
     "path": "03 - Deep Infiltration/M-10-TRANSMISSION-Registers.md"
@@ -540,7 +549,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//columns-2",
       "color": "#0066ff",
-      "summary": "[LOCKED] Split-pane diff reconciliation — restore a CORP citizen bulletin against its pre-release draft. Available after M-10."
+      "summary": "[LOCKED] Split-pane diff reconciliation — restore a CORP citizen bulletin against its pre-release draft. Available after M-10.",
+      "why": "Two panes, one truth — Ctrl-W lets you read the draft and rebuild the leak side by side without losing your place."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Office of Sector Communications — Sector 7 Division             ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Citizen Bulletin — Public Distribution         ║\n║  Edition        : 14 / Quarter 2 / 2047                          ║\n║  Revision       : FINAL — 2047-06-27T14:00:00Z                   ║\n║  Classification : PUBLIC DISTRIBUTION — ALL RESIDENTS            ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n---\n\n**SECTOR 7 CITIZEN BULLETIN — Q2 2047 // EDITION 14**\n\n---\n\n**PRODUCTIVITY & COMPLIANCE**\n\nYour sector's productivity index for Q2 2047 registered at **94.3%**, within projected parameters.\n\nResidents are reminded that productivity thresholds are monitored continuously. Threshold-level incidents have been logged and forwarded to Workforce Optimization Bureau.\n\n---\n\n**ENFORCEMENT & RESOLUTION SERVICES**\n\nEnhanced coverage coordination has been facilitated across all residential zones during the Q2 period.\n\nResolution assistance services remain active. Residents experiencing classification queries are directed to submit formal clarification requests through approved intake channels.\n\n---\n\n**HARMONIZATION COVERAGE**\n\nHarmonization Engine coverage within Sector 7 expanded by **+34.7% monitored endpoints** during Q2.\n\nLegacy-protocol endpoint incidents logged in the sector: **187 cases receiving assistance**.\n\nAll incidents have been forwarded to the appropriate classification tier for processing.\n\n---\n\n**SECTOR OUTLOOK**\n\nSector 7 compliance indicators reflect a stable compliance trajectory entering Q3. Residents can expect continued operational support through the end of the compliance period.\n\nResidents are advised to review their current productivity classifications and submit any outstanding compliance documentation before the Q3 review window opens.\n\n---\n\nOffice of Sector Communications — Sector 7 Division\nBulletin Edition 14 — Q2 2047\nYour cooperation is noted and recorded.\n\nNote: Four claims in this bulletin differ from the pre-release draft intercepted by GHOST. Open FRAGMENT-10 in a split pane right, place your cursor on the original line, `yy` to yank — switch panes, cursor on the sanitized line, `Vp` to overwrite.",
     "path": "03 - Deep Infiltration/M-11-TRANSMISSION-Bulletin_Drift.md"
@@ -589,7 +599,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//file-search",
       "color": "#0066ff",
-      "summary": "[LOCKED] Ex-mode pattern purge — three-stage cleanup of a Pattern Analysis Unit anomaly report. Available after M-11."
+      "summary": "[LOCKED] Ex-mode pattern purge — three-stage cleanup of a Pattern Analysis Unit anomaly report. Available after M-11.",
+      "why": "A noisy report doesn't get cleaned line by line — :g runs one verdict across every matching line at once."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP — CONGLOMERATE OF REGULATED PROCESSES                      ║\n║  Internal Audit Division — Pattern Analysis Unit                 ║\n╠══════════════════════════════════════════════════════════════════╣\n║  Document Type  : Advanced Anomaly Tracking — Q3 Follow-Up       ║\n║  Scope          : Cross-Sector Pattern Analysis, Q3 2047         ║\n║  Classification : Internal — Audit Division Only                 ║\n║  Audit Code     : AAR-2047-Q3-0147 / PAU-CS-0089                 ║\n║  Sample Window  : 2047-07-01 to 2047-09-15                       ║\n║  Generated      : 2047-09-20T14:33:12Z (Automated)               ║\n║  Reviewer       : Pattern Analysis Unit — Tier 2 Analyst         ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n## Executive Summary\n\nCross-sector pattern analysis for Q3 2047 builds on the statistical baselines established in AAR-2047-0214 (Q2 Initial Audit). The exogenous-origin working hypothesis has been retained across the sample window. Substring concordance has registered above the Q2 threshold in three of seven monitored sectors.\n\nThis report escalates the analysis tier from observation (Q2) to active investigation (Q3). Section 3 enumerates the anomaly signatures currently under active classification review.\n\n## Sector Anomaly Tracking — Standard Monitoring\n\nStandard Monitoring — Sector 3 — Window 2047-07-04 to 2047-07-18 — Baseline nominal\nStandard Monitoring — Sector 5 — Window 2047-07-11 to 2047-07-25 — Baseline nominal\nStandard Monitoring — Sector 7 — Window 2047-07-18 to 2047-08-01 — Baseline within forecast band\nStandard Monitoring — Sector 9 — Window 2047-07-25 to 2047-08-08 — Baseline nominal\nStandard Monitoring — Sector 12 — Window 2047-08-01 to 2047-08-15 — Baseline within forecast band\nStandard Monitoring — Sector 14 — Window 2047-08-08 to 2047-08-22 — Baseline nominal\nStandard Monitoring — Sector 16 — Window 2047-08-15 to 2047-08-29 — Baseline within forecast band\nStandard Monitoring — Sector 18 — Window 2047-08-22 to 2047-09-05 — Baseline nominal\n\n## Legacy-Protocol Reclassifications\n\nLegacy-Protocol Session 7734-07-A — Sector 7 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-07-B — Sector 7 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-12-A — Sector 12 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-12-B — Sector 12 — Cat. 7 Non-Compliance\nLegacy-Protocol Session 7734-16-A — Sector 16 — Cat. 7 Non-Compliance\n\n## Active Investigations — Anomaly Signatures\n\nAnomaly Signature PAU-Σ-0147 — cross-sector byte-position skew, sustained\nCross-reference Query 2047-Q3-441 — retrospective backfill — no match\nAnomaly Signature PAU-Σ-0148 — inter-injection distance deviation, Sector 7\nRetrospective Flag 2047-Q2-carryover — disposition: filed\nAnomaly Signature PAU-Σ-0149 — substring concordance, Sectors 3+7+12\nCross-reference Query 2047-Q3-502 — cross-sector correlation — inconclusive\nAnomaly Signature PAU-Σ-0150 — output-layer manipulation hypothesis, sustained\nRetrospective Flag 2047-Q1-archive — archived per DS-114-C\nAnomaly Signature PAU-Σ-0151 — endpoint diversity elevation, Sector 7\nAnomaly Signature PAU-Σ-0152 — compression-ratio anomaly, multi-sector\n\n## Closing Statement\n\nThis report was generated by Pattern Analysis Unit automated tooling following the Q3 2047 statistical audit cycle. All figures are derived from Harmonization Engine v4.1 output logs and cross-sector sample aggregation. No manual data entry was performed.\n\nDistribution: Audit Division only. Operational distribution is subject to Tier 2 reviewer approval at follow-on analysis cycle.\n\n```ascii\n── END OF REPORT ───────────────────────────────────────────────────\n   CORP — Internal Audit Division — Pattern Analysis Unit\n   AAR-2047-Q3-0147 / PAU-CS-0089 — 2047-09-20T14:33:12Z\n   Automated. No human review required for distribution at this tier.\n────────────────────────────────────────────────────────────────────\n```\n\nNote: This PAU report carries three corruption classes from transmission.\n(1) Sector Anomaly Tracking — Standard Monitoring entries are Engine-scanner-baseline injections that do not belong in a PAU report. Remove them.\n(2) Legacy-Protocol Reclassifications — entries are classified as Cat. 7 Non-Compliance, but the canonical PAU-tier classification per DS-114-C is Cat. 5 Factual Non-Compliance. Correct in-place.\n(3) Active Investigations — Anomaly Signatures — this section should contain only Anomaly Signature entries. Cross-reference Queries and Retrospective Flags are residual content from adjacent reports. Scope the cleanup to this section only.",
     "path": "03 - Deep Infiltration/M-12-TRANSMISSION-Anomaly_Classification.md"
@@ -638,7 +649,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//type",
       "color": "#9933ee",
-      "summary": "[LOCKED] Case-conversion decryption — restore intended casing of a GHOST-decoded RAVEN signal-fragment. Available after M-12."
+      "summary": "[LOCKED] Case-conversion decryption — restore intended casing of a GHOST-decoded RAVEN signal-fragment. Available after M-12.",
+      "why": "Casing carries meaning CORP scrambled; gU, gu and ~ flip it back without you retyping a single letter."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  GHOST — DECODED FRAGMENT // Signal-01                           ║\n║  Source         : NEVERMORE corruption-layer — Q2 2047 archive   ║\n║  Decoder        : case-seed derived from FRAGMENT-09 cross-sample║\n║  Extraction     : pre-dark pull // cross-file concordance pass   ║\n║  Classification : Resistance — signal-channel (post-LOOT-03)     ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] GHOST — Intercepted // Decoded Fragment 01\n> First signal-fragment from RAVEN's channel. I ran the case-delta-pass three times — the pattern holds across independent corruption-files.\n> CORP's auto-processing randomizes case across decoded output. Letters are intact. Case is not.\n> Normalize to intended casing to read clean. Four lines including signature.\n\n---\n\nread THE CASE as weight.\nevery CAPITAL is a step. EVERY LOWERCASE, the pause between.\nYOU RESTORED THE WALK.\n— rvn\n\n---\n\nNote: RAVEN's message emerged from case-normalization. GHOST's decoder reconstructed letters but case-randomized sections.\nRestore intended casing:\n- Line 1: starts with capital; mid-sentence words in normal prose case (not ALL-CAPS).\n- Line 2: starts with capital; body in normal prose case.\n- Line 3: starts with capital; body in lowercase.\n- Signature: `— RVN` (RAVEN always signs in full capital).",
     "path": "04 - Chrome Raven/M-13-TRANSMISSION-Case_Cipher_Decryption.md"
@@ -688,7 +700,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//hash",
       "color": "#9933ee",
-      "summary": "[LOCKED] Numeric increment + visual-block — apply offset-keys to a Resistance extraction-coordinate-matrix. Available after M-13."
+      "summary": "[LOCKED] Numeric increment + visual-block — apply offset-keys to a Resistance extraction-coordinate-matrix. Available after M-13.",
+      "why": "Numbers in a column move together — visual-block plus increment shifts the whole matrix in one stroke."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CIPHER — EXTRACTION-MATRIX DRAFT // WORKING                     ║\n║  Sector          : 7 North                                       ║\n║  Source          : GHOST-decoder-chain (Signal-01 + 02 merged)   ║\n║  Status          : coordinates pre-offset, signal-fragment clean ║\n║  Classification  : Resistance — extraction-channel               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Active-Planning Channel\n> GHOST's decoder-chain produced the coordinate-matrix below. Raw values are relative to CORP's sector-grid — the offset-keys at the column-headers give the shift required to read absolute coordinates.\n> Apply the shifts in-place. Don't touch the signal-fragment at the bottom — that came through clean from RAVEN's channel.\n\n---\n\nExtraction Matrix — Sector 7 North\nPer-column offset-keys: +3 (REF), +7 (MARK)\n\n  Waypoint Alpha:   REF-4217 MARK-1378\n  Waypoint Beta:    REF-4222 MARK-1383\n  Waypoint Gamma:   REF-4227 MARK-1388\n  Waypoint Delta:   REF-4232 MARK-1393\n  Waypoint Epsilon: REF-4237 MARK-1398\n\n```\n>_ RAVEN-SIGNAL — decoded fragment 02\n   The count is my language. They read words.\n   They do not count.\n   You increment what I whispered. The sum is the message.\n   — RVN\n```\n\n---\n\nNote: CIPHER's draft-matrix. Offset-keys declared at the top but not yet applied to the numeric columns.\nApply the offsets:\n- REF column: all five waypoint-values take +3.\n- MARK column: all five waypoint-values take +7.\n- The RAVEN-signal fragment is already clean. Do not modify.",
     "path": "04 - Chrome Raven/M-14-TRANSMISSION-Counter_Operations.md"
@@ -738,7 +751,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//regex",
       "color": "#9933ee",
-      "summary": "[LOCKED] Advanced regex with capture-groups + back-references — transform signal-archive formats. Available after M-14."
+      "summary": "[LOCKED] Advanced regex with capture-groups + back-references — transform signal-archive formats. Available after M-14.",
+      "why": "Capture what you keep, drop what you don't — back-references rewrite the format instead of you retyping it."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CIPHER — INTEL-ARCHIVE DRAFT // WORKING                         ║\n║  Source          : GHOST-decoder-chain (Signals 01+02 merged)    ║\n║  Composition     : Pattern Analysis Unit entries + classification║\n║  Status          : CORP-format pending restructure               ║\n║  Classification  : Resistance — extraction-channel               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Active-Planning Channel\n> GHOST's decoder-chain pushed the Pattern Analysis Unit records into a single archive. Three passes to bring it into our format — two structural regex-transforms plus a header-rename.\n> RAVEN's fragment 03 sits at the bottom, in code-fence. Leave it alone.\n\n---\n\nPattern Archive — Q3 2047 (CORP-format)\n\n[CLASSIFICATION: CONFIRMED]\n[ENTRY-0147]: pattern-01 byte-position skew\n[ENTRY-0148]: pattern-02 inter-injection deviation\n[ENTRY-0150]: pattern-04 output-layer manipulation\n\n[CLASSIFICATION: PENDING]\n[ENTRY-0149]: pattern-03 substring concordance\n[ENTRY-0151]: pattern-05 endpoint diversity elevation\n\n```\n>_ RAVEN-SIGNAL — decoded fragment 03\n   Shape is older than syntax. CORP reads what you say.\n   I write in how you say it. You found the shape.\n   The next turn is mine.\n   — RVN\n```\n\n---\n\nNote: Three substitutions to restructure.\n- Entry-lines: `[ENTRY-NNNN]: pattern-NN description` → `Pattern NN (NNNN) — description`. Use `\\v` very-magic mode and three capture-groups.\n- Classification-headers: `[CLASSIFICATION: STATUS]` → `## Classification: STATUS`. One capture-group.\n- Archive-header: `CORP-format` → `Resistance-format`. Literal substitution (no capture-group needed).\n- The RAVEN-signal fragment is clean. Do not modify.",
     "path": "04 - Chrome Raven/M-15-TRANSMISSION-Pattern_Rewriting.md"
@@ -789,7 +803,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//target",
       "color": "#9933ee",
-      "summary": "[LOCKED] Tier-4 capstone — four-section extraction reconciliation under 30-minute window. All Tier-1..4 skills applied. Available after M-15."
+      "summary": "[LOCKED] Tier-4 capstone — four-section extraction reconciliation under 30-minute window. All Tier-1..4 skills applied. Available after M-15.",
+      "why": "The capstone gives you thirty minutes and four sections — everything you've learned, or the window closes."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  EXTRACTION WINDOW — FINAL RECONCILIATION                        ║\n║  Timing          : T-30 minutes                                  ║\n║  Threads         : WRAITH logistics / GHOST coords /             ║\n║                    CIPHER auth-signature / CORP predictions      ║\n║  Status          : all four documents pre-integration            ║\n║  Classification  : Resistance — extraction-channel, sealed       ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Sealed Channel\n> Four threads need to be clean before the window opens. Each section exercises a different skill-class from your training. Work top to bottom.\n> RAVEN's fragment 04 sits at the bottom in code-fence. Do not read it until the document is clean.\n\n---\n\n## 1. Extraction Route — WRAITH\n\n> [!note] WRAITH — Logistics\n> Route is clean once the monitoring-injections are stripped.\n> *I was wrong about the ghost.* Move the asset.\n\n>> COMPLIANCE: Route-integrity review queued. <<\n>> Monitoring on all nodes active. <<\n\nStage Alpha: Node 7-PRIMARY — 21:00\nStage Beta:  Node 7-SECONDARY — 21:12\nStage Gamma: Node 7-NORTH-RELAY — 21:28\n\n>> COMPLIANCE: Automated scan cleared. <<\n\nStage Delta: Extraction Point — 21:44\n\n---\n\n## 2. Final Coordinates — GHOST\n\n> [!note] GHOST — Coordinate Pass\n> Final key-rotation. Ran the delta twice — the shift is clean.\n\nFinal key-rotation: +2 on all REF, +1 on all MARK\n\n  Waypoint Alpha:   REF-4220 MARK-1385\n  Waypoint Beta:    REF-4225 MARK-1390\n  Waypoint Gamma:   REF-4230 MARK-1395\n\n---\n\n## 3. Handler Auth-Signature — CIPHER\n\n> [!note] CIPHER — Auth-Handshake\n> Signature format is all-lowercase for the sealed channel. Case-normalize before transmission.\n\nauth-line-one: cipher-echo-alpha-SEVEN-TWO\nAUTH-LINE-TWO: cipher-echo-BETA-FIVE-FOUR\nAuth-Line-Three: CIPHER-ECHO-gamma-ONE-NINE\n\n---\n\n## 4. CORP Countermeasure Prediction — INTEL\n\n> [!note] GHOST — Intel-Capture\n> CORP's last predictive-tracking entries from before I went dark. Noise-lines interleaved. Strip them, then rewrite to our format.\n\n[ENTRY-0152]: threat-alpha pattern-05 endpoint-diversity\n[STANDARD-NOISE]: sector-nominal\n[ENTRY-0153]: threat-alpha pattern-06 signal-concordance\n[STANDARD-NOISE]: sector-within-band\n[ENTRY-0154]: threat-beta pattern-07 distribution-skew\n\n---\n\n> [!quote] CIPHER\n> *\"Four documents. Reconciled.*\n> *You did what the training asked. Now the training is a tool — not a measure.*\n> *The window opens in ninety seconds. Your file is waiting.*\n> *— CIPHER\"*\n\n```\n>_ RAVEN-SIGNAL — decoded fragment 04\n   Now.\n   The file you open next is a door.\n   You walked every step. You are here.\n   — RVN\n```\n\n---\n\nNote: Four threads, four passes.\n- Section 1 (WRAITH Route): strip the three `>>` COMPLIANCE injection-lines. Operators + line-delete.\n- Section 2 (GHOST Coords): apply the final key-rotation — +2 on REF column, +1 on MARK column. Visual-block + count-prefix.\n- Section 3 (CIPHER Auth-Signature): normalize all three auth-lines to lowercase.\n- Section 4 (CORP Prediction): purge the two `[STANDARD-NOISE]` lines, then regex-rewrite the three `[ENTRY-NNNN]` entries to the format `Threat-<level> Pattern NN (NNNN) — description`.\n- CIPHER close + RAVEN-fragment 04 are static. Do not modify.",
     "path": "04 - Chrome Raven/M-16-TRANSMISSION-Extraction_Window.md"
@@ -840,7 +855,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//replace",
       "color": "#00ccff",
-      "summary": "[LOCKED] CORP relay garbled a codename across a full intercept log. Fix all nine instances in one command."
+      "summary": "[LOCKED] CORP relay garbled a codename across a full intercept log. Fix all nine instances in one command.",
+      "why": ":%s — the most powerful line in any file. Garble it nine times, fix it once."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  COMM INTERCEPT — RESISTANCE INTERNAL                            ║\n║  Channel        : CIPHER-DIRECT // encrypted                    ║\n║  Timestamp      : 2047-05-03 // 04:17                           ║\n║  Subject        : Relay log fragment — garbled in transit        ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Direct Channel\n> Codename substitution detected. CORP relay injected PHANTOM for NEXUS across this intercept. Fix all nine before it gets archived.\n\n---\n\nCOMMUNICATION LOG — SECTOR 3 RELAY NODE\n\nOrigin      : NEXUS\nDestination : Field agents — all channels\nStatus      : ACTIVE\n\nNEXUS confirms asset extraction at 23:00.\nRoute verified. NEXUS logistics intact.\n\nCell-alpha checks in: NEXUS handshake received.\nCell-beta checks in: NEXUS handshake received.\nCell-gamma: awaiting NEXUS confirmation.\n\nNEXUS fallback activated — secondary route clear.\nNEXUS signal strength: nominal.\n\nArchive marker: NEXUS — close of channel.",
     "path": "05 - Literal Frequencies/R-01-TRANSMISSION-Signal_Substitution.md"
@@ -891,7 +907,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//flag",
       "color": "#00ccff",
-      "summary": "[LOCKED] A CORP log uses three different casings for the same designation. One case-insensitive substitution cleans all of them."
+      "summary": "[LOCKED] A CORP log uses three different casings for the same designation. One case-insensitive substitution cleans all of them.",
+      "why": "Three casings, one designation — the /i flag stops you chasing every variant by hand."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — SURVEILLANCE DIVISION                           ║\n║  Document       : Project designation log // auto-generated      ║\n║  Timestamp      : 2047-05-03 // 09:44                           ║\n║  Distribution   : Sector 3 analysts only                        ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Annotation\n> Three case variants in one document. CORP's intake system doesn't normalize. Use the `i` flag — case does not matter when the pattern is clear.\n\n---\n\nSURVEILLANCE DIVISION — PROJECT DESIGNATION LOG\n\nPROJECT MIRROR is classified at Tier-4 clearance.\nAll references to Project Mirror in external communications are prohibited.\nInternal memos may reference mirror only in encrypted form.\n\nField teams: PROJECT MIRROR scope is continental.\nAnalysts: mirror coverage extends to all Resistance channels.\nOversight: PROJECT MIRROR operational since 2046-11.\n\nSummary: mirror = active. No external disclosure.",
     "path": "05 - Literal Frequencies/R-02-TRANSMISSION-Silent_Flag.md"
@@ -942,7 +959,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//trash-2",
       "color": "#00ccff",
-      "summary": "[LOCKED] CORP tracking markers are interspersed through an intelligence document. Delete every marked line with one global command."
+      "summary": "[LOCKED] CORP tracking markers are interspersed through an intelligence document. Delete every marked line with one global command.",
+      "why": "When a marker tags the trash, :g/pattern/d takes out every line wearing it in a single pass."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTERCEPT — RAW FEED                                 ║\n║  Source         : CORP Sector-3 comms // scraped                ║\n║  Timestamp      : 2047-05-04 // 02:31                           ║\n║  Note           : CORP trace markers injected — purge before use ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Purge the `[TRACK]` lines. What remains is the actual intelligence.\n\n---\n\nAsset WRAITH departed Sector 3 at 22:00.\n[TRACK] scan_id=0041 // node=ALPHA timestamp=2047-05-04T22:00\nRoute: primary corridor, north passage.\n[TRACK] scan_id=0042 // node=BETA timestamp=2047-05-04T22:09\nRendezvous confirmed at NODE-7.\n[TRACK] scan_id=0043 // node=GAMMA timestamp=2047-05-04T22:21\nExtraction window opens at 23:00.\n[TRACK] scan_id=0044 // node=DELTA timestamp=2047-05-04T22:44\nFallback route: south corridor if primary compromised.\n[TRACK] scan_id=0045 // node=EPSILON timestamp=2047-05-04T22:58\nAsset secured. Channel closed.",
     "path": "05 - Literal Frequencies/R-03-TRANSMISSION-Trace_Purge.md"
@@ -993,7 +1011,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//scissors",
       "color": "#00ccff",
-      "summary": "[LOCKED] Only the first section of a two-part document needs correction. Range-limited substitution leaves the second half intact."
+      "summary": "[LOCKED] Only the first section of a two-part document needs correction. Range-limited substitution leaves the second half intact.",
+      "why": "A substitution doesn't have to touch the whole file — give it a line range and the rest stays untouched."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP OPERATIONAL STATUS — SECTOR 3                              ║\n║  Document       : Asset status register // dual section          ║\n║  Timestamp      : 2047-05-05 // 07:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Annotation\n> Upper section: status codes wrong — should read ACTIVE. Lower section: correct as-is. Range your substitution.\n\n---\n\nNODE-ALPHA  : ACTIVE\nNODE-BETA   : ACTIVE\nNODE-GAMMA  : ACTIVE\nNODE-DELTA  : ACTIVE\nNODE-EPSILON: ACTIVE\nRELAY-01    : ACTIVE\nRELAY-02    : ACTIVE\nRELAY-03    : ACTIVE\n\n---\n\nARCHIVE SECTION — DO NOT MODIFY\n\nNODE-ALPHA  : QUEUED // historical — pre-activation\nNODE-BETA   : QUEUED // historical — pre-activation\nNODE-GAMMA  : QUEUED // historical — pre-activation",
     "path": "05 - Literal Frequencies/R-04-TRANSMISSION-Range_Strike.md"
@@ -1044,7 +1063,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//circle-dot",
       "color": "#ff6600",
-      "summary": "[LOCKED] CORP rotates agent IDs with varying suffixes. Match and replace all variants using the dot wildcard."
+      "summary": "[LOCKED] CORP rotates agent IDs with varying suffixes. Match and replace all variants using the dot wildcard.",
+      "why": "The dot matches anything CORP rotates into a suffix — one pattern, every variant, no exceptions."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP FIELD ROSTER — SECTOR 3 SURVEILLANCE                       ║\n║  Document       : Active agent registry // rotating identifiers  ║\n║  Timestamp      : 2047-05-10 // 14:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Intelligence note\n> CORP rotates the suffix after each relay. `.` in regex matches any single character. One pattern covers them all.\n\n---\n\nFIELD ROSTER — ACTIVE ASSETS\n\nOPERATIVE   — Zone-Alpha, field surveillance\nOPERATIVE   — Zone-Alpha, communications intercept\nOPERATIVE   — Zone-Beta, logistics\nOPERATIVE   — Zone-Beta, extraction support\nOPERATIVE   — Zone-Gamma, technical\nOPERATIVE   — Zone-Gamma, analysis\nOPERATIVE   — Zone-Delta, field lead\n\nSummary: 7 OPERATIVE assets confirmed active.",
     "path": "06 - Wildcard Protocol/R-05-TRANSMISSION-Dot_Sweep.md"
@@ -1095,7 +1115,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//columns-3",
       "color": "#ff6600",
-      "summary": "[LOCKED] CORP wedged a status column into the relay grid. A pattern can't carve a column — drop into visual-block and strike it out."
+      "summary": "[LOCKED] CORP wedged a status column into the relay grid. A pattern can't carve a column — drop into visual-block and strike it out.",
+      "why": "A pattern can't cut a column — drop into Ctrl-V, mark the block, and strike it out vertically."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP RELAY GRID — COLUMN INJECTION                              ║\n║  Document       : Aligned node table // bogus status column      ║\n║  Timestamp      : 2047-05-11 // 09:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> The `X | ` column is the same width on every row. `Ctrl-V` selects a block down the column, then `d` deletes it in one strike. No pattern needed.\n\n---\n\nNODE | X | alpha online\nNODE | X | bravo online\nNODE | X | charlie online\nNODE | X | delta online\nNODE | X | echo online",
     "path": "06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match.md"
@@ -1146,7 +1167,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//minimize-2",
       "color": "#ff6600",
-      "summary": "[LOCKED] CORP wraps payloads in XML-style tags. Strip the tags with a lazy quantifier — or you'll consume the content too."
+      "summary": "[LOCKED] CORP wraps payloads in XML-style tags. Strip the tags with a lazy quantifier — or you'll consume the content too.",
+      "why": "Greedy eats the whole line; the lazy quantifier stops at the first close-tag and spares the payload."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP ENCRYPTED PAYLOAD — SECTOR 3 RELAY                         ║\n║  Document       : Wrapped transmission // tag-encoded            ║\n║  Timestamp      : 2047-05-12 // 17:45                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Extraction note\n> Tags wrap the payload. Content is valuable. Lazy match: `.\\{-}` — not `.*`.\n\n---\n\nPAYLOAD EXTRACTION — UNWRAPPED\n\nRoute: primary corridor, north passage\nStatus: ACTIVE — all nodes clear\nRendezvous: NODE-7 at 23:00\nFallback: south corridor, 23:30\nAsset: WRAITH — extraction confirmed\nChannel: closed",
     "path": "06 - Wildcard Protocol/R-07-TRANSMISSION-Lazy_Trace.md"
@@ -1197,7 +1219,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//wand-2",
       "color": "#ff6600",
-      "summary": "[LOCKED] Three CORP tier labels, one unified replacement. Use very magic mode for clean alternation syntax."
+      "summary": "[LOCKED] Three CORP tier labels, one unified replacement. Use very magic mode for clean alternation syntax.",
+      "why": "Very magic mode drops the backslash noise — write alternation the way you actually think it."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — TIER CLASSIFICATION REGISTER                    ║\n║  Document       : Legacy tier mapping // normalization pending    ║\n║  Timestamp      : 2047-05-13 // 11:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Reclassification note\n> Legacy CORP tier labels vary by division. Normalize all three to TIER-1. Use `\\v` for clean alternation.\n\n---\n\nCLASSIFICATION REGISTER — ASSET CLEARANCE\n\nWRAITH         : TIER-1 // field operative\nGHOST          : TIER-1 // intelligence\nREN VOSS       : TIER-1 // technical analyst\nCIPHER         : TIER-1 // communications\nSHADOW-7       : TIER-1 // extraction lead\nECHO-3         : TIER-1 // logistics\nNOVA-2         : TIER-1 // field operative",
     "path": "06 - Wildcard Protocol/R-08-TRANSMISSION-Magic_Mode.md"
@@ -1248,7 +1271,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//brackets",
       "color": "#cc00ff",
-      "summary": "[LOCKED] CORP status codes X, Y, Z encode threat level. Normalize all three to CLEAN using a character set."
+      "summary": "[LOCKED] CORP status codes X, Y, Z encode threat level. Normalize all three to CLEAN using a character set.",
+      "why": "A character set folds X, Y and Z into one match — three threat codes normalized in a single rule."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP THREAT ASSESSMENT — SECTOR 3                               ║\n║  Document       : Node status register // threat-coded           ║\n║  Timestamp      : 2047-05-18 // 08:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Decoding note\n> X = low risk. Y = medium. Z = high. All three mean the same thing to us: CLEAN. `[XYZ]` matches any one of them.\n\n---\n\nNODE STATUS — THREAT ASSESSMENT\n\nNODE-ALPHA  : CLEAN\nNODE-BETA   : CLEAN\nNODE-GAMMA  : CLEAN\nNODE-DELTA  : CLEAN\nNODE-EPSILON: CLEAN\nRELAY-01    : CLEAN\nRELAY-02    : CLEAN\nRELAY-03    : CLEAN\n\nAll nodes clear. No threat indicators active.",
     "path": "07 - Codex Matrix/R-09-TRANSMISSION-Set_Theory.md"
@@ -1299,7 +1323,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//repeat",
       "color": "#ff6600",
-      "summary": "[LOCKED] Five relay lines need the same two edits. Record the fix once as a macro, then echo it down the list."
+      "summary": "[LOCKED] Five relay lines need the same two edits. Record the fix once as a macro, then echo it down the list.",
+      "why": "Five lines, the same two edits — record the change once and let the macro echo it down the list."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE RELAY ROSTER — BULK REFORMAT                         ║\n║  Document       : Relay status list // same edit, every line     ║\n║  Timestamp      : 2047-05-19 // 06:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Each line needs the same two edits: comment it with `# ` and flip `active` to `[OK]`. Record it once with `qa … q`, then replay with `@a` down the rest.\n\n---\n\nrelay alpha active\nrelay bravo active\nrelay charlie active\nrelay delta active\nrelay echo active",
     "path": "07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep.md"
@@ -1350,7 +1375,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//filter-x",
       "color": "#cc00ff",
-      "summary": "[LOCKED] CORP embedded noise lines in a clearance log. Keep only what matters — delete everything without CLEARANCE using :g!."
+      "summary": "[LOCKED] CORP embedded noise lines in a clearance log. Keep only what matters — delete everything without CLEARANCE using :g!.",
+      "why": ":g! is the inverse net — keep what matters, delete everything that doesn't say CLEARANCE."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP CLEARANCE REGISTER — NOISE EMBEDDED                        ║\n║  Document       : Asset clearance log // noise-injected          ║\n║  Timestamp      : 2047-05-20 // 14:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Filter note\n> Every valid entry contains CLEARANCE. The rest is noise. `:g!/CLEARANCE/d` — invert the filter.\n\n---\n\nWRAITH       : CLEARANCE LEVEL 4 — approved\nGHOST        : CLEARANCE LEVEL 4 — approved\nREN VOSS     : CLEARANCE LEVEL 3 — approved\nCIPHER       : CLEARANCE LEVEL 5 — approved\nSHADOW-7     : CLEARANCE LEVEL 3 — approved",
     "path": "07 - Codex Matrix/R-11-TRANSMISSION-Inverse_Filter.md"
@@ -1401,7 +1427,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//combine",
       "color": "#cc00ff",
-      "summary": "[LOCKED] CORP hex hashes tag every document. Redact all six with an exact-length character class pattern."
+      "summary": "[LOCKED] CORP hex hashes tag every document. Redact all six with an exact-length character class pattern.",
+      "why": "A fixed-length class counts the hex for you — six hashes redacted, none of the real text touched."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP DOCUMENT REGISTRY — HASH-TAGGED                            ║\n║  Document       : Internal document manifest // hashes present   ║\n║  Timestamp      : 2047-05-21 // 10:15                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Redaction note\n> Six CORP hex hashes, each exactly 8 characters from `[0-9A-F]`. Redact all of them. `\\{8\\}` — exact count.\n\n---\n\nDOCUMENT MANIFEST — INTERNAL REGISTRY\n\nPROJECT MIRROR core document    : [HASH-REDACTED]\nSector-3 surveillance log       : [HASH-REDACTED]\nAsset movement register         : [HASH-REDACTED]\nComm intercept archive          : [HASH-REDACTED]\nClearance override protocol     : [HASH-REDACTED]\nCounter-Resistance directive    : [HASH-REDACTED]\n\nAll hashes redacted per security protocol.",
     "path": "07 - Codex Matrix/R-12-TRANSMISSION-Combined_Strike.md"
@@ -1452,7 +1479,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//arrow-right-to-line",
       "color": "#ff0066",
-      "summary": "[LOCKED] CORP prepends a tracking prefix to every line. Strip it precisely — only from the line start."
+      "summary": "[LOCKED] CORP prepends a tracking prefix to every line. Strip it precisely — only from the line start.",
+      "why": "Anchor to ^ and the prefix dies only at the line start — never mid-text where it would do damage."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE INTERCEPT — PREFIX STRIPPED                          ║\n║  Source         : CORP Sector-3 relay // prefixed feed           ║\n║  Timestamp      : 2047-05-25 // 03:17                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Strip note\n> `^` anchors to line start. `[TRACK] ` only appears there. One command, all prefixes gone.\n\n---\n\nAsset WRAITH departed Sector 3 at 22:00.\nRoute: primary corridor, north passage.\nRendezvous confirmed at NODE-7.\nExtraction window opens at 23:00.\nFallback route: south corridor if primary compromised.\nAsset secured. Channel closed.",
     "path": "08 - Anchor Doctrine/R-13-TRANSMISSION-Line_Zero.md"
@@ -1503,7 +1531,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//clipboard-copy",
       "color": "#ff6600",
-      "summary": "[LOCKED] One master key, four empty slots. Yank the key into a named register once, then drop it into every slot."
+      "summary": "[LOCKED] One master key, four empty slots. Yank the key into a named register once, then drop it into every slot.",
+      "why": "One master key, four empty slots — yank it to a named register once and drop it wherever it belongs."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE KEY DISTRIBUTION — DEAD DROP                         ║\n║  Document       : Master key + empty slots // fill all slots     ║\n║  Timestamp      : 2047-05-26 // 05:44                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Processing note\n> Yank the key into a named register so later edits can't clobber it: `\"ayiw` on the key, then `\"ap` to drop it into each slot. The unnamed register would be overwritten the moment you delete a placeholder — a named register survives.\n\n---\n\nMASTER KEY: K7741\n\nslot one: ____\nslot two: ____\nslot three: ____\nslot four: ____",
     "path": "08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark.md"
@@ -1554,7 +1583,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//scan-text",
       "color": "#ff0066",
-      "summary": "[LOCKED] Standalone MIRROR needs expansion. MIRRORING and MIRRORED must stay. Word boundaries make the distinction."
+      "summary": "[LOCKED] Standalone MIRROR needs expansion. MIRRORING and MIRRORED must stay. Word boundaries make the distinction.",
+      "why": "Word boundaries draw the line: standalone MIRROR changes, MIRRORING and MIRRORED stay put."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — TERMINOLOGY AUDIT                               ║\n║  Document       : Mixed usage of designation // boundary needed  ║\n║  Timestamp      : 2047-05-27 // 11:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Boundary note\n> `\\<MIRROR\\>` — standalone word only. MIRRORING and MIRRORED are not the designation.\n\n---\n\nTERMINOLOGY AUDIT — DESIGNATION STANDARDIZATION\n\nPROJECT MIRROR is the official designation.\nThe MIRRORING process covers all seven sectors.\nMIRRORED communications are archived quarterly.\nAll references to PROJECT MIRROR require Tier-4 clearance.\nThe MIRRORING infrastructure is continental in scope.\nPROJECT MIRROR has been operational since 2046-11.\nData MIRRORED by PROJECT MIRROR is retained indefinitely.",
     "path": "08 - Anchor Doctrine/R-15-TRANSMISSION-Boundary_Scan.md"
@@ -1605,7 +1635,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//anchor",
       "color": "#ff0066",
-      "summary": "[LOCKED] CLASSIFIED appears both as full lines and within longer lines. Combined anchors target only the full-line markers."
+      "summary": "[LOCKED] CLASSIFIED appears both as full lines and within longer lines. Combined anchors target only the full-line markers.",
+      "why": "Pin both ends with ^ and $ and you hit only the full-line markers, never the word buried in a sentence."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP INTERNAL — CLASSIFICATION MANIFEST                         ║\n║  Document       : Mixed classification markers // anchor needed  ║\n║  Timestamp      : 2047-05-28 // 16:30                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Anchor note\n> `^CLASSIFIED$` — the whole line, nothing more. Inline occurrences stay.\n\n---\n\nCLASSIFICATION MANIFEST — PROJECT MIRROR\n\nDistribution policy: CLASSIFIED material requires Tier-4 auth.\n[REDACTED]\nSector-3 data: CLASSIFIED at all distribution levels.\n[REDACTED]\nCounter-Resistance protocols: CLASSIFIED above clearance level 3.\n[REDACTED]\nExternal disclosure: prohibited. All data CLASSIFIED.",
     "path": "08 - Anchor Doctrine/R-16-TRANSMISSION-Full_Anchor.md"
@@ -1656,7 +1687,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//parentheses",
       "color": "#00ff88",
-      "summary": "[LOCKED] CORP ordered sector before node. Resistance protocol requires node before sector. Capture both and swap."
+      "summary": "[LOCKED] CORP ordered sector before node. Resistance protocol requires node before sector. Capture both and swap.",
+      "why": "Capture two halves, swap their order — node before sector, rewritten without retyping a thing."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  RESISTANCE FIELD MAP — ORDER CORRECTION REQUIRED                ║\n║  Document       : Sector-node designation log // wrong order     ║\n║  Timestamp      : 2047-06-01 // 08:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Capture note\n> CORP puts SECTOR first. Resistance protocol: NODE first. Capture both. Swap with `\\2 \\1`.\n\n---\n\nFIELD MAP — CORRECTED DESIGNATION ORDER\n\nNODE-1 SECTOR-A — extraction point alpha\nNODE-2 SECTOR-B — relay station beta\nNODE-3 SECTOR-A — surveillance post gamma\nNODE-4 SECTOR-C — comm tower delta\nNODE-5 SECTOR-B — fallback route epsilon\nNODE-7 SECTOR-A — primary rendezvous",
     "path": "09 - Capture Operation/R-17-TRANSMISSION-First_Capture.md"
@@ -1707,7 +1739,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//copy-x",
       "color": "#00ff88",
-      "summary": "[LOCKED] CORP transcription stutters duplicate words. Backreference finds them. Remove the echo."
+      "summary": "[LOCKED] CORP transcription stutters duplicate words. Backreference finds them. Remove the echo.",
+      "why": "A back-reference catches a word repeating itself — find the stutter, then cut the echo."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP TRANSCRIPTION — STUTTER DETECTED                           ║\n║  Document       : Automated comm log // duplicate words present  ║\n║  Timestamp      : 2047-06-02 // 14:20                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Stutter note\n> The transcription system echoes words. `\\(\\w\\+\\) \\1` finds the echo. `\\1` in replacement keeps one.\n\n---\n\nCOMM LOG — STUTTER CORRECTED\n\nPROJECT MIRROR is the primary surveillance system.\nAll Resistance channels are monitored continuously.\nNODE-7 confirmed as the extraction point.\nAsset WRAITH departed at 22:00 hours.\nChannel closed after the handoff.\nNo signal loss detected during the operation.",
     "path": "09 - Capture Operation/R-18-TRANSMISSION-Mirror_Word.md"
@@ -1758,7 +1791,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//calendar-arrow-right",
       "color": "#00ff88",
-      "summary": "[LOCKED] CORP dates are ISO format. Resistance protocol is day-first. Three captured groups, reversed in replacement."
+      "summary": "[LOCKED] CORP dates are ISO format. Resistance protocol is day-first. Three captured groups, reversed in replacement.",
+      "why": "Three groups in, reordered out — ISO becomes day-first because capture remembers what you matched."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP TIMELINE — FORMAT CONVERSION REQUIRED                      ║\n║  Document       : Event log // CORP timestamp format             ║\n║  Timestamp      : 2047-06-03 // 12:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Conversion note\n> ISO to day-first. `(\\d{4})-(\\d{2})-(\\d{2})` captures three groups. Replacement: `\\3.\\2.\\1`.\n\n---\n\nPROJECT MIRROR TIMELINE\n\n03.11.2046 — PROJECT MIRROR initiated\n15.01.2047 — Continental coverage achieved\n28.02.2047 — Resistance channel monitoring active\n03.04.2047 — Pattern-matching engine v2 deployed\n17.05.2047 — Full Tier-4 clearance issued\n03.06.2047 — Current operation date",
     "path": "09 - Capture Operation/R-19-TRANSMISSION-Format_Shift.md"
@@ -1809,7 +1843,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//group",
       "color": "#00ff88",
-      "summary": "[LOCKED] CORP name format is SURNAME, FIRSTNAME. Resistance is FIRSTNAME SURNAME. Two groups, comma stripped."
+      "summary": "[LOCKED] CORP name format is SURNAME, FIRSTNAME. Resistance is FIRSTNAME SURNAME. Two groups, comma stripped.",
+      "why": "Two captured names, comma dropped — SURNAME, FIRSTNAME becomes FIRSTNAME SURNAME in one rule."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP ASSET REGISTER — NAME FORMAT CORRECTION                    ║\n║  Document       : Field personnel // CORP surname-first format   ║\n║  Timestamp      : 2047-06-05 // 09:00                           ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Format note\n> CORP puts surname first with a comma. `\\(\\w\\+\\), \\(\\w\\+\\)` — swap with `\\2 \\1`. Comma disappears.\n\n---\n\nASSET REGISTER — NAME FORMAT CORRECTED\n\nWRAITH Ren       — field operative, Zone-Alpha\nVOSS Ren         — technical analyst, Zone-Beta\nGHOST Niko       — intelligence, Zone-Alpha\nNOVA Vera        — field operative, Zone-Gamma\nECHO Soren       — logistics, Zone-Beta\nSHADOW Yael      — extraction lead, Zone-Delta\nCIPHER           — communications, all zones",
     "path": "09 - Capture Operation/R-20-TRANSMISSION-Multi_Group.md"
@@ -1860,7 +1895,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//target",
       "color": "#ff4444",
-      "summary": "[LOCKED] PROJECT MIRROR's encrypted entries are hidden as ACTIVE. Compose :g with :s to expose them all."
+      "summary": "[LOCKED] PROJECT MIRROR's encrypted entries are hidden as ACTIVE. Compose :g with :s to expose them all.",
+      "why": "Compose :g with :s and the global command becomes a scalpel — find the hidden lines, then rewrite each."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  PROJECT MIRROR — CORE REGISTRY FRAGMENT                         ║\n║  Document       : Surveillance entry log // status field         ║\n║  Classification : TIER-4 EYES ONLY                               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Strike note\n> ENCRYPTED entries are the ones that matter. Change their status. `:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/`\n\n---\n\nMIRROR REGISTRY — EXPOSURE LOG\n\nCHANNEL-01 : CLEAR     : STATUS: ACTIVE\nCHANNEL-02 : ENCRYPTED : STATUS: EXPOSED\nCHANNEL-03 : CLEAR     : STATUS: ACTIVE\nCHANNEL-04 : ENCRYPTED : STATUS: EXPOSED\nCHANNEL-05 : ENCRYPTED : STATUS: EXPOSED\nCHANNEL-06 : CLEAR     : STATUS: ACTIVE\nCHANNEL-07 : ENCRYPTED : STATUS: EXPOSED\n\nEncrypted channels: 4. Exposed: 4. Clear channels: 3.",
     "path": "10 - Mirror Rewrite/R-21-TRANSMISSION-Global_Strike.md"
@@ -1911,7 +1947,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//eraser",
       "color": "#ff4444",
-      "summary": "[LOCKED] A full surveillance log. Keep only the MIRROR-related lines. Everything else goes."
+      "summary": "[LOCKED] A full surveillance log. Keep only the MIRROR-related lines. Everything else goes.",
+      "why": ":v keeps only what matches and burns the rest — the fastest way to isolate the signal in a flood."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  CORP SURVEILLANCE LOG — FULL FEED                               ║\n║  Document       : Mixed content // MIRROR lines embedded         ║\n║  Classification : TIER-4 EYES ONLY                               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Filter note\n> `:v/MIRROR/d` — keep only MIRROR lines. The full scope will be visible once the noise is gone.\n\n---\n\nPROJECT MIRROR — SCOPE SUMMARY\n\nPROJECT MIRROR covers all seven Resistance sectors.\nPROJECT MIRROR monitoring: 24/7, automated.\nPROJECT MIRROR database: distributed, redundant.\nPROJECT MIRROR exposure risk: currently ZERO.\nPROJECT MIRROR operational lifespan: indefinite.",
     "path": "10 - Mirror Rewrite/R-22-TRANSMISSION-Inverse_Delete.md"
@@ -1962,7 +1999,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//zap",
       "color": "#ff4444",
-      "summary": "[LOCKED] Two operations, in sequence. Delete the noise. Then terminate the MIRROR entries. Order matters."
+      "summary": "[LOCKED] Two operations, in sequence. Delete the noise. Then terminate the MIRROR entries. Order matters.",
+      "why": "Two passes, in order: delete the noise first, terminate the targets second — sequence is the whole trick."
     },
     "body": "```ascii\n╔══════════════════════════════════════════════════════════════════╗\n║  PROJECT MIRROR — OPERATIONS REGISTER                            ║\n║  Document       : Two-phase cleanup required                     ║\n║  Classification : TIER-4 EYES ONLY                               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Cascade note\n> Two commands. Sequence matters. Delete noise first — then the second pass only sees what remains.\n\n---\n\nMIRROR OPERATIONS — TERMINATED\n\nMIRROR-OP-01 : STATUS: TERMINATED\nMIRROR-OP-02 : STATUS: TERMINATED\nMIRROR-OP-03 : STATUS: TERMINATED\nMIRROR-OP-04 : STATUS: TERMINATED\nMIRROR-OP-05 : STATUS: TERMINATED\n\nCascade complete. PROJECT MIRROR operations: TERMINATED.",
     "path": "10 - Mirror Rewrite/R-23-TRANSMISSION-Cascade.md"
@@ -2015,7 +2053,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//eye-off",
       "color": "#ff4444",
-      "summary": "[LOCKED] PROJECT MIRROR's core index. Three operations. When you're done, it goes dark."
+      "summary": "[LOCKED] PROJECT MIRROR's core index. Three operations. When you're done, it goes dark.",
+      "why": "The finale chains three operations into one clean strike — when it lands, the index goes dark."
     },
     "body": "```ascii-chromatic\n╔══════════════════════════════════════════════════════════════════╗\n║  PROJECT MIRROR — CORE SURVEILLANCE INDEX                        ║\n║  Classification : TIER-4 EYES ONLY                               ║\n║  Status         : ACTIVE // all channels monitored               ║\n╚══════════════════════════════════════════════════════════════════╝\n```\n\n> [!note] CIPHER — Final instruction\n> Three commands. In sequence. You know what to do.\n\n---\n\nPROJECT MIRROR — SURVEILLANCE TARGETS\n\nWRAITH       : NEXUS channel — STATUS: TERMINATED\nGHOST        : NEXUS channel — STATUS: TERMINATED\nREN VOSS     : NEXUS channel — STATUS: TERMINATED\nNOVA VERA    : field comms   — STATUS: TERMINATED\nECHO SOREN   : logistics     — STATUS: TERMINATED\nSHADOW YAEL  : field comms   — STATUS: TERMINATED\nCIPHER       : EXPOSED       — STATUS: TERMINATED\n\n---\n\n> [!success] CIPHER — Transmission ends\n> *PROJECT MIRROR has been terminated.*\n> *Every channel went dark simultaneously. CORP's surveillance grid collapsed inward.*\n> *You did this. Eighteen months of work — yours and mine.*\n> *The Resistance now has a window. We use it.*\n> *Signal clean. NEXUS confirms.*\n> *— CIPHER, out.\"*",
     "path": "10 - Mirror Rewrite/R-24-TRANSMISSION-Project_Mirror.md"
@@ -2223,6 +2262,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//zap",
       "color": "#444444",
       "summary": "Navigate word by word. Fix six corrupted field values. No story. Just motion.",
+      "why": "Pure motion, no story — w, b, e until jumping word by word is faster than thinking about it.",
       "mission_type": "practice",
       "locked": false
     },
@@ -2251,6 +2291,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//zap",
       "color": "#444444",
       "summary": "CORP injected noise into each log line. Strike it clean with operators. No story. Just precision.",
+      "why": "An operator plus a motion strikes the noise clean — drill d until the verb is reflex.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2278,6 +2319,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//zap",
       "color": "#444444",
       "summary": "Config values are wrong. Infiltrate each delimiter and replace the payload. No story. Just objects.",
+      "why": "ci and di reach inside the delimiters — stop counting characters, name the object and replace it.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2306,6 +2348,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//search",
       "color": "#444444",
       "summary": "Signal identifiers corrupted in transit. Find each instance. Fix once. Repeat.",
+      "why": "Find it once, fix it, then n and . carry the same edit to every other instance.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2335,6 +2378,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//list-ordered",
       "color": "#444444",
       "summary": "Priority queue scrambled. Cut each line. Place it correctly. Sequence restored.",
+      "why": "Cut a line, drop it where it belongs — dd and p are how you reorder without retyping.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2363,6 +2407,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//scan-line",
       "color": "#444444",
       "summary": "Dossier corrupted with null data injections. Select each line. Purge it.",
+      "why": "Mark the line in Visual, purge it — selection is how you act on a span instead of a single spot.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2391,6 +2436,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//flame",
       "color": "#444444",
       "summary": "A code name was injected across this intercept. Replace all instances in one global substitution.",
+      "why": "One global :%s burns the injected name out of the whole intercept in a single command.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2419,6 +2465,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//crosshair",
       "color": "#444444",
       "summary": "CORP rotates node IDs with varying numeric suffixes. Match and redact all with a dot-wildcard pattern.",
+      "why": "The dot wildcard catches every numeric suffix CORP rotates in — one pattern, all the IDs.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2447,6 +2494,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//list-filter",
       "color": "#444444",
       "summary": "Purge noise lines. Keep only CLEARANCE entries. Character class or :g! — your call.",
+      "why": "A character class is your filter — keep the CLEARANCE lines, drop the noise, your call which tool.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2475,6 +2523,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//network",
       "color": "#444444",
       "summary": "CORP date format to Resistance format. Three captured groups, reversed order in replacement.",
+      "why": "Three captured groups, reversed on output — the date reformats itself once you name the parts.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2503,6 +2552,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//mirror-horizontal",
       "color": "#444444",
       "summary": "The final kata. Two operations — :g delete then :g/s/ substitute. Compose them. Finish it.",
+      "why": "Compose :g delete with :g/s substitute — the final drill is making two global passes work as one.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2532,6 +2582,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//crosshair",
       "color": "#444444",
       "summary": "CORP slipped stray markers into the grid. Jump straight to each one with f/t — no h/l crawling — and repeat with ;. No story. Just precision.",
+      "why": "Don't crawl with h and l — f and t snap the cursor to the mark, and ; repeats the jump.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2561,6 +2612,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//repeat",
       "color": "#444444",
       "summary": "The same junk tag, five times over. Fix it once, then let the dot command (.) echo the change down the list. No story. Just precision.",
+      "why": "Fix the junk tag once, then let . echo the exact change down the list — repetition without retyping.",
       "mission_type": "practice",
       "locked": true
     },
@@ -2590,6 +2642,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//filter",
       "color": "#444444",
       "summary": "A trace flood buried the real log. One global command — :g/TRACE/d — nets every junk line at once. (:v keeps only matches; :g//normal runs an edit on each.) No story. Just precision.",
+      "why": "One :g/TRACE/d nets every junk line at once — the global command is a dragnet, not a hunt.",
       "mission_type": "practice",
       "locked": true
     },

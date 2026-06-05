@@ -13,6 +13,7 @@ tags:
 sticker: lucide//move
 color: "#ff4444"
 summary: Arrow keys are your enemy. hjkl are your allies. Learn them until your fingers dream.
+why: "Reach for the arrow keys and your hand leaves home row — hjkl keeps it there, where speed lives."
 mission_type: practice
 locked: false
 ---

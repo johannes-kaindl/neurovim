@@ -14,6 +14,7 @@ tags:
 sticker: lucide//zap
 color: "#444444"
 summary: Navigate word by word. Fix six corrupted field values. No story. Just motion.
+why: "Pure motion, no story — w, b, e until jumping word by word is faster than thinking about it."
 mission_type: practice
 locked: false
 ---

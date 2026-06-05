@@ -13,6 +13,7 @@ tags:
 sticker: lucide//target
 color: "#ffaa00"
 summary: Text objects are Vim's superpower. No matter where the cursor is — you hit the target. iw, aw, i(, a", is, as.
+why: "ci( hits the target no matter where the cursor sits — stop aiming, start naming what you want."
 mission_type: practice
 locked: true
 ---

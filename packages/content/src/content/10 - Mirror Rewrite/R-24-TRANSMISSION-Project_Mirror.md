@@ -18,6 +18,7 @@ tags:
 sticker: lucide//eye-off
 color: "#ff4444"
 summary: "[LOCKED] PROJECT MIRROR's core index. Three operations. When you're done, it goes dark."
+why: "The finale chains three operations into one clean strike — when it lands, the index goes dark."
 ---
 ```ascii-chromatic
 ╔══════════════════════════════════════════════════════════════════╗

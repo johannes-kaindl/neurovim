@@ -12,6 +12,7 @@ tags:
 sticker: lucide//zap
 color: "#444444"
 summary: Config values are wrong. Infiltrate each delimiter and replace the payload. No story. Just objects.
+why: "ci and di reach inside the delimiters — stop counting characters, name the object and replace it."
 mission_type: practice
 locked: true
 ---

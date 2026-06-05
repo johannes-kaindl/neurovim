@@ -17,6 +17,7 @@ tags:
 sticker: lucide//hash
 color: "#9933ee"
 summary: "[LOCKED] Numeric increment + visual-block — apply offset-keys to a Resistance extraction-coordinate-matrix. Available after M-13."
+why: "Numbers in a column move together — visual-block plus increment shifts the whole matrix in one stroke."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

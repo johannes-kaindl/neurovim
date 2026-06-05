@@ -13,6 +13,7 @@ tags:
 sticker: lucide//scan-line
 color: "#444444"
 summary: Dossier corrupted with null data injections. Select each line. Purge it.
+why: "Mark the line in Visual, purge it — selection is how you act on a span instead of a single spot."
 mission_type: practice
 locked: true
 ---

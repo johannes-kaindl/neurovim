@@ -17,6 +17,7 @@ tags:
 sticker: lucide//copy-x
 color: "#00ff88"
 summary: "[LOCKED] CORP transcription stutters duplicate words. Backreference finds them. Remove the echo."
+why: "A back-reference catches a word repeating itself — find the stutter, then cut the echo."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

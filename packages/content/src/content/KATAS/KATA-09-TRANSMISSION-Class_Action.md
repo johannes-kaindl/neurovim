@@ -13,6 +13,7 @@ tags:
 sticker: lucide//list-filter
 color: "#444444"
 summary: Purge noise lines. Keep only CLEARANCE entries. Character class or :g! — your call.
+why: "A character class is your filter — keep the CLEARANCE lines, drop the noise, your call which tool."
 mission_type: practice
 locked: true
 ---

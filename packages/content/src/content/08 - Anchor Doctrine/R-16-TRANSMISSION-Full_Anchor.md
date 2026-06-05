@@ -17,6 +17,7 @@ tags:
 sticker: lucide//anchor
 color: "#ff0066"
 summary: "[LOCKED] CLASSIFIED appears both as full lines and within longer lines. Combined anchors target only the full-line markers."
+why: "Pin both ends with ^ and $ and you hit only the full-line markers, never the word buried in a sentence."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

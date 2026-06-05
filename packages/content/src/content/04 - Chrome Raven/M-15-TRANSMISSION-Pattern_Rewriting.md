@@ -17,6 +17,7 @@ tags:
 sticker: lucide//regex
 color: "#9933ee"
 summary: "[LOCKED] Advanced regex with capture-groups + back-references — transform signal-archive formats. Available after M-14."
+why: "Capture what you keep, drop what you don't — back-references rewrite the format instead of you retyping it."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -17,6 +17,7 @@ tags:
 sticker: lucide//zap
 color: "#ff4444"
 summary: "[LOCKED] Two operations, in sequence. Delete the noise. Then terminate the MIRROR entries. Order matters."
+why: "Two passes, in order: delete the noise first, terminate the targets second — sequence is the whole trick."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -13,6 +13,7 @@ tags:
 sticker: lucide//mirror-horizontal
 color: "#444444"
 summary: The final kata. Two operations — :g delete then :g/s/ substitute. Compose them. Finish it.
+why: "Compose :g delete with :g/s substitute — the final drill is making two global passes work as one."
 mission_type: practice
 locked: true
 ---

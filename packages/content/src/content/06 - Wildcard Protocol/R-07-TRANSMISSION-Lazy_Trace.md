@@ -17,6 +17,7 @@ tags:
 sticker: lucide//minimize-2
 color: "#ff6600"
 summary: "[LOCKED] CORP wraps payloads in XML-style tags. Strip the tags with a lazy quantifier — or you'll consume the content too."
+why: "Greedy eats the whole line; the lazy quantifier stops at the first close-tag and spares the payload."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

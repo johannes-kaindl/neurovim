@@ -17,6 +17,7 @@ tags:
 sticker: lucide//clipboard-copy
 color: "#ff6600"
 summary: "[LOCKED] One master key, four empty slots. Yank the key into a named register once, then drop it into every slot."
+why: "One master key, four empty slots — yank it to a named register once and drop it wherever it belongs."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

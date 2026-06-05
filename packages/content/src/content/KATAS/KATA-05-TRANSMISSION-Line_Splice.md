@@ -14,6 +14,7 @@ tags:
 sticker: lucide//list-ordered
 color: "#444444"
 summary: Priority queue scrambled. Cut each line. Place it correctly. Sequence restored.
+why: "Cut a line, drop it where it belongs — dd and p are how you reorder without retyping."
 mission_type: practice
 locked: true
 ---

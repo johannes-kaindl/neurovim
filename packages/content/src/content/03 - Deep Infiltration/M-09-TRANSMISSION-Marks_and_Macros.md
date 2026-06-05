@@ -17,6 +17,7 @@ tags:
 sticker: lucide//lock
 color: "#0066ff"
 summary: "[LOCKED] Marks, Macros, Registers. Automation at operator level. Available after NEON WRAITH."
+why: "Record the fix once, mark your ground, and let q and @ do the same work CORP would make you do by hand."
 ---
 CORP INTERNAL CHRONOLOGY — HARMONIZATION ENGINE OPERATIONS
 Source: Operations Review // Classification: Restricted Circulation

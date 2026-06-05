@@ -14,6 +14,7 @@ tags:
 sticker: lucide//crosshair
 color: "#444444"
 summary: CORP slipped stray markers into the grid. Jump straight to each one with f/t — no h/l crawling — and repeat with ;. No story. Just precision.
+why: "Don't crawl with h and l — f and t snap the cursor to the mark, and ; repeats the jump."
 mission_type: practice
 locked: true
 ---

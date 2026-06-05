@@ -13,6 +13,7 @@ tags:
 sticker: lucide//flame
 color: "#444444"
 summary: A code name was injected across this intercept. Replace all instances in one global substitution.
+why: "One global :%s burns the injected name out of the whole intercept in a single command."
 mission_type: practice
 locked: true
 ---

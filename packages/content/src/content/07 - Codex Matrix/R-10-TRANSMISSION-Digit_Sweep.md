@@ -17,6 +17,7 @@ tags:
 sticker: lucide//repeat
 color: "#ff6600"
 summary: "[LOCKED] Five relay lines need the same two edits. Record the fix once as a macro, then echo it down the list."
+why: "Five lines, the same two edits — record the change once and let the macro echo it down the list."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

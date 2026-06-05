@@ -17,6 +17,7 @@ tags:
 sticker: lucide//trash-2
 color: "#00ccff"
 summary: "[LOCKED] CORP tracking markers are interspersed through an intelligence document. Delete every marked line with one global command."
+why: "When a marker tags the trash, :g/pattern/d takes out every line wearing it in a single pass."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

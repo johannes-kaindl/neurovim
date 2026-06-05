@@ -13,6 +13,7 @@ tags:
 sticker: lucide//crosshair
 color: "#444444"
 summary: CORP rotates node IDs with varying numeric suffixes. Match and redact all with a dot-wildcard pattern.
+why: "The dot wildcard catches every numeric suffix CORP rotates in — one pattern, all the IDs."
 mission_type: practice
 locked: true
 ---

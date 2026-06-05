@@ -17,6 +17,7 @@ tags:
 sticker: lucide//parentheses
 color: "#00ff88"
 summary: "[LOCKED] CORP ordered sector before node. Resistance protocol requires node before sector. Capture both and swap."
+why: "Capture two halves, swap their order — node before sector, rewritten without retyping a thing."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

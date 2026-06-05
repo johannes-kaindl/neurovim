@@ -17,6 +17,7 @@ tags:
 sticker: lucide//columns-3
 color: "#ff6600"
 summary: "[LOCKED] CORP wedged a status column into the relay grid. A pattern can't carve a column — drop into visual-block and strike it out."
+why: "A pattern can't cut a column — drop into Ctrl-V, mark the block, and strike it out vertically."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

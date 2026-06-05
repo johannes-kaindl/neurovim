@@ -17,6 +17,7 @@ tags:
 sticker: lucide//wand-2
 color: "#ff6600"
 summary: "[LOCKED] Three CORP tier labels, one unified replacement. Use very magic mode for clean alternation syntax."
+why: "Very magic mode drops the backslash noise — write alternation the way you actually think it."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

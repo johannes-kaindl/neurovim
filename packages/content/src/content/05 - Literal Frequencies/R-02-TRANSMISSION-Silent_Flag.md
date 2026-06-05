@@ -17,6 +17,7 @@ tags:
 sticker: lucide//flag
 color: "#00ccff"
 summary: "[LOCKED] A CORP log uses three different casings for the same designation. One case-insensitive substitution cleans all of them."
+why: "Three casings, one designation — the /i flag stops you chasing every variant by hand."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

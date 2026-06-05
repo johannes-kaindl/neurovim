@@ -15,6 +15,7 @@ tags:
 sticker: lucide//lock
 color: "#0066ff"
 summary: "[LOCKED] Named registers — two-block swap. The default register is not enough. Available after NEON WRAITH."
+why: "The default register is one slot; name your own and you can hold two payloads and swap them clean."
 ---
 CORP INTERNAL CHRONOLOGY — OPERATIONS REVIEW
 Source: Deep Infiltration // Classification: RESTRICTED

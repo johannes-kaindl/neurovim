@@ -13,6 +13,7 @@ tags:
 sticker: lucide//search
 color: "#ffaa00"
 summary: Find targets in seconds. f, F, /, ?, n, N, * and :s/old/new/ — tracking like a Ghost.
+why: "f, /, n — you don't read a file looking for the mark, you tell the tool to put the cursor on it."
 mission_type: practice
 locked: true
 ---

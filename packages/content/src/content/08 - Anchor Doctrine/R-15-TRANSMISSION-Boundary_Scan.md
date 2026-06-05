@@ -17,6 +17,7 @@ tags:
 sticker: lucide//scan-text
 color: "#ff0066"
 summary: "[LOCKED] Standalone MIRROR needs expansion. MIRRORING and MIRRORED must stay. Word boundaries make the distinction."
+why: "Word boundaries draw the line: standalone MIRROR changes, MIRRORING and MIRRORED stay put."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

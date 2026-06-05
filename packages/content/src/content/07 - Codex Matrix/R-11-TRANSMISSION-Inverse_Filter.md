@@ -17,6 +17,7 @@ tags:
 sticker: lucide//filter-x
 color: "#cc00ff"
 summary: "[LOCKED] CORP embedded noise lines in a clearance log. Keep only what matters — delete everything without CLEARANCE using :g!."
+why: ":g! is the inverse net — keep what matters, delete everything that doesn't say CLEARANCE."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

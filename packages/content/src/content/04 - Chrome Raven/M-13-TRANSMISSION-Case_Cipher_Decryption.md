@@ -16,6 +16,7 @@ tags:
 sticker: lucide//type
 color: "#9933ee"
 summary: "[LOCKED] Case-conversion decryption — restore intended casing of a GHOST-decoded RAVEN signal-fragment. Available after M-12."
+why: "Casing carries meaning CORP scrambled; gU, gu and ~ flip it back without you retyping a single letter."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

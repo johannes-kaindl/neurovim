@@ -13,6 +13,7 @@ tags:
 sticker: lucide//fast-forward
 color: "#ff4444"
 summary: hjkl is slow. Jumping word by word makes you fast. w, b, e are your turbochargers.
+why: "Crawling character by character is how you lose a window — w, b, e jump you word by word."
 mission_type: practice
 locked: false
 ---

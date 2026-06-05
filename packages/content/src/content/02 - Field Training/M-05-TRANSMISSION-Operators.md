@@ -14,6 +14,7 @@ tags:
 sticker: lucide//scissors
 color: "#ffaa00"
 summary: Delete, copy, paste. The building blocks of text manipulation. Operators + Motions = Power.
+why: "d, c, y — the three verbs. Pair them with a motion and you stop nudging text and start commanding it."
 mission_type: practice
 locked: true
 ---
