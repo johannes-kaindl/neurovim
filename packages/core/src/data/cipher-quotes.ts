@@ -1,4 +1,4 @@
-export type QuoteEvent = 'success' | 'fast' | 'slow' | 'perfect_ks' | 'wrong_answer' | 'drill' | 'level_up' | 'streak';
+export type QuoteEvent = 'success' | 'fast' | 'slow' | 'perfect_ks' | 'wrong_answer' | 'drill' | 'level_up' | 'streak' | 'guide_why';
 
 const QUOTES: Record<string, Record<string, string[]>> = {
   fundamentals: {
@@ -17,6 +17,7 @@ const QUOTES: Record<string, Record<string, string[]>> = {
       'It was correct. Speed comes later.',
       'Correct is more important than fast. For now.',
     ],
+    guide_why: ['Modes are the spine of everything you touch. Fight them and the tool fights back.'],
   },
   navigation: {
     success: [
@@ -29,6 +30,7 @@ const QUOTES: Record<string, Record<string, string[]>> = {
       "You didn't hesitate. That's different from being fast.",
       "The cursor went where you looked. That's the goal.",
     ],
+    guide_why: ['Move without the mouse or you will never keep pace with CORP.'],
   },
   'word-movement': {
     success: [
@@ -202,6 +204,7 @@ const QUOTES: Record<string, Record<string, string[]>> = {
       "The diff doesn't lie. Trust the diff.",
       'One character. Find it.',
     ],
+    guide_why: ['Master the tool. The story needs operatives who can.'],
   },
 };
 
@@ -222,4 +225,18 @@ export function getCipherQuote(
   if (catQuotes && catQuotes.length > 0) return pick(catQuotes);
   const fallback = QUOTES.universal?.success;
   return fallback ? pick(fallback) : 'Signal clean.';
+}
+
+/**
+ * Deterministic per-category "why this skill matters" line — the fallback used by
+ * GuidanceEngine when a mission has no authored `why:`. Index 0 (not random) so guidance
+ * derivation stays pure/testable.
+ */
+export function guideWhyFor(category: string | null): string {
+  const cat = category ?? 'universal';
+  return (
+    QUOTES[cat]?.guide_why?.[0] ??
+    QUOTES.universal.guide_why?.[0] ??
+    'Master the tool. The story needs operatives who can.'
+  );
 }
