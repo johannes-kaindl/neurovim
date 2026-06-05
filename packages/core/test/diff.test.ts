@@ -1,4 +1,5 @@
 import { getDiff } from '../src/utils/diff';
+import { getDivergentLines } from '../src/utils/diff';
 
 describe('getDiff', () => {
   it('returns matches true for identical content', () => {
@@ -23,5 +24,20 @@ describe('getDiff', () => {
   it('ignores leading/trailing whitespace on full content', () => {
     const result = getDiff('hello\nworld\n', 'hello\nworld');
     expect(result.matches).toBe(true);
+  });
+});
+
+describe('getDivergentLines', () => {
+  it('returns [] for identical content', () => {
+    expect(getDivergentLines('a\nb\nc', 'a\nb\nc')).toEqual([]);
+  });
+  it('returns every divergent 0-based line index', () => {
+    expect(getDivergentLines('a\nX\nY', 'a\nb\nc')).toEqual([1, 2]);
+  });
+  it('reports extra lines in current as divergent', () => {
+    expect(getDivergentLines('a\nb\nc', 'a\nb')).toEqual([2]);
+  });
+  it('ignores leading/trailing whitespace like getDiff', () => {
+    expect(getDivergentLines('a\nb\n', 'a\nb')).toEqual([]);
   });
 });
