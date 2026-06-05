@@ -39,6 +39,9 @@ const LoreView = lazy(() =>
 const ReferenceOverlay = lazy(() =>
   import('./ReferenceOverlay').then((m) => ({ default: m.ReferenceOverlay })),
 );
+const VimPrimer = lazy(() =>
+  import('./VimPrimer').then((m) => ({ default: m.VimPrimer })),
+);
 
 /** Next playable mission in the same arc (for the "Next Mission" button). */
 function nextMissionId(id: string): string | null {
@@ -111,6 +114,13 @@ export function App() {
     await storage.saveData(next);
   }
 
+  async function markPrimerSeen() {
+    if (data.vimPrimerSeen) return;
+    const next = { ...data, vimPrimerSeen: true };
+    setData(next);
+    await storage.saveData(next);
+  }
+
   async function setRailPin(p: 'open' | 'quiet' | null) {
     const next = { ...data, railPin: p };
     setData(next);
@@ -176,6 +186,11 @@ export function App() {
     return (
       <Suspense fallback={<div class="nv-loading">loading…</div>}>
         <WelcomeView onEnter={() => { unlockAudio(); setView('nexus'); }} />
+        {!data.vimPrimerSeen && (
+          <Suspense fallback={null}>
+            <VimPrimer onDone={markPrimerSeen} />
+          </Suspense>
+        )}
       </Suspense>
     );
   }

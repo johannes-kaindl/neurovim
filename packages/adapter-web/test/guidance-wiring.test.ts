@@ -3,8 +3,10 @@
  * manual is reachable — without rendering any UI/CM6 (the brittle part). Guards the data
  * path App.tsx uses to build the Comms-Rail / briefing / result guidance.
  */
-import { CHEATSHEET, deriveGuidance } from '@neurovim/core';
+import 'fake-indexeddb/auto';
+import { CHEATSHEET, deriveGuidance, DEFAULT_PLUGIN_DATA, type PluginData } from '@neurovim/core';
 import { getMission, getManual, listMissions } from '@neurovim/content';
+import { WebStorage } from '../src/ports/WebStorage';
 
 function nextSummary(id: string) {
   const list = listMissions(id.startsWith('R-') ? 'II' : 'I');
@@ -36,5 +38,16 @@ describe('guidance wiring', () => {
 
   it('getManual returns the comprehensive reference body', () => {
     expect(getManual().length).toBeGreaterThan(200);
+  });
+});
+
+describe('guidance persistence flags', () => {
+  it('round-trips vimPrimerSeen + railPin through IndexedDB', async () => {
+    const storage = new WebStorage();
+    const data: PluginData = { ...DEFAULT_PLUGIN_DATA, vimPrimerSeen: true, railPin: 'quiet' };
+    await storage.saveData(data, 'guide-1');
+    const loaded = await storage.loadData<PluginData>('guide-1');
+    expect(loaded?.vimPrimerSeen).toBe(true);
+    expect(loaded?.railPin).toBe('quiet');
   });
 });

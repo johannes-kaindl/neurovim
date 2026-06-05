@@ -633,3 +633,7 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
 }
 .nv-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 0.5rem 0; opacity: 0.75; }
 .nv-legend b { color: var(--nv-accent); }
+
+/* First-run Vim primer */
+.nv-primer-body p { margin: 0.35rem 0; line-height: 1.45; }
+.nv-primer .nv-modal-title { letter-spacing: 1px; }
