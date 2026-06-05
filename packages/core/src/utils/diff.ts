@@ -17,3 +17,20 @@ export function getDiff(current: string, solution: string): DiffResult {
   }
   return { matches: false, first_divergent_line, lines_off };
 }
+
+/**
+ * All 0-based line indices where `current` differs from `solution`, after the same
+ * trim getDiff uses. Empty array when they match. Drives reveal-corruption highlighting
+ * (location to look at — not the fix).
+ */
+export function getDivergentLines(current: string, solution: string): number[] {
+  if (current.trim() === solution.trim()) return [];
+  const a = current.trim().split('\n');
+  const b = solution.trim().split('\n');
+  const max = Math.max(a.length, b.length);
+  const out: number[] = [];
+  for (let i = 0; i < max; i++) {
+    if (a[i] !== b[i]) out.push(i);
+  }
+  return out;
+}
