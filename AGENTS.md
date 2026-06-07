@@ -1,5 +1,9 @@
 # AGENTS.md — neurovim-standalone
 
+> **Workspace-Standards:** Die verbindliche Leitkonvention steht in `_docs/CONVENTIONS.md`
+> (am Workspace-Root `/Users/Shared/code/`), Modell comply-or-explain. Offene Punkte fuer
+> dieses Repo siehe Abschnitt "Offene Konventions-Punkte".
+
 > **Role:** context for AI agents (Claude Code, Cursor, …) working in this repo.
 > Humans start in [`README.md`](README.md), with the architecture rationale in
 > ADR-001 and the design brief in [`docs/DESIGN-SPEC.md`](docs/DESIGN-SPEC.md).
@@ -226,3 +230,15 @@ green. For content changes also run `npm run build:content`, otherwise
 - **Open:** navigation skills (folding / jumps / marks) need a new gameplay verb to be
   teachable (the verb is "fix text, diff against solution"); Obsidian plugin-swap
   verification (`docs/PLUGIN-SWAP.md`); Windows code signing; itch.io distribution.
+
+## Offene Konventions-Punkte
+
+- [ ] CORE-META-03 — Screenshot-Generierung als committetes Skript reproduzierbar machen (`docs/screenshots/*` werden derzeit ohne im Repo abgelegtes Capture-Skript erzeugt).
+- [ ] CORE-META-04 — User-Manual/Guides nach Diátaxis (Tutorial · How-to · Reference · Explanation) anlegen und aus dem README verlinken.
+- [ ] CORE-META-08 — Doc-Lizenz CC BY-SA 4.0 als separate `LICENSE-DOCS` ergänzen.
+- [ ] CORE-AGENT-01 — AGENTS.md um die fehlenden Skelett-Sektionen ergänzen (explizite `Gotchas` · `Memory` · `Abweichungen von der Leitkonvention`).
+- [ ] CORE-AGENT-03 — `.remember/` in `.gitignore` aufnehmen (aktuell nicht ausgeschlossen).
+- [ ] PROF-TS-01 — Root-`lint`-Script + ESLint-Konfiguration ergänzen (fehlt; `dev`/`build`/`test`/`typecheck` vorhanden).
+- [ ] PROF-TS-04 — tsconfig-Split einführen: `tsconfig.build.json` (Produktion) getrennt von `tsconfig.json` (IDE/Tests).
+- [ ] PROF-NAT-01 — Native build/sign/notarize als `scripts/build-native-app.sh` + `scripts/package-native-app.sh` (oder Tauri-Äquivalent in AGENTS dokumentieren).
+- [ ] PROF-NAT-02 — version-bump-Skript ergänzen, das `package.json` ↔ Tauri-Version/`Info.plist` (CFBundleShortVersionString) synct.
