@@ -125,7 +125,7 @@ design-prep workspace, not in this repo.
 ```bash
 npm install                  # install workspaces
 npm run typecheck            # all 4 workspaces (tsc --noEmit) — must stay green
-npm test                     # jest across all 4 workspaces (160 tests)
+npm test                     # jest across all 4 workspaces (203 tests)
 
 npm run dev                  # adapter-web Vite dev server → http://localhost:5173/ (HMR)
 npm run build:content        # content/build.mjs — ALWAYS first (produces src/generated/*)
@@ -141,8 +141,8 @@ npm run build:dmg            # native app + macOS DMG (Tauri v2)
 native app (OS WebView, DMG ~3 MB). Multi-OS installers via
 `.github/workflows/desktop.yml` (GitHub Actions only). Details: `docs/DESKTOP.md`.
 
-**Test distribution:** `core` 159, `content` 10, `adapter-obsidian` 6, `adapter-web` 7
-(= 182). `adapter-web` covers the WebStorage persistence layer + the submit-flow
+**Test distribution:** `core` 176, `content` 10, `adapter-obsidian` 6, `adapter-web` 11
+(= 203). `adapter-web` covers the WebStorage persistence layer + the submit-flow
 progression contract (fake-indexeddb, no UI/CM6 rendering — those stay verified via
 dev server + typecheck).
 
@@ -184,6 +184,33 @@ green. For content changes also run `npm run build:content`, otherwise
   "fix" the Obsidian UI to match the web app — that divergence is intentional. The
   live vault still runs the original v1.0.0; the refactored build is built-but-unverified
   pending a manual swap (`docs/PLUGIN-SWAP.md`).
+
+## Gotchas
+
+- **Stale generated content:** after editing anything under `packages/content/src/`,
+  run `npm run build:content` first — otherwise typecheck/tests run against a stale
+  `src/generated/*` and the failure messages point at the wrong place.
+- **Preact alias is load-bearing:** any *new* build/test config (jest project,
+  esbuild target, vite preset) must map `react`/`react-dom` → `preact/compat`,
+  or you get cryptic hook/JSX type errors far from the actual cause.
+- **Subagents must never `git checkout`/`git switch`:** agents share one working
+  tree — a branch switch inside a subagent moves the controller's HEAD mid-task.
+  Branch changes are done only by the top-level session.
+- **Desktop CI runs only on the GitHub mirror:** pushing a release tag to Codeberg
+  alone never builds installers — the tag must reach the `github` remote.
+- **`npm version` reformats `package.json`:** it normalizes JSON formatting
+  (e.g. expands one-line objects); that churn is expected when using
+  `scripts/bump-version.sh`.
+
+## Memory
+
+- **Project memory (global):** `~/.claude/projects/-Users-Shared-code-neurovim-standalone/memory/`
+  with `MEMORY.md` as index (CORE-AGENT-02) — durable facts, feedback, project state.
+- **Vault-local working memory:** `claude/memory/MEMORY.md` + session logs in
+  `claude/logs/` (git-ignored, see Note below).
+- **Session handoff:** `.remember/` (`remember.md` = handoff, `now.md`,
+  `today-YYYY-MM-DD.md`, `recent.md`, `archive.md`, `logs/`, `tmp/`) per
+  CORE-AGENT-03 — git-ignored.
 
 ## Glossary
 
@@ -231,14 +258,38 @@ green. For content changes also run `npm run build:content`, otherwise
   teachable (the verb is "fix text, diff against solution"); Obsidian plugin-swap
   verification (`docs/PLUGIN-SWAP.md`); Windows code signing; itch.io distribution.
 
+## Abweichungen von der Leitkonvention
+
+- CORE-GIT-01 — Das primäre Remote heißt `codeberg` (nicht `origin`); URLs entsprechen
+  der Konvention. Historisches Setup via `scripts/setup-remotes.sh`; ein Umbenennen
+  bringt keinen Nutzen und bricht dokumentierte Push-Kommandos.
+- CORE-GIT-03 — Tags behalten den `v`-Prefix (`v0.1.0`…): `.github/workflows/desktop.yml`
+  triggert auf `v*`, und die bestehende Tag-Reihe ist mit Prefix publiziert. Wechsel nur
+  zusammen mit CI-Trigger-Migration.
+- CORE-GIT-05 — Der Commit-Trailer nennt das tatsächlich beteiligte Modell zum
+  Commit-Zeitpunkt (z. B. `Claude Fable 5`), nicht wörtlich „Claude Opus".
+- PROF-OBS-01/02 — Kein `manifest.json` und kein `npm run deploy` in diesem Repo:
+  das Original-Plugin (`neurovim-trainer` v1.0.0) lebt unverändert im Vault; dieses
+  Repo baut nur `dist/main.js` für den **manuellen** Swap
+  (`scripts/swap-obsidian-plugin.sh`, `docs/PLUGIN-SWAP.md`). Das Repo schreibt nie
+  ins Vault — bewusste Schutzentscheidung.
+- PROF-NAT-01 — Kein `build-native-app.sh`/`package-native-app.sh`: Tauri v2 ersetzt
+  die Skript-Kette. Build + Signing lokal via `npm run build:dmg`, Notarization +
+  Multi-OS-Installer via `.github/workflows/desktop.yml`; Doku in `docs/DESKTOP.md`.
+- PROF-NAT-02 — Der version-bump synct `tauri.conf.json` statt `Info.plist`
+  (CFBundleShortVersionString): Tauri generiert die Info.plist beim Build aus
+  `tauri.conf.json` — sie existiert nicht als committete Datei.
+- PROF-NAT-03 — Gatekeeper-/Signing-Doku liegt in `docs/DESKTOP.md`
+  (statt `docs/MACOS-APP.md`) — deckt Signing, Notarization und „Trotzdem öffnen" ab.
+
 ## Offene Konventions-Punkte
 
+- [x] CORE-META-08 — `LICENSE-DOCS` (CC BY-SA 4.0) ergänzt, im README verlinkt (2026-06-10).
+- [x] CORE-AGENT-01 — Skelett-Sektionen `Gotchas` · `Memory` · `Abweichungen von der Leitkonvention` ergänzt (2026-06-10).
+- [x] CORE-AGENT-03 — `.remember/` in `.gitignore` aufgenommen (2026-06-10).
+- [x] PROF-NAT-01 — Tauri-Äquivalent dokumentiert (siehe Abweichungen) (2026-06-10).
+- [x] PROF-NAT-02 — `scripts/bump-version.sh` synct package.json ↔ Tauri ↔ Cargo (2026-06-10).
 - [ ] CORE-META-03 — Screenshot-Generierung als committetes Skript reproduzierbar machen (`docs/screenshots/*` werden derzeit ohne im Repo abgelegtes Capture-Skript erzeugt).
 - [ ] CORE-META-04 — User-Manual/Guides nach Diátaxis (Tutorial · How-to · Reference · Explanation) anlegen und aus dem README verlinken.
-- [ ] CORE-META-08 — Doc-Lizenz CC BY-SA 4.0 als separate `LICENSE-DOCS` ergänzen.
-- [ ] CORE-AGENT-01 — AGENTS.md um die fehlenden Skelett-Sektionen ergänzen (explizite `Gotchas` · `Memory` · `Abweichungen von der Leitkonvention`).
-- [ ] CORE-AGENT-03 — `.remember/` in `.gitignore` aufnehmen (aktuell nicht ausgeschlossen).
 - [ ] PROF-TS-01 — Root-`lint`-Script + ESLint-Konfiguration ergänzen (fehlt; `dev`/`build`/`test`/`typecheck` vorhanden).
 - [ ] PROF-TS-04 — tsconfig-Split einführen: `tsconfig.build.json` (Produktion) getrennt von `tsconfig.json` (IDE/Tests).
-- [ ] PROF-NAT-01 — Native build/sign/notarize als `scripts/build-native-app.sh` + `scripts/package-native-app.sh` (oder Tauri-Äquivalent in AGENTS dokumentieren).
-- [ ] PROF-NAT-02 — version-bump-Skript ergänzen, das `package.json` ↔ Tauri-Version/`Info.plist` (CFBundleShortVersionString) synct.
