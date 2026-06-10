@@ -11,7 +11,7 @@ color: "#00e5ff"
 ╔══════════════════════════════════════════════╗
 ║  INCOMING — CIPHER                           ║
 ║  BRIEFING: M-12 // ANOMALY CLASSIFICATION    ║
-║  Clearance: NEON WRAITH                      ║
+║  Clearance: DEEP COVER                       ║
 ╚══════════════════════════════════════════════╝
 ```
 

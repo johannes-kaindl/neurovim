@@ -17,7 +17,7 @@ summary: First loot drop. The origin of the Resistance, CORP's rise, and why Vim
 ╔══════════════════════════════════════════════════════════╗
 ║  LOOT DROP: GHOST PROTOCOL                               ║
 ║  Type: LORE FRAGMENT  //  Operative Codex Vol. I         ║
-║  Clearance: SHADOW LINK and above                        ║
+║  Clearance: GHOST OPERATOR and above                     ║
 ╚══════════════════════════════════════════════════════════╝
 ```
 
@@ -26,7 +26,7 @@ summary: First loot drop. The origin of the Resistance, CORP's rise, and why Vim
 # OPERATIVE CODEX — VOLUME I
 ## The Story of the Network
 
-*[Classified — Clearance Level SHADOW LINK and above only]*
+*[Classified — Clearance Level GHOST OPERATOR and above only]*
 
 ---
 
@@ -97,7 +97,7 @@ For you, now: a designation.
 
 ---
 
-*[End Volume I — Volume II classified pending NEON WRAITH clearance]*
+*[End Volume I — Volume II classified pending DEEP COVER clearance]*
 
 ---
 
@@ -110,4 +110,4 @@ For you, now: a designation.
 
 ---
 
-*→ [[00-NEXUS]] · Next: [[_content/LOOT/LOOT-02-Cipher_Key_Fragment]] (requires NEON WRAITH)*
+*→ [[00-NEXUS]] · Next: [[_content/LOOT/LOOT-02-Cipher_Key_Fragment]] (requires DEEP COVER)*

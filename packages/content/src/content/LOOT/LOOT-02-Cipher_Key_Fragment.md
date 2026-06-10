@@ -18,7 +18,7 @@ summary: CIPHER speaks. A fragment of an old access signature surfaces. Someone 
 ╔══════════════════════════════════════════════════════════╗
 ║  LOOT DROP: CIPHER KEY FRAGMENT                          ║
 ║  Type: KEY FRAGMENT  //  Transmission 7734               ║
-║  Clearance: NEON WRAITH and above                        ║
+║  Clearance: DEEP COVER and above                         ║
 ╚══════════════════════════════════════════════════════════╝
 ```
 

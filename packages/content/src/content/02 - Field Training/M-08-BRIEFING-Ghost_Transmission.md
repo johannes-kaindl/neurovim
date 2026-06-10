@@ -11,7 +11,7 @@ color: "#ffaa00"
 ╔══════════════════════════════════════════╗
 ║  INCOMING — WRAITH + CIPHER              ║
 ║  BRIEFING: M-08 // OPERATION RAVEN       ║
-║  Clearance: SHADOW LINK                  ║
+║  Clearance: GHOST OPERATOR              ║
 ╚══════════════════════════════════════════╝
 ```
 

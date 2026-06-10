@@ -11,7 +11,7 @@ color: "#66cc66"
 ╔══════════════════════════════════════════╗
 ║  INCOMING — CIPHER                       ║
 ║  BRIEFING: M-06 // TEXT OBJECTS          ║
-║  Clearance: SHADOW LINK                  ║
+║  Clearance: GHOST OPERATOR              ║
 ╚══════════════════════════════════════════╝
 ```
 

@@ -8,13 +8,13 @@ difficulty: 7
 category: advanced
 mission_type: practice
 locked: true
-unlock_requirement: "NEON WRAITH level (240+ XP)"
+unlock_requirement: "DEEP COVER level (186+ XP)"
 tags:
   - vim/registers
   - deep-infiltration
 sticker: lucide//lock
 color: "#0066ff"
-summary: "[LOCKED] Named registers — two-block swap. The default register is not enough. Available after NEON WRAITH."
+summary: "[LOCKED] Named registers — two-block swap. The default register is not enough. Available after DEEP COVER."
 why: "The default register is one slot; name your own and you can hold two payloads and swap them clean."
 ---
 CORP INTERNAL CHRONOLOGY — OPERATIONS REVIEW

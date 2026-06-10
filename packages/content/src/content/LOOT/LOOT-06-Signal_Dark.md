@@ -38,7 +38,7 @@ FROM:     CIPHER
 SUBJECT:  Now you know
 
 The system is down.
-Seventeen months of work.
+Eighteen months of work.
 Yours and mine.
 
 Let me tell you the part I couldn't tell you before.
@@ -116,5 +116,5 @@ Go use it.
 
 *[END OF ARC II — CIPHER PROTOCOL]*
 
-*[ARC I + ARC II complete. 40 missions. 11 katas. 6 loot fragments. The full curriculum.]*
+*[ARC I + ARC II complete. 40 missions. 14 katas. 6 loot fragments. The full curriculum.]*
 *[What comes next is not training.]*

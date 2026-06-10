@@ -18,7 +18,7 @@ summary: THE RAVEN's complete message. The truth about NEVERMORE PROTOCOL. The r
 ╔══════════════════════════════════════════════════════════╗
 ║  LOOT DROP: NEVERMORE                                    ║
 ║  Type: FINAL TRANSMISSION  //  THE RAVEN — Decrypted     ║
-║  Clearance: NEVERMORE PROTOCOL                           ║
+║  Clearance: CHROME RAVEN                                 ║
 ╚══════════════════════════════════════════════════════════╝
 ```
 
@@ -104,4 +104,4 @@ In every file you fixed.
 
 ---
 
-*→ [[00-NEXUS]] — You have reached NEVERMORE PROTOCOL. Maximum Clearance Achieved.*
+*→ [[00-NEXUS]] — CHROME RAVEN clearance confirmed. ARC II is open.*

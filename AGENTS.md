@@ -14,7 +14,7 @@
 
 ## TL;DR
 
-**NeuroVim** is a Vim-learning game in cyberpunk spy-thriller clothing: an AI
+**NeuroVim** is a Vim-learning game in cyberpunk spy-thriller clothing: a
 handler, **CIPHER**, hands out "missions" that are really Vim exercises (restore
 corrupted CORP documents, fix glitched transmissions, beat the clock). Learning
 Vim is the disguised core loop; the story is the motivation layer.
@@ -216,7 +216,7 @@ green. For content changes also run `npm run build:content`, otherwise
 
 | Term | Meaning |
 |---|---|
-| **CIPHER** | the AI handler character; the diegetic voice that assigns missions |
+| **CIPHER** | the handler character — a human (Ren Voss, revealed in LOOT-06), not an AI; the diegetic voice that assigns missions |
 | **NEXUS** | hub/dashboard view (operator status + mission list) |
 | **Mission** | a Vim exercise with a story briefing; types: `practice` / `briefing` / `loot` / `sandbox` |
 | **BRIEFING / TRANSMISSION** | the two parts of a mission note: story lead-in + the actual task |

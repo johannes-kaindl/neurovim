@@ -11,7 +11,7 @@ color: "#ff6600"
 ╔══════════════════════════════════════════════╗
 ║  INCOMING — CIPHER                           ║
 ║  BRIEFING: R-14 // DEAD DROP                 ║
-║  Clearance: PATTERN BREAKER  //  ARC II      ║
+║  Clearance: PROTOCOL READER  //  ARC II      ║
 ╚══════════════════════════════════════════════╝
 ```
 

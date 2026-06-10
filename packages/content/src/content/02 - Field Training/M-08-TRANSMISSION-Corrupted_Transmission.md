@@ -22,7 +22,7 @@ locked: true
 ╔══════════════════════════════════════════╗
 ║  MISSION M-08 // OPERATION RAVEN         ║
 ║  Tier: FIELD TRAINING  //  +35 XP        ║
-║  Clearance: SHADOW LINK                  ║
+║  Clearance: GHOST OPERATOR              ║
 ╚══════════════════════════════════════════╝
 ```
 

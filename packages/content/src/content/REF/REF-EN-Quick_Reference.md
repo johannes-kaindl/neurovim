@@ -347,13 +347,18 @@ Transforms `[ENTRY-0147]: pattern-01 byte-position skew` → `Pattern 01 (0147) 
 
 ## LEVEL SYSTEM
 
-| Rank | XP | Unlocks |
-|------|----|---------|
-| 🔴 SIGNAL LOST | 0 XP | — |
-| 🟡 SHADOW LINK | 66 XP | Tier 2 |
-| 🔵 NEON WRAITH | 186 XP | Tier 3 |
-| 🟣 CHROME RAVEN | 371 XP | — |
-| ⚪ NEVERMORE PROTOCOL | 601+ XP | — |
+| Lvl | Rank | XP | Unlocks |
+|-----|------|----|---------|
+| 1 | 🔴 SIGNAL LOST | 0 XP | Indoctrination |
+| 2 | 🟡 GHOST OPERATOR | 66 XP | Field Training + LOOT-01 |
+| 3 | 🔵 DEEP COVER | 186 XP | Deep Infiltration + LOOT-02 |
+| 4 | 🟣 NEON WRAITH | 371 XP | Chrome Raven + LOOT-03 |
+| 5 | 🟢 CHROME RAVEN | 601 XP | ARC II Ch. 5 + LOOT-04 |
+| 6 | 🔵 SIGNAL HUNTER | 800 XP | Ch. 6 + LOOT-05 |
+| 7 | 🟠 PROTOCOL READER | 1150 XP | Ch. 7–8 |
+| 8 | 🟣 PATTERN BREAKER | 1550 XP | Ch. 9 |
+| 9 | 🔴 CIPHER ANALYST | 2000 XP | Ch. 10 + LOOT-06 |
+| 10 | ⚪ SIGNAL ARCHITECT | 2500 XP | — |
 
 ---
 

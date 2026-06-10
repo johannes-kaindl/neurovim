@@ -35,9 +35,9 @@ summary: What PROJECT MIRROR actually is. How it was built. And who CIPHER reall
 
 PROJECT MIRROR was not built to fight the Resistance.
 
-It was built before the Resistance existed.
+It was built before the Resistance had a name.
 
-In 2043 — three years before Ren Voss typed the first `Nevermore` — CORP's Intelligence Division began work on a pattern-matching surveillance architecture. The goal: automated detection of unauthorized communication. CORP had just passed the Unified Digital Control Act. They needed enforcement infrastructure.
+In 2043 — two years after Ren Voss typed the first `Nevermore` — CORP's Intelligence Division began work on a pattern-matching surveillance architecture. The goal: automated detection of unauthorized communication. The Unified Digital Control Act was two years old, and the poem had shown CORP what uncontrolled text could do. Enforcement needed infrastructure that scaled.
 
 The engineer who designed it was known internally as R-VOSS.
 

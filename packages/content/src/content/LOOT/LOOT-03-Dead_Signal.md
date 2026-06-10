@@ -90,4 +90,4 @@ Train harder. What comes next will need everything you have.
 
 ---
 
-*→ [[00-NEXUS]] · Next: [[_content/LOOT/LOOT-04-Nevermore]] (requires NEVERMORE PROTOCOL)*
+*→ [[00-NEXUS]] · Next: [[_content/LOOT/LOOT-04-Nevermore]] (requires CHROME RAVEN)*

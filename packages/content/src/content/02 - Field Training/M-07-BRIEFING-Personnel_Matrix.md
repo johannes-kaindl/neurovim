@@ -11,7 +11,7 @@ color: "#66cc66"
 ╔══════════════════════════════════════════╗
 ║  INCOMING — CIPHER                       ║
 ║  BRIEFING: M-07 // SEARCH AND REPLACE    ║
-║  Clearance: SHADOW LINK                  ║
+║  Clearance: GHOST OPERATOR              ║
 ╚══════════════════════════════════════════╝
 ```
 

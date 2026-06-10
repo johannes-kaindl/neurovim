@@ -11,7 +11,7 @@ color: "#00e5ff"
 ╔══════════════════════════════════════════╗
 ║  INCOMING — CIPHER                       ║
 ║  BRIEFING: M-09 // MARKS AND MACROS      ║
-║  Clearance: NEON WRAITH                  ║
+║  Clearance: DEEP COVER                   ║
 ╚══════════════════════════════════════════╝
 ```
 
