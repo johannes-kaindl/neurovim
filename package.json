@@ -24,9 +24,14 @@
     "desktop:dev": "npm run build:content && npm run desktop:dev --workspace @neurovim/adapter-web",
     "build:dmg": "npm run build:content && npm run desktop:build --workspace @neurovim/adapter-web",
     "typecheck": "npm run typecheck --workspace @neurovim/core && npm run typecheck --workspace @neurovim/content && npm run typecheck --workspace @neurovim/adapter-obsidian && npm run typecheck --workspace @neurovim/adapter-web",
+    "lint": "eslint .",
     "test": "npm test --workspaces --if-present"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.61.0"
   }
 }
