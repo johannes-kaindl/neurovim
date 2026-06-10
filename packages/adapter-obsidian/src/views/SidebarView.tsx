@@ -26,7 +26,6 @@ interface SidebarProps {
 }
 
 function SidebarSection({
-  id,
   label,
   collapsed,
   onToggle,

@@ -13,7 +13,7 @@ interface MissionHudModuleProps {
 }
 
 export function MissionHudModule({
-  missionState, elapsedMs, record, pluginData, onSubmit, onReset, onAbandon,
+  missionState, elapsedMs, record, onSubmit, onReset, onAbandon,
 }: MissionHudModuleProps) {
   if (missionState.status !== 'active') {
     return (

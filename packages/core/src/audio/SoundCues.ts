@@ -55,7 +55,7 @@ function playResistanceTone(
   const noiseFilter = ac.createBiquadFilter();
   noiseFilter.type = 'bandpass';
   noiseFilter.frequency.value = freq;
-  (noiseFilter as any).Q.value = 2;
+  noiseFilter.Q.value = 2;
   const noiseGain = ac.createGain();
   noiseGain.gain.setValueAtTime(gain * 0.06, t);
   noiseGain.gain.linearRampToValueAtTime(0, t + preNoiseDur);

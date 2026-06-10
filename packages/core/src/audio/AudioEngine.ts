@@ -5,7 +5,7 @@ export class AudioEngine {
   private readonly contextFactory: () => AudioContext;
 
   constructor(contextFactory?: () => AudioContext) {
-    this.contextFactory = contextFactory ?? (() => new (window.AudioContext || (window as any).webkitAudioContext)());
+    this.contextFactory = contextFactory ?? (() => new (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext!)());
   }
 
   get context(): AudioContext | null { return this.ctx; }

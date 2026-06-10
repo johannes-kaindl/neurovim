@@ -2,13 +2,19 @@ import { App, MarkdownView, WorkspaceLeaf } from 'obsidian';
 import { AudioEngine } from '@neurovim/core';
 import { SoundCues } from '@neurovim/core';
 
+/** Event surface of Obsidian's private `editor.cm` we rely on (vim mode events). */
+interface VimModeEmitter {
+  on(name: 'vim-mode-change', handler: (e: { mode: string }) => void): void;
+  off(name: 'vim-mode-change', handler: (e: { mode: string }) => void): void;
+}
+
 export class VimModeWatcher {
   private engine: AudioEngine;
   private app: App;
   private currentMode = 'normal';
   private disposed = false;
   private vimHandler: ((e: { mode: string }) => void) | null = null;
-  private currentCm: any = null;
+  private currentCm: VimModeEmitter | null = null;
   private readonly leafRef: (leaf: WorkspaceLeaf | null) => void;
 
   constructor(engine: AudioEngine, app: App) {
@@ -26,7 +32,7 @@ export class VimModeWatcher {
     if (!leaf) return;
     const view = leaf.view;
     if (!(view instanceof MarkdownView)) return;
-    const cm = (view.editor as any)?.cm;
+    const cm = (view.editor as unknown as { cm?: VimModeEmitter }).cm;
     if (!cm) return;
     this.currentCm = cm;
     this.vimHandler = (e: { mode: string }) => {

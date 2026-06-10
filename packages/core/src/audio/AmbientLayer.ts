@@ -48,7 +48,7 @@ export class AmbientLayer {
     setTimeout(() => {
       nodesToStop.forEach(n => {
         try {
-          if ('stop' in n && typeof (n as any).stop === 'function') (n as any).stop();
+          if ('stop' in n && typeof (n as AudioScheduledSourceNode).stop === 'function') (n as AudioScheduledSourceNode).stop();
           n.disconnect();
         } catch { /* already stopped/disconnected */ }
       });
@@ -98,7 +98,7 @@ export class AmbientLayer {
     const lfoGain = ac.createGain();
     lfoGain.gain.value = 3;
     lfo.connect(lfoGain);
-    lfoGain.connect(osc.frequency as any);
+    lfoGain.connect(osc.frequency);
 
     const gain = ac.createGain();
     gain.gain.value = 0.32;
@@ -110,11 +110,11 @@ export class AmbientLayer {
     lfo.start();
     this.nodes.push(osc, gain, osc2, gain2, lfo, lfoGain);
 
-    this.scheduleDistantPulse(ac);
+    this.scheduleDistantPulse();
   }
 
   // Schlucht-Layer: distant logistics drones, 03:30 route — pure low-frequency pulse, 10-28s apart
-  private scheduleDistantPulse(ac: AudioContext): void {
+  private scheduleDistantPulse(): void {
     if (!this.enabled || !this.engine.isReady || this.currentCtx !== 'idle') return;
     const delay = 10000 + Math.random() * 18000;
     this.distantPulseTimer = setTimeout(() => {
@@ -140,7 +140,7 @@ export class AmbientLayer {
       g.connect(this.fadeGain!);
       src.start(t);
       src.onended = () => { try { src.disconnect(); f.disconnect(); g.disconnect(); } catch { /* */ } };
-      this.scheduleDistantPulse(a);
+      this.scheduleDistantPulse();
     }, delay);
   }
 
@@ -157,7 +157,7 @@ export class AmbientLayer {
     const termLfoGain = ac.createGain();
     termLfoGain.gain.value = 3;
     termLfo.connect(termLfoGain);
-    termLfoGain.connect(termOsc.frequency as any);
+    termLfoGain.connect(termOsc.frequency);
     const termGain = ac.createGain();
     termGain.gain.value = 0.18;
     termOsc.connect(termGain);
@@ -188,7 +188,7 @@ export class AmbientLayer {
     const noiseFilter = ac.createBiquadFilter();
     noiseFilter.type = 'bandpass';
     noiseFilter.frequency.value = 2000;
-    (noiseFilter as any).Q.value = 4;
+    noiseFilter.Q.value = 4;
     const noiseGain = ac.createGain();
     noiseGain.gain.value = 0.04;
     noiseSrc.connect(noiseFilter);

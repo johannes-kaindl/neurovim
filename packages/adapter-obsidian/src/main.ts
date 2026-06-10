@@ -1,7 +1,7 @@
 import {
-  App, Plugin, WorkspaceLeaf, TFile, MarkdownView, Notice,
+  Plugin, TFile, MarkdownView, Notice,
 } from 'obsidian';
-import { EditorView, ViewPlugin, ViewUpdate, Decoration, DecorationSet } from '@codemirror/view';
+import { EditorView, ViewUpdate, Decoration, DecorationSet } from '@codemirror/view';
 import { StateField, StateEffect, RangeSetBuilder } from '@codemirror/state';
 import { createRoot } from 'react-dom/client';
 type Root = ReturnType<typeof createRoot>;
@@ -17,7 +17,6 @@ import { MetricsTracker } from '@neurovim/core';
 import { MissionEngine } from '@neurovim/core';
 import { getMissionById, getMissionByPath, isBriefingPath, RAVEN_PATH } from '@neurovim/core';
 import { ProgressionEngine } from '@neurovim/core';
-import { getDiff } from '@neurovim/core';
 import { FloatHUD } from '@neurovim/core';
 import { SandboxHUD } from '@neurovim/core';
 import { GlitchEngine } from '@neurovim/core';
@@ -344,7 +343,7 @@ export default class NeuroVimPlugin extends Plugin {
     const attachListener = () => {
       const view = this.app.workspace.getActiveViewOfType(MarkdownView);
       if (view) {
-        const editorEl = (view.editor as any)?.cm?.dom ?? view.contentEl;
+        const editorEl = (view.editor as unknown as { cm?: { dom?: HTMLElement } }).cm?.dom ?? view.contentEl;
         this.commandListener.attach(editorEl);
       }
     };
@@ -379,7 +378,7 @@ export default class NeuroVimPlugin extends Plugin {
 
   async handleSubmit() {
     if (this.missionState.status !== 'active') return;
-    const { mission_id, file_path, category, xp_reward, drill_mode } = this.missionState;
+    const { mission_id, file_path, xp_reward, drill_mode } = this.missionState;
     if (!mission_id || !file_path) return;
 
     const file = this.app.vault.getAbstractFileByPath(file_path);
