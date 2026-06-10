@@ -1,36 +1,9 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "baseUrl": ".",
     "composite": false,
-    "strict": false,
-    "strictNullChecks": true,
-    "lib": [
-      "ES2018",
-      "DOM"
-    ],
-    "allowSyntheticDefaultImports": true,
-    "isolatedModules": true,
-    "paths": {
-      "react": [
-        "../../node_modules/preact/compat/"
-      ],
-      "react-dom": [
-        "../../node_modules/preact/compat/"
-      ],
-      "react-dom/client": [
-        "../../node_modules/preact/compat/client"
-      ],
-      "react/jsx-runtime": [
-        "../../node_modules/preact/jsx-runtime"
-      ],
-      "@neurovim/core": [
-        "../core/src/index.ts"
-      ]
-    }
+    "noEmit": true,
+    "types": ["jest", "node"]
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src", "test"]
 }

@@ -1,12 +1,9 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "dist",
     "composite": false,
-    "baseUrl": ".",
-    "paths": {
-      "@neurovim/core": ["../core/src/index.ts"]
-    }
+    "noEmit": true,
+    "types": ["jest", "node"]
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }

@@ -291,5 +291,5 @@ green. For content changes also run `npm run build:content`, otherwise
 - [x] PROF-NAT-02 — `scripts/bump-version.sh` synct package.json ↔ Tauri ↔ Cargo (2026-06-10).
 - [ ] CORE-META-03 — Screenshot-Generierung als committetes Skript reproduzierbar machen (`docs/screenshots/*` werden derzeit ohne im Repo abgelegtes Capture-Skript erzeugt).
 - [ ] CORE-META-04 — User-Manual/Guides nach Diátaxis (Tutorial · How-to · Reference · Explanation) anlegen und aus dem README verlinken.
-- [ ] PROF-TS-01 — Root-`lint`-Script + ESLint-Konfiguration ergänzen (fehlt; `dev`/`build`/`test`/`typecheck` vorhanden).
-- [ ] PROF-TS-04 — tsconfig-Split einführen: `tsconfig.build.json` (Produktion) getrennt von `tsconfig.json` (IDE/Tests).
+- [x] PROF-TS-01 — ESLint 10 Flat-Config + Root-`npm run lint` ergänzt (2026-06-10).
+- [x] PROF-TS-04 — tsconfig-Split: `tsconfig.build.json` (Gate/Produktion) vs. `tsconfig.json` (IDE/Tests, include `test/`) je Workspace; `typecheck` läuft auf den Build-Configs (2026-06-10).

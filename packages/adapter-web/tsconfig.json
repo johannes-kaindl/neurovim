@@ -1,16 +1,9 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "dist",
     "composite": false,
-    "strict": false,
-    "strictNullChecks": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "baseUrl": ".",
-    "paths": {
-      "@neurovim/core": ["../core/src/index.ts"],
-      "@neurovim/content": ["../content/src/index.ts"]
-    }
+    "noEmit": true,
+    "types": ["jest", "node"]
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src", "test", "vite.config.ts"]
 }

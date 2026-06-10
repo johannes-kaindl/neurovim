@@ -1,15 +1,9 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "baseUrl": ".",
-    "paths": {
-      "react": ["../../node_modules/preact/compat"],
-      "react-dom": ["../../node_modules/preact/compat"],
-      "react-dom/client": ["../../node_modules/preact/compat/client"],
-      "react/jsx-runtime": ["../../node_modules/preact/jsx-runtime"]
-    }
+    "composite": false,
+    "noEmit": true,
+    "types": ["jest", "node"]
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }
