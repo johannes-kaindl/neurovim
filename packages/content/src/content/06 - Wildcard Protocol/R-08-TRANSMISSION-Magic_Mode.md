@@ -34,10 +34,10 @@ why: "Very magic mode drops the backslash noise — write alternation the way yo
 
 CLASSIFICATION REGISTER — ASSET CLEARANCE
 
-WRAITH         : TIER-1 // field operative
-GHOST          : TIER-1 // intelligence
-REN VOSS       : TIER-1 // technical analyst
-CIPHER         : TIER-1 // communications
-SHADOW-7       : TIER-1 // extraction lead
-ECHO-3         : TIER-1 // logistics
-NOVA-2         : TIER-1 // field operative
+WRAITH         : ALPHA // field operative
+GHOST          : BETA // intelligence
+REN VOSS       : GAMMA // technical analyst
+CIPHER         : BETA // communications
+SHADOW-7       : ALPHA // extraction lead
+ECHO-3         : GAMMA // logistics
+NOVA-2         : ALPHA // field operative

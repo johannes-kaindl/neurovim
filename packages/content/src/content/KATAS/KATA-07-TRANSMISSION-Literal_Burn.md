@@ -26,11 +26,13 @@ locked: true
 
 INTERCEPT LOG — CODENAME INJECTION
 
-Origin      : NEXUS
+Registry    : authentic codename on file — NEXUS
+
+Origin      : PHANTOM
 Status      : ACTIVE
-Cell-alpha  : NEXUS handshake confirmed
-Cell-beta   : NEXUS handshake confirmed
-Cell-gamma  : awaiting NEXUS
-Relay       : NEXUS signal nominal
-Fallback    : NEXUS secondary active
-Archive     : NEXUS — channel closed
+Cell-alpha  : PHANTOM handshake confirmed
+Cell-beta   : PHANTOM handshake confirmed
+Cell-gamma  : awaiting PHANTOM
+Relay       : PHANTOM signal nominal
+Fallback    : PHANTOM secondary active
+Archive     : PHANTOM — channel closed

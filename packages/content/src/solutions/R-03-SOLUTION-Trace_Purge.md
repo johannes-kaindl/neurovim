@@ -8,7 +8,7 @@
 ```
 
 > [!note] CIPHER — Processing note
-> Purge the `[TRACK]` lines. What remains is the actual intelligence.
+> Purge every tracker line CORP injected. What remains is the actual intelligence.
 
 ---
 

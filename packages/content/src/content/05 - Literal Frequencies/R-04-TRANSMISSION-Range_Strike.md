@@ -19,27 +19,16 @@ color: "#00ccff"
 summary: "[LOCKED] Only the first section of a two-part document needs correction. Range-limited substitution leaves the second half intact."
 why: "A substitution doesn't have to touch the whole file — give it a line range and the rest stays untouched."
 ---
-```ascii
-╔══════════════════════════════════════════════════════════════════╗
-║  CORP OPERATIONAL STATUS — SECTOR 3                              ║
-║  Document       : Asset status register // dual section          ║
-║  Timestamp      : 2047-05-05 // 07:00                           ║
-╚══════════════════════════════════════════════════════════════════╝
-```
+CORP OPERATIONAL STATUS — SECTOR 3 // dual-section register // 2047-05-05 07:00
 
-> [!note] CIPHER — Annotation
-> Upper section: status codes wrong — should read ACTIVE. Lower section: correct as-is. Range your substitution.
-
----
-
-NODE-ALPHA  : ACTIVE
-NODE-BETA   : ACTIVE
-NODE-GAMMA  : ACTIVE
-NODE-DELTA  : ACTIVE
-NODE-EPSILON: ACTIVE
-RELAY-01    : ACTIVE
-RELAY-02    : ACTIVE
-RELAY-03    : ACTIVE
+NODE-ALPHA  : QUEUED
+NODE-BETA   : QUEUED
+NODE-GAMMA  : QUEUED
+NODE-DELTA  : QUEUED
+NODE-EPSILON: QUEUED
+RELAY-01    : QUEUED
+RELAY-02    : QUEUED
+RELAY-03    : QUEUED
 
 ---
 
@@ -48,3 +37,8 @@ ARCHIVE SECTION — DO NOT MODIFY
 NODE-ALPHA  : QUEUED // historical — pre-activation
 NODE-BETA   : QUEUED // historical — pre-activation
 NODE-GAMMA  : QUEUED // historical — pre-activation
+
+---
+
+> [!note] CIPHER — Annotation
+> Upper section: status codes wrong — should read ACTIVE. Lower section: correct as-is. Range your substitution.

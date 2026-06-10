@@ -32,12 +32,12 @@ why: "Two captured names, comma dropped — SURNAME, FIRSTNAME becomes FIRSTNAME
 
 ---
 
-ASSET REGISTER — NAME FORMAT CORRECTED
+ASSET REGISTER — FORMAT, NAME CORRECTED
 
-WRAITH Ren       — field operative, Zone-Alpha
-VOSS Ren         — technical analyst, Zone-Beta
-GHOST Niko       — intelligence, Zone-Alpha
-NOVA Vera        — field operative, Zone-Gamma
-ECHO Soren       — logistics, Zone-Beta
-SHADOW Yael      — extraction lead, Zone-Delta
-CIPHER           — communications, all zones
+Ren, WRAITH       — field operative // Zone-Alpha
+Ren, VOSS         — technical analyst // Zone-Beta
+Niko, GHOST       — intelligence // Zone-Alpha
+Vera, NOVA        — field operative // Zone-Gamma
+Soren, ECHO       — logistics // Zone-Beta
+Yael, SHADOW      — extraction lead // Zone-Delta
+CIPHER           — communications // zones, all

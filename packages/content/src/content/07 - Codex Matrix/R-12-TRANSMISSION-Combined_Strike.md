@@ -34,11 +34,11 @@ why: "A fixed-length class counts the hex for you — six hashes redacted, none 
 
 DOCUMENT MANIFEST — INTERNAL REGISTRY
 
-PROJECT MIRROR core document    : [HASH-REDACTED]
-Sector-3 surveillance log       : [HASH-REDACTED]
-Asset movement register         : [HASH-REDACTED]
-Comm intercept archive          : [HASH-REDACTED]
-Clearance override protocol     : [HASH-REDACTED]
-Counter-Resistance directive    : [HASH-REDACTED]
+PROJECT MIRROR core document    : 3F2A9B4C
+Sector-3 surveillance log       : 7D0E4F19
+Asset movement register         : A1C58E2B
+Comm intercept archive          : 90BD37FA
+Clearance override protocol     : C4E6021D
+Counter-Resistance directive    : 5B8FD7E3
 
-All hashes redacted per security protocol.
+Security protocol: all hashes get redacted.

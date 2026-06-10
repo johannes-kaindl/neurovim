@@ -34,9 +34,9 @@ why: "Capture two halves, swap their order — node before sector, rewritten wit
 
 FIELD MAP — CORRECTED DESIGNATION ORDER
 
-NODE-1 SECTOR-A — extraction point alpha
-NODE-2 SECTOR-B — relay station beta
-NODE-3 SECTOR-A — surveillance post gamma
-NODE-4 SECTOR-C — comm tower delta
-NODE-5 SECTOR-B — fallback route epsilon
-NODE-7 SECTOR-A — primary rendezvous
+SECTOR-A NODE-1 — extraction point alpha
+SECTOR-B NODE-2 — relay station beta
+SECTOR-A NODE-3 — surveillance post gamma
+SECTOR-C NODE-4 — comm tower delta
+SECTOR-B NODE-5 — fallback route epsilon
+SECTOR-A NODE-7 — primary rendezvous

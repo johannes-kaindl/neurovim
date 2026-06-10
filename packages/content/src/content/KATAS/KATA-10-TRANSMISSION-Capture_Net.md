@@ -26,7 +26,7 @@ locked: true
 
 TIMELINE — RESISTANCE FORMAT
 
-03.11.2046 — PROJECT MIRROR initiated
-15.01.2047 — Pattern engine activated
-28.03.2047 — Full coverage achieved
-10.06.2047 — Current date
+2046-11-03 — PROJECT MIRROR initiated
+2047-01-15 — Pattern engine activated
+2047-03-28 — Full coverage achieved
+2047-06-10 — Current date

@@ -7,7 +7,7 @@
 ```
 
 > [!note] CIPHER — Stutter note
-> The transcription system echoes words. `\(\w\+\) \1` finds the echo. `\1` in replacement keeps one.
+> The transcription system echoes words. `\(\w\+\) \1` finds each echo. `\1` in replacement keeps one.
 
 ---
 
@@ -15,7 +15,7 @@ COMM LOG — STUTTER CORRECTED
 
 PROJECT MIRROR is the primary surveillance system.
 All Resistance channels are monitored continuously.
-NODE-7 confirmed as the extraction point.
+NODE-7 confirmed as our extraction point.
 Asset WRAITH departed at 22:00 hours.
 Channel closed after the handoff.
-No signal loss detected during the operation.
+No signal drop detected across the operation.

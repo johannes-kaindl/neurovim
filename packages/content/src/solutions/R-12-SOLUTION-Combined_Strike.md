@@ -20,4 +20,4 @@ Comm intercept archive          : [HASH-REDACTED]
 Clearance override protocol     : [HASH-REDACTED]
 Counter-Resistance directive    : [HASH-REDACTED]
 
-All hashes redacted per security protocol.
+Security protocol: all hashes get redacted.

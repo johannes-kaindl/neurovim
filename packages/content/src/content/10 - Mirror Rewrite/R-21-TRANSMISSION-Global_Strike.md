@@ -28,18 +28,18 @@ why: "Compose :g with :s and the global command becomes a scalpel — find the h
 ```
 
 > [!note] CIPHER — Strike note
-> ENCRYPTED entries are the ones that matter. Change their status. `:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/`
+> Encrypted entries are the ones that matter. Change their status — compose `:g` with `:s`. Exact command is in your briefing.
 
 ---
 
 MIRROR REGISTRY — EXPOSURE LOG
 
 CHANNEL-01 : CLEAR     : STATUS: ACTIVE
-CHANNEL-02 : ENCRYPTED : STATUS: EXPOSED
+CHANNEL-02 : ENCRYPTED : STATUS: ACTIVE
 CHANNEL-03 : CLEAR     : STATUS: ACTIVE
-CHANNEL-04 : ENCRYPTED : STATUS: EXPOSED
-CHANNEL-05 : ENCRYPTED : STATUS: EXPOSED
+CHANNEL-04 : ENCRYPTED : STATUS: ACTIVE
+CHANNEL-05 : ENCRYPTED : STATUS: ACTIVE
 CHANNEL-06 : CLEAR     : STATUS: ACTIVE
-CHANNEL-07 : ENCRYPTED : STATUS: EXPOSED
+CHANNEL-07 : ENCRYPTED : STATUS: ACTIVE
 
-Encrypted channels: 4. Exposed: 4. Clear channels: 3.
+Encrypted channels: 4. Clear channels: 3. Target: all four read EXPOSED.

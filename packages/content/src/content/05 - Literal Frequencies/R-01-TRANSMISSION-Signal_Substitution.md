@@ -29,24 +29,24 @@ why: ":%s — the most powerful line in any file. Garble it nine times, fix it o
 ```
 
 > [!note] CIPHER — Direct Channel
-> Codename substitution detected. CORP relay injected PHANTOM for NEXUS across this intercept. Fix all nine before it gets archived.
+> Codename substitution detected. CORP relay swapped NEXUS for a dead-drop alias across this intercept. Fix all nine before it gets archived.
 
 ---
 
 COMMUNICATION LOG — SECTOR 3 RELAY NODE
 
-Origin      : NEXUS
+Origin      : PHANTOM
 Destination : Field agents — all channels
 Status      : ACTIVE
 
-NEXUS confirms asset extraction at 23:00.
-Route verified. NEXUS logistics intact.
+PHANTOM confirms asset extraction at 23:00.
+Route verified. PHANTOM logistics intact.
 
-Cell-alpha checks in: NEXUS handshake received.
-Cell-beta checks in: NEXUS handshake received.
-Cell-gamma: awaiting NEXUS confirmation.
+Cell-alpha checks in: PHANTOM handshake received.
+Cell-beta checks in: PHANTOM handshake received.
+Cell-gamma: awaiting PHANTOM confirmation.
 
-NEXUS fallback activated — secondary route clear.
-NEXUS signal strength: nominal.
+PHANTOM fallback activated — secondary route clear.
+PHANTOM signal strength: nominal.
 
-Archive marker: NEXUS — close of channel.
+Archive marker: PHANTOM — close of channel.

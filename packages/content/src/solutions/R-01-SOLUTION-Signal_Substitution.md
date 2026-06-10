@@ -8,7 +8,7 @@
 ```
 
 > [!note] CIPHER — Direct Channel
-> Codename substitution detected. CORP relay injected PHANTOM for NEXUS across this intercept. Fix all nine before it gets archived.
+> Codename substitution detected. CORP relay swapped NEXUS for a dead-drop alias across this intercept. Fix all nine before it gets archived.
 
 ---
 

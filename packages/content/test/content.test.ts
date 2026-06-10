@@ -73,3 +73,17 @@ describe('getLore', () => {
     expect(lore.body.length).toBeGreaterThan(0);
   });
 });
+
+describe('mission start state', () => {
+  // Editor buffers seed with transmissionBody and diff against solution —
+  // identical bodies mean the mission is already solved on open.
+  it('every mission with a solution starts unsolved (transmission != solution)', () => {
+    const presolved = listMissions()
+      .filter((m) => {
+        const doc = getMission(m.mission_id);
+        return doc.solution != null && doc.transmissionBody.trim() === doc.solution.trim();
+      })
+      .map((m) => m.mission_id);
+    expect(presolved).toEqual([]);
+  });
+});

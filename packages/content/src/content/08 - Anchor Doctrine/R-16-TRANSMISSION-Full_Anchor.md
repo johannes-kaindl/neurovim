@@ -35,9 +35,9 @@ why: "Pin both ends with ^ and $ and you hit only the full-line markers, never t
 CLASSIFICATION MANIFEST — PROJECT MIRROR
 
 Distribution policy: CLASSIFIED material requires Tier-4 auth.
-[REDACTED]
+CLASSIFIED
 Sector-3 data: CLASSIFIED at all distribution levels.
-[REDACTED]
+CLASSIFIED
 Counter-Resistance protocols: CLASSIFIED above clearance level 3.
-[REDACTED]
+CLASSIFIED
 External disclosure: prohibited. All data CLASSIFIED.

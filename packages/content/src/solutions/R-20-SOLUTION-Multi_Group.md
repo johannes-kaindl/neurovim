@@ -13,10 +13,10 @@
 
 ASSET REGISTER — NAME FORMAT CORRECTED
 
-WRAITH Ren       — field operative, Zone-Alpha
-VOSS Ren         — technical analyst, Zone-Beta
-GHOST Niko       — intelligence, Zone-Alpha
-NOVA Vera        — field operative, Zone-Gamma
-ECHO Soren       — logistics, Zone-Beta
-SHADOW Yael      — extraction lead, Zone-Delta
-CIPHER           — communications, all zones
+WRAITH Ren       — field operative // Zone-Alpha
+VOSS Ren         — technical analyst // Zone-Beta
+GHOST Niko       — intelligence // Zone-Alpha
+NOVA Vera        — field operative // Zone-Gamma
+ECHO Soren       — logistics // Zone-Beta
+SHADOW Yael      — extraction lead // Zone-Delta
+CIPHER           — communications // all zones

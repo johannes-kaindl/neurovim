@@ -2,7 +2,7 @@
 ╔══════════════════════════════════════════════════════════════════╗
 ║  PROJECT MIRROR — CORE SURVEILLANCE INDEX                        ║
 ║  Classification : TIER-4 EYES ONLY                               ║
-║  Status         : ACTIVE // all channels monitored               ║
+║  Status         : TERMINATED // all channels monitored               ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
@@ -19,7 +19,7 @@ REN VOSS     : NEXUS channel — STATUS: TERMINATED
 NOVA VERA    : field comms   — STATUS: TERMINATED
 ECHO SOREN   : logistics     — STATUS: TERMINATED
 SHADOW YAEL  : field comms   — STATUS: TERMINATED
-CIPHER       : EXPOSED       — STATUS: TERMINATED
+CIPHER: EXPOSED — STATUS: TERMINATED
 
 ---
 

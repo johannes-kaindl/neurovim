@@ -7,6 +7,8 @@
 
 INTERCEPT LOG — CODENAME INJECTION
 
+Registry    : authentic codename on file — NEXUS
+
 Origin      : NEXUS
 Status      : ACTIVE
 Cell-alpha  : NEXUS handshake confirmed

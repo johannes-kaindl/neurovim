@@ -34,12 +34,12 @@ why: "The dot matches anything CORP rotates into a suffix — one pattern, every
 
 FIELD ROSTER — ACTIVE ASSETS
 
-OPERATIVE   — Zone-Alpha, field surveillance
-OPERATIVE   — Zone-Alpha, communications intercept
-OPERATIVE   — Zone-Beta, logistics
-OPERATIVE   — Zone-Beta, extraction support
-OPERATIVE   — Zone-Gamma, technical
-OPERATIVE   — Zone-Gamma, analysis
-OPERATIVE   — Zone-Delta, field lead
+AGENT-A   — Zone-Alpha, field surveillance
+AGENT-B   — Zone-Alpha, communications intercept
+AGENT-1   — Zone-Beta, logistics
+AGENT-K   — Zone-Beta, extraction support
+AGENT-X   — Zone-Gamma, technical
+AGENT-9   — Zone-Gamma, analysis
+AGENT-Q   — Zone-Delta, field lead
 
-Summary: 7 OPERATIVE assets confirmed active.
+Summary: 7 AGENT-* assets confirmed active.

@@ -34,13 +34,13 @@ why: "A character set folds X, Y and Z into one match — three threat codes nor
 
 NODE STATUS — THREAT ASSESSMENT
 
-NODE-ALPHA  : CLEAN
-NODE-BETA   : CLEAN
-NODE-GAMMA  : CLEAN
-NODE-DELTA  : CLEAN
-NODE-EPSILON: CLEAN
-RELAY-01    : CLEAN
-RELAY-02    : CLEAN
-RELAY-03    : CLEAN
+NODE-ALPHA  : X
+NODE-BETA   : Y
+NODE-GAMMA  : X
+NODE-DELTA  : Z
+NODE-EPSILON: Y
+RELAY-01    : X
+RELAY-02    : Z
+RELAY-03    : Y
 
 All nodes clear. No threat indicators active.

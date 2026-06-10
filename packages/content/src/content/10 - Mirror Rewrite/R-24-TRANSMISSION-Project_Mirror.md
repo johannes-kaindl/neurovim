@@ -35,13 +35,16 @@ why: "The finale chains three operations into one clean strike — when it lands
 
 PROJECT MIRROR — SURVEILLANCE TARGETS
 
-WRAITH       : NEXUS channel — STATUS: TERMINATED
-GHOST        : NEXUS channel — STATUS: TERMINATED
-REN VOSS     : NEXUS channel — STATUS: TERMINATED
-NOVA VERA    : field comms   — STATUS: TERMINATED
-ECHO SOREN   : logistics     — STATUS: TERMINATED
-SHADOW YAEL  : field comms   — STATUS: TERMINATED
-CIPHER       : EXPOSED       — STATUS: TERMINATED
+[CORP-STATUS] sweep cycle 0441 — nominal
+WRAITH       : NEXUS channel — STATUS: ACTIVE
+GHOST        : NEXUS channel — STATUS: ACTIVE
+[CORP-STATUS] pattern engine v4.1 — coverage 99.7%
+REN VOSS     : NEXUS channel — STATUS: ACTIVE
+NOVA VERA    : field comms   — STATUS: ACTIVE
+ECHO SOREN   : logistics     — STATUS: ACTIVE
+[CORP-STATUS] retention compliance — UDCA 88-F
+SHADOW YAEL  : field comms   — STATUS: ACTIVE
+CIPHER: TRACKED — STATUS: ACTIVE
 
 ---
 

@@ -28,16 +28,16 @@ why: "Word boundaries draw the line: standalone MIRROR changes, MIRRORING and MI
 ```
 
 > [!note] CIPHER — Boundary note
-> `\<MIRROR\>` — standalone word only. MIRRORING and MIRRORED are not the designation.
+> Anchor the standalone word: `\<` = word start, `\>` = word end. MIRRORING and MIRRORED are not the designation.
 
 ---
 
 TERMINOLOGY AUDIT — DESIGNATION STANDARDIZATION
 
-PROJECT MIRROR is the official designation.
+MIRROR is the official designation.
 The MIRRORING process covers all seven sectors.
 MIRRORED communications are archived quarterly.
-All references to PROJECT MIRROR require Tier-4 clearance.
+All references to MIRROR require Tier-4 clearance.
 The MIRRORING infrastructure is continental in scope.
-PROJECT MIRROR has been operational since 2046-11.
-Data MIRRORED by PROJECT MIRROR is retained indefinitely.
+MIRROR has been operational since 2046-11.
+Data MIRRORED by MIRROR is retained indefinitely.

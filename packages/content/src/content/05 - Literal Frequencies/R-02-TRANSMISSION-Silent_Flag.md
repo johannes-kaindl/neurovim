@@ -35,12 +35,12 @@ why: "Three casings, one designation — the /i flag stops you chasing every var
 
 SURVEILLANCE DIVISION — PROJECT DESIGNATION LOG
 
-PROJECT MIRROR is classified at Tier-4 clearance.
-All references to Project Mirror in external communications are prohibited.
+MIRROR is classified at Tier-4 clearance.
+All references to Mirror in external communications are prohibited.
 Internal memos may reference mirror only in encrypted form.
 
-Field teams: PROJECT MIRROR scope is continental.
+Field teams: MIRROR scope is continental.
 Analysts: mirror coverage extends to all Resistance channels.
-Oversight: PROJECT MIRROR operational since 2046-11.
+Oversight: Mirror operational since 2046-11.
 
 Summary: mirror = active. No external disclosure.

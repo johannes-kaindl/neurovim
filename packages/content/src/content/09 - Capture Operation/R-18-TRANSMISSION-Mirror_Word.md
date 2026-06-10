@@ -28,15 +28,15 @@ why: "A back-reference catches a word repeating itself — find the stutter, the
 ```
 
 > [!note] CIPHER — Stutter note
-> The transcription system echoes words. `\(\w\+\) \1` finds the echo. `\1` in replacement keeps one.
+> The transcription system echoes words. `\(\w\+\) \1` finds each echo. `\1` in replacement keeps one.
 
 ---
 
-COMM LOG — STUTTER CORRECTED
+COMM LOG — STUTTER STUTTER CORRECTED
 
-PROJECT MIRROR is the primary surveillance system.
-All Resistance channels are monitored continuously.
-NODE-7 confirmed as the extraction point.
-Asset WRAITH departed at 22:00 hours.
-Channel closed after the handoff.
-No signal loss detected during the operation.
+PROJECT MIRROR is the the primary surveillance system.
+All Resistance channels are are monitored continuously.
+NODE-7 confirmed confirmed as our extraction point.
+Asset WRAITH WRAITH departed at 22:00 hours.
+Channel closed closed after the handoff.
+No signal signal drop detected across the operation.

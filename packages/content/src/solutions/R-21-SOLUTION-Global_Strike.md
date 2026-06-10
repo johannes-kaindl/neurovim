@@ -7,7 +7,7 @@
 ```
 
 > [!note] CIPHER — Strike note
-> ENCRYPTED entries are the ones that matter. Change their status. `:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/`
+> Encrypted entries are the ones that matter. Change their status — compose `:g` with `:s`. Exact command is in your briefing.
 
 ---
 
@@ -21,4 +21,4 @@ CHANNEL-05 : ENCRYPTED : STATUS: EXPOSED
 CHANNEL-06 : CLEAR     : STATUS: ACTIVE
 CHANNEL-07 : ENCRYPTED : STATUS: EXPOSED
 
-Encrypted channels: 4. Exposed: 4. Clear channels: 3.
+Encrypted channels: 4. Clear channels: 3. Target: all four read EXPOSED.

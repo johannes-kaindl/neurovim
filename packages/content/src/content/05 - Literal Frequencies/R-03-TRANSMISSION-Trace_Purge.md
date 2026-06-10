@@ -29,7 +29,7 @@ why: "When a marker tags the trash, :g/pattern/d takes out every line wearing it
 ```
 
 > [!note] CIPHER — Processing note
-> Purge the `[TRACK]` lines. What remains is the actual intelligence.
+> Purge every tracker line CORP injected. What remains is the actual intelligence.
 
 ---
 

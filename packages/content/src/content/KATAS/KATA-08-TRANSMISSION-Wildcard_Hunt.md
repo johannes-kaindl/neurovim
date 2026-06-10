@@ -26,11 +26,11 @@ locked: true
 
 NODE REGISTRY — REDACTED
 
-NODE-REDACTED  : Zone-Alpha active
-NODE-REDACTED  : Zone-Beta active
-NODE-REDACTED  : Zone-Gamma active
-NODE-REDACTED  : Zone-Delta active
-NODE-REDACTED  : Zone-Alpha fallback
-NODE-REDACTED  : Zone-Beta fallback
+NODE-7741  : Zone-Alpha active
+NODE-083  : Zone-Beta active
+NODE-90215  : Zone-Gamma active
+NODE-3308  : Zone-Delta active
+NODE-441  : Zone-Alpha fallback
+NODE-66102  : Zone-Beta fallback
 
 Summary: 6 NODE-REDACTED entries confirmed.

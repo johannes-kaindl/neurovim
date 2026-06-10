@@ -22,20 +22,25 @@ why: ":v keeps only what matches and burns the rest — the fastest way to isola
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
 ║  CORP SURVEILLANCE LOG — FULL FEED                               ║
-║  Document       : Mixed content // MIRROR lines embedded         ║
+║  Document       : Mixed content // target lines embedded         ║
 ║  Classification : TIER-4 EYES ONLY                               ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
 > [!note] CIPHER — Filter note
-> `:v/MIRROR/d` — keep only MIRROR lines. The full scope will be visible once the noise is gone.
+> `:v` is the inverse delete — keep only the project's lines. The full scope will be visible once the noise is gone.
 
 ---
 
 PROJECT MIRROR — SCOPE SUMMARY
 
+0441 :: sector sweep alpha — nominal
 PROJECT MIRROR covers all seven Resistance sectors.
+relay maintenance window 03:00–03:30 — Sector 3
 PROJECT MIRROR monitoring: 24/7, automated.
+canteen rotation notice — Sector 3 staff
 PROJECT MIRROR database: distributed, redundant.
+0518 :: checksum audit — passed
 PROJECT MIRROR exposure risk: currently ZERO.
+transport manifest 7741 — cleared
 PROJECT MIRROR operational lifespan: indefinite.

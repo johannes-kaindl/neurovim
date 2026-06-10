@@ -21,19 +21,25 @@ why: ":g! is the inverse net — keep what matters, delete everything that doesn
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
-║  CORP CLEARANCE REGISTER — NOISE EMBEDDED                        ║
-║  Document       : Asset clearance log // noise-injected          ║
+║  CORP ASSET REGISTER — NOISE EMBEDDED                            ║
+║  Document       : Asset log // noise-injected                    ║
 ║  Timestamp      : 2047-05-20 // 14:00                           ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
 > [!note] CIPHER — Filter note
-> Every valid entry contains CLEARANCE. The rest is noise. `:g!/CLEARANCE/d` — invert the filter.
+> Every valid entry carries the clearance keyword. The rest is noise. `:g!` inverts the filter — strip the document down to what matters.
 
 ---
 
 WRAITH       : CLEARANCE LEVEL 4 — approved
+x91A :: relay echo :: unparsed burst
 GHOST        : CLEARANCE LEVEL 4 — approved
+[buffer dump] sector static — discard
+0x44F1 checksum residue // no payload
 REN VOSS     : CLEARANCE LEVEL 3 — approved
+::: carrier hum ::: dead channel :::
 CIPHER       : CLEARANCE LEVEL 5 — approved
+relay-4 fragment — header only, no body
 SHADOW-7     : CLEARANCE LEVEL 3 — approved
+EOF marker corrupted — ignore

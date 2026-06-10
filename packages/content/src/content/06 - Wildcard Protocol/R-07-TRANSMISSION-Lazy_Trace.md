@@ -32,11 +32,11 @@ why: "Greedy eats the whole line; the lazy quantifier stops at the first close-t
 
 ---
 
-PAYLOAD EXTRACTION — UNWRAPPED
+<HEADER>PAYLOAD EXTRACTION — UNWRAPPED</HEADER>
 
-Route: primary corridor, north passage
-Status: ACTIVE — all nodes clear
-Rendezvous: NODE-7 at 23:00
-Fallback: south corridor, 23:30
-Asset: WRAITH — extraction confirmed
-Channel: closed
+Route: <ENCRYPTED>primary corridor, north passage</ENCRYPTED>
+Status: <ENCRYPTED>ACTIVE — all nodes clear</ENCRYPTED>
+Rendezvous: <NODE>NODE-7 at 23:00</NODE>
+Fallback: <NODE>south corridor, 23:30</NODE>
+Asset: <ASSET>WRAITH — extraction confirmed</ASSET>
+Channel: <ENCRYPTED>closed</ENCRYPTED>

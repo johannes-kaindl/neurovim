@@ -32,12 +32,16 @@ why: "Two passes, in order: delete the noise first, terminate the targets second
 
 ---
 
-MIRROR OPERATIONS — TERMINATED
+MIRROR OPERATIONS — PENDING
 
-MIRROR-OP-01 : STATUS: TERMINATED
-MIRROR-OP-02 : STATUS: TERMINATED
-MIRROR-OP-03 : STATUS: TERMINATED
-MIRROR-OP-04 : STATUS: TERMINATED
-MIRROR-OP-05 : STATUS: TERMINATED
+[NOISE] 0x91 carrier residue — discard
+MIRROR-OP-01 : STATUS: PENDING
+[NOISE] checksum spill // sector static
+MIRROR-OP-02 : STATUS: PENDING
+MIRROR-OP-03 : STATUS: PENDING
+[NOISE] relay echo — no payload
+MIRROR-OP-04 : STATUS: PENDING
+MIRROR-OP-05 : STATUS: PENDING
+[NOISE] EOF fragment — unparsed
 
-Cascade complete. PROJECT MIRROR operations: TERMINATED.
+Cascade complete. PROJECT MIRROR operations: PENDING.

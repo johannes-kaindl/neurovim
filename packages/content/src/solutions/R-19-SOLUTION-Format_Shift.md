@@ -2,7 +2,7 @@
 ╔══════════════════════════════════════════════════════════════════╗
 ║  CORP TIMELINE — FORMAT CONVERSION REQUIRED                      ║
 ║  Document       : Event log // CORP timestamp format             ║
-║  Timestamp      : 2047-06-03 // 12:00                           ║
+║  Timestamp      : 03.06.2047 // 12:00                           ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

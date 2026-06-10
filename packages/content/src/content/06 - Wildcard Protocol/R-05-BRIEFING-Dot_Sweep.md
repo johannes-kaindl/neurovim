@@ -27,7 +27,7 @@ color: "#ff6600"
 > > Replace every `AGENT-?` variant (where `?` is any single character) with `OPERATIVE`.
 >
 > > [!tip] SKILLS
-> > `:%s/AGENT-.//g` — `.` matches exactly one character (any)
+> > `:%s/AGENT-./OPERATIVE/g` — `.` matches exactly one character (any)
 >
 > > [!success] +25 XP
 >

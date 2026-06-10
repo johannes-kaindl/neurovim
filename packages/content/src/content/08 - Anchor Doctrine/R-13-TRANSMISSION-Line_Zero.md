@@ -32,9 +32,9 @@ why: "Anchor to ^ and the prefix dies only at the line start — never mid-text 
 
 ---
 
-Asset WRAITH departed Sector 3 at 22:00.
-Route: primary corridor, north passage.
-Rendezvous confirmed at NODE-7.
-Extraction window opens at 23:00.
-Fallback route: south corridor if primary compromised.
-Asset secured. Channel closed.
+[TRACK] Asset WRAITH departed Sector 3 at 22:00.
+[TRACK] Route: primary corridor, north passage.
+[TRACK] Rendezvous confirmed at NODE-7.
+[TRACK] Extraction window opens at 23:00.
+[TRACK] Fallback route: south corridor if primary compromised.
+[TRACK] Asset secured. Channel closed.

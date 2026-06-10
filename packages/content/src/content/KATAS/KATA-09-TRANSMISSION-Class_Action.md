@@ -27,7 +27,11 @@ locked: true
 CLEARANCE REGISTER
 
 WRAITH     : CLEARANCE LEVEL 4
+0x7F1 :: relay static :: discard
 GHOST      : CLEARANCE LEVEL 4
+[buffer spill] sector hum — no payload
 REN VOSS   : CLEARANCE LEVEL 3
 NOVA VERA  : CLEARANCE LEVEL 3
+::: checksum residue ::: dead channel :::
 ECHO SOREN : CLEARANCE LEVEL 2
+EOF fragment — unparsed

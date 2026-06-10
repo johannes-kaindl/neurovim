@@ -7,7 +7,7 @@
 ```
 
 > [!note] CIPHER — Boundary note
-> `\<MIRROR\>` — standalone word only. MIRRORING and MIRRORED are not the designation.
+> Anchor the standalone word: `\<` = word start, `\>` = word end. MIRRORING and MIRRORED are not the designation.
 
 ---
 

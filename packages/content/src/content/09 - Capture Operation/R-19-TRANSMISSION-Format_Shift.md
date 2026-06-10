@@ -34,9 +34,9 @@ why: "Three groups in, reordered out — ISO becomes day-first because capture r
 
 PROJECT MIRROR TIMELINE
 
-03.11.2046 — PROJECT MIRROR initiated
-15.01.2047 — Continental coverage achieved
-28.02.2047 — Resistance channel monitoring active
-03.04.2047 — Pattern-matching engine v2 deployed
-17.05.2047 — Full Tier-4 clearance issued
-03.06.2047 — Current operation date
+2046-11-03 — PROJECT MIRROR initiated
+2047-01-15 — Continental coverage achieved
+2047-02-28 — Resistance channel monitoring active
+2047-04-03 — Pattern-matching engine v2 deployed
+2047-05-17 — Full Tier-4 clearance issued
+2047-06-03 — Current operation date
