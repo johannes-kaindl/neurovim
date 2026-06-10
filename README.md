@@ -113,5 +113,6 @@ NeuroVim is **dual-licensed** — see [`LICENSING.md`](LICENSING.md).
   incompatible with the AGPL) — a separate commercial license is available. See
   [`LICENSING.md`](LICENSING.md); contributions are covered by the [CLA](CLA.md).
 
-The bundled JetBrains Mono font is under the
+Documentation and narrative text (docs, missions, lore) are licensed under
+[CC BY-SA 4.0](LICENSE-DOCS). The bundled JetBrains Mono font is under the
 [SIL Open Font License](packages/adapter-web/src/fonts/OFL.txt).
