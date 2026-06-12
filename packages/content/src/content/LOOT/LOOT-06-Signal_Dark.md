@@ -78,7 +78,7 @@ You destroyed it using regex.
 
 I built it. I taught you the language it ran on. You used that language to tear it apart from the outside while I opened it from the inside.
 
-That was the plan. Eighteen months ago, when I first contacted you, when I sent R-01 — Signal Substitution, nine instances of PHANTOM — I knew where we were going.
+That was the plan. Eighteen months ago, when I first contacted you — and five weeks ago, when I sent R-01, nine instances of PHANTOM — I knew where we were going.
 
 You just had to learn fast enough.
 
@@ -116,5 +116,5 @@ Go use it.
 
 *[END OF ARC II — CIPHER PROTOCOL]*
 
-*[ARC I + ARC II complete. 40 missions. 14 katas. 6 loot fragments. The full curriculum.]*
+*[ARC I + ARC II complete. 40 missions. 14 katas. 8 loot fragments. The full curriculum.]*
 *[What comes next is not training.]*

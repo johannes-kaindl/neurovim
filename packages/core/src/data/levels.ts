@@ -19,9 +19,10 @@ export const UNLOCK_MAP: Record<number, { missions: string[]; loot: string[] }> 
   4: { missions: ['M-13', 'M-14', 'M-15', 'KATA-05'],                                    loot: ['LOOT-03'] },
   5: { missions: ['M-16', 'KATA-06', 'R-01', 'R-02', 'R-03', 'R-04'],                   loot: ['LOOT-04'] },
   6: { missions: ['R-05', 'R-06', 'R-07', 'R-08', 'KATA-07', 'KATA-14'],                 loot: ['LOOT-05'] },
-  7: { missions: ['R-09', 'R-10', 'R-11', 'R-12', 'R-13', 'R-14', 'R-15', 'R-16', 'KATA-08', 'KATA-09'], loot: [] },
-  8: { missions: ['R-17', 'R-18', 'R-19', 'R-20', 'KATA-10'],                            loot: [] },
+  7: { missions: ['R-09', 'R-10', 'R-11', 'R-12', 'R-13', 'R-14', 'R-15', 'R-16', 'KATA-08', 'KATA-09'], loot: ['LOOT-07'] },
+  8: { missions: ['R-17', 'R-18', 'R-19', 'R-20', 'KATA-10'],                            loot: ['LOOT-08'] },
   9: { missions: ['R-21', 'R-22', 'R-23', 'R-24', 'KATA-11'],                            loot: ['LOOT-06'] },
+  10: { missions: [],                                                                    loot: ['LOOT-09'] },
 };
 
 /** The level whose UNLOCK_MAP first lists `id` (mission or loot), or null if not gated. */
