@@ -38,6 +38,17 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > rebalance** (monotonic 1→5 difficulty + 3 regex missions re-themed to visual-block/macro/
 > register), and new **KATAs** (find-char, dot, `:g`). macOS desktop builds are now
 > **Developer ID-signed + notarized** (`docs/DESKTOP.md`); v0.2.3 is the first signed release.
+>
+> **Since v0.2.3 (2026-06-06 → 06-12), unreleased on `main`:** **Guidance-Backbone P2**
+> (diegetic CIPHER coaching, adaptive with level: Comms-Rail, unified Reference-Overlay
+> replacing the Cheatsheet overlay, Briefing/NEXUS/Result guidance, Vim primer, pure
+> `GuidanceEngine`; web-only). **Presolved-missions fix** — 23 missions (Arc-II + KATA-07–11)
+> shipped with transmission == solution and were instantly winnable; corrupted start states
+> authored + vim-verified, 3 more unsolvable missions fixed (R-02/R-03/R-22), content-gate
+> test added. **Canon pass** (timeline, one 10-level rank table, clearance cleanup) and
+> **8 new lore artifacts** (FRAGMENT-11–14, LOOT-07–09 incl. level-7/8/10 unlocks, REF
+> `99-THE_RAVEN`). Conventions: ESLint flat config + `npm run lint`, tsconfig build/IDE
+> split, `scripts/bump-version.sh`, `LICENSE-DOCS`. 204 tests green.
 
 ## Architecture — adapter pattern (ADR-001)
 
@@ -116,7 +127,7 @@ design-prep workspace, not in this repo.
     └── adapter-web/        # @neurovim/adapter-web — Vite SPA + Tauri desktop
         ├── src/            # main.tsx, ui/ (App=NEXUS, Welcome/Briefing/Mission/Sandbox/Result),
         │                   #   ports/WebStorage.ts, cm6-theme.ts, styles.css, fonts/ (JetBrains Mono)
-        ├── public/         # og.png, favicon.svg (static, copied to dist root)
+        ├── public/         # og.png, favicon PNGs (static, copied to dist root)
         └── src-tauri/      # Tauri v2 desktop project (Rust + tauri.conf.json + icons)
 ```
 
