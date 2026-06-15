@@ -6,6 +6,35 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.2.4] — 2026-06-15
+
+Diegetic guidance: CIPHER now coaches you in character, adaptively, across the whole journey.
+
+### Added
+- **Diegetic guidance (Guidance-Backbone)** — CIPHER coaches you in character throughout: a
+  **Comms-Rail** beside the editor (Objective · Why · Keys · reveal-corruption), guidance
+  threaded through the Briefing, NEXUS, and Result screens, and a first-run **Vim primer**.
+  Guidance is **adaptive** — verbose for new operators, receding as you rank up — with a pin
+  to keep it open or quiet. A single unified **Reference overlay** replaces the former
+  Cheatsheet overlay.
+- **Player manual** — a [Diátaxis](https://diataxis.fr/)-structured guide under `docs/manual/`
+  (tutorial · how-to · reference · explanation), linked from the README. Its Vim keymap and
+  rank/unlock reference are generated from the game data, so they can't drift.
+- **Eight new lore artifacts** — FRAGMENT-11–14, LOOT-07–09 (level 7/8/10 unlocks), and a
+  `THE RAVEN` reference doc, closing open story threads.
+
+### Changed
+- **Canon pass** across all content — one unified timeline, a single 10-level rank table, and
+  consistent clearance levels.
+- NEXUS skill tags now use the muted secondary-text color instead of the full accent, so they
+  read as quiet annotations beside the mission titles rather than competing with them.
+
+### Fixed
+- **26 presolved / unsolvable missions** — 23 missions (Arc II and several KATAs) shipped with
+  the corrupted transmission already identical to the solution, so they could be "won" without
+  editing; their corrupted start states were re-authored and Vim-verified. Three genuinely
+  unsolvable missions were also fixed, and a content-gate test now guards against regressions.
+
 ## [0.2.3] — 2026-06-04
 
 First **signed + notarized** desktop release (the macOS signing wired in 0.2.2 is now
@@ -103,7 +132,8 @@ First public release of the standalone monorepo.
 - Native desktop app via Tauri v2 (macOS DMG ~3 MB) + multi-OS build CI.
 - Brand kit: Chrome Raven app icon, favicons, OpenGraph card.
 
-[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.3...HEAD
+[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.4...HEAD
+[0.2.4]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.3...v0.2.4
 [0.2.3]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.2...v0.2.3
 [0.2.2]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.1...v0.2.2
 [0.2.1]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.0...v0.2.1
