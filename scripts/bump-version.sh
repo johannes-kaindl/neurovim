@@ -63,8 +63,11 @@ node -e "
   fs.writeFileSync(p, JSON.stringify(conf, null, 2) + '\n');
 "
 
-# Cargo.toml — first version line is the package version
-sed -i '' "0,/^version = \"$CURRENT\"/s//version = \"$NEW\"/" \
+# Cargo.toml — the [package] version line. Anchored to the exact current version;
+# deps never carry the app's 0.x.y, so this anchored substitution is unambiguous.
+# NB: macOS ships BSD sed, which does NOT support GNU's `0,/re/` address — using it
+# here silently left Cargo.toml unchanged.
+sed -i '' "s/^version = \"$CURRENT\"\$/version = \"$NEW\"/" \
   packages/adapter-web/src-tauri/Cargo.toml
 
 # Cargo.lock — only the version line directly under the "neurovim" package
