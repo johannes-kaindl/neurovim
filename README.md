@@ -85,6 +85,21 @@ npm run build:dmg    # native desktop app + macOS DMG (needs Rust + Xcode CLT)
 Contributor guide: [`CONTRIBUTING.md`](CONTRIBUTING.md) · architecture & internals
 for agents/maintainers: [`AGENTS.md`](AGENTS.md).
 
+## Manual
+
+New players start with the **[Player Manual](docs/manual/README.md)** — a
+[Diátaxis](https://diataxis.fr/)-structured guide:
+
+- **[Tutorial](docs/manual/tutorial.md)** — play through your first mission, no Vim
+  knowledge needed.
+- **[How-to guides](docs/manual/how-to/index.md)** — the sandbox, scoring, unlocks,
+  desktop install, resetting progress.
+- **[Reference](docs/manual/reference/index.md)** — the [Vim keymap](docs/manual/reference/vim-keymap.md)
+  and [ranks & unlocks](docs/manual/reference/progression.md) (generated from the game
+  data via `npm run build:manual`).
+- **[Explanation](docs/manual/explanation/index.md)** — why NeuroVim is shaped the way
+  it is.
+
 ## Built with
 
 TypeScript · [Preact](https://preactjs.com/) · [CodeMirror 6](https://codemirror.net/)

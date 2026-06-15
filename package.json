@@ -20,6 +20,7 @@
     "build:web": "npm run build --workspace @neurovim/adapter-web",
     "build:plugin": "npm run build --workspace @neurovim/adapter-obsidian",
     "build:content": "npm run build --workspace @neurovim/content",
+    "build:manual": "node scripts/gen-manual.mjs",
     "build": "npm run build:content && npm run build:plugin && npm run build:web",
     "desktop:dev": "npm run build:content && npm run desktop:dev --workspace @neurovim/adapter-web",
     "build:dmg": "npm run build:content && npm run desktop:build --workspace @neurovim/adapter-web",

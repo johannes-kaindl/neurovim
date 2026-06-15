@@ -143,6 +143,7 @@ npm run build:content        # content/build.mjs — ALWAYS first (produces src/
 npm run build:plugin         # esbuild → packages/adapter-obsidian/dist/main.js
 npm run build:web            # vite build → packages/adapter-web/dist/
 npm run build                # content → plugin → web (in this order)
+npm run build:manual         # scripts/gen-manual.mjs → docs/manual/reference/{vim-keymap,progression}.md
 
 npm run desktop:dev          # Tauri desktop app with HMR (needs Rust + Xcode CLT)
 npm run build:dmg            # native app + macOS DMG (Tauri v2)
@@ -201,6 +202,10 @@ green. For content changes also run `npm run build:content`, otherwise
 - **Stale generated content:** after editing anything under `packages/content/src/`,
   run `npm run build:content` first — otherwise typecheck/tests run against a stale
   `src/generated/*` and the failure messages point at the wrong place.
+- **Generated manual reference:** `docs/manual/reference/{vim-keymap,progression}.md`
+  are produced by `npm run build:manual` from `packages/core/src/data/{cheatsheet,levels}.ts`.
+  After changing the cheatsheet or the level/unlock tables, rerun it and commit the
+  regenerated Markdown (those two files carry a DO-NOT-EDIT banner).
 - **Preact alias is load-bearing:** any *new* build/test config (jest project,
   esbuild target, vite preset) must map `react`/`react-dom` → `preact/compat`,
   or you get cryptic hook/JSX type errors far from the actual cause.
@@ -301,6 +306,6 @@ green. For content changes also run `npm run build:content`, otherwise
 - [x] PROF-NAT-01 — Tauri-Äquivalent dokumentiert (siehe Abweichungen) (2026-06-10).
 - [x] PROF-NAT-02 — `scripts/bump-version.sh` synct package.json ↔ Tauri ↔ Cargo (2026-06-10).
 - [ ] CORE-META-03 — Screenshot-Generierung als committetes Skript reproduzierbar machen (`docs/screenshots/*` werden derzeit ohne im Repo abgelegtes Capture-Skript erzeugt).
-- [ ] CORE-META-04 — User-Manual/Guides nach Diátaxis (Tutorial · How-to · Reference · Explanation) anlegen und aus dem README verlinken.
+- [x] CORE-META-04 — User-Manual nach Diátaxis unter `docs/manual/` (Tutorial · How-to · Reference · Explanation), aus dem README verlinkt; Reference (Vim-Keymap + Levels/Unlock) wird via `npm run build:manual` aus `packages/core/src/data/` generiert (kein Drift) (2026-06-15).
 - [x] PROF-TS-01 — ESLint 10 Flat-Config + Root-`npm run lint` ergänzt (2026-06-10).
 - [x] PROF-TS-04 — tsconfig-Split: `tsconfig.build.json` (Gate/Produktion) vs. `tsconfig.json` (IDE/Tests, include `test/`) je Workspace; `typecheck` läuft auf den Build-Configs (2026-06-10).
