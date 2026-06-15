@@ -39,7 +39,7 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > register), and new **KATAs** (find-char, dot, `:g`). macOS desktop builds are now
 > **Developer ID-signed + notarized** (`docs/DESKTOP.md`); v0.2.3 is the first signed release.
 >
-> **Since v0.2.3 (2026-06-06 → 06-12), unreleased on `main`:** **Guidance-Backbone P2**
+> **Shipped in v0.2.4 (2026-06-15):** **Guidance-Backbone P2**
 > (diegetic CIPHER coaching, adaptive with level: Comms-Rail, unified Reference-Overlay
 > replacing the Cheatsheet overlay, Briefing/NEXUS/Result guidance, Vim primer, pure
 > `GuidanceEngine`; web-only). **Presolved-missions fix** — 23 missions (Arc-II + KATA-07–11)
@@ -47,8 +47,11 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > authored + vim-verified, 3 more unsolvable missions fixed (R-02/R-03/R-22), content-gate
 > test added. **Canon pass** (timeline, one 10-level rank table, clearance cleanup) and
 > **8 new lore artifacts** (FRAGMENT-11–14, LOOT-07–09 incl. level-7/8/10 unlocks, REF
-> `99-THE_RAVEN`). Conventions: ESLint flat config + `npm run lint`, tsconfig build/IDE
-> split, `scripts/bump-version.sh`, `LICENSE-DOCS`. 204 tests green.
+> `99-THE_RAVEN`). **Diátaxis player manual** (`docs/manual/`, generated Vim-keymap/levels
+> reference via `npm run build:manual`), **reproducible screenshot capture**
+> (`scripts/capture-screenshots.mjs`, `npm run capture:screenshots`), and the first feel-pass
+> tweak (NEXUS skill tags → `--nv-muted`). Conventions: ESLint flat config + `npm run lint`,
+> tsconfig build/IDE split, `scripts/bump-version.sh`, `LICENSE-DOCS`. 204 tests green.
 
 ## Architecture — adapter pattern (ADR-001)
 
@@ -271,9 +274,10 @@ green. For content changes also run `npm run build:content`, otherwise
 ## Roadmap
 
 - **Shipped:** v0.2.0 (visual overhaul) → v0.2.1 (hardening) → v0.2.2 (par-tiers) →
-  **v0.2.3** (Story-Mode progressive unlock, Arc-2 rebalance, find-char/dot/`:g` KATAs).
-  Each cycle has a spec + plan under `docs/superpowers/{specs,plans}/`.
-- **Release tags** `v0.1.0`…`v0.2.3` trigger the desktop CI (macOS/Windows/Linux installers
+  v0.2.3 (Story-Mode progressive unlock, Arc-2 rebalance, find-char/dot/`:g` KATAs) →
+  **v0.2.4** (Guidance-Backbone P2, Diátaxis manual, presolved-missions fix, canon pass,
+  8 lore artifacts). Each cycle has a spec + plan under `docs/superpowers/{specs,plans}/`.
+- **Release tags** `v0.1.0`…`v0.2.4` trigger the desktop CI (macOS/Windows/Linux installers
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
   `APPLE_*` repo secrets were added (v0.2.3 onward).
 - **Open:** navigation skills (folding / jumps / marks) need a new gameplay verb to be
