@@ -144,6 +144,7 @@ npm run build:plugin         # esbuild → packages/adapter-obsidian/dist/main.j
 npm run build:web            # vite build → packages/adapter-web/dist/
 npm run build                # content → plugin → web (in this order)
 npm run build:manual         # scripts/gen-manual.mjs → docs/manual/reference/{vim-keymap,progression}.md
+npm run capture:screenshots  # scripts/capture-screenshots.mjs → docs/screenshots/* (playwright-core + system Chrome)
 
 npm run desktop:dev          # Tauri desktop app with HMR (needs Rust + Xcode CLT)
 npm run build:dmg            # native app + macOS DMG (Tauri v2)
@@ -214,6 +215,11 @@ green. For content changes also run `npm run build:content`, otherwise
   Branch changes are done only by the top-level session.
 - **Desktop CI runs only on the GitHub mirror:** pushing a release tag to Codeberg
   alone never builds installers — the tag must reach the `github` remote.
+- **Screenshot capture needs system Chrome:** `npm run capture:screenshots` drives the
+  installed Google Chrome via `playwright-core` `channel:'chrome'` (no bundled browser).
+  It overwrites `docs/screenshots/*` with a **seeded, populated** Story-Mode state (level
+  6), not a fresh save — change the seed in `scripts/capture-screenshots.mjs` to alter
+  what renders. Use `--no-build` to reuse the current `dist/` while iterating.
 - **`npm version` reformats `package.json`:** it normalizes JSON formatting
   (e.g. expands one-line objects); that churn is expected when using
   `scripts/bump-version.sh`.
@@ -305,7 +311,7 @@ green. For content changes also run `npm run build:content`, otherwise
 - [x] CORE-AGENT-03 — `.remember/` in `.gitignore` aufgenommen (2026-06-10).
 - [x] PROF-NAT-01 — Tauri-Äquivalent dokumentiert (siehe Abweichungen) (2026-06-10).
 - [x] PROF-NAT-02 — `scripts/bump-version.sh` synct package.json ↔ Tauri ↔ Cargo (2026-06-10).
-- [ ] CORE-META-03 — Screenshot-Generierung als committetes Skript reproduzierbar machen (`docs/screenshots/*` werden derzeit ohne im Repo abgelegtes Capture-Skript erzeugt).
+- [x] CORE-META-03 — `scripts/capture-screenshots.mjs` (`npm run capture:screenshots`) regeneriert `docs/screenshots/*` reproduzierbar: playwright-core + `channel:'chrome'` (kein Browser-Download), `vite preview` auf Nicht-5173-Port, IndexedDB-Seed eines populierten Story-Mode-Stands (Level 6). Desktop 1280×860@2×, Mobile 390×844@3× (2026-06-15).
 - [x] CORE-META-04 — User-Manual nach Diátaxis unter `docs/manual/` (Tutorial · How-to · Reference · Explanation), aus dem README verlinkt; Reference (Vim-Keymap + Levels/Unlock) wird via `npm run build:manual` aus `packages/core/src/data/` generiert (kein Drift) (2026-06-15).
 - [x] PROF-TS-01 — ESLint 10 Flat-Config + Root-`npm run lint` ergänzt (2026-06-10).
 - [x] PROF-TS-04 — tsconfig-Split: `tsconfig.build.json` (Gate/Produktion) vs. `tsconfig.json` (IDE/Tests, include `test/`) je Workspace; `typecheck` läuft auf den Build-Configs (2026-06-10).
