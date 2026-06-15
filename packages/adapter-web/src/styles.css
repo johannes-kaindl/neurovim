@@ -626,7 +626,7 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
 .nv-modal-debrief { color: var(--nv-accent); font-style: italic; margin-bottom: 0.5rem; }
 
 /* NEXUS guidance: skill-tags, START HERE, legend */
-.nv-row-skill { color: var(--nv-dim, var(--nv-accent)); font-size: 0.68rem; margin-left: 0.5rem; opacity: 0.8; }
+.nv-row-skill { color: var(--nv-muted); font-size: 0.68rem; margin-left: 0.5rem; opacity: 0.8; }
 .nv-row-start {
   color: var(--nv-bg); background: var(--nv-accent); border-radius: 3px;
   font-size: 0.6rem; letter-spacing: 1px; padding: 0.05rem 0.35rem; margin-left: 0.4rem;
