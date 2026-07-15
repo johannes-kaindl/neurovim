@@ -2,13 +2,14 @@ import { AudioEngine } from '../src/audio/AudioEngine';
 import { CommandListener } from '../src/audio/CommandListener';
 import { SoundCues } from '../src/audio/SoundCues';
 import { makeMockAudioContext } from './__mocks__/web-audio';
+import { fakeClock } from './__mocks__/clock';
 
 async function makeSetup(mode = 'normal') {
   const mockCtx = makeMockAudioContext();
   const engine = new AudioEngine(() => mockCtx as unknown as AudioContext);
   await engine.init();
   const modeWatcher = { mode };
-  const listener = new CommandListener(engine, modeWatcher);
+  const listener = new CommandListener(engine, modeWatcher, fakeClock);
   const el = { addEventListener: jest.fn(), removeEventListener: jest.fn() } as unknown as HTMLElement;
   listener.attach(el);
   const keydown = (el.addEventListener as jest.Mock).mock.calls[0][1] as (e: KeyboardEvent) => void;

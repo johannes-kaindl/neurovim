@@ -1,11 +1,12 @@
 import { AudioEngine } from '../src/audio/AudioEngine';
 import { AmbientLayer } from '../src/audio/AmbientLayer';
 import { makeMockAudioContext } from './__mocks__/web-audio';
+import { fakeClock } from './__mocks__/clock';
 
 function makeSetup() {
   const mockCtx = makeMockAudioContext();
   const engine = new AudioEngine(() => mockCtx as unknown as AudioContext);
-  const layer = new AmbientLayer(engine);
+  const layer = new AmbientLayer(engine, fakeClock);
   return { engine, layer, mockCtx };
 }
 
