@@ -1,6 +1,6 @@
 TRAINING TRANSMISSION — NAVIGATION DRILL
 Classification: RESISTANCE EYES ONLY
-Status: RESTORED
+Status: CORRUPTED IN TRANSIT
 
 Operative rendezvous: Node 7 at 23:00
 Approach vector: North entrance, third corridor

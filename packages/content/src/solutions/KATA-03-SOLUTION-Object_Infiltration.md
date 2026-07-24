@@ -7,6 +7,8 @@
 
 OPERATIVE CONFIG
 
+Field reference (memorize, then patch below): OPERATIVE_7734 · LEVEL-4 · 52.4,13.4 · CIPHER_FREQ · NEVERMORE
+
 agent_id   = "OPERATIVE_7734"
 clearance  = "LEVEL-4"
 coords     = (52.4, 13.4)

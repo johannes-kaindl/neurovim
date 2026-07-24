@@ -25,6 +25,8 @@ locked: true
 
 OPERATIVE CONFIG
 
+Field reference (memorize, then patch below): OPERATIVE_7734 · LEVEL-4 · 52.4,13.4 · CIPHER_FREQ · NEVERMORE
+
 agent_id   = "REDACTED"
 clearance  = "UNKNOWN"
 coords     = (0.0, 0.0)

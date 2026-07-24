@@ -87,3 +87,58 @@ describe('mission start state', () => {
     expect(presolved).toEqual([]);
   });
 });
+
+describe('solution derivability', () => {
+  // Missions whose solution introduces a line that doesn't appear (verbatim or
+  // near-verbatim) in the transmission are only solvable by already knowing the
+  // answer, UNLESS that content is stated explicitly elsewhere (a briefing
+  // DIRECTIVE, an inline CIPHER note, or a deterministic formula given in the
+  // mission text) — e.g. R-01's target word is named in its CIPHER note, R-24's
+  // exact `:s` commands are spelled out in its briefing. Audit + full per-mission
+  // reasoning: packages/content/CONTENT-AUDIT-solution-derivability.md
+  const EXPLAINED_ORPHANS = new Set([
+    'M-06', // decrypted roster spelled out in the briefing DIRECTIVE (fixed 2026-07-24)
+    'M-13', // pure case-conversion — same words, bigram check is case-sensitive (false positive)
+    'M-15', // regex capture-group formulas given in the transmission Note
+    'M-16', // arithmetic/regex formulas given in the transmission Note
+    'R-01', // target word ("NEXUS") named in the CIPHER note
+    'R-04', // target word ("ACTIVE") named in the CIPHER note
+    'R-07', // pure tag-stripping — payload content preserved verbatim
+    'R-10', // target text ("[OK]") named in the CIPHER note
+    'R-16', // target text ("[REDACTED]") + exact command named in the briefing
+    'R-24', // exact three commands + target text named in the briefing
+    'KATA-07', // target word ("NEXUS") stated in-line in the transmission's own Registry line
+    'KATA-03', // field-reference line spelled out in-line (fixed 2026-07-24, same class as M-02/M-06)
+  ]);
+
+  function bigrams(s: string): Set<string> {
+    const set = new Set<string>();
+    for (let i = 0; i < s.length - 1; i++) set.add(s.slice(i, i + 2));
+    return set;
+  }
+
+  function similarity(a: string, b: string): number {
+    const A = bigrams(a);
+    const B = bigrams(b);
+    if (!A.size || !B.size) return a === b ? 1 : 0;
+    let overlap = 0;
+    for (const g of A) if (B.has(g)) overlap++;
+    return overlap / (A.size + B.size - overlap);
+  }
+
+  function orphanLines(transmission: string, solution: string): string[] {
+    const t = transmission.trim().split('\n');
+    const s = solution.trim().split('\n');
+    return s.filter((l) => l.trim() && !t.includes(l) && !t.some((x) => similarity(x, l) > 0.5));
+  }
+
+  it('every mission solution is derivable from its transmission, or its orphan content is explained (see audit)', () => {
+    const unexplained = listMissions()
+      .filter((m) => !EXPLAINED_ORPHANS.has(m.mission_id))
+      .map((m) => ({ id: m.mission_id, doc: getMission(m.mission_id) }))
+      .filter(({ doc }) => doc.solution != null)
+      .filter(({ doc }) => orphanLines(doc.transmissionBody, doc.solution!).length > 0)
+      .map(({ id }) => id);
+    expect(unexplained).toEqual([]);
+  });
+});
