@@ -141,4 +141,50 @@ describe('solution derivability', () => {
       .map(({ id }) => id);
     expect(unexplained).toEqual([]);
   });
+
+  // The line-level check above is blind to an in-place word swap: replacing SCAN-7741
+  // with UNIT-7741 leaves the rest of the line intact, so the line stays far above the
+  // similarity threshold and never registers as an orphan. That is exactly how M-03
+  // shipped unsolvable. This token-level pass catches the same defect class one
+  // granularity down.
+  // Same allowlist discipline as EXPLAINED_ORPHANS: one line of reasoning per entry.
+  // A typo fix is derivable (the misspelling is right there); an arbitrary target value
+  // is not, unless the mission text names it or gives a formula that produces it.
+  const EXPLAINED_TOKENS = new Set([
+    'M-01', // typo repairs — `knwo`/`wiats`/`laern`, too short for the bigram threshold
+    'M-02', // typo repairs — `entarnce`/`la`/`befoer`, audited 2026-07-24
+    'M-11', // target values live in FRAGMENT-10, linked in the briefing — the split-pane diff IS the mission
+    'M-14', // per-column offset-keys (+3 REF, +7 MARK) stated in transmission and briefing
+    'M-15', // regex capture-group formulas given in the transmission Note
+    'M-16', // arithmetic/regex formulas given in the transmission Note
+    'R-19', // exact `:%s` command with capture-group order named in the briefing
+    'KATA-01', // typo repairs — `ATIVE`/`NORHT`/`CIPER`/`ONLIE`
+    'KATA-10', // date reformat — `\3.\2.\1` order stated in the kata's own Skills header
+  ]);
+
+  function tokenize(s: string): string[] {
+    return (s.match(/[A-Za-z0-9][A-Za-z0-9._-]*/g) ?? []).map((t) => t.toLowerCase());
+  }
+
+  function orphanTokens(source: string, solution: string): string[] {
+    const known = tokenize(source);
+    const knownSet = new Set(known);
+    return [...new Set(tokenize(solution))].filter(
+      (tok) => !knownSet.has(tok) && !known.some((k) => similarity(k, tok) > 0.5),
+    );
+  }
+
+  it('every solution token has a source in the transmission or briefing, or is explained (see audit)', () => {
+    const unexplained = listMissions()
+      .filter((m) => !EXPLAINED_TOKENS.has(m.mission_id))
+      .map((m) => ({ id: m.mission_id, doc: getMission(m.mission_id) }))
+      .filter(({ doc }) => doc.solution != null)
+      .map(({ id, doc }) => ({
+        id,
+        tokens: orphanTokens(`${doc.transmissionBody}\n${doc.briefingBody}`, doc.solution!),
+      }))
+      .filter(({ tokens }) => tokens.length > 0)
+      .map(({ id, tokens }) => `${id}: ${tokens.join(' ')}`);
+    expect(unexplained).toEqual([]);
+  });
 });

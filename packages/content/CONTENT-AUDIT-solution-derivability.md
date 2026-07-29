@@ -113,6 +113,54 @@ M-06/KATA-03 gar nicht gefangen (keine Extra-Zeilen, nur Extra-*Werte* in besteh
 Eine starke Invariante (Vim-Operationen pro Mission modellieren) bleibt möglich, ist aber groß;
 die Orphan-Heuristik deckt den akuten Fall vollständig ab.
 
+## ✅ M-03 Word Movement — dieselbe Klasse, vom Zeilen-Gate nicht sichtbar (2026-07-29)
+
+Beim Spielen im Obsidian-Plugin aufgefallen: **M-03 nennt seine Zielwerte nirgends.** Die
+Solution verlangt drei Token-Ersetzungen, die weder in der Transmission noch im Briefing
+vorkommen:
+
+| Transmission | Solution |
+|---|---|
+| `SCAN-7741` | `UNIT-7741` |
+| `TRACE-3392` | `RELAY-3392` |
+| `WATCH-0012` | `NODE-0012` |
+
+Das Briefing sagt nur *„It replaced each token with a CORP-style surveillance code"* und als
+Objective *„Replace CORP surveillance codes with correct practice tokens"* — ohne HINT ist die
+Mission nur durch Raten lösbar. Fehlerklasse identisch zu M-02/M-06/KATA-03.
+
+**Warum der Invariant-Test von 2026-07-24 das nicht fing:** `orphanLines` vergleicht
+**zeilenweise** mit Bigram-Ähnlichkeit > 0.5. Eine In-Place-Wortersetzung lässt den Rest der
+Zeile unangetastet — `SCAN-7741 — Field operative, northern sector` und
+`UNIT-7741 — Field operative, northern sector` liegen weit über der Schwelle und sind damit
+kein Orphan. M-06 rutschte nur deshalb ins Netz, weil dort ganze Zeilen unähnlich wurden.
+
+**Fix:** Ersetzungsliste in die Briefing-DIRECTIVE (Muster R-16/R-24/M-06 — Zielwerte gehören
+ins Briefing, nicht in die gescorte Transmission).
+
+## ✅ Bleibender Fix ②: Token-Level-Invariante (umgesetzt 2026-07-29)
+
+`content.test.ts` → zweiter Test im `solution derivability`-Block. Gleiche Bigram-Metrik, eine
+Granularität tiefer: jedes Solution-**Token** braucht eine Quelle in Transmission **oder**
+Briefing (verbatim oder ähnlich > 0.5), sonst rot. Die Zeilen-Heuristik bleibt daneben stehen —
+sie fängt hinzugefügte Zeilen, die der Token-Check bei ähnlichem Vokabular durchlässt.
+
+Erstlauf: 10 Missionen gemeldet, alle einzeln triagiert — **9 legitim**, 1 defekt (M-03):
+
+| Mission | Befund |
+|---|---|
+| M-01, M-02, KATA-01 | Tippfehler-Korrekturen (`knwo`→`know`, `entarnce`→`entrance`, `ATIVE`→`ACTIVE`) — zu kurz für die Bigram-Schwelle |
+| M-11 | Zielwerte stehen in `FRAGMENT-10`, im Briefing verlinkt — der Split-Pane-Diff **ist** die Mission |
+| M-14 | Offset-Keys (`+3` REF, `+7` MARK) stehen in Transmission und Briefing |
+| M-15, M-16 | Capture-Group-/Arithmetik-Formeln in der Transmission-Note |
+| R-19, KATA-10 | Datums-Reformat, Gruppenreihenfolge `\3.\2.\1` explizit genannt |
+| **M-03** | **defekt** → Briefing-DIRECTIVE ergänzt (siehe oben) |
+
+Die neun stehen als `EXPLAINED_TOKENS` mit Ein-Zeilen-Begründung im Testcode. Faustregel für
+künftige Einträge: **ein Tippfehler ist ableitbar** (die falsche Schreibung steht da), **ein
+arbiträrer Zielwert nicht** — es sei denn, der Missionstext nennt ihn oder gibt eine Formel,
+die ihn erzeugt.
+
 ## Reproduktion des Sweeps
 
 ```bash
