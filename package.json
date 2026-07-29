@@ -27,7 +27,7 @@
     "build:dmg": "npm run build:content && npm run desktop:build --workspace @neurovim/adapter-web",
     "typecheck": "npm run typecheck --workspace @neurovim/core && npm run typecheck --workspace @neurovim/content && npm run typecheck --workspace @neurovim/adapter-obsidian && npm run typecheck --workspace @neurovim/adapter-web",
     "lint": "eslint .",
-    "test": "npm test --workspaces --if-present"
+    "test": "node scripts/check-no-abs-paths.mjs && npm test --workspaces --if-present"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

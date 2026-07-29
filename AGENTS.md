@@ -1,7 +1,8 @@
 # AGENTS.md — neurovim-standalone
 
-> **Workspace-Standards:** Die verbindliche Leitkonvention steht in `_docs/CONVENTIONS.md`
-> (am Workspace-Root `/Users/Shared/code/`), Modell comply-or-explain. Offene Punkte fuer
+> **Workspace-Standards (maintainer-lokal):** Die verbindliche Leitkonvention steht in `_docs/CONVENTIONS.md`
+> im Multi-Projekt-Workspace des Maintainers, `../_docs` relativ zu diesem Repo — nicht Teil dieses Repos,
+> ignorieren falls im Klon nicht vorhanden. Modell comply-or-explain. Offene Punkte fuer
 > dieses Repo siehe Abschnitt "Offene Konventions-Punkte".
 
 > **Role:** context for AI agents (Claude Code, Cursor, …) working in this repo.
@@ -229,6 +230,14 @@ green. For content changes also run `npm run build:content`, otherwise
 
 ## Memory
 
+- **SDD-Artefakte (seit 2026-07-16): Cockpit, nicht Repo** — Specs/Plans/Task-Reports leben im
+  Coding-Cockpit des Maintainers (`$VAULT/25_Coding/neurovim-standalone/_SDD/`, CORE-META-14, maintainer-lokal).
+  Sie tragen Arbeitskontext (Vault-Pfade, Schwester-Repo-Interna), der in einem public Repo niemandem nützt.
+  Das Repo behält die Design-Essenz in dieser Datei + `CHANGELOG.md`.
+- **Alt-Bestand:** `docs/superpowers/{specs,plans}/` ist eingefroren — nichts Neues dort ablegen.
+- **Nie im Repo:** absolute Pfade außerhalb des Repos (`/Users/…`, Vault-Pfade) — Platzhalter nutzen
+  (`$VAULT/…`, `~/…`, repo-relativ). Herkunftsnachweise als Repo-Name + `Datei:Zeile` sind dagegen erwünscht.
+  Gate: `scripts/check-no-abs-paths.mjs` (Teil von `npm test`).
 - **Project memory (global):** `~/.claude/projects/-Users-Shared-code-neurovim-standalone/memory/`
   with `MEMORY.md` as index (CORE-AGENT-02) — durable facts, feedback, project state.
 - **Vault-local working memory:** `claude/memory/MEMORY.md` + session logs in
@@ -276,7 +285,9 @@ green. For content changes also run `npm run build:content`, otherwise
 - **Shipped:** v0.2.0 (visual overhaul) → v0.2.1 (hardening) → v0.2.2 (par-tiers) →
   v0.2.3 (Story-Mode progressive unlock, Arc-2 rebalance, find-char/dot/`:g` KATAs) →
   **v0.2.4** (Guidance-Backbone P2, Diátaxis manual, presolved-missions fix, canon pass,
-  8 lore artifacts). Each cycle has a spec + plan under `docs/superpowers/{specs,plans}/`.
+  8 lore artifacts). Each cycle *up to v0.2.4* had a spec + plan under
+  `docs/superpowers/{specs,plans}/` — that location is historical and frozen; new SDD
+  artifacts live outside the repo (see the **Memory** section).
 - **Release tags** `v0.1.0`…`v0.2.4` trigger the desktop CI (macOS/Windows/Linux installers
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
   `APPLE_*` repo secrets were added (v0.2.3 onward).

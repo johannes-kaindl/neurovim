@@ -8,4 +8,4 @@ Platform-neutral core of the NeuroVim trainer. Game logic, Web Audio, Preact UI 
 - **NEW:** `ui/NexusDashboard` — replaces the dataviewjs NEXUS (which wasn't code in the plugin at all, but lived in `00-NEXUS.md`)
 
 ## Architecture
-→ ADR-001: `/Users/Shared/20_Claude/neurovim-standalone-prep/40_deliverables/ADR-001-Adapter-Architektur.md`
+→ ADR-001: `ADR-001-Adapter-Architektur.md` in the maintainer's separate design-prep workspace (`neurovim-standalone-prep`) — not part of this repo.

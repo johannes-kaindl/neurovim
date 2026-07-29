@@ -15,9 +15,8 @@ Swaps the **refactored** `@neurovim/adapter-obsidian` build in for the existing
 
 ## Steps
 
-1. Pull a fresh build:
+1. Pull a fresh build (from the repo root):
    ```bash
-   cd /Users/Shared/code/neurovim-standalone
    npm run build:plugin
    ```
 2. Swap + backup (one command):
@@ -43,7 +42,8 @@ After the reload, check in order — on *any* ✗ → rollback (below):
 The script prints the exact command with the backup path at the end. Generically:
 
 ```bash
-PLUGIN="/Users/Shared/10_ObsidianVaults/32_NeuroVim/.obsidian/plugins/neurovim-trainer"
+# <vault> = root of the NeuroVim Obsidian vault
+PLUGIN="<vault>/.obsidian/plugins/neurovim-trainer"
 cp "${PLUGIN}.backup-<timestamp>/main.js" "${PLUGIN}/main.js"
 # then reload the plugin in Obsidian
 ```
