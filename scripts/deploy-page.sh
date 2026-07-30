@@ -50,7 +50,7 @@ fi
 
 echo ""
 echo "=== Publishing $DIST via rsync ==="
-"$RSYNC" -az --delete "$DIST"/ "$DEST"
+"$RSYNC" -az --delete --chmod=D755,F644 "$DIST"/ "$DEST"
 
 echo ""
 echo "✓ Deployed. Live: https://pages.jkaindl.de/neurovim-standalone/"
