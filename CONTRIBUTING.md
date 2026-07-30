@@ -38,7 +38,7 @@ For content changes, also run `npm run build:content` (it regenerates
 
 ## Branches & remotes
 
-Primary remote: Codeberg (`codeberg`); mirror: GitHub (`github`). Open issues/PRs
+Primary remote: `git.jkaindl.de` (`origin`); mirror: GitHub (`github`). Open issues/PRs
 on whichever you prefer.
 
 ## License of contributions

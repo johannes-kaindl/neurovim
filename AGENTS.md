@@ -29,7 +29,7 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > Sandbox) plus two new ones: a **Lore Archive** (index → reader) and a **Cheatsheet
 > overlay**. Rounded out by an a11y pass (WCAG-AA contrast, ≥44px mobile tap targets,
 > reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 182 tests
-> green, 4-workspace typecheck green. Live on Codeberg (primary) + GitHub (mirror).
+> green, 4-workspace typecheck green. Live on git.jkaindl.de (primary) + GitHub (mirror).
 >
 > **Since v0.2.0 (2026-06-03 → 06-04), current release v0.2.3:** **v0.2.1** (hardening —
 > Result-modal a11y, web↔Obsidian record parity, first adapter-web tests, CI content-gate),
@@ -103,7 +103,7 @@ design-prep workspace, not in this repo.
 │   ├── design-source/      # design delivery snapshot (mockups + port package + brand SVGs)
 │   └── screenshots/        # headless captures of the web views (for DESIGN-SPEC)
 ├── scripts/
-│   ├── setup-remotes.sh    # Codeberg-primary + GitHub-mirror remotes (ADR-001 D5)
+│   ├── setup-remotes.sh    # Forgejo-primary + GitHub-mirror remotes (ADR-001 D5)
 │   └── swap-obsidian-plugin.sh  # main.js swap + backup (run manually against the vault)
 ├── experiments/
 │   ├── vim-regex-findings.md    # regex-flavor parity Obsidian↔CM6 (D1)
@@ -217,7 +217,7 @@ green. For content changes also run `npm run build:content`, otherwise
 - **Subagents must never `git checkout`/`git switch`:** agents share one working
   tree — a branch switch inside a subagent moves the controller's HEAD mid-task.
   Branch changes are done only by the top-level session.
-- **Desktop CI runs only on the GitHub mirror:** pushing a release tag to Codeberg
+- **Desktop CI runs only on the GitHub mirror:** pushing a release tag to git.jkaindl.de
   alone never builds installers — the tag must reach the `github` remote.
 - **Screenshot capture needs system Chrome:** `npm run capture:screenshots` drives the
   installed Google Chrome via `playwright-core` `channel:'chrome'` (no bundled browser).
@@ -264,7 +264,7 @@ green. For content changes also run `npm run build:content`, otherwise
 
 ## Remotes & distribution (ADR-001 D5)
 
-- **Primary:** `codeberg.org/jkaindl/NeuroVIM` (live; git remote `codeberg`, `main` tracked)
+- **Primary:** `git.jkaindl.de/jkaindl/NeuroVIM` (live; git remote `origin`, `main` tracked)
 - **Mirror:** `github.com/johannes-kaindl/NeuroVIM` (live; git remote `github`) — runs the desktop CI
 - **Tokens are not stored** in `.git/config`; pushes use inline credentials.
 
@@ -297,9 +297,9 @@ green. For content changes also run `npm run build:content`, otherwise
 
 ## Abweichungen von der Leitkonvention
 
-- CORE-GIT-01 — Das primäre Remote heißt `codeberg` (nicht `origin`); URLs entsprechen
-  der Konvention. Historisches Setup via `scripts/setup-remotes.sh`; ein Umbenennen
-  bringt keinen Nutzen und bricht dokumentierte Push-Kommandos.
+- CORE-GIT-01 — keine Abweichung mehr: das primäre Remote heißt `origin` und zeigt
+  auf `git.jkaindl.de` (Stand 2026-07-30, Codeberg-Ausstieg). Der frühere Remote-Name
+  `codeberg` ist Geschichte.
 - CORE-GIT-03 — Tags behalten den `v`-Prefix (`v0.1.0`…): `.github/workflows/desktop.yml`
   triggert auf `v*`, und die bestehende Tag-Reihe ist mit Prefix publiziert. Wechsel nur
   zusammen mit CI-Trigger-Migration.

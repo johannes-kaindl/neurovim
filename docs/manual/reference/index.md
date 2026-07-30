@@ -96,7 +96,7 @@ result screen shows how many keystrokes separate you from the next tier.
 
 ## Platforms
 
-- **Browser:** <https://jkaindl.codeberg.page/neurovim/> (no install).
+- **Browser:** <https://pages.jkaindl.de/neurovim-standalone/> (no install).
 - **Desktop:** macOS `.dmg` (signed + notarized), Windows `.exe`/`.msi` (unsigned),
   Linux `.AppImage`/`.deb`/`.rpm` — from the
   [releases](https://github.com/johannes-kaindl/NeuroVIM/releases). Details in

@@ -6,13 +6,13 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-8a4dff?style=flat-square" alt="License: AGPL-3.0"></a>
-  <a href="https://jkaindl.codeberg.page/neurovim/"><img src="https://img.shields.io/badge/play-in%20browser-39ff7a?style=flat-square" alt="Play in browser"></a>
+  <a href="https://pages.jkaindl.de/neurovim-standalone/"><img src="https://img.shields.io/badge/play-in%20browser-39ff7a?style=flat-square" alt="Play in browser"></a>
 </p>
 
 <p align="center"><i>Learn Vim by playing a cyberpunk spy-thriller.</i></p>
 
 <p align="center">
-  <b>▶ <a href="https://jkaindl.codeberg.page/neurovim/">Play in the browser</a></b>
+  <b>▶ <a href="https://pages.jkaindl.de/neurovim-standalone/">Play in the browser</a></b>
   <sub>(<a href="https://johannes-kaindl.github.io/NeuroVIM/">GitHub Pages mirror</a>)</sub>
   &nbsp;·&nbsp;
   <a href="https://github.com/johannes-kaindl/NeuroVIM/releases">Desktop downloads</a>
@@ -63,7 +63,7 @@ plugin**, and a **native desktop app**.
 
 ## Play
 
-- **Browser:** **https://jkaindl.codeberg.page/neurovim/** — nothing to install.
+- **Browser:** **https://pages.jkaindl.de/neurovim-standalone/** — nothing to install.
 - **Desktop:** download an installer from the [latest release](https://github.com/johannes-kaindl/NeuroVIM/releases)
   (macOS `.dmg`, Windows `.exe`/`.msi`, Linux `.AppImage`/`.deb`/`.rpm`). The macOS
   `.dmg` is Developer ID-signed + notarized (opens without a Gatekeeper warning); the
@@ -112,7 +112,7 @@ UI kit, no CSS framework. See [`AGENTS.md`](AGENTS.md) for the architecture.
 
 ## Contributing
 
-Issues and PRs welcome on [Codeberg](https://codeberg.org/jkaindl/NeuroVIM)
+Issues and PRs welcome on [git.jkaindl.de](https://git.jkaindl.de/jkaindl/NeuroVIM)
 (primary) or the [GitHub mirror](https://github.com/johannes-kaindl/NeuroVIM).
 Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) first.
 

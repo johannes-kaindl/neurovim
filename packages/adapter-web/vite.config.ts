@@ -3,7 +3,7 @@ import preact from '@preact/preset-vite';
 
 // Standalone web app. react→preact via preset; @neurovim/* from the monorepo source.
 export default defineConfig({
-  base: './', // relative paths → deployable under sub-paths (Codeberg/GitHub Pages).
+  base: './', // relative paths → deployable under sub-paths (Forgejo/GitHub Pages).
   plugins: [preact()],
   resolve: {
     alias: {

@@ -81,8 +81,8 @@ Windows .exe/.msi and Linux .AppImage/.deb on a `v*` tag (or manually) and
 publishes them as a draft GitHub release.
 
 > **Runs only on GitHub Actions.** macOS/Windows installers need macOS/Windows
-> runners, which the Codeberg/Forgejo shared runners don't provide. The workflow
-> takes effect once the GitHub mirror exists (ADR-001 D5). On Codeberg, at most
+> runners, which the Forgejo shared runners don't provide. The workflow
+> takes effect once the GitHub mirror exists (ADR-001 D5). On Forgejo, at most
 > the Linux artifact could be built via Forgejo Actions.
 
 Trigger a release:

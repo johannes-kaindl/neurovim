@@ -1,8 +1,8 @@
 # Desktop builds (Tauri) for macOS / Windows / Linux.
 #
-# IMPORTANT: runs ONLY on GitHub Actions — the Codeberg/Forgejo shared runners are
+# IMPORTANT: runs ONLY on GitHub Actions — the Forgejo shared runners are
 # Linux-only and can't build a macOS DMG / Windows .exe. This file takes effect
-# now that the GitHub mirror exists (ADR-001 D5). A Codeberg/Forgejo workflow could
+# now that the GitHub mirror exists (ADR-001 D5). A Forgejo workflow could
 # at most build the Linux artifact.
 #
 # Trigger: tag `v*` (creates a draft release with the installers) or manual dispatch.

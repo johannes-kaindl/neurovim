@@ -16,7 +16,7 @@ that's a bug worth reporting.
 
 Please report privately rather than opening a public issue:
 
-- Open a confidential issue on Codeberg (`codeberg.org/jkaindl/NeuroVIM`), or
+- Open a confidential issue on git.jkaindl.de (`git.jkaindl.de/jkaindl/NeuroVIM`), or
 - Contact the maintainer directly.
 
 Include steps to reproduce and the affected target (web / Obsidian plugin /

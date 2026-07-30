@@ -94,7 +94,7 @@ IndexedDB — there is no account and nothing is uploaded.
 To start over, clear the site's storage:
 
 1. Open your browser's site-data settings for the NeuroVim origin
-   (`jkaindl.codeberg.page`, or `localhost` if running from source).
+   (`pages.jkaindl.de`, or `localhost` if running from source).
 2. **Clear site data / IndexedDB** for that origin.
 3. Reload — you will be back at Level 1 with the intro.
 

@@ -132,10 +132,10 @@ First public release of the standalone monorepo.
 - Native desktop app via Tauri v2 (macOS DMG ~3 MB) + multi-OS build CI.
 - Brand kit: Chrome Raven app icon, favicons, OpenGraph card.
 
-[Unreleased]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.4...HEAD
-[0.2.4]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.3...v0.2.4
-[0.2.3]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.2...v0.2.3
-[0.2.2]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.1...v0.2.2
-[0.2.1]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.2.0...v0.2.1
-[0.2.0]: https://codeberg.org/jkaindl/NeuroVIM/compare/v0.1.0...v0.2.0
-[0.1.0]: https://codeberg.org/jkaindl/NeuroVIM/releases/tag/v0.1.0
+[Unreleased]: https://git.jkaindl.de/jkaindl/NeuroVIM/compare/v0.2.4...HEAD
+[0.2.4]: https://git.jkaindl.de/jkaindl/NeuroVIM/compare/v0.2.3...v0.2.4
+[0.2.3]: https://git.jkaindl.de/jkaindl/NeuroVIM/compare/v0.2.2...v0.2.3
+[0.2.2]: https://git.jkaindl.de/jkaindl/NeuroVIM/compare/v0.2.1...v0.2.2
+[0.2.1]: https://git.jkaindl.de/jkaindl/NeuroVIM/compare/v0.2.0...v0.2.1
+[0.2.0]: https://git.jkaindl.de/jkaindl/NeuroVIM/compare/v0.1.0...v0.2.0
+[0.1.0]: https://git.jkaindl.de/jkaindl/NeuroVIM/releases/tag/v0.1.0

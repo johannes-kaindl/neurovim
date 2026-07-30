@@ -33,5 +33,5 @@ and beat the clock. There are three ways to play:
 - **THE RAVEN** — a free-play sandbox: fix N injected glitches against the clock.
 
 Play in the browser (nothing to install) at
-**<https://jkaindl.codeberg.page/neurovim/>**, or grab a desktop build — see
+**<https://pages.jkaindl.de/neurovim-standalone/>**, or grab a desktop build — see
 [How-to: install the desktop app](how-to/index.md#install-the-desktop-app).

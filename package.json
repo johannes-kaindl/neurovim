@@ -6,9 +6,9 @@
   "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "https://codeberg.org/jkaindl/NeuroVIM.git"
+    "url": "https://git.jkaindl.de/jkaindl/NeuroVIM.git"
   },
-  "homepage": "https://codeberg.org/jkaindl/NeuroVIM",
+  "homepage": "https://git.jkaindl.de/jkaindl/NeuroVIM",
   "workspaces": [
     "packages/core",
     "packages/content",

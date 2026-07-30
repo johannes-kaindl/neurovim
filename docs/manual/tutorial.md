@@ -9,7 +9,7 @@ This takes about **five minutes**.
 
 ## Before you start
 
-Open the game in your browser: **<https://jkaindl.codeberg.page/neurovim/>**.
+Open the game in your browser: **<https://pages.jkaindl.de/neurovim-standalone/>**.
 Nothing to install, nothing to sign up for. Your progress is saved locally in the
 browser.
 
