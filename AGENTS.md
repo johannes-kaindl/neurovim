@@ -52,7 +52,8 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 > reference via `npm run build:manual`), **reproducible screenshot capture**
 > (`scripts/capture-screenshots.mjs`, `npm run capture:screenshots`), and the first feel-pass
 > tweak (NEXUS skill tags → `--nv-muted`). Conventions: ESLint flat config + `npm run lint`,
-> tsconfig build/IDE split, `scripts/bump-version.sh`, `LICENSE-DOCS`. 204 tests green.
+> tsconfig build/IDE split, `scripts/bump-version.sh`, `LICENSE-DOCS`. All tests green
+(current count: see `npm test`).
 
 ## Architecture — adapter pattern (ADR-001)
 
@@ -140,7 +141,7 @@ design-prep workspace, not in this repo.
 ```bash
 npm install                  # install workspaces
 npm run typecheck            # all 4 workspaces (tsc --noEmit) — must stay green
-npm test                     # jest across all 4 workspaces (203 tests)
+npm test                     # jest across all 4 workspaces — must stay green
 
 npm run dev                  # adapter-web Vite dev server → http://localhost:5173/ (HMR)
 npm run build:content        # content/build.mjs — ALWAYS first (produces src/generated/*)
@@ -158,8 +159,9 @@ npm run build:dmg            # native app + macOS DMG (Tauri v2)
 native app (OS WebView, DMG ~3 MB). Multi-OS installers via
 `.github/workflows/desktop.yml` (GitHub Actions only). Details: `docs/DESKTOP.md`.
 
-**Test distribution:** `core` 176, `content` 10, `adapter-obsidian` 6, `adapter-web` 11
-(= 203). `adapter-web` covers the WebStorage persistence layer + the submit-flow
+**Test distribution:** spread across `core` (by far the largest), `content`,
+`adapter-obsidian`, `adapter-web` — exact counts drift, read them off `npm test`.
+`adapter-web` covers the WebStorage persistence layer + the submit-flow
 progression contract (fake-indexeddb, no UI/CM6 rendering — those stay verified via
 dev server + typecheck).
 
