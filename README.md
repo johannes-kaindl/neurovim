@@ -100,7 +100,7 @@ New players start with the **[Player Manual](docs/manual/README.md)** — a
 - **[Explanation](docs/manual/explanation/index.md)** — why NeuroVim is shaped the way
   it is.
 
-## Built with
+## Architecture
 
 TypeScript · [Preact](https://preactjs.com/) · [CodeMirror 6](https://codemirror.net/)
 + [@replit/codemirror-vim](https://github.com/replit/codemirror-vim) · Vite ·
@@ -109,6 +109,12 @@ TypeScript · [Preact](https://preactjs.com/) · [CodeMirror 6](https://codemirr
 A small monorepo (npm workspaces): a platform-neutral **core** (game logic, Web
 Audio, Preact UI) with thin **adapters** for the web, Obsidian, and desktop. No
 UI kit, no CSS framework. See [`AGENTS.md`](AGENTS.md) for the architecture.
+
+**Why there is a build step:** the editor is the product here, and CodeMirror 6
+only exists as an npm module graph — there is no single-file drop-in. On top of
+that, one source tree has to come out as three different artifacts: a lazy-loading
+web bundle, a single `main.js` for the Obsidian plugin, and static assets for the
+Tauri desktop shell. A bundler is what makes that one codebase instead of three.
 
 ## Contributing
 
