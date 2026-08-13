@@ -1,6 +1,6 @@
 {
   "name": "@neurovim/content",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Versioned content source: missions, katas, loot, fragments, story bible (Markdown SSOT + generated typed JSON).",
   "license": "AGPL-3.0-only",
   "type": "module",

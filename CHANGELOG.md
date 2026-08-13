@@ -6,6 +6,30 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.2.5] — 2026-08-13
+
+Four missions that could not be solved without knowing the answer, and a pass over how loud the interface is.
+
+### Fixed
+- **Four unsolvable missions** — M-02, M-06 and KATA-03 asked for values (coordinates,
+  codewords) that appeared nowhere in the transmission or briefing, and M-03 required three
+  word replacements it never named. All four were only winnable by guessing. The missing
+  anchors were authored into the briefings, and two invariant tests now guard the class:
+  one comparing solution lines against the source, one checking every solution token.
+- **Frontmatter values reaching the UI as `[object Object]`** — a YAML map or list in a field
+  expecting a scalar (title, summary, tier) was stringified blindly. Scalars are now coerced
+  only from the primitives YAML can legitimately produce.
+
+### Changed
+- **Feel pass over the guidance layer** — the CIPHER comms rail steps back beside the editor
+  (dimmed edge, quieter key chips) so the text you are editing stays the loudest thing on
+  screen, while the unlock reveal on NEXUS gains glow: it fires once per level-up and is the
+  story mode's payoff. The Vim primer now waits for the Welcome screen to land instead of
+  mounting on top of it, and the reveal-corruption highlight reads more clearly.
+- **Moved off Codeberg** — the project now lives on [git.jkaindl.de](https://git.jkaindl.de/jkaindl/NeuroVIM)
+  with GitHub as the mirror, and the web app is served from
+  **https://pages.jkaindl.de/neurovim-standalone/**. The old Codeberg Pages URL is retired.
+
 ## [0.2.4] — 2026-06-15
 
 Diegetic guidance: CIPHER now coaches you in character, adaptively, across the whole journey.
