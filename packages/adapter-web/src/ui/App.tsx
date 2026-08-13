@@ -63,6 +63,13 @@ const storage = new WebStorage();
 const audio = new AudioEngine();
 let audioUnlocked = false;
 
+/**
+ * How long the Vim primer waits before joining the Welcome screen. At 0 both
+ * mount together and the modal swallows the Welcome before it is ever read;
+ * this lets CIPHER's intro land first, then brings the primer in over it.
+ */
+const PRIMER_DELAY_MS = 700;
+
 export function App() {
   const [data, setData] = useState<PluginData>({ ...DEFAULT_PLUGIN_DATA });
   const [view, setView] = useState<'welcome' | 'nexus' | 'briefing' | 'mission' | 'sandbox' | 'lore'>('welcome');
@@ -73,6 +80,7 @@ export function App() {
   const [ui, setUi] = useState(loadSettings());
   const [cheatOpen, setCheatOpen] = useState(false);
   const [justUnlocked, setJustUnlocked] = useState<string[]>([]);
+  const [primerReady, setPrimerReady] = useState(false);
 
   function flashXp() {
     setXpFlash(true);
@@ -83,6 +91,15 @@ export function App() {
     setJustUnlocked(ids);
     window.setTimeout(() => setJustUnlocked([]), 2200);
   }
+
+  // Hold the primer back until the Welcome screen has landed (PRIMER_DELAY_MS).
+  useEffect(() => {
+    if (view !== 'welcome' || data.vimPrimerSeen) return;
+    setPrimerReady(false);
+    const t = window.setTimeout(() => setPrimerReady(true), PRIMER_DELAY_MS);
+    return () => window.clearTimeout(t);
+  }, [view, data.vimPrimerSeen]);
+
 
   useEffect(() => {
     storage.loadData<PluginData>().then((d) => {
@@ -186,7 +203,7 @@ export function App() {
     return (
       <Suspense fallback={<div class="nv-loading">loading…</div>}>
         <WelcomeView onEnter={() => { unlockAudio(); setView('nexus'); }} />
-        {!data.vimPrimerSeen && (
+        {!data.vimPrimerSeen && primerReady && (
           <Suspense fallback={null}>
             <VimPrimer onDone={markPrimerSeen} />
           </Suspense>
