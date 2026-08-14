@@ -1,4 +1,5 @@
 import { MetricsTracker } from '../src/engine/MetricsTracker';
+import { scriptedClock } from './__mocks__/clock';
 
 describe('MetricsTracker', () => {
   let tracker: MetricsTracker;
@@ -39,5 +40,18 @@ describe('MetricsTracker', () => {
   it('does not count before start', () => {
     tracker.addKeystroke();
     expect(tracker.getKeystrokes()).toBe(0);
+  });
+});
+
+describe('MetricsTracker (injected clock)', () => {
+  it('measures elapsed time against the injected clock', () => {
+    const t = new MetricsTracker(scriptedClock([1_000, 3_000]));
+    t.start();
+    expect(t.getElapsedMs()).toBe(2_000);
+  });
+
+  it('reports zero elapsed time before start', () => {
+    const t = new MetricsTracker(scriptedClock([1_000, 9_999]));
+    expect(t.getElapsedMs()).toBe(0);
   });
 });

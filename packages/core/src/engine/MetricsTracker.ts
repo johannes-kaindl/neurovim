@@ -1,3 +1,5 @@
+import { realClock, type ClockPort } from '../utils/clock';
+
 export interface MetricsResult {
   elapsed_ms: number;
   keystrokes: number;
@@ -9,8 +11,10 @@ export class MetricsTracker {
   private _running = false;
   private _startTime = 0;
 
+  constructor(private readonly clock: ClockPort = realClock) {}
+
   start(): void {
-    this._startTime = Date.now();
+    this._startTime = this.clock.now();
     this._running = true;
   }
 
@@ -31,7 +35,7 @@ export class MetricsTracker {
 
   getElapsedMs(): number {
     if (!this._running) return 0;
-    return Date.now() - this._startTime;
+    return this.clock.now() - this._startTime;
   }
 
   getResult(elapsed_ms?: number): MetricsResult {
