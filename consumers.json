@@ -1,0 +1,19 @@
+{
+  "surface": ["packages/core/src", "packages/content/src"],
+  "consumers": [
+    {
+      "name": "vim-dojo",
+      "what": "Obsidian plugin (community store)",
+      "path": "../obsidian-plugins/vim-dojo",
+      "vendorJson": "src/vendor/neurovim/VENDOR.json",
+      "dirs": [
+        ["packages/core/src", "src/vendor/neurovim/core"],
+        ["packages/content/src/generated", "src/vendor/neurovim/content/generated"]
+      ],
+      "files": [
+        ["packages/content/src/index.ts", "src/vendor/neurovim/content/index.ts"],
+        ["packages/content/src/frontmatter.ts", "src/vendor/neurovim/content/frontmatter.ts"]
+      ]
+    }
+  ]
+}
