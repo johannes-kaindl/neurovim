@@ -21,6 +21,7 @@ export * from './ports/UiHost';
 
 // ── Engine (game logic) ──────────────────────────────────────
 export * from './engine/MetricsTracker';
+export * from './engine/RunTrace';
 export * from './engine/MissionEngine';
 export * from './engine/ProgressionEngine';
 export * from './engine/GlitchEngine';
