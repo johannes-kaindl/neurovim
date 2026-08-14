@@ -57,23 +57,27 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 
 ## Architecture — adapter pattern (ADR-001)
 
-A platform-neutral **core** + two **adapters**, decoupled through **four port
+A platform-neutral **core** + **adapters**, decoupled through **four port
 interfaces**. The core **never** depends on `obsidian` or the browser DOM —
 platform specifics come exclusively through the ports the adapters implement.
 
+One adapter lives here (`adapter-web`, which also drives the Tauri desktop build).
+The Obsidian target is a **separate repo** — `obsidian-plugins/vim-dojo`, in the
+community store — which consumes this core by vendoring it. See § Upstream contract.
+
 ```
 @neurovim/content ──┐
-                    ├──> @neurovim/core <──implements── @neurovim/adapter-obsidian
-(Markdown SSOT      │    (game logic,                   (Obsidian plugin, main.js)
+                    ├──> @neurovim/core <──implements── @neurovim/adapter-web
+(Markdown SSOT      │    (game logic,                   (Vite SPA, browser + Tauri)
  → typed JSON)      │     Web Audio,
-                    │     Preact UI,        <──implements── @neurovim/adapter-web
-                    │     ports)                           (Vite SPA, browser + Tauri)
+                    │     Preact UI,        <──vendors───── vim-dojo (separate repo)
+                    │     ports)                            (Obsidian plugin, main.js)
                     └──> (web bundles content directly)
 ```
 
 ### The four ports (`packages/core/src/ports/`)
 
-| Port | Responsibility | Obsidian impl | Web impl |
+| Port | Responsibility | Obsidian impl (`vim-dojo`) | Web impl |
 |---|---|---|---|
 | `VimModeSource` | Vim mode + classified actions (push/pull) | `vim-mode-change` via `MarkdownView.editor.cm` + `CommandListener` | CodeMirror 6 + `@replit/codemirror-vim` (same event) |
 | `StoragePort` | Persistence of `PluginData` (generic `<T>`) | `plugin.loadData/saveData` → `data.json` | IndexedDB |
@@ -100,12 +104,14 @@ design-prep workspace, not in this repo.
 ├── docs/
 │   ├── DESIGN-SPEC.md      # polish-pass brief for adapter-web (tokens, views, motion)
 │   ├── DESKTOP.md          # Tauri desktop build (local DMG, CI, Gatekeeper)
-│   ├── PLUGIN-SWAP.md      # HOWTO: swap the refactored plugin build into the vault
 │   ├── design-source/      # design delivery snapshot (mockups + port package + brand SVGs)
 │   └── screenshots/        # headless captures of the web views (for DESIGN-SPEC)
+├── consumers.json          # who vendors this core (input to the contract gate)
+├── CONSUMERS.md            # generated — pin lag + verbatim status per consumer
 ├── scripts/
 │   ├── setup-remotes.sh    # Forgejo-primary + GitHub-mirror remotes (ADR-001 D5)
-│   └── swap-obsidian-plugin.sh  # main.js swap + backup (run manually against the vault)
+│   ├── check-consumers.mjs # upstream-contract gate (pin lag + verbatim check)
+│   └── lib/consumers.mjs   # pure helpers for the gate (parse/classify/diff/render)
 ├── experiments/
 │   ├── vim-regex-findings.md    # regex-flavor parity Obsidian↔CM6 (D1)
 │   └── vim-regex-harness/
@@ -126,9 +132,6 @@ design-prep workspace, not in this repo.
     │   ├── src/generated/  # content.ts / sandbox.ts / welcome.ts — produced by build.mjs
     │   ├── src/welcome.md   # welcome intro source
     │   └── build.mjs       # gray-matter → typed TS manifest (D15, bundler-friendly)
-    ├── adapter-obsidian/   # @neurovim/adapter-obsidian — esbuild → dist/main.js
-    │   └── src/            # main.ts, views/ (SidebarView, AsciiCodeBlockProcessor),
-    │                       #   modals/, ports/ObsidianContent.ts, audio/VimModeWatcher.ts
     └── adapter-web/        # @neurovim/adapter-web — Vite SPA + Tauri desktop
         ├── src/            # main.tsx, ui/ (App=NEXUS, Welcome/Briefing/Mission/Sandbox/Result),
         │                   #   ports/WebStorage.ts, cm6-theme.ts, styles.css, fonts/ (JetBrains Mono)
@@ -141,13 +144,12 @@ design-prep workspace, not in this repo.
 ```bash
 npm install                  # install workspaces
 npm run typecheck            # all 4 workspaces (tsc --noEmit) — must stay green
-npm test                     # jest across all 4 workspaces — must stay green
+npm test                     # contract gate + script tests + jest across all workspaces
 
 npm run dev                  # adapter-web Vite dev server → http://localhost:5173/ (HMR)
 npm run build:content        # content/build.mjs — ALWAYS first (produces src/generated/*)
-npm run build:plugin         # esbuild → packages/adapter-obsidian/dist/main.js
 npm run build:web            # vite build → packages/adapter-web/dist/
-npm run build                # content → plugin → web (in this order)
+npm run build                # content → web (in this order)
 npm run build:manual         # scripts/gen-manual.mjs → docs/manual/reference/{vim-keymap,progression}.md
 npm run capture:screenshots  # scripts/capture-screenshots.mjs → docs/screenshots/* (playwright-core + system Chrome)
 
@@ -160,7 +162,8 @@ native app (OS WebView, DMG ~3 MB). Multi-OS installers via
 `.github/workflows/desktop.yml` (GitHub Actions only). Details: `docs/DESKTOP.md`.
 
 **Test distribution:** spread across `core` (by far the largest), `content`,
-`adapter-obsidian`, `adapter-web` — exact counts drift, read them off `npm test`.
+`adapter-web`, plus the `node --test` suite for `scripts/lib/` — exact counts drift,
+read them off `npm test`.
 `adapter-web` covers the WebStorage persistence layer + the submit-flow
 progression contract (fake-indexeddb, no UI/CM6 rendering — those stay verified via
 dev server + typecheck).
@@ -190,19 +193,19 @@ green. For content changes also run `npm run build:content`, otherwise
 - **Bundle budget (web):** code-split (initial ~310 KB; CM6 ~410 KB lazy; `marked`
   ~43 KB lazy). No heavy visual deps; prefer CSS motion over JS libs. Any new
   dependency must justify its weight and ideally be lazy-loaded.
-- **Original untouched:** the origin is the Obsidian plugin `neurovim-trainer`
-  v1.0.0. The original stays unchanged; this monorepo is the contract. The
-  plugin swap into the vault is run manually (the repo never writes into the
-  vault) — see `docs/PLUGIN-SWAP.md`.
-- **Obsidian posture — web-first, logic-parity only:** the Obsidian adapter is kept
+- **The Obsidian target lives elsewhere:** it is `obsidian-plugins/vim-dojo`
+  (v0.7.5, community store), a separate repo that vendors this core. This repo
+  builds no plugin bundle and never writes into a vault. How capabilities travel
+  between the two: § Upstream contract.
+- **Obsidian posture — web-first, logic-parity only:** `vim-dojo` is kept
   at *functional* parity by routing game logic through the shared pure core (engines,
   `ProgressionEngine`, etc.) — it is **not** a visual-parity target. The v0.2.0
   cinematic-CRT overhaul was deliberately web-only (its spec scopes it to
-  `adapter-web`; `core/src/views` and `adapter-obsidian` were untouched). New UI/UX
-  work lands web-first and is **not** back-ported unless explicitly decided, so don't
-  "fix" the Obsidian UI to match the web app — that divergence is intentional. The
-  live vault still runs the original v1.0.0; the refactored build is built-but-unverified
-  pending a manual swap (`docs/PLUGIN-SWAP.md`).
+  `adapter-web`; `core/src/views` was untouched). New UI/UX work lands web-first and
+  is **not** back-ported unless explicitly decided, so don't "fix" the Obsidian UI to
+  match the web app — that divergence is intentional. Note the traffic runs both ways:
+  `vim-dojo` is ahead on the LLM uplink and keystroke tracing, and those capabilities
+  move up into the core under the back-flow rule.
 
 ## Upstream contract
 
@@ -331,8 +334,8 @@ when called as `npm run check:consumers`.
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
   `APPLE_*` repo secrets were added (v0.2.3 onward).
 - **Open:** navigation skills (folding / jumps / marks) need a new gameplay verb to be
-  teachable (the verb is "fix text, diff against solution"); Obsidian plugin-swap
-  verification (`docs/PLUGIN-SWAP.md`); Windows code signing; itch.io distribution.
+  teachable (the verb is "fix text, diff against solution"); Windows code signing;
+  itch.io distribution.
 
 ## Abweichungen von der Leitkonvention
 
@@ -345,10 +348,9 @@ when called as `npm run check:consumers`.
 - CORE-GIT-05 — Der Commit-Trailer nennt das tatsächlich beteiligte Modell zum
   Commit-Zeitpunkt (z. B. `Claude Fable 5`), nicht wörtlich „Claude Opus".
 - PROF-OBS-01/02 — Kein `manifest.json` und kein `npm run deploy` in diesem Repo:
-  das Original-Plugin (`neurovim-trainer` v1.0.0) lebt unverändert im Vault; dieses
-  Repo baut nur `dist/main.js` für den **manuellen** Swap
-  (`scripts/swap-obsidian-plugin.sh`, `docs/PLUGIN-SWAP.md`). Das Repo schreibt nie
-  ins Vault — bewusste Schutzentscheidung.
+  das Obsidian-Plugin ist ein eigenes Repo (`obsidian-plugins/vim-dojo`), das diesen
+  Kern vendoriert und dort seinen eigenen Release-Weg in den Community-Store hat.
+  Dieses Repo baut kein Plugin-Bundle und schreibt nie ins Vault.
 - PROF-NAT-01 — Kein `build-native-app.sh`/`package-native-app.sh`: Tauri v2 ersetzt
   die Skript-Kette. Build + Signing lokal via `npm run build:dmg`, Notarization +
   Multi-OS-Installer via `.github/workflows/desktop.yml`; Doku in `docs/DESKTOP.md`.

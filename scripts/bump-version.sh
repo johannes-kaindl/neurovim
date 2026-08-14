@@ -81,7 +81,7 @@ awk -v new="$NEW" '
 echo
 FAIL=0
 for f in package.json packages/core/package.json packages/content/package.json \
-         packages/adapter-obsidian/package.json packages/adapter-web/package.json \
+         packages/adapter-web/package.json \
          packages/adapter-web/src-tauri/tauri.conf.json; do
   GOT="$(node -p "require('./$f').version")"
   [[ "$GOT" == "$NEW" ]] && MARK="✓" || { MARK="✗"; FAIL=1; }

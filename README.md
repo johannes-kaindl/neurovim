@@ -77,7 +77,7 @@ npm run dev          # web app → http://localhost:5173/
 ```
 
 ```bash
-npm run build        # full build (content → Obsidian plugin → web)
+npm run build        # full build (content → web)
 npm test             # test suite
 npm run build:dmg    # native desktop app + macOS DMG (needs Rust + Xcode CLT)
 ```
@@ -113,8 +113,9 @@ UI kit, no CSS framework. See [`AGENTS.md`](AGENTS.md) for the architecture.
 **Why there is a build step:** the editor is the product here, and CodeMirror 6
 only exists as an npm module graph — there is no single-file drop-in. On top of
 that, one source tree has to come out as three different artifacts: a lazy-loading
-web bundle, a single `main.js` for the Obsidian plugin, and static assets for the
-Tauri desktop shell. A bundler is what makes that one codebase instead of three.
+web bundle and static assets for the Tauri desktop shell — and the same core is
+vendored by the Obsidian plugin in its own repo. A bundler is what keeps that one
+codebase instead of three.
 
 ## Consumers
 

@@ -1,4 +1,4 @@
-// CJS because package.json has "type": "module". Mirrors core/adapter-obsidian.
+// CJS because package.json has "type": "module". Mirrors core.
 // @neurovim/* mapped to monorepo source — jest does not transform node_modules,
 // so the workspace symlinks (which point at raw .ts) must be redirected here.
 module.exports = {

@@ -16,7 +16,7 @@ The quality gate must stay green:
 
 ```bash
 npm run typecheck    # all 4 workspaces
-npm test             # 150 tests (core/content/adapter-obsidian)
+npm test             # runs the full suite across all workspaces
 npm run build        # content → plugin → web
 ```
 
