@@ -8,7 +8,7 @@ import { EditorView, keymap, lineNumbers } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
 import { vim } from '@replit/codemirror-vim';
-import { MetricsTracker, getDivergentLines, type MetricsResult, type MissionDoc, type GuidanceModel } from '@neurovim/core';
+import { MetricsTracker, countsAsKeystroke, getDivergentLines, type MetricsResult, type MissionDoc, type GuidanceModel } from '@neurovim/core';
 import { neurovimTheme, vimModeIndicator, type VimMode } from './cm6-theme';
 import { revealField, setRevealLines } from './reveal';
 import { CommsRail } from './CommsRail';
@@ -52,9 +52,6 @@ export function MissionEditor({ mission, guidance, pin, onPin, onSubmit, onBack,
           history(),
           keymap.of([...defaultKeymap, ...historyKeymap]),
           EditorView.lineWrapping,
-          EditorView.domEventHandlers({
-            keydown() { tracker.addKeystroke(); setKeys((k) => k + 1); return false; },
-          }),
           neurovimTheme,
           vimModeIndicator(setMode),
           revealField,
@@ -62,7 +59,25 @@ export function MissionEditor({ mission, guidance, pin, onPin, onSubmit, onBack,
       }),
     });
     view.current = v;
-    return () => { window.clearInterval(timer); v.destroy(); };
+
+    // Count in the capture phase on the document, not through EditorView.domEventHandlers:
+    // @replit/codemirror-vim consumes normal-mode keys (h/j/k/l, motions, operators) before
+    // an in-editor handler ever sees them, so the old wiring counted insert-mode typing and
+    // bare modifiers — precisely inverting what the game scores. Scoped to the editor host,
+    // and bare modifiers are filtered by the core rule.
+    const onKeydown = (e: KeyboardEvent) => {
+      if (!countsAsKeystroke(e.key)) return;
+      if (!host.current?.contains(e.target as Node)) return;
+      tracker.addKeystroke();
+      setKeys((k) => k + 1);
+    };
+    document.addEventListener('keydown', onKeydown, true);
+
+    return () => {
+      document.removeEventListener('keydown', onKeydown, true);
+      window.clearInterval(timer);
+      v.destroy();
+    };
   }, [mission.mission_id]);
 
   function toggleReveal() {
