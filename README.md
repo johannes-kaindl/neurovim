@@ -116,6 +116,20 @@ that, one source tree has to come out as three different artifacts: a lazy-loadi
 web bundle, a single `main.js` for the Obsidian plugin, and static assets for the
 Tauri desktop shell. A bundler is what makes that one codebase instead of three.
 
+## Consumers
+
+This repository is the upstream for every NeuroVim target. The **vendor surface** is
+`packages/core/src` (game logic, engines, ports) plus `packages/content/src`
+(missions and lore). Everything else — the web app, the Tauri project, the scripts —
+is a consumer of that surface, not part of it.
+
+To build on it: copy the surface into `<your-repo>/src/vendor/neurovim/` and pin the
+origin in a `VENDOR.json` next to it (`source`, `tag`, `sha`, `version`). **Never edit
+the copy** — change it here and re-vendor. A copy that is edited in place is silently
+discarded by the next re-vendor.
+
+Current consumers and how far their pins lag: [`CONSUMERS.md`](CONSUMERS.md).
+
 ## Contributing
 
 Issues and PRs welcome on [git.jkaindl.de](https://git.jkaindl.de/jkaindl/NeuroVIM)

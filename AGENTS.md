@@ -204,6 +204,43 @@ green. For content changes also run `npm run build:content`, otherwise
   live vault still runs the original v1.0.0; the refactored build is built-but-unverified
   pending a manual swap (`docs/PLUGIN-SWAP.md`).
 
+## Upstream contract
+
+This repo is the upstream for every NeuroVim target. The **vendor surface** is
+`packages/core/src` + `packages/content/src`; `adapter-web` is a consumer of that
+surface like any other, not a privileged insider. Game logic that passes the test
+below does not belong in `adapter-web` just because the web app is the faster route.
+
+**Back-flow rule.** A capability that originates in a consumer stays there while it is
+**platform-bound**. If it concerns the **game** — rules, content, CIPHER's voice,
+progression, scoring — it belongs in the core, and it moves *before* a second consumer
+needs it, not after.
+
+Apply this test to every new capability, in this order:
+
+1. **Does the plugin roof already solve it?** (`obsidian-kit`, its `REGISTRY.md`) →
+   take it from there, do not rebuild it. Building kit material into this core is the
+   most expensive mistake available here.
+2. **Does it work without the Obsidian API?** → yes: core. No: it stays in the consumer.
+3. **Would an nvim or web consumer want the same thing?** → yes: core, even with only
+   one consumer today.
+
+**Moving a capability up** takes five steps, two of them in the consumer's repo:
+
+1. Implement it in the core, platform-neutral, with tests (TDD).
+2. Commit to `main` here.
+3. *In the consumer:* `npm run vendor` — re-pin.
+4. *In the consumer:* replace the local implementation with the core call, delete the
+   old file, tests green.
+5. Cross-check: behaviour unchanged, test count risen rather than shifted.
+
+The pin makes this safe: until a consumer re-vendors, it does not see the change. There
+is no window in which a consumer is broken.
+
+`npm test` runs `scripts/check-consumers.mjs`, which measures both halves of the
+contract per consumer — pin lag and verbatim status — and regenerates `CONSUMERS.md`
+when called as `npm run check:consumers`.
+
 ## Gotchas
 
 - **Stale generated content:** after editing anything under `packages/content/src/`,
