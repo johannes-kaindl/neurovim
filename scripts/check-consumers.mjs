@@ -66,8 +66,10 @@ for (const consumer of config.consumers) {
 
   const { pin, tag, version } = parseVendorPin(readFileSync(vendorJson, 'utf8'));
 
-  let commitsSincePin = 0;
-  let pinDir = null;
+  // No initialisers: the try below assigns both, and its catch bails out with
+  // `continue`, so any initial value would be dead.
+  let commitsSincePin;
+  let pinDir;
   try {
     const log = execFileSync('git', ['log', '--oneline', `${pin}..HEAD`, '--', ...config.surface], {
       cwd: repoRoot,
