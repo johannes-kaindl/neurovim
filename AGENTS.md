@@ -21,7 +21,7 @@ corrupted CORP documents, fix glitched transmissions, beat the clock). Learning
 Vim is the disguised core loop; the story is the motivation layer.
 
 **One codebase, three delivery targets:** a platform-neutral core + thin adapters
-over four port interfaces. Target 1 = Obsidian plugin (origin), target 2 =
+over five port interfaces. Target 1 = Obsidian plugin (origin), target 2 =
 standalone web app, target 3 = native desktop app (Tauri wrapper around the web app).
 
 > **Status (2026-05-30):** v0.2.0 shipped — the cinematic-CRT **visual overhaul**
@@ -57,7 +57,7 @@ standalone web app, target 3 = native desktop app (Tauri wrapper around the web 
 
 ## Architecture — adapter pattern (ADR-001)
 
-A platform-neutral **core** + **adapters**, decoupled through **four port
+A platform-neutral **core** + **adapters**, decoupled through **five port
 interfaces**. The core **never** depends on `obsidian` or the browser DOM —
 platform specifics come exclusively through the ports the adapters implement.
 
@@ -75,7 +75,7 @@ community store — which consumes this core by vendoring it. See § Upstream co
                     └──> (web bundles content directly)
 ```
 
-### The four ports (`packages/core/src/ports/`)
+### The five ports (`packages/core/src/ports/`)
 
 | Port | Responsibility | Obsidian impl (`vim-dojo`) | Web impl |
 |---|---|---|---|
@@ -83,6 +83,7 @@ community store — which consumes this core by vendoring it. See § Upstream co
 | `StoragePort` | Persistence of `PluginData` (generic `<T>`) | `plugin.loadData/saveData` → `data.json` | IndexedDB |
 | `ContentPort` | Load missions + lore artifacts | Vault file API + `data/chapters.ts` | bundled `@neurovim/content` |
 | `UiHost` | Mount container for Preact trees | `ItemView` / `Modal` / MarkdownPostProcessor | DOM `<div>` overlays / routes |
+| `LlmPort` | One streaming LLM completion (transport-neutral) | `CipherClient` + `endpointResolver` + `XhrSseTransport` | — (no LLM in the web app yet) |
 
 **Important (D17/D19e):** the engines are **pure functions** and do **not**
 consume the ports directly — the adapters wire ports ↔ engines. An `AudioPort`
@@ -118,8 +119,9 @@ design-prep workspace, not in this repo.
 └── packages/
     ├── core/               # @neurovim/core — platform-neutral core
     │   └── src/
-    │       ├── ports/      # VimModeSource, StoragePort, ContentPort, UiHost
+    │       ├── ports/      # VimModeSource, StoragePort, ContentPort, UiHost, LlmPort
     │       ├── engine/     # MissionEngine, ProgressionEngine, GlitchEngine, MetricsTracker (pure logic)
+    │       ├── llm/        # cipherPrompt, debriefPrompt, ChatSession, CipherUplink (CIPHER uplink)
     │       ├── audio/      # AudioEngine, SoundCues, AmbientLayer, CommandListener (Web Audio)
     │       ├── views/      # Preact UI: FloatHUD, SandboxHUD, modules/*, components/*
     │       ├── data/       # chapters, levels, cheatsheet, cipher-quotes
@@ -205,9 +207,11 @@ green. For content changes also run `npm run build:content`, otherwise
   is **not** back-ported unless explicitly decided, so don't "fix" the Obsidian UI to
   match the web app — that divergence is intentional. Note the traffic runs both ways:
   `vim-dojo` was ahead on the LLM uplink and keystroke tracing, and those capabilities
-  move up into the core under the back-flow rule. **Tracing has made the trip**
-  (`MetricsTracker` records as well as counts, alongside `RunTrace` and `TraceStore`);
-  the LLM uplink is next, and most of it is `obsidian-kit` material that stays put.
+  move up into the core under the back-flow rule. **Both have now made the trip**:
+  tracing (`MetricsTracker` records as well as counts, alongside `RunTrace` and
+  `TraceStore`) and the uplink's game-facing half (`LlmPort` + `CipherUplink`, carrying
+  CIPHER's chat and debrief). What stayed below is `obsidian-kit` material — transport,
+  SSE, endpoint resolution, model choice — which the consumer wires into `LlmPort`.
 
 ## Upstream contract
 
@@ -303,7 +307,7 @@ when called as `npm run check:consumers`.
 | **LOOT / FRAGMENT** | lore artifacts (story-bible notes), unlockable as rewards |
 | **GlitchEngine** | injects/validates text corruptions (sandbox + correction missions) |
 | **PluginData** | persistent player state (`types.ts`) = StoragePort payload |
-| **Port** | interface an adapter implements (VimModeSource/Storage/Content/UiHost) |
+| **Port** | interface an adapter implements (VimModeSource/Storage/Content/UiHost/Llm) |
 | **Kuro theme** | the visual lineage: terminal/CRT, phosphor green `#39ff7a`, monospace |
 
 ## Remotes & distribution (ADR-001 D5)
