@@ -204,8 +204,10 @@ green. For content changes also run `npm run build:content`, otherwise
   `adapter-web`; `core/src/views` was untouched). New UI/UX work lands web-first and
   is **not** back-ported unless explicitly decided, so don't "fix" the Obsidian UI to
   match the web app — that divergence is intentional. Note the traffic runs both ways:
-  `vim-dojo` is ahead on the LLM uplink and keystroke tracing, and those capabilities
-  move up into the core under the back-flow rule.
+  `vim-dojo` was ahead on the LLM uplink and keystroke tracing, and those capabilities
+  move up into the core under the back-flow rule. **Tracing has made the trip**
+  (`MetricsTracker` records as well as counts, alongside `RunTrace` and `TraceStore`);
+  the LLM uplink is next, and most of it is `obsidian-kit` material that stays put.
 
 ## Upstream contract
 
