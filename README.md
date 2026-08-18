@@ -1,15 +1,15 @@
-<p align="center">
-  <img src="docs/brand/og.png" alt="NeuroVim — a Vim-learning game wrapped in a cyberpunk spy-thriller" width="680">
-</p>
-
 <h1 align="center">NeuroVim</h1>
+
+<p align="center"><i>Learn Vim by playing a cyberpunk spy-thriller.</i></p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-8a4dff?style=flat-square" alt="License: AGPL-3.0"></a>
   <a href="https://pages.jkaindl.de/neurovim-standalone/"><img src="https://img.shields.io/badge/play-in%20browser-39ff7a?style=flat-square" alt="Play in browser"></a>
 </p>
 
-<p align="center"><i>Learn Vim by playing a cyberpunk spy-thriller.</i></p>
+<p align="center">
+  <img src="docs/brand/og.png" alt="NeuroVim — a Vim-learning game wrapped in a cyberpunk spy-thriller" width="680">
+</p>
 
 <p align="center">
   <b>▶ <a href="https://pages.jkaindl.de/neurovim-standalone/">Play in the browser</a></b>
