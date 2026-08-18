@@ -8,7 +8,7 @@
 
 | Consumer | What | Pin | Status | Detail |
 |---|---|---|---|---|
-| vim-dojo | Obsidian plugin (community store) | v0.2.4 (8f3c15a) | 🟡 stale pin | pin 8f3c15a898f5ac78c295811745c4b143020232d1 is 5 commits behind the vendor surface |
+| vim-dojo | Obsidian plugin (community store) | v0.2.5 (aa02df7) | ✅ ok | pin aa02df73858e8b174fa6b69c97f64c2dc0836947 is current and verbatim |
 
 The vendor surface is `packages/core/src` + `packages/content/src`.
 See `README.md` § Consumers for the contract and `AGENTS.md` § Upstream contract
