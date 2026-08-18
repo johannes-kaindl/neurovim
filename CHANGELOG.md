@@ -6,6 +6,16 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added
+- **`LlmPort` — the fifth port**, plus `CipherUplink` as its caller in the core. The
+  game-facing half of the CIPHER uplink now lives upstream: chat and debrief prompt
+  building, the chat session, and the turn choreography that used to sit untested in
+  the Obsidian consumer's `main.ts`. The port is streaming and transport-neutral —
+  failures are `aborted`, `timeout`, `unavailable` or `failed`, deliberately not HTTP
+  status codes, so a consumer over a socket or a local process fits it too. Endpoint
+  resolution, retry, model choice, SSE and reasoning suppression stay in the consumer,
+  behind `complete()`.
+
 ## [0.2.5] — 2026-08-13
 
 Four missions that could not be solved without knowing the answer, and a pass over how loud the interface is.
