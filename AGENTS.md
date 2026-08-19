@@ -260,6 +260,12 @@ when called as `npm run check:consumers`.
   Branch changes are done only by the top-level session.
 - **Desktop CI runs only on the GitHub mirror:** pushing a release tag to git.jkaindl.de
   alone never builds installers — the tag must reach the `github` remote.
+  **Measured twice on 2026-08-19, and it complicates this:** after `git push origin main`,
+  `github/main` was already current within seconds — a Forgejo→GitHub push mirror appears
+  to be active, contrary to the note above and to the assumption that the auto-mirror died
+  with the Codeberg exit. Both observations are about **branches**; whether the mirror
+  carries **tags** is untested, and that is what the CI needs. So keep pushing the tag
+  explicitly — and while doing it, check whether it was already there. That settles it.
 - **`esbuild` is a *root* devDependency, and must stay one:** `gen-manual.mjs` and
   `generate-kata.mjs` transpile core TS modules so node can import them. It used to be
   hoisted from `adapter-obsidian`; when that workspace was removed, `npm run build:manual`
