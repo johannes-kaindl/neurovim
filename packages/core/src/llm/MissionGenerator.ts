@@ -56,6 +56,8 @@ export type GenerationFailure =
   | 'unsupported-category'
   /** A corruption whose inverse does not belong to the category. */
   | 'skill-mismatch'
+  /** A corruption that does not do what its own type promises. */
+  | 'glitch-shape'
   /** A corruption did not land — a hallucinated pattern. See the file header. */
   | 'glitch-miss'
   /** The corruptions left the text unchanged: an instantly-won drill. */
@@ -143,6 +145,48 @@ function checkShape(v: unknown): string | null {
   return null;
 }
 
+/** Whether a corruption does what its type claims — the difference between a
+ *  derivable drill and one that teaches the promised key.
+ *
+ *  Derivability is guaranteed by construction; this is not. A `caps_word` that
+ *  also appends punctuation still diffs cleanly against the solution, but `ciw`
+ *  no longer repairs it, so the drill quietly breaks its own skill claim. Seen
+ *  on the very first generated draft: INITIATED!. for initiated. */
+function checkGlitchShape(g: GlitchDefinition): string | null {
+  // `iw` covers a run of word characters and stops at anything else, so an
+  // apostrophe or hyphen turns one word into two objects and ciw no longer
+  // finishes the repair. Measured on CNFIRM'D for confirmed.
+  const oneWord = (v: string) => /^\w+$/.test(v);
+
+  switch (g.type) {
+    case 'caps_word':
+      if (!isStr(g.target_word) || !isStr(g.replacement)) return `${g.id}: caps_word needs target_word and replacement`;
+      if (!oneWord(g.target_word) || !oneWord(g.replacement)) {
+        return `${g.id}: "${g.target_word}" is not a single word-character run — ciw would not cover it`;
+      }
+      if (g.replacement !== g.target_word.toUpperCase()) {
+        return `${g.id}: caps_word replacement "${g.replacement}" is not "${g.target_word}" upper-cased — ciw would not repair it`;
+      }
+      return null;
+    case 'corp_word_replace':
+      if (!isStr(g.target_word) || !isStr(g.replacement)) return `${g.id}: corp_word_replace needs target_word and replacement`;
+      if (!oneWord(g.target_word) || !oneWord(g.replacement)) {
+        return `${g.id}: "${g.replacement}" is not a single word-character run — ciw would not cover it`;
+      }
+      return null;
+    case 'tag_append':
+      if (!isStr(g.target_word) || !isStr(g.tag)) return `${g.id}: tag_append needs target_word and tag`;
+      if (/\s/.test(g.tag)) return `${g.id}: tag "${g.tag}" contains whitespace`;
+      return null;
+    case 'insert_corp_line':
+      if (!isStr(g.injected_text)) return `${g.id}: insert_corp_line needs injected_text`;
+      if (g.injected_text.includes('\n')) return `${g.id}: injected_text spans several lines — one dd would not clear it`;
+      return null;
+    case 'join_lines':
+      return null;
+  }
+}
+
 const KNOWN_TYPES = new Set<string>(
   Object.values(CATEGORY_GLITCHES).flat(),
 );
@@ -173,13 +217,32 @@ export class MissionGenerator {
         `${stray.type} does not practise ${spec.category} (allowed: ${allowed.join(', ')})`);
     }
 
-    const { text, glitches } = GlitchEngine.applyGlitches(answer.targetText, answer.glitches);
-    if (glitches.length !== answer.glitches.length) {
-      const landed = new Set(glitches.map(g => g.definition.id));
-      const missed = answer.glitches.filter(g => !landed.has(g.id));
-      return fail('glitch-miss',
-        `pattern not found in targetText: ${missed.map(g => `${g.id} "${g.target_line_pattern}"`).join(', ')}`);
+    for (const g of answer.glitches) {
+      const malformed = checkGlitchShape(g);
+      if (malformed) return fail('glitch-shape', malformed);
     }
+
+    // Applied one at a time, because an application is not an effect: a glitch
+    // whose pattern matches a line that does not contain its target_word makes
+    // String.replace a no-op, and applyGlitches still records it as applied.
+    // Counting effects is what keeps the announced count honest.
+    for (const g of answer.glitches) {
+      const solo = GlitchEngine.applyGlitches(answer.targetText, [g]);
+      if (solo.glitches.length === 0) {
+        return fail('glitch-miss', `${g.id}: pattern "${g.target_line_pattern}" is not in targetText`);
+      }
+      if (solo.text === answer.targetText) {
+        return fail('glitch-miss',
+          `${g.id}: matched a line but changed nothing — "${g.target_word ?? g.target_line_pattern}" is not on it`);
+      }
+    }
+
+    const { text } = GlitchEngine.applyGlitches(answer.targetText, answer.glitches);
+    // Last-resort assertion. The per-glitch effect check above now precedes it
+    // and, in practice, subsumes it: a second glitch that would undo a first
+    // one targets an intermediate string absent from the original, so it fails
+    // the effect check on its own. Kept because it costs one comparison and is
+    // the only thing left standing if that reasoning is ever wrong.
     if (text === answer.targetText) {
       return fail('presolved', 'corruptions left the document unchanged');
     }

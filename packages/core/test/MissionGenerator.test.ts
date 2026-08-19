@@ -9,7 +9,7 @@ const TARGET = [
   '',
   'Agent     :  MERIDIAN',
   'Status    :  ACTIVE',
-  'Vector    :  SOUTH',
+  'Vector    :  south',
 ].join('\n');
 
 const ANSWER = {
@@ -25,7 +25,7 @@ const ANSWER = {
     },
     {
       id: 'g02', type: 'caps_word', target_line_pattern: 'Vector',
-      target_word: 'SOUTH', replacement: 'SOUTH!!', vim_move: 'ciw', hint: 'ciw — restore SOUTH',
+      target_word: 'south', replacement: 'SOUTH', vim_move: 'ciw', hint: 'ciw — restore south',
     },
   ],
 };
@@ -58,7 +58,7 @@ describe('MissionGenerator — the happy path', () => {
     if (!res.ok) throw new Error(res.reason);
     expect(res.kata.transmission).not.toBe(res.kata.solution);
     expect(res.kata.transmission).toContain('MERIDAIN');
-    expect(res.kata.transmission).toContain('SOUTH!!');
+    expect(res.kata.transmission).toContain('SOUTH');
   });
 
   it('keeps the line count stable — corruptions of this category do not insert', async () => {
@@ -164,17 +164,75 @@ ${JSON.stringify(ANSWER)}`;
     expect(res.detail).toContain('Callsign');
   });
 
-  it('reports presolved when every corruption leaves the text unchanged', async () => {
-    const inert = {
+  it('reports glitch-shape when caps_word does more than change case', async () => {
+    // A caps_word that swaps the word rather than shouting it is a
+    // corp_word_replace wearing the wrong label — the hint would name the
+    // wrong repair. (The louder sibling of this, INITIATED!. for initiated.,
+    // is caught one check earlier by the word-character rule.)
+    const loud = {
+      ...ANSWER,
+      glitches: [{ ...ANSWER.glitches[1], replacement: 'SOUTHERN' }],
+    };
+    const res = await generate(answering(loud));
+    if (res.ok) throw new Error('expected failure');
+    expect(res.reason).toBe('glitch-shape');
+    expect(res.detail).toContain('upper-cased');
+  });
+
+  it('reports glitch-shape when a word carries punctuation ciw cannot cover', async () => {
+    // Measured on a real draft: CNFIRM'D for confirmed. The apostrophe splits
+    // the inner-word object, so ciw replaces CNFIRM and leaves 'D behind —
+    // the promised key does not finish the repair.
+    const punct = {
+      ...ANSWER,
+      glitches: [{ ...ANSWER.glitches[0], replacement: "MERID'AIN" }],
+    };
+    const res = await generate(answering(punct));
+    if (res.ok) throw new Error('expected failure');
+    expect(res.reason).toBe('glitch-shape');
+  });
+
+  it('holds caps_word to the same word-character rule', async () => {
+    const apostrophe = {
       ...ANSWER,
       glitches: [{
-        ...ANSWER.glitches[0], target_word: 'MERIDIAN', replacement: 'MERIDIAN',
+        ...ANSWER.glitches[1], target_word: "don't", replacement: "DON'T",
       }],
     };
-    const res = await generate(answering({ ...inert, glitches: inert.glitches }));
+    const res = await generate(answering(apostrophe));
     if (res.ok) throw new Error('expected failure');
-    expect(res.reason).toBe('presolved');
+    expect(res.reason).toBe('glitch-shape');
   });
+
+  it('reports glitch-shape when a replacement word is not a single word', async () => {
+    const split = {
+      ...ANSWER,
+      glitches: [{ ...ANSWER.glitches[0], replacement: 'MERI DAIN' }],
+    };
+    const res = await generate(answering(split));
+    if (res.ok) throw new Error('expected failure');
+    expect(res.reason).toBe('glitch-shape');
+  });
+
+  it('reports glitch-miss when a corruption lands on a line but changes nothing', async () => {
+    // Measured on a real draft: a caps_word whose target_word ("secured") is
+    // not on the line its pattern matched ("… Secured."). String.replace is a
+    // no-op, yet applyGlitches counts the glitch as applied — so the drill
+    // announces five corruptions and ships four. Counting applications is not
+    // the same as counting effects.
+    const inert = {
+      ...ANSWER,
+      glitches: [
+        ANSWER.glitches[0],
+        { ...ANSWER.glitches[1], target_line_pattern: 'Status', target_word: 'active', replacement: 'ACTIVE' },
+      ],
+    };
+    const res = await generate(answering(inert));
+    if (res.ok) throw new Error('expected failure');
+    expect(res.reason).toBe('glitch-miss');
+    expect(res.detail).toContain('g02');
+  });
+
 });
 
 describe('renderKataMarkdown', () => {

@@ -50,20 +50,48 @@ const SYSTEM = [
   'prose before or after, no markdown fence.',
 ].join(' ');
 
-/** Per-type field contract. Kept next to the type list so a model reading the
- *  prompt never has to guess which keys a corruption needs. */
-const FIELD_HELP: Record<GlitchType, string> = {
-  insert_corp_line:
-    'target_line_pattern (substring of an existing line), insert_after (boolean), injected_text (the bogus CORP line to insert)',
-  caps_word:
-    'target_line_pattern, target_word (word as it appears in targetText), replacement (the same word shouted in CAPS)',
-  corp_word_replace:
-    'target_line_pattern, target_word (word as it appears in targetText), replacement (a plausible misspelling or CORP newspeak)',
-  tag_append:
-    'target_line_pattern, target_word (word as it appears in targetText), tag (a short suffix such as "#CORP")',
-  join_lines:
-    'target_line_pattern (the FIRST of the two lines to be welded together)',
-};
+/** A fully filled example per corruption type.
+ *
+ *  Filled, not sketched: an example carrying "…" comes back with that field
+ *  missing. Measured against gemma-4-e4b, which dropped `target_line_pattern`
+ *  on every glitch when the schema showed an ellipsis there. A small model
+ *  copies the shape it is shown, so the shape has to be complete.
+ *
+ *  All examples describe the same imaginary document, so their patterns read
+ *  as a coherent set rather than five unrelated fragments. */
+export function glitchExample(type: GlitchType): Record<string, string | boolean> {
+  switch (type) {
+    case 'insert_corp_line':
+      return {
+        id: 'g01', type, target_line_pattern: 'Status', insert_after: true,
+        injected_text: '>> CORP NOTICE: COMPLY <<',
+        vim_move: 'dd', hint: 'dd — delete the CORP line',
+      };
+    case 'caps_word':
+      return {
+        id: 'g01', type, target_line_pattern: 'Status',
+        target_word: 'active', replacement: 'ACTIVE',
+        vim_move: 'ciw', hint: 'ciw — restore lowercase: active',
+      };
+    case 'corp_word_replace':
+      return {
+        id: 'g01', type, target_line_pattern: 'Vector',
+        target_word: 'NORTH', replacement: 'NORHT',
+        vim_move: 'ciw', hint: 'ciw — restore NORTH',
+      };
+    case 'tag_append':
+      return {
+        id: 'g01', type, target_line_pattern: 'Relay',
+        target_word: 'ONLINE', tag: '#CORP',
+        vim_move: 'dw', hint: 'f# then dw — delete the CORP tag',
+      };
+    case 'join_lines':
+      return {
+        id: 'g01', type, target_line_pattern: 'Payload:',
+        vim_move: 'a<Enter>', hint: 'after the comma — a<Enter> to split',
+      };
+  }
+}
 
 export function buildKataMessages(spec: KataSpec): LlmMessage[] {
   const allowed = CATEGORY_GLITCHES[spec.category] ?? [];
@@ -81,10 +109,8 @@ export function buildKataMessages(spec: KataSpec): LlmMessage[] {
     'a pattern that does not match is a discarded corruption and fails the drill.',
     '',
     `Allowed corruption types for this category (use only these): ${allowed.join(', ')}.`,
-    ...allowed.map(t => `  - ${t}: ${FIELD_HELP[t]}`),
-    '',
-    'Every corruption also carries: id ("g01", "g02", …), type, vim_move (the vim',
-    'keys that undo it) and hint (one short line naming those keys).',
+    'Copy these shapes exactly — every key shown is required, ids count up g01, g02, …:',
+    ...allowed.map(t => `  ${JSON.stringify(glitchExample(t))}`),
     '',
     'Answer shape:',
     '{',
@@ -93,7 +119,7 @@ export function buildKataMessages(spec: KataSpec): LlmMessage[] {
     '  "why": "one sentence in CIPHER\'s voice on why the skill matters",',
     '  "tags": ["vim/…", "vim/…"],',
     '  "targetText": "line\\nline\\n…",',
-    '  "glitches": [ { "id": "g01", "type": "…", … } ]',
+    `  "glitches": [ ${allowed.map(t => JSON.stringify(glitchExample(t))).join(', ')} ]`,
     '}',
   ].join('\n');
 

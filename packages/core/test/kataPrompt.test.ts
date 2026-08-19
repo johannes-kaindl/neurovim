@@ -1,4 +1,6 @@
-import { buildKataMessages, CATEGORY_GLITCHES, isGeneratableCategory } from '../src/llm/kataPrompt';
+import {
+  buildKataMessages, CATEGORY_GLITCHES, isGeneratableCategory, glitchExample,
+} from '../src/llm/kataPrompt';
 import type { KataSpec } from '../src/llm/kataPrompt';
 
 const SPEC: KataSpec = { category: 'text-objects', difficulty: 2, glitchCount: 6 };
@@ -45,6 +47,29 @@ describe('buildKataMessages', () => {
     const text = userText(SPEC);
     for (const key of ['title', 'summary', 'why', 'tags', 'targetText', 'glitches']) {
       expect(text).toContain(key);
+    }
+  });
+
+  it('shows a fully filled example for every allowed type, not an ellipsis', () => {
+    // A small model copies the shape it is shown. An example with "…" in it
+    // comes back with the field missing — measured against gemma-4-e4b, which
+    // dropped target_line_pattern on every glitch.
+    const text = userText(SPEC);
+    for (const type of CATEGORY_GLITCHES['text-objects']) {
+      const example = glitchExample(type);
+      expect(text).toContain(JSON.stringify(example));
+      for (const key of ['id', 'type', 'target_line_pattern', 'vim_move', 'hint']) {
+        expect(Object.keys(example)).toContain(key);
+      }
+      expect(JSON.stringify(example)).not.toContain('…');
+    }
+  });
+
+  it('gives caps_word and corp_word_replace the word fields they need', () => {
+    for (const type of ['caps_word', 'corp_word_replace'] as const) {
+      expect(Object.keys(glitchExample(type))).toEqual(
+        expect.arrayContaining(['target_word', 'replacement']),
+      );
     }
   });
 

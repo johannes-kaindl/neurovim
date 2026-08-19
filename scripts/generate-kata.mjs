@@ -39,7 +39,11 @@ const difficulty = Number(arg('difficulty', '2'));
 const glitchCount = Number(arg('glitches', '6'));
 const theme = arg('theme') ?? undefined;
 const tries = Number(arg('tries', '3'));
-const timeoutMs = Number(arg('timeout', '300')) * 1000;
+const timeoutMs = Number(arg('timeout', '180')) * 1000;
+// Without a ceiling a small model that falls into a repetition loop generates
+// until the context runs out — minutes of nothing, indistinguishable from a
+// hung endpoint. A drill answer needs well under this.
+const maxTokens = Number(arg('max-tokens', '3000'));
 const endpoint = (arg('endpoint') ?? process.env.NEUROVIM_LLM_ENDPOINT ?? 'http://127.0.0.1:1234/v1')
   .replace(/\/$/, '');
 let model = arg('model') ?? process.env.NEUROVIM_LLM_MODEL ?? null;
@@ -56,13 +60,17 @@ async function firstServedModel() {
 
 /** LlmPort: one completion, transport-neutral failures. Non-streaming — the
  *  core's onToken is optional, and an author has nobody to stream to. */
+let lastAnswer = '';
+
 const llmPort = {
   async complete(messages) {
     try {
       const res = await fetch(`${endpoint}/chat/completions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model, messages, temperature: 0.8, stream: false }),
+        body: JSON.stringify({
+          model, messages, temperature: 0.8, stream: false, max_tokens: maxTokens,
+        }),
         signal: AbortSignal.timeout(timeoutMs),
       });
       if (!res.ok) {
@@ -74,6 +82,7 @@ const llmPort = {
       // it below the port. A qwen3-class model narrates in <think> blocks that
       // are prose, not answer.
       const content = raw.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+      lastAnswer = content;
       if (!content) return { ok: false, kind: 'failed', detail: 'empty completion', partial: '' };
       return { ok: true, content };
     } catch (e) {
@@ -138,6 +147,14 @@ for (let attempt = 1; attempt <= tries; attempt++) {
 
 if (!result.ok) {
   console.error(`✗ ${result.reason}: ${result.detail}`);
+  // A refusal is only actionable if the author can see what the model actually
+  // wrote — otherwise "schema" says nothing about which prompt line to fix.
+  if (lastAnswer) {
+    mkdirSync(DRAFTS, { recursive: true });
+    const dump = join(DRAFTS, '.last-refusal.txt');
+    writeFileSync(dump, lastAnswer);
+    console.error(`  raw answer: ${dump.slice(ROOT.length + 1)}`);
+  }
   process.exit(1);
 }
 

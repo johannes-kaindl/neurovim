@@ -15,12 +15,21 @@ All notable changes to this project are documented here. The format is based on
   solution is therefore the clean text by identity rather than by inspection, which is
   the property three waves of hand-written missions lacked.
   - Refusals are typed, not thrown: `llm`, `unparseable`, `schema`,
-    `unsupported-category`, `skill-mismatch`, `glitch-miss`, `presolved`. No retry lives
-    in the core — an author wants to see what went wrong where a runtime would roll again.
-  - `glitch-miss` guards the one hole the construction leaves open: `applyGlitches`
-    silently drops a corruption whose `target_line_pattern` is absent, so a hallucinated
-    pattern would otherwise ship a drill with fewer corruptions than announced — in the
-    limit, a presolved one.
+    `unsupported-category`, `skill-mismatch`, `glitch-shape`, `glitch-miss`, `presolved`.
+    No retry lives in the core — an author wants to see what went wrong where a runtime
+    would roll again.
+  - `glitch-miss` guards the hole the construction leaves open, and it counts *effects*
+    rather than applications. `applyGlitches` drops a corruption whose
+    `target_line_pattern` is absent, and silently no-ops one whose `target_word` is not
+    on the line it matched — while still recording it as applied. Either way the drill
+    announces more corruptions than it ships; in the limit, a presolved one. Both were
+    observed against a real model within the first three generated drafts.
+  - `glitch-shape` guards what derivability alone cannot: whether a corruption does what
+    its own type promises. A `caps_word` that also appends punctuation still diffs
+    cleanly against the solution, but `ciw` no longer repairs it — the drill quietly
+    breaks the skill it advertises. Word fields must be single word-character runs, since
+    an apostrophe or hyphen splits the inner-word object in two (measured on `CNFIRM'D`
+    for `confirmed`).
   - Only categories whose corruptions have an inverse vim operation can be generated
     (`navigation`, `operators`, `text-objects`, `editing`, `fundamentals`). `regex`
     — 26 of the 54 missions — `visual-block`, `registers`, `marks-macros` and
