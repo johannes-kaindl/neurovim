@@ -6,7 +6,30 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.2.6] — 2026-08-19
+
+This repo became an explicit upstream. Two capabilities that grew in the Obsidian consumer
+moved into the core under a written rule, the dead adapter went, and the contract is now
+measured on every test run rather than asserted in prose.
+
+### Fixed
+- **The web app counted keystrokes the game does not score.** Modifier presses and
+  navigation inside the editor inflated the count, so a run could miss its par tier
+  while being played correctly. It now counts what the scoring actually rewards.
+
 ### Added
+- **Upstream contract + back-flow rule** (`AGENTS.md`, `README.md` § Consumers). The
+  vendor surface is `packages/core/src` + `packages/content/src`; `adapter-web` is a
+  consumer of it like any other, with no privileged access. A capability that grows in a
+  consumer moves up when it concerns the game rather than the platform — decided by a
+  three-part test, applied before a second consumer needs it.
+- **`scripts/check-consumers.mjs` in the test gate** — measures pin lag and verbatim
+  status per consumer and regenerates `CONSUMERS.md`. An edited vendored copy is red; a
+  pin that trails is yellow, because consumers keep their own release cadence. A missing
+  consumer is skipped, so the gate stays green in foreign clones.
+- **Keystroke tracing in the core** — `RunTrace`, `buildRunTrace`, the append-only
+  `TraceStore`, and a `MetricsTracker` that records as well as counts, driven by an
+  injected clock. First application of the back-flow rule; it came up from `vim-dojo`.
 - **`LlmPort` — the fifth port**, plus `CipherUplink` as its caller in the core. The
   game-facing half of the CIPHER uplink now lives upstream: chat and debrief prompt
   building, the chat session, and the turn choreography that used to sit untested in
@@ -15,6 +38,12 @@ All notable changes to this project are documented here. The format is based on
   status codes, so a consumer over a socket or a local process fits it too. Endpoint
   resolution, retry, model choice, SSE and reasoning suppression stay in the consumer,
   behind `complete()`.
+
+### Removed
+- **`packages/adapter-obsidian`** (2,397 lines). It was superseded by `vim-dojo`, the
+  plugin in the community store that vendors this core; nothing shipped from here, and
+  the package duplicated what the consumer does better. The workspace count drops from
+  four to three.
 
 ## [0.2.5] — 2026-08-13
 

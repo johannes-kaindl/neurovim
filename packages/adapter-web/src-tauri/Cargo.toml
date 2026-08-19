@@ -1,6 +1,6 @@
 [package]
 name = "neurovim"
-version = "0.2.5"
+version = "0.2.6"
 description = "NeuroVim — a Vim-learning game (Tauri desktop wrapper around the web build)"
 authors = ["jkaindl"]
 license = "AGPL-3.0-only"

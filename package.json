@@ -1,6 +1,6 @@
 {
   "name": "neurovim-standalone",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "private": true,
   "description": "NeuroVim — a Vim-learning game. Monorepo: platform-neutral core + Obsidian/web adapters.",
   "license": "AGPL-3.0-only",
