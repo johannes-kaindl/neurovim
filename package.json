@@ -19,6 +19,7 @@
     "build:web": "npm run build --workspace @neurovim/adapter-web",
     "build:content": "npm run build --workspace @neurovim/content",
     "build:manual": "node scripts/gen-manual.mjs",
+    "generate:kata": "node scripts/generate-kata.mjs",
     "capture:screenshots": "node scripts/capture-screenshots.mjs",
     "build": "npm run build:content && npm run build:web",
     "desktop:dev": "npm run build:content && npm run desktop:dev --workspace @neurovim/adapter-web",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "esbuild": "^0.28.2",
     "eslint": "^10.4.1",
     "globals": "^17.6.0",
     "playwright-core": "^1.61.0",

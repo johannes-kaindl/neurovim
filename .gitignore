@@ -8,3 +8,7 @@ coverage/
 claude/
 .remember/
 .superpowers/
+
+# Generated mission drafts — reviewed by hand, then moved into src/content/.
+# Never part of the SSOT; build.mjs does not scan this directory.
+packages/content/src/_drafts/

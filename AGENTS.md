@@ -112,6 +112,7 @@ design-prep workspace, not in this repo.
 ├── scripts/
 │   ├── setup-remotes.sh    # Forgejo-primary + GitHub-mirror remotes (ADR-001 D5)
 │   ├── check-consumers.mjs # upstream-contract gate (pin lag + verbatim check)
+│   ├── generate-kata.mjs   # authoring driver for the core's MissionGenerator (LlmPort impl)
 │   └── lib/consumers.mjs   # pure helpers for the gate (parse/classify/diff/render)
 ├── experiments/
 │   ├── vim-regex-findings.md    # regex-flavor parity Obsidian↔CM6 (D1)
@@ -121,7 +122,8 @@ design-prep workspace, not in this repo.
     │   └── src/
     │       ├── ports/      # VimModeSource, StoragePort, ContentPort, UiHost, LlmPort
     │       ├── engine/     # MissionEngine, ProgressionEngine, GlitchEngine, MetricsTracker (pure logic)
-    │       ├── llm/        # cipherPrompt, debriefPrompt, ChatSession, CipherUplink (CIPHER uplink)
+    │       ├── llm/        # cipherPrompt, debriefPrompt, ChatSession, CipherUplink (CIPHER uplink),
+    │       │              #   kataPrompt + MissionGenerator (authoring-side drill generation)
     │       ├── audio/      # AudioEngine, SoundCues, AmbientLayer, CommandListener (Web Audio)
     │       ├── views/      # Preact UI: FloatHUD, SandboxHUD, modules/*, components/*
     │       ├── data/       # chapters, levels, cheatsheet, cipher-quotes
@@ -153,6 +155,7 @@ npm run build:content        # content/build.mjs — ALWAYS first (produces src/
 npm run build:web            # vite build → packages/adapter-web/dist/
 npm run build                # content → web (in this order)
 npm run build:manual         # scripts/gen-manual.mjs → docs/manual/reference/{vim-keymap,progression}.md
+npm run generate:kata        # generate a KATA draft into packages/content/src/_drafts/ (needs a local LLM)
 npm run capture:screenshots  # scripts/capture-screenshots.mjs → docs/screenshots/* (playwright-core + system Chrome)
 
 npm run desktop:dev          # Tauri desktop app with HMR (needs Rust + Xcode CLT)
@@ -267,6 +270,16 @@ when called as `npm run check:consumers`.
   Branch changes are done only by the top-level session.
 - **Desktop CI runs only on the GitHub mirror:** pushing a release tag to git.jkaindl.de
   alone never builds installers — the tag must reach the `github` remote.
+- **`esbuild` is a *root* devDependency, and must stay one:** `gen-manual.mjs` and
+  `generate-kata.mjs` transpile core TS modules so node can import them. It used to be
+  hoisted from `adapter-obsidian`; when that workspace was removed, `npm run build:manual`
+  broke silently — neither script is part of `npm test`. A workspace package inherits its
+  neighbours' dependencies only until the neighbour leaves.
+- **Generated drafts are not content:** `npm run generate:kata` writes into
+  `packages/content/src/_drafts/` (git-ignored, not scanned by `build.mjs`). A draft
+  becomes content only when a human moves it into `src/content/KATAS/` + `src/solutions/`,
+  where the three content gates then apply unchanged. The `generated_by` frontmatter stamp
+  is what still says so afterwards.
 - **Screenshot capture needs system Chrome:** `npm run capture:screenshots` drives the
   installed Google Chrome via `playwright-core` `channel:'chrome'` (no bundled browser).
   It overwrites `docs/screenshots/*` with a **seeded, populated** Story-Mode state (level

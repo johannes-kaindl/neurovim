@@ -6,6 +6,37 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added
+- **`MissionGenerator` + `kataPrompt` in the core** — an authoring-side generator for
+  KATA drills, and the second consumer of `LlmPort` (the first at a non-chat call site,
+  which is where the port's optional streaming callback finally earns its "optional").
+  The model is never asked for an exercise: it writes a *clean* document plus typed,
+  reversible corruptions, and `GlitchEngine` derives the exercise from those. The
+  solution is therefore the clean text by identity rather than by inspection, which is
+  the property three waves of hand-written missions lacked.
+  - Refusals are typed, not thrown: `llm`, `unparseable`, `schema`,
+    `unsupported-category`, `skill-mismatch`, `glitch-miss`, `presolved`. No retry lives
+    in the core — an author wants to see what went wrong where a runtime would roll again.
+  - `glitch-miss` guards the one hole the construction leaves open: `applyGlitches`
+    silently drops a corruption whose `target_line_pattern` is absent, so a hallucinated
+    pattern would otherwise ship a drill with fewer corruptions than announced — in the
+    limit, a presolved one.
+  - Only categories whose corruptions have an inverse vim operation can be generated
+    (`navigation`, `operators`, `text-objects`, `editing`, `fundamentals`). `regex`
+    — 26 of the 54 missions — `visual-block`, `registers`, `marks-macros` and
+    `ex-commands` are declined outright rather than served badly.
+- **`npm run generate:kata`** (`scripts/generate-kata.mjs`) — the consumer half: endpoint,
+  model, retry policy and the fact that HTTP is involved all live here, behind `LlmPort`.
+  Drafts land in `packages/content/src/_drafts/`, which `build.mjs` does not scan; nothing
+  reaches the SSOT until a human moves it, at which point the three content gates apply
+  unchanged. Generated drafts carry a `generated_by` frontmatter stamp.
+
+### Fixed
+- **`npm run build:manual` had been broken since `adapter-obsidian` was removed.**
+  `gen-manual.mjs` relied on `esbuild` being hoisted from that workspace's dependencies;
+  when the workspace went, so did the package. It is now an explicit root devDependency.
+  The command is not part of `npm test`, which is why the break went unnoticed.
+
 ## [0.2.6] — 2026-08-19
 
 This repo became an explicit upstream. Two capabilities that grew in the Obsidian consumer
