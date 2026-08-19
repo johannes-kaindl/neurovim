@@ -25,7 +25,7 @@
     "desktop:dev": "npm run build:content && npm run desktop:dev --workspace @neurovim/adapter-web",
     "build:dmg": "npm run build:content && npm run desktop:build --workspace @neurovim/adapter-web",
     "typecheck": "npm run typecheck --workspace @neurovim/core && npm run typecheck --workspace @neurovim/content && npm run typecheck --workspace @neurovim/adapter-web",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings 0",
     "check:consumers": "node scripts/check-consumers.mjs --write",
     "test": "node scripts/check-no-abs-paths.mjs && node --test scripts/lib/*.test.mjs && node scripts/check-consumers.mjs && npm test --workspaces --if-present"
   },

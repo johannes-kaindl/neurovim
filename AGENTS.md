@@ -24,36 +24,21 @@ Vim is the disguised core loop; the story is the motivation layer.
 over five port interfaces. Target 1 = Obsidian plugin (origin), target 2 =
 standalone web app, target 3 = native desktop app (Tauri wrapper around the web app).
 
-> **Status (2026-05-30):** v0.2.0 shipped — the cinematic-CRT **visual overhaul**
-> is complete across every surface (Welcome → NEXUS → Briefing → Editor → Result →
-> Sandbox) plus two new ones: a **Lore Archive** (index → reader) and a **Cheatsheet
-> overlay**. Rounded out by an a11y pass (WCAG-AA contrast, ≥44px mobile tap targets,
-> reduced-motion), a first-run audio hint, and CSS-drawn terminal boxes. 182 tests
-> green, 4-workspace typecheck green. Live on git.jkaindl.de (primary) + GitHub (mirror).
+> **Status (2026-08-19) — v0.2.6 released.** Seven signed installers + the web app are
+> live; the Obsidian consumer `vim-dojo` ships 0.8.0 in the community store. The core now
+> carries **five ports**: `LlmPort` arrived with Slice A, together with `CipherUplink` as
+> its in-core caller. Two capabilities have made the back-flow trip up from the consumer —
+> keystroke tracing and the LLM uplink's game-facing half.
 >
-> **Since v0.2.0 (2026-06-03 → 06-04), current release v0.2.3:** **v0.2.1** (hardening —
-> Result-modal a11y, web↔Obsidian record parity, first adapter-web tests, CI content-gate),
-> **v0.2.2** (**par-tiers** — keystroke gold/silver/bronze scoring), **Story-Mode** (the web
-> now unlocks missions/KATAs/LOOT **progressively** as you level up — replaced the
-> all-unlocked demo; NEXUS gates from `data.unlocked`, level-ups reveal content), **Arc-2
-> rebalance** (monotonic 1→5 difficulty + 3 regex missions re-themed to visual-block/macro/
-> register), and new **KATAs** (find-char, dot, `:g`). macOS desktop builds are now
-> **Developer ID-signed + notarized** (`docs/DESKTOP.md`); v0.2.3 is the first signed release.
+> Newest addition (unreleased): **`MissionGenerator`** — authoring-side generation of KATA
+> drills, the second `LlmPort` consumer. It does not ask a model for an exercise; it asks
+> for a clean document plus reversible corruptions and lets `GlitchEngine` derive the
+> exercise, so solvability is constructed rather than checked. Drafts land in
+> `packages/content/src/_drafts/` and never reach the SSOT unaided.
 >
-> **Shipped in v0.2.4 (2026-06-15):** **Guidance-Backbone P2**
-> (diegetic CIPHER coaching, adaptive with level: Comms-Rail, unified Reference-Overlay
-> replacing the Cheatsheet overlay, Briefing/NEXUS/Result guidance, Vim primer, pure
-> `GuidanceEngine`; web-only). **Presolved-missions fix** — 23 missions (Arc-II + KATA-07–11)
-> shipped with transmission == solution and were instantly winnable; corrupted start states
-> authored + vim-verified, 3 more unsolvable missions fixed (R-02/R-03/R-22), content-gate
-> test added. **Canon pass** (timeline, one 10-level rank table, clearance cleanup) and
-> **8 new lore artifacts** (FRAGMENT-11–14, LOOT-07–09 incl. level-7/8/10 unlocks, REF
-> `99-THE_RAVEN`). **Diátaxis player manual** (`docs/manual/`, generated Vim-keymap/levels
-> reference via `npm run build:manual`), **reproducible screenshot capture**
-> (`scripts/capture-screenshots.mjs`, `npm run capture:screenshots`), and the first feel-pass
-> tweak (NEXUS skill tags → `--nv-muted`). Conventions: ESLint flat config + `npm run lint`,
-> tsconfig build/IDE split, `scripts/bump-version.sh`, `LICENSE-DOCS`. All tests green
-(current count: see `npm test`).
+> **The release history lives in [`CHANGELOG.md`](CHANGELOG.md), not here.** This file used
+> to carry a per-version log; it drifted two months behind while the changelog stayed
+> correct (CORE-META-16 — one truth in two places drifts, the only question is how quietly).
 
 ## Architecture — adapter pattern (ADR-001)
 
@@ -155,7 +140,12 @@ npm run build:content        # content/build.mjs — ALWAYS first (produces src/
 npm run build:web            # vite build → packages/adapter-web/dist/
 npm run build                # content → web (in this order)
 npm run build:manual         # scripts/gen-manual.mjs → docs/manual/reference/{vim-keymap,progression}.md
-npm run generate:kata        # generate a KATA draft into packages/content/src/_drafts/ (needs a local LLM)
+npm run generate:kata        # generate a KATA draft into packages/content/src/_drafts/
+                             #   needs a local OpenAI-compatible server (LM Studio / Ollama / MLX).
+                             #   Server setup, the /v1 pitfall and mobile access: the central guide at
+                             #   uplink.jkaindl.de/llm-setup (CORE-META-13) — repo-specific is only
+                             #   --endpoint / --model, and that an instruct model is required: a base
+                             #   model without a chat template echoes the prompt back.
 npm run capture:screenshots  # scripts/capture-screenshots.mjs → docs/screenshots/* (playwright-core + system Chrome)
 
 npm run desktop:dev          # Tauri desktop app with HMR (needs Rust + Xcode CLT)
@@ -343,18 +333,23 @@ when called as `npm run check:consumers`.
 
 ## Roadmap
 
-- **Shipped:** v0.2.0 (visual overhaul) → v0.2.1 (hardening) → v0.2.2 (par-tiers) →
-  v0.2.3 (Story-Mode progressive unlock, Arc-2 rebalance, find-char/dot/`:g` KATAs) →
-  **v0.2.4** (Guidance-Backbone P2, Diátaxis manual, presolved-missions fix, canon pass,
-  8 lore artifacts). Each cycle *up to v0.2.4* had a spec + plan under
+- **Shipped:** v0.1.0 → **v0.2.6** (2026-08-19). Per-version detail lives in
+  [`CHANGELOG.md`](CHANGELOG.md); the last three cycles were v0.2.4 (Guidance-Backbone P2,
+  Diátaxis manual, presolved-missions fix), v0.2.5 (upstream contract + trace back-flow)
+  and v0.2.6 (`LlmPort` + `CipherUplink`). Cycles *up to v0.2.4* had a spec + plan under
   `docs/superpowers/{specs,plans}/` — that location is historical and frozen; new SDD
   artifacts live outside the repo (see the **Memory** section).
-- **Release tags** `v0.1.0`…`v0.2.4` trigger the desktop CI (macOS/Windows/Linux installers
+- **Release tags** `v0.1.0`…`v0.2.6` trigger the desktop CI (macOS/Windows/Linux installers
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
-  `APPLE_*` repo secrets were added (v0.2.3 onward).
-- **Open:** navigation skills (folding / jumps / marks) need a new gameplay verb to be
-  teachable (the verb is "fix text, diff against solution"); Windows code signing;
-  itch.io distribution.
+  `APPLE_*` repo secrets were added (v0.2.3 onward). Note the CI produces a **draft**, so a
+  green run is not a published release (see Gotchas).
+- **Open:** `MissionGenerator` stage 2 (runtime generation) needs a capped retry policy and
+  an answer to what a player sees when the last attempt is refused — plus an `LlmPort` impl
+  for the web app, which does not have one. Generating beyond the five supported categories
+  needs new glitch types (`regex` alone is 26 of the 54 missions). `RunTimer` (pausable
+  game time) is the last open back-flow candidate. Longer-standing: navigation skills
+  (folding / jumps / marks) need a new gameplay verb to be teachable (today's verb is "fix
+  text, diff against solution"); Windows code signing; itch.io distribution.
 
 ## Abweichungen von der Leitkonvention
 
@@ -364,8 +359,10 @@ when called as `npm run check:consumers`.
 - CORE-GIT-03 — Tags behalten den `v`-Prefix (`v0.1.0`…): `.github/workflows/desktop.yml`
   triggert auf `v*`, und die bestehende Tag-Reihe ist mit Prefix publiziert. Wechsel nur
   zusammen mit CI-Trigger-Migration.
-- CORE-GIT-05 — Der Commit-Trailer nennt das tatsächlich beteiligte Modell zum
-  Commit-Zeitpunkt (z. B. `Claude Fable 5`), nicht wörtlich „Claude Opus".
+- CORE-AGENT-04 — Keine Specs/Pläne unter `docs/superpowers/{specs,plans}/` mehr: das
+  neuere CORE-META-14 verlagert SDD-Artefakte ins Coding-Cockpit des Maintainers, und dem
+  folgt dieses Repo. Der Altbestand im Repo ist eingefroren. Die beiden Regeln
+  widersprechen einander in der Leitkonvention selbst — hier gewinnt die jüngere.
 - PROF-OBS-01/02 — Kein `manifest.json` und kein `npm run deploy` in diesem Repo:
   das Obsidian-Plugin ist ein eigenes Repo (`obsidian-plugins/vim-dojo`), das diesen
   Kern vendoriert und dort seinen eigenen Release-Weg in den Community-Store hat.
@@ -390,3 +387,34 @@ when called as `npm run check:consumers`.
 - [x] CORE-META-04 — User-Manual nach Diátaxis unter `docs/manual/` (Tutorial · How-to · Reference · Explanation), aus dem README verlinkt; Reference (Vim-Keymap + Levels/Unlock) wird via `npm run build:manual` aus `packages/core/src/data/` generiert (kein Drift) (2026-06-15).
 - [x] PROF-TS-01 — ESLint 10 Flat-Config + Root-`npm run lint` ergänzt (2026-06-10).
 - [x] PROF-TS-04 — tsconfig-Split: `tsconfig.build.json` (Gate/Produktion) vs. `tsconfig.json` (IDE/Tests, include `test/`) je Workspace; `typecheck` läuft auf den Build-Configs (2026-06-10).
+
+**Audit 2026-08-19** (Leitkonvention war seit dem 10./15.06. nicht mehr gegengelesen; seither
+sind CORE-META-11…20, CORE-GIT-06/07, CORE-AGENT-07…09, CORE-TEST-01…10, CORE-STATE-01,
+CORE-DATA-01…03, CORE-OPS-01 und PROF-TS-05 hinzugekommen):
+
+- [x] PROF-TS-05 **[MUST]** — `lint` schlägt jetzt auf Warnungen fehl (`eslint . --max-warnings 0`).
+      Vorher `eslint .`: ESLint endet bei reinen Warnungen mit exit 0, das Gate behauptete also
+      eine Sauberkeit, die es nie geprüft hatte. Die Verschärfung lief beim Einbau sofort grün
+      durch — es gab keine offenen Warnungen, nur keine Absicherung dagegen (2026-08-19).
+- [x] CORE-META-05/06/07/08 — alle Pflicht- und empfohlenen Meta-Dateien vorhanden: `README.md`,
+      `LICENSE` (AGPL-3.0), `AGENTS.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`,
+      `LICENSING.md`, `CLA.md`, `LICENSE-DOCS`, `.editorconfig` (2026-08-19).
+- [x] CORE-META-01/02 — `readme_lint.py` gegen dieses Repo: Tier `web-app`, **keine Befunde** (2026-08-19).
+- [x] CORE-META-11 — Uplink-Schaufenster-Seite erreichbar (HTTP 200) (2026-08-19).
+- [x] CORE-META-16 — Der Status-Block dieser Datei führte bis heute ein zweites Release-Log
+      neben `CHANGELOG.md` und lag **zwei Monate zurück** (endete bei v0.2.4, während v0.2.5 und
+      v0.2.6 draußen waren). Ersetzt durch einen Kurzstand + Zeiger auf den Changelog: eine
+      Wahrheit, ein Ort (2026-08-19).
+- [x] CORE-GIT-05 — keine Abweichung mehr: die Regel lautet inzwischen
+      `Claude Opus <Version> (1M context)` und deckt die hiesige Praxis wörtlich ab. Der frühere
+      Abweichungs-Eintrag ist gestrichen (2026-08-19).
+- [ ] CORE-META-13 — `npm run generate:kata` setzt einen lokalen OpenAI-kompatiblen Server voraus
+      und müsste auf `uplink.jkaindl.de/llm-setup` verweisen statt Endpoint-Wissen selbst zu
+      tragen. Grenzfall: die Regel ist *(user-facing)* markiert, das Werkzeug ist aber reines
+      Autoren-Tooling und im README zu Recht nicht erwähnt. Zeiger deshalb hier in `AGENTS.md`
+      gesetzt; ob das der Regel genügt oder das Werkzeug in den Guide gehört, ist offen.
+- [ ] CORE-META-09 — `README.de.md` (optional) existiert nicht. Bewusst offen, nicht vergessen.
+- [ ] **Ungeprüft geblieben** (gelten nach CORE-META-15(c) als offen): CORE-TEST-01…10,
+      CORE-STATE-01, CORE-DATA-01…03, CORE-OPS-01, CORE-GIT-06/07, CORE-AGENT-07…09,
+      CORE-META-12/14/17/19/20. Sie berühren Verfahren, nicht Dateien, und brauchen je einen
+      eigenen Durchgang statt eines Dateichecks.
