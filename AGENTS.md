@@ -297,7 +297,15 @@ when called as `npm run check:consumers`.
   servers, one with it and one without, behaved identically in every run), so a server-side
   header fix is not the answer; and CDP `Browser.grantPermissions` flips the Permissions API
   to `granted` **without** satisfying the network check — an automated test trusting it
-  measures a false negative. Only Chrome was measured; Safari and Firefox are untested.
+  measures a false negative. **Safari has no path at all** — WebKit blocks this as mixed
+  content with no prompt to grant, so a Safari player can never reach a local server; Firefox
+  prompts like Chrome (both from a parallel measurement the same day, recorded in the
+  maintainer's cockpit under `code-kit/_SDD/2026-08-21-mixed-content-messung.md`). Since every
+  one of these surfaces as a plain `TypeError: Failed to fetch`, `WebLlm` needs a
+  browser-specific message, not a retry. One more trap for whoever measures this again: the
+  app at `/neurovim-standalone/` sends **no** CSP, but the deploy root `pages.jkaindl.de/`
+  does (`default-src 'none'`, Caddy's generated index page) — measuring against the root
+  reports a CSP block that does not apply to the app.
 - **`npm version` reformats `package.json`:** it normalizes JSON formatting
   (e.g. expands one-line objects); that churn is expected when using
   `scripts/bump-version.sh`.
