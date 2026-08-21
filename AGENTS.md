@@ -68,7 +68,7 @@ community store — which consumes this core by vendoring it. See § Upstream co
 | `StoragePort` | Persistence of `PluginData` (generic `<T>`) | `plugin.loadData/saveData` → `data.json` | IndexedDB |
 | `ContentPort` | Load missions + lore artifacts | Vault file API + `data/chapters.ts` | bundled `@neurovim/content` |
 | `UiHost` | Mount container for Preact trees | `ItemView` / `Modal` / MarkdownPostProcessor | DOM `<div>` overlays / routes |
-| `LlmPort` | One streaming LLM completion (transport-neutral) | `CipherClient` + `endpointResolver` + `XhrSseTransport` | — (no LLM in the web app yet) |
+| `LlmPort` | One streaming LLM completion (transport-neutral) | `CipherClient` + `endpointResolver` + `XhrSseTransport` | `WebLlm` over the vendored code-kit `llm-stream` (fetch + SSE) |
 
 **Important (D17/D19e):** the engines are **pure functions** and do **not**
 consume the ports directly — the adapters wire ports ↔ engines. An `AudioPort`
@@ -123,7 +123,8 @@ design-prep workspace, not in this repo.
     │   └── build.mjs       # gray-matter → typed TS manifest (D15, bundler-friendly)
     └── adapter-web/        # @neurovim/adapter-web — Vite SPA + Tauri desktop
         ├── src/            # main.tsx, ui/ (App=NEXUS, Welcome/Briefing/Mission/Sandbox/Result),
-        │                   #   ports/WebStorage.ts, cm6-theme.ts, styles.css, fonts/ (JetBrains Mono)
+        │                   #   ports/{WebStorage,WebLlm}.ts, cm6-theme.ts, styles.css, fonts/
+        │   └── vendor/code-kit/  # verbatim copies from code-kit (see § Vendored code-kit)
         ├── public/         # og.png, favicon PNGs (static, copied to dist root)
         └── src-tauri/      # Tauri v2 desktop project (Rust + tauri.conf.json + icons)
 ```
@@ -245,6 +246,23 @@ is no window in which a consumer is broken.
 contract per consumer — pin lag and verbatim status — and regenerates `CONSUMERS.md`
 when called as `npm run check:consumers`.
 
+## Vendored code-kit
+
+The contract above also runs in the other direction: `adapter-web` is a **consumer of
+`code-kit`**, the domain-free workspace kit. `packages/adapter-web/src/vendor/code-kit/`
+holds verbatim copies of `web/llm-stream.ts`, `pure/sse.ts` and `pure/error_body.ts`,
+pinned in `VENDOR.json`. Two rules, both the mirror image of the ones above:
+
+- **Never hand-edit anything under `vendor/`.** A fix belongs upstream in code-kit,
+  followed by a re-vendor from the new pin. code-kit's own `check-consumers` names this
+  repo and fails on an edited copy — its verdict is the reason the copies stay trustworthy.
+- **The `web/` + `pure/` split is mirrored on purpose,** so `llm-stream`'s `../pure/sse`
+  import resolves unchanged and the copies stay byte-identical. Flattening the directories
+  would force a rewrite, and a rewritten copy is no longer verifiable.
+
+Why vendored rather than depended on: same reason `vim-dojo` vendors this core — a pin the
+consumer moves deliberately, with no npm publish in either project's way.
+
 ## Gotchas
 
 - **Stale generated content:** after editing anything under `packages/content/src/`,
@@ -307,8 +325,9 @@ when called as `npm run check:consumers`.
   content with no prompt to grant, so a Safari player can never reach a local server; Firefox
   prompts like Chrome (both from a parallel measurement the same day, recorded in the
   maintainer's cockpit under `code-kit/_SDD/2026-08-21-mixed-content-messung.md`). Since every
-  one of these surfaces as a plain `TypeError: Failed to fetch`, `WebLlm` needs a
-  browser-specific message, not a retry. One more trap for whoever measures this again: the
+  one of these surfaces as a plain `TypeError: Failed to fetch`, `WebLlm` answers it with a
+  browser-specific message instead of a retry (`refusalHint`) — a retry only ever helps the
+  Chromium/Firefox case. One more trap for whoever measures this again: the
   app at `/neurovim-standalone/` sends **no** CSP, but the deploy root `pages.jkaindl.de/`
   does (`default-src 'none'`, Caddy's generated index page) — measuring against the root
   reports a CSP block that does not apply to the app.
@@ -381,11 +400,14 @@ when called as `npm run check:consumers`.
   `APPLE_*` repo secrets were added (v0.2.3 onward). Note the CI produces a **draft**, so a
   green run is not a published release (see Gotchas).
 - **Open:** `MissionGenerator` stage 2 (runtime generation) needs a capped retry policy and
-  an answer to what a player sees when the last attempt is refused — plus an `LlmPort` impl
-  for the web app, which does not have one. The reachability question behind that impl is
-  **answered** (2026-08-21, see Gotchas): a deployed HTTPS page does reach a local model
-  server, at the price of one Local Network Access prompt. What is left is therefore a UX
-  question, not a transport one — what the app shows when the player clicks "Block".
+  an answer to what a player sees when the last attempt is refused. The web app's `LlmPort`
+  impl now **exists** (`WebLlm`, 2026-08-22) but is not wired into the app: nothing yet
+  chooses an endpoint or a model, so there is no settings surface and no caller. The
+  reachability question behind it is **answered** (2026-08-21, see Gotchas): a deployed HTTPS
+  page does reach a local model server, at the price of one Local Network Access prompt. What
+  is left is therefore a UX question, not a transport one — what the app shows when the player
+  clicks "Block". `WebLlm` already says *which* browser refused and whether asking again can
+  help; what it cannot decide is what the game does next.
   Generating beyond the five supported categories needs new glitch types (`regex` alone is 26 of the 54 missions). `RunTimer` (pausable
   game time) is the last open back-flow candidate. Longer-standing: navigation skills
   (folding / jumps / marks) need a new gameplay verb to be teachable (today's verb is "fix
