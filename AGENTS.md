@@ -281,6 +281,21 @@ when called as `npm run check:consumers`.
   It overwrites `docs/screenshots/*` with a **seeded, populated** Story-Mode state (level
   6), not a fresh save — change the seed in `scripts/capture-screenshots.mjs` to alter
   what renders. Use `--no-build` to reuse the current `dist/` while iterating.
+- **A deployed HTTPS page *can* reach `http://localhost` — but only past Chrome's Local
+  Network Access prompt.** Measured 2026-08-21 against the live deploy (`pages.jkaindl.de`,
+  Chrome 151.0.7922.170, fresh profile, both LM Studio :1234 and Ollama :11434).
+  **Mixed content is not the blocker** — Chrome still treats loopback as trustworthy, proven
+  by `--disable-features=LocalNetworkAccessChecks` letting every request through unchanged.
+  What blocks is LNA, in Chrome's own words: *"blocked by CORS policy: Permission was denied
+  for this request to access the `loopback` address space"*. One click on "Allow" clears the
+  **whole** loopback space — ports 1234/11434/8123 and `127.0.0.1` alike, GET and streaming
+  POST (real SSE chunks arrived) — and it survives a browser restart, stored per origin as
+  the `loopback_network` content setting. Two traps for whoever builds `WebLlm`: the
+  `Access-Control-Allow-Private-Network` response header is **dead** here (two control
+  servers, one with it and one without, behaved identically in every run), so a server-side
+  header fix is not the answer; and CDP `Browser.grantPermissions` flips the Permissions API
+  to `granted` **without** satisfying the network check — an automated test trusting it
+  measures a false negative. Only Chrome was measured; Safari and Firefox are untested.
 - **`npm version` reformats `package.json`:** it normalizes JSON formatting
   (e.g. expands one-line objects); that churn is expected when using
   `scripts/bump-version.sh`.
@@ -351,8 +366,11 @@ when called as `npm run check:consumers`.
   green run is not a published release (see Gotchas).
 - **Open:** `MissionGenerator` stage 2 (runtime generation) needs a capped retry policy and
   an answer to what a player sees when the last attempt is refused — plus an `LlmPort` impl
-  for the web app, which does not have one. Generating beyond the five supported categories
-  needs new glitch types (`regex` alone is 26 of the 54 missions). `RunTimer` (pausable
+  for the web app, which does not have one. The reachability question behind that impl is
+  **answered** (2026-08-21, see Gotchas): a deployed HTTPS page does reach a local model
+  server, at the price of one Local Network Access prompt. What is left is therefore a UX
+  question, not a transport one — what the app shows when the player clicks "Block".
+  Generating beyond the five supported categories needs new glitch types (`regex` alone is 26 of the 54 missions). `RunTimer` (pausable
   game time) is the last open back-flow candidate. Longer-standing: navigation skills
   (folding / jumps / marks) need a new gameplay verb to be teachable (today's verb is "fix
   text, diff against solution"); Windows code signing; itch.io distribution.
