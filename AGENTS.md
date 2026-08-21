@@ -263,7 +263,9 @@ when called as `npm run check:consumers`.
   **Measured twice on 2026-08-19, and it complicates this:** after `git push origin main`,
   `github/main` was already current within seconds — a Forgejo→GitHub push mirror appears
   to be active, contrary to the note above and to the assumption that the auto-mirror died
-  with the Codeberg exit. Both observations are about **branches**; whether the mirror
+  with the Codeberg exit. **A third time on 2026-08-21** (`a5d2e90`): `github/main` already
+  carried the commit at the first possible query after `git push origin main`, and still did
+  12 s later. All three observations are about **branches**; whether the mirror
   carries **tags** is untested, and that is what the CI needs. So keep pushing the tag
   explicitly — and while doing it, check whether it was already there. That settles it.
 - **`esbuild` is a *root* devDependency, and must stay one:** `gen-manual.mjs` and
