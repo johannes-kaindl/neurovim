@@ -34,6 +34,23 @@ All notable changes to this project are documented here. The format is based on
     (`navigation`, `operators`, `text-objects`, `editing`, `fundamentals`). `regex`
     — 26 of the 54 missions — `visual-block`, `registers`, `marks-macros` and
     `ex-commands` are declined outright rather than served badly.
+- **`WebLlm` — the web target's `LlmPort` implementation**, over three modules vendored
+  verbatim from `code-kit` (`web/llm-stream`, `pure/sse`, `pure/error_body`, pinned in
+  `packages/adapter-web/src/vendor/code-kit/VENDOR.json`). The transport was already
+  written and tested upstream; what is new here is the translation between two error
+  surfaces that do not line up — the transport throws and loses the partial, while
+  `LlmPort.complete()` returns one of four kinds and never drops what already streamed.
+  - A deadline and a caller abort both arrive as an indistinguishable `AbortError`, so
+    `WebLlm` owns the controller that fires either one and remembers which it was.
+  - A dead server, Chromium's Local-Network-Access denial and Safari's mixed-content
+    block are one identical `TypeError: Failed to fetch`. The message says which browser
+    refused and whether asking again can help — measured 2026-08-21: Chromium grants the
+    whole loopback space on one click and remembers it, Safari offers no permission at
+    all. The UI therefore never offers a retry that provably cannot work.
+  - HTTP `404/502/503/504` read as `unavailable` ("no service at this address" — the
+    `/v1` pitfall from the setup guide), every other status as `failed` ("the service
+    answered and said no"), with the server's own message pulled from its error envelope.
+  - Not wired into the app: nothing yet chooses an endpoint or a model.
 - **`npm run generate:kata`** (`scripts/generate-kata.mjs`) — the consumer half: endpoint,
   model, retry policy and the fact that HTTP is involved all live here, behind `LlmPort`.
   Drafts land in `packages/content/src/_drafts/`, which `build.mjs` does not scan; nothing
