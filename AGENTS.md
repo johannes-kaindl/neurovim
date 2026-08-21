@@ -188,8 +188,10 @@ green. For content changes also run `npm run build:content`, otherwise
 - **Bundle budget (web):** code-split (initial ~310 KB; CM6 ~410 KB lazy; `marked`
   ~43 KB lazy). No heavy visual deps; prefer CSS motion over JS libs. Any new
   dependency must justify its weight and ideally be lazy-loaded.
-- **The Obsidian target lives elsewhere:** it is `obsidian-plugins/vim-dojo`
-  (v0.7.5, community store), a separate repo that vendors this core. This repo
+- **The Obsidian target lives elsewhere:** it is `obsidian-plugins/vim-dojo`, a
+  separate repo in the community store that vendors this core. Its version lives in the
+  status block above and is deliberately **not** repeated here — this line carried a stale
+  `v0.7.5` while that block already said 0.8.0 (CORE-META-16, again). This repo
   builds no plugin bundle and never writes into a vault. How capabilities travel
   between the two: § Upstream contract.
 - **Obsidian posture — web-first, logic-parity only:** `vim-dojo` is kept
