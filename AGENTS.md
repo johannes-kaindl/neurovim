@@ -265,7 +265,11 @@ when called as `npm run check:consumers`.
   to be active, contrary to the note above and to the assumption that the auto-mirror died
   with the Codeberg exit. **A third time on 2026-08-21** (`a5d2e90`): `github/main` already
   carried the commit at the first possible query after `git push origin main`, and still did
-  12 s later. All three observations are about **branches**; whether the mirror
+  12 s later. **But it is not instant:** a fourth push the same day (`a9c34c8`) still showed
+  `github/main` behind when checked right away, while the explicit `git push github main`
+  then reported *Everything up-to-date*. A same-second check can therefore read as a dead
+  mirror when it is only lag — push explicitly regardless. All four observations are about
+  **branches**; whether the mirror
   carries **tags** is untested, and that is what the CI needs. So keep pushing the tag
   explicitly — and while doing it, check whether it was already there. That settles it.
 - **`esbuild` is a *root* devDependency, and must stay one:** `gen-manual.mjs` and
