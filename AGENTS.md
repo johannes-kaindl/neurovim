@@ -318,6 +318,12 @@ consumer moves deliberately, with no npm publish in either project's way.
   **branches**; whether the mirror
   carries **tags** is untested, and that is what the CI needs. So keep pushing the tag
   explicitly — and while doing it, check whether it was already there. That settles it.
+  **A sixth observation on 2026-09-02 (`7b14d1f`) shows the failure mode to expect:**
+  `git ls-remote github main` still reported the old sha, and the `git push github main`
+  issued right after it was *rejected* — `cannot lock ref 'refs/heads/main': is at 7b14d1f
+  but expected dd1cf2d`. The mirror had landed the commit in between. Read that message
+  correctly: it names your own sha as what is already there, so it reports success, not a
+  conflict. Verify with `git ls-remote` rather than re-pushing or forcing.
 - **`esbuild` is a *root* devDependency, and must stay one:** `gen-manual.mjs` and
   `generate-kata.mjs` transpile core TS modules so node can import them. It used to be
   hoisted from `adapter-obsidian`; when that workspace was removed, `npm run build:manual`
