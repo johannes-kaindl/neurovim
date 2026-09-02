@@ -1,5 +1,5 @@
 import {
-  defaultParKeystrokes, resolvePar, tierFor, keystrokesToNextTier,
+  defaultParKeystrokes, resolvePar, resolveParInfo, tierFor, keystrokesToNextTier,
   SILVER_FACTOR, BRONZE_FACTOR, PAR_BASE, PAR_PER_DIFFICULTY, FALLBACK_DIFFICULTY,
 } from '../src/engine/ParTier';
 
@@ -66,5 +66,31 @@ describe('keystrokesToNextTier', () => {
   });
   it('targets bronze when below bronze', () => {
     expect(keystrokesToNextTier(101, par)).toEqual({ nextTier: 'bronze', delta: 1 }); // 101 - 100
+  });
+});
+
+describe('resolveParInfo', () => {
+  it('reports an authored par as authored', () => {
+    expect(resolveParInfo({ parOverride: 22, difficulty: 1 })).toEqual({ par: 22, source: 'authored' });
+  });
+
+  it('reports a difficulty-computed par as computed', () => {
+    expect(resolveParInfo({ difficulty: 2 })).toEqual({ par: 60, source: 'computed' });
+  });
+
+  it('does not treat a zero or negative override as authored', () => {
+    expect(resolveParInfo({ parOverride: 0, difficulty: 2 })).toEqual({ par: 60, source: 'computed' });
+    expect(resolveParInfo({ parOverride: -5, difficulty: 2 })).toEqual({ par: 60, source: 'computed' });
+  });
+
+  it('falls back to the default difficulty when nothing is known', () => {
+    const fallback = PAR_BASE + FALLBACK_DIFFICULTY * PAR_PER_DIFFICULTY;
+    expect(resolveParInfo({})).toEqual({ par: fallback, source: 'computed' });
+  });
+
+  it('agrees with resolvePar on the number itself', () => {
+    for (const input of [{ parOverride: 22, difficulty: 1 }, { difficulty: 7 }, {}]) {
+      expect(resolveParInfo(input).par).toBe(resolvePar(input));
+    }
   });
 });
