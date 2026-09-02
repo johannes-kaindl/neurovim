@@ -80,8 +80,8 @@ const isStr = (v: unknown): v is string => typeof v === 'string' && v.length > 0
  *  brace is tried as a start, the balanced span from it is parsed, and the
  *  longest one that actually parses wins — the answer is reliably longer than
  *  anything the narration sketches. */
-function extractJson(content: string): unknown | null {
-  let best: unknown | null = null;
+function extractJson(content: string): unknown {
+  let best: unknown = null;
   let bestLen = 0;
 
   for (let i = 0; i < content.length; i++) {
