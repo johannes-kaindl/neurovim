@@ -246,6 +246,32 @@ is no window in which a consumer is broken.
 contract per consumer — pin lag and verbatim status — and regenerates `CONSUMERS.md`
 when called as `npm run check:consumers`.
 
+**The one permitted deviation — a declared provenance header.** A consumer whose sync
+script stamps each copied file with an origin line is not hand-editing it, but a gate
+that hashes whole files cannot tell the two apart: it reports every copy as
+`violated`, blaming the consumer for doing the right thing. (This is not hypothetical —
+it happened in `code-kit`, which vendored this very script, on 2026-09-02; `vim-dojo`
+already stamps its `obsidian-kit` tree.) A consumer may therefore declare its stamp in
+`consumers.json`:
+
+```json
+"provenanceHeader": { "lines": 1, "mustMatch": "^// vendored from neurovim-standalone@" }
+```
+
+The declared lines are then **verified against the pattern and cut off**, and the body
+below must still match the source byte for byte. They are never skipped unchecked — a
+blind `slice(1)` would let any edit hide in line 1, which is precisely the change the
+gate exists to catch (a line reading `export const BACKDOOR = 1; // as if it were a
+header` is rejected). Three properties, all measured on 2026-09-02 against a stamped
+copy of vim-dojo's tree:
+
+- **It is all-or-none per consumer.** The declaration says *every* copied file carries
+  the stamp; one unstamped file among stamped ones is a violation, and rightly so —
+  a partially stamped tree means the sync script did not write it.
+- **A broken preamble is its own breach,** reported as such rather than as an edit.
+  Confusing the two is what sent the `code-kit` session hunting in the wrong repo.
+- **Without a declaration nothing changes,** byte for byte, error message included.
+
 ## Vendored code-kit
 
 The contract above also runs in the other direction: `adapter-web` is a **consumer of

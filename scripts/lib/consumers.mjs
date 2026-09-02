@@ -19,24 +19,70 @@ export function parseVendorPin(text) {
 }
 
 /**
+ * Splits a vendored copy into the provenance preamble its consumer declares and
+ * the body that must still match the source byte for byte.
+ *
+ * Why this is not a plain `slice(lines)`: skipping the first line unchecked would
+ * let any edit hide there — the gate would wave through exactly the change it
+ * exists to catch. The declared lines are therefore *verified* against the
+ * pattern, not ignored. A consumer without a declaration is unaffected: the
+ * contract stays byte-identical for everyone who has not asked for otherwise.
+ *
+ * @param {string} text the vendored copy, as read from the consumer
+ * @param {{ lines: number, mustMatch: string } | undefined} header the consumer's
+ *   `provenanceHeader` declaration from consumers.json; undefined means none
+ * @returns {{ ok: true, body: string } | { ok: false, reason: string }}
+ */
+export function splitProvenanceHeader(text, header) {
+  if (header === undefined || header === null) return { ok: true, body: text };
+  // No defaults: an incomplete declaration is a configuration error, and
+  // guessing one half of it would silently weaken the check it configures.
+  if (typeof header.lines !== 'number') {
+    throw new Error('provenanceHeader declares no lines — refusing to guess.');
+  }
+  if (typeof header.mustMatch !== 'string') {
+    throw new Error('provenanceHeader declares no mustMatch — refusing to guess.');
+  }
+
+  const pattern = new RegExp(header.mustMatch);
+  let cut = 0;
+  for (let i = 0; i < header.lines; i += 1) {
+    const end = text.indexOf('\n', cut);
+    if (end === -1) {
+      return { ok: false, reason: `file is shorter than the declared ${header.lines}-line header` };
+    }
+    if (!pattern.test(text.slice(cut, end))) {
+      return { ok: false, reason: `line ${i + 1} does not match the declared provenance pattern` };
+    }
+    cut = end + 1;
+  }
+  return { ok: true, body: text.slice(cut) };
+}
+
+/**
  * Turns one consumer's raw measurements into a verdict.
  * A modified copy is a contract breach and outranks everything else;
  * a stale pin is the normal state of a consumer with its own release cadence.
- * @param {{ name: string, found: boolean, pin?: string, commitsSincePin?: number, differences?: string[] }} input
+ *
+ * `differences` and `headerViolations` are both breaches but not the same one, and
+ * the message says which: a differing body means someone edited the copy, a broken
+ * preamble means the copy no longer carries the provenance it declares. Reporting
+ * the second as the first accuses a consumer of hand-editing when its sync script
+ * has written a declared header.
+ * @param {{ name: string, found: boolean, pin?: string, commitsSincePin?: number, differences?: string[], headerViolations?: string[] }} input
  * @returns {{ name: string, status: 'skipped' | 'ok' | 'stale' | 'violated', message: string }}
  */
 export function classifyConsumer(input) {
-  const { name, found, pin, commitsSincePin = 0, differences = [] } = input;
+  const { name, found, pin, commitsSincePin = 0, differences = [], headerViolations = [] } = input;
 
   if (!found) {
     return { name, status: 'skipped', message: 'not found on disk — skipped' };
   }
-  if (differences.length > 0) {
-    return {
-      name,
-      status: 'violated',
-      message: `vendored copy differs from pin ${pin}: ${differences.join(', ')}`,
-    };
+  if (differences.length > 0 || headerViolations.length > 0) {
+    const parts = [];
+    if (differences.length > 0) parts.push(`vendored copy differs from pin ${pin}: ${differences.join(', ')}`);
+    if (headerViolations.length > 0) parts.push(`declared provenance header is not intact: ${headerViolations.join(', ')}`);
+    return { name, status: 'violated', message: parts.join('; ') };
   }
   if (commitsSincePin > 0) {
     const plural = commitsSincePin === 1 ? 'commit' : 'commits';

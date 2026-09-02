@@ -62,6 +62,16 @@ All notable changes to this project are documented here. The format is based on
   `gen-manual.mjs` relied on `esbuild` being hoisted from that workspace's dependencies;
   when the workspace went, so did the package. It is now an explicit root devDependency.
   The command is not part of `npm test`, which is why the break went unnoticed.
+- **The upstream-contract gate accused a consumer of hand-editing when its sync script
+  had stamped a provenance line.** `check-consumers` hashes whole files, so an origin
+  comment written by a vendoring script is indistinguishable from an edit — every copy
+  reads as `violated`, and the message sends whoever investigates into the wrong repo.
+  A consumer may now declare its stamp as `provenanceHeader` in `consumers.json`; the
+  declared lines are verified against the pattern and cut off, never skipped unchecked,
+  and the body below must still match the source byte for byte. A broken preamble is
+  reported as its own breach rather than as an edit. Without a declaration nothing
+  changes. Found in `code-kit`, which vendored this script — `vim-dojo` already stamps
+  its `obsidian-kit` tree, so the break here was one habit away.
 
 ## [0.2.6] — 2026-08-19
 

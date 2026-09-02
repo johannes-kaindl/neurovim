@@ -90,3 +90,66 @@ test('renderConsumersMd states plainly when no consumer could be checked', () =>
   const md = renderConsumersMd([{ name: 'vim-dojo', what: 'Obsidian plugin', status: 'skipped', message: 'not found on disk — skipped' }]);
   assert.match(md, /skipped/);
 });
+
+import { splitProvenanceHeader } from './consumers.mjs';
+
+const HEADER = { lines: 1, mustMatch: '^// vendored from ' };
+
+test('splitProvenanceHeader passes the text through untouched when no header is declared', () => {
+  const text = 'export const a = 1;\n';
+  assert.deepEqual(splitProvenanceHeader(text, undefined), { ok: true, body: text });
+});
+
+test('splitProvenanceHeader cuts the declared preamble and returns the body below it', () => {
+  const text = '// vendored from obsidian-kit@abc1234\nexport const a = 1;\n';
+  assert.deepEqual(splitProvenanceHeader(text, HEADER), { ok: true, body: 'export const a = 1;\n' });
+});
+
+test('splitProvenanceHeader rejects code disguised as a header', () => {
+  const text = 'export const BACKDOOR = 1; // as if it were a header\nexport const a = 1;\n';
+  const r = splitProvenanceHeader(text, HEADER);
+  assert.equal(r.ok, false);
+  assert.match(r.reason, /line 1/);
+});
+
+test('splitProvenanceHeader names which line of a multi-line header broke', () => {
+  const text = '// vendored from obsidian-kit@abc1234\nexport const BACKDOOR = 1;\nexport const a = 1;\n';
+  const r = splitProvenanceHeader(text, { lines: 2, mustMatch: '^// ' });
+  assert.equal(r.ok, false);
+  assert.match(r.reason, /line 2/);
+});
+
+test('splitProvenanceHeader rejects a file shorter than the declared header', () => {
+  const r = splitProvenanceHeader('// vendored from obsidian-kit@abc1234', HEADER);
+  assert.equal(r.ok, false);
+  assert.match(r.reason, /shorter/);
+});
+
+test('splitProvenanceHeader refuses a declaration without a line count', () => {
+  assert.throws(() => splitProvenanceHeader('a\n', { mustMatch: '^// ' }), /lines/);
+});
+
+test('splitProvenanceHeader refuses a declaration without a pattern', () => {
+  assert.throws(() => splitProvenanceHeader('a\n', { lines: 1 }), /mustMatch/);
+});
+
+test('classifyConsumer reports a broken provenance header as its own breach, not as a hand edit', () => {
+  const r = classifyConsumer({
+    name: 'vim-dojo', found: true, pin: 'abc1234', commitsSincePin: 0, differences: [],
+    headerViolations: ['core/types.ts: line 1 does not match the declared provenance pattern'],
+  });
+  assert.equal(r.status, 'violated');
+  assert.match(r.message, /provenance header/);
+  assert.doesNotMatch(r.message, /differs from pin/);
+});
+
+test('classifyConsumer names both breaches when body and header are wrong at once', () => {
+  const r = classifyConsumer({
+    name: 'vim-dojo', found: true, pin: 'abc1234', commitsSincePin: 0,
+    differences: ['core/types.ts'],
+    headerViolations: ['core/index.ts: line 1 does not match the declared provenance pattern'],
+  });
+  assert.equal(r.status, 'violated');
+  assert.match(r.message, /differs from pin/);
+  assert.match(r.message, /provenance header/);
+});

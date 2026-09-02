@@ -16,29 +16,49 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdtemp
 import { join, relative, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { parseVendorPin, classifyConsumer, diffTrees, overallExit, renderConsumersMd } from './lib/consumers.mjs';
+import { parseVendorPin, classifyConsumer, diffTrees, overallExit, renderConsumersMd, splitProvenanceHeader } from './lib/consumers.mjs';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const config = JSON.parse(readFileSync(join(repoRoot, 'consumers.json'), 'utf8'));
 
-/** Recursively maps every file under `root` to a hash of its contents. */
-function hashTree(root) {
-  const out = new Map();
-  if (!existsSync(root)) return out;
+// Hashing a file, in the two shapes the contract allows.
+//
+// Without a declared provenance header the file is hashed as raw bytes — no
+// encoding is assumed and the comparison is byte-exact, exactly as before.
+// With one, both sides are read as UTF-8 text so the declared preamble can be
+// verified and cut off; that assumption is bought by the declaration itself
+// (whoever writes a comment line on top has a text file), and it never reaches
+// a consumer that did not ask for it.
+function hashFile(path, header) {
+  if (!existsSync(path)) return { hash: null };
+  if (header === undefined) {
+    return { hash: createHash('sha256').update(readFileSync(path)).digest('hex') };
+  }
+  const split = splitProvenanceHeader(readFileSync(path, 'utf8'), header);
+  if (!split.ok) return { hash: null, reason: split.reason };
+  return { hash: createHash('sha256').update(Buffer.from(split.body, 'utf8')).digest('hex') };
+}
+
+/** Recursively maps every file under `root` to a hash, plus the files whose
+ *  declared preamble is not what it claims to be. */
+function hashTree(root, header) {
+  const hashes = new Map();
+  const broken = new Map();
+  if (!existsSync(root)) return { hashes, broken };
   const walk = (dir) => {
     for (const entry of readdirSync(dir)) {
       const full = join(dir, entry);
       if (statSync(full).isDirectory()) walk(full);
-      else out.set(relative(root, full), createHash('sha256').update(readFileSync(full)).digest('hex'));
+      else {
+        const rel = relative(root, full);
+        const { hash, reason } = hashFile(full, header);
+        if (reason !== undefined) broken.set(rel, reason);
+        else hashes.set(rel, hash);
+      }
     }
   };
   walk(root);
-  return out;
-}
-
-function hashFile(path) {
-  if (!existsSync(path)) return null;
-  return createHash('sha256').update(readFileSync(path)).digest('hex');
+  return { hashes, broken };
 }
 
 /**
@@ -86,20 +106,31 @@ for (const consumer of config.consumers) {
     continue;
   }
 
+  // The source side is never read through the header lens: the preamble exists
+  // only in the copy. Comparing the copy's body against the source's whole file
+  // is the point — that is what "verbatim below the stamp" means.
+  const header = consumer.provenanceHeader;
   const differences = [];
+  const headerViolations = [];
   try {
     for (const [source, copy] of consumer.dirs ?? []) {
-      differences.push(...diffTrees(hashTree(join(pinDir, source)), hashTree(join(root, copy))).map((p) => `${copy}/${p}`));
+      const expected = hashTree(join(pinDir, source), undefined);
+      const actual = hashTree(join(root, copy), header);
+      for (const [rel, reason] of actual.broken) headerViolations.push(`${copy}/${rel}: ${reason}`);
+      differences.push(...diffTrees(expected.hashes, actual.hashes).map((p) => `${copy}/${p}`));
     }
     for (const [source, copy] of consumer.files ?? []) {
-      if (hashFile(join(pinDir, source)) !== hashFile(join(root, copy))) differences.push(copy);
+      const expected = hashFile(join(pinDir, source), undefined);
+      const actual = hashFile(join(root, copy), header);
+      if (actual.reason !== undefined) headerViolations.push(`${copy}: ${actual.reason}`);
+      else if (expected.hash !== actual.hash) differences.push(copy);
     }
   } finally {
     rmSync(pinDir, { recursive: true, force: true });
   }
 
   results.push({
-    ...classifyConsumer({ name: consumer.name, found: true, pin, commitsSincePin, differences }),
+    ...classifyConsumer({ name: consumer.name, found: true, pin, commitsSincePin, differences, headerViolations }),
     what: consumer.what,
     pin,
     tag,
@@ -120,6 +151,8 @@ for (const r of results) {
 
 const code = overallExit(results);
 if (code === 1) {
-  console.error('→ A vendored copy was edited in place. Change it here and re-vendor there; never edit the copy.');
+  console.error('→ A vendored copy no longer matches its pin. Change it here and re-vendor there;');
+  console.error('  never edit the copy. A consumer that stamps its copies declares that stamp as');
+  console.error('  `provenanceHeader` in consumers.json — an undeclared one reads as an edit.');
 }
 process.exit(code);
