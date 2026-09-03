@@ -431,19 +431,37 @@ consumer moves deliberately, with no npm publish in either project's way.
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
   `APPLE_*` repo secrets were added (v0.2.3 onward). Note the CI produces a **draft**, so a
   green run is not a published release (see Gotchas).
-- **Open:** `MissionGenerator` stage 2 (runtime generation) needs a capped retry policy and
-  an answer to what a player sees when the last attempt is refused. The web app's `LlmPort`
-  impl now **exists** (`WebLlm`, 2026-08-22) but is not wired into the app: nothing yet
-  chooses an endpoint or a model, so there is no settings surface and no caller. The
-  reachability question behind it is **answered** (2026-08-21, see Gotchas): a deployed HTTPS
-  page does reach a local model server, at the price of one Local Network Access prompt. What
-  is left is therefore a UX question, not a transport one — what the app shows when the player
-  clicks "Block". `WebLlm` already says *which* browser refused and whether asking again can
-  help; what it cannot decide is what the game does next.
-  Generating beyond the five supported categories needs new glitch types (`regex` alone is 26 of the 54 missions). `RunTimer` (pausable
-  game time) is the last open back-flow candidate. Longer-standing: navigation skills
-  (folding / jumps / marks) need a new gameplay verb to be teachable (today's verb is "fix
-  text, diff against solution"); Windows code signing; itch.io distribution.
+- **Open:** wiring `WebLlm` into the web app — endpoint choice, model choice, persistence.
+  The transport exists (2026-08-22) and the UX question behind it is **decided** (2026-09-02):
+  the uplink is **off by default** and connects only after the player switches it on, so the
+  Local Network Access prompt is never a surprise. The reason is not politeness but mechanics:
+  **an LNA refusal is stored per origin and permanent**, so a prompt that appears unasked gets
+  dismissed by reflex, and that one reflex costs the feature forever. Consequences that are not
+  optional: no connection attempt at startup (not even a preflight probe), the on/off state
+  persists via `StoragePort`, the error text sits *at the switch* and is fed by `refusalHint`,
+  and there is **no "try again" button** — it would promise what it cannot deliver. Check
+  code-kit's `pure/endpoint*` + `model-choice` against test 1 before building any of it.
+- **Decided, not open — `RunTimer` stays in the consumer** (2026-09-02). It passes the
+  three-part test on its face (no Obsidian API, a second consumer would want it), and it is
+  still the wrong move: **pausing answers a platform property, not a game rule.** In Obsidian
+  the player necessarily navigates away from the mission note, which is why v0.7.0 built the
+  pause lifecycle; in the web app the mission fills the page and the trigger does not exist.
+  Hoisting it would install a mechanic in the web target that nothing there asks for. The
+  price is explicit rather than silent: **best times are not comparable across targets.**
+  Whoever builds score export (slice C) or tournaments (slice E) must normalise or keep the
+  leaderboards separate — that is now a stated constraint, not a discovery waiting to happen.
+  With this settled, the back-flow queue is **empty**.
+- **Deferred — `MissionGenerator` stage 2 (runtime generation)** (2026-09-02). Not "needs a
+  retry policy": the question came one step too early. At ~50 % per attempt and a cap of 3,
+  roughly one player in eight would meet a refusal — for a feature that solves a problem
+  nobody has, since 54 authored missions exist. Stage 1 already carries the value: the author
+  tool runs, drafts land in `_drafts/`, and solvability is *constructed* rather than checked.
+  **Precondition for revisiting: new glitch types.** Only five of ten categories can be
+  generated today, and `regex` — 26 of the 54 missions — is not among them. Raise the ceiling
+  first, then ask again what a player sees when generation fails.
+- Longer-standing: navigation skills (folding / jumps / marks) need a new gameplay verb to be
+  teachable (today's verb is "fix text, diff against solution"); Windows code signing;
+  itch.io distribution.
 
 ## Abweichungen von der Leitkonvention
 
