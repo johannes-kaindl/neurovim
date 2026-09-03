@@ -637,3 +637,20 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
 /* First-run Vim primer */
 .nv-primer-body p { margin: 0.35rem 0; line-height: 1.45; }
 .nv-primer .nv-modal-title { letter-spacing: 1px; }
+
+/* ── Uplink panel (NEXUS) ─────────────────────────────────────
+   Opt-in surface for the local model server. Off by default; the first network
+   request happens on Connect, never on render — a Local Network Access refusal is
+   permanent per origin, so the browser prompt must follow a deliberate press. */
+.nv-uplink { padding: 10px 14px 14px; border: 1px solid var(--nv-border); border-top: none; background: var(--nv-panel); }
+.nv-uplink-note { color: var(--nv-muted); font-size: 0.82rem; line-height: 1.5; margin: 0 0 12px; }
+.nv-uplink-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+.nv-uplink-field input { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 7px 10px; font-family: var(--nv-mono); font-size: 0.85rem; }
+.nv-uplink-field input:focus-visible { outline: none; border-color: var(--nv-accent); }
+.nv-uplink-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.nv-uplink-actions button { background: var(--nv-bg); color: var(--nv-text); border: 1px solid var(--nv-border); border-radius: 4px; padding: 7px 13px; transition: border-color 0.15s, color 0.15s; }
+.nv-uplink-actions button:hover:not(:disabled) { border-color: var(--nv-accent); color: var(--nv-accent); }
+.nv-uplink-actions button:disabled { color: var(--nv-muted); cursor: not-allowed; }
+.nv-uplink-status { margin: 12px 0 0; font-size: 0.82rem; line-height: 1.5; }
+.nv-uplink-status--ok { color: var(--nv-accent); }
+.nv-uplink-status--error { color: var(--nv-amber); }

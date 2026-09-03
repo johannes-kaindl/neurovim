@@ -57,6 +57,23 @@ All notable changes to this project are documented here. The format is based on
   reaches the SSOT until a human moves it, at which point the three content gates apply
   unchanged. Generated drafts carry a `generated_by` frontmatter stamp.
 
+- **The CIPHER uplink is reachable in the web app** — `src/uplink.ts` (settings + wiring) and
+  `ui/UplinkPanel.tsx` (the surface in the NEXUS). It is **off by default** and connects only
+  after a deliberate press, which is the whole design rather than a default: a Local Network
+  Access refusal is stored per origin and permanently, so a permission prompt that appears
+  unasked gets dismissed by reflex — and that one reflex would cost the feature forever, with no
+  way back from inside the page.
+  - Nothing reaches the network before the click, not even a preflight probe (measured in a real
+    Chrome: 0 requests to the configured host on load). Endpoint and model persist in
+    localStorage as device-local prefs, never in `PluginData` — an address has no business
+    travelling in a save file.
+  - **No "try again" button in any branch.** After a refusal the next attempt fails instantly
+    and silently, so a retry would promise what it cannot deliver; the panel shows `WebLlm`'s
+    browser-specific hint instead, which names the way back through the browser's own settings —
+    or says plainly that Safari has none.
+  - Model choice is a text field for now; turning it into a list fetched from the server
+    (code-kit's `resolveModelChoice` + `model-list-cache`) needs a `/models` round-trip.
+
 ### Fixed
 - **`npm run build:manual` had been broken since `adapter-obsidian` was removed.**
   `gen-manual.mjs` relied on `esbuild` being hoisted from that workspace's dependencies;

@@ -122,7 +122,8 @@ design-prep workspace, not in this repo.
     │   ├── src/welcome.md   # welcome intro source
     │   └── build.mjs       # gray-matter → typed TS manifest (D15, bundler-friendly)
     └── adapter-web/        # @neurovim/adapter-web — Vite SPA + Tauri desktop
-        ├── src/            # main.tsx, ui/ (App=NEXUS, Welcome/Briefing/Mission/Sandbox/Result),
+        ├── src/            # main.tsx, ui/ (App=NEXUS, Welcome/Briefing/Mission/Sandbox/Result,
+        │                   #   UplinkPanel), uplink.ts (settings + wiring),
         │                   #   ports/{WebStorage,WebLlm}.ts, cm6-theme.ts, styles.css, fonts/
         │   └── vendor/code-kit/  # verbatim copies from code-kit (see § Vendored code-kit)
         ├── public/         # og.png, favicon PNGs (static, copied to dist root)
@@ -186,9 +187,12 @@ green. For content changes also run `npm run build:content`, otherwise
   `--nv-*` variables (six canonical + additive tokens). New colors as a `:root`
   variable, never inline hex (see DESIGN-SPEC §3/§11). The bundled monospace is
   self-hosted JetBrains Mono (`src/fonts/`, exposed as `--nv-mono`).
-- **Bundle budget (web):** code-split (initial ~310 KB; CM6 ~410 KB lazy; `marked`
-  ~43 KB lazy). No heavy visual deps; prefer CSS motion over JS libs. Any new
-  dependency must justify its weight and ideally be lazy-loaded.
+- **Bundle budget (web):** code-split (initial **381 KB / 113 KB gzip**; CM6 ~411 KB lazy;
+  `marked` ~43 KB lazy). No heavy visual deps; prefer CSS motion over JS libs. Any new
+  dependency must justify its weight and ideally be lazy-loaded. **Read the number off a
+  build, do not trust this line blindly** — it said `~310 KB` until 2026-09-03, when a
+  measurement against the parent commit put the untouched bundle at 372 KB; the uplink
+  wiring then added 8.8 KB (2.9 KB gzip), which was the smaller half of the gap.
 - **The Obsidian target lives elsewhere:** it is `obsidian-plugins/vim-dojo`, a
   separate repo in the community store that vendors this core. Its version lives in the
   status block above and is deliberately **not** repeated here — this line carried a stale
@@ -431,16 +435,26 @@ consumer moves deliberately, with no npm publish in either project's way.
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
   `APPLE_*` repo secrets were added (v0.2.3 onward). Note the CI produces a **draft**, so a
   green run is not a published release (see Gotchas).
-- **Open:** wiring `WebLlm` into the web app — endpoint choice, model choice, persistence.
-  The transport exists (2026-08-22) and the UX question behind it is **decided** (2026-09-02):
-  the uplink is **off by default** and connects only after the player switches it on, so the
-  Local Network Access prompt is never a surprise. The reason is not politeness but mechanics:
-  **an LNA refusal is stored per origin and permanent**, so a prompt that appears unasked gets
-  dismissed by reflex, and that one reflex costs the feature forever. Consequences that are not
-  optional: no connection attempt at startup (not even a preflight probe), the on/off state
-  persists via `StoragePort`, the error text sits *at the switch* and is fed by `refusalHint`,
-  and there is **no "try again" button** — it would promise what it cannot deliver. Check
-  code-kit's `pure/endpoint*` + `model-choice` against test 1 before building any of it.
+- **Done (2026-09-03): `WebLlm` is wired.** `src/uplink.ts` holds settings + wiring,
+  `ui/UplinkPanel.tsx` the surface in the NEXUS. The uplink is **off by default** and connects
+  only after a deliberate press — not politeness but mechanics: **an LNA refusal is stored per
+  origin and permanently**, so a prompt appearing unasked gets dismissed by reflex, and that one
+  reflex costs the feature forever. Four properties follow and are measured in a real Chrome, not
+  argued: no request leaves before the click (0 requests to the configured host on load), the
+  switch stays disabled until both fields are filled, endpoint + model survive a reload, and
+  **there is no "try again" button** — after a refusal the next attempt fails instantly, so the
+  hint names the browser's own settings instead (`refusalHint`, already inside `detail`).
+  - **Settings are device-local, not game state:** localStorage under `neurovim:uplink`, beside
+    the display prefs — never `PluginData`. An endpoint address has no business travelling in a
+    save file or a score export.
+  - **`normalizeEndpoint` from code-kit is deliberately *not* used here.** Checked first, as the
+    kit-first rule demands, and it is the wrong tool: it *strips* a trailing `/v1`, correctly,
+    for the obsidian-kit clients that append one themselves. The vendored `web/llm-stream`
+    requests `${base}/chat/completions` and appends nothing, so the base must *carry* `/v1`.
+    Same name, opposite direction — a vendored helper is only right inside its own contract.
+  - Still open at this surface: model choice is a text field. `resolveModelChoice` +
+    `model-list-cache` (code-kit) would turn it into a list fetched from the server; they need a
+    `/models` round-trip, which is its own slice.
 - **Decided, not open — `RunTimer` stays in the consumer** (2026-09-02). It passes the
   three-part test on its face (no Obsidian API, a second consumer would want it), and it is
   still the wrong move: **pausing answers a platform property, not a game rule.** In Obsidian

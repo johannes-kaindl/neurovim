@@ -18,6 +18,7 @@ import { MissionResult, type MissionResultData } from './MissionResult';
 import { fmtTime } from './format';
 import { loadSettings, saveSettings, applyEffects } from './settings';
 import { ControlCluster, AudioHint } from './Chrome';
+import { UplinkPanel } from './UplinkPanel';
 
 // CM6 + @replit/codemirror-vim are the heaviest dep bundle and only needed in
 // the editor — load them lazily so the picker/NEXUS don't carry them in the initial bundle (code splitting).
@@ -415,6 +416,8 @@ export function App() {
             : <span class="nv-row-meta">free play</span>}
         </button>
       </section>
+
+      <UplinkPanel />
 
       <section class="nv-tier">
         <div class="nv-tier-label nv-label">Archive</div>
