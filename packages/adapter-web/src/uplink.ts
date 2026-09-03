@@ -12,8 +12,8 @@
  * display prefs, never in `PluginData`. An endpoint address says nothing about progress and
  * has no business travelling with a save file or a score export.
  */
-import type { LlmResult } from '@neurovim/core';
-import { WebLlm } from './ports/WebLlm';
+import { WebLlm, refusalHint } from './ports/WebLlm';
+import { makeLlmClient } from './vendor/code-kit/web/llm-stream';
 
 const KEY = 'neurovim:uplink';
 
@@ -75,17 +75,39 @@ export function createUplink(
   );
 }
 
-/** What the player reads at the switch after an attempt.
+export interface ModelListResult {
+  reachable: boolean;
+  models: string[];
+  detail: string;
+}
+
+/** Ask the server what it serves — the round-trip behind the model dropdown.
  *
- *  Deliberately without a "try again" affordance in any branch: an LNA refusal is stored per
- *  origin, so the next attempt fails instantly and silently. A retry button would promise
- *  something it cannot deliver — the way back is in the browser's own site settings, which is
- *  what `WebLlm`'s `refusalHint` (already inside `detail`) explains, browser by browser. */
-export function uplinkStatus(r: LlmResult | null): { tone: 'idle' | 'ok' | 'error'; text: string } {
-  if (r === null) return { tone: 'idle', text: '' };
-  if (r.ok) return { tone: 'ok', text: 'Uplink online.' };
-  // The player stopped it themselves — reporting that back as a failure blames them for
-  // their own action, and there is nothing here for them to fix.
-  if (r.kind === 'aborted') return { tone: 'idle', text: '' };
-  return { tone: 'error', text: r.detail };
+ *  This is the *only* probe the panel makes, and it doubles as the reachability check:
+ *  `/models` is cheaper than a completion and cannot fail for the second reason a completion
+ *  can (a model name the player mistyped). It runs on a press, never on a render — same rule
+ *  as everything else here.
+ *
+ *  A failure is translated the same way `WebLlm` translates one, and for the same reason: a
+ *  dead server, Chromium's Local-Network-Access denial and Safari's block all arrive as one
+ *  indistinguishable `TypeError`. Hence the shared `refusalHint` rather than a second
+ *  half-answer written next to it. */
+export async function fetchModels(
+  s: UplinkSettings,
+  deps: {
+    fetchFn?: (url: string, init?: RequestInit) => Promise<Response>;
+    userAgent?: string;
+  } = {},
+): Promise<ModelListResult> {
+  if (s.endpoint.trim() === '') return { reachable: false, models: [], detail: 'No server configured.' };
+  const fetchFn = deps.fetchFn ?? ((url: string, init?: RequestInit) => fetch(url, init));
+  const userAgent =
+    deps.userAgent ?? (typeof navigator === 'undefined' ? '' : navigator.userAgent);
+  const client = makeLlmClient({ type: 'openai', baseUrl: baseUrlFrom(s.endpoint) }, fetchFn);
+  try {
+    return { reachable: true, models: await client.listModels(), detail: '' };
+  } catch (e) {
+    const cause = e instanceof Error ? e.message : String(e);
+    return { reachable: false, models: [], detail: `${cause} — ${refusalHint(userAgent)}` };
+  }
 }

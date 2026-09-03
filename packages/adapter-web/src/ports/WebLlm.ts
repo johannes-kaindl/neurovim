@@ -108,7 +108,7 @@ export class WebLlm implements LlmPort {
  *  Chromium refuses the loopback address space until the player allows it once per origin,
  *  while WebKit treats it as mixed content and offers no permission to grant at all. Firefox
  *  prompts like Chromium. A retry only ever helps in the first case. */
-function refusalHint(userAgent: string): string {
+export function refusalHint(userAgent: string): string {
   const isChromium = /Chrom(e|ium)|Edg\//.test(userAgent);
   const isFirefox = /Firefox\//.test(userAgent);
   const isWebKit = !isChromium && !isFirefox && /Safari\//.test(userAgent);

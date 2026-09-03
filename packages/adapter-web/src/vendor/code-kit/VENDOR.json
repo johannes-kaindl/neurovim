@@ -3,6 +3,6 @@
   "tag": "0.1.0",
   "sha": "8849c9180a96dd156ca30ffe746df3b5ec6925ea",
   "version": "0.1.0",
-  "vendored": "web: llm-stream; pure: sse, error_body",
+  "vendored": "web: llm-stream; pure: sse, error_body, model-choice",
   "note": "Verbatim copies of code-kit/src/ts — the web/ + pure/ split is mirrored so llm-stream's `../pure/sse` import resolves unchanged. Never edit here — re-vendor from the pinned sha."
 }

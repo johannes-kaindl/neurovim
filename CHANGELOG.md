@@ -71,8 +71,12 @@ All notable changes to this project are documented here. The format is based on
     and silently, so a retry would promise what it cannot deliver; the panel shows `WebLlm`'s
     browser-specific hint instead, which names the way back through the browser's own settings —
     or says plainly that Safari has none.
-  - Model choice is a text field for now; turning it into a list fetched from the server
-    (code-kit's `resolveModelChoice` + `model-list-cache`) needs a `/models` round-trip.
+  - **Connect fetches the model catalogue** (`/models`) instead of pinging with a completion:
+    cheaper, and it cannot fail over a model name the player has not picked yet. The field then
+    becomes a dropdown, free text (server serves a model but publishes no list), or a locked
+    field with the server's own refusal text — decided by code-kit's `resolveModelChoice`, whose
+    invariant keeps a `<select>` from silently rewriting a saved model name.
+  - Nothing calls `complete()` yet: `CipherUplink` still needs a chat surface in the web app.
 
 ### Fixed
 - **`npm run build:manual` had been broken since `adapter-obsidian` was removed.**

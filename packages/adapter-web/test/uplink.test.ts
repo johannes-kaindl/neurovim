@@ -23,7 +23,7 @@ import {
   saveUplinkSettings,
   UPLINK_DEFAULTS,
   createUplink,
-  uplinkStatus,
+  fetchModels,
 } from '../src/uplink';
 
 beforeEach(() => localStorage.clear());
@@ -95,46 +95,65 @@ describe('createUplink', () => {
   });
 });
 
-describe('uplinkStatus', () => {
-  it('says nothing before a first attempt', () => {
-    expect(uplinkStatus(null).tone).toBe('idle');
-  });
-
-  it('reports a completed turn as ok', () => {
-    expect(uplinkStatus({ ok: true, content: 'x' }).tone).toBe('ok');
-  });
-
-  it('carries the browser-specific refusal through to the switch', () => {
-    const detail = 'Failed to fetch — the browser may be blocking access to the local network.';
-    const s = uplinkStatus({ ok: false, kind: 'unavailable', detail, partial: '' });
-    expect(s.tone).toBe('error');
-    expect(s.text).toContain('blocking access to the local network');
-  });
-
-  it('treats a caller abort as idle, not as a failure the player must read', () => {
-    // The player stopped it themselves; showing an error would blame them for their own action.
-    expect(uplinkStatus({ ok: false, kind: 'aborted', detail: 'AbortError', partial: '' }).tone).toBe(
-      'idle',
+describe('fetchModels', () => {
+  const ok = (ids: string[]) =>
+    Promise.resolve(
+      new Response(JSON.stringify({ data: ids.map((id) => ({ id })) }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      }),
     );
+
+  it('asks the configured server, with the same /v1 handling as a completion', async () => {
+    const calls: string[] = [];
+    await fetchModels(
+      { enabled: false, endpoint: 'http://localhost:1234', model: '' },
+      { fetchFn: (url: string) => { calls.push(url); return ok([]); } },
+    );
+    expect(calls[0]).toBe('http://localhost:1234/v1/models');
   });
 
-  it('names the deadline when nothing answered in time', () => {
-    const s = uplinkStatus({
-      ok: false,
-      kind: 'timeout',
-      detail: 'no completion within 5000 ms',
-      partial: '',
-    });
-    expect(s.tone).toBe('error');
-    expect(s.text).toContain('5000');
+  it('reports what the server offers', async () => {
+    const r = await fetchModels(
+      { enabled: false, endpoint: 'http://localhost:1234', model: '' },
+      { fetchFn: () => ok(['qwen-7b', 'llama-8b']) },
+    );
+    expect(r.reachable).toBe(true);
+    expect(r.models).toEqual(['llama-8b', 'qwen-7b']); // the transport sorts
   });
 
-  it('never promises that trying again would help', () => {
-    // An LNA refusal is stored per origin: the next attempt fails instantly and silently.
-    const kinds = ['unavailable', 'timeout', 'failed'] as const;
-    for (const kind of kinds) {
-      const s = uplinkStatus({ ok: false, kind, detail: 'x', partial: '' });
-      expect(s.text.toLowerCase()).not.toMatch(/try again|retry|erneut versuchen/);
-    }
+  it('is reachable-but-listless when the server answers with nothing', async () => {
+    // An OpenAI-compatible server that serves a model but exposes no catalogue. The player
+    // must still be able to type a name, which is what `resolveModelChoice` calls "freetext".
+    const r = await fetchModels(
+      { enabled: false, endpoint: 'http://localhost:1234', model: '' },
+      { fetchFn: () => ok([]) },
+    );
+    expect(r.reachable).toBe(true);
+    expect(r.models).toEqual([]);
+  });
+
+  it('explains a refusal in the terms of the browser, not as a bare TypeError', async () => {
+    // Same fork as a failed completion: dead server, Chromium LNA denial and Safari's block
+    // are one identical `TypeError`. The hint has to come from the user agent.
+    const r = await fetchModels(
+      { enabled: false, endpoint: 'http://localhost:1234', model: '' },
+      {
+        fetchFn: () => Promise.reject(new TypeError('Failed to fetch')),
+        userAgent: 'Mozilla/5.0 (Macintosh) AppleWebKit/605.1.15 Version/17.0 Safari/605.1.15',
+      },
+    );
+    expect(r.reachable).toBe(false);
+    expect(r.detail).toContain('Safari');
+  });
+
+  it('does not reach out at all when no endpoint is configured', async () => {
+    const calls: string[] = [];
+    const r = await fetchModels(
+      { enabled: false, endpoint: '  ', model: '' },
+      { fetchFn: (url: string) => { calls.push(url); return ok([]); } },
+    );
+    expect(calls).toEqual([]);
+    expect(r.reachable).toBe(false);
   });
 });

@@ -452,9 +452,16 @@ consumer moves deliberately, with no npm publish in either project's way.
     for the obsidian-kit clients that append one themselves. The vendored `web/llm-stream`
     requests `${base}/chat/completions` and appends nothing, so the base must *carry* `/v1`.
     Same name, opposite direction — a vendored helper is only right inside its own contract.
-  - Still open at this surface: model choice is a text field. `resolveModelChoice` +
-    `model-list-cache` (code-kit) would turn it into a list fetched from the server; they need a
-    `/models` round-trip, which is its own slice.
+  - **Model choice is a list, and `/models` is the only probe.** Connect fetches the catalogue
+    rather than pinging with a completion: it is the cheaper round-trip, and it cannot fail for
+    the second reason a completion can — a model the player has not chosen yet. One request
+    answers both questions, is the server there and what does it serve. `resolveModelChoice`
+    (vendored from code-kit) decides *what* the field shows; its invariant is the point, since a
+    `<select>` whose value is missing from its options falls silently back to the first and the
+    next save writes that foreign value. Three modes come out of it: a dropdown, free text when
+    the server publishes no catalogue, and a locked field when it did not answer at all.
+  - Still open at this surface: nothing calls `complete()` yet. `CipherUplink` needs a chat
+    surface in the web app, which does not exist — the port is wired, the caller is not.
 - **Decided, not open — `RunTimer` stays in the consumer** (2026-09-02). It passes the
   three-part test on its face (no Obsidian API, a second consumer would want it), and it is
   still the wrong move: **pausing answers a platform property, not a game rule.** In Obsidian
