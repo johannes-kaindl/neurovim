@@ -9,7 +9,7 @@
 The in-game **Reference overlay** (CIPHER → `Reference`) shows these same
 categories, revealing each as you unlock the matching missions.
 
-**13 categories.** Jump to: [FUNDAMENTALS](#fundamentals) · [NAVIGATION](#navigation) · [WORD MOVEMENT](#word-movement) · [OPERATORS](#operators) · [TEXT OBJECTS](#text-objects) · [SEARCH & REPLACE](#search-replace) · [MARKS & MACROS](#marks-macros) · [REGISTERS](#registers) · [PANE NAVIGATION](#pane-navigation) · [EX COMMANDS](#ex-commands) · [CASE CONVERSION](#case-conversion) · [VISUAL BLOCK](#visual-block) · [REGEX](#regex)
+**13 categories.** Jump to: [FUNDAMENTALS](#fundamentals) · [NAVIGATION](#navigation) · [WORD MOVEMENT](#word-movement) · [OPERATORS](#operators) · [TEXT OBJECTS](#text-objects) · [SEARCH & REPLACE](#search--replace) · [MARKS & MACROS](#marks--macros) · [REGISTERS](#registers) · [PANE NAVIGATION](#pane-navigation) · [EX COMMANDS](#ex-commands) · [CASE CONVERSION](#case-conversion) · [VISUAL BLOCK](#visual-block) · [REGEX](#regex)
 
 ## FUNDAMENTALS
 

@@ -38,6 +38,12 @@ async function loadModule(absPath) {
   return import(url);
 }
 
+// Mirrors how GitHub/Forgejo slug a heading: drop punctuation, then one hyphen per space.
+// "SEARCH & REPLACE" → "search--replace" (the `&` goes, both spaces stay).
+function headingSlug(label) {
+  return label.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/ /g, '-');
+}
+
 function table(rows, headers) {
   const head = `| ${headers.join(' | ')} |`;
   const sep = `| ${headers.map(() => '---').join(' | ')} |`;
@@ -61,7 +67,7 @@ async function genKeymap() {
   md += 'The in-game **Reference overlay** (CIPHER → `Reference`) shows these same\n';
   md += 'categories, revealing each as you unlock the matching missions.\n\n';
   md += `**${CHEATSHEET.length} categories.** Jump to: ` +
-    CHEATSHEET.map(c => `[${c.label}](#${c.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')})`).join(' · ') +
+    CHEATSHEET.map(c => `[${c.label}](#${headingSlug(c.label)})`).join(' · ') +
     '\n';
   for (const cat of CHEATSHEET) {
     md += `\n## ${cat.label}\n`;
