@@ -66,7 +66,7 @@ but **not** the content manifest. The root `desktop:dev` / `build:dmg` scripts a
 
 | Script | Does | Notes |
 |---|---|---|
-| `bash scripts/bump-version.sh <v>` | syncs the version across `package.json` files, `tauri.conf.json`, `Cargo.toml`, `Cargo.lock` | uses BSD `sed -i ''` — fails at `Cargo.toml` under GNU sed; see [release](../how-to/release.md) |
+| `bash scripts/bump-version.sh <v>` | syncs the version across `package.json` files, `tauri.conf.json`, `Cargo.toml`, `Cargo.lock` | refuses before writing if `Cargo.toml` does not carry the current version; see [release](../how-to/release.md) |
 | `bash scripts/deploy-page.sh` | builds the web app and rsyncs `dist/` to pages.jkaindl.de | clean tree, rsync 3.x (`RSYNC` env), `pages-deploy` SSH alias |
 | `bash scripts/setup-remotes.sh` | sets the Forgejo + GitHub remotes | placeholders `FORGEJO_USER` / `GITHUB_USER` must be filled in; repo name inside is `neurovim-standalone` |
 

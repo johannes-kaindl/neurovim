@@ -21,12 +21,10 @@
 
    It updates `package.json` (root + workspaces), `packages/adapter-web/src-tauri/tauri.conf.json`,
    `src-tauri/Cargo.toml` and the `neurovim` entry in `src-tauri/Cargo.lock`, then prints a
-   ✓/✗ line per file.
-2. **On Linux** the script stops at `Cargo.toml` with
-   `sed: can't read s/^version = …: No such file or directory` — it uses the BSD form
-   `sed -i ''`. The `package.json` files and `tauri.conf.json` are already updated at that
-   point. Set `version = "X.Y.Z"` by hand in `src-tauri/Cargo.toml` (the `[package]` line) and
-   in `src-tauri/Cargo.lock` (the line under `name = "neurovim"`).
+   ✓/✗ line per file. It runs the same on macOS and Linux.
+2. If it stops with `✗ Cargo.toml has no 'version = "…"' line`, the versions were already out
+   of sync before the bump. Nothing has been written yet: align the `[package]` version in
+   `src-tauri/Cargo.toml` with `package.json`, then run the script again.
 3. Review the diff. `npm version` reformats `package.json` (e.g. expands one-line objects);
    that churn is expected.
 

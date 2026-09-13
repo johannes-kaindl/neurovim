@@ -4,7 +4,7 @@
 #
 # Updates, in this order:
 #   package.json                                   (root)
-#   packages/*/package.json                        (all 4 workspaces)
+#   packages/*/package.json                        (all 3 workspaces)
 #   packages/adapter-web/src-tauri/tauri.conf.json (Tauri app version → Info.plist)
 #   packages/adapter-web/src-tauri/Cargo.toml
 #   packages/adapter-web/src-tauri/Cargo.lock      (the "neurovim" package entry)
@@ -48,6 +48,13 @@ case "$1" in
     ;;
 esac
 
+# Check every edit target before writing anything, so a mismatch cannot leave the
+# version half-bumped (package.json already new, Cargo.toml still old).
+if ! grep -q "^version = \"$CURRENT\"\$" packages/adapter-web/src-tauri/Cargo.toml; then
+  echo "✗ Cargo.toml has no 'version = \"$CURRENT\"' line — versions already out of sync?" >&2
+  exit 1
+fi
+
 echo "Bumping version: $CURRENT → $NEW"
 
 # package.json — root + all workspaces (no git tag, no commit; that stays manual)
@@ -65,17 +72,24 @@ node -e "
 
 # Cargo.toml — the [package] version line. Anchored to the exact current version;
 # deps never carry the app's 0.x.y, so this anchored substitution is unambiguous.
-# NB: macOS ships BSD sed, which does NOT support GNU's `0,/re/` address — using it
-# here silently left Cargo.toml unchanged.
-sed -i '' "s/^version = \"$CURRENT\"\$/version = \"$NEW\"/" \
-  packages/adapter-web/src-tauri/Cargo.toml
+# Edited with node, not sed: in-place sed differs between BSD (macOS: `sed -i ''`)
+# and GNU (Linux: `sed -i`), and each spelling breaks on the other platform.
+node -e "
+  const fs = require('fs');
+  const p = 'packages/adapter-web/src-tauri/Cargo.toml';
+  const src = fs.readFileSync(p, 'utf8');
+  const line = /^version = \"$CURRENT\"\$/m;
+  fs.writeFileSync(p, src.replace(line, 'version = \"$NEW\"'));
+"
 
 # Cargo.lock — only the version line directly under the "neurovim" package
+LOCK_TMP="$(mktemp)"
 awk -v new="$NEW" '
   /^name = "neurovim"$/ { print; getline; sub(/version = ".*"/, "version = \"" new "\""); print; next }
   { print }
-' packages/adapter-web/src-tauri/Cargo.lock > /tmp/Cargo.lock.bump \
-  && mv /tmp/Cargo.lock.bump packages/adapter-web/src-tauri/Cargo.lock
+' packages/adapter-web/src-tauri/Cargo.lock > "$LOCK_TMP"
+# cat into the target instead of mv: mktemp files are 0600, and mv would carry that over.
+cat "$LOCK_TMP" > packages/adapter-web/src-tauri/Cargo.lock && rm -f "$LOCK_TMP"
 
 # Verify: every tracked version must now agree
 echo
