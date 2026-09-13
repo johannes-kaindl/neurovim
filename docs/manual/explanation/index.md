@@ -2,7 +2,8 @@
 
 > **Diátaxis: Explanation.** Background and design rationale — the *why* behind the
 > game, not how to play it. For tasks see the [How-to guides](../how-to/index.md); for
-> the architecture aimed at contributors, see [`AGENTS.md`](../../../AGENTS.md).
+> the architecture aimed at contributors, see
+> [Architecture](../../dev/explanation/architecture.md).
 
 ## Why a game to learn Vim?
 
@@ -84,5 +85,40 @@ NeuroVim is one codebase delivered three ways — an **Obsidian plugin** (its or
 fragmentation: the platform-neutral game logic is shared, and only thin
 platform-specific shells differ. For you as a player it means the same game whether you
 play in a browser tab or a 3 MB desktop app; for the project it means one place to fix a
-bug. The full architecture rationale lives in [`AGENTS.md`](../../../AGENTS.md) and
-ADR-001.
+bug. The full architecture rationale lives in
+[Architecture](../../dev/explanation/architecture.md).
+
+## Why your progress stays on your device
+
+NeuroVim has no account, no server-side save and no sign-up. Your XP, unlocks and best
+times live in your browser's own database, and the desktop app keeps its own copy the
+same way. That is a deliberate trade. Nothing about how you learn — how long a mission
+took you, how many keystrokes you wasted — ever leaves your machine, and the game works
+the same offline as online.
+
+The price is that progress does not follow you. A different browser, a different device
+or a private window starts at Level 1, because as far as the game can tell, it is a
+different player. For a game whose only reward is the skill in your own hands, that
+seemed the right way round: the skill travels with you anyway; the save file does not
+have to.
+
+Settings that describe your *machine* rather than your *progress* — like the address of
+a local model server — are kept apart from the save for the same reason. An address on
+your network says nothing about how far you have come, and it has no business ending up
+anywhere your progress might one day be exported.
+
+## Why the uplink is off by default
+
+The CIPHER uplink talks to a model server on your own computer. To do that, a web page
+has to reach your local network, and modern browsers ask you first. The catch is how
+that question behaves: a permission prompt that pops up while you are busy with
+something else gets dismissed by reflex — and in Chrome, one dismissal is remembered for
+the site. From then on, every attempt fails silently, and the page itself has no way to
+ask again.
+
+So NeuroVim never lets that prompt appear unasked. The uplink starts switched off, the
+game makes no attempt to reach anything when it loads, and the first request goes out
+only when you press **Connect** — the one moment you know exactly what the browser is
+asking about. For the same reason there is no "try again" button: after a refusal a
+retry cannot succeed, so the panel points you to the browser's own site settings
+instead of pretending otherwise.

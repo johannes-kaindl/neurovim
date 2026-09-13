@@ -13,12 +13,11 @@
 
 <p align="center">
   <b>▶ <a href="https://pages.jkaindl.de/neurovim-standalone/">Play in the browser</a></b>
-  <sub>(<a href="https://johannes-kaindl.github.io/NeuroVIM/">GitHub Pages mirror</a>)</sub>
   &nbsp;·&nbsp;
-  <a href="https://github.com/johannes-kaindl/NeuroVIM/releases">Desktop downloads</a>
+  <a href="https://git.jkaindl.de/jkaindl/NeuroVIM/releases">Desktop downloads</a>
 </p>
 
-An AI handler named **CIPHER** assigns you "missions" that are really Vim
+A handler named **CIPHER** assigns you "missions" that are really Vim
 exercises — restore CORP-corrupted documents, fix glitched transmissions, beat
 the clock. You end up learning Vim almost by accident; the spy-thriller is the
 hook. Same game ships three ways from one codebase: a **web app**, an **Obsidian
@@ -64,10 +63,11 @@ plugin**, and a **native desktop app**.
 ## Play
 
 - **Browser:** **https://pages.jkaindl.de/neurovim-standalone/** — nothing to install.
-- **Desktop:** download an installer from the [latest release](https://github.com/johannes-kaindl/NeuroVIM/releases)
+- **Desktop:** download an installer from the [releases page](https://git.jkaindl.de/jkaindl/NeuroVIM/releases)
   (macOS `.dmg`, Windows `.exe`/`.msi`, Linux `.AppImage`/`.deb`/`.rpm`). The macOS
   `.dmg` is Developer ID-signed + notarized (opens without a Gatekeeper warning); the
-  Windows installer is currently unsigned — see [`docs/DESKTOP.md`](docs/DESKTOP.md).
+  Windows installer is currently unsigned. Installers are attached per release; if none
+  fits, [build the desktop app from source](docs/dev/how-to/build-desktop-app.md).
 
 ## Run from source
 
@@ -93,12 +93,15 @@ New players start with the **[Player Manual](docs/manual/README.md)** — a
 - **[Tutorial](docs/manual/tutorial.md)** — play through your first mission, no Vim
   knowledge needed.
 - **[How-to guides](docs/manual/how-to/index.md)** — the sandbox, scoring, unlocks,
-  desktop install, resetting progress.
+  desktop install or build, the CIPHER uplink, resetting progress.
 - **[Reference](docs/manual/reference/index.md)** — the [Vim keymap](docs/manual/reference/vim-keymap.md)
   and [ranks & unlocks](docs/manual/reference/progression.md) (generated from the game
   data via `npm run build:manual`).
 - **[Explanation](docs/manual/explanation/index.md)** — why NeuroVim is shaped the way
   it is.
+
+Contributors and maintainers: the **[Developer docs](docs/dev/README.md)** follow the
+same four-part structure.
 
 ## Architecture
 
@@ -133,8 +136,7 @@ Current consumers and how far their pins lag: [`CONSUMERS.md`](CONSUMERS.md).
 
 ## Contributing
 
-Issues and PRs welcome on [git.jkaindl.de](https://git.jkaindl.de/jkaindl/NeuroVIM)
-(primary) or the [GitHub mirror](https://github.com/johannes-kaindl/NeuroVIM).
+Issues and PRs welcome on [git.jkaindl.de](https://git.jkaindl.de/jkaindl/NeuroVIM).
 Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) first.
 
 ## License

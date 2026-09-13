@@ -23,5 +23,5 @@ for the integration that was merged into `packages/adapter-web/src/` on 2026-05-
 | `markdown-callouts.md` | patch in `src/ui/markdown.ts` | type-aware callouts (D25) |
 | `[needs markup]` | `src/ui/App.tsx`, `src/ui/SandboxView.tsx` | mission state classes + lock gating, XP flash, sandbox run HUD; SandboxView now uses `neurovimTheme` |
 
-Details + rationale: `port/README.md`. Design brief (SSOT): `../DESIGN-SPEC.md`
+Details + rationale: `port/README.md`. Design brief (historical): `../dev/explanation/design-brief-polish-pass.md`
 (`uploads/DESIGN-SPEC.md` is an identical copy from the delivery).

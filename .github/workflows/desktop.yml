@@ -9,7 +9,7 @@
 # Artifacts: macOS .dmg (universal), Windows .exe/.msi, Linux .AppImage/.deb.
 # macOS Developer ID signing + notarization is wired below via the APPLE_* secrets; if
 # those repo secrets are unset the macOS build is simply UNSIGNED (Gatekeeper warning on
-# first launch, same as before — no breakage). Windows is still unsigned. See docs/DESKTOP.md.
+# first launch, same as before — no breakage). Windows is still unsigned. See docs/dev/reference/desktop-ci.md.
 
 name: desktop
 

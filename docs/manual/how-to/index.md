@@ -11,6 +11,8 @@
 - [Find the in-game Vim reference](#find-the-in-game-vim-reference)
 - [Reset your progress](#reset-your-progress)
 - [Install the desktop app](#install-the-desktop-app)
+- [Build the desktop app from source](#build-the-desktop-app-from-source)
+- [Connect the CIPHER uplink](#connect-the-cipher-uplink)
 - [Play comfortably (audio, motion, mobile)](#play-comfortably-audio-motion-mobile)
 
 ---
@@ -103,18 +105,77 @@ To start over, clear the site's storage:
 
 ## Install the desktop app
 
-NeuroVim also ships as a small (~3 MB) native desktop app (a Tauri wrapper around the
-web app).
+NeuroVim also ships as a small native desktop app (a Tauri wrapper around the web app).
 
-1. Go to the [latest release](https://github.com/johannes-kaindl/NeuroVIM/releases).
-2. Download the installer for your OS:
+1. Open the [releases page](https://git.jkaindl.de/jkaindl/NeuroVIM/releases).
+2. Pick the newest release and download the installer for your OS, if one is attached:
    - **macOS** — `.dmg` (Developer ID-signed + notarized; opens without a Gatekeeper
      warning).
    - **Windows** — `.exe` / `.msi` (currently **unsigned** — Windows SmartScreen may
-     warn; see [`docs/DESKTOP.md`](../../DESKTOP.md)).
+     warn).
    - **Linux** — `.AppImage` / `.deb` / `.rpm`.
-3. Install and launch. The desktop app behaves like the web app, with the same
-   browser-local progress.
+3. Install and launch. The desktop app plays like the web app; its progress is stored
+   locally too, separately from any browser.
+
+Installers are attached per release. If the release you want has none, play
+[in the browser](https://pages.jkaindl.de/neurovim-standalone/) or
+[build the desktop app from source](#build-the-desktop-app-from-source).
+
+## Build the desktop app from source
+
+Use this when no installer fits your system, or to run the newest unreleased state.
+
+1. Install **Node + npm** and a **Rust** toolchain; on Linux also the WebKitGTK 4.1
+   libraries.
+2. Clone the [repository](https://git.jkaindl.de/jkaindl/NeuroVIM) and run
+   `npm install` in it.
+3. Build the app: `npm run build:content`, then `npx tauri build` inside
+   `packages/adapter-web/`. On Linux without the packaging tools (`patchelf`), add
+   `--no-bundle` to get the bare binary.
+4. Launch the result from `packages/adapter-web/src-tauri/target/release/`.
+
+Platform-specific details — macOS DMGs, a Linux build without root, a launcher entry —
+are in the [desktop build guide](../../dev/how-to/build-desktop-app.md).
+
+## Connect the CIPHER uplink
+
+The uplink lets CIPHER talk through a language model running **on your own machine**.
+You need a local OpenAI-compatible server (LM Studio, Ollama, MLX, …) with an instruct
+model loaded — setting one up is covered by the
+[LLM setup guide](https://uplink.jkaindl.de/llm-setup).
+
+> **Current state:** the uplink only *connects* so far. The panel checks your server and
+> remembers your model, but the web app has no CIPHER chat yet that would use it.
+
+1. In the NEXUS, find the **Uplink** tier and click the **CIPHER — Handler uplink**
+   row. It reads **OFF** until you connect.
+2. Enter your server address in **Server**, e.g. `http://localhost:1234` for LM Studio
+   or `http://localhost:11434` for Ollama. A trailing `/v1` is optional — NeuroVim adds
+   it when it is missing. **Connect** stays disabled until the field is filled.
+3. Press **Connect**. NeuroVim asks the server for its model list — nothing is contacted
+   before this press.
+4. Your browser asks whether this site may access your **local network**. Choose
+   **Allow**.
+5. Pick the model:
+   - the server lists **several models** → choose one from the **Model** dropdown;
+   - it lists **exactly one** → it is selected for you;
+   - it publishes **no list** → type the model name the server expects.
+6. The panel shows **Uplink online.** and the row switches to **ON**. Your server
+   address and model survive a reload.
+
+To switch the uplink off, press **Disconnect**. Changing the server address also
+switches it off until you connect again.
+
+**If connecting fails,** the panel shows the reason instead of a model field. Check
+that the server is running at that address. If you clicked **Block** at step 4, the
+browser remembers that for this site and every later attempt fails at once — pressing
+Connect again does not bring the prompt back. Open the site information (the icon left
+of the address bar), reset the local-network permission for this site, reload, and
+connect again.
+
+**Safari** cannot reach a local server from this page at all and offers no permission to
+grant. Use Chrome, Firefox, or the desktop app. Why the uplink waits for your press:
+[Explanation](../explanation/index.md#why-the-uplink-is-off-by-default).
 
 ## Play comfortably (audio, motion, mobile)
 

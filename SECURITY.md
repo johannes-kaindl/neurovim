@@ -24,7 +24,7 @@ desktop). You'll get an acknowledgement as soon as possible.
 
 ## Note on desktop builds
 
-CI release installers are currently **unsigned** — the GitHub Actions workflow is
-not yet wired for code signing. A **notarized** macOS build (Developer ID + Apple
-notarization) can be produced locally; see `docs/DESKTOP.md`. Verify downloads come
-from the official releases.
+macOS installers built by CI are **Developer ID-signed and notarized** (since v0.2.3);
+Windows installers are still **unsigned**, and Linux packages carry no signature. See
+`docs/dev/reference/desktop-ci.md`. Verify downloads come from the official releases on
+[git.jkaindl.de](https://git.jkaindl.de/jkaindl/NeuroVIM/releases).

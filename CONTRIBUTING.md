@@ -1,7 +1,9 @@
 # Contributing
 
 Thanks for your interest in NeuroVim. This is a small monorepo; the conventions
-below keep it consistent. `AGENTS.md` has the deeper architecture notes.
+below keep it consistent. New here? The [contributor tutorial](docs/dev/tutorial.md)
+walks you through a first change; the [contributor docs](docs/dev/README.md) cover the
+rest, and `AGENTS.md` holds the binding rules.
 
 ## Setup
 
@@ -15,9 +17,10 @@ npm run dev          # web app → http://localhost:5173/
 The quality gate must stay green:
 
 ```bash
-npm run typecheck    # all 4 workspaces
-npm test             # runs the full suite across all workspaces
-npm run build        # content → plugin → web
+npm run lint         # eslint, fails on warnings
+npm run typecheck    # all 3 workspaces
+npm test             # gates + script tests + jest across all workspaces
+npm run build        # content → web
 ```
 
 For content changes, also run `npm run build:content` (it regenerates
@@ -28,9 +31,10 @@ For content changes, also run `npm run build:content` (it regenerates
 - **English everywhere** — docs, code comments, identifiers, UI strings, commit
   messages (Conventional Commits, e.g. `feat(adapter-web): …`).
 - **Core stays pure** — `@neurovim/core` never imports `obsidian` or touches the
-  DOM. Platform specifics go through the four ports (see `AGENTS.md`).
+  DOM. Platform specifics go through the five ports (see
+  [Reference → Ports](docs/dev/reference/ports.md)).
 - **Content is SSOT in Markdown** — edit `packages/content/src/content/*.md`, then
-  rebuild; don't edit generated files.
+  rebuild; don't edit generated files. See [How-to → Write a mission](docs/dev/how-to/write-a-mission.md).
 - **CSS via tokens** — web styles funnel through the `--nv-*` variables in
   `packages/adapter-web/src/styles.css`; no inline hex.
 - **No tooling migration** (Webpack, Tailwind, CSS-in-JS, UI kit) without discussion.

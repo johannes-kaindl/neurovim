@@ -1,5 +1,13 @@
 # NeuroVim Web — Design Spec (Polish Pass)
 
+> **Diátaxis: Explanation — historical document (2026-05-29).** This is the brief that
+> started the web app's visual design. It was implemented, then superseded by the
+> cinematic CRT overhaul (v0.2.0, spec under `docs/superpowers/specs/`). Kept for the
+> reasoning behind the look — the Kuro lineage, the anti-goals, the open questions it
+> posed. **Its numbers are frozen at that date** (test count, bundle size, six tokens);
+> current values are in [Reference → Design tokens](../reference/design-tokens.md) and
+> [Reference → Commands](../reference/commands.md). Moved here from `docs/DESIGN-SPEC.md`.
+
 > **Audience:** a designer or a Claude-designer instance doing a visual/UX polish pass on the standalone web app (`@neurovim/adapter-web`). This is a standalone brief — you should not need to ask follow-up questions to start. Code lives one directory up; screenshots are in `docs/screenshots/`.
 >
 > **Status of the app:** functionally complete (Welcome → NEXUS → Briefing → Editor → Result, plus Sandbox). All views render, all flows work, 150 tests green, bundle code-split. What's missing is *deliberate visual design* — the current styling is a competent programmer-default, not an art-directed experience.
@@ -31,12 +39,12 @@ Six representative captures (1280×860 @2×, fresh save-state) live in `docs/scr
 
 Embedded for convenience:
 
-![Welcome](screenshots/01-welcome.png)
-![NEXUS Picker](screenshots/02-nexus-picker.png)
-![Briefing](screenshots/03-briefing.png)
-![Editor](screenshots/04-editor.png)
-![Result Modal](screenshots/05-result-modal.png)
-![Sandbox](screenshots/06-sandbox.png)
+![Welcome](../../screenshots/01-welcome.png)
+![NEXUS Picker](../../screenshots/02-nexus-picker.png)
+![Briefing](../../screenshots/03-briefing.png)
+![Editor](../../screenshots/04-editor.png)
+![Result Modal](../../screenshots/05-result-modal.png)
+![Sandbox](../../screenshots/06-sandbox.png)
 
 ---
 
