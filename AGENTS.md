@@ -308,7 +308,7 @@ Why vendored rather than depended on, and why the split matters:
 ## Memory
 
 - **SDD-Artefakte (seit 2026-07-16): Cockpit, nicht Repo** — Specs/Plans/Task-Reports leben im
-  Coding-Cockpit des Maintainers (`$VAULT/25_Coding/neurovim-standalone/_SDD/`, CORE-META-14, maintainer-lokal).
+  Coding-Cockpit des Maintainers (`$VAULT/25_Coding/neurovim/_SDD/`, CORE-META-14, maintainer-lokal).
   Sie tragen Arbeitskontext (Vault-Pfade, Schwester-Repo-Interna), der in einem public Repo niemandem nützt.
   Das Repo behält die Design-Essenz in dieser Datei + `CHANGELOG.md`.
 - **Alt-Bestand:** `docs/superpowers/{specs,plans}/` ist eingefroren — nichts Neues dort ablegen.
