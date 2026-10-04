@@ -7,7 +7,7 @@ liefert:
     format: "URL https://pages.jkaindl.de/neurovim-standalone/ (gebaut aus packages/adapter-web)"
     deterministisch_aus: [release-tag]
     befehl: "npx hyperframes capture https://pages.jkaindl.de/neurovim-standalone/ --json  (im Konsumenten)"
-    lizenz: "AGPL-3.0-or-later; Doku CC BY-SA 4.0"
+    lizenz: "AGPL-3.0-only; kommerzielle Lizenz auf Anfrage (LICENSING.md); Doku CC BY-SA 4.0"
   - id: lore
     artefakt: Missionen, Briefings, Loot, Fragmente, Referenz und CIPHERs Texte als Daten, woertlich zitierbar
     format: "Markdown unter packages/content/src/content/<kapitel>/, gebaut zu TypeScript unter packages/content/src/generated/"
