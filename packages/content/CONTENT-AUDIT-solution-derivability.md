@@ -161,6 +161,16 @@ künftige Einträge: **ein Tippfehler ist ableitbar** (die falsche Schreibung st
 arbiträrer Zielwert nicht** — es sei denn, der Missionstext nennt ihn oder gibt eine Formel,
 die ihn erzeugt.
 
+## ✅ M-08 Corrupted Transmission — die Lösung fehlte ganz (2026-10-05)
+
+Befund aus Plan C der Medienintegration (Aufnahme-Sequenz an M-08 in `neurovim-obsidian`): `MissionSession.start('M-08')` wirft `Mission M-08 has no solution — cannot play`. Gemessen: von 40 Transmissions hatte genau eine keine `solutions/`-Datei, M-08; der Manifest-Test zählte 53 Solutions und hielt das für vollständig, die Ableitbarkeits-Tests prüfen nur Missionen **mit** Solution. Eine Mission ohne Lösung ist im Plugin nicht startbar, im Hub aber sichtbar.
+
+Fix: `solutions/M-08-SOLUTION-Corrupted_Transmission.md`, abgeleitet aus der Transmission selbst: Die Note nennt das NEVERMORE-Profil (█-Injektion, Wortersetzung REDACTED/SURVEILLANCE/MONITORING/EVERMORE, `[LINE REMOVED]`, Compliance-Banner), die CIPHER-Notiz und die Schlusszeile nennen `[[99-THE_RAVEN]]` als Referenz („first two stanzas should match exactly“). Die Lösung behält den Rahmen der Transmission (Box, Callouts, Kopfzeile des Codeblocks, Note) und das Whitespace der Transmission (Tabs), ersetzt nur die korrumpierten Stellen durch den Wortlaut aus REF und entfernt die zwei Compliance-Banner. Zehn geänderte Zeilen.
+
+Ausnahmen: M-08 steht in `EXPLAINED_ORPHANS` und `EXPLAINED_TOKENS`, weil die wiederhergestellten Wörter (`midnight`, `Over many a quaint and curious`, `visitor`, `tapping`, `Ah, distinctly …`, `Lenore`) aus dem verlinkten REF-Dokument stammen, nicht aus Transmission oder Briefing — dieselbe Klasse wie M-11 (Zielwerte in einem verlinkten Fragment). Manifest-Zählung auf 174 Einträge, 54 Solutions.
+
+Offen: ein Invariant-Test „jede Transmission hat eine Solution“ fehlt weiterhin; der Manifest-Test zählt Rollen, prüft aber keine Paarung. Nicht in diesem Commit, weil die Zählung dann an zwei Stellen stünde.
+
 ## Reproduktion des Sweeps
 
 ```bash

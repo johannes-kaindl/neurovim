@@ -1,11 +1,11 @@
 import { ENTRIES, listMissions, getMission, getLore } from '../src/index';
 
 describe('@neurovim/content manifest', () => {
-  it('has all 173 content entries (120 content + 53 solutions)', () => {
-    expect(ENTRIES.length).toBe(173);
+  it('has all 174 content entries (120 content + 54 solutions)', () => {
+    expect(ENTRIES.length).toBe(174);
   });
 
-  it('role distribution matches the curriculum (40 transmission, 40 briefing, 14 kata, 9 loot, 14 fragment, 3 ref, 53 solution)', () => {
+  it('role distribution matches the curriculum (40 transmission, 40 briefing, 14 kata, 9 loot, 14 fragment, 3 ref, 54 solution)', () => {
     const count = (role: string) => ENTRIES.filter((e) => e.role === role).length;
     expect(count('transmission')).toBe(40);
     expect(count('briefing')).toBe(40);
@@ -13,7 +13,7 @@ describe('@neurovim/content manifest', () => {
     expect(count('loot')).toBe(9);
     expect(count('fragment')).toBe(14);
     expect(count('ref')).toBe(3);
-    expect(count('solution')).toBe(53);
+    expect(count('solution')).toBe(54);
   });
 });
 
@@ -98,6 +98,7 @@ describe('solution derivability', () => {
   // reasoning: packages/content/CONTENT-AUDIT-solution-derivability.md
   const EXPLAINED_ORPHANS = new Set([
     'M-06', // decrypted roster spelled out in the briefing DIRECTIVE (fixed 2026-07-24)
+    'M-08', // restored stanzas are the REF document [[99-THE_RAVEN]], linked in the transmission's CIPHER note and closing Note (solution added 2026-10-05)
     'M-13', // pure case-conversion — same words, bigram check is case-sensitive (false positive)
     'M-15', // regex capture-group formulas given in the transmission Note
     'M-16', // arithmetic/regex formulas given in the transmission Note
@@ -153,6 +154,7 @@ describe('solution derivability', () => {
   const EXPLAINED_TOKENS = new Set([
     'M-01', // typo repairs — `knwo`/`wiats`/`laern`, too short for the bigram threshold
     'M-02', // typo repairs — `entarnce`/`la`/`befoer`, audited 2026-07-24
+    'M-08', // every restored word is in REF [[99-THE_RAVEN]], which the transmission names as the reference (solution added 2026-10-05)
     'M-11', // target values live in FRAGMENT-10, linked in the briefing — the split-pane diff IS the mission
     'M-14', // per-column offset-keys (+3 REF, +7 MARK) stated in transmission and briefing
     'M-15', // regex capture-group formulas given in the transmission Note
