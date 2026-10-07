@@ -1,15 +1,15 @@
 /**
- * CommsRail — diegetic CIPHER channel beside the editor. Carries Objective · Why · Keys ·
- * ↳ Manual · ↳ reveal, in the CIPHER voice. Adaptive by guidance.tier: 0 full · 1 compact
- * (keys inline, objective/why on tap) · 2 spine-only (everything on tap). A pin toggle
- * overrides the level default. Presentational — all data comes from GuidanceModel.
+ * CommsRail — diegetic CIPHER channel beside the editor. Carries Why · Keys · ↳ Manual ·
+ * ↳ reveal, in the CIPHER voice. Adaptive by guidance.tier: 0 full · 1 compact (keys only)
+ * · 2 spine-only (everything on tap). A pin toggle overrides the level default.
+ * Presentational — all data comes from GuidanceModel. The objective is NOT here: it lives
+ * in ObjectivePanel above the editor, so it never depends on tier, pin or a tap.
  */
 import { useState } from 'preact/hooks';
 import type { GuidanceModel } from '@neurovim/core';
 
 interface Props {
   guidance: GuidanceModel;
-  objective: string;
   pin: 'open' | 'quiet' | null;
   onPin: (p: 'open' | 'quiet' | null) => void;
   onManual: () => void;
@@ -17,7 +17,7 @@ interface Props {
   revealed: boolean;
 }
 
-export function CommsRail({ guidance, objective, pin, onPin, onManual, onReveal, revealed }: Props) {
+export function CommsRail({ guidance, pin, onPin, onManual, onReveal, revealed }: Props) {
   const spine = guidance.tier === 2;
   const [open, setOpen] = useState(false);
 
@@ -44,8 +44,6 @@ export function CommsRail({ guidance, objective, pin, onPin, onManual, onReveal,
 
       {guidance.tier === 0 && (
         <>
-          <div class="nv-rail-k">Objective</div>
-          <div class="nv-rail-v">{objective}</div>
           <div class="nv-rail-k">Why</div>
           <div class="nv-rail-v nv-rail-why">{guidance.why}</div>
         </>

@@ -33,7 +33,9 @@ export const neurovimTheme: Extension = EditorView.theme(
       caretColor: 'var(--nv-accent-hot, var(--nv-accent))',
       padding: '12px 0',
     },
-    '.cm-scroller': { fontFamily: 'var(--nv-mono)', lineHeight: '1.7' },
+    // No ligatures: JetBrains Mono would draw `===` or `->` as one glyph, and the player
+    // must see exactly the characters the objective names and the check compares.
+    '.cm-scroller': { fontFamily: 'var(--nv-mono)', lineHeight: '1.7', fontVariantLigatures: 'none' },
 
     /* gutter: dark, muted line numbers, accented active line */
     '.cm-gutters': {

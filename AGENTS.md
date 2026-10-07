@@ -195,7 +195,7 @@ green. For content changes also run `npm run build:content`, otherwise
   `--nv-*` variables (six canonical + additive tokens). New colors as a `:root`
   variable, never inline hex (see `docs/dev/reference/design-tokens.md`). The bundled monospace is
   self-hosted JetBrains Mono (`src/fonts/`, exposed as `--nv-mono`).
-- **Bundle budget (web):** code-split (initial **381 KB / 113 KB gzip**; CM6 ~411 KB lazy;
+- **Bundle budget (web):** code-split (initial **414 KB / 123 KB gzip**, measured 2026-10-08; CM6 ~411 KB lazy;
   `marked` ~43 KB lazy). No heavy visual deps; prefer CSS motion over JS libs. Any new
   dependency must justify its weight and ideally be lazy-loaded. **Read the number off a
   build, do not trust this line** — it has drifted before (`docs/dev/explanation/decisions.md`).

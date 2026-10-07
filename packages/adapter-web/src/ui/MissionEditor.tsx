@@ -1,7 +1,8 @@
 /**
- * MissionEditor — CodeMirror-6 editor with Vim-Mode. Now hosts the CIPHER Comms-Rail
- * (guidance) beside the buffer and a reveal-corruption affordance (highlights lines still
- * differing from the solution). The submit/metrics contract is unchanged.
+ * MissionEditor — CodeMirror-6 editor with Vim-Mode. Shows the mission objective above the
+ * buffer for the whole run, hosts the CIPHER Comms-Rail (guidance) beside it and a
+ * reveal-corruption affordance (highlights lines still differing from the solution). The
+ * submit/metrics contract is unchanged.
  */
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { EditorView, keymap, lineNumbers } from '@codemirror/view';
@@ -12,6 +13,7 @@ import { MetricsTracker, countsAsKeystroke, getDivergentLines, type MetricsResul
 import { neurovimTheme, vimModeIndicator, type VimMode } from './cm6-theme';
 import { revealField, setRevealLines } from './reveal';
 import { CommsRail } from './CommsRail';
+import { ObjectivePanel } from './ObjectivePanel';
 
 interface Props {
   mission: MissionDoc;
@@ -108,11 +110,12 @@ export function MissionEditor({ mission, guidance, pin, onPin, onSubmit, onBack,
         </button>
       </div>
 
+      <ObjectivePanel mission={mission} />
+
       <div class="nv-editor-main">
         <div ref={host} class="nv-cm-host" />
         <CommsRail
           guidance={guidance}
-          objective={mission.summary ?? 'Restore the transmission.'}
           pin={pin}
           onPin={onPin}
           onManual={() => onCheatsheet?.()}

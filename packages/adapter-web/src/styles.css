@@ -613,7 +613,47 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
 .nv-rail-link-on { color: var(--nv-text); text-decoration: underline; }
 /* Reveal-corruption line highlight */
 .nv-reveal-line { background: rgba(255, 90, 90, 0.18); }
-@media (max-width: 720px) { .nv-rail { flex-basis: 8rem; } }
+/* :not(spine) — otherwise this rule (later, same specificity) widened the collapsed tier-2 spine to 8rem on phones */
+@media (max-width: 720px) { .nv-rail:not(.nv-rail-spine) { flex-basis: 8rem; } }
+
+/* Objective panel — the mission's target, above the editor for the whole run. Independent
+   of the rail's tier/pin: the motions are the challenge, the target never is. Exact strings
+   (<code>) keep their spaces but may wrap, so a 390px screen never scrolls sideways.
+   Height is capped so bar + objective + editor + status fit one viewport: the page never
+   scrolls the objective away while typing; a long list scrolls inside the panel instead,
+   and the scroll shadows (background-attachment local/scroll) show that more is below. */
+.nv-objective {
+  margin: 0 0 var(--nv-s2); padding: var(--nv-s2) var(--nv-s3);
+  border: 1px solid var(--nv-border); border-left: 3px solid var(--nv-accent);
+  border-radius: 4px; font-size: var(--nv-fs-sm); line-height: 1.5; color: var(--nv-text);
+  overflow-wrap: anywhere;
+  max-height: max(7rem, calc(40vh - 8.5rem)); overflow-y: auto; overscroll-behavior: contain;
+  background:
+    linear-gradient(var(--nv-panel) 30%, transparent) center top / 100% 24px no-repeat local,
+    linear-gradient(transparent, var(--nv-panel) 70%) center bottom / 100% 24px no-repeat local,
+    radial-gradient(farthest-side at 50% 0, color-mix(in oklab, var(--nv-accent) 35%, transparent), transparent) center top / 100% 10px no-repeat scroll,
+    radial-gradient(farthest-side at 50% 100%, color-mix(in oklab, var(--nv-accent) 35%, transparent), transparent) center bottom / 100% 10px no-repeat scroll,
+    var(--nv-panel);
+}
+.nv-objective-k {
+  margin: 0 0 var(--nv-s1); font-size: var(--nv-fs-micro); font-weight: 700;
+  letter-spacing: var(--nv-ls-label); text-transform: uppercase; color: var(--nv-accent);
+}
+.nv-objective-steps { margin: 0; padding-left: 1.6em; }
+.nv-objective-steps li + li { margin-top: var(--nv-s1); }
+.nv-objective-steps li::marker { color: var(--nv-muted); }
+.nv-objective-summary { margin: 0; }
+.nv-objective code {
+  font-family: var(--nv-mono); font-size: 0.95em; color: var(--nv-accent-hot);
+  background: var(--nv-bg); border: 1px solid var(--nv-line-hot); border-radius: 3px;
+  padding: 0 4px; white-space: pre-wrap; font-variant-ligatures: none;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+@media (max-width: 560px) {
+  /* A phone gets a shorter buffer so the objective keeps a real share of the screen. */
+  .nv-objective { max-height: 34vh; }
+  .nv-editor .nv-cm-host .cm-editor { height: 46vh; }
+}
 
 /* Briefing guidance panel + result debrief */
 .nv-brief-guide {
