@@ -23,7 +23,7 @@ color: "#00ccff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace every case-variant of `mirror` with `PROJECT MIRROR` — including `MIRROR`, `Mirror`, `mirror`.
+> > Replace every case-variant of `mirror` with `PROJECT MIRROR` (7×) — including `MIRROR`, `Mirror`, `mirror`. Nothing else changes.
 >
 > > [!tip] SKILLS
 > > `:%s/mirror/PROJECT MIRROR/gi` — `g` = all occurrences, `i` = case-insensitive

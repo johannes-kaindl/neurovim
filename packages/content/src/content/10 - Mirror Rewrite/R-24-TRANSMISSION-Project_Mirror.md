@@ -19,6 +19,11 @@ sticker: lucide//eye-off
 color: "#ff4444"
 summary: "[LOCKED] PROJECT MIRROR's core index. Three operations. When you're done, it goes dark."
 why: "The finale chains three operations into one clean strike — when it lands, the index goes dark."
+objective:
+  - "Delete the three lines that start with `[CORP-STATUS]` (no blank lines left in their place)."
+  - "On the last target line, change `CIPHER: TRACKED` to `CIPHER: EXPOSED`."
+  - "Replace every `ACTIVE` with `TERMINATED` (8×): the seven `STATUS: ACTIVE` entries and the `Status` line in the header box at the top."
+  - "Change nothing else: keep the header box spacing as it is (its right border shifts, that is fine), and leave both CIPHER callouts untouched."
 ---
 ```ascii-chromatic
 ╔══════════════════════════════════════════════════════════════════╗

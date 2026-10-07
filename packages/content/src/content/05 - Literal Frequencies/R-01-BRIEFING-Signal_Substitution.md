@@ -24,7 +24,7 @@ color: "#00ccff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace every occurrence of `PHANTOM` with `NEXUS` in the intercept log.
+> > Replace every `PHANTOM` with `NEXUS` in the intercept log (9×). Change nothing else.
 >
 > > [!tip] SKILLS
 > > `:%s/PHANTOM/NEXUS/g` — substitute all occurrences across the file

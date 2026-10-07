@@ -17,6 +17,9 @@ summary: The same junk tag, five times over. Fix it once, then let the dot comma
 why: "Fix the junk tag once, then let . echo the exact change down the list — repetition without retyping."
 mission_type: practice
 locked: true
+objective:
+  - "Delete the word `DUP` and the space after it at the start of each of the five `relay` lines (5×), so each line reads `relay alpha`, `relay bravo`, `relay charlie`, `relay delta`, `relay echo`."
+  - "Change nothing else: the ASCII header box and the line `SIGNAL BUFFER — STRIP THE DUP TAGS` stay exactly as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

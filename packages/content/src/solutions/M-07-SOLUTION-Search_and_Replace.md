@@ -21,7 +21,7 @@ Fallback: RELAY-CLUSTER-7 sub-level, 23:30
 Abort signal: RELAY-CLUSTER-7 code broadcast on 441.7
 
 > [!note] GHOST — Intercepted
-> RELAY-CLUSTER-7 is not the location.
+> That cluster tag is not the location.
 > I ran the delta on the handoff records twice. The substring appears nine times. CORP's substitution tool points teams to their surveillance checkpoint.
 > Correct term: RELAY-CLUSTER-7.
 > There are 9 substitutions to replace.

@@ -17,6 +17,11 @@ sticker: lucide//file-search
 color: "#0066ff"
 summary: "[LOCKED] Ex-mode pattern purge — three-stage cleanup of a Pattern Analysis Unit anomaly report. Available after M-11."
 why: "A noisy report doesn't get cleaned line by line — :g runs one verdict across every matching line at once."
+objective:
+  - "Delete the whole `## Sector Anomaly Tracking — Standard Monitoring` section: its heading, the 8 `Standard Monitoring — Sector …` lines and the blank lines around them. Exactly one blank line stays between the Executive Summary text and `## Legacy-Protocol Reclassifications`."
+  - "In the 5 `Legacy-Protocol Session …` lines, replace `Cat. 7 Non-Compliance` with `Cat. 5 Factual Non-Compliance` (5×)."
+  - "Under `## Active Investigations — Anomaly Signatures`, delete the 2 `Cross-reference Query …` lines and the 2 `Retrospective Flag …` lines (4×). The 6 `Anomaly Signature PAU-Σ-…` lines stay, in their order."
+  - "Leave everything else unchanged, especially the `Note:` block at the bottom (the `Note:` line and the `(1)`, `(2)`, `(3)` lines below it): those lines also contain `Standard Monitoring`, `Cat. 7 Non-Compliance`, `Cross-reference` and `Retrospective Flag`, so a file-wide pattern command would hit them too. Scope each command to its section."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

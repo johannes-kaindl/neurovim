@@ -17,6 +17,10 @@ summary: Priority queue scrambled. Cut each line. Place it correctly. Sequence r
 why: "Cut a line, drop it where it belongs — dd and p are how you reorder without retyping."
 mission_type: practice
 locked: true
+objective:
+  - "Sort the four `[P…]` queue lines by priority: `[P1] ENCRYPT`, `[P2] TRANSMIT`, `[P3] ARCHIVE`, `[P4] CLEANUP` (top to bottom)."
+  - "Move whole lines only; do not change any text in them and add no blank lines between them."
+  - "Leave the box header and the `PRIORITY QUEUE — SECTOR 7` line as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

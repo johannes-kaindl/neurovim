@@ -24,7 +24,7 @@ color: "#ff0066"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Remove the `[TRACK] ` prefix from the start of every line that has it.
+> > Delete the `[TRACK] ` prefix (with its trailing space) from the start of all six report lines (6×). Leave the header box and the CIPHER note untouched.
 >
 > > [!tip] SKILLS
 > > `:%s/^\[TRACK\] //g` — `^` anchors to line start; brackets need escaping in default magic

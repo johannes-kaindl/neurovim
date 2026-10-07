@@ -30,9 +30,9 @@ color: "#ff4444"
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
 > > Three operations in sequence:
-> > 1. Delete all lines containing `[CORP-STATUS]`
+> > 1. Delete the three lines starting with `[CORP-STATUS]`
 > > 2. Change `CIPHER: TRACKED` to `CIPHER: EXPOSED` on the CIPHER entry
-> > 3. Replace all remaining `ACTIVE` with `TERMINATED`
+> > 3. Replace every `ACTIVE` with `TERMINATED` (8×), including the `Status` line in the header box
 >
 > > [!tip] SKILLS
 > > `:g/\[CORP-STATUS\]/d` → `:%s/CIPHER: TRACKED/CIPHER: EXPOSED/` → `:%s/ACTIVE/TERMINATED/g`

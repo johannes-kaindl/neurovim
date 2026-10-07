@@ -18,6 +18,10 @@ sticker: lucide//brackets
 color: "#cc00ff"
 summary: "[LOCKED] CORP status codes X, Y, Z encode threat level. Normalize all three to CLEAN using a character set."
 why: "A character set folds X, Y and Z into one match — three threat codes normalized in a single rule."
+objective:
+  - "In the `NODE STATUS` list, replace the status code after the colon on each of the 8 `NODE-…` / `RELAY-…` lines (`X`, `Y` or `Z`) with `CLEAN` (8×), e.g. `NODE-ALPHA  : X` → `NODE-ALPHA  : CLEAN`."
+  - "Keep each line's name, spacing and `: ` exactly as they are; only the single code letter changes."
+  - "Leave everything else untouched: the header box, the CIPHER decoding note (its `X`, `Y`, `Z` and `[XYZ]` stay) and the `All nodes clear.` line."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

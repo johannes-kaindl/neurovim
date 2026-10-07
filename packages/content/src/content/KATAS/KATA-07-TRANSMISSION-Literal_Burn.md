@@ -16,6 +16,9 @@ summary: A code name was injected across this intercept. Replace all instances i
 why: "One global :%s burns the injected name out of the whole intercept in a single command."
 mission_type: practice
 locked: true
+objective:
+  - "Replace every `PHANTOM` with `NEXUS` (7×, all in the lines below the `Registry` line)."
+  - "Change nothing else: the ASCII banner, the `INTERCEPT LOG` heading, the `Registry` line and all other words stay exactly as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

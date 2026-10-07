@@ -11,13 +11,18 @@ locked: true
 unlock_requirement: "M-13 completed"
 tags:
   - vim/numeric
-  - vim/visual-block
   - vim/increment
   - chrome-raven
 sticker: lucide//hash
 color: "#9933ee"
-summary: "[LOCKED] Numeric increment + visual-block — apply offset-keys to a Resistance extraction-coordinate-matrix. Available after M-13."
-why: "Numbers in a column move together — visual-block plus increment shifts the whole matrix in one stroke."
+summary: "[LOCKED] Numeric increment with a count — apply offset-keys to a Resistance extraction-coordinate-matrix. Available after M-13."
+why: "A count on Ctrl+a or Ctrl+x shifts a number in one stroke, and the dot command repeats it down the column."
+objective:
+  - "Add 3 to every `REF-` number (5×): `REF-4217` → `REF-4220`, `REF-4222` → `REF-4225`, `REF-4227` → `REF-4230`, `REF-4232` → `REF-4235`, `REF-4237` → `REF-4240`."
+  - "Add 7 to every `MARK-` number (5×): `MARK-1378` → `MARK-1385`, `MARK-1383` → `MARK-1390`, `MARK-1388` → `MARK-1395`, `MARK-1393` → `MARK-1400`, `MARK-1398` → `MARK-1405`."
+  - "Keep the `REF-` and `MARK-` prefixes, the indentation and the spacing exactly as they are."
+  - "Change nothing else: not the header box, not the `Per-column offset-keys` line, not the RAVEN-SIGNAL fragment, not the Note at the bottom."
+  - "Trap: Vim reads `REF-4217` as minus 4217, so `3<C-a>` gives `REF-4214`. Count the other way: `3<C-x>` turns it into `REF-4220`. Then `j` and `.` repeat the shift down the column."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

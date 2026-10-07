@@ -193,3 +193,59 @@ describe('solution derivability', () => {
     expect(unexplained).toEqual([]);
   });
 });
+
+// The objective is the only guidance on screen for the whole run (the briefing is shown once,
+// KATAs have none). The game teaches motions, not guessing — so every target the solution asks
+// for must be readable there or already in the text. Audit: CONTENT-AUDIT-solution-derivability.md.
+describe('mission objective', () => {
+  const missions = () => listMissions().map((m) => ({ id: m.mission_id, doc: getMission(m.mission_id) }));
+
+  it('every playable mission has a non-empty objective', () => {
+    const missing = missions().filter(({ doc }) => !doc.objective?.length).map(({ id }) => id);
+    expect(missing).toEqual([]);
+  });
+
+  it('no objective uses absolute line numbers (host frontmatter would shift them)', () => {
+    const bad = missions()
+      .filter(({ doc }) => (doc.objective ?? []).some((s) => /\blines? \d+/i.test(s)))
+      .map(({ id }) => id);
+    expect(bad).toEqual([]);
+  });
+
+  // Strict counterpart of the token check above: the source is what the player can SEE while
+  // playing — transmission and objective — matched exactly, no bigram tolerance and no briefing.
+  // An entry here means the objective states a mechanical rule instead of naming each target
+  // (case conversion, stray-character removal, a regex formula); one line of reasoning each.
+  const RULE_OBJECTIVES = new Map<string, string>([
+    ['M-01', 'delete every stray capital X and Z (30 chars, counted) — the restored words are the words minus the noise'],
+    ['M-09', 'strip the `TS-` prefix from 12 timestamps — the dates themselves are in the transmission'],
+    ['M-15', 'entry lines are rewritten by an example format (number, entry in parentheses, description) — values come from the line itself'],
+    ['R-19', 'reformat YYYY-MM-DD to DD.MM.YYYY (7×, example given) — the digits are in the transmission'],
+  ]);
+
+  // Trailing `.`/`_`/`-` is sentence punctuation, not part of the target (`TERMINATED.`).
+  function words(s: string): string[] {
+    return (s.match(/[A-Za-z0-9][A-Za-z0-9._-]*/g) ?? []).map((t) => t.replace(/[._-]+$/, '').toLowerCase());
+  }
+
+  function unnamedTargets(id: string): string[] {
+    const doc = getMission(id);
+    if (doc.solution == null) return [];
+    const seen = new Set(words(`${doc.transmissionBody}\n${(doc.objective ?? []).join('\n')}`));
+    return [...new Set(words(doc.solution))].filter((w) => !seen.has(w));
+  }
+
+  it('every new word in a solution is named in the objective or already in the transmission', () => {
+    const unnamed = missions()
+      .filter(({ id }) => !RULE_OBJECTIVES.has(id))
+      .map(({ id }) => ({ id, words: unnamedTargets(id) }))
+      .filter(({ words: w }) => w.length > 0)
+      .map(({ id, words: w }) => `${id}: ${w.join(' ')}`);
+    expect(unnamed).toEqual([]);
+  });
+
+  it('every RULE_OBJECTIVES entry is still needed (a stale exemption hides the next defect)', () => {
+    const stale = [...RULE_OBJECTIVES.keys()].filter((id) => unnamedTargets(id).length === 0);
+    expect(stale).toEqual([]);
+  });
+});

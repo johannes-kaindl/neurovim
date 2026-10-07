@@ -24,7 +24,7 @@ color: "#cc00ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace every 8-character hexadecimal hash (characters `0-9` and `A-F` only) with `[HASH-REDACTED]`.
+> > Replace all six 8-character hex hashes in the manifest lines (characters `0-9` and `A-F` only) with `[HASH-REDACTED]`. Labels, spacing and all other text stay unchanged.
 >
 > > [!tip] SKILLS
 > > `:%s/[0-9A-F]\{8\}/[HASH-REDACTED]/g` — exact-length hex match

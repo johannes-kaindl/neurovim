@@ -18,6 +18,10 @@ sticker: lucide//combine
 color: "#cc00ff"
 summary: "[LOCKED] CORP hex hashes tag every document. Redact all six with an exact-length character class pattern."
 why: "A fixed-length class counts the hex for you — six hashes redacted, none of the real text touched."
+objective:
+  - "In the six manifest lines below `DOCUMENT MANIFEST`, replace each 8-character hex hash after the colon with `[HASH-REDACTED]` (6×): `3F2A9B4C`, `7D0E4F19`, `A1C58E2B`, `90BD37FA`, `C4E6021D`, `5B8FD7E3`."
+  - "Keep each line's label, spacing and `: ` exactly as they are; only the hash changes."
+  - "Leave everything else untouched: the header box, the CIPHER note, the `DOCUMENT MANIFEST` title and the closing `Security protocol:` line."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

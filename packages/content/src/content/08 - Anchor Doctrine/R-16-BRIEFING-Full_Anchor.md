@@ -24,7 +24,7 @@ color: "#ff0066"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace lines that contain ONLY the word `CLASSIFIED` (nothing before or after) with `[REDACTED]`.
+> > Replace the 3 lines that are exactly `CLASSIFIED` (nothing before or after) with `[REDACTED]`. Every `CLASSIFIED` inside a longer line stays.
 >
 > > [!tip] SKILLS
 > > `:%s/^CLASSIFIED$/[REDACTED]/g` — `^` and `$` together match the exact full line

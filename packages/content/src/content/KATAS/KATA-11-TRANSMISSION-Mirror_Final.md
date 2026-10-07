@@ -16,6 +16,10 @@ summary: The final kata. Two operations — :g delete then :g/s/ substitute. Com
 why: "Compose :g delete with :g/s substitute — the final drill is making two global passes work as one."
 mission_type: practice
 locked: true
+objective:
+  - "Delete the three lines starting with `[NOISE]` (whole lines, no blank line left behind)."
+  - "On all five `MIRROR-OP-` lines, change `PENDING` to `TERMINATED` (5×)."
+  - "Leave the header box, the `MIRROR FINAL — OPERATIONS LOG` title and the closing `All operations terminated. Signal dark.` line as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

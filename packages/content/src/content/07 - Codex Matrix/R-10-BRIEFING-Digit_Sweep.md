@@ -23,7 +23,7 @@ color: "#ff6600"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Make each line read `# relay <name> [OK]` (prefix `# `, change `active` to `[OK]`).
+> > Make each of the five relay lines read `# relay <name> [OK]`: add `# ` at the start, change `active` to `[OK]` (alpha, bravo, charlie, delta, echo). Nothing else changes.
 >
 > > [!tip] SKILLS
 > > `qa` `I# `<Esc> `$` `ciw[OK]`<Esc> `0j` `q` — then `4@a`

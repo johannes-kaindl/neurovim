@@ -18,6 +18,10 @@ sticker: lucide//zap
 color: "#ff4444"
 summary: "[LOCKED] Two operations, in sequence. Delete the noise. Then terminate the MIRROR entries. Order matters."
 why: "Two passes, in order: delete the noise first, terminate the targets second — sequence is the whole trick."
+objective:
+  - "Delete the four lines that start with `[NOISE]`. Delete only those lines; every blank line stays where it is."
+  - "Change every `PENDING` in the text to `TERMINATED` (7×): in the heading `MIRROR OPERATIONS — PENDING`, in all five `MIRROR-OP-0n : STATUS: PENDING` lines, and in the closing line `Cascade complete. PROJECT MIRROR operations: PENDING.`"
+  - "Leave everything else unchanged: the header box, the CIPHER note and the `---` divider."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

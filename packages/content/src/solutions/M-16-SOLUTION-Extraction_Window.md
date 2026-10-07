@@ -58,9 +58,9 @@ auth-line-three: cipher-echo-gamma-one-nine
 > [!note] GHOST — Intel-Capture
 > CORP's last predictive-tracking entries from before I went dark. Noise-lines interleaved. Strip them, then rewrite to our format.
 
-Threat-alpha Pattern 05 (0152) — endpoint-diversity
-Threat-alpha Pattern 06 (0153) — signal-concordance
-Threat-beta Pattern 07 (0154) — distribution-skew
+Threat-alpha Pattern 05 (0152) - endpoint-diversity
+Threat-alpha Pattern 06 (0153) - signal-concordance
+Threat-beta Pattern 07 (0154) - distribution-skew
 
 ---
 
@@ -81,8 +81,8 @@ Threat-beta Pattern 07 (0154) — distribution-skew
 ---
 
 Note: Four threads, four passes.
-- Section 1 (WRAITH Route): strip the three `>>` COMPLIANCE injection-lines. Operators + line-delete.
+- Section 1 (WRAITH Route): strip the three `>>` injection-lines and the blank line below each `>>` block. Operators + line-delete.
 - Section 2 (GHOST Coords): apply the final key-rotation — +2 on REF column, +1 on MARK column. Visual-block + count-prefix.
 - Section 3 (CIPHER Auth-Signature): normalize all three auth-lines to lowercase.
-- Section 4 (CORP Prediction): purge the two `[STANDARD-NOISE]` lines, then regex-rewrite the three `[ENTRY-NNNN]` entries to the format `Threat-<level> Pattern NN (NNNN) — description`.
+- Section 4 (CORP Prediction): purge the two `[STANDARD-NOISE]` lines, then regex-rewrite the three `[ENTRY-NNNN]` entries to the format `Threat-<level> Pattern NN (NNNN) - description` (plain hyphen).
 - CIPHER close + RAVEN-fragment 04 are static. Do not modify.

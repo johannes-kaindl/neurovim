@@ -18,14 +18,14 @@ color: "#ff4444"
 > [!quote] CIPHER
 > *"You need to run two operations in sequence on this document. Not one — two. Each changes the state; the second depends on the first.*
 > *First: delete all NOISE lines with `:g/\[NOISE\]/d`.*
-> *Second: on every remaining MIRROR line, change STATUS: PENDING to STATUS: TERMINATED with `:g/MIRROR/s/PENDING/TERMINATED/`.*
+> *Second: on every remaining line that names MIRROR — the heading, the five operations, the closing line — change PENDING to TERMINATED with `:g/MIRROR/s/PENDING/TERMINATED/`.*
 > *Run them in order. The second command only sees the document as the first command left it.*
 > *Composing operations is the core skill. CORP built PROJECT MIRROR by composing simple rules. We dismantle it the same way."*
 
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Step 1: Delete all lines containing `[NOISE]`. Step 2: On MIRROR lines, change PENDING to TERMINATED.
+> > Step 1: Delete the four `[NOISE]` lines (blank lines stay). Step 2: Change every `PENDING` to `TERMINATED` (7×) — the heading, all five `MIRROR-OP` lines and the closing line.
 >
 > > [!tip] SKILLS
 > > `:g/\[NOISE\]/d` then `:g/MIRROR/s/PENDING/TERMINATED/` — two sequential operations

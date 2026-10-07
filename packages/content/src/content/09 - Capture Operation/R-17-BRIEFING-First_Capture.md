@@ -25,7 +25,7 @@ color: "#00ff88"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Swap `SECTOR-X NODE-N` designations to `NODE-N SECTOR-X` order throughout the document.
+> > In all six designation lines, swap `SECTOR-X NODE-N` to `NODE-N SECTOR-X` (e.g. `SECTOR-A NODE-1` → `NODE-1 SECTOR-A`). Everything else stays unchanged.
 >
 > > [!tip] SKILLS
 > > `:%s/\(SECTOR-[A-Z]\) \(NODE-[0-9]\)/\2 \1/g` — capture both parts, swap with `\2 \1`

@@ -24,7 +24,7 @@ color: "#cc66ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Transform a CORP-format pattern-archive into Resistance-format using capture-group regex.
+> > Restructure the archive block only: title `(CORP-format)` → `(Resistance-format)`; `[CLASSIFICATION: X]` → `## Classification: X` (2×); `[ENTRY-0147]: pattern-01 byte-position skew` → `Pattern 01 (0147) - byte-position skew` (5×). Header box, RAVEN's fragment and the bottom Note stay untouched.
 >
 > > [!tip] SKILLS
 > > `\v` (very-magic mode), `(...)` (capture-groups), `\1` / `\2` / `\3` (back-references), `\d{N}` / `\w+` / `.+` (character-classes with quantifiers)

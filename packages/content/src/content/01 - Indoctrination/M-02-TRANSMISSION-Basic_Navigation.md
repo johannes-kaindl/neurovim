@@ -16,6 +16,12 @@ summary: Arrow keys are your enemy. hjkl are your allies. Learn them until your 
 why: "Reach for the arrow keys and your hand leaves home row — hjkl keeps it there, where speed lives."
 mission_type: practice
 locked: false
+objective:
+  - "Fix the 12 misspelled words below. Change nothing else: headers, times, coordinates, the CAPS codewords and the sign-off stay as they are."
+  - "`entarnce` → `entrance`, `positiob` → `position`, `stairwel` → `stairwell`, `accesss` → `access`."
+  - "`coordiantes` → `coordinates`, `codewrod` → `codeword`, `codewor` → `codeword`."
+  - "`fiften` → `fifteen`. Complete the cut-off line end `Do not be la` to `Do not be late.` (with the period)."
+  - "`befoer` → `before`, `restoirng` → `restoring`, `corectly` → `correctly`."
 ---
 TRAINING TRANSMISSION — NAVIGATION DRILL
 Classification: RESISTANCE EYES ONLY

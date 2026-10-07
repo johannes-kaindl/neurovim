@@ -18,6 +18,9 @@ sticker: lucide//scan-text
 color: "#ff0066"
 summary: "[LOCKED] Standalone MIRROR needs expansion. MIRRORING and MIRRORED must stay. Word boundaries make the distinction."
 why: "Word boundaries draw the line: standalone MIRROR changes, MIRRORING and MIRRORED stay put."
+objective:
+  - "Replace every standalone word `MIRROR` with `PROJECT MIRROR` (4×, all in the audit text below the `---`: the lines starting `MIRROR is`, `All references to`, `MIRROR has been` and `Data MIRRORED by`, where it follows `by` and the line becomes `Data MIRRORED by PROJECT MIRROR is retained indefinitely.`)."
+  - "Leave `MIRRORING` and `MIRRORED` exactly as they are, and do not touch the header box or the CIPHER note."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

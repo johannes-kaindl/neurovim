@@ -18,6 +18,15 @@ sticker: lucide//target
 color: "#9933ee"
 summary: "[LOCKED] Tier-4 capstone — four-section extraction reconciliation under 30-minute window. All Tier-1..4 skills applied. Available after M-15."
 why: "The capstone gives you thirty minutes and four sections — everything you've learned, or the window closes."
+objective:
+  - "Section 1 (WRAITH): delete the three `>>` lines (`>> COMPLIANCE: Route-integrity review queued. <<`, `>> Monitoring on all nodes active. <<`, `>> COMPLIANCE: Automated scan cleared. <<`) and the blank line directly below each `>>` block."
+  - "Result in Section 1: `Stage Alpha`, `Stage Beta`, `Stage Gamma` on consecutive lines, one blank line, then `Stage Delta`."
+  - "Section 2 (GHOST): +2 on every `REF-` number, +1 on every `MARK-` number. Targets: `REF-4222 MARK-1386`, `REF-4227 MARK-1391`, `REF-4232 MARK-1396`. Keep the indentation and spacing."
+  - "Trap: Vim reads `REF-4220` as minus 4220, so add with `<C-x>`: `2<C-x>` on `REF-`, `<C-x>` on `MARK-`."
+  - "Section 3 (CIPHER): make the three auth-lines all lowercase: `auth-line-one: cipher-echo-alpha-seven-two`, `auth-line-two: cipher-echo-beta-five-four`, `auth-line-three: cipher-echo-gamma-one-nine`."
+  - "Section 4 (INTEL): delete both `[STANDARD-NOISE]` lines, leaving the three entries on consecutive lines."
+  - "Rewrite the three entries to: `Threat-alpha Pattern 05 (0152) - endpoint-diversity`, `Threat-alpha Pattern 06 (0153) - signal-concordance`, `Threat-beta Pattern 07 (0154) - distribution-skew` (plain hyphen `-`)."
+  - "Change nothing else: the header box, all callouts, the `Final key-rotation:` line, the CIPHER quote, the RAVEN fragment and the `Note:` block stay as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
@@ -109,8 +118,8 @@ Auth-Line-Three: CIPHER-ECHO-gamma-ONE-NINE
 ---
 
 Note: Four threads, four passes.
-- Section 1 (WRAITH Route): strip the three `>>` COMPLIANCE injection-lines. Operators + line-delete.
+- Section 1 (WRAITH Route): strip the three `>>` injection-lines and the blank line below each `>>` block. Operators + line-delete.
 - Section 2 (GHOST Coords): apply the final key-rotation — +2 on REF column, +1 on MARK column. Visual-block + count-prefix.
 - Section 3 (CIPHER Auth-Signature): normalize all three auth-lines to lowercase.
-- Section 4 (CORP Prediction): purge the two `[STANDARD-NOISE]` lines, then regex-rewrite the three `[ENTRY-NNNN]` entries to the format `Threat-<level> Pattern NN (NNNN) — description`.
+- Section 4 (CORP Prediction): purge the two `[STANDARD-NOISE]` lines, then regex-rewrite the three `[ENTRY-NNNN]` entries to the format `Threat-<level> Pattern NN (NNNN) - description` (plain hyphen).
 - CIPHER close + RAVEN-fragment 04 are static. Do not modify.

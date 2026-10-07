@@ -17,6 +17,9 @@ summary: Navigate word by word. Fix six corrupted field values. No story. Just m
 why: "Pure motion, no story — w, b, e until jumping word by word is faster than thinking about it."
 mission_type: practice
 locked: false
+objective:
+  - "Fix the six corrupted values after the colons: `SHADOV` → `SHADOW`, `ATIVE` → `ACTIVE`, `NORHT` → `NORTH`, `LEVL-4` → `LEVEL-4`, `CIPER` → `CIPHER`, `ONLIE` → `ONLINE`."
+  - "Change nothing else: the field names, the colons and spacing, the `RELAY GRID` line and the box at the top stay as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

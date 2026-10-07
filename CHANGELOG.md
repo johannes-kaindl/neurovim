@@ -6,7 +6,14 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Fixed
+- **Every mission now says exactly what to do.** A player reported mission M-04 as a guessing game: the five blocks had to be put in an order that was written nowhere. An audit of all 54 missions and KATAs found the same class of gap in many of them — target spellings, counts, which lines go, which stay. Each mission now carries an `objective`: the concrete steps from the corrupted text to the solution, with every exact target string. A blind replay from text plus objective alone, without the solution, reproduced all 54 solutions.
+- **Notes changed by other tools no longer fail a mission.** The check ignores YAML frontmatter and trailing spaces, which vault plugins such as Obsidian Linter add to the mission note. Before, every mission in such a vault was unsolvable.
+- Content defects found on the way: a wrong count in a mission note (M-07), briefings that contradicted their solution (M-02, M-14, R-23), a solution typo (M-01 `compromized`), and targets that needed characters most keyboards cannot type (M-15, M-16 now use a plain hyphen).
+- The cheatsheet listed Ctrl+a/Ctrl+x as selection actions; the game's Vim changes only the number at the cursor and reads `REF-4217` as negative. Moved to a "Numbers (cursor)" group; M-14 and M-16 name the trap.
+
 ### Added
+- **`objective` field and an always-visible objective panel.** Content: a YAML list in the transmission frontmatter; core: `MissionFrontmatter.objective` and `splitInlineCode` to set exact strings apart. A content gate requires an objective for every mission and every new word of a solution to be named in it or already in the text.
 - **`MissionGenerator` + `kataPrompt` in the core** — an authoring-side generator for
   KATA drills, and the second consumer of `LlmPort` (the first at a non-chat call site,
   which is where the port's optional streaming callback finally earns its "optional").

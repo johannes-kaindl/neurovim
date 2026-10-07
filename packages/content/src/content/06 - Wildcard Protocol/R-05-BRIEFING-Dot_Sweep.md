@@ -24,7 +24,7 @@ color: "#ff6600"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace every `AGENT-?` variant (where `?` is any single character) with `OPERATIVE`.
+> > Replace every `AGENT-?` (where `?` is any single character) with `OPERATIVE` — 8×: the seven roster IDs plus `AGENT-*` in the `Summary:` line. Nothing else changes.
 >
 > > [!tip] SKILLS
 > > `:%s/AGENT-./OPERATIVE/g` — `.` matches exactly one character (any)

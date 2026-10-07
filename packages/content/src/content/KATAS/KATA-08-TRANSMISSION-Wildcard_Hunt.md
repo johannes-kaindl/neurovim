@@ -16,6 +16,10 @@ summary: CORP rotates node IDs with varying numeric suffixes. Match and redact a
 why: "The dot wildcard catches every numeric suffix CORP rotates in — one pattern, all the IDs."
 mission_type: practice
 locked: true
+objective:
+  - "In the six `NODE-` lines, replace each numeric ID with `REDACTED` (6×): `NODE-7741`, `NODE-083`, `NODE-90215`, `NODE-3308`, `NODE-441`, `NODE-66102` all become `NODE-REDACTED`."
+  - "Keep the rest of each line exactly as it is, including the two spaces before the `:` and the zone text."
+  - "Do not touch the header box, the `NODE REGISTRY — REDACTED` line or the `Summary:` line."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

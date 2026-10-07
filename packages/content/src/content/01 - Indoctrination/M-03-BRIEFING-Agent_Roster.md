@@ -25,10 +25,11 @@ color: "#00ff41"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace CORP surveillance codes with the correct practice tokens from the registry:
-> > - `SCAN-7741` → `UNIT-7741`
-> > - `TRACE-3392` → `RELAY-3392`
-> > - `WATCH-0012` → `NODE-0012`
+> > Replace every CORP surveillance code with its practice token — roster, phrases and notes alike:
+> > - `SCAN-7741` → `UNIT-7741` (6×)
+> > - `TRACE-3392` → `RELAY-3392` (4×)
+> > - `WATCH-0012` → `NODE-0012` (3×)
+> > - Numbers and everything else stay as they are.
 >
 > > [!tip] SKILLS
 > > `w` `b` `e` `W` `B` `E`, `cw` to change words

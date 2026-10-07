@@ -16,6 +16,12 @@ summary: hjkl is slow. Jumping word by word makes you fast. w, b, e are your tur
 why: "Crawling character by character is how you lose a window — w, b, e jump you word by word."
 mission_type: practice
 locked: false
+objective:
+  - "Replace every CORP code word with its practice token, wherever it appears (roster, phrases and notes):"
+  - "`SCAN` → `UNIT` (6×): every `SCAN-7741` becomes `UNIT-7741`."
+  - "`TRACE` → `RELAY` (4×): every `TRACE-3392` becomes `RELAY-3392`."
+  - "`WATCH` → `NODE` (3×): every `WATCH-0012` becomes `NODE-0012`."
+  - "Only the word before the hyphen changes. Keep the numbers, the `—` descriptions and every other line exactly as they are."
 ---
 SECTOR 7 — PRACTICE ROSTER
 Classification: RESISTANCE TRAINING USE ONLY

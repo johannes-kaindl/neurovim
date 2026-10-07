@@ -171,6 +171,16 @@ Ausnahmen: M-08 steht in `EXPLAINED_ORPHANS` und `EXPLAINED_TOKENS`, weil die wi
 
 Offen: ein Invariant-Test „jede Transmission hat eine Solution“ fehlt weiterhin; der Manifest-Test zählt Rollen, prüft aber keine Paarung. Nicht in diesem Commit, weil die Zählung dann an zwei Stellen stünde.
 
+## ✅ Vierte Welle: das Ziel war nirgends sichtbar (2026-10-08)
+
+Befund von Johannes beim Spielen im Obsidian-Plugin: M-04 verlangt fünf Blöcke in einer Reihenfolge, die weder Briefing noch Transmission nennt. Die drei bisherigen Gates sahen das strukturell nicht, weil jede Zeile und jedes Token der Lösung in der Transmission vorkommt — nur die Ordnung nicht. Gleichzeitig war im Vault des Maintainers jede Mission unlösbar, weil der Obsidian Linter Frontmatter in die Missionsnotiz schrieb und die Prüfung roh verglich.
+
+Fix in drei Teilen. (1) Die Prüfung normalisiert Frontmatter und Leerzeichen am Zeilenende (`normalizeMissionText`). (2) Jede Mission trägt ein Frontmatter-Feld `objective`: die konkreten Schritte von Transmission zu Lösung, während der ganzen Mission sichtbar — das Briefing erscheint nur einmal, KATAs haben keins. (3) Ein viertes Gate: jedes neue Wort der Lösung steht im Ziel oder schon in der Transmission, exakt und ohne Briefing als Quelle. Regel-Ziele (M-01, M-09, M-15, R-19) stehen mit Begründung in `RULE_OBJECTIVES`; ein Eintrag, der nicht mehr gebraucht wird, macht das Gate rot.
+
+Belegt durch eine blinde Nachprobe: pro Mission schrieb ein Agent das Ziel, ein zweiter ohne Zugriff auf Lösung und Briefing spielte die Mission nur aus Transmission und Ziel nach, ein dritter verglich mit der Spielprüfung. 54 von 54 trafen die Lösung zeichengenau; M-12 brauchte zwei Runden, R-15 drei (die Zählung im Ziel war falsch). Dabei gefundene Inhaltsfehler sind im CHANGELOG aufgeführt.
+
+Bekannte Restpunkte, die die Lösbarkeit nicht berühren: Lore-Unstimmigkeiten in M-12 (Q2/Q3) und R-20 (Namensrichtung), das Beispiel im M-07-Briefing nutzt ein anderes Wortpaar, M-11 nennt einen Split-Pane-Weg, den die Web-App nicht hat (das Ziel nennt die Werte direkt), und R-24 lässt den rechten Rahmen der Kopfbox bewusst verrutschen.
+
 ## Reproduktion des Sweeps
 
 ```bash

@@ -18,6 +18,11 @@ sticker: lucide//lock
 color: "#0066ff"
 summary: "[LOCKED] Marks, Macros, Registers. Automation at operator level. Available after DEEP COVER."
 why: "Record the fix once, mark your ground, and let q and @ do the same work CORP would make you do by hand."
+objective:
+  - "In the 12 log lines under `PHASE III — Sector Deployment Cycle`, delete the prefix `TS-` from each timestamp: `[TS-2047-04-01]` → `[2047-04-01]` (12×)."
+  - "Only the `TS-` goes; the dates and the rest of each line stay exactly as they are."
+  - "Leave the `Note:` block at the bottom as it is — its example line `[2047-04-01] not [TS-2047-04-01]` keeps its `TS-`."
+  - "Do not touch the header, the `Assessment:` paragraph or any other line."
 ---
 CORP INTERNAL CHRONOLOGY — HARMONIZATION ENGINE OPERATIONS
 Source: Operations Review // Classification: Restricted Circulation

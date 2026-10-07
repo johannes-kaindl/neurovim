@@ -24,7 +24,7 @@ color: "#ff6600"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace `ALPHA`, `BETA`, and `GAMMA` tier designations with the unified label `TIER-1`.
+> > In the seven register lines, replace every tier label `ALPHA`, `BETA` and `GAMMA` with `TIER-1` (7×). Leave names, spacing and `// role` text unchanged.
 >
 > > [!tip] SKILLS
 > > `:%s/\v(ALPHA|BETA|GAMMA)/TIER-1/g` — `\v` enables very magic; `|` alternates without escaping

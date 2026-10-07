@@ -23,10 +23,10 @@ color: "#00ccff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace `QUEUED` with `ACTIVE` only on lines 1–10. The lower section must remain untouched.
+> > Upper section only (`NODE-ALPHA` through `RELAY-03`, above the first `---`): `QUEUED` → `ACTIVE` (8×). The `ARCHIVE SECTION` below keeps its three `QUEUED` lines untouched.
 >
 > > [!tip] SKILLS
-> > `1,10s/QUEUED/ACTIVE/g` — ranged substitution (line numbers visible in Vim with `:set number`)
+> > `:{range}s/QUEUED/ACTIVE/` — ranged substitution. Take the range from the line numbers your editor shows (`:set number`), or select the eight lines with `V` and type `:` to get `:'<,'>`
 >
 > > [!success] +20 XP
 >

@@ -18,6 +18,10 @@ sticker: lucide//repeat
 color: "#ff6600"
 summary: "[LOCKED] Five relay lines need the same two edits. Record the fix once as a macro, then echo it down the list."
 why: "Five lines, the same two edits — record the change once and let the macro echo it down the list."
+objective:
+  - "On each of the five `relay … active` lines at the bottom, add `# ` (hash + space) at the start and change the word `active` to `[OK]`."
+  - "Target, top to bottom: `# relay alpha [OK]`, `# relay bravo [OK]`, `# relay charlie [OK]`, `# relay delta [OK]`, `# relay echo [OK]`."
+  - "Leave the header box, the CIPHER note and the `---` line above the list unchanged."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

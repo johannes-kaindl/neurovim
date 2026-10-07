@@ -17,6 +17,10 @@ summary: A trace flood buried the real log. One global command — :g/TRACE/d �
 why: "One :g/TRACE/d nets every junk line at once — the global command is a dragnet, not a hunt."
 mission_type: practice
 locked: true
+objective:
+  - "Delete every line that starts with `[TRACE]` (5×), the whole line each time."
+  - "Keep all five `[OK]    auth …` lines exactly as they are, in the same order, with no blank lines between them."
+  - "Do not touch the ASCII box or the `CHANNEL LOG` heading."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

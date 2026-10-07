@@ -23,7 +23,7 @@ color: "#ff6600"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Fill every `____` with the master key `K7741`.
+> > Replace each of the four `____` slots with the master key `K7741`. Change nothing else.
 >
 > > [!tip] SKILLS
 > > `"ayiw` on the key → on each slot `cw`<Esc> then `"ap` (or replace `____` and paste from register a)

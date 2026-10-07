@@ -18,6 +18,9 @@ sticker: lucide//anchor
 color: "#ff0066"
 summary: "[LOCKED] CLASSIFIED appears both as full lines and within longer lines. Combined anchors target only the full-line markers."
 why: "Pin both ends with ^ and $ and you hit only the full-line markers, never the word buried in a sentence."
+objective:
+  - "Replace each line that is exactly `CLASSIFIED` and nothing else with `[REDACTED]` (3×, in the list under `CLASSIFICATION MANIFEST — PROJECT MIRROR`)."
+  - "Leave every `CLASSIFIED` inside a longer sentence unchanged (4 lines), and do not touch the header box or the CIPHER note."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

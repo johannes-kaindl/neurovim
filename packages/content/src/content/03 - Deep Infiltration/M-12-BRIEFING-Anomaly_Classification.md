@@ -27,7 +27,12 @@ color: "#00e5ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Apply a three-stage Ex-mode cleanup to a Pattern Analysis Unit anomaly report.
+> > Apply a three-stage Ex-mode cleanup to a Pattern Analysis Unit anomaly report:
+> > 1. Delete the whole `Standard Monitoring` section — heading, 8 entries, surrounding blank lines.
+> > 2. In the 5 `Legacy-Protocol Session` lines: `Cat. 7 Non-Compliance` → `Cat. 5 Factual Non-Compliance`.
+> > 3. Under `Active Investigations`: delete the 2 `Cross-reference Query` and 2 `Retrospective Flag` lines; the 6 `Anomaly Signature` lines stay.
+> >
+> > Leave the `Note:` block at the bottom (the `Note:` line and the `(1)`, `(2)`, `(3)` lines below it) untouched — scope your commands to the sections.
 >
 > > [!tip] SKILLS
 > > `:g/pattern/d`, `:v/pattern/d`, `:g/pattern/s/X/Y/`, range-scoping via visual selection `'<,'>`

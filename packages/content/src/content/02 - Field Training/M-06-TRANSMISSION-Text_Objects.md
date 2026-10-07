@@ -16,6 +16,14 @@ summary: Text objects are Vim's superpower. No matter where the cursor is — yo
 why: "ci( hits the target no matter where the cursor sits — stop aiming, start naming what you want."
 mission_type: practice
 locked: true
+objective:
+  - "In `endpoints` and `access_codes`, rename the IDs: `NCE-0091-A` → `CELL-DELTA-01`, `NCE-0042-B` → `CELL-DELTA-02`, `NCE-0017-C` → `GHOST`."
+  - "Record `CELL-DELTA-01`: sector `sector-7-north`, clearance `field-ops`, status `active`, code `7741`."
+  - "Record `CELL-DELTA-02`: sector `corp-adjacent`, clearance `intelligence`, status `active`, code `3392`."
+  - "Record `GHOST`: sector `corp-internal`, clearance `deep-cover`, status `dark`, code `0012`."
+  - "In both blocks, each row's `ZONE-NULL` becomes its sector, `RESTRICTED` its clearance, `INACTIVE` its status, `0000` its code."
+  - "Last four lines: `location` = `relay-cluster-7`, `frequency` = `441.7`, `window` = `THE DIFF DOES NOT LIE`, `response` = `TRUST THE DIFF` (not record IDs)."
+  - "Only the values inside the quotes change. Keys (`sector`, `clearance`, `status`), quotes, brackets, braces, commas and the note above stay as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

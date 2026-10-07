@@ -18,6 +18,10 @@ sticker: lucide//minimize-2
 color: "#ff6600"
 summary: "[LOCKED] CORP wraps payloads in XML-style tags. Strip the tags with a lazy quantifier — or you'll consume the content too."
 why: "Greedy eats the whole line; the lazy quantifier stops at the first close-tag and spares the payload."
+objective:
+  - "Delete every tag: all 14 `<...>` and `</...>` markers on the 7 lines from `<HEADER>PAYLOAD EXTRACTION` down to `Channel:` (`HEADER`, `ENCRYPTED`, `NODE`, `ASSET`)."
+  - "Keep the text between the tags exactly as it is, including the label before it (e.g. `Route: <ENCRYPTED>primary corridor, north passage</ENCRYPTED>` → `Route: primary corridor, north passage`)."
+  - "Leave no extra spaces where a tag was. Do not touch the box header, the CIPHER note or the `---` line."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

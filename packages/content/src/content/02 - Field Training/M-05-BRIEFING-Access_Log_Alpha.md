@@ -55,7 +55,7 @@ color: "#66cc66"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Remove all CORP-injected lines from the access log.
+> > Delete all four `>> COMPLIANCE` blocks — every line starting with `>>` (7 lines) — plus the blank line each block leaves behind. Everything else stays untouched.
 >
 > > [!tip] SKILLS
 > > `d` `c` `y` + motions, `dd` `D` `cc` `C`, `p` `P`

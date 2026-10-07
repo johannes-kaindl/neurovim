@@ -14,7 +14,7 @@
 
 > [!quote] CIPHER
 > *"Poe's The Raven. Clean version in [[99-THE_RAVEN]] for reference.*
-> *Every `Nevermore` you recover is the same word.*
+> *Both buried names are the same word: `Lenore`. The poem ends on `evermore`, lowercase.*
 > *Work fast. Work clean."*
 
 ---
@@ -42,4 +42,4 @@ Nameless here for evermore.
 
 Note: The corruption-signature follows the standard NEVERMORE profile — character-level injection (█ glyphs), word-substitution (REDACTED, SURVEILLANCE, MONITORING, EVERMORE), line-level deletion ([LINE REMOVED]), and embedded compliance-banners. Use the full Tier-2 toolkit.
 
-Compare the restored form against [[99-THE_RAVEN]] — first two stanzas should match exactly.
+Compare the restored words against [[99-THE_RAVEN]] — but keep this transmission's line breaks and tab indentation exactly as they are.

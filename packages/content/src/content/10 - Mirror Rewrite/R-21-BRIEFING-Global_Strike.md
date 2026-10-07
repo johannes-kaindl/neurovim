@@ -25,7 +25,7 @@ color: "#ff4444"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > On every line containing `ENCRYPTED`, change `STATUS: ACTIVE` to `STATUS: EXPOSED`.
+> > On every line containing `ENCRYPTED` (4×: CHANNEL-02, 04, 05, 07), change `STATUS: ACTIVE` to `STATUS: EXPOSED`. The three `CLEAR` lines keep `STATUS: ACTIVE`; nothing else changes.
 >
 > > [!tip] SKILLS
 > > `:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/` — global-then-substitute composition

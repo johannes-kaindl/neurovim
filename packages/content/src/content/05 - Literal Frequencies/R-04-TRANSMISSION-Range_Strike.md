@@ -18,6 +18,10 @@ sticker: lucide//scissors
 color: "#00ccff"
 summary: "[LOCKED] Only the first section of a two-part document needs correction. Range-limited substitution leaves the second half intact."
 why: "A substitution doesn't have to touch the whole file — give it a line range and the rest stays untouched."
+objective:
+  - "Upper section (the eight lines `NODE-ALPHA` through `RELAY-03`, above the first `---`): replace `QUEUED` with `ACTIVE` on every line (8×)."
+  - "Leave the `ARCHIVE SECTION — DO NOT MODIFY` block untouched: its three `QUEUED` lines stay `QUEUED`."
+  - "Change nothing else: keep the column spacing, the header line and the CIPHER note exactly as they are."
 ---
 CORP OPERATIONAL STATUS — SECTOR 3 // dual-section register // 2047-05-05 07:00
 

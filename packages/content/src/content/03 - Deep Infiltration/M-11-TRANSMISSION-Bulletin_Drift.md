@@ -16,6 +16,13 @@ sticker: lucide//columns-2
 color: "#0066ff"
 summary: "[LOCKED] Split-pane diff reconciliation — restore a CORP citizen bulletin against its pre-release draft. Available after M-10."
 why: "Two panes, one truth — Ctrl-W lets you read the draft and rebuild the leak side by side without losing your place."
+objective:
+  - "Restore the four sanitized claims to GHOST's pre-release wording (the same four lines appear verbatim in FRAGMENT-10)."
+  - "Line starting `Your sector's productivity index`: `**94.3%**, within projected parameters.` → `**78.4%**, declining from the Q1 baseline of 83.1%.`"
+  - "`Enhanced coverage coordination has been facilitated` → `Non-compliance identification and detention operations have been conducted` (rest of that line unchanged)."
+  - "`**187 cases receiving assistance**` → `**312 cases requiring resolution**`"
+  - "Line starting `Sector 7 compliance indicators reflect`: `a stable compliance trajectory entering Q3. Residents can expect continued operational support` → `elevated non-compliance pressures entering Q3. Workforce Optimization Bureau projects continued enforcement escalation` (rest unchanged)."
+  - "Change nothing else: header box, other paragraphs, sign-off and the `Note:` line at the bottom stay as they are."
 ---
 
 ```ascii

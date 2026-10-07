@@ -25,12 +25,13 @@ color: "#66cc66"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace placeholder values inside brackets, quotes, and braces with GHOST's decrypted roster:
+> > Replace the placeholder values inside the quotes with GHOST's decrypted roster. In `endpoints` and `access_codes`, each ID takes its own row's values:
 > > - `NCE-0091-A` → `CELL-DELTA-01` (sector `sector-7-north`, clearance `field-ops`, status `active`, code `7741`)
 > > - `NCE-0042-B` → `CELL-DELTA-02` (sector `corp-adjacent`, clearance `intelligence`, status `active`, code `3392`)
 > > - `NCE-0017-C` → `GHOST` (sector `corp-internal`, clearance `deep-cover`, status `dark`, code `0012`)
 > > - `location` → `relay-cluster-7` · `frequency` → `441.7`
-> > - `window` → `THE DIFF DOES NOT LIE` · `response` → `TRUST THE DIFF`
+> > - `window` → `THE DIFF DOES NOT LIE` · `response` → `TRUST THE DIFF` (these two are not renamed to record IDs)
+> > - Keys, quotes, brackets, braces and commas stay as they are.
 >
 > > [!tip] SKILLS
 > > `ci"` `ca"` `ci(` `ci{` `ci[` `diw` `daw` `cit`

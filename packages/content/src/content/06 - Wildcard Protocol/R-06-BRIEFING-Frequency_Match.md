@@ -23,7 +23,7 @@ color: "#ff6600"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Delete the `X | ` column so each row reads `NODE | <name> online`.
+> > Delete the `X | ` column from all five `NODE` rows so each row reads `NODE | <name> online` (e.g. `NODE | alpha online`). Nothing else changes.
 >
 > > [!tip] SKILLS
 > > `Ctrl-V` (visual-block) → select the column down all rows → `d`

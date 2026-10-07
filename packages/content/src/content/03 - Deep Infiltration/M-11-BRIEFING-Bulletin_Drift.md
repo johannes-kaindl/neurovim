@@ -26,6 +26,13 @@ color: "#00e5ff"
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
 > > Restore four sanitized claims in a CORP citizen bulletin against the GHOST-intercepted pre-release draft.
+> >
+> > - `**94.3%**, within projected parameters.` → `**78.4%**, declining from the Q1 baseline of 83.1%.`
+> > - `Enhanced coverage coordination has been facilitated` → `Non-compliance identification and detention operations have been conducted`
+> > - `**187 cases receiving assistance**` → `**312 cases requiring resolution**`
+> > - `a stable compliance trajectory entering Q3. Residents can expect continued operational support` → `elevated non-compliance pressures entering Q3. Workforce Optimization Bureau projects continued enforcement escalation`
+> >
+> > Everything else stays as it is. The four original lines are in FRAGMENT-10.
 >
 > > [!tip] SKILLS
 > > `Ctrl+Tab`, `yy`, `Vp`, cross-pane line-transfer workflow

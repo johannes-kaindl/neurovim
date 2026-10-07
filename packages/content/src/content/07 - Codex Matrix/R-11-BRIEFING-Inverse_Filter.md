@@ -25,7 +25,7 @@ color: "#cc00ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Delete all lines that do NOT contain `CLEARANCE`. Every noise line goes. Every valid entry stays.
+> > Delete every line that does NOT contain `CLEARANCE` — the header block (ASCII box, CIPHER note, `---`, blank lines) and all 6 noise lines. Exactly 5 entries remain, unchanged and in order: `WRAITH`, `GHOST`, `REN VOSS`, `CIPHER`, `SHADOW-7`.
 >
 > > [!tip] SKILLS
 > > `:g!/CLEARANCE/d` — delete all lines NOT matching the pattern

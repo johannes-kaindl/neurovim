@@ -24,7 +24,7 @@ color: "#cc00ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace every status code `X`, `Y`, or `Z` (appearing alone as status fields) with `CLEAN`.
+> > Replace the status code (`X`, `Y` or `Z`) at the end of each of the 8 `NODE-…` / `RELAY-…` lines with `CLEAN` (8×). Leave the header box and the CIPHER decoding note untouched.
 >
 > > [!tip] SKILLS
 > > `:%s/: [XYZ]$/: CLEAN/g` — character set `[XYZ]` matches one of those three; `$` anchors to line end

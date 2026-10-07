@@ -18,6 +18,9 @@ sticker: lucide//eraser
 color: "#ff4444"
 summary: "[LOCKED] A full surveillance log. Keep only the MIRROR-related lines. Everything else goes."
 why: ":v keeps only what matches and burns the rest — the fastest way to isolate the signal in a flood."
+objective:
+  - "Delete every line that does not contain `MIRROR`: the ASCII header box including its two code-fence lines, the CIPHER filter note, the `---` divider, all blank lines and the five log lines (`0441 ::`, `relay maintenance`, `canteen rotation`, `0518 ::`, `transport manifest`)."
+  - "Keep the six lines starting with `PROJECT MIRROR` exactly as they are, in their current order, with no blank lines between them."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

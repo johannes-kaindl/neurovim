@@ -18,6 +18,9 @@ sticker: lucide//replace
 color: "#00ccff"
 summary: "[LOCKED] CORP relay garbled a codename across a full intercept log. Fix all nine instances in one command."
 why: ":%s — the most powerful line in any file. Garble it nine times, fix it once."
+objective:
+  - "Replace every `PHANTOM` with `NEXUS` (9×, all in the log below the `---` line)."
+  - "Change nothing else: the header box, the CIPHER note and all other text stay as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

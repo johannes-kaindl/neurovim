@@ -18,6 +18,10 @@ sticker: lucide//wand-2
 color: "#ff6600"
 summary: "[LOCKED] Three CORP tier labels, one unified replacement. Use very magic mode for clean alternation syntax."
 why: "Very magic mode drops the backslash noise — write alternation the way you actually think it."
+objective:
+  - "In the seven register lines under `ASSET CLEARANCE`, replace every tier label `ALPHA`, `BETA` and `GAMMA` with `TIER-1` (7×: 3× `ALPHA`, 2× `BETA`, 2× `GAMMA`)."
+  - "Keep everything else as is: the agent names, the spacing before `:`, and the `// role` text after each label."
+  - "Do not touch the header box or the CIPHER note above the register."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

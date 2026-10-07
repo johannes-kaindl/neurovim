@@ -18,6 +18,10 @@ sticker: lucide//target
 color: "#ff4444"
 summary: "[LOCKED] PROJECT MIRROR's encrypted entries are hidden as ACTIVE. Compose :g with :s to expose them all."
 why: "Compose :g with :s and the global command becomes a scalpel — find the hidden lines, then rewrite each."
+objective:
+  - "On each of the four `CHANNEL-xx : ENCRYPTED` lines (02, 04, 05, 07), change `STATUS: ACTIVE` to `STATUS: EXPOSED`."
+  - "The three `CLEAR` lines (01, 03, 06) keep `STATUS: ACTIVE`."
+  - "Change nothing else: the header box, the CIPHER note and the closing `Encrypted channels: 4...` line stay as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

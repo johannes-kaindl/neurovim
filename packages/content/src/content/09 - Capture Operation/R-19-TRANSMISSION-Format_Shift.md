@@ -18,6 +18,11 @@ sticker: lucide//calendar-arrow-right
 color: "#00ff88"
 summary: "[LOCKED] CORP dates are ISO format. Resistance protocol is day-first. Three captured groups, reversed in replacement."
 why: "Three groups in, reordered out — ISO becomes day-first because capture remembers what you matched."
+objective:
+  - "Rewrite every date from `YYYY-MM-DD` to `DD.MM.YYYY` (7×): e.g. `2047-06-03` → `03.06.2047`."
+  - "That is the date on the `Timestamp` line in the header box plus the six dates at the start of the `PROJECT MIRROR TIMELINE` lines."
+  - "Change only the dates. Keep the ` // 12:00`, the box borders, the ` — ` dashes and the event text exactly as they are."
+  - "Leave the CIPHER conversion note untouched (its pattern `(\\d{4})-(\\d{2})-(\\d{2})` is not a date)."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -289,8 +289,13 @@ categories, revealing each as you unlock the matching missions.
 | `c` | change selection |
 | `I` | insert at block start |
 | `A` | append at block end |
-| `Ctrl+a` | increment number |
-| `Ctrl+x` | decrement number |
+
+### NUMBERS (CURSOR)
+
+| Key | Action |
+| --- | --- |
+| `Ctrl+a` | add [count] to the number at the cursor |
+| `Ctrl+x` | subtract [count]; `-4217` counts as negative |
 
 ## REGEX
 

@@ -15,6 +15,14 @@ summary: Config values are wrong. Infiltrate each delimiter and replace the payl
 why: "ci and di reach inside the delimiters — stop counting characters, name the object and replace it."
 mission_type: practice
 locked: true
+objective:
+  - "Replace only what sits inside the delimiters on the five config lines at the bottom; keep the quotes, parentheses and braces."
+  - "`\"REDACTED\"` → `\"OPERATIVE_7734\"`"
+  - "`\"UNKNOWN\"` → `\"LEVEL-4\"`"
+  - "`(0.0, 0.0)` → `(52.4, 13.4)` (comma, then one space)"
+  - "`\"OPEN\"` → `\"CIPHER_FREQ\"`"
+  - "`{BLANK}` → `{NEVERMORE}`"
+  - "Leave the banner, the `OPERATIVE CONFIG` heading and the `Field reference` line unchanged."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

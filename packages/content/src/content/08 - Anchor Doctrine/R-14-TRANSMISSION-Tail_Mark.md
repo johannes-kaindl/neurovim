@@ -18,6 +18,9 @@ sticker: lucide//clipboard-copy
 color: "#ff6600"
 summary: "[LOCKED] One master key, four empty slots. Yank the key into a named register once, then drop it into every slot."
 why: "One master key, four empty slots — yank it to a named register once and drop it wherever it belongs."
+objective:
+  - "Replace each `____` placeholder on the four `slot` lines with the master key `K7741` (4×), so each reads e.g. `slot one: K7741`."
+  - "Leave the `MASTER KEY: K7741` line, the header box and the CIPHER note unchanged."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

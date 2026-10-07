@@ -25,7 +25,7 @@ color: "#ff4444"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Keep only lines containing `MIRROR`. Delete everything else.
+> > Keep only the six `PROJECT MIRROR` lines, unchanged and in order. Delete every other line — header box, CIPHER note, `---` divider, blank lines and the five log entries.
 >
 > > [!tip] SKILLS
 > > `:v/MIRROR/d` — inverse global delete (equivalent to `:g!/MIRROR/d`)

@@ -1,7 +1,7 @@
 FROM: CIPHER
 TO: [PENDING DESIGNATION] — NEW OPERATIVE
 
-Your induction document has been compromized in transit.
+Your induction document has been compromised in transit.
 CORP's NEVERMORE system injected noise at the character level.
 You must use the tool to remove it.
 

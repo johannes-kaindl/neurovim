@@ -18,6 +18,10 @@ sticker: lucide//copy-x
 color: "#00ff88"
 summary: "[LOCKED] CORP transcription stutters duplicate words. Backreference finds them. Remove the echo."
 why: "A back-reference catches a word repeating itself — find the stutter, then cut the echo."
+objective:
+  - "Collapse every doubled word to a single copy (7×): `STUTTER STUTTER` → `STUTTER`, `the the` → `the`, `are are` → `are`, `confirmed confirmed` → `confirmed`, `WRAITH WRAITH` → `WRAITH`, `closed closed` → `closed`, `signal signal` → `signal`."
+  - "The heading `COMM LOG — STUTTER STUTTER CORRECTED` counts too: it becomes `COMM LOG — STUTTER CORRECTED`."
+  - "Change nothing else: the ASCII box, the CIPHER note and the `---` line stay exactly as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

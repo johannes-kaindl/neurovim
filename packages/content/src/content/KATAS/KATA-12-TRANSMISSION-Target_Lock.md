@@ -17,6 +17,10 @@ summary: CORP slipped stray markers into the grid. Jump straight to each one wit
 why: "Don't crawl with h and l — f and t snap the cursor to the mark, and ; repeats the jump."
 mission_type: practice
 locked: true
+objective:
+  - "Delete every stray `7` from the four `grid` lines (5×): `alpha7`, `bravo7`, `charlie7`, `delta7` and `secure7`."
+  - "Target: `grid alpha clear`, `grid bravo clear`, `grid charlie clear`, `grid delta secure`."
+  - "Change nothing else. The header box and the `SECTOR SCAN` line stay as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

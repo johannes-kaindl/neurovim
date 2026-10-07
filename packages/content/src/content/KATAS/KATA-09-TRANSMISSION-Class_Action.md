@@ -16,6 +16,10 @@ summary: Purge noise lines. Keep only CLEARANCE entries. Character class or :g! 
 why: "A character class is your filter — keep the CLEARANCE lines, drop the noise, your call which tool."
 mission_type: practice
 locked: true
+objective:
+  - "Keep only the 6 lines that contain `CLEARANCE`: the `CLEARANCE REGISTER` title and the five agent lines from `WRAITH` to `ECHO SOREN`."
+  - "Delete every other line: the whole ascii banner box at the top (including its two code-fence lines), every blank line, and the 4 noise lines (`0x7F1 …`, `[buffer spill] …`, `::: checksum residue …`, `EOF fragment …`)."
+  - "Do not edit the kept lines or change their order. The result is 6 lines with no blank line between them."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

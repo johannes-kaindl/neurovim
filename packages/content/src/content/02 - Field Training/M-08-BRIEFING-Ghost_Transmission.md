@@ -23,13 +23,13 @@ color: "#ffaa00"
 
 > [!quote] CIPHER
 > *"The poem is Poe's The Raven. Clean version in [[99-THE_RAVEN|99-THE_RAVEN]] for reference.*
-> *Every `Nevermore` you recover is the same word.*
+> *Both buried names are the same word: `Lenore`. The poem ends on `evermore`, lowercase.*
 > *Work fast. Work clean."*
 
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Fully restore the corrupted Raven transmission.
+> > Restore the poem: fill the █ runs (`midnight`, `morrow`), replace the `REDACTED` words, `SURVEILLANCE`/`MONITORING` (`visitor`/`tapping`) and the `[LINE REMOVED …]` line, lowercase `EVERMORE`, delete the two `>>` COMPLIANCE banners. The exact list stays on screen during the mission.
 >
 > > [!tip] SKILLS
 > > All of Tier 2 — combined application

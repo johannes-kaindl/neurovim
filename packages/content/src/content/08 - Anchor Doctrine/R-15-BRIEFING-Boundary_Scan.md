@@ -25,7 +25,7 @@ color: "#ff0066"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Replace only the standalone word `MIRROR` with `PROJECT MIRROR`. Do not touch `MIRRORING` or `MIRRORED`.
+> > Replace every standalone word `MIRROR` with `PROJECT MIRROR` (4×). Do not touch `MIRRORING` or `MIRRORED`.
 >
 > > [!tip] SKILLS
 > > `:%s/\<MIRROR\>/PROJECT MIRROR/g` — word boundary anchors

@@ -18,6 +18,10 @@ sticker: lucide//trash-2
 color: "#00ccff"
 summary: "[LOCKED] CORP tracking markers are interspersed through an intelligence document. Delete every marked line with one global command."
 why: "When a marker tags the trash, :g/pattern/d takes out every line wearing it in a single pass."
+objective:
+  - "Delete all five lines that start with `[TRACK]` (`scan_id=0041` to `0045`), each removed completely, leaving no blank line behind."
+  - "Keep the six intelligence lines (`Asset WRAITH departed…` to `Asset secured. Channel closed.`) unchanged and in their order."
+  - "Do not touch the header box, the CIPHER note or the `---` divider above the text."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

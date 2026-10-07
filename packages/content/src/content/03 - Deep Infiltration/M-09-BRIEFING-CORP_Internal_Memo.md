@@ -26,7 +26,7 @@ color: "#00e5ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Restore a CORP internal memo with systematic line-level corruption.
+> > Strip the injected `TS-` prefix from the 12 timestamped log lines: `[TS-2047-04-01]` → `[2047-04-01]`. Leave the `Note:` block at the bottom untouched.
 >
 > > [!tip] SKILLS
 > > `ma` `'a` `` `a ``, `qa` `q` `@a` `@@`, `:norm`

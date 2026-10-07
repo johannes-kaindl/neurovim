@@ -23,7 +23,7 @@ color: "#ff6600"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Strip all `<TAG>` and `</TAG>` wrappers from the document. Content between tags must remain.
+> > Delete all 14 tags (`<HEADER>`, `<ENCRYPTED>`, `<NODE>`, `<ASSET>` and their `</...>` closers) on the 7 payload lines. The text between the tags stays exactly as it is, with no extra spaces.
 >
 > > [!tip] SKILLS
 > > `:%s/<.\{-}>//g` — lazy quantifier `\{-}` matches the shortest possible content between `<` and `>`

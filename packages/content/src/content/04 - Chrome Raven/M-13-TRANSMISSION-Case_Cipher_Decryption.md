@@ -17,6 +17,13 @@ sticker: lucide//type
 color: "#9933ee"
 summary: "[LOCKED] Case-conversion decryption — restore intended casing of a GHOST-decoded RAVEN signal-fragment. Available after M-12."
 why: "Casing carries meaning CORP scrambled; gU, gu and ~ flip it back without you retyping a single letter."
+objective:
+  - "Fix only the casing of the four message lines between the two `---` rules. Letters, spaces and punctuation stay exactly as they are."
+  - "`read THE CASE as weight.` → `Read the case as weight.`"
+  - "`every CAPITAL is a step. EVERY LOWERCASE, the pause between.` → `Every capital is a step. Every lowercase, the pause between.`"
+  - "`YOU RESTORED THE WALK.` → `You restored the walk.`"
+  - "Signature `— rvn` → `— RVN`"
+  - "Leave the GHOST header box, the GHOST note above and the `Note:` block below unchanged."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

@@ -16,6 +16,14 @@ summary: First real mission. CORP corrupted a Resistance transmission. Repair it
 why: "First live repair: CORP corrupted the signal, and only everything you've drilled puts it back together."
 mission_type: practice
 locked: true
+objective:
+  - "Fill the two █ runs: `██████████` → `midnight`, `████████` → `morrow`."
+  - "In the line `REDACTED REDACTED REDACTED volume of REDACTED lore—`: the three leading `REDACTED` → `Over many a quaint and curious`, the last one → `forgotten`."
+  - "In the `'Tis some` line: `SURVEILLANCE` → `visitor`, `MONITORING` → `tapping`. Keep the quotes and commas."
+  - "Replace the whole line `[LINE REMOVED BY AUTOMATED CONTENT HARMONIZATION ENGINE v4.1]` with `Ah, distinctly I remember it was in the bleak December;`"
+  - "In the second stanza: both `REDACTED` → `Lenore` (2×), and `EVERMORE.` → `evermore.` (lowercase)."
+  - "Delete the two `>>` COMPLIANCE banner lines at the end of the poem block. Keep the blank line before the closing fence."
+  - "Change nothing else: tab indentation, em dashes `—`, the `CORRUPTED TRANSMISSION` header line and all text outside the poem block stay as they are."
 ---
 
 ```ascii-glitch
@@ -34,7 +42,7 @@ locked: true
 
 > [!quote] CIPHER
 > *"Poe's The Raven. Clean version in [[99-THE_RAVEN]] for reference.*
-> *Every `Nevermore` you recover is the same word.*
+> *Both buried names are the same word: `Lenore`. The poem ends on `evermore`, lowercase.*
 > *Work fast. Work clean."*
 
 ---
@@ -64,4 +72,4 @@ Nameless here for EVERMORE.
 
 Note: The corruption-signature follows the standard NEVERMORE profile — character-level injection (█ glyphs), word-substitution (REDACTED, SURVEILLANCE, MONITORING, EVERMORE), line-level deletion ([LINE REMOVED]), and embedded compliance-banners. Use the full Tier-2 toolkit.
 
-Compare the restored form against [[99-THE_RAVEN]] — first two stanzas should match exactly.
+Compare the restored words against [[99-THE_RAVEN]] — but keep this transmission's line breaks and tab indentation exactly as they are.

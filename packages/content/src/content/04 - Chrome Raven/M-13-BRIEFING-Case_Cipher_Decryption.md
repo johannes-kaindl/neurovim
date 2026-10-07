@@ -25,7 +25,10 @@ color: "#cc66ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Restore the intended casing of a GHOST-decoded signal fragment.
+> > Restore the intended casing of a GHOST-decoded signal fragment — only case changes, nothing else.
+> > - `read THE CASE as weight.` → `Read the case as weight.`
+> > - `every CAPITAL is a step. EVERY LOWERCASE, the pause between.` → `Every capital is a step. Every lowercase, the pause between.`
+> > - `YOU RESTORED THE WALK.` → `You restored the walk.` · `— rvn` → `— RVN`
 >
 > > [!tip] SKILLS
 > > `~`, `viwu` / `viwU`, `gu{motion}` / `gU{motion}`, `guu` / `gUU`, `g~~`

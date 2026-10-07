@@ -25,7 +25,7 @@ color: "#00ff88"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Convert all dates from `YYYY-MM-DD` (CORP format) to `DD.MM.YYYY` (Resistance format).
+> > Convert all 7 dates from `YYYY-MM-DD` (CORP format) to `DD.MM.YYYY` (Resistance format): the header `Timestamp` plus the six timeline entries. Change nothing else.
 >
 > > [!tip] SKILLS
 > > `:%s/\v(\d{4})-(\d{2})-(\d{2})/\3.\2.\1/g` — three groups, reversed order in replacement

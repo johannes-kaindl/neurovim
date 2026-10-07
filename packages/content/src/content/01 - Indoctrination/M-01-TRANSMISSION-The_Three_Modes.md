@@ -15,11 +15,15 @@ summary: Learn Vim's three modes — Normal, Insert, Visual. Without this founda
 why: "Modes are the spine of everything you'll touch. Get them wrong and the tool fights you."
 mission_type: practice
 locked: false
+objective:
+  - "Delete every stray capital `X` and `Z` from the text: 17× `X`, 13× `Z`, 30 characters in all. Each one sits inside or at the end of a word (`YoXur` → `Your`, `useX` → `use`)."
+  - "The document contains no real capital `X` or `Z`, so every one you find is noise. Remove only those characters."
+  - "Change nothing else: keep every other letter, space, punctuation mark, line and blank line exactly as it is (`FROM:`, `TO:`, `ESC`, `— CIPHER` stay untouched)."
 ---
 FROM: CIPHER
 TO: [PENDING DESIGNATION] — NEW OPERATIVE
 
-YoXur induction doZcument has been comprXomized in tranZsit.
+YoXur induction doZcument has been comprXomised in tranZsit.
 CORP's NEVERMORE sysXtem injeXcted noise at the charZacter level.
 You must useX the tooXl to reZmove it.
 

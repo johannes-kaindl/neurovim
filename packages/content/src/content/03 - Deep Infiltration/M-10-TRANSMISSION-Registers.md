@@ -16,6 +16,11 @@ sticker: lucide//lock
 color: "#0066ff"
 summary: "[LOCKED] Named registers — two-block swap. The default register is not enough. Available after DEEP COVER."
 why: "The default register is one slot; name your own and you can hold two payloads and swap them clean."
+objective:
+  - "Swap the two 4-line date blocks between the phase headers. The four lines starting `[2047-04-12]`, `[2047-04-19]`, `[2047-04-26]`, `[2047-05-03]` go directly under `PHASE ALPHA — Sector 7 Enforcement Cycle`."
+  - "The four lines starting `[2047-05-17]`, `[2047-05-24]`, `[2047-05-31]`, `[2047-06-07]` go directly under `PHASE BETA — Sector 12 Enforcement Cycle`."
+  - "Keep each block's lines in their current order, and keep both `PHASE` header lines where they are."
+  - "Do not change any text. The header lines, the `Assessment:` line and the `Note:` at the bottom stay exactly as they are."
 ---
 CORP INTERNAL CHRONOLOGY — OPERATIONS REVIEW
 Source: Deep Infiltration // Classification: RESTRICTED

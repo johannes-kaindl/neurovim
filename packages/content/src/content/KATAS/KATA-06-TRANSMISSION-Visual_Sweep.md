@@ -16,6 +16,9 @@ summary: Dossier corrupted with null data injections. Select each line. Purge it
 why: "Mark the line in Visual, purge it — selection is how you act on a span instead of a single spot."
 mission_type: practice
 locked: true
+objective:
+  - "Delete the three `[NULL DATA — DISCARD]` lines (3×) completely — the whole line, so no blank line is left in their place."
+  - "Keep every other line exactly as it is: the ASCII header box, the `OPERATIVE DOSSIER — VOSS` title, and the five fields `NAME`, `RANK`, `CLEARANCE`, `MISSION`, `STATUS` in their current order."
 ---
 ```ascii
 ╔══════════════════════════════════════════╗

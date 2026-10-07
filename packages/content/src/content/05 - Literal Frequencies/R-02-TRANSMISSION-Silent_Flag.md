@@ -18,6 +18,9 @@ sticker: lucide//flag
 color: "#00ccff"
 summary: "[LOCKED] A CORP log uses three different casings for the same designation. One case-insensitive substitution cleans all of them."
 why: "Three casings, one designation — the /i flag stops you chasing every variant by hand."
+objective:
+  - "Replace every `mirror` in any casing (`MIRROR`, `Mirror`, `mirror`) with `PROJECT MIRROR` (7×) — one per line in the log below the second header."
+  - "Nothing else changes: the boxed header, the CIPHER note and the `SURVEILLANCE DIVISION — PROJECT DESIGNATION LOG` line stay as they are."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

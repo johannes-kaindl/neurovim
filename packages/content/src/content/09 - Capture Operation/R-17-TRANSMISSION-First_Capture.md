@@ -18,6 +18,10 @@ sticker: lucide//parentheses
 color: "#00ff88"
 summary: "[LOCKED] CORP ordered sector before node. Resistance protocol requires node before sector. Capture both and swap."
 why: "Capture two halves, swap their order — node before sector, rewritten without retyping a thing."
+objective:
+  - "In each of the six designation lines, swap the two codes: `SECTOR-A NODE-1` → `NODE-1 SECTOR-A` (pattern `SECTOR-X NODE-N` → `NODE-N SECTOR-X`, one space between) (6×)."
+  - "Everything from ` — ` onward stays as it is, and the line order does not change."
+  - "Do not touch the header box, the CIPHER note or the `FIELD MAP` title line."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

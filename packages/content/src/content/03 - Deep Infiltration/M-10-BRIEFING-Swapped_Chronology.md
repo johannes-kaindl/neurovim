@@ -27,7 +27,7 @@ color: "#00e5ff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Restore a CORP chronology by swapping two attribution blocks back into correct phase positions.
+> > Swap the two 4-line date blocks: the lines `[2047-04-12]` … `[2047-05-03]` go under `PHASE ALPHA`, the lines `[2047-05-17]` … `[2047-06-07]` go under `PHASE BETA`. Keep each block's order; change no text.
 >
 > > [!tip] SKILLS
 > > `"add`, `"bdd`, `"ap`, `"bp`, named-register paste ordering

@@ -29,7 +29,7 @@ color: "#00ff41"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Restore the corrupted induction document.
+> > Restore the corrupted induction document: delete every stray capital `X` and `Z` (17× `X`, 13× `Z`). Change nothing else.
 >
 > > [!tip] SKILLS
 > > Mode switching (`i`, `a`, `o`, `ESC`), character deletion (`x`, `X`)

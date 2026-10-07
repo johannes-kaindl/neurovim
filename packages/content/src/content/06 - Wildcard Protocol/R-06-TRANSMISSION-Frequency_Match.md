@@ -18,6 +18,9 @@ sticker: lucide//columns-3
 color: "#ff6600"
 summary: "[LOCKED] CORP wedged a status column into the relay grid. A pattern can't carve a column — drop into visual-block and strike it out."
 why: "A pattern can't cut a column — drop into Ctrl-V, mark the block, and strike it out vertically."
+objective:
+  - "In the five `NODE | X | …` rows, delete the `X | ` column (the `X`, its space, the `|` and the space after it) so each row reads `NODE | <name> online`, e.g. `NODE | alpha online`."
+  - "Leave the header box, the CIPHER note and the `---` line as they are. Change nothing else."
 ---
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗

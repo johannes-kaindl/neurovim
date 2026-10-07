@@ -70,7 +70,7 @@ Per Directive 12.4(a), all entity designations within this document have been st
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Find and replace the systematic substitution throughout the document.
+> > Replace every `ZONE-7-CLUSTER` with `RELAY-CLUSTER-7` (9×). Nothing else changes.
 >
 > > [!tip] SKILLS
 > > `/pattern` `n` `N`, `:%s/old/new/g`, `:%s/old/new/gc`, `cgn` `.`

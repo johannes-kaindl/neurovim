@@ -24,7 +24,7 @@ color: "#00ff88"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Remove all duplicate words — where the same word appears twice in a row, keep only one.
+> > Remove all 7 duplicate words — where the same word appears twice in a row (`the the`, `WRAITH WRAITH`, also `STUTTER STUTTER` in the heading), keep only one. Change nothing else.
 >
 > > [!tip] SKILLS
 > > `:%s/\(\w\+\) \1/\1/g` — `\1` backreferences the first group; replacement keeps only one copy

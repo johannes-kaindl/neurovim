@@ -17,13 +17,13 @@
 Pattern Archive — Q3 2047 (Resistance-format)
 
 ## Classification: CONFIRMED
-Pattern 01 (0147) — byte-position skew
-Pattern 02 (0148) — inter-injection deviation
-Pattern 04 (0150) — output-layer manipulation
+Pattern 01 (0147) - byte-position skew
+Pattern 02 (0148) - inter-injection deviation
+Pattern 04 (0150) - output-layer manipulation
 
 ## Classification: PENDING
-Pattern 03 (0149) — substring concordance
-Pattern 05 (0151) — endpoint diversity elevation
+Pattern 03 (0149) - substring concordance
+Pattern 05 (0151) - endpoint diversity elevation
 
 ```
 >_ RAVEN-SIGNAL — decoded fragment 03
@@ -36,7 +36,7 @@ Pattern 05 (0151) — endpoint diversity elevation
 ---
 
 Note: Three substitutions to restructure.
-- Entry-lines: `[ENTRY-NNNN]: pattern-NN description` → `Pattern NN (NNNN) — description`. Use `\v` very-magic mode and three capture-groups.
+- Entry-lines: `[ENTRY-NNNN]: pattern-NN description` → `Pattern NN (NNNN) - description`. Use `\v` very-magic mode and three capture-groups.
 - Classification-headers: `[CLASSIFICATION: STATUS]` → `## Classification: STATUS`. One capture-group.
-- Archive-header: `CORP-format` → `Resistance-format`. Literal substitution (no capture-group needed).
-- The RAVEN-signal fragment is clean. Do not modify.
+- Archive-header: `CORP-format` → `Resistance-format`, in the `Pattern Archive` title line only. Literal substitution (no capture-group needed).
+- The RAVEN-signal fragment, the header box and this note are clean. Do not modify.

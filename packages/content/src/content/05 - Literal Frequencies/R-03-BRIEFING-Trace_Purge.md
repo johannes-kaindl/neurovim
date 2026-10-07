@@ -23,7 +23,7 @@ color: "#00ccff"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Delete every line containing `[TRACK]`. Leave the intelligence lines intact.
+> > Delete all five lines that start with `[TRACK]` — no blank lines left behind. Leave the six intelligence lines and the header above them intact.
 >
 > > [!tip] SKILLS
 > > `:g/\[TRACK\]/d` — global delete of matching lines (brackets need escaping in default magic)
