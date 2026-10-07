@@ -16,6 +16,10 @@ summary: Line start, line end, jump to any line. Learn to teleport through files
 why: "A file is not a wall of text; with line-start, line-end and :n you teleport, you don't scroll."
 mission_type: practice
 locked: false
+objective:
+  - "Put the five `===` blocks in this order: `SECTION 1 — ENTRY INDEX`, `SECTION 2 — ADMINISTRATIVE INDEX`, `SECTION 3 — ARCHIVE INDEX`, `ENTRY NODES`, `ACCESS WINDOWS`."
+  - "Move each block whole: its `===` header line plus the lines under it. Keep exactly one blank line between blocks."
+  - "Do not change any text. The two header lines at the top stay where they are."
 ---
 DOCUMENT LAYOUT DRILL — STRUCTURED INDEX
 Classification: RESISTANCE TRAINING USE ONLY

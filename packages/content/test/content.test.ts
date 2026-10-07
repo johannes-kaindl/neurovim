@@ -1,4 +1,5 @@
 import { ENTRIES, listMissions, getMission, getLore } from '../src/index';
+import { getDiff } from '@neurovim/core';
 
 describe('@neurovim/content manifest', () => {
   it('has all 174 content entries (120 content + 54 solutions)', () => {
@@ -81,7 +82,9 @@ describe('mission start state', () => {
     const presolved = listMissions()
       .filter((m) => {
         const doc = getMission(m.mission_id);
-        return doc.solution != null && doc.transmissionBody.trim() === doc.solution.trim();
+        // The game's own check, not a local trim: whatever normalization scoring applies
+        // (frontmatter, trailing whitespace) must not make a mission solved on open.
+        return doc.solution != null && getDiff(doc.transmissionBody, doc.solution).matches;
       })
       .map((m) => m.mission_id);
     expect(presolved).toEqual([]);

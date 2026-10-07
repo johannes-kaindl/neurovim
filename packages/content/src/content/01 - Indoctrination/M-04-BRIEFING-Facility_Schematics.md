@@ -24,7 +24,14 @@ color: "#00ff41"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Reorder the scrambled layout sections.
+> > Reorder the scrambled layout sections into this order:
+> > 1. `SECTION 1 — ENTRY INDEX`
+> > 2. `SECTION 2 — ADMINISTRATIVE INDEX`
+> > 3. `SECTION 3 — ARCHIVE INDEX`
+> > 4. `ENTRY NODES`
+> > 5. `ACCESS WINDOWS`
+> >
+> > Move whole blocks (header plus its lines). Change no text.
 >
 > > [!tip] SKILLS
 > > `gg` `G` `:#`, `{` `}`, `H` `M` `L`

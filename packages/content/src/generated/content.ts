@@ -177,7 +177,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//layout",
       "color": "#00ff41"
     },
-    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-04 // LINES AND JUMPS       ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Another corrupted file. Not a roster this time — a layout document. Sections scrambled at the line level. Whole blocks shifted out of order. Section 1 notes below Section 3. The index appears after the entries.*\n> *Restoring this requires line-level navigation. Not character by character — you jump.*\n> *`gg` to the top. `G` to the bottom. `:#` to a specific line number.*\n> *`{` and `}` jump between paragraphs. In a large file, character navigation is useless.*\n> *Read the document. Restore the order.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Reorder the scrambled layout sections.\n>\n> > [!tip] SKILLS\n> > `gg` `G` `:#`, `{` `}`, `H` `M` `L`\n>\n> > [!success] +15 XP\n>\n> → **[[_content/01 - Indoctrination/M-04-TRANSMISSION-Lines_and_Jumps|M-04-TRANSMISSION-Lines_and_Jumps]]** — open to begin. Timer starts on file open.",
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-04 // LINES AND JUMPS       ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Another corrupted file. Not a roster this time — a layout document. Sections scrambled at the line level. Whole blocks shifted out of order. Section 1 notes below Section 3. The index appears after the entries.*\n> *Restoring this requires line-level navigation. Not character by character — you jump.*\n> *`gg` to the top. `G` to the bottom. `:#` to a specific line number.*\n> *`{` and `}` jump between paragraphs. In a large file, character navigation is useless.*\n> *Read the document. Restore the order.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Reorder the scrambled layout sections into this order:\n> > 1. `SECTION 1 — ENTRY INDEX`\n> > 2. `SECTION 2 — ADMINISTRATIVE INDEX`\n> > 3. `SECTION 3 — ARCHIVE INDEX`\n> > 4. `ENTRY NODES`\n> > 5. `ACCESS WINDOWS`\n> >\n> > Move whole blocks (header plus its lines). Change no text.\n>\n> > [!tip] SKILLS\n> > `gg` `G` `:#`, `{` `}`, `H` `M` `L`\n>\n> > [!success] +15 XP\n>\n> → **[[_content/01 - Indoctrination/M-04-TRANSMISSION-Lines_and_Jumps|M-04-TRANSMISSION-Lines_and_Jumps]]** — open to begin. Timer starts on file open.",
     "path": "01 - Indoctrination/M-04-BRIEFING-Facility_Schematics.md"
   },
   {
@@ -204,7 +204,12 @@ export const ENTRIES: RawContentEntry[] = [
       "summary": "Line start, line end, jump to any line. Learn to teleport through files.",
       "why": "A file is not a wall of text; with line-start, line-end and :n you teleport, you don't scroll.",
       "mission_type": "practice",
-      "locked": false
+      "locked": false,
+      "objective": [
+        "Put the five `===` blocks in this order: `SECTION 1 — ENTRY INDEX`, `SECTION 2 — ADMINISTRATIVE INDEX`, `SECTION 3 — ARCHIVE INDEX`, `ENTRY NODES`, `ACCESS WINDOWS`.",
+        "Move each block whole: its `===` header line plus the lines under it. Keep exactly one blank line between blocks.",
+        "Do not change any text. The two header lines at the top stay where they are."
+      ]
     },
     "body": "DOCUMENT LAYOUT DRILL — STRUCTURED INDEX\nClassification: RESISTANCE TRAINING USE ONLY\n\n=== SECTION 3 — ARCHIVE INDEX ===\nArchive root: north wing reading room\nShelf access: ceiling-catalog C-3, cross-reference required\nRetrieval protocol: one requisition form every 45 minutes\n\n=== ACCESS WINDOWS ===\n22:00 — Evening reading period opens\n22:45 — Half-term catalog rotation passes\n23:15 — Reserved-shelf access opens: 12 minutes\n23:27 — Next rotation begins\n\n=== SECTION 1 — ENTRY INDEX ===\nMain entry: biometric reading station, staff only\nSide entry: requisition desk 4471, maintenance tier\nDelivery bay: unattended after 21:00, reference column D\n\n=== ENTRY NODES ===\nPrimary: delivery bay, column D reference point\nSecondary: requisition desk 4471, maintenance tier\nEmergency: rooftop reading gallery, accessible from Section 3 catalog\n\n=== SECTION 2 — ADMINISTRATIVE INDEX ===\nRegisters empty after 20:30\nCatalog closet: room 214, open during catalog rotation\nStairwell B: connects all sections, reading-only corridor",
     "path": "01 - Indoctrination/M-04-TRANSMISSION-Lines_and_Jumps.md"
