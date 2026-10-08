@@ -9,13 +9,13 @@
  * Run via `npm run build:manual`. The two emitted files carry a DO-NOT-EDIT
  * banner; everything else under docs/manual/ is hand-authored prose.
  *
- * No new dependency: esbuild is already hoisted from the adapter workspaces and
- * is used here only to strip TS types so the data modules can be imported.
+ * No new dependency: the data modules are imported through scripts/lib/load-ts.mjs
+ * (esbuild, a root devDependency).
  */
-import { build } from 'esbuild';
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadTs } from './lib/load-ts.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = join(ROOT, 'packages', 'core', 'src', 'data');
@@ -23,20 +23,6 @@ const OUT = join(ROOT, 'docs', 'manual', 'reference');
 
 const BANNER =
   '<!-- AUTO-GENERATED from packages/core/src/data — do not edit by hand. Run `npm run build:manual`. -->\n';
-
-/** Transpile a single TS data module (type-only imports elided) and import it. */
-async function loadModule(absPath) {
-  const result = await build({
-    entryPoints: [absPath],
-    bundle: false,
-    write: false,
-    format: 'esm',
-    platform: 'node',
-  });
-  const code = result.outputFiles[0].text;
-  const url = 'data:text/javascript;base64,' + Buffer.from(code).toString('base64');
-  return import(url);
-}
 
 // Mirrors how GitHub/Forgejo slug a heading: drop punctuation, then one hyphen per space.
 // "SEARCH & REPLACE" → "search--replace" (the `&` goes, both spaces stay).
@@ -57,7 +43,7 @@ function code(s) {
 }
 
 async function genKeymap() {
-  const { CHEATSHEET } = await loadModule(join(DATA, 'cheatsheet.ts'));
+  const { CHEATSHEET } = await loadTs(join(DATA, 'cheatsheet.ts'));
   let md = BANNER;
   md += '# Reference — Vim keymap\n\n';
   md += '> **Diátaxis: Reference.** The exact set of Vim commands NeuroVim teaches and\n';
@@ -81,7 +67,7 @@ async function genKeymap() {
 }
 
 async function genProgression() {
-  const { LEVELS, UNLOCK_MAP } = await loadModule(join(DATA, 'levels.ts'));
+  const { LEVELS, UNLOCK_MAP } = await loadTs(join(DATA, 'levels.ts'));
   let md = BANNER;
   md += '# Reference — Levels & progressive unlock\n\n';
   md += '> **Diátaxis: Reference.** The ten operator ranks, the XP each requires, and what\n';
