@@ -25,17 +25,9 @@ Vim is the disguised core loop; the story is the motivation layer.
 over five port interfaces. Target 1 = Obsidian plugin (origin), target 2 =
 standalone web app, target 3 = native desktop app (Tauri wrapper around the web app).
 
-> **Status (2026-08-19) — v0.2.6 released.** Seven signed installers + the web app are
-> live; the Obsidian consumer `vim-dojo` ships 0.8.0 in the community store. The core now
-> carries **five ports**: `LlmPort` arrived with Slice A, together with `CipherUplink` as
-> its in-core caller. Two capabilities have made the back-flow trip up from the consumer —
-> keystroke tracing and the LLM uplink's game-facing half.
+> **Status (2026-10-08) — v0.2.7 released.** The web app is live; the desktop installers wait for macOS notarization. The Obsidian consumer is `neurovim-obsidian` (store id `neurovim`, called `vim-dojo` until its rename), which ships 0.12.1 in the community store and vendors v0.2.7. The core carries **five ports**: `LlmPort` arrived with Slice A, together with `CipherUplink` as its in-core caller. Two capabilities have made the back-flow trip up from the consumer — keystroke tracing and the LLM uplink's game-facing half.
 >
-> Newest addition (unreleased): **`MissionGenerator`** — authoring-side generation of KATA
-> drills, the second `LlmPort` consumer. It does not ask a model for an exercise; it asks
-> for a clean document plus reversible corruptions and lets `GlitchEngine` derive the
-> exercise, so solvability is constructed rather than checked. Drafts land in
-> `packages/content/src/_drafts/` and never reach the SSOT unaided.
+> v0.2.7 gave every mission an `objective` and shipped **`MissionGenerator`** — authoring-side generation of KATA drills, the second `LlmPort` consumer. It does not ask a model for an exercise; it asks for a clean document plus reversible corruptions and lets `GlitchEngine` derive the exercise, so solvability is constructed rather than checked. Drafts land in `packages/content/src/_drafts/` and never reach the SSOT unaided.
 >
 > **The release history lives in [`CHANGELOG.md`](CHANGELOG.md), not here.** This file used
 > to carry a per-version log; it drifted two months behind while the changelog stayed
@@ -48,28 +40,27 @@ interfaces**. The core **never** depends on `obsidian` or the browser DOM —
 platform specifics come exclusively through the ports the adapters implement.
 
 One adapter lives here (`adapter-web`, which also drives the Tauri desktop build).
-The Obsidian target is a **separate repo** — `obsidian-plugins/vim-dojo`, in the
-community store — which consumes this core by vendoring it. See § Upstream contract.
+The Obsidian target is a **separate repo** — `obsidian-plugins/neurovim-obsidian`, in the community store — which consumes this core by vendoring it. See § Upstream contract.
 
 ```
 @neurovim/content ──┐
                     ├──> @neurovim/core <──implements── @neurovim/adapter-web
 (Markdown SSOT      │    (game logic,                   (Vite SPA, browser + Tauri)
  → typed JSON)      │     Web Audio,
-                    │     Preact UI,        <──vendors───── vim-dojo (separate repo)
+                    │     Preact UI,        <──vendors───── neurovim-obsidian (separate repo)
                     │     ports)                            (Obsidian plugin, main.js)
                     └──> (web bundles content directly)
 ```
 
 ### The five ports (`packages/core/src/ports/`)
 
-| Port | Responsibility | Obsidian impl (`vim-dojo`) | Web impl |
+| Port | Responsibility | Obsidian impl (`neurovim-obsidian`) | Web impl |
 |---|---|---|---|
-| `VimModeSource` | Vim mode + classified actions (push/pull) | `vim-mode-change` via `MarkdownView.editor.cm` + `CommandListener` | no class — `ui/cm6-theme.ts` listens to `vim-mode-change` directly |
-| `StoragePort` | Persistence of `PluginData` (generic `<T>`) | `plugin.loadData/saveData` → `data.json` | `WebStorage` (IndexedDB) |
-| `ContentPort` | Load missions + lore artifacts | Vault file API + `data/chapters.ts` | no class — UI imports `@neurovim/content` helpers directly |
-| `UiHost` | Mount container for Preact trees | `ItemView` / `Modal` / MarkdownPostProcessor | no class — `main.tsx` calls Preact `render()` |
-| `LlmPort` | One streaming LLM completion (transport-neutral) | `CipherClient` + `endpointResolver` + `XhrSseTransport` | `WebLlm` over the vendored code-kit `llm-stream` (fetch + SSE) |
+| `VimModeSource` | Vim mode + classified actions (push/pull) | no class — `keystrokeCounter.ts` counts keydowns inside `.cm-editor` via the core's `countsAsKeystroke`; no mode listener | no class — `ui/cm6-theme.ts` listens to `vim-mode-change` directly |
+| `StoragePort` | Persistence of `PluginData` (generic `<T>`) | `ObsidianStorage` over `loadData/saveData` → `data.json` | `WebStorage` (IndexedDB) |
+| `ContentPort` | Load missions + lore artifacts | `BundledContent` — the vendored `@neurovim/content`, not the vault | no class — UI imports `@neurovim/content` helpers directly |
+| `UiHost` | Mount container for Preact trees | no class — `HubView` (`ItemView`) + `ResultModal` (`Modal`) | no class — `main.tsx` calls Preact `render()` |
+| `LlmPort` | One streaming LLM completion (transport-neutral) | `CorePortAdapter` over `CipherClient` (obsidian-kit chat client) + `EndpointResolver` | `WebLlm` over the vendored code-kit `llm-stream` (fetch + SSE) |
 
 **Important (D17/D19e):** the engines are **pure functions** and do **not**
 consume the ports directly — the adapters wire ports ↔ engines. An `AudioPort`
@@ -206,13 +197,13 @@ green. For content changes also run `npm run build:content`, otherwise
   `marked` ~43 KB lazy). No heavy visual deps; prefer CSS motion over JS libs. Any new
   dependency must justify its weight and ideally be lazy-loaded. **Read the number off a
   build, do not trust this line** — it has drifted before (`docs/dev/explanation/decisions.md`).
-- **The Obsidian target lives elsewhere:** it is `obsidian-plugins/vim-dojo`, a
+- **The Obsidian target lives elsewhere:** it is `obsidian-plugins/neurovim-obsidian`, a
   separate repo in the community store that vendors this core. Its version lives in the
   status block above and is deliberately **not** repeated here — this line carried a stale
   `v0.7.5` while that block already said 0.8.0 (CORE-META-16, again). This repo
   builds no plugin bundle and never writes into a vault. How capabilities travel
   between the two: § Upstream contract.
-- **Obsidian posture — web-first, logic-parity only:** `vim-dojo` is kept at *functional*
+- **Obsidian posture — web-first, logic-parity only:** `neurovim-obsidian` is kept at *functional*
   parity through the shared pure core — it is **not** a visual-parity target. New UI/UX work
   lands web-first and is **not** back-ported unless explicitly decided; don't "fix" the
   Obsidian UI to match the web app. Capabilities that concern the game still move *up* from
@@ -371,13 +362,8 @@ Why vendored rather than depended on, and why the split matters:
 
 ## Roadmap
 
-- **Shipped:** v0.1.0 → **v0.2.6** (2026-08-19). Per-version detail lives in
-  [`CHANGELOG.md`](CHANGELOG.md); the last three cycles were v0.2.4 (Guidance-Backbone P2,
-  Diátaxis manual, presolved-missions fix), v0.2.5 (upstream contract + trace back-flow)
-  and v0.2.6 (`LlmPort` + `CipherUplink`). Cycles *up to v0.2.4* had a spec + plan under
-  `docs/superpowers/{specs,plans}/` — that location is historical and frozen; new SDD
-  artifacts live outside the repo (see the **Memory** section).
-- **Release tags** `v0.1.0`…`v0.2.6` trigger the desktop CI (macOS/Windows/Linux installers
+- **Shipped:** v0.1.0 → **v0.2.7** (2026-10-08). Per-version detail lives in [`CHANGELOG.md`](CHANGELOG.md); the last three cycles were v0.2.5 (upstream contract + trace back-flow), v0.2.6 (`LlmPort` + `CipherUplink`) and v0.2.7 (`objective` per mission, `MissionGenerator`, `WebLlm`). Cycles *up to v0.2.4* had a spec + plan under `docs/superpowers/{specs,plans}/` — that location is historical and frozen; new SDD artifacts live outside the repo (see the **Memory** section).
+- **Release tags** `v0.1.0`…`v0.2.7` trigger the desktop CI (macOS/Windows/Linux installers
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
   `APPLE_*` repo secrets were added (v0.2.3 onward). Note the CI produces a **draft**, so a
   green run is not a published release (see Gotchas).
@@ -413,7 +399,7 @@ Why vendored rather than depended on, and why the split matters:
   folgt dieses Repo. Der Altbestand im Repo ist eingefroren. Die beiden Regeln
   widersprechen einander in der Leitkonvention selbst — hier gewinnt die jüngere.
 - PROF-OBS-01/02 — Kein `manifest.json` und kein `npm run deploy` in diesem Repo:
-  das Obsidian-Plugin ist ein eigenes Repo (`obsidian-plugins/vim-dojo`), das diesen
+  das Obsidian-Plugin ist ein eigenes Repo (`obsidian-plugins/neurovim-obsidian`), das diesen
   Kern vendoriert und dort seinen eigenen Release-Weg in den Community-Store hat.
   Dieses Repo baut kein Plugin-Bundle und schreibt nie ins Vault.
 - PROF-NAT-01 — Kein `build-native-app.sh`/`package-native-app.sh`: Tauri v2 ersetzt

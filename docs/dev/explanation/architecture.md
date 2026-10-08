@@ -21,7 +21,7 @@ that line (ADR-001).
                     ├──> @neurovim/core <──implements── @neurovim/adapter-web
 (Markdown SSOT      │    (game logic,                   (Vite SPA, browser + Tauri)
  → typed JSON)      │     Web Audio,
-                    │     Preact UI,        <──vendors───── vim-dojo (separate repo)
+                    │     Preact UI,        <──vendors───── neurovim-obsidian (separate repo)
                     │     ports)                            (Obsidian plugin)
                     └──> (web bundles content directly)
 ```

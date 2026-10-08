@@ -10,13 +10,13 @@ All five are exported through the core barrel `packages/core/src/index.ts`. The 
 
 ## Overview
 
-| Port | File | Responsibility | `adapter-web` | `vim-dojo` (Obsidian consumer) |
+| Port | File | Responsibility | `adapter-web` | `neurovim-obsidian` (Obsidian consumer) |
 |---|---|---|---|---|
-| `VimModeSource` | `VimModeSource.ts` | Vim mode + classified actions | no class; `ui/cm6-theme.ts` listens to `@replit/codemirror-vim`'s `vim-mode-change` directly | `MarkdownView.editor.cm` `vim-mode-change` + `CommandListener` |
-| `StoragePort` | `StoragePort.ts` | persistence of `PluginData` and side keys | `ports/WebStorage.ts` (`class WebStorage implements StoragePort`) | `plugin.loadData()` / `saveData()` → `data.json` |
-| `ContentPort` | `ContentPort.ts` | missions + lore | no class; the UI imports the synchronous helpers of `@neurovim/content` (`listMissions`, `getMission`, `listLore`, `getLore`, …) | vault file API + `data/chapters.ts` |
-| `UiHost` | `UiHost.ts` | mount point for Preact trees | no class; `main.tsx` calls Preact `render(<App />, root)` | `ItemView`, `Modal`, MarkdownPostProcessor |
-| `LlmPort` | `LlmPort.ts` | one streaming LLM completion | `ports/WebLlm.ts` (`class WebLlm implements LlmPort`), wired in `uplink.ts` | `CipherClient` + `endpointResolver` + `XhrSseTransport` |
+| `VimModeSource` | `VimModeSource.ts` | Vim mode + classified actions | no class; `ui/cm6-theme.ts` listens to `@replit/codemirror-vim`'s `vim-mode-change` directly | no class; `keystrokeCounter.ts` counts keydowns inside `.cm-editor` via the core's `countsAsKeystroke`, no mode listener |
+| `StoragePort` | `StoragePort.ts` | persistence of `PluginData` and side keys | `ports/WebStorage.ts` (`class WebStorage implements StoragePort`) | `storage/ObsidianStorage.ts` over `loadData()` / `saveData()` → `data.json` |
+| `ContentPort` | `ContentPort.ts` | missions + lore | no class; the UI imports the synchronous helpers of `@neurovim/content` (`listMissions`, `getMission`, `listLore`, `getLore`, …) | `content/BundledContent.ts` — the vendored `@neurovim/content`, not the vault |
+| `UiHost` | `UiHost.ts` | mount point for Preact trees | no class; `main.tsx` calls Preact `render(<App />, root)` | no class; `HubView` (`ItemView`) + `ResultModal` (`Modal`) |
+| `LlmPort` | `LlmPort.ts` | one streaming LLM completion | `ports/WebLlm.ts` (`class WebLlm implements LlmPort`), wired in `uplink.ts` | `llm/CorePortAdapter.ts` over `CipherClient` (obsidian-kit chat client) + `EndpointResolver` |
 
 ## `VimModeSource`
 

@@ -19,7 +19,7 @@ The vendor surface is `packages/core/src` and `packages/content/src`.
 1. In this repo, pick the commit to pin: `git rev-parse HEAD` (and the tag, if it is a
    release).
 2. In the consumer repo, copy the parts you need under `src/vendor/neurovim/`. The existing
-   consumer `vim-dojo` copies:
+   consumer `neurovim-obsidian` copies:
 
    | Source (this repo) | Copy (consumer) |
    |---|---|
@@ -105,7 +105,7 @@ For a capability that started in a consumer and belongs in the core.
 
 1. Here: implement it platform-neutrally in `packages/core/src`, test first.
 2. Here: `npm run typecheck && npm test`, commit to `main`.
-3. In the consumer: re-vendor from the new commit and update the pin (in `vim-dojo`:
+3. In the consumer: re-vendor from the new commit and update the pin (in `neurovim-obsidian`:
    `npm run vendor`).
 4. In the consumer: replace the local implementation with the core call, delete the old file,
    run its tests.

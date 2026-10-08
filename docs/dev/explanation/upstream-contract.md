@@ -18,7 +18,7 @@ game logic to live there.
 
 ## Why consumers vendor instead of installing a package
 
-Consumers such as `vim-dojo` (the Obsidian plugin) copy the surface into their own
+Consumers such as `neurovim-obsidian` (the Obsidian plugin) copy the surface into their own
 tree and pin its origin in a `VENDOR.json`. There is no npm publish in the way. The
 pin is the point: a consumer sees an upstream change only when it re-vendors on
 purpose, so there is never a window in which an upstream commit breaks a consumer
@@ -68,7 +68,7 @@ opposite of hand-editing — but a gate that hashes whole files cannot tell the
 difference, and reports every stamped copy as violated, blaming the consumer for doing
 the right thing. This is not hypothetical: it happened in `code-kit`, which vendored
 this very gate, on 2026-09-02, and it sent that session hunting for an edit in the
-wrong repository. `vim-dojo` already stamps its `obsidian-kit` tree.
+wrong repository. The Obsidian plugin — then `vim-dojo`, now `neurovim-obsidian` — already stamped its `obsidian-kit` tree.
 
 So a consumer may declare its stamp in `consumers.json`. The declared lines are
 **verified against the pattern and then cut off**; the body underneath must still
@@ -76,7 +76,7 @@ match byte for byte. They are never skipped unchecked. A blind "ignore line 1" w
 let any edit hide in line 1 — a line reading `export const BACKDOOR = 1; // as if it
 were a header` is exactly what the gate exists to catch, and it is rejected.
 
-Three properties were measured on 2026-09-02 against a stamped copy of vim-dojo's
+Three properties were measured on 2026-09-02 against a stamped copy of vim-dojo's (now `neurovim-obsidian`)
 tree:
 
 - **All or none per consumer.** The declaration says *every* copied file carries the
