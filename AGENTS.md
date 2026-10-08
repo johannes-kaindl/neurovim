@@ -96,12 +96,17 @@ decision log (D1–D26) live in the separate design-prep workspace, not in this 
 │   ├── setup-remotes.sh    # Forgejo-primary + GitHub-mirror remotes (ADR-001 D5)
 │   ├── check-consumers.mjs # upstream-contract gate (pin lag + verbatim check)
 │   ├── generate-kata.mjs   # authoring driver for the core's MissionGenerator (LlmPort impl)
-│   └── lib/consumers.mjs   # pure helpers for the gate (parse/classify/diff/render)
+│   ├── gen-export.mjs      # writes packages/content/export/neurovim-data.json (part of build:content)
+│   ├── gen-conformance.mjs # writes packages/core/conformance/*.json from the TS core
+│   └── lib/                # consumers.mjs (gate helpers), load-ts.mjs (TS loader for scripts),
+│                           #   export.mjs + conformance.mjs (builders), *.test.mjs (node --test)
 ├── experiments/
+│   ├── nvim-spike/              # Neovim plugin spike: core in nvim, content vs real Vim (2026-10-08)
 │   ├── vim-regex-findings.md    # regex-flavor parity Obsidian↔CM6 (D1)
 │   └── vim-regex-harness/
 └── packages/
     ├── core/               # @neurovim/core — platform-neutral core
+    │   ├── conformance/    # generated JSON vectors for rule ports (data consumers) — npm run build:conformance
     │   └── src/
     │       ├── ports/      # VimModeSource, StoragePort, ContentPort, UiHost, LlmPort
     │       ├── engine/     # MissionEngine, ProgressionEngine, GlitchEngine, MetricsTracker (pure logic)
@@ -118,6 +123,7 @@ decision log (D1–D26) live in the separate design-prep workspace, not in this 
     │   ├── src/solutions/  # dev SOLUTIONS (target text for diff validation)
     │   ├── src/generated/  # content.ts / sandbox.ts / welcome.ts — produced by build.mjs
     │   ├── src/welcome.md   # welcome intro source
+    │   ├── export/         # generated neurovim-data.json for data consumers (written by build:content)
     │   └── build.mjs       # gray-matter → typed TS manifest (D15, bundler-friendly)
     └── adapter-web/        # @neurovim/adapter-web — Vite SPA + Tauri desktop
         ├── src/            # main.tsx, ui/ (App=NEXUS, Welcome/Briefing/Mission/Sandbox/Result,
@@ -136,7 +142,9 @@ npm run typecheck            # all 4 workspaces (tsc --noEmit) — must stay gre
 npm test                     # contract gate + script tests + jest across all workspaces
 
 npm run dev                  # adapter-web Vite dev server → http://localhost:5173/ (HMR)
-npm run build:content        # content/build.mjs — ALWAYS first (produces src/generated/*)
+npm run build:content        # content/build.mjs — ALWAYS first (produces src/generated/*), then
+                             #   scripts/gen-export.mjs → packages/content/export/neurovim-data.json
+npm run build:conformance    # scripts/gen-conformance.mjs → packages/core/conformance/*.json
 npm run build:web            # vite build → packages/adapter-web/dist/
 npm run build                # content → web (in this order)
 npm run build:manual         # scripts/gen-manual.mjs → docs/manual/reference/{vim-keymap,progression}.md
@@ -241,6 +249,8 @@ match byte for byte. Never skip header lines unchecked. All-or-none per consumer
 preamble is its own breach; without a declaration nothing changes. Reasoning and the
 2026-09-02 measurements: `docs/dev/explanation/upstream-contract.md`.
 
+**Two kinds of consumer** (`"kind"` in `consumers.json`): `source` consumers run the vendored core and content as is; `data` consumers vendor `packages/content/export/` and `packages/core/conformance/` and re-implement the rules in their own language, proven by the vectors. Both are checked verbatim against their pin; the pin lag counts only commits that touch what a consumer copies. Reasoning: `docs/dev/explanation/upstream-contract.md`.
+
 ## Vendored code-kit
 
 The contract above also runs in the other direction: `adapter-web` is a **consumer of
@@ -281,6 +291,8 @@ Why vendored rather than depended on, and why the split matters:
 - **`esbuild` is a *root* devDependency, and must stay one:** `gen-manual.mjs` and
   `generate-kata.mjs` transpile core TS for node, and neither is part of `npm test` — losing
   the dependency breaks them silently (it happened once; see `docs/dev/explanation/decisions.md`).
+  Since 2026-10-08 `scripts/lib/load-ts.mjs` carries the loader, and the export and conformance tests load it, so `npm test` now fails loudly without esbuild; `generate-kata.mjs` still has its own transpile step.
+- **Rule changes regenerate the conformance vectors:** after changing anything in `utils/diff.ts`, `ProgressionEngine` or `ParTier`, run `npm run build:conformance` and commit the changed JSON — `npm test` fails on stale vectors, and a data consumer (the Lua port) sees the change only through them. Never hand-edit an `expected` value; cases are inputs, the TS core computes the outputs.
 - **Generated drafts are not content:** `npm run generate:kata` writes into
   `packages/content/src/_drafts/` (git-ignored, not scanned by `build.mjs`). A draft
   becomes content only when a human moves it into `src/content/KATAS/` + `src/solutions/`,

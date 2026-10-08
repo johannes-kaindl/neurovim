@@ -6,6 +6,16 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added
+- **Data export and conformance vectors for consumers that do not run TypeScript.** `npm run build:content` also writes `packages/content/export/neurovim-data.json` (missions with objective and solution, chapters, levels, unlocks, cheatsheet); `npm run build:conformance` writes JSON vectors for twelve rule functions (scoring, progression, par tiers), computed by the TS core. Tests keep both current and show that wrong implementations fail the vectors. First user: the planned Lua port `neurovim.nvim`.
+- `check-consumers` knows a consumer `kind` (`source` | `data`) and counts the pin lag over what each consumer actually copies.
+
+### Changed
+- `ProgressionEngine.recordCompletion` takes an optional `today`; "yesterday" is derived from it rather than from the clock.
+
+### Fixed
+- `check-consumers` could skip a consumer and stay green: it extracted the whole vendor surface at the consumer's pin, which fails for any surface path added after that pin, and reported the failure as an unreachable pin. It now extracts only what the consumer copies, and only an unreachable pin is a skip.
+
 ## [0.2.7] — 2026-10-08
 
 ### Fixed

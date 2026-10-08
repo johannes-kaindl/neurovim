@@ -111,3 +111,10 @@ For a capability that started in a consumer and belongs in the core.
    run its tests.
 5. Cross-check: behaviour unchanged, and the total test count has risen rather than merely
    shifted between repos.
+
+## Vendoring as a data consumer
+
+1. Here: `npm run build:content && npm run build:conformance`, commit, note the commit.
+2. In the consumer: copy `packages/content/export/neurovim-data.json` and `packages/core/conformance/*.json` from that commit, pin it in the consumer's `VENDOR.json`.
+3. In the consumer: run its conformance suite; port every rule whose vectors fail.
+4. Here: the consumer's entry in `consumers.json` carries `"kind": "data"` and maps only those two sources; `npm run check:consumers` regenerates `CONSUMERS.md`.

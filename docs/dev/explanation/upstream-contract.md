@@ -98,3 +98,13 @@ The `web/` + `pure/` directory split is mirrored on purpose. `llm-stream` import
 `../pure/sse`; keeping the layout means that import resolves unchanged and the copy
 stays byte-identical. Flattening the directories would force a rewrite, and a
 rewritten copy can no longer be verified.
+
+## Data consumers
+
+A consumer that cannot run TypeScript — the Neovim plugin `neurovim.nvim`, written in Lua so players need no Node — vendors data instead of code: the export (`packages/content/export/neurovim-data.json`, missions and tables from the same sources the web app reads) and the conformance vectors (`packages/core/conformance/`). It re-implements the rules, and its tests must pass every vector.
+
+Two implementations of one rule drift; the only question is how quietly (CORE-META-16). The vectors make it loud: a rule change here changes the vectors, the consumer's next re-vendor brings them in, and its suite turns red until the port follows. Until it re-vendors, the gate shows a stale pin — the same, accepted lag a source consumer has.
+
+The vectors are only worth something if they can tell a right implementation from a wrong one. `scripts/lib/conformance.test.mjs` therefore checks, besides freshness, that every vector file has at least two distinct results and that a constant or plausibly wrong implementation fails (CORE-TEST-13).
+
+The gate measures each consumer over what it copies: the pin lag counts only commits that touch those sources, and only those sources are extracted at the pin. Extracting the whole surface failed at every pin older than a newly added surface path, and the gate reported that as an unreachable pin — it skipped the consumer and stayed green (2026-10-08, caught while adding the two data paths). Only an unreachable pin is a skip now; `scripts/lib/check-consumers.integration.test.mjs` fails when a consumer that is on disk gets skipped.
