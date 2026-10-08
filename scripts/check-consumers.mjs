@@ -16,7 +16,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdtemp
 import { join, relative, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { parseVendorPin, classifyConsumer, diffTrees, overallExit, renderConsumersMd, splitProvenanceHeader } from './lib/consumers.mjs';
+import { parseVendorPin, classifyConsumer, consumerKind, consumerSources, diffTrees, overallExit, renderConsumersMd, splitProvenanceHeader } from './lib/consumers.mjs';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const config = JSON.parse(readFileSync(join(repoRoot, 'consumers.json'), 'utf8'));
@@ -62,13 +62,13 @@ function hashTree(root, header) {
 }
 
 /**
- * Extracts the vendor surface as it stood at `pin` into a scratch directory.
- * Limited to the surface paths — archiving the whole repo on every gate run
- * would be wasted work.
+ * Extracts what one consumer copies, as it stood at `pin`, into a scratch directory.
+ * Limited to that consumer's sources, not the whole surface: a surface path added after
+ * the pin does not exist there, and archiving it would fail for every older pin.
  */
-function extractPin(pin) {
+function extractPin(pin, sources) {
   const dir = mkdtempSync(join(tmpdir(), 'nv-pin-'));
-  execFileSync('git', ['archive', '--format=tar', pin, '-o', join(dir, 'pin.tar'), '--', ...config.surface], { cwd: repoRoot });
+  execFileSync('git', ['archive', '--format=tar', pin, '-o', join(dir, 'pin.tar'), '--', ...sources], { cwd: repoRoot });
   execFileSync('tar', ['-xf', join(dir, 'pin.tar'), '-C', dir]);
   return dir;
 }
@@ -76,35 +76,40 @@ function extractPin(pin) {
 const results = [];
 
 for (const consumer of config.consumers) {
+  // Both throw on a bad entry: a typo in consumers.json must stop the gate, not skip a check.
+  const kind = consumerKind(consumer);
+  const sources = consumerSources(consumer, config.surface);
   const root = resolve(repoRoot, consumer.path);
   const vendorJson = join(root, consumer.vendorJson);
 
   if (!existsSync(vendorJson)) {
-    results.push({ ...classifyConsumer({ name: consumer.name, found: false }), what: consumer.what });
+    results.push({ ...classifyConsumer({ name: consumer.name, found: false }), what: consumer.what, kind });
     continue;
   }
 
   const { pin, tag, version } = parseVendorPin(readFileSync(vendorJson, 'utf8'));
 
-  // No initialisers: the try below assigns both, and its catch bails out with
-  // `continue`, so any initial value would be dead.
-  let commitsSincePin;
-  let pinDir;
+  // Only an unreachable pin is a skip. Anything that fails after that point is a gate
+  // error and must surface — reporting it as "skipped" would let the gate pass without
+  // having checked anything (it did exactly that while the surface grew, 2026-10-08).
   try {
-    const log = execFileSync('git', ['log', '--oneline', `${pin}..HEAD`, '--', ...config.surface], {
-      cwd: repoRoot,
-      encoding: 'utf8',
-    });
-    commitsSincePin = log.trim() === '' ? 0 : log.trim().split('\n').length;
-    pinDir = extractPin(pin);
+    execFileSync('git', ['cat-file', '-e', `${pin}^{commit}`], { cwd: repoRoot, stdio: 'ignore' });
   } catch {
     results.push({
       ...classifyConsumer({ name: consumer.name, found: false }),
       what: consumer.what,
+      kind,
       message: `pin ${pin} is not reachable in this clone — skipped`,
     });
     continue;
   }
+
+  const log = execFileSync('git', ['log', '--oneline', `${pin}..HEAD`, '--', ...sources], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+  });
+  const commitsSincePin = log.trim() === '' ? 0 : log.trim().split('\n').length;
+  const pinDir = extractPin(pin, sources);
 
   // The source side is never read through the header lens: the preamble exists
   // only in the copy. Comparing the copy's body against the source's whole file
@@ -130,8 +135,9 @@ for (const consumer of config.consumers) {
   }
 
   results.push({
-    ...classifyConsumer({ name: consumer.name, found: true, pin, commitsSincePin, differences, headerViolations }),
+    ...classifyConsumer({ name: consumer.name, found: true, pin, commitsSincePin, differences, headerViolations, kind }),
     what: consumer.what,
+    kind,
     pin,
     tag,
     version,
@@ -141,7 +147,7 @@ for (const consumer of config.consumers) {
 // Only an explicit `--write` regenerates the tracked report. Writing it from
 // `npm test` would leave a dirty working tree after every single test run.
 if (process.argv.includes('--write')) {
-  writeFileSync(join(repoRoot, 'CONSUMERS.md'), renderConsumersMd(results));
+  writeFileSync(join(repoRoot, 'CONSUMERS.md'), renderConsumersMd(results, config.surface));
 }
 
 for (const r of results) {

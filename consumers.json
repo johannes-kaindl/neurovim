@@ -1,11 +1,14 @@
 {
   "surface": [
     "packages/core/src",
-    "packages/content/src"
+    "packages/content/src",
+    "packages/core/conformance",
+    "packages/content/export"
   ],
   "consumers": [
     {
       "name": "neurovim-obsidian",
+      "kind": "source",
       "what": "Obsidian plugin (community store)",
       "path": "../../obsidian-plugins/neurovim-obsidian",
       "vendorJson": "src/vendor/neurovim/VENDOR.json",

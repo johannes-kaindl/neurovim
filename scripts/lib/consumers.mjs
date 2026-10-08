@@ -18,6 +18,37 @@ export function parseVendorPin(text) {
   };
 }
 
+const KINDS = new Set(['source', 'data']);
+
+/**
+ * What a consumer vendors. `source`: core/content code, verified verbatim — the consumer
+ * runs it as is. `data`: the export and the conformance vectors, verified verbatim; the
+ * consumer re-implements the rules and proves them with the vectors. A missing field means
+ * `source` (every consumer before 2026-10 was one); a typo is refused, never guessed.
+ * @returns {'source' | 'data'}
+ */
+export function consumerKind(consumer) {
+  const kind = consumer.kind ?? 'source';
+  if (!KINDS.has(kind)) throw new Error(`unknown kind "${kind}" for consumer ${consumer.name}`);
+  return kind;
+}
+
+/**
+ * The upstream paths a consumer copies. The pin lag is counted over these, not over the
+ * whole surface: a data consumer is not behind because a Preact view changed.
+ * @param {{ name: string, dirs?: [string, string][], files?: [string, string][] }} consumer
+ * @param {string[]} surface
+ * @returns {string[]}
+ */
+export function consumerSources(consumer, surface) {
+  const sources = [...(consumer.dirs ?? []), ...(consumer.files ?? [])].map(([source]) => source);
+  for (const s of sources) {
+    const inside = surface.some((root) => s === root || s.startsWith(root + '/'));
+    if (!inside) throw new Error(`${s} (consumer ${consumer.name}) is outside the vendor surface`);
+  }
+  return sources;
+}
+
 /**
  * Splits a vendored copy into the provenance preamble its consumer declares and
  * the body that must still match the source byte for byte.
@@ -73,7 +104,8 @@ export function splitProvenanceHeader(text, header) {
  * @returns {{ name: string, status: 'skipped' | 'ok' | 'stale' | 'violated', message: string }}
  */
 export function classifyConsumer(input) {
-  const { name, found, pin, commitsSincePin = 0, differences = [], headerViolations = [] } = input;
+  const { name, found, pin, commitsSincePin = 0, differences = [], headerViolations = [], kind = 'source' } = input;
+  const suite = kind === 'data' ? "; logic is proven by the consumer's conformance suite" : '';
 
   if (!found) {
     return { name, status: 'skipped', message: 'not found on disk — skipped' };
@@ -89,10 +121,10 @@ export function classifyConsumer(input) {
     return {
       name,
       status: 'stale',
-      message: `pin ${pin} is ${commitsSincePin} ${plural} behind the vendor surface`,
+      message: `pin ${pin} is ${commitsSincePin} ${plural} behind the vendor surface${suite}`,
     };
   }
-  return { name, status: 'ok', message: `pin ${pin} is current and verbatim` };
+  return { name, status: 'ok', message: `pin ${pin} is current and verbatim${suite}` };
 }
 
 /**
@@ -127,13 +159,14 @@ const STATUS_LABEL = {
 };
 
 /**
- * @param {Array<{ name: string, what: string, status: string, message: string, pin?: string, tag?: string | null }>} results
+ * @param {Array<{ name: string, what: string, kind?: string, status: string, message: string, pin?: string, tag?: string | null }>} results
+ * @param {string[]} surface the vendor surface from consumers.json
  * @returns {string}
  */
-export function renderConsumersMd(results) {
+export function renderConsumersMd(results, surface) {
   const rows = results.map((r) => {
     const pin = r.tag ? `${r.tag} (${(r.pin ?? '').slice(0, 7)})` : (r.pin ?? '').slice(0, 7) || '—';
-    return `| ${r.name} | ${r.what} | ${pin} | ${STATUS_LABEL[r.status] ?? r.status} | ${r.message} |`;
+    return `| ${r.name} | ${r.kind ?? 'source'} | ${r.what} | ${pin} | ${STATUS_LABEL[r.status] ?? r.status} | ${r.message} |`;
   });
 
   return [
@@ -144,12 +177,14 @@ export function renderConsumersMd(results) {
     '> A stale pin is normal: consumers have their own release cadence and re-vendor',
     '> when it suits them. A contract breach is not — it means a vendored copy was',
     '> edited in place, which the next re-vendor would silently discard.',
+    '>',
+    '> Kind `source`: the consumer runs the vendored code. Kind `data`: it vendors the export and the conformance vectors and re-implements the rules, proven by those vectors.',
     '',
-    '| Consumer | What | Pin | Status | Detail |',
-    '|---|---|---|---|---|',
+    '| Consumer | Kind | What | Pin | Status | Detail |',
+    '|---|---|---|---|---|---|',
     ...rows,
     '',
-    'The vendor surface is `packages/core/src` + `packages/content/src`.',
+    `The vendor surface is ${surface.map((s) => `\`${s}\``).join(' + ')}.`,
     'See `README.md` § Consumers for the contract and `AGENTS.md` § Upstream contract',
     'for the back-flow rule.',
     '',

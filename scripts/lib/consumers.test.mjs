@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseVendorPin, classifyConsumer } from './consumers.mjs';
 
+const SURFACE = ['packages/core/src', 'packages/content/src', 'packages/core/conformance', 'packages/content/export'];
+
 test('parseVendorPin reads sha, tag and version', () => {
   const text = JSON.stringify({ source: 'neurovim-standalone', tag: 'v0.2.4', sha: 'abc1234', version: '0.2.4' });
   assert.deepEqual(parseVendorPin(text), { pin: 'abc1234', tag: 'v0.2.4', version: '0.2.4' });
@@ -79,7 +81,7 @@ test('overallExit is 1 when any consumer is violated', () => {
 test('renderConsumersMd carries a do-not-edit banner and one row per consumer', () => {
   const md = renderConsumersMd([
     { name: 'vim-dojo', what: 'Obsidian plugin', status: 'ok', message: 'pin abc1234 is current and verbatim', pin: 'abc1234', tag: 'v0.2.4' },
-  ]);
+  ], SURFACE);
   assert.match(md, /GENERATED/);
   assert.match(md, /npm run check:consumers/);
   assert.match(md, /vim-dojo/);
@@ -87,7 +89,7 @@ test('renderConsumersMd carries a do-not-edit banner and one row per consumer', 
 });
 
 test('renderConsumersMd states plainly when no consumer could be checked', () => {
-  const md = renderConsumersMd([{ name: 'vim-dojo', what: 'Obsidian plugin', status: 'skipped', message: 'not found on disk — skipped' }]);
+  const md = renderConsumersMd([{ name: 'vim-dojo', what: 'Obsidian plugin', status: 'skipped', message: 'not found on disk — skipped' }], SURFACE);
   assert.match(md, /skipped/);
 });
 
@@ -152,4 +154,38 @@ test('classifyConsumer names both breaches when body and header are wrong at onc
   assert.equal(r.status, 'violated');
   assert.match(r.message, /differs from pin/);
   assert.match(r.message, /provenance header/);
+});
+
+import { consumerKind, consumerSources } from './consumers.mjs';
+
+test('consumerKind defaults to source and accepts data', () => {
+  assert.equal(consumerKind({ name: 'a' }), 'source');
+  assert.equal(consumerKind({ name: 'a', kind: 'data' }), 'data');
+});
+
+test('consumerKind refuses an unknown kind instead of guessing', () => {
+  assert.throws(() => consumerKind({ name: 'nvim', kind: 'dta' }), /unknown kind "dta" for consumer nvim/);
+});
+
+test('consumerSources lists dir and file sources', () => {
+  const c = { name: 'n', dirs: [['packages/core/conformance', 'spec/conformance']], files: [['packages/content/export/neurovim-data.json', 'data/neurovim-data.json']] };
+  assert.deepEqual(consumerSources(c, SURFACE), ['packages/core/conformance', 'packages/content/export/neurovim-data.json']);
+});
+
+test('consumerSources refuses a source outside the vendor surface', () => {
+  const c = { name: 'n', dirs: [['packages/adapter-web/src', 'x']] };
+  assert.throws(() => consumerSources(c, SURFACE), /packages\/adapter-web\/src \(consumer n\) is outside the vendor surface/);
+});
+
+test('classifyConsumer names the conformance suite for a data consumer', () => {
+  const r = classifyConsumer({ name: 'n', kind: 'data', found: true, pin: 'abc1234', commitsSincePin: 0, differences: [] });
+  assert.equal(r.status, 'ok');
+  assert.match(r.message, /conformance suite/);
+});
+
+test('renderConsumersMd shows the kind and renders the surface it is given', () => {
+  const md = renderConsumersMd([{ name: 'n', what: 'Neovim plugin', kind: 'data', status: 'ok', message: 'm', pin: 'abc1234', tag: null }], SURFACE);
+  assert.match(md, /\| Consumer \| Kind \| What \|/);
+  assert.match(md, /\| n \| data \| Neovim plugin \|/);
+  assert.match(md, /`packages\/content\/export`/);
 });
