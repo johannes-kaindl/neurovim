@@ -191,6 +191,13 @@ green. For content changes also run `npm run build:content`, otherwise
 - **Content = SSOT in Markdown:** missions/lore are written as `.md` with
   frontmatter; `build.mjs` generates `src/generated/*`. **Never hand-edit generated
   files** — change the source and rebuild.
+- **Every mission states its target (`objective`):** the transmission frontmatter carries a
+  YAML list of concrete steps that, with the transmission text, determine the solution
+  character for character — exact strings in backticks, counts, order, what stays. It is the
+  only guidance on screen during play (the briefing shows once, KATAs have none). No absolute
+  line numbers (host frontmatter shifts them), no characters a keyboard cannot type. Gate:
+  `content.test.ts` § mission objective. Proof of sufficiency is a blind replay (text +
+  objective only, no solution), not the gate: `CONTENT-AUDIT-solution-derivability.md`.
 - **CSS via tokens:** all web styles in `adapter-web/src/styles.css`, driven by the
   `--nv-*` variables (six canonical + additive tokens). New colors as a `:root`
   variable, never inline hex (see `docs/dev/reference/design-tokens.md`). The bundled monospace is
@@ -301,6 +308,10 @@ Why vendored rather than depended on, and why the split matters:
   `WebLlm` answers with `refusalHint` instead of a retry. Measure against the app path, not
   the deploy root (the root sends a CSP the app does not). Full measurements (2026-08-21):
   `docs/dev/explanation/cipher-uplink.md`.
+- **The game's Vim is codemirror-vim, not Vim:** `Ctrl+a`/`Ctrl+x` change only the number at
+  the cursor (no visual-block increment) and read `REF-4217` as minus 4217. Content that
+  teaches a key must be checked against `node_modules/@replit/codemirror-vim`, not against
+  Vim's manual.
 - **`npm version` reformats `package.json`:** it normalizes JSON formatting
   (e.g. expands one-line objects); that churn is expected when using
   `scripts/bump-version.sh`.
