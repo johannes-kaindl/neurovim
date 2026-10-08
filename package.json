@@ -19,6 +19,7 @@
     "build:web": "npm run build --workspace @neurovim/adapter-web",
     "build:content": "npm run build --workspace @neurovim/content",
     "build:manual": "node scripts/gen-manual.mjs",
+    "build:conformance": "node scripts/gen-conformance.mjs",
     "generate:kata": "node scripts/generate-kata.mjs",
     "capture:screenshots": "node scripts/capture-screenshots.mjs",
     "build": "npm run build:content && npm run build:web",
