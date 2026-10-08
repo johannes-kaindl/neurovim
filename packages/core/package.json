@@ -1,6 +1,6 @@
 {
   "name": "@neurovim/core",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Platform-neutral core: game logic, Web Audio, Preact UI, port interfaces.",
   "license": "AGPL-3.0-only",
   "type": "module",

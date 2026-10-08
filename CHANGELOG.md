@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.2.7] — 2026-10-08
+
 ### Fixed
 - **Every mission now says exactly what to do.** A player reported mission M-04 as a guessing game: the five blocks had to be put in an order that was written nowhere. An audit of all 54 missions and KATAs found the same class of gap in many of them — target spellings, counts, which lines go, which stay. Each mission now carries an `objective`: the concrete steps from the corrupted text to the solution, with every exact target string. A blind replay from text plus objective alone, without the solution, reproduced all 54 solutions.
 - **Notes changed by other tools no longer fail a mission.** The check ignores YAML frontmatter and trailing spaces, which vault plugins such as Obsidian Linter add to the mission note. Before, every mission in such a vault was unsolvable.
