@@ -8,7 +8,7 @@
 
 | Consumer | What | Pin | Status | Detail |
 |---|---|---|---|---|
-| vim-dojo | Obsidian plugin (community store) | v0.2.5 (9179bd0) | ✅ ok | pin 9179bd00dffd8ea7eaa3bf39f4f600cb5303da89 is current and verbatim |
+| neurovim-obsidian | Obsidian plugin (community store) | v0.2.7 (2db98c2) | ✅ ok | pin 2db98c29699709ddcb7db3310d3c4bb17a6278ca is current and verbatim |
 
 The vendor surface is `packages/core/src` + `packages/content/src`.
 See `README.md` § Consumers for the contract and `AGENTS.md` § Upstream contract
