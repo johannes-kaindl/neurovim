@@ -60,11 +60,15 @@ export class ProgressionEngine {
     return { ...data, unlocked: [...unlocked] };
   }
 
-  static recordCompletion(data: PluginData): PluginData {
-    const today = new Date().toISOString().slice(0, 10);
+  /**
+   * Update the daily streak after a completed mission. `today` is injectable (UTC
+   * `YYYY-MM-DD`) so tests and conformance vectors are reproducible; "yesterday" is
+   * derived from it, never from the real clock.
+   */
+  static recordCompletion(data: PluginData, today: string = new Date().toISOString().slice(0, 10)): PluginData {
     const last = data.streak_last_date;
     if (last === today) return data;
-    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    const yesterday = new Date(Date.parse(`${today}T00:00:00Z`) - 86400000).toISOString().slice(0, 10);
     const streak = last === yesterday ? data.streak_current + 1 : 1;
     return { ...data, streak_current: streak, streak_last_date: today };
   }

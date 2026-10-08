@@ -219,3 +219,36 @@ describe('unlockLevelFor', () => {
     expect(unlockLevelFor('NOPE')).toBeNull();
   });
 });
+
+describe('ProgressionEngine.recordCompletion with an injected day', () => {
+  const base = { ...DEFAULT_PLUGIN_DATA };
+
+  it('starts a streak of 1 on the first completion', () => {
+    const r = ProgressionEngine.recordCompletion({ ...base, streak_last_date: '' }, '2026-03-01');
+    expect(r.streak_current).toBe(1);
+    expect(r.streak_last_date).toBe('2026-03-01');
+  });
+
+  it('extends the streak across a month boundary', () => {
+    const r = ProgressionEngine.recordCompletion(
+      { ...base, streak_current: 4, streak_last_date: '2026-02-28' }, '2026-03-01');
+    expect(r.streak_current).toBe(5);
+  });
+
+  it('extends the streak across a year boundary', () => {
+    const r = ProgressionEngine.recordCompletion(
+      { ...base, streak_current: 2, streak_last_date: '2025-12-31' }, '2026-01-01');
+    expect(r.streak_current).toBe(3);
+  });
+
+  it('resets the streak after a gap', () => {
+    const r = ProgressionEngine.recordCompletion(
+      { ...base, streak_current: 9, streak_last_date: '2026-02-26' }, '2026-03-01');
+    expect(r.streak_current).toBe(1);
+  });
+
+  it('leaves the data unchanged on a second completion the same day', () => {
+    const d = { ...base, streak_current: 3, streak_last_date: '2026-03-01' };
+    expect(ProgressionEngine.recordCompletion(d, '2026-03-01')).toBe(d);
+  });
+});
