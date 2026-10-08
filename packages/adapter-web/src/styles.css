@@ -652,7 +652,7 @@ html[data-fx="off"] .nv-just-unlocked { animation: none; }
 @media (max-width: 560px) {
   /* A phone gets a shorter buffer so the objective keeps a real share of the screen. */
   .nv-objective { max-height: 34vh; }
-  .nv-editor .nv-cm-host .cm-editor { height: 46vh; }
+  .nv-editor-mission .nv-cm-host .cm-editor { height: 46vh; } /* mission only: the sandbox has no objective panel */
 }
 
 /* Briefing guidance panel + result debrief */

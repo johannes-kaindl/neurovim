@@ -18,7 +18,7 @@ why: "d, c, y — the three verbs. Pair them with a motion and you stop nudging 
 mission_type: practice
 locked: true
 objective:
-  - "Delete all four `>> COMPLIANCE` blocks: every line that starts with `>>` (7 lines in total, two of them continuation lines without the word COMPLIANCE)."
+  - "Delete all four `>> COMPLIANCE` blocks: every line that starts with `>>` (7 lines in total, three of them continuation lines without the word COMPLIANCE)."
   - "Delete the blank line that belonged to each block too, so exactly one blank line remains between the header box, each group of timestamped lines and `End of period log.`"
   - "Change nothing else: the two ascii boxes, all timestamped log lines and `End of period log.` stay exactly as they are."
 ---

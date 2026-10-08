@@ -78,3 +78,20 @@ describe('host noise is not a mistake', () => {
     expect(n.offset).toBe(6);
   });
 });
+
+describe('host noise: hostile shapes', () => {
+  it('stays linear on CRLF text that opens with --- and never closes it', () => {
+    const text = '---\r\ntitle: x\r\n' + 'line\r\n'.repeat(40) + 'end';
+    const t0 = Date.now();
+    normalizeMissionText(text);
+    expect(Date.now() - t0).toBeLessThan(200);
+  });
+
+  it('strips CRLF frontmatter like LF frontmatter', () => {
+    expect(getDiff('---\r\ntitle: x\r\n---\r\nalpha\r\nbeta', 'alpha\nbeta').matches).toBe(true);
+  });
+
+  it('recognises frontmatter behind a UTF-8 BOM', () => {
+    expect(getDiff('﻿---\ntitle: x\n---\nalpha', 'alpha').matches).toBe(true);
+  });
+});

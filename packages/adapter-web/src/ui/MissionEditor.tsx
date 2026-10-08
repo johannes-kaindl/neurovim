@@ -96,7 +96,7 @@ export function MissionEditor({ mission, guidance, pin, onPin, onSubmit, onBack,
   }
 
   return (
-    <div class="nv-editor nv-hud-frame">
+    <div class="nv-editor nv-editor-mission nv-hud-frame">
       <span class="nv-br-bl" /><span class="nv-br-br" />
       <div class="nv-editor-bar">
         <button onClick={onBack}>← NEXUS</button>

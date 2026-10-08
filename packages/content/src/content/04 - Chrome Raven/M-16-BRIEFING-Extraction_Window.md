@@ -31,7 +31,7 @@ color: "#cc66ff"
 > > 4. CORP intel: delete both `[STANDARD-NOISE]` lines, rewrite each entry to `Threat-alpha Pattern 05 (0152) - endpoint-diversity` form.
 >
 > > [!tip] SKILLS
-> > All Tier-1..4 composite — `dd`/`3dd` (operators), `Ctrl+v` + `N<C-a>` (visual-block + numeric), `guu`/`viwu` (case-conversion), `:g/X/d` + `:%s/\v.../.../` with capture-groups (Ex + regex)
+> > All Tier-1..4 composite — `dd`/`3dd` (operators), `N<C-x>` + `j` `.` (numeric — Vim reads `REF-4220` as negative, so add with `<C-x>`), `guu`/`viwu` (case-conversion), `:g/X/d` + `:%s/\v.../.../` with capture-groups (Ex + regex)
 >
 > > [!success] +80 XP
 >

@@ -10,7 +10,10 @@ export interface NormalizedMissionText {
 
 // A YAML block at the very top, closed by its own fence. A lone `---` without a closing
 // fence is content (a horizontal rule), not frontmatter, and stays scored.
-const FRONTMATTER = /^---[ \t]*\r?\n(?:[^\n]*\r?\n)*?---[ \t]*(?:\r?\n|$)/;
+// Each line matches exactly one way (`[^\r\n]*` cannot swallow the `\r`): with `[^\n]*`
+// a CRLF note that opens a fence and never closes it backtracks exponentially and freezes
+// the host on submit.
+const FRONTMATTER = /^---[ \t]*\r?\n(?:[^\r\n]*\r?\n)*?---[ \t]*(?:\r?\n|$)/;
 
 /**
  * Strip host noise before scoring. Vault plugins (Obsidian Linter, timestamp and title
@@ -19,9 +22,11 @@ const FRONTMATTER = /^---[ \t]*\r?\n(?:[^\n]*\r?\n)*?---[ \t]*(?:\r?\n|$)/;
  * content build parses it off — so stripping is only ever applied to what the host added.
  */
 export function normalizeMissionText(text: string): NormalizedMissionText {
-  const fm = FRONTMATTER.exec(text);
+  // A BOM from a Windows editor would hide the fence from the `^---` anchor.
+  const bom = text.startsWith('\uFEFF') ? 1 : 0;
+  const fm = FRONTMATTER.exec(text.slice(bom));
   const head = fm ? fm[0] : '';
-  const all = text.slice(head.length).split('\n').map((l) => l.replace(/\s+$/, ''));
+  const all = text.slice(bom + head.length).split('\n').map((l) => l.replace(/\s+$/, ''));
   let start = 0;
   while (start < all.length && all[start] === '') start++;
   let end = all.length;

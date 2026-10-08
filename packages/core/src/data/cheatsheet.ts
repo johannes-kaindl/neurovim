@@ -341,7 +341,7 @@ export const CHEATSHEET: CheatsheetCategory[] = [
         label: 'NUMBERS (CURSOR)',
         keys: [
           { key: 'Ctrl+a',  description: 'add [count] to the number at the cursor' },
-          { key: 'Ctrl+x',  description: 'subtract [count]; `-4217` counts as negative' },
+          { key: 'Ctrl+x',  description: 'subtract [count]; REF-4217 reads as minus 4217' },
         ],
       },
     ],

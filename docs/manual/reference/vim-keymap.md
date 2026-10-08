@@ -295,7 +295,7 @@ categories, revealing each as you unlock the matching missions.
 | Key | Action |
 | --- | --- |
 | `Ctrl+a` | add [count] to the number at the cursor |
-| `Ctrl+x` | subtract [count]; `-4217` counts as negative |
+| `Ctrl+x` | subtract [count]; REF-4217 reads as minus 4217 |
 
 ## REGEX
 
