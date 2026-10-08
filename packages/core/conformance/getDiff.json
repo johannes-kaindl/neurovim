@@ -109,6 +109,18 @@
         "first_divergent_line": 0,
         "lines_off": 2
       }
+    },
+    {
+      "name": "trailing no-break space matches",
+      "args": [
+        "a \nb",
+        "a\nb"
+      ],
+      "expected": {
+        "matches": true,
+        "first_divergent_line": -1,
+        "lines_off": 0
+      }
     }
   ]
 }

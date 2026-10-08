@@ -16,7 +16,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdtemp
 import { join, relative, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { parseVendorPin, classifyConsumer, consumerKind, consumerSources, diffTrees, overallExit, renderConsumersMd, splitProvenanceHeader } from './lib/consumers.mjs';
+import { parseVendorPin, classifyConsumer, assertConsumerShape, consumerKind, consumerSources, diffTrees, overallExit, renderConsumersMd, splitProvenanceHeader } from './lib/consumers.mjs';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const config = JSON.parse(readFileSync(join(repoRoot, 'consumers.json'), 'utf8'));
@@ -77,6 +77,7 @@ const results = [];
 
 for (const consumer of config.consumers) {
   // Both throw on a bad entry: a typo in consumers.json must stop the gate, not skip a check.
+  assertConsumerShape(consumer);
   const kind = consumerKind(consumer);
   const sources = consumerSources(consumer, config.surface);
   const root = resolve(repoRoot, consumer.path);

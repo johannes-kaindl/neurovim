@@ -33,6 +33,18 @@ export function consumerKind(consumer) {
   return kind;
 }
 
+const CONSUMER_KEYS = new Set(['name', 'kind', 'what', 'path', 'vendorJson', 'dirs', 'files', 'provenanceHeader']);
+
+/**
+ * Refuses a consumer entry with a key the gate does not read. A misspelt `file` next to
+ * a valid `dirs` would otherwise leave that file unchecked while the gate reports ok.
+ */
+export function assertConsumerShape(consumer) {
+  for (const key of Object.keys(consumer)) {
+    if (!CONSUMER_KEYS.has(key)) throw new Error(`unknown key "${key}" in consumer ${consumer.name}`);
+  }
+}
+
 /**
  * The upstream paths a consumer copies. The pin lag is counted over these, not over the
  * whole surface: a data consumer is not behind because a Preact view changed.
@@ -42,6 +54,9 @@ export function consumerKind(consumer) {
  */
 export function consumerSources(consumer, surface) {
   const sources = [...(consumer.dirs ?? []), ...(consumer.files ?? [])].map(([source]) => source);
+  // An empty list would make `git log --` and `git archive --` cover the whole repo and
+  // the copy loops compare nothing: the gate would report ok without checking anything.
+  if (sources.length === 0) throw new Error(`consumer ${consumer.name} maps no sources (dirs/files)`);
   for (const s of sources) {
     const inside = surface.some((root) => s === root || s.startsWith(root + '/'));
     if (!inside) throw new Error(`${s} (consumer ${consumer.name}) is outside the vendor surface`);

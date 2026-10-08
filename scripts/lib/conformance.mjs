@@ -54,6 +54,10 @@ export function casesFor(core) {
       { name: 'blank line after frontmatter shifts offset', args: [FM + '\nalpha'] },
       { name: 'empty text', args: [''] },
       { name: 'unicode box drawing kept', args: ['╔══╗\n║ x║\n╚══╝'] },
+      // JS `\s` is Unicode-aware; a port must strip these too (Option+Space types NBSP on macOS).
+      { name: 'trailing no-break space stripped', args: ['alpha\u00A0\nbeta'] },
+      { name: 'trailing ideographic space stripped', args: ['alpha\u3000'] },
+      { name: 'no-break-space-only line is blank', args: ['alpha\n\u00A0\nbeta\n\u00A0'] },
     ],
     getDiff: [
       { name: 'identical', args: ['a\nb', 'a\nb'] },
@@ -65,6 +69,7 @@ export function casesFor(core) {
       { name: 'extra line', args: ['a\nb\nc\nd', 'a\nb\nc'] },
       { name: 'empty against text', args: ['', 'a'] },
       { name: 'two lines changed', args: ['X\nb\nY', 'a\nb\nc'] },
+      { name: 'trailing no-break space matches', args: ['a\u00A0\nb', 'a\nb'] },
     ],
     getDivergentLines: [
       { name: 'identical', args: ['a\nb', 'a\nb'] },
@@ -96,6 +101,11 @@ export function casesFor(core) {
       { name: 'month boundary', args: [data({ streak_current: 4, streak_last_date: '2026-02-28' }), '2026-03-01'] },
       { name: 'year boundary', args: [data({ streak_current: 2, streak_last_date: '2025-12-31' }), '2026-01-01'] },
       { name: 'gap resets', args: [data({ streak_current: 9, streak_last_date: '2026-02-26' }), '2026-03-01'] },
+      // Calendar and clock traps for ports: leap day, and the day after each DST switch.
+      { name: 'leap day', args: [data({ streak_current: 1, streak_last_date: '2024-02-29' }), '2024-03-01'] },
+      { name: 'after EU spring DST switch', args: [data({ streak_current: 1, streak_last_date: '2026-03-29' }), '2026-03-30'] },
+      { name: 'after EU autumn DST switch', args: [data({ streak_current: 1, streak_last_date: '2026-10-25' }), '2026-10-26'] },
+      { name: 'after US spring DST switch', args: [data({ streak_current: 1, streak_last_date: '2026-03-08' }), '2026-03-09'] },
     ],
     recordMissionRun: [
       { name: 'first run', args: [null, m(42000, 37, 52.9), '2026-03-01'] },

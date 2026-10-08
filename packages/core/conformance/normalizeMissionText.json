@@ -128,6 +128,45 @@
         ],
         "offset": 0
       }
+    },
+    {
+      "name": "trailing no-break space stripped",
+      "args": [
+        "alpha \nbeta"
+      ],
+      "expected": {
+        "lines": [
+          "alpha",
+          "beta"
+        ],
+        "offset": 0
+      }
+    },
+    {
+      "name": "trailing ideographic space stripped",
+      "args": [
+        "alpha　"
+      ],
+      "expected": {
+        "lines": [
+          "alpha"
+        ],
+        "offset": 0
+      }
+    },
+    {
+      "name": "no-break-space-only line is blank",
+      "args": [
+        "alpha\n \nbeta\n "
+      ],
+      "expected": {
+        "lines": [
+          "alpha",
+          "",
+          "beta"
+        ],
+        "offset": 0
+      }
     }
   ]
 }

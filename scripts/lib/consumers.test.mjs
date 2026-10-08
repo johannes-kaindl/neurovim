@@ -189,3 +189,18 @@ test('renderConsumersMd shows the kind and renders the surface it is given', () 
   assert.match(md, /\| n \| data \| Neovim plugin \|/);
   assert.match(md, /`packages\/content\/export`/);
 });
+
+import { assertConsumerShape } from './consumers.mjs';
+
+test('consumerSources refuses a consumer that maps nothing', () => {
+  assert.throws(() => consumerSources({ name: 'n', dir: [['packages/core/conformance', 'x']] }, SURFACE), /consumer n maps no sources/);
+});
+
+test('assertConsumerShape refuses an unknown key instead of ignoring it', () => {
+  const c = { name: 'n', what: 'w', path: 'p', vendorJson: 'v', dirs: [['packages/core/conformance', 'x']], file: [['packages/content/export/neurovim-data.json', 'y']] };
+  assert.throws(() => assertConsumerShape(c), /unknown key "file" in consumer n/);
+});
+
+test('assertConsumerShape accepts every documented key', () => {
+  assert.doesNotThrow(() => assertConsumerShape({ name: 'n', kind: 'data', what: 'w', path: 'p', vendorJson: 'v', dirs: [], files: [], provenanceHeader: { lines: 1, mustMatch: 'x' } }));
+});
