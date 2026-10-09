@@ -49,3 +49,27 @@ describe('completeMission', () => {
     expect(JSON.stringify(DEFAULT_PLUGIN_DATA)).toBe(before);
   });
 });
+
+describe('completeMission with zero keystrokes (back-flow from neurovim-obsidian, 2026-07-23)', () => {
+  // A solve without a single keystroke (pasted, already-solved text, an outside edit) wins the
+  // mission and its XP, but must not touch the bests: a 0 would be adopted as a best score.
+  const prev = { best_time_ms: 42_000, best_keystrokes: 37, best_ks_per_min: 52.9, runs: 1, last_run: '2026-03-01' };
+  const base = { ...DEFAULT_PLUGIN_DATA, total_xp: 15, completed_missions: ['M-01'], missions: { 'M-01': prev } };
+
+  it('awards XP but only bumps the run counter', () => {
+    const r = completeMission(base, m01, { elapsed_ms: 1_000, keystrokes: 0, ks_per_min: 0 }, '2026-03-02');
+    expect(r.unverified).toBe(true);
+    expect(r.data.total_xp).toBe(30);
+    expect(r.record).toEqual({ ...prev, runs: 2, last_run: '2026-03-02' });
+  });
+
+  it('starts an empty record on a first unverified run', () => {
+    const r = completeMission(DEFAULT_PLUGIN_DATA, m01, { elapsed_ms: 1_000, keystrokes: 0, ks_per_min: 0 }, '2026-03-02');
+    expect(r.record).toEqual({ best_time_ms: 0, best_keystrokes: 0, best_ks_per_min: 0, runs: 1, last_run: '2026-03-02' });
+    expect(r.tier).toBeNull();
+  });
+
+  it('is verified as soon as one key was pressed', () => {
+    expect(completeMission(base, m01, metrics, '2026-03-02').unverified).toBe(false);
+  });
+});

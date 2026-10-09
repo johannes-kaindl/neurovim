@@ -51,11 +51,16 @@ const mutants = {
     const real = FUNCTIONS.completeMission(core)(data, mission, metrics, today);
     return data.completed_missions.includes(mission.mission_id) ? { ...real, data: { ...real.data, total_xp: data.total_xp } } : real;
   },
+  completeMissionWithoutZeroKeyRule: (data, mission, metrics, today) => {
+    const real = FUNCTIONS.completeMission(core)(data, mission, { ...metrics, keystrokes: metrics.keystrokes || 1 }, today);
+    return { ...real, unverified: false };
+  },
   metricsResult: (keys, ms) => ({ elapsed_ms: ms, keystrokes: keys, ks_per_min: ms > 0 ? Math.floor((keys / ms) * 600000) / 10 : 0 }),
   unlockLevelFor: () => null,
 };
-for (const [fn, wrong] of Object.entries(mutants)) {
-  test(`counter-check: a wrong ${fn} fails the vectors`, () => {
+for (const [name, wrong] of Object.entries(mutants)) {
+  const fn = name === 'completeMissionWithoutZeroKeyRule' ? 'completeMission' : name;
+  test(`counter-check: a wrong ${name} fails the vectors`, () => {
     assert.ok(runVectors(vectors[fn], wrong).length > 0);
   });
 }

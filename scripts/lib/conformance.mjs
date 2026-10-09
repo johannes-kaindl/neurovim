@@ -156,6 +156,9 @@ export function casesFor(core) {
       { name: 'authored par, silver', args: [data({}), { ...m01, par_keystrokes: 30 }, run(42000, 37, 52.9), '2026-03-01'] },
       { name: 'no difficulty uses the fallback par', args: [data({}), { mission_id: 'R-01', xp_reward: 25, par_keystrokes: null, difficulty: null }, run(9000, 70, 466.7), '2026-03-01'] },
       { name: 'beyond bronze has no tier', args: [data({}), m01, run(90000, 200, 133.3), '2026-03-01'] },
+      // Back-flow from neurovim-obsidian (2026-07-23): no keystroke → XP yes, bests no.
+      { name: 'zero keystrokes keeps the bests', args: [data({ total_xp: 15, completed_missions: ['M-01'], missions: { 'M-01': { best_time_ms: 42000, best_keystrokes: 37, best_ks_per_min: 52.9, runs: 1, last_run: '2026-03-01' } } }), m01, run(1000, 0, 0), '2026-03-02'] },
+      { name: 'zero keystrokes on a first run', args: [data({}), m01, run(1000, 0, 0), '2026-03-02'] },
     ],
     keystrokesToNextTier: [
       { name: 'gold has no next tier', args: [50, 60] },
