@@ -10,8 +10,8 @@
 
 | Consumer | Kind | What | Pin | Status | Detail |
 |---|---|---|---|---|---|
-| neurovim-obsidian | source | Obsidian plugin (community store) | v0.2.7 (2db98c2) | 🟡 stale pin | pin 2db98c29699709ddcb7db3310d3c4bb17a6278ca is 3 commits behind the vendor surface |
-| neurovim.nvim | data | Neovim plugin (Lua port; data + conformance vectors) | fd5cabe | 🟡 stale pin | pin fd5cabeba955f63e3d4c15242b76c12b79da73f6 is 1 commit behind the vendor surface; logic is proven by the consumer's conformance suite |
+| neurovim-obsidian | source | Obsidian plugin (community store) | v0.2.7 (2db98c2) | 🟡 stale pin | pin 2db98c29699709ddcb7db3310d3c4bb17a6278ca is 4 commits behind the vendor surface |
+| neurovim.nvim | data | Neovim plugin (Lua port; data + conformance vectors) | fd5cabe | 🟡 stale pin | pin fd5cabeba955f63e3d4c15242b76c12b79da73f6 is 2 commits behind the vendor surface; logic is proven by the consumer's conformance suite |
 
 The vendor surface is `packages/core/src` + `packages/content/src` + `packages/core/conformance` + `packages/content/export`.
 See `README.md` § Consumers for the contract and `AGENTS.md` § Upstream contract
