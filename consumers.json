@@ -32,6 +32,25 @@
           "src/vendor/neurovim/content/frontmatter.ts"
         ]
       ]
+    },
+    {
+      "name": "neurovim.nvim",
+      "kind": "data",
+      "what": "Neovim plugin (Lua port; data + conformance vectors)",
+      "path": "../../nvim-plugins/neurovim.nvim",
+      "vendorJson": "data/VENDOR.json",
+      "dirs": [
+        [
+          "packages/core/conformance",
+          "spec/conformance"
+        ]
+      ],
+      "files": [
+        [
+          "packages/content/export/neurovim-data.json",
+          "data/neurovim-data.json"
+        ]
+      ]
     }
   ]
 }
