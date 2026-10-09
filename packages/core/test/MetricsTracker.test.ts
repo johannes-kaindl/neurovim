@@ -1,6 +1,6 @@
 import { MetricsTracker } from '../src/engine/MetricsTracker';
 import { scriptedClock } from './__mocks__/clock';
-import { countsAsKeystroke } from '../src/engine/MetricsTracker';
+import { countsAsKeystroke, metricsResult } from '../src/engine/MetricsTracker';
 
 describe('MetricsTracker', () => {
   let tracker: MetricsTracker;
@@ -120,5 +120,21 @@ describe('MetricsTracker (trace recording)', () => {
     const snap = t.getEvents();
     snap[0].k = 'MUT';
     expect(t.getEvents()[0].k).toBe('a');
+  });
+});
+
+describe('metricsResult', () => {
+  // Pure form of MetricsTracker.getResult, shared with ports that track keys elsewhere.
+  it('computes keystrokes per minute with one decimal', () => {
+    expect(metricsResult(37, 42_000)).toEqual({ elapsed_ms: 42_000, keystrokes: 37, ks_per_min: 52.9 });
+  });
+  it('is 0 per minute when no time passed', () => {
+    expect(metricsResult(5, 0)).toEqual({ elapsed_ms: 0, keystrokes: 5, ks_per_min: 0 });
+  });
+  it('is what MetricsTracker.getResult reports', () => {
+    const t = new MetricsTracker(scriptedClock([1_000, 61_000]));
+    t.start();
+    for (let i = 0; i < 90; i++) t.addKeystroke();
+    expect(t.getResult()).toEqual(metricsResult(90, 60_000));
   });
 });

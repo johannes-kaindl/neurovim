@@ -25,6 +25,7 @@ export * from './engine/MetricsTracker';
 export * from './engine/RunTrace';
 export * from './engine/TraceStore';
 export * from './engine/MissionEngine';
+export * from './engine/MissionCompletion';
 export * from './engine/ProgressionEngine';
 export * from './engine/GlitchEngine';
 export * from './engine/ParTier';

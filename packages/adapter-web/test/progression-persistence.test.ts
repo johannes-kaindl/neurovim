@@ -1,30 +1,24 @@
 /**
- * Persistence contract for the web submit() flow. submit() orchestrates
- * addXp → recordCompletion → recordMissionRun and saves via WebStorage; this exercises
- * that exact chain plus the IndexedDB round-trip, without rendering CM6/UI (the brittle
+ * Persistence contract for the web submit() flow. submit() calls the core's completeMission
+ * (addXp → recordCompletion → recordMissionRun) and saves via WebStorage; this exercises
+ * that function plus the IndexedDB round-trip, without rendering CM6/UI (the brittle
  * part). It also guards the cross-adapter record contract — best_time_ms = min time,
  * best_keystrokes = min keystrokes, best_ks_per_min = max throughput — the semantics the
  * Obsidian adapter was realigned to (it previously tied throughput to the fastest time).
  */
 import 'fake-indexeddb/auto';
-import { ProgressionEngine, DEFAULT_PLUGIN_DATA } from '@neurovim/core';
+import { completeMission as completeMissionCore, DEFAULT_PLUGIN_DATA } from '@neurovim/core';
 import type { MetricsResult, PluginData } from '@neurovim/core';
 import { WebStorage } from '../src/ports/WebStorage';
 
-/** Mirror of adapter-web App.tsx submit()'s persistence logic (sans UI/audio). */
+/** The persistence half of App.tsx submit(): the real core function, with a fixed day. */
 function completeMission(
   data: PluginData,
   missionId: string,
   xp: number,
   metrics: MetricsResult,
 ): PluginData {
-  const { new_data } = ProgressionEngine.addXp(data, xp);
-  let next = ProgressionEngine.recordCompletion(new_data);
-  if (!next.completed_missions.includes(missionId)) {
-    next = { ...next, completed_missions: [...next.completed_missions, missionId] };
-  }
-  const record = ProgressionEngine.recordMissionRun(next.missions[missionId], metrics);
-  return { ...next, missions: { ...next.missions, [missionId]: record } };
+  return completeMissionCore(data, { mission_id: missionId, xp_reward: xp }, metrics, '2026-03-01').data;
 }
 
 describe('progression persistence', () => {

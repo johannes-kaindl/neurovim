@@ -7,7 +7,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
-  resolvePar, tierFor, keystrokesToNextTier, unlockLevelFor,
+  resolvePar, tierFor, unlockLevelFor, completeMission,
   deriveGuidance, CHEATSHEET, skillTagFor, verbosityTier,
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
   type MissionSummary, type SandboxDifficulty,
@@ -161,17 +161,11 @@ export function App() {
       return;
     }
     SoundCues.missionComplete(audio);
-    const { new_data, level_up } = ProgressionEngine.addXp(data, mission.xp_reward);
-    let next = ProgressionEngine.recordCompletion(new_data);
-    if (!next.completed_missions.includes(mission.mission_id)) {
-      next = { ...next, completed_missions: [...next.completed_missions, mission.mission_id] };
-    }
-    const record = ProgressionEngine.recordMissionRun(next.missions[mission.mission_id], metrics);
-    next = { ...next, missions: { ...next.missions, [mission.mission_id]: record } };
+    const done = completeMission(data, mission, metrics, new Date().toISOString().slice(0, 10));
+    const { data: next, level_up, record, par } = done;
     setData(next);
     await storage.saveData(next);
     if (level_up) SoundCues.levelUp(audio);
-    const par = resolvePar({ parOverride: mission.par_keystrokes, difficulty: mission.difficulty });
     const guidance = deriveGuidance({
       category: mission.category, summary: mission.summary, why: mission.why,
       next: nextSummary(mission.mission_id), cheatsheet: CHEATSHEET,
@@ -186,9 +180,9 @@ export function App() {
       keystrokes: metrics.keystrokes,
       bestTimeMs: record.best_time_ms,
       bestKeystrokes: record.best_keystrokes,
-      tier: tierFor(metrics.keystrokes, par),
+      tier: done.tier,
       parKeystrokes: par,
-      toNextTier: keystrokesToNextTier(metrics.keystrokes, par),
+      toNextTier: done.to_next_tier,
       unlocked: level_up ? level_up.unlocked_missions : undefined,
     });
   }
