@@ -44,10 +44,12 @@ test('a mission without a solution is refused, not exported without one', () => 
   assert.throws(() => missionRecord(summary, { ...summary, transmissionBody: 'a', briefingBody: '', solution: undefined }), /X-01/);
 });
 
-test('tables come from the core', () => {
+test('tables come from the core', async () => {
   assert.equal(exp.schema, 1);
   assert.equal(exp.levels[0].xp_required, 0);
   assert.deepEqual(exp.default_unlocked, ['M-01', 'M-02', 'M-03', 'M-04', 'KATA-01']);
+  const types = await loadTs(join(ROOT, 'packages', 'core', 'src', 'types.ts'));
+  assert.deepEqual(exp.default_plugin_data, types.DEFAULT_PLUGIN_DATA);
   assert.deepEqual(exp.unlock_map['2'].missions.slice(0, 2), ['M-05', 'M-06']);
   assert.ok(exp.chapters.every((c) => c.missions.every((id) => typeof id === 'string')));
 });

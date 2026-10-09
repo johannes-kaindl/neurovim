@@ -48,6 +48,8 @@ export async function buildExport(root) {
     levels: levels.LEVELS,
     unlock_map: levels.UNLOCK_MAP,
     default_unlocked: types.DEFAULT_PLUGIN_DATA.unlocked,
+    // A fresh save, field for field — a consumer starts a player from this, never from its own copy.
+    default_plugin_data: types.DEFAULT_PLUGIN_DATA,
     cheatsheet: cheatsheet.CHEATSHEET,
   };
 }

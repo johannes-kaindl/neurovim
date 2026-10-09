@@ -10,6 +10,8 @@ All notable changes to this project are documented here. The format is based on
 - **Data export and conformance vectors for consumers that do not run TypeScript.** `npm run build:content` also writes `packages/content/export/neurovim-data.json` (missions with objective and solution, chapters, levels, unlocks, cheatsheet); `npm run build:conformance` writes JSON vectors for twelve rule functions (scoring, progression, par tiers), computed by the TS core. Tests keep both current and show that wrong implementations fail the vectors. First user: the planned Lua port `neurovim.nvim`.
 - `check-consumers` knows a consumer `kind` (`source` | `data`) and counts the pin lag over what each consumer actually copies.
 
+- **`completeMission` and `metricsResult` in the core.** What happens when a mission is solved — XP on every completion, the daily streak, the completed list, personal bests, the par score — moved up from adapter-web's `submit()`, which now calls it; `MetricsTracker.getResult` delegates to the pure `metricsResult`. Conformance vectors grow to 15 functions / 101 cases (`completeMission`, `metricsResult`, `unlockLevelFor`), and the export carries `default_plugin_data`, so the Neovim port starts a player from the same defaults.
+
 ### Changed
 - `ProgressionEngine.recordCompletion` takes an optional `today`; "yesterday" is derived from it rather than from the clock.
 

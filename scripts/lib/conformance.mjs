@@ -10,13 +10,19 @@ export const CONFORMANCE_SCHEMA = 1;
 
 export async function loadCore(root) {
   const src = join(root, 'packages', 'core', 'src');
-  const [diff, prog, par, types] = await Promise.all([
+  const [diff, prog, par, types, completion, metrics, levels] = await Promise.all([
     loadTs(join(src, 'utils', 'diff.ts')),
     loadTs(join(src, 'engine', 'ProgressionEngine.ts')),
     loadTs(join(src, 'engine', 'ParTier.ts')),
     loadTs(join(src, 'types.ts')),
+    loadTs(join(src, 'engine', 'MissionCompletion.ts')),
+    loadTs(join(src, 'engine', 'MetricsTracker.ts')),
+    loadTs(join(src, 'data', 'levels.ts')),
   ]);
-  return { diff, PE: prog.ProgressionEngine, par, DEFAULT_PLUGIN_DATA: types.DEFAULT_PLUGIN_DATA };
+  return {
+    diff, PE: prog.ProgressionEngine, par, DEFAULT_PLUGIN_DATA: types.DEFAULT_PLUGIN_DATA,
+    completion, metrics, levels,
+  };
 }
 
 // Static methods use `this`, so every engine call goes through the class.
@@ -33,6 +39,9 @@ export const FUNCTIONS = {
   resolvePar: (c) => (input) => c.par.resolvePar(input),
   tierFor: (c) => (keys, par) => c.par.tierFor(keys, par),
   keystrokesToNextTier: (c) => (keys, par) => c.par.keystrokesToNextTier(keys, par),
+  completeMission: (c) => (data, mission, metrics, today) => c.completion.completeMission(data, mission, metrics, today),
+  metricsResult: (c) => (keys, ms) => c.metrics.metricsResult(keys, ms),
+  unlockLevelFor: (c) => (id) => c.levels.unlockLevelFor(id),
 };
 
 const FM = '---\ntitle: x\ntags: [a]\n---\n';
@@ -42,6 +51,8 @@ export function casesFor(core) {
   const D = core.DEFAULT_PLUGIN_DATA;
   const data = (over) => ({ ...D, ...over });
   const m = (elapsed_ms, keystrokes, ks_per_min) => ({ elapsed_ms, keystrokes, ks_per_min });
+  const run = m;
+  const m01 = { mission_id: 'M-01', xp_reward: 15, par_keystrokes: null, difficulty: 1 };
   return {
     normalizeMissionText: [
       { name: 'plain text', args: ['alpha\nbeta'] },
@@ -128,6 +139,23 @@ export function casesFor(core) {
       { name: 'just above silver is bronze', args: [91, 60] },
       { name: 'bronze boundary', args: [150, 60] },
       { name: 'beyond bronze has no tier', args: [151, 60] },
+    ],
+    metricsResult: [
+      { name: 'one decimal', args: [37, 42000] },
+      { name: 'no time passed', args: [5, 0] },
+      { name: 'exactly 90 per minute', args: [90, 60000] },
+      { name: 'half rounds up (9.375 → 9.4)', args: [1, 6400] },
+      { name: 'no keys', args: [0, 1000] },
+    ],
+    unlockLevelFor: ['M-01', 'M-05', 'LOOT-04', 'R-24', 'LOOT-09', 'NOPE'].map((id) => ({ name: id, args: [id] })),
+    completeMission: [
+      { name: 'first completion', args: [data({}), m01, run(42000, 37, 52.9), '2026-03-01'] },
+      { name: 'repeat completion awards XP again, lists once', args: [data({ total_xp: 15, completed_missions: ['M-01'], streak_current: 1, streak_last_date: '2026-03-01', missions: { 'M-01': { best_time_ms: 42000, best_keystrokes: 37, best_ks_per_min: 52.9, runs: 1, last_run: '2026-03-01' } } }), m01, run(30000, 50, 100), '2026-03-02'] },
+      { name: 'second completion the same day keeps the streak', args: [data({ total_xp: 15, completed_missions: ['M-02'], streak_current: 4, streak_last_date: '2026-03-01' }), m01, run(42000, 37, 52.9), '2026-03-01'] },
+      { name: 'level-up with unlocks', args: [data({ total_xp: 60 }), m01, run(42000, 37, 52.9), '2026-03-01'] },
+      { name: 'authored par, silver', args: [data({}), { ...m01, par_keystrokes: 30 }, run(42000, 37, 52.9), '2026-03-01'] },
+      { name: 'no difficulty uses the fallback par', args: [data({}), { mission_id: 'R-01', xp_reward: 25, par_keystrokes: null, difficulty: null }, run(9000, 70, 466.7), '2026-03-01'] },
+      { name: 'beyond bronze has no tier', args: [data({}), m01, run(90000, 200, 133.3), '2026-03-01'] },
     ],
     keystrokesToNextTier: [
       { name: 'gold has no next tier', args: [50, 60] },

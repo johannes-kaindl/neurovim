@@ -46,6 +46,13 @@ const mutants = {
   addXp: (data, amount) => ({ new_data: { ...data, total_xp: data.total_xp + amount }, level_up: null }),
   recordCompletion: (data, today) => ({ ...data, streak_current: 1, streak_last_date: today }),
   tierFor: (keys, par) => (keys > 0 && par > 0 && keys <= par ? 'gold' : null),
+  // A repeat completion that awards no XP — the web app awards it every time.
+  completeMission: (data, mission, metrics, today) => {
+    const real = FUNCTIONS.completeMission(core)(data, mission, metrics, today);
+    return data.completed_missions.includes(mission.mission_id) ? { ...real, data: { ...real.data, total_xp: data.total_xp } } : real;
+  },
+  metricsResult: (keys, ms) => ({ elapsed_ms: ms, keystrokes: keys, ks_per_min: ms > 0 ? Math.floor((keys / ms) * 600000) / 10 : 0 }),
+  unlockLevelFor: () => null,
 };
 for (const [fn, wrong] of Object.entries(mutants)) {
   test(`counter-check: a wrong ${fn} fails the vectors`, () => {

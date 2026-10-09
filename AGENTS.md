@@ -292,7 +292,7 @@ Why vendored rather than depended on, and why the split matters:
   `generate-kata.mjs` transpile core TS for node, and neither is part of `npm test` — losing
   the dependency breaks them silently (it happened once; see `docs/dev/explanation/decisions.md`).
   Since 2026-10-08 `scripts/lib/load-ts.mjs` carries the loader, and the export and conformance tests load it, so `npm test` now fails loudly without esbuild; `generate-kata.mjs` still has its own transpile step.
-- **Rule changes regenerate the conformance vectors:** after changing anything in `utils/diff.ts`, `ProgressionEngine` or `ParTier`, run `npm run build:conformance` and commit the changed JSON — `npm test` fails on stale vectors, and a data consumer (the Lua port) sees the change only through them. Never hand-edit an `expected` value; cases are inputs, the TS core computes the outputs.
+- **Rule changes regenerate the conformance vectors:** after changing anything in `utils/diff.ts`, `ProgressionEngine`, `ParTier`, `MissionCompletion`, `MetricsTracker` (`metricsResult`), `data/levels.ts` or `types.ts` (`DEFAULT_PLUGIN_DATA`), run `npm run build:conformance` (and `npm run build:content` for the export) and commit the changed JSON — `npm test` fails on stale vectors, and a data consumer (the Lua port) sees the change only through them. Never hand-edit an `expected` value; cases are inputs, the TS core computes the outputs.
 - **Generated drafts are not content:** `npm run generate:kata` writes into
   `packages/content/src/_drafts/` (git-ignored, not scanned by `build.mjs`). A draft
   becomes content only when a human moves it into `src/content/KATAS/` + `src/solutions/`,
