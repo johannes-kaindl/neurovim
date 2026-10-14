@@ -7,7 +7,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { lazy, Suspense } from 'preact/compat';
 import {
   MissionEngine, ProgressionEngine, AudioEngine, SoundCues,
-  resolvePar, tierFor, unlockLevelFor, completeMission,
+  resolvePar, tierFor, unlockLevelFor, completeMission, localDay,
   deriveGuidance, CHEATSHEET, skillTagFor, verbosityTier,
   DEFAULT_PLUGIN_DATA, type PluginData, type MissionDoc, type MetricsResult,
   type MissionSummary, type SandboxDifficulty,
@@ -162,7 +162,7 @@ export function App() {
       return;
     }
     SoundCues.missionComplete(audio);
-    const done = completeMission(data, mission, metrics, new Date().toISOString().slice(0, 10));
+    const done = completeMission(data, mission, metrics, localDay());
     const { data: next, level_up } = done;
     setData(next);
     await storage.saveData(next);

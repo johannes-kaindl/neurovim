@@ -1,6 +1,7 @@
 import { ProgressionEngine } from '../src/engine/ProgressionEngine';
 import { DEFAULT_PLUGIN_DATA } from '../src/types';
 import { unlockLevelFor } from '../src/data/levels';
+import { localDay } from '../src/utils/time';
 
 function makeData(xp: number) {
   return { ...DEFAULT_PLUGIN_DATA, total_xp: xp };
@@ -103,8 +104,8 @@ describe('ProgressionEngine', () => {
   });
 
   it('updates streak on first completion today', () => {
-    const today = new Date().toISOString().slice(0, 10);
-    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    const today = localDay();
+    const yesterday = localDay(new Date(Date.now() - 86400000));
     const data = { ...makeData(0), streak_current: 3, streak_last_date: yesterday };
     const result = ProgressionEngine.recordCompletion(data);
     expect(result.streak_current).toBe(4);
@@ -112,14 +113,14 @@ describe('ProgressionEngine', () => {
   });
 
   it('does not double-increment streak same day', () => {
-    const today = new Date().toISOString().slice(0, 10);
+    const today = localDay();
     const data = { ...makeData(0), streak_current: 3, streak_last_date: today };
     const result = ProgressionEngine.recordCompletion(data);
     expect(result.streak_current).toBe(3);
   });
 
   it('resets streak if more than 1 day missed', () => {
-    const twoDaysAgo = new Date(Date.now() - 2 * 86400000).toISOString().slice(0, 10);
+    const twoDaysAgo = localDay(new Date(Date.now() - 2 * 86400000));
     const data = { ...makeData(0), streak_current: 5, streak_last_date: twoDaysAgo };
     const result = ProgressionEngine.recordCompletion(data);
     expect(result.streak_current).toBe(1);

@@ -1,6 +1,7 @@
 import { PluginData, LevelUpResult, MissionRecord, DEFAULT_PLUGIN_DATA } from '../types';
 import { LEVELS, UNLOCK_MAP } from '../data/levels';
 import type { MetricsResult } from './MetricsTracker';
+import { localDay } from '../utils/time';
 
 interface AddXpResult {
   new_data: PluginData;
@@ -61,11 +62,12 @@ export class ProgressionEngine {
   }
 
   /**
-   * Update the daily streak after a completed mission. `today` is injectable (UTC
-   * `YYYY-MM-DD`) so tests and conformance vectors are reproducible; "yesterday" is
-   * derived from it, never from the real clock.
+   * Update the daily streak after a completed mission. `today` is the player's local
+   * calendar day (`YYYY-MM-DD`, default `localDay()`), injectable so tests and conformance
+   * vectors are reproducible. "Yesterday" is calendar arithmetic on that date string (at
+   * UTC midnight, so no DST shift), never read from the real clock.
    */
-  static recordCompletion(data: PluginData, today: string = new Date().toISOString().slice(0, 10)): PluginData {
+  static recordCompletion(data: PluginData, today: string = localDay()): PluginData {
     const last = data.streak_last_date;
     if (last === today) return data;
     const yesterday = new Date(Date.parse(`${today}T00:00:00Z`) - 86400000).toISOString().slice(0, 10);
@@ -100,12 +102,12 @@ export class ProgressionEngine {
    * Personal-best update for a mission after a successful run.
    * best_time_ms / best_keystrokes = minimum (smaller = better; 0 = no best yet),
    * best_ks_per_min = maximum (higher throughput). `runs` is incremented.
-   * `today` is injectable (tests pass in a fixed date).
+   * `today` is the player's local day (default `localDay()`), injectable for tests.
    */
   static recordMissionRun(
     prev: MissionRecord | undefined,
     metrics: MetricsResult,
-    today: string = new Date().toISOString().slice(0, 10),
+    today: string = localDay(),
   ): MissionRecord {
     const lower = (cur: number, next: number) => (cur > 0 ? Math.min(cur, next) : next);
     return {

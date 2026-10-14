@@ -44,7 +44,7 @@ function bumpRunOnly(prev: MissionRecord | undefined, today: string): MissionRec
  * personal bests (not for a run without keystrokes), and the par score. Moved up from
  * adapter-web's submit() and neurovim-obsidian's MissionSession so every consumer
  * scores a run the same way — the Neovim port is proven against its conformance vectors.
- * `today` is the UTC day (YYYY-MM-DD) the run counts for.
+ * `today` is the player's local day (YYYY-MM-DD) the run counts for — `localDay()` at the call site.
  */
 export function completeMission(
   data: PluginData,
