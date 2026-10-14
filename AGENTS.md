@@ -355,8 +355,8 @@ Why vendored rather than depended on, and why the split matters:
 
 ## Remotes & distribution (ADR-001 D5)
 
-- **Primary:** `git.jkaindl.de/jkaindl/NeuroVIM` (live; git remote `origin`, `main` tracked)
-- **Mirror:** `github.com/johannes-kaindl/NeuroVIM` (live; git remote `github`) — runs the desktop CI
+- **Primary:** `git.jkaindl.de/jkaindl/neurovim` (live; git remote `origin`, `main` tracked)
+- **Mirror:** `github.com/johannes-kaindl/neurovim` (live; git remote `github`) — runs the desktop CI
 - **Tokens are not stored** in `.git/config`; pushes use inline credentials.
 
 ## When you change something
