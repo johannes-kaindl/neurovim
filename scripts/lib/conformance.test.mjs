@@ -65,24 +65,28 @@ for (const [name, wrong] of Object.entries(mutants)) {
   });
 }
 
-// LCS port mistakes (v0.2.8): each must fail the vectors.
+// LCS port mistakes (v0.2.8): each must fail the vectors. `limit` mirrors LCS_CELL_LIMIT.
 const lines = (t) => FUNCTIONS.normalizeMissionText(core)(t);
-function alignVariant(a, b, { trim = true, dropFirst = true } = {}) {
+function alignVariant(a, b, { trim = true, dropFirst = true, suffixFirst = false, limit = 250000 } = {}) {
   let p = 0;
   let q = 0;
-  if (trim) {
+  if (trim && suffixFirst) {
+    while (q < a.length && q < b.length && a[a.length - 1 - q] === b[b.length - 1 - q]) q++;
+    while (p < a.length - q && p < b.length - q && a[p] === b[p]) p++;
+  } else if (trim) {
     while (p < a.length && p < b.length && a[p] === b[p]) p++;
     while (q < a.length - p && q < b.length - p && a[a.length - 1 - q] === b[b.length - 1 - q]) q++;
   }
   const n = a.length - p - q;
   const m = b.length - p - q;
-  const L = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
-  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = a[p + i] === b[p + j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const table = n * m <= limit;
+  const L = Array.from({ length: table ? n + 1 : 0 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; table && i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = a[p + i] === b[p + j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
   const ops = [];
   for (let k = 0; k < p; k++) ops.push(['keep', k]);
   let i = 0;
   let j = 0;
-  while (i < n && j < m) {
+  while (table && i < n && j < m) {
     if (a[p + i] === b[p + j]) { ops.push(['keep', p + i]); i++; j++; }
     else if (dropFirst ? L[i + 1][j] >= L[i][j + 1] : L[i + 1][j] > L[i][j + 1]) { ops.push(['drop', p + i]); i++; }
     else { ops.push(['add', p + i]); j++; }
@@ -106,6 +110,14 @@ const divergentVariant = (opts) => (current, solution) => {
   });
   return [...marked].sort((x, y) => x - y).map((x) => x + cur.offset);
 };
+const diffVariant = (opts) => (current, solution) => {
+  const a = lines(current).lines;
+  const b = lines(solution).lines;
+  const ops = alignVariant(a, b, opts);
+  const off = Math.max(a.length, b.length) - ops.filter(([kind]) => kind === 'keep').length;
+  if (off === 0) return { matches: true, first_divergent_line: -1, lines_off: 0 };
+  return { matches: false, first_divergent_line: ops.find(([kind]) => kind !== 'keep')[1], lines_off: off };
+};
 const positionalDiff = (current, solution) => {
   const a = lines(current).lines;
   const b = lines(solution).lines;
@@ -115,8 +127,9 @@ const positionalDiff = (current, solution) => {
   return off === 0 ? { matches: true, first_divergent_line: -1, lines_off: 0 } : { matches: false, first_divergent_line: first, lines_off: off };
 };
 
-test('counter-check: the variant helper reproduces the core (else the counter-checks prove nothing)', () => {
+test('counter-check: the variant helpers reproduce the core (else the counter-checks prove nothing)', () => {
   assert.deepEqual(runVectors(vectors.getDivergentLines, divergentVariant({})), []);
+  assert.deepEqual(runVectors(vectors.getDiff, diffVariant({})), []);
 });
 test('counter-check: a positional getDiff fails the vectors', () => {
   assert.ok(runVectors(vectors.getDiff, positionalDiff).length > 0);
@@ -126,6 +139,18 @@ test('counter-check: adding before dropping on a tie fails getDivergentLines', (
 });
 test('counter-check: aligning without the common prefix and suffix fails getDivergentLines', () => {
   assert.ok(runVectors(vectors.getDivergentLines, divergentVariant({ trim: false })).length > 0);
+});
+test('counter-check: matching the suffix before the prefix fails both functions', () => {
+  assert.ok(runVectors(vectors.getDivergentLines, divergentVariant({ suffixFirst: true })).length > 0);
+  assert.ok(runVectors(vectors.getDiff, diffVariant({ suffixFirst: true })).length > 0);
+});
+test('counter-check: a port without the LCS cell limit fails both functions', () => {
+  assert.ok(runVectors(vectors.getDivergentLines, divergentVariant({ limit: Infinity })).length > 0);
+  assert.ok(runVectors(vectors.getDiff, diffVariant({ limit: Infinity })).length > 0);
+});
+test('counter-check: a port that caps at the limit instead of past it fails both functions', () => {
+  assert.ok(runVectors(vectors.getDivergentLines, divergentVariant({ limit: 249999 })).length > 0);
+  assert.ok(runVectors(vectors.getDiff, diffVariant({ limit: 249999 })).length > 0);
 });
 
 // Port mistakes the review measured as passing the first vector set (2026-10-08).

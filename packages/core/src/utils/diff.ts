@@ -42,10 +42,21 @@ interface AlignOp {
 }
 
 /**
+ * Largest middle (after the common prefix and suffix) that is still aligned: n·m table cells,
+ * 250 000 = 500 × 500 lines. Solutions stay under ~100 lines, so a mission never comes near;
+ * the cap exists because the table costs O(n·m) time and memory and a pasted wall of text
+ * would freeze check and reveal. Past it the middle is not aligned at all (see `alignLines`).
+ * Ports must use the same number — it is part of the conformance vectors.
+ */
+export const LCS_CELL_LIMIT = 250_000;
+
+/**
  * Align `a` (the player's lines) onto `b` (the solution) along a longest common subsequence.
- * Deterministic, so every port aligns identically: common prefix and suffix first, then a
- * suffix-LCS table over the middle; on a tie the line of `a` is dropped before a line of `b`
- * is added. Cost O(n·m) over the middle only — solutions stay under ~100 lines.
+ * Deterministic, so every port aligns identically: common prefix first, then the common suffix
+ * over what the prefix left (the two never overlap), then a suffix-LCS table over the middle;
+ * on a tie the line of `a` is dropped before a line of `b` is added. When the middle has more
+ * than LCS_CELL_LIMIT cells (n·m) there is no table: every middle line of `a` is dropped, then
+ * every middle line of `b` is added, so the middle contributes nothing to the common count.
  */
 function alignLines(a: string[], b: string[]): { ops: AlignOp[]; common: number } {
   let p = 0;
@@ -54,9 +65,11 @@ function alignLines(a: string[], b: string[]): { ops: AlignOp[]; common: number 
   while (q < a.length - p && q < b.length - p && a[a.length - 1 - q] === b[b.length - 1 - q]) q++;
   const n = a.length - p - q;
   const m = b.length - p - q;
+  // An empty middle side needs no table either: its result is the same drops or adds.
+  const useTable = n > 0 && m > 0 && n * m <= LCS_CELL_LIMIT;
   // L[i][j] = LCS length of a[p+i .. p+n) and b[p+j .. p+m).
-  const L: number[][] = Array.from({ length: n + 1 }, () => new Array<number>(m + 1).fill(0));
-  for (let i = n - 1; i >= 0; i--) {
+  const L: number[][] = Array.from({ length: useTable ? n + 1 : 0 }, () => new Array<number>(m + 1).fill(0));
+  for (let i = n - 1; useTable && i >= 0; i--) {
     for (let j = m - 1; j >= 0; j--) {
       L[i][j] = a[p + i] === b[p + j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
     }
@@ -65,7 +78,7 @@ function alignLines(a: string[], b: string[]): { ops: AlignOp[]; common: number 
   for (let k = 0; k < p; k++) ops.push({ kind: 'keep', at: k });
   let i = 0;
   let j = 0;
-  while (i < n && j < m) {
+  while (useTable && i < n && j < m) {
     if (a[p + i] === b[p + j]) {
       ops.push({ kind: 'keep', at: p + i });
       i++;
@@ -81,7 +94,7 @@ function alignLines(a: string[], b: string[]): { ops: AlignOp[]; common: number 
   for (; i < n; i++) ops.push({ kind: 'drop', at: p + i });
   for (; j < m; j++) ops.push({ kind: 'add', at: p + n });
   for (let k = 0; k < q; k++) ops.push({ kind: 'keep', at: p + n + k });
-  return { ops, common: p + q + L[0][0] };
+  return { ops, common: p + q + (useTable ? L[0][0] : 0) };
 }
 
 export function getDiff(current: string, solution: string): DiffResult {

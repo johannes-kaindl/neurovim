@@ -47,6 +47,12 @@ export const FUNCTIONS = {
 const FM = '---\ntitle: x\ntags: [a]\n---\n';
 const FM_CRLF = '---\r\ntitle: x\r\n---\r\n';
 
+// Texts for the LCS cell limit (n·m = 250 000 cells of the middle, i.e. 500 × 500 lines). Shared
+// first and last line, so prefix and suffix apply; a shared run inside the middle, fenced by
+// differing lines so the suffix step cannot swallow it, so a real alignment (498 common lines)
+// differs visibly from the capped fallback (none).
+const limitText = (head, run, tail) => ['top', head, ...Array.from({ length: run }, (_, i) => `s${i}`), tail, 'end'].join('\n');
+
 export function casesFor(core) {
   const D = core.DEFAULT_PLUGIN_DATA;
   const data = (over) => ({ ...D, ...over });
@@ -85,6 +91,9 @@ export function casesFor(core) {
       { name: 'deleted line in the middle', args: ['a\nc\nd', 'a\nb\nc\nd'] },
       { name: 'moved line', args: ['b\nc\na', 'a\nb\nc'] },
       { name: 'two lines missing at the end', args: ['a', 'a\nb\nc'] },
+      { name: 'prefix before suffix on repeated lines', args: ['a\nb\na', 'a'] },
+      { name: 'at the LCS cell limit: still aligned', args: [limitText('A', 498, 'Z'), limitText('B', 498, 'Y')] },
+      { name: 'past the LCS cell limit: middle dropped and re-added', args: [limitText('A', 498, 'Z'), limitText('B', 499, 'Y')] },
     ],
     getDivergentLines: [
       { name: 'identical', args: ['a\nb', 'a\nb'] },
@@ -99,6 +108,11 @@ export function casesFor(core) {
       { name: 'changed line next to a missing line', args: ['a\nX\nc', 'a\nb\nc\nd'] },
       { name: 'empty current marks nothing', args: ['', 'a'] },
       { name: 'inserted line behind frontmatter', args: [FM + 'a\nNEW\nb', 'a\nb'] },
+      { name: 'moved line', args: ['b\nc\na', 'a\nb\nc'] },
+      { name: 'added lines at the very start', args: ['b\nc', 'a\nb\nc'] },
+      { name: 'prefix before suffix on repeated lines', args: ['a\nb\na', 'a'] },
+      { name: 'at the LCS cell limit: still aligned', args: [limitText('A', 498, 'Z'), limitText('B', 498, 'Y')] },
+      { name: 'past the LCS cell limit: middle dropped and re-added', args: [limitText('A', 498, 'Z'), limitText('B', 499, 'Y')] },
     ],
     getLevelForXp: [0, 65, 66, 185, 186, 600, 601, 799, 800, 899, 900, 1149, 1150, 1299, 1300, 1499, 1500, 99999].map((xp) => ({ name: `${xp} xp`, args: [xp] })),
     addXp: [

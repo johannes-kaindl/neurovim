@@ -1,4 +1,4 @@
-import { getDiff, getDivergentLines, normalizeMissionText } from '../src/utils/diff';
+import { getDiff, getDivergentLines, normalizeMissionText, LCS_CELL_LIMIT } from '../src/utils/diff';
 
 describe('getDiff', () => {
   it('returns matches true for identical content', () => {
@@ -79,6 +79,51 @@ describe('line alignment', () => {
   it('an inserted line behind host frontmatter reports its document index', () => {
     const fm = '---\ntitle: x\n---\n';
     expect(getDivergentLines(fm + 'a\nNEW\nb', 'a\nb')).toEqual([4]);
+  });
+  it('lines added at the very start mark the first line', () => {
+    expect(getDiff('b\nc', 'a\nb\nc')).toEqual({ matches: false, first_divergent_line: 0, lines_off: 1 });
+    expect(getDivergentLines('b\nc', 'a\nb\nc')).toEqual([0]);
+  });
+  it('the prefix is matched before the suffix, and the suffix never overlaps it', () => {
+    // suffix first would keep the last "a" and drop [a, b] instead of [b, a]
+    expect(getDiff('a\nb\na', 'a')).toEqual({ matches: false, first_divergent_line: 1, lines_off: 2 });
+    expect(getDivergentLines('a\nb\na', 'a')).toEqual([1, 2]);
+  });
+});
+
+// The LCS table costs O(n·m) time and memory, so a pasted wall of text must not reach it: past
+// LCS_CELL_LIMIT cells the middle is dropped and re-added wholesale instead of aligned.
+describe('line alignment limit', () => {
+  // A shared run in the middle, fenced by differing lines so the suffix step cannot swallow it.
+  const text = (head: string, run: number, tail: string) =>
+    ['top', head, ...Array.from({ length: run }, (_, i) => `s${i}`), tail, 'end'].join('\n');
+
+  it('the limit is 500 x 500 lines', () => {
+    expect(LCS_CELL_LIMIT).toBe(250_000);
+  });
+  it('a middle of exactly the limit is still aligned', () => {
+    const a = text('A', 498, 'Z'); // middle: 500 lines
+    const b = text('B', 498, 'Y'); // middle: 500 lines, 250 000 cells
+    expect(getDiff(a, b)).toEqual({ matches: false, first_divergent_line: 1, lines_off: 2 });
+    expect(getDivergentLines(a, b)).toEqual([1, 500]);
+  });
+  it('past the limit the middle is dropped and re-added, quickly', () => {
+    const a = text('A', 598, 'Z'); // middle: 600 lines
+    const b = text('B', 498, 'Y'); // middle: 500 lines, 300 000 cells — an alignment would find 498 common lines
+    const t0 = Date.now();
+    const diff = getDiff(a, b);
+    const marks = getDivergentLines(a, b);
+    expect(Date.now() - t0).toBeLessThan(200);
+    expect(diff).toEqual({ matches: false, first_divergent_line: 1, lines_off: 600 }); // max(602, 502) - (1 + 1)
+    expect(marks).toEqual(Array.from({ length: 600 }, (_, i) => i + 1));
+  });
+  it('a huge text against nothing in common stays cheap', () => {
+    const big = Array.from({ length: 100_000 }, (_, i) => `l${i}`).join('\n');
+    const solution = Array.from({ length: 10 }, (_, i) => `x${i}`).join('\n');
+    const t0 = Date.now();
+    expect(getDiff(big, solution).lines_off).toBe(100_000);
+    expect(getDivergentLines(big, solution)).toHaveLength(100_000);
+    expect(Date.now() - t0).toBeLessThan(1000);
   });
 });
 
