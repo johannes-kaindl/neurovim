@@ -84,7 +84,7 @@ When the last stray character is gone, a **result** screen appears. It shows:
 - **+15 XP** for completing M-01,
 - your **time** and **keystroke count**,
 - a **par-tier** — 🥇 gold / 🥈 silver / 🥉 bronze — scoring how economical your
-  keystrokes were. M-01's gold "par" is 40 keystrokes; don't chase it yet.
+  keystrokes were against the mission's "par"; don't chase gold yet.
 
 You can **replay** any mission to beat your tier later.
 

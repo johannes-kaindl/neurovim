@@ -44,19 +44,9 @@ Each completed mission is graded on **keystroke economy** against a *par*:
 | 🥉 bronze | keystrokes ≤ par × 2.5 |
 | completed (no tier) | anything above bronze |
 
-**Par** is the gold threshold. It is either a hand-tuned value set per mission, or, if
-none is set, computed from the mission's difficulty:
+**Par** is the gold threshold, and every mission has its own. It is measured, not guessed: for nearly every mission, a good solution — one that uses only the keys taught up to that mission and follows the route its briefing describes — was played and its keystrokes counted, and par is that count rounded up to the next multiple of 5. A mission that takes many edits therefore has a larger par than one that takes few. A couple of missions still carry an earlier hand-set value. Lower keystrokes are always better; the result screen shows how many keystrokes separate you from the next tier.
 
-```
-par = 20 + (difficulty × 20)
-```
-
-So a difficulty-1 mission (like M-01) has par **40**; difficulty 3 (the fallback when a
-mission has no difficulty) has par **80**. Lower keystrokes are always better; the
-result screen shows how many keystrokes separate you from the next tier.
-
-> Par values are deliberately generous baselines, tuned against the web keystroke
-> counter — they reward economical editing without punishing learners.
+> Par is a measured, deliberately generous baseline — it rewards economical editing without punishing learners.
 
 ## Progression & XP
 

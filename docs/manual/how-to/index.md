@@ -76,7 +76,7 @@ To improve a tier:
    time, use `.` to repeat the last change, and counts like `3dd`.
 3. The result screen tells you how many keystrokes you are from the next tier.
 
-Exact par numbers and the formula are in
+How par is set is in
 [Reference → Scoring](../reference/index.md#scoring-par-tiers).
 
 ## Find the in-game Vim reference
