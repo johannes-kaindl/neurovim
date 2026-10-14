@@ -31,14 +31,13 @@
       ]
     },
     {
-      "name": "missing lines are reported past the end",
+      "name": "missing lines at the end mark the last line",
       "args": [
         "a",
         "a\nb\nc"
       ],
       "expected": [
-        1,
-        2
+        0
       ]
     },
     {
@@ -49,6 +48,76 @@
       ],
       "expected": [
         3
+      ]
+    },
+    {
+      "name": "inserted line in the middle",
+      "args": [
+        "a\nNEW\nb\nc\nd",
+        "a\nb\nc\nd"
+      ],
+      "expected": [
+        1
+      ]
+    },
+    {
+      "name": "deleted line marks the line after the gap",
+      "args": [
+        "a\nc\nd",
+        "a\nb\nc\nd"
+      ],
+      "expected": [
+        1
+      ]
+    },
+    {
+      "name": "changed first line before an equal line",
+      "args": [
+        "a\nb",
+        "b\nb"
+      ],
+      "expected": [
+        0
+      ]
+    },
+    {
+      "name": "tie: drop before add",
+      "args": [
+        "a\na\nb",
+        "c\na"
+      ],
+      "expected": [
+        0,
+        2
+      ]
+    },
+    {
+      "name": "changed line next to a missing line",
+      "args": [
+        "a\nX\nc",
+        "a\nb\nc\nd"
+      ],
+      "expected": [
+        1,
+        2
+      ]
+    },
+    {
+      "name": "empty current marks nothing",
+      "args": [
+        "",
+        "a"
+      ],
+      "expected": []
+    },
+    {
+      "name": "inserted line behind frontmatter",
+      "args": [
+        "---\ntitle: x\ntags: [a]\n---\na\nNEW\nb",
+        "a\nb"
+      ],
+      "expected": [
+        5
       ]
     }
   ]

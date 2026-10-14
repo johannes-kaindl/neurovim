@@ -121,6 +121,54 @@
         "first_divergent_line": -1,
         "lines_off": 0
       }
+    },
+    {
+      "name": "inserted line in the middle",
+      "args": [
+        "a\nNEW\nb\nc\nd",
+        "a\nb\nc\nd"
+      ],
+      "expected": {
+        "matches": false,
+        "first_divergent_line": 1,
+        "lines_off": 1
+      }
+    },
+    {
+      "name": "deleted line in the middle",
+      "args": [
+        "a\nc\nd",
+        "a\nb\nc\nd"
+      ],
+      "expected": {
+        "matches": false,
+        "first_divergent_line": 1,
+        "lines_off": 1
+      }
+    },
+    {
+      "name": "moved line",
+      "args": [
+        "b\nc\na",
+        "a\nb\nc"
+      ],
+      "expected": {
+        "matches": false,
+        "first_divergent_line": 0,
+        "lines_off": 1
+      }
+    },
+    {
+      "name": "two lines missing at the end",
+      "args": [
+        "a",
+        "a\nb\nc"
+      ],
+      "expected": {
+        "matches": false,
+        "first_divergent_line": 1,
+        "lines_off": 2
+      }
     }
   ]
 }

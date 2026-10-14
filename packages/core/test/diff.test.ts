@@ -41,6 +41,47 @@ describe('getDivergentLines', () => {
   });
 });
 
+// Lines are aligned along a longest common subsequence: an inserted or deleted line costs one
+// line, not the rest of the document (decided 2026-10-14 — 13 of 54 missions change their line
+// count while being solved). Ties drop the current line before adding the solution line.
+describe('line alignment', () => {
+  it('an inserted line in the middle costs one line', () => {
+    const r = getDiff('a\nNEW\nb\nc\nd', 'a\nb\nc\nd');
+    expect(r).toEqual({ matches: false, first_divergent_line: 1, lines_off: 1 });
+    expect(getDivergentLines('a\nNEW\nb\nc\nd', 'a\nb\nc\nd')).toEqual([1]);
+  });
+  it('a deleted line marks the line after the gap', () => {
+    expect(getDiff('a\nc\nd', 'a\nb\nc\nd').lines_off).toBe(1);
+    expect(getDivergentLines('a\nc\nd', 'a\nb\nc\nd')).toEqual([1]);
+  });
+  it('missing lines at the end mark the last line, never one past the document', () => {
+    expect(getDiff('a', 'a\nb\nc')).toEqual({ matches: false, first_divergent_line: 1, lines_off: 2 });
+    expect(getDivergentLines('a', 'a\nb\nc')).toEqual([0]);
+  });
+  it('an empty text differs but marks nothing', () => {
+    expect(getDiff('', 'a')).toEqual({ matches: false, first_divergent_line: 0, lines_off: 1 });
+    expect(getDivergentLines('', 'a')).toEqual([]);
+  });
+  it('a changed first line before an equal line marks only that line', () => {
+    expect(getDivergentLines('a\nb', 'b\nb')).toEqual([0]);
+  });
+  it('a moved line costs one line and marks where it left and where it is missing', () => {
+    expect(getDiff('b\nc\na', 'a\nb\nc').lines_off).toBe(1);
+    expect(getDivergentLines('b\nc\na', 'a\nb\nc')).toEqual([0, 2]);
+  });
+  it('on a tie the current line is dropped before the solution line is added', () => {
+    expect(getDivergentLines('a\na\nb', 'c\na')).toEqual([0, 2]);
+  });
+  it('a changed line next to a missing line', () => {
+    expect(getDiff('a\nX\nc', 'a\nb\nc\nd').lines_off).toBe(2);
+    expect(getDivergentLines('a\nX\nc', 'a\nb\nc\nd')).toEqual([1, 2]);
+  });
+  it('an inserted line behind host frontmatter reports its document index', () => {
+    const fm = '---\ntitle: x\n---\n';
+    expect(getDivergentLines(fm + 'a\nNEW\nb', 'a\nb')).toEqual([4]);
+  });
+});
+
 // Host noise: vault plugins (Obsidian Linter, timestamp/title plugins) add YAML frontmatter
 // and strip trailing spaces in the mission note. None of that is a Vim skill, so none of it
 // may fail a run — the only challenge is the motion.
