@@ -61,6 +61,16 @@ const mutants = {
   addXp: (data, amount) => ({ new_data: { ...data, total_xp: data.total_xp + amount }, level_up: null }),
   recordCompletion: (data, today) => ({ ...data, streak_current: 1, streak_last_date: today }),
   tierFor: (keys, par) => (keys > 0 && par > 0 && keys <= par ? 'gold' : null),
+  // A port with integer math rounds the bronze limit up (par 35 × 2.5 = 87.5 → 88) and gives bronze to a run one key past it.
+  tierForRoundedBronze: (keys, par) => {
+    const real = FUNCTIONS.tierFor(core)(keys, par);
+    return real === null && keys > 0 && par > 0 && keys <= Math.ceil(par * core.par.BRONZE_FACTOR) ? 'bronze' : real;
+  },
+  // The same rounding in the nudge: the way to bronze is measured from 88, not 87.5.
+  keystrokesToNextTierRoundedBronze: (keys, par) => {
+    const real = FUNCTIONS.keystrokesToNextTier(core)(keys, par);
+    return real && real.nextTier === 'bronze' ? { ...real, delta: keys - Math.ceil(par * core.par.BRONZE_FACTOR) } : real;
+  },
   // A repeat completion that awards no XP — the web app awards it every time.
   completeMission: (data, mission, metrics, today) => {
     const real = FUNCTIONS.completeMission(core)(data, mission, metrics, today);
@@ -74,7 +84,7 @@ const mutants = {
   unlockLevelFor: () => null,
 };
 for (const [name, wrong] of Object.entries(mutants)) {
-  const fn = name === 'completeMissionWithoutZeroKeyRule' ? 'completeMission' : name;
+  const fn = { completeMissionWithoutZeroKeyRule: 'completeMission', tierForRoundedBronze: 'tierFor', keystrokesToNextTierRoundedBronze: 'keystrokesToNextTier' }[name] ?? name;
   test(`counter-check: a wrong ${name} fails the vectors`, () => {
     assert.ok(runVectors(vectors[fn], wrong).length > 0);
   });

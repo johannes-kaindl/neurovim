@@ -61,6 +61,17 @@
         "nextTier": "silver",
         "delta": 7.5
       }
+    },
+    {
+      "name": "odd par below bronze gives a fractional delta",
+      "args": [
+        100,
+        35
+      ],
+      "expected": {
+        "nextTier": "bronze",
+        "delta": 12.5
+      }
     }
   ]
 }

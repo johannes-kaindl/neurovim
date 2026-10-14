@@ -81,6 +81,22 @@
         35
       ],
       "expected": "bronze"
+    },
+    {
+      "name": "odd par, inside bronze",
+      "args": [
+        87,
+        35
+      ],
+      "expected": "bronze"
+    },
+    {
+      "name": "odd par, just past bronze",
+      "args": [
+        88,
+        35
+      ],
+      "expected": null
     }
   ]
 }
