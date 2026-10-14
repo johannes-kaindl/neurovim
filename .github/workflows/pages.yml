@@ -1,8 +1,8 @@
 # Deploy the web app (@neurovim/adapter-web) to GitHub Pages on every push to main.
 #
 # One-time setup: GitHub repo → Settings → Pages → Source = "GitHub Actions".
-# The app uses Vite `base: './'` (relative), so it works under the /NeuroVIM/ sub-path.
-# Live URL: https://johannes-kaindl.github.io/NeuroVIM/
+# The app uses Vite `base: './'` (relative), so it works under the /neurovim/ sub-path.
+# Live URL: https://johannes-kaindl.github.io/neurovim/
 
 name: pages
 

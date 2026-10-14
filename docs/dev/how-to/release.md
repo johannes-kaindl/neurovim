@@ -98,7 +98,7 @@ Two independent targets:
 | Target | How it updates |
 |---|---|
 | <https://pages.jkaindl.de/neurovim-standalone/> | manually: `bash scripts/deploy-page.sh` |
-| <https://johannes-kaindl.github.io/NeuroVIM/> | automatically: `.github/workflows/pages.yml` on every push to `main` of the GitHub mirror |
+| <https://johannes-kaindl.github.io/neurovim/> | automatically: `.github/workflows/pages.yml` on every push to `main` of the GitHub mirror |
 
 `scripts/deploy-page.sh` needs:
 
