@@ -16,6 +16,7 @@ import { listMissions, getMission, listLore } from '@neurovim/content';
 import { WebStorage } from '../ports/WebStorage';
 import { MissionResult, type MissionResultData } from './MissionResult';
 import { fmtTime } from './format';
+import { completeResult } from './resultData';
 import { loadSettings, saveSettings, applyEffects } from './settings';
 import { ControlCluster, AudioHint } from './Chrome';
 import { UplinkPanel } from './UplinkPanel';
@@ -162,7 +163,7 @@ export function App() {
     }
     SoundCues.missionComplete(audio);
     const done = completeMission(data, mission, metrics, new Date().toISOString().slice(0, 10));
-    const { data: next, level_up, record, par } = done;
+    const { data: next, level_up } = done;
     setData(next);
     await storage.saveData(next);
     if (level_up) SoundCues.levelUp(audio);
@@ -171,20 +172,7 @@ export function App() {
       next: nextSummary(mission.mission_id), cheatsheet: CHEATSHEET,
       level: ProgressionEngine.getXpProgress(next.total_xp).level, pin: data.railPin ?? null,
     });
-    setResult({
-      status: 'complete',
-      debrief: guidance.debrief,
-      xp: mission.xp_reward,
-      levelUp: level_up ? level_up.new_level : null,
-      timeMs: metrics.elapsed_ms,
-      keystrokes: metrics.keystrokes,
-      bestTimeMs: record.best_time_ms,
-      bestKeystrokes: record.best_keystrokes,
-      tier: done.tier,
-      parKeystrokes: par,
-      toNextTier: done.to_next_tier,
-      unlocked: level_up ? level_up.unlocked_missions : undefined,
-    });
+    setResult(completeResult(done, metrics, guidance.debrief));
   }
 
   async function saveSandboxBest(difficulty: SandboxDifficulty, ms: number) {

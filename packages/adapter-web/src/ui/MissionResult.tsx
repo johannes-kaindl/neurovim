@@ -21,6 +21,8 @@ export interface MissionResultData {
   /** Personal best values after this run. */
   bestTimeMs?: number;
   bestKeystrokes?: number;
+  /** Solved without a keystroke: XP counts, the run sets no best (core `unverified`). */
+  unverified?: boolean;
   /** Tier earned on this run (gold/silver/bronze) or null = completed, no tier. */
   tier?: Tier;
   /** Resolved par for the mission (gold threshold), for the badge subtitle. */
@@ -105,7 +107,9 @@ export function MissionResult({ result, missionTitle, hasNext, onRetry, onNext, 
               <div class="nv-modal-metrics">
                 <span>{fmtTime(result.timeMs)}</span>
                 <span>{result.keystrokes} keystrokes</span>
-                {(result.bestTimeMs != null || result.bestKeystrokes != null) && (
+                {result.unverified ? (
+                  <span class="nv-modal-best">UNVERIFIED — no keystrokes recorded, not saved as a best</span>
+                ) : (result.bestTimeMs != null || result.bestKeystrokes != null) && (
                   <span class="nv-modal-best">
                     best {fmtTime(result.bestTimeMs ?? result.timeMs)} · {result.bestKeystrokes ?? result.keystrokes} ks
                   </span>
