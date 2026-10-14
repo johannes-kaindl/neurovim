@@ -179,7 +179,7 @@ Fix in drei Teilen. (1) Die Prüfung normalisiert Frontmatter und Leerzeichen am
 
 Belegt durch eine blinde Nachprobe: pro Mission schrieb ein Agent das Ziel, ein zweiter ohne Zugriff auf Lösung und Briefing spielte die Mission nur aus Transmission und Ziel nach, ein dritter verglich mit der Spielprüfung. 54 von 54 trafen die Lösung zeichengenau; M-12 brauchte zwei Runden, R-15 drei (die Zählung im Ziel war falsch). Dabei gefundene Inhaltsfehler sind im CHANGELOG aufgeführt.
 
-Bekannte Restpunkte, die die Lösbarkeit nicht berühren: Lore-Unstimmigkeiten in M-12 (Q2/Q3) und R-20 (Namensrichtung), das Beispiel im M-07-Briefing nutzt ein anderes Wortpaar, M-11 nennt einen Split-Pane-Weg, den die Web-App nicht hat (das Ziel nennt die Werte direkt), und R-24 lässt den rechten Rahmen der Kopfbox bewusst verrutschen.
+Bekannte Restpunkte, die die Lösbarkeit nicht berühren: Lore-Unstimmigkeiten in M-12 (Q2/Q3) (behoben in v0.2.8) und R-20 (Namensrichtung) (behoben in v0.2.8), das Beispiel im M-07-Briefing nutzt ein anderes Wortpaar, M-11 nennt einen Split-Pane-Weg, den die Web-App nicht hat (das Ziel nennt die Werte direkt), und R-24 lässt den rechten Rahmen der Kopfbox bewusst verrutschen.
 
 ## Reproduktion des Sweeps
 

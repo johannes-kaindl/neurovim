@@ -44,6 +44,40 @@ categories can be generated today, and `regex` — 26 of the 54 missions — is 
 them. Raise that ceiling first, then ask again what a player sees when generation
 fails.
 
+## Level thresholds follow one pass
+
+*Decided 2026-10-14.*
+
+The level table was written once, for the first six levels, and never revisited. Levels 2 to 6 sit close to the story XP that opens below them (65, 185, 405, 585 and 745 XP against thresholds of 66, 186, 371, 601 and 800), so a player who plays the story plus some KATAs levels up on time. From level 7 on, the table that arrived with `9dbd127` (1150, 1550, 2000, 2500) has no recorded reasoning and did not follow that pattern: story plus KATAs, each mission once, ended at level 6 with 955 XP, and R-09 to R-24 needed about 600 XP of replays before the last levels opened. A player who has done everything once was told to repeat missions to reach the rest.
+
+The rule is now that **one pass through everything reaches level 10**; replaying earns XP as a bonus and is never a wall. Levels 7 to 10 need 900, 1150, 1300 and 1500 XP, and the 54 missions together are worth 1555. The story missions available before level 7 add up to 845 XP, which is below the 900 for level 7, so the KATAs (110 XP below level 7) are part of the way and not an optional side road. That is intended: the drills are where the keys get practised.
+
+A content gate plays the curriculum once, always taking every mission that is open, and fails unless every mission unlocks and the top level is reached. A second gate keeps the level tables in both quick references equal to `LEVELS` — the player-facing copy of a table drifts the moment nobody compares it (CORE-META-16). The price: the conformance vectors for the progression functions changed, so a data consumer sees the new table only after it re-vendors them.
+
+## Lines align along an LCS
+
+*Decided 2026-10-14.*
+
+`getDiff` used to compare line *i* with line *i*. An inserted or deleted line therefore made every following line count as corrupted: `check` reported the rest of the document, and `reveal` marked it. 13 of the 54 missions change their line count while being solved, so in a quarter of the game the check was loudest exactly when the player was almost done.
+
+Lines are now aligned along a **longest common subsequence**, and `lines_off = max(n, m) − LCS`. The alignment is deterministic, because every port has to produce the same marks: match the common prefix, then the common suffix over what the prefix left, then build a suffix-LCS table over the middle; on a tie the current line is dropped before a solution line is added. The full rule is in the [conformance README](../../../packages/core/conformance/README.md).
+
+**Prefix and suffix are stripped before the table, prefix first, because the table alone is ambiguous in ways a player sees.** Take the current lines `a`, `b` against the solution lines `b`, `b`. A plain table ties and drops `a`, matches the current `b` with the *first* solution `b`, and the second solution `b` becomes an added line at the end: two lines are marked, although only one is wrong. Stripping the common suffix first keeps the last `b` where it is and marks only the first line. The order of the two strips is part of the rule as well: the current lines `a`, `b`, `a` against the solution `a` mark lines 1 and 2 (counting from 0) when the prefix goes first, and lines 0 and 1 when the suffix does — same count, different lines. A port that matched the suffix first passed every vector until one pinned the order (`prefix before suffix on repeated lines`), so the vectors now carry that case and a counter-check for each way to get it wrong (suffix first, no limit, the limit applied at `>=`).
+
+**The table is capped at 250 000 cells** (`LCS_CELL_LIMIT`, 500 × 500 lines of the middle). The table costs O(n·m) time and memory, and the text under check is whatever the player has in the editor: a huge pasted text would freeze `check` and `reveal`. An automated security review found the gap. Past the cap the middle is not aligned: every current line is dropped, then every solution line is added. A mission stays far below it (solutions are under about 100 lines), and a player who has pasted a wall of text is not in a state where the fine alignment matters.
+
+## Par comes from blind reference runs
+
+*Decided 2026-10-14.*
+
+Par used to be authored — a number someone judged right, with no one ever playing the route. For this release every mission got a reference run instead: an agent solved it **blind**, from the transmission, the briefing and the objective only, with the keys taught up to that mission, in real Neovim through `npm run par` ([how-to](../how-to/measure-par.md)). The key count is the plugin's own (`:help neurovim-keys`), so it equals what a player sees in the winbar. **Par is that count rounded up to a multiple of 5**, so the reference run itself reaches gold.
+
+Every run gets its own Neovim process. In one shared process a macro recorded by an earlier run stayed in its register, and a later run replaying it ended one line off after 7 keys where a fresh player ends 11 off — par measured cheaper than anyone pays. The self-test replays that case.
+
+The runs live in `packages/content/par/reference-runs.json`, and a content gate ties every par to its run (the mission's par equals the run's count rounded up, and the run's recorded par equals the mission's). A text or objective change therefore shows up as a stale par instead of being trusted. The blind runs doubled as the derivability replay for this release's content changes: they found M-04 teaching no cut or put, KATA-14 recommending a pattern that also deletes its own heading, and R-14 declaring the wrong unlock level.
+
+Two rules decide the awkward cases. **Where the briefing's route is longer than a shortcut taught so far, par prices the briefing's route** — generous, never unreachable: a mission that asks for a route must not set a par only a cleverer route reaches. **M-11 prices retyping (295 keys)**, because the split-pane route its briefing names does not exist in the web app; the objective names the values, so retyping them is the one route that exists in every target. R-06 (measured 9, par 10) and R-14 (measured 45, par 45 through the briefed register route; `:%s` solves it in 16) deviate by more than 25 % from their authored par, so they keep the authored 14 and 30 as approved exceptions in the gate until the maintainer decides.
+
 ## Navigation skills need a new gameplay verb
 
 The single verb of the game is "fix the text, diff against the solution". Skills that

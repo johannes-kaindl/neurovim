@@ -25,9 +25,9 @@ Vim is the disguised core loop; the story is the motivation layer.
 over five port interfaces. Target 1 = Obsidian plugin (origin), target 2 =
 standalone web app, target 3 = native desktop app (Tauri wrapper around the web app).
 
-> **Status (2026-10-08) — v0.2.7 released.** The web app is live; the desktop installers wait for macOS notarization. The Obsidian consumer is `neurovim-obsidian` (store id `neurovim`, called `vim-dojo` until its rename), which ships 0.12.1 in the community store and vendors v0.2.7. The core carries **five ports**: `LlmPort` arrived with Slice A, together with `CipherUplink` as its in-core caller. Two capabilities have made the back-flow trip up from the consumer — keystroke tracing and the LLM uplink's game-facing half.
+> **Status (2026-10-14) — v0.2.8 released.** The web app is live; the desktop installers wait for macOS notarization. The Obsidian consumer is `neurovim-obsidian` (store id `neurovim`, called `vim-dojo` until its rename), which ships 0.12.1 in the community store and vendors v0.2.7. The core carries **five ports**: `LlmPort` arrived with Slice A, together with `CipherUplink` as its in-core caller. Two capabilities have made the back-flow trip up from the consumer — keystroke tracing and the LLM uplink's game-facing half.
 >
-> v0.2.7 gave every mission an `objective` and shipped **`MissionGenerator`** — authoring-side generation of KATA drills, the second `LlmPort` consumer. It does not ask a model for an exercise; it asks for a clean document plus reversible corruptions and lets `GlitchEngine` derive the exercise, so solvability is constructed rather than checked. Drafts land in `packages/content/src/_drafts/` and never reach the SSOT unaided.
+> v0.2.8 reworked how a run is measured and scored: one pass through every mission now reaches level 10 (levels 7–10 need 900/1150/1300/1500 XP), and mission lines align along a longest common subsequence, so one inserted or deleted line no longer marks the rest of the document — the conformance vectors changed, and the Lua port must follow them. The ASCII frames in solutions, briefings and lore are straight, with a content gate behind them. Every mission has a par taken from a blind reference run in real Neovim (`npm run par`), and the web result shows a run without keystrokes as unverified. Both consumers still sit on the pre-0.2.8 core (`neurovim-obsidian` vendors v0.2.7, `neurovim.nvim` pins older vectors) and take v0.2.8 next — the pin lag is in [`CONSUMERS.md`](CONSUMERS.md).
 >
 > **The release history lives in [`CHANGELOG.md`](CHANGELOG.md), not here.** This file used
 > to carry a per-version log; it drifted two months behind while the changelog stayed
@@ -202,7 +202,7 @@ green. For content changes also run `npm run build:content`, otherwise
   `--nv-*` variables (six canonical + additive tokens). New colors as a `:root`
   variable, never inline hex (see `docs/dev/reference/design-tokens.md`). The bundled monospace is
   self-hosted JetBrains Mono (`src/fonts/`, exposed as `--nv-mono`).
-- **Bundle budget (web):** code-split (initial **414 KB / 123 KB gzip**, measured 2026-10-08; CM6 ~411 KB lazy;
+- **Bundle budget (web):** code-split (initial **411 KB / 123 KB gzip**, measured 2026-10-14 from the Vite build report, whose kB count characters, not bytes — the file is 456 kB on disk; CM6 ~411 KB lazy;
   `marked` ~43 KB lazy). No heavy visual deps; prefer CSS motion over JS libs. Any new
   dependency must justify its weight and ideally be lazy-loaded. **Read the number off a
   build, do not trust this line** — it has drifted before (`docs/dev/explanation/decisions.md`).
@@ -375,8 +375,8 @@ Why vendored rather than depended on, and why the split matters:
 
 ## Roadmap
 
-- **Shipped:** v0.1.0 → **v0.2.7** (2026-10-08). Per-version detail lives in [`CHANGELOG.md`](CHANGELOG.md); the last three cycles were v0.2.5 (upstream contract + trace back-flow), v0.2.6 (`LlmPort` + `CipherUplink`) and v0.2.7 (`objective` per mission, `MissionGenerator`, `WebLlm`). Cycles *up to v0.2.4* had a spec + plan under `docs/superpowers/{specs,plans}/` — that location is historical and frozen; new SDD artifacts live outside the repo (see the **Memory** section).
-- **Release tags** `v0.1.0`…`v0.2.7` trigger the desktop CI (macOS/Windows/Linux installers
+- **Shipped:** v0.1.0 → **v0.2.8** (2026-10-14). Per-version detail lives in [`CHANGELOG.md`](CHANGELOG.md); the last three cycles were v0.2.6 (`LlmPort` + `CipherUplink`), v0.2.7 (`objective` per mission, `MissionGenerator`, `WebLlm`) and v0.2.8 (level thresholds, LCS line alignment, measured par). Cycles *up to v0.2.4* had a spec + plan under `docs/superpowers/{specs,plans}/` — that location is historical and frozen; new SDD artifacts live outside the repo (see the **Memory** section).
+- **Release tags** `v0.1.0`…`v0.2.8` trigger the desktop CI (macOS/Windows/Linux installers
   via GitHub Actions → GitHub release); macOS builds are **signed + notarized** since the
   `APPLE_*` repo secrets were added (v0.2.3 onward). Note the CI produces a **draft**, so a
   green run is not a published release (see Gotchas).
