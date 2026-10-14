@@ -16,7 +16,7 @@ color: "#00e5ff"
 ```
 
 > [!quote] CIPHER
-> *"This is the last document we have from GHOST. Pulled before they went dark. Pattern Analysis Unit's Q3 follow-up — same hypothesis from the Q2 audit, now escalated to active investigation.*
+> *"This is the last document we have from GHOST. Pulled before they went dark. Pattern Analysis Unit's Q2 follow-up — same hypothesis from the Q1 audit, now escalated to active investigation.*
 > *They're closer than they know. Not close enough yet. But the report mixes what they found with what their engines collect automatically. Noise and signal in the same file.*
 > *Three corruption layers. Standard-Monitoring baselines that don't belong in an Audit report. Legacy-Protocol entries filed under a category that isn't theirs. And one section where Pattern-Analysis entries sit under carry-over residue from adjacent reports.*
 > *Ex mode. Global commands.*

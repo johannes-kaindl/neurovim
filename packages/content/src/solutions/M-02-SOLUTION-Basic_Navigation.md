@@ -7,7 +7,7 @@ Approach vector: North entrance, third corridor
 Fallback position: Sub-level 2, east stairwell
 Emergency exfil: Roof access point Charlie
 
-Drill coordinates: 52.4N / 13.4W
+Drill coordinates: 52.4N / 13.4E
 Contact codeword: THE DIFF DOES NOT LIE
 Response codeword: TRUST THE DIFF
 

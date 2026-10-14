@@ -20,7 +20,7 @@ summary: "[LOCKED] CORP name format is SURNAME, FIRSTNAME. Resistance is FIRSTNA
 why: "Two captured names, comma dropped — SURNAME, FIRSTNAME becomes FIRSTNAME SURNAME in one rule."
 objective:
   - "Every `word, word` pair below the `---` swaps its two words and loses the comma (8×): `A, B` → `B A`."
-  - "The six roster names: `Ren, WRAITH` → `WRAITH Ren`, `Ren, VOSS` → `VOSS Ren`, `Niko, GHOST` → `GHOST Niko`, `Vera, NOVA` → `NOVA Vera`, `Soren, ECHO` → `ECHO Soren`, `Yael, SHADOW` → `SHADOW Yael`."
+  - "The six roster names: `WRAITH, Ren` → `Ren WRAITH`, `VOSS, Ren` → `Ren VOSS`, `GHOST, Niko` → `Niko GHOST`, `NOVA, Vera` → `Vera NOVA`, `ECHO, Soren` → `Soren ECHO`, `SHADOW, Yael` → `Yael SHADOW`."
   - "Also the `ASSET REGISTER` line: `FORMAT, NAME` → `NAME FORMAT`, and the `CIPHER — communications` line: `zones, all` → `all zones`."
   - "Keep the spaces before each `—` exactly as they are (only the comma goes). Leave the box and the CIPHER note above the `---` untouched."
 ---
@@ -39,10 +39,10 @@ objective:
 
 ASSET REGISTER — FORMAT, NAME CORRECTED
 
-Ren, WRAITH       — field operative // Zone-Alpha
-Ren, VOSS         — technical analyst // Zone-Beta
-Niko, GHOST       — intelligence // Zone-Alpha
-Vera, NOVA        — field operative // Zone-Gamma
-Soren, ECHO       — logistics // Zone-Beta
-Yael, SHADOW      — extraction lead // Zone-Delta
+WRAITH, Ren       — field operative // Zone-Alpha
+VOSS, Ren         — technical analyst // Zone-Beta
+GHOST, Niko       — intelligence // Zone-Alpha
+NOVA, Vera        — field operative // Zone-Gamma
+ECHO, Soren       — logistics // Zone-Beta
+SHADOW, Yael      — extraction lead // Zone-Delta
 CIPHER           — communications // zones, all

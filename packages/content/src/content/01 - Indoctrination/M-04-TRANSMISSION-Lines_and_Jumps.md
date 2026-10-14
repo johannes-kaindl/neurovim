@@ -18,7 +18,7 @@ mission_type: practice
 locked: false
 objective:
   - "Put the five `===` blocks in this order: `SECTION 1 — ENTRY INDEX`, `SECTION 2 — ADMINISTRATIVE INDEX`, `SECTION 3 — ARCHIVE INDEX`, `ENTRY NODES`, `ACCESS WINDOWS`."
-  - "Move each block whole: its `===` header line plus the lines under it. Keep exactly one blank line between blocks."
+  - "Move each block whole: its `===` header line plus the lines under it. Keep exactly one blank line between blocks; blank lines after the last block do not count."
   - "Do not change any text. The two header lines at the top stay where they are."
 ---
 DOCUMENT LAYOUT DRILL — STRUCTURED INDEX
