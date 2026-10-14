@@ -3,6 +3,8 @@
   "tag": "0.1.0",
   "sha": "8849c9180a96dd156ca30ffe746df3b5ec6925ea",
   "version": "0.1.0",
-  "vendored": "web: llm-stream; pure: sse, error_body, model-choice",
-  "note": "Verbatim copies of code-kit/src/ts — the web/ + pure/ split is mirrored so llm-stream's `../pure/sse` import resolves unchanged. Never edit here — re-vendor from the pinned sha."
+  "vendored": "2026-09-03",
+  "files": ["web/llm-stream.ts", "pure/sse.ts", "pure/error_body.ts", "pure/model-choice.ts"],
+  "license": "AGPL-3.0-or-later",
+  "note": "Verbatim copies of code-kit/src/ts — the web/ + pure/ split is mirrored so llm-stream's `../pure/sse` import resolves unchanged. Never edit here — re-vendor from the pinned sha. `sha` is the pin code-kit's check-consumers reads; the workspace provenance lint accepts it as the commit."
 }
