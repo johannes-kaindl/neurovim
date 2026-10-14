@@ -125,6 +125,7 @@ decision log (D1–D26) live in the separate design-prep workspace, not in this 
     │   ├── src/generated/  # content.ts / sandbox.ts / welcome.ts — produced by build.mjs
     │   ├── src/welcome.md   # welcome intro source
     │   ├── export/         # generated neurovim-data.json for data consumers (written by build:content)
+    │   ├── par/            # reference-runs.json — the measured runs every par comes from (npm run par)
     │   └── build.mjs       # gray-matter → typed TS manifest (D15, bundler-friendly)
     └── adapter-web/        # @neurovim/adapter-web — Vite SPA + Tauri desktop
         ├── src/            # main.tsx, ui/ (App=NEXUS, Welcome/Briefing/Mission/Sandbox/Result,
@@ -294,6 +295,7 @@ Why vendored rather than depended on, and why the split matters:
   the dependency breaks them silently (it happened once; see `docs/dev/explanation/decisions.md`).
   Since 2026-10-08 `scripts/lib/load-ts.mjs` carries the loader, and the export and conformance tests load it, so `npm test` now fails loudly without esbuild; `generate-kata.mjs` still has its own transpile step.
 - **Rule changes regenerate the conformance vectors:** after changing anything in `utils/diff.ts`, `ProgressionEngine`, `ParTier`, `MissionCompletion`, `MetricsTracker` (`metricsResult`), `data/levels.ts` or `types.ts` (`DEFAULT_PLUGIN_DATA`), run `npm run build:conformance` (and `npm run build:content` for the export) and commit the changed JSON — `npm test` fails on stale vectors, and a data consumer (the Lua port) sees the change only through them. Never hand-edit an `expected` value; cases are inputs, the TS core computes the outputs.
+- **A changed mission needs its par run re-measured:** par is the count of the mission's reference run in `packages/content/par/reference-runs.json` (measured with `npm run par`) rounded up to a multiple of 5, and the content gate ties `par_keystrokes` to that run but does not replay it — `npm test` has no Neovim. After changing a mission's transmission or solution, replay its run with `npm run par` and, if the count changes, update the run and `par_keystrokes` together. Procedure: `docs/dev/how-to/measure-par.md`.
 - **Generated drafts are not content:** `npm run generate:kata` writes into
   `packages/content/src/_drafts/` (git-ignored, not scanned by `build.mjs`). A draft
   becomes content only when a human moves it into `src/content/KATAS/` + `src/solutions/`,
