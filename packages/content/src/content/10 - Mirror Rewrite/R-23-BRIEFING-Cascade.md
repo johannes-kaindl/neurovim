@@ -31,5 +31,3 @@ color: "#ff4444"
 > > `:g/\[NOISE\]/d` then `:g/MIRROR/s/PENDING/TERMINATED/` — two sequential operations
 >
 > > [!success] +40 XP
->
-> → **[[_content/10 - Mirror Rewrite/R-23-TRANSMISSION-Cascade|R-23-TRANSMISSION-Cascade]]** — open to begin. Timer starts on file open.

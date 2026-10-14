@@ -76,5 +76,3 @@ Per Directive 12.4(a), all entity designations within this document have been st
 > > `/pattern` `n` `N`, `:%s/old/new/g`, `:%s/old/new/gc`, `cgn` `.`
 >
 > > [!success] +30 XP
->
-> → **[[_content/02 - Field Training/M-07-TRANSMISSION-Search_and_Replace|M-07-TRANSMISSION-Search_and_Replace]]** — open to begin. Timer starts on file open.

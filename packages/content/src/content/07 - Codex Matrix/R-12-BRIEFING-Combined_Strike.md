@@ -30,5 +30,3 @@ color: "#cc00ff"
 > > `:%s/[0-9A-F]\{8\}/[HASH-REDACTED]/g` — exact-length hex match
 >
 > > [!success] +30 XP
->
-> → **[[_content/07 - Codex Matrix/R-12-TRANSMISSION-Combined_Strike|R-12-TRANSMISSION-Combined_Strike]]** — open to begin. Timer starts on file open.

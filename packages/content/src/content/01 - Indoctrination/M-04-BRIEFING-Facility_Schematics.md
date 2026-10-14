@@ -37,5 +37,3 @@ color: "#00ff41"
 > > `gg` `G` `:#`, `{` `}`, `H` `M` `L`
 >
 > > [!success] +15 XP
->
-> → **[[_content/01 - Indoctrination/M-04-TRANSMISSION-Lines_and_Jumps|M-04-TRANSMISSION-Lines_and_Jumps]]** — open to begin. Timer starts on file open.

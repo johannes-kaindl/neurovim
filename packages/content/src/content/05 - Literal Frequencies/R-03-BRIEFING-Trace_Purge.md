@@ -29,5 +29,3 @@ color: "#00ccff"
 > > `:g/\[TRACK\]/d` — global delete of matching lines (brackets need escaping in default magic)
 >
 > > [!success] +20 XP
->
-> → **[[_content/05 - Literal Frequencies/R-03-TRANSMISSION-Trace_Purge|R-03-TRANSMISSION-Trace_Purge]]** — open to begin. Timer starts on file open.

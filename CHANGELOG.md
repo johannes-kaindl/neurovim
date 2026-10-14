@@ -16,6 +16,7 @@ All notable changes to this project are documented here. The format is based on
 - `ProgressionEngine.recordCompletion` takes an optional `today`; "yesterday" is derived from it rather than from the clock.
 
 ### Fixed
+- **Briefings no longer end on a dead launch line.** All 40 briefings closed with `→ [[…TRANSMISSION…]] — open to begin. Timer starts on file open.`, left over from when missions were vault notes. Every target has its own start control, so the line was noise at best: the web app showed it beside its *Begin Mission* button, the Obsidian plugin cut it out locally (`stripTransmissionLink`, now a no-op), and the Neovim plugin showed the raw wikilink — where the timer claim is also false. Removed from the Markdown source; R-24 keeps its closing words *This is the last one.* A content gate keeps the line from coming back. Found by an agent playtest of neurovim.nvim.
 - `check-consumers` could skip a consumer and stay green: it extracted the whole vendor surface at the consumer's pin, which fails for any surface path added after that pin, and reported the failure as an unreachable pin. It now extracts only what the consumer copies, and only an unreachable pin is a skip.
 
 ## [0.2.7] — 2026-10-08

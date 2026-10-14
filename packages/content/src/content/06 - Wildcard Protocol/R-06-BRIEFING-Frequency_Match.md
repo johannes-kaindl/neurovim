@@ -29,5 +29,3 @@ color: "#ff6600"
 > > `Ctrl-V` (visual-block) → select the column down all rows → `d`
 >
 > > [!success] +25 XP
->
-> → **[[_content/06 - Wildcard Protocol/R-06-TRANSMISSION-Frequency_Match|R-06-TRANSMISSION-Frequency_Match]]** — open to begin. Timer starts on file open.

@@ -35,5 +35,3 @@ color: "#ffaa00"
 > > All of Tier 2 — combined application
 >
 > > [!success] +35 XP
->
-> → **[[_content/02 - Field Training/M-08-TRANSMISSION-Corrupted_Transmission|M-08-TRANSMISSION-Corrupted_Transmission]]** — open to begin. Timer starts on file open.

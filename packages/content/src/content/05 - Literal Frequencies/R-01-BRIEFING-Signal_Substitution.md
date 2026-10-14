@@ -30,5 +30,3 @@ color: "#00ccff"
 > > `:%s/PHANTOM/NEXUS/g` — substitute all occurrences across the file
 >
 > > [!success] +20 XP
->
-> → **[[_content/05 - Literal Frequencies/R-01-TRANSMISSION-Signal_Substitution|R-01-TRANSMISSION-Signal_Substitution]]** — open to begin. Timer starts on file open.

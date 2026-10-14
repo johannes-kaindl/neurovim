@@ -29,5 +29,3 @@ color: "#00ccff"
 > > `:%s/mirror/PROJECT MIRROR/gi` — `g` = all occurrences, `i` = case-insensitive
 >
 > > [!success] +20 XP
->
-> → **[[_content/05 - Literal Frequencies/R-02-TRANSMISSION-Silent_Flag|R-02-TRANSMISSION-Silent_Flag]]** — open to begin. Timer starts on file open.

@@ -31,5 +31,3 @@ color: "#00ff88"
 > > `:%s/\v(\d{4})-(\d{2})-(\d{2})/\3.\2.\1/g` — three groups, reversed order in replacement
 >
 > > [!success] +35 XP
->
-> → **[[_content/09 - Capture Operation/R-19-TRANSMISSION-Format_Shift|R-19-TRANSMISSION-Format_Shift]]** — open to begin. Timer starts on file open.

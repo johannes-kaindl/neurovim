@@ -32,5 +32,3 @@ color: "#cc66ff"
 > > `Ctrl+a` / `Ctrl+x` (increment / decrement), count-prefix (`3<C-x>`, `7<C-x>`), `j` + `.` (repeat down the column)
 >
 > > [!success] +60 XP
->
-> → **[[_content/04 - Chrome Raven/M-14-TRANSMISSION-Counter_Operations|M-14-TRANSMISSION-Counter_Operations]]** — open to begin. Timer starts on file open.

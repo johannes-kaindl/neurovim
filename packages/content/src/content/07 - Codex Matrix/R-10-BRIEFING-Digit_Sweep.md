@@ -29,5 +29,3 @@ color: "#ff6600"
 > > `qa` `I# `<Esc> `$` `ciw[OK]`<Esc> `0j` `q` — then `4@a`
 >
 > > [!success] +30 XP
->
-> → **[[_content/07 - Codex Matrix/R-10-TRANSMISSION-Digit_Sweep|R-10-TRANSMISSION-Digit_Sweep]]** — open to begin. Timer starts on file open.

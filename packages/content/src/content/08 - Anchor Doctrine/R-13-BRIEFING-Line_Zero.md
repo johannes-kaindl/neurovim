@@ -30,5 +30,3 @@ color: "#ff0066"
 > > `:%s/^\[TRACK\] //g` — `^` anchors to line start; brackets need escaping in default magic
 >
 > > [!success] +30 XP
->
-> → **[[_content/08 - Anchor Doctrine/R-13-TRANSMISSION-Line_Zero|R-13-TRANSMISSION-Line_Zero]]** — open to begin. Timer starts on file open.

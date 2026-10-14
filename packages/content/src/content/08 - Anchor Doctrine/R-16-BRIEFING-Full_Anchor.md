@@ -30,5 +30,3 @@ color: "#ff0066"
 > > `:%s/^CLASSIFIED$/[REDACTED]/g` — `^` and `$` together match the exact full line
 >
 > > [!success] +30 XP
->
-> → **[[_content/08 - Anchor Doctrine/R-16-TRANSMISSION-Full_Anchor|R-16-TRANSMISSION-Full_Anchor]]** — open to begin. Timer starts on file open.

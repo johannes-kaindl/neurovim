@@ -30,5 +30,3 @@ color: "#cc00ff"
 > > `:%s/: [XYZ]$/: CLEAN/g` — character set `[XYZ]` matches one of those three; `$` anchors to line end
 >
 > > [!success] +30 XP
->
-> → **[[_content/07 - Codex Matrix/R-09-TRANSMISSION-Set_Theory|R-09-TRANSMISSION-Set_Theory]]** — open to begin. Timer starts on file open.

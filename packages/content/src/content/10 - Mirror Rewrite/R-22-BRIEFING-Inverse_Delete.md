@@ -31,5 +31,3 @@ color: "#ff4444"
 > > `:v/MIRROR/d` — inverse global delete (equivalent to `:g!/MIRROR/d`)
 >
 > > [!success] +40 XP
->
-> → **[[_content/10 - Mirror Rewrite/R-22-TRANSMISSION-Inverse_Delete|R-22-TRANSMISSION-Inverse_Delete]]** — open to begin. Timer starts on file open.

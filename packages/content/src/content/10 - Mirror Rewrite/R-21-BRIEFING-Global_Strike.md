@@ -31,5 +31,3 @@ color: "#ff4444"
 > > `:g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/` — global-then-substitute composition
 >
 > > [!success] +40 XP
->
-> → **[[_content/10 - Mirror Rewrite/R-21-TRANSMISSION-Global_Strike|R-21-TRANSMISSION-Global_Strike]]** — open to begin. Timer starts on file open.

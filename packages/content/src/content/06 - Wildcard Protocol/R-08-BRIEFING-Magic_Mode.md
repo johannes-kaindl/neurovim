@@ -30,5 +30,3 @@ color: "#ff6600"
 > > `:%s/\v(ALPHA|BETA|GAMMA)/TIER-1/g` — `\v` enables very magic; `|` alternates without escaping
 >
 > > [!success] +25 XP
->
-> → **[[_content/06 - Wildcard Protocol/R-08-TRANSMISSION-Magic_Mode|R-08-TRANSMISSION-Magic_Mode]]** — open to begin. Timer starts on file open.

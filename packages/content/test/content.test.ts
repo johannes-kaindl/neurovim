@@ -249,3 +249,19 @@ describe('mission objective', () => {
     expect(stale).toEqual([]);
   });
 });
+
+describe('briefing text', () => {
+  // Briefings ended on a vault-era launch line — `→ **[[…TRANSMISSION…]]** — open to begin. Timer
+  // starts on file open.` Every target replaces it with its own start control (Obsidian button, web
+  // button, nvim <CR>); Obsidian cut it locally, the web showed it beside its button, nvim showed the
+  // raw wikilink, and the timer claim is false in nvim. The SSOT no longer carries it.
+  it('no briefing carries the vault-era launch line or a wikilink to its transmission', () => {
+    const withLaunchLine = listMissions()
+      .filter((m) => {
+        const body = getMission(m.mission_id).briefingBody;
+        return body !== '' && (/open to begin/.test(body) || /\[\[[^\]]*TRANSMISSION/.test(body));
+      })
+      .map((m) => m.mission_id);
+    expect(withLaunchLine).toEqual([]);
+  });
+});

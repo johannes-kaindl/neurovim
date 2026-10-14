@@ -30,5 +30,3 @@ color: "#cc66ff"
 > > `\v` (very-magic mode), `(...)` (capture-groups), `\1` / `\2` / `\3` (back-references), `\d{N}` / `\w+` / `.+` (character-classes with quantifiers)
 >
 > > [!success] +65 XP
->
-> → **[[_content/04 - Chrome Raven/M-15-TRANSMISSION-Pattern_Rewriting|M-15-TRANSMISSION-Pattern_Rewriting]]** — open to begin. Timer starts on file open.

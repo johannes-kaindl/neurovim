@@ -31,5 +31,3 @@ color: "#ff0066"
 > > `:%s/\<MIRROR\>/PROJECT MIRROR/g` — word boundary anchors
 >
 > > [!success] +30 XP
->
-> → **[[_content/08 - Anchor Doctrine/R-15-TRANSMISSION-Boundary_Scan|R-15-TRANSMISSION-Boundary_Scan]]** — open to begin. Timer starts on file open.

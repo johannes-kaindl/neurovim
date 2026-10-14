@@ -38,5 +38,3 @@ color: "#00e5ff"
 > > `:g/pattern/d`, `:v/pattern/d`, `:g/pattern/s/X/Y/`, range-scoping via visual selection `'<,'>`
 >
 > > [!success] +60 XP
->
-> → **[[_content/03 - Deep Infiltration/M-12-TRANSMISSION-Anomaly_Classification|M-12-TRANSMISSION-Anomaly_Classification]]** — open to begin. Timer starts on file open.

@@ -31,5 +31,3 @@ color: "#00ff88"
 > > `:%s/\(\w\+\), \(\w\+\)/\2 \1/g` — two groups, comma stripped in replacement
 >
 > > [!success] +35 XP
->
-> → **[[_content/09 - Capture Operation/R-20-TRANSMISSION-Multi_Group|R-20-TRANSMISSION-Multi_Group]]** — open to begin. Timer starts on file open.

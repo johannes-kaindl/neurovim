@@ -29,5 +29,3 @@ color: "#ff6600"
 > > `:%s/<.\{-}>//g` — lazy quantifier `\{-}` matches the shortest possible content between `<` and `>`
 >
 > > [!success] +25 XP
->
-> → **[[_content/06 - Wildcard Protocol/R-07-TRANSMISSION-Lazy_Trace|R-07-TRANSMISSION-Lazy_Trace]]** — open to begin. Timer starts on file open.

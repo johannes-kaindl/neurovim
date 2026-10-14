@@ -31,5 +31,3 @@ color: "#00ff41"
 > > `h` `j` `k` `l`, `0` `$` `^`, precise cursor positioning
 >
 > > [!success] +15 XP
->
-> → **[[_content/01 - Indoctrination/M-02-TRANSMISSION-Basic_Navigation|M-02-TRANSMISSION-Basic_Navigation]]** — open to begin. Timer starts on file open.

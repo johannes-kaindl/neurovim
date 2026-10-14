@@ -34,5 +34,3 @@ color: "#cc66ff"
 > > `~`, `viwu` / `viwU`, `gu{motion}` / `gU{motion}`, `guu` / `gUU`, `g~~`
 >
 > > [!success] +55 XP
->
-> → **[[_content/04 - Chrome Raven/M-13-TRANSMISSION-Case_Cipher_Decryption|M-13-TRANSMISSION-Case_Cipher_Decryption]]** — open to begin. Timer starts on file open.

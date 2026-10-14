@@ -39,4 +39,4 @@ color: "#ff4444"
 >
 > > [!success] +40 XP — ARC II COMPLETE
 >
-> → **[[_content/10 - Mirror Rewrite/R-24-TRANSMISSION-Project_Mirror|R-24-TRANSMISSION-Project_Mirror]]** — open to begin. This is the last one.
+> This is the last one.

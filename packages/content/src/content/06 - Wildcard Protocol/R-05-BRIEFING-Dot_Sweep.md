@@ -30,5 +30,3 @@ color: "#ff6600"
 > > `:%s/AGENT-./OPERATIVE/g` — `.` matches exactly one character (any)
 >
 > > [!success] +25 XP
->
-> → **[[_content/06 - Wildcard Protocol/R-05-TRANSMISSION-Dot_Sweep|R-05-TRANSMISSION-Dot_Sweep]]** — open to begin. Timer starts on file open.

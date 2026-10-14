@@ -35,5 +35,3 @@ color: "#00ff41"
 > > Mode switching (`i`, `a`, `o`, `ESC`), character deletion (`x`, `X`)
 >
 > > [!success] +15 XP
->
-> → **[[_content/01 - Indoctrination/M-01-TRANSMISSION-The_Three_Modes|M-01-TRANSMISSION-The_Three_Modes]]** — open to begin. Timer starts on file open.

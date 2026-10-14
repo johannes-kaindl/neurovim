@@ -35,5 +35,3 @@ color: "#00ff41"
 > > `w` `b` `e` `W` `B` `E`, `cw` to change words
 >
 > > [!success] +20 XP
->
-> → **[[_content/01 - Indoctrination/M-03-TRANSMISSION-Word_Movement|M-03-TRANSMISSION-Word_Movement]]** — open to begin. Timer starts on file open.

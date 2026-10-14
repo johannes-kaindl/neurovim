@@ -31,5 +31,3 @@ color: "#00ff88"
 > > `:%s/\(SECTOR-[A-Z]\) \(NODE-[0-9]\)/\2 \1/g` — capture both parts, swap with `\2 \1`
 >
 > > [!success] +35 XP
->
-> → **[[_content/09 - Capture Operation/R-17-TRANSMISSION-First_Capture|R-17-TRANSMISSION-First_Capture]]** — open to begin. Timer starts on file open.

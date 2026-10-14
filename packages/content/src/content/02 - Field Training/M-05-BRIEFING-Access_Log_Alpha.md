@@ -61,5 +61,3 @@ color: "#66cc66"
 > > `d` `c` `y` + motions, `dd` `D` `cc` `C`, `p` `P`
 >
 > > [!success] +25 XP
->
-> → **[[_content/02 - Field Training/M-05-TRANSMISSION-Operators|M-05-TRANSMISSION-Operators]]** — open to begin. Timer starts on file open.

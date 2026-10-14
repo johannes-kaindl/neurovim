@@ -37,5 +37,3 @@ color: "#66cc66"
 > > `ci"` `ca"` `ci(` `ci{` `ci[` `diw` `daw` `cit`
 >
 > > [!success] +30 XP
->
-> → **[[_content/02 - Field Training/M-06-TRANSMISSION-Text_Objects|M-06-TRANSMISSION-Text_Objects]]** — open to begin. Timer starts on file open.

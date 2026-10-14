@@ -39,6 +39,4 @@ color: "#00e5ff"
 >
 > > [!success] +55 XP
 >
-> → **[[_content/03 - Deep Infiltration/M-11-TRANSMISSION-Bulletin_Drift|M-11-TRANSMISSION-Bulletin_Drift]]** — open to begin. Timer starts on file open.
->
 > → **[[_content/FRAGMENTS/FRAGMENT-10-Pre_Release_Sector_7_Bulletin|FRAGMENT-10-Pre_Release_Sector_7_Bulletin]]** — GHOST's pull. Open in split pane right (Cmd+Option+Click).

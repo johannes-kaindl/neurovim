@@ -30,5 +30,3 @@ color: "#00ff88"
 > > `:%s/\(\w\+\) \1/\1/g` — `\1` backreferences the first group; replacement keeps only one copy
 >
 > > [!success] +35 XP
->
-> → **[[_content/09 - Capture Operation/R-18-TRANSMISSION-Mirror_Word|R-18-TRANSMISSION-Mirror_Word]]** — open to begin. Timer starts on file open.

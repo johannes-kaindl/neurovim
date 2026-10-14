@@ -32,5 +32,3 @@ color: "#00e5ff"
 > > `ma` `'a` `` `a ``, `qa` `q` `@a` `@@`, `:norm`
 >
 > > [!success] +50 XP
->
-> → **[[_content/03 - Deep Infiltration/M-09-TRANSMISSION-Marks_and_Macros|M-09-TRANSMISSION-Marks_and_Macros]]** — open to begin. Timer starts on file open.

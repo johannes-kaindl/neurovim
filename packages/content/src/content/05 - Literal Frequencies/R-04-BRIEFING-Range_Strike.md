@@ -29,5 +29,3 @@ color: "#00ccff"
 > > `:{range}s/QUEUED/ACTIVE/` — ranged substitution. Take the range from the line numbers your editor shows (`:set number`), or select the eight lines with `V` and type `:` to get `:'<,'>`
 >
 > > [!success] +20 XP
->
-> → **[[_content/05 - Literal Frequencies/R-04-TRANSMISSION-Range_Strike|R-04-TRANSMISSION-Range_Strike]]** — open to begin. Timer starts on file open.

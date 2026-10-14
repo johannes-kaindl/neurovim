@@ -33,5 +33,3 @@ color: "#00e5ff"
 > > `"add`, `"bdd`, `"ap`, `"bp`, named-register paste ordering
 >
 > > [!success] +55 XP
->
-> → **[[_content/03 - Deep Infiltration/M-10-TRANSMISSION-Registers|M-10-TRANSMISSION-Registers]]** — open to begin. Timer starts on file open.

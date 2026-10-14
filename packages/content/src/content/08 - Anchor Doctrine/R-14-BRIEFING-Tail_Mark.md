@@ -29,5 +29,3 @@ color: "#ff6600"
 > > `"ayiw` on the key → on each slot `cw`<Esc> then `"ap` (or replace `____` and paste from register a)
 >
 > > [!success] +30 XP
->
-> → **[[_content/08 - Anchor Doctrine/R-14-TRANSMISSION-Tail_Mark|R-14-TRANSMISSION-Tail_Mark]]** — open to begin. Timer starts on file open.

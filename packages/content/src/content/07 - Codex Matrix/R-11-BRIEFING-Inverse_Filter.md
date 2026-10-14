@@ -31,5 +31,3 @@ color: "#cc00ff"
 > > `:g!/CLEARANCE/d` — delete all lines NOT matching the pattern
 >
 > > [!success] +30 XP
->
-> → **[[_content/07 - Codex Matrix/R-11-TRANSMISSION-Inverse_Filter|R-11-TRANSMISSION-Inverse_Filter]]** — open to begin. Timer starts on file open.
