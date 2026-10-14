@@ -84,7 +84,7 @@ A mission that is not listed anywhere stays locked forever.
 
 ## Set the par
 
-Par is the gold threshold, and it is measured, not judged. The content gate (`describe('par')` in `packages/content/test/content.test.ts`) fails on a mission without `par_keystrokes`, and on one whose par is not `ceil(count / 5) * 5` of its run in `packages/content/par/reference-runs.json`. The only exceptions are the missions listed in `PAR_APPROVED` in that test (R-06 and R-14 today), which keep an authored par the maintainer approved.
+Par is the gold threshold, and it is measured, not judged. The content gate (`describe('par')` in `packages/content/test/content.test.ts`) fails on a mission without `par_keystrokes`, and on one whose par is not `ceil(count / 5) * 5` of its run in `packages/content/par/reference-runs.json`. The only exceptions are the missions listed in `PAR_APPROVED` in that test, which keep an authored par the maintainer approved; the list is empty today.
 
 1. `npm run build:content`, so the export holds the new mission. `npm run par` also needs Neovim and the `neurovim.nvim` clone ([prerequisites](measure-par.md#prerequisites)).
 2. Work out a good solution **blind**: from the transmission, the briefing and the objective only, never the solution file, using only the keys taught up to that mission. Follow the route the briefing teaches, even when a shorter one exists: par prices the briefing's route, not the shortest ([why](../explanation/decisions.md#par-comes-from-blind-reference-runs)).

@@ -6,7 +6,7 @@ xp_reward: 25
 completed: false
 difficulty: 2
 category: visual-block
-par_keystrokes: 14
+par_keystrokes: 10
 mission_type: practice
 locked: true
 unlock_requirement: "Level 6"

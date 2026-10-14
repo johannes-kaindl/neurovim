@@ -6,7 +6,7 @@ xp_reward: 30
 completed: false
 difficulty: 3
 category: registers
-par_keystrokes: 30
+par_keystrokes: 45
 mission_type: practice
 locked: true
 unlock_requirement: "Level 7"

@@ -340,12 +340,9 @@ describe('par', () => {
   // Par comes from a measured reference run (packages/content/par/reference-runs.json, npm run par),
   // rounded up to a multiple of 5 — so the run itself reaches gold, and no par is invented.
   const ref = JSON.parse(readFileSync(join(__dirname, '..', 'par', 'reference-runs.json'), 'utf8')) as { runs: { id: string; count: number; par: number }[] };
-  // Johannes' decisions from Task 7 Step 4: a measured par that deviates > 25 % from the authored one is
-  // presented to him, not overwritten. Each entry keeps the authored value until he decides.
-  const PAR_APPROVED: Record<string, number> = {
-    'R-06': 14, // measured 9 (par 10) — kept pending Johannes' decision
-    'R-14': 30, // measured 45 (par 45) via the briefed register route; :%s solves it in 16 — kept pending Johannes' decision
-  };
+  // A mission whose par the maintainer approved away from its run (id → par). Empty: the two candidates of
+  // v0.2.8, R-06 and R-14, were decided in favour of their measured runs (docs/dev/explanation/decisions.md).
+  const PAR_APPROVED: Record<string, number> = {};
   it('every playable mission has an authored par', () => {
     expect(listMissions().filter((m) => m.par_keystrokes == null).map((m) => m.mission_id)).toEqual([]);
   });

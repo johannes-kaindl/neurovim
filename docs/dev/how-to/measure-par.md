@@ -65,7 +65,7 @@ The count is the plugin's own, so a measurement equals what a player sees in the
 
 The runs that par values were measured from live in `packages/content/par/reference-runs.json`. It is an object, not the bare array of step 2: the header fields `measured`, `plugin` (the `neurovim.nvim` commit the runs were measured on) and `rule`, and `runs`, one entry per mission with `id` and `keys` as in step 2 plus `count` (the key count `npm run par` reported), `par` (the number the mission carries) and `taught` (the keys the run assumed).
 
-The content gate (`describe('par')` in `packages/content/test/content.test.ts`) ties every mission's par to its run: `par_keystrokes` must be `count` rounded up to a multiple of 5 (R-06 and R-14, listed in `PAR_APPROVED`, are the approved exceptions), and the `par` recorded in the run must equal what the mission carries. The gate does not replay the runs. `npm test` has no Neovim, so a mission whose text changed while its reference run was not re-measured still passes. Re-measuring is therefore a step of changing a mission, not something the tests do for you.
+The content gate (`describe('par')` in `packages/content/test/content.test.ts`) ties every mission's par to its run: `par_keystrokes` must be `count` rounded up to a multiple of 5 (a mission listed in `PAR_APPROVED` keeps a par the maintainer approved instead; the list is empty today), and the `par` recorded in the run must equal what the mission carries. The gate does not replay the runs. `npm test` has no Neovim, so a mission whose text changed while its reference run was not re-measured still passes. Re-measuring is therefore a step of changing a mission, not something the tests do for you.
 
 ## Re-measure a reference run
 

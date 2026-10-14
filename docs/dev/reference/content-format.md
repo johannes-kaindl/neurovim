@@ -61,7 +61,7 @@ Fields read by `@neurovim/content` (`toSummary` in `src/index.ts`) and typed as
 | `locked` | boolean | yes | `false` | |
 | `tier` | string | yes | `''` | tier label, e.g. `"🔴 INDOCTRINATION"`, `"⬛ KATA"` |
 | `difficulty` | number | no | — | drives the fallback par when `par_keystrokes` is absent: `20 + difficulty × 20` |
-| `par_keystrokes` | number | yes | — | gold threshold: the key count of the mission's reference run in `packages/content/par/reference-runs.json`, rounded up to a multiple of 5. The content gate requires it on every playable mission and checks it against the run (R-06 and R-14 are approved exceptions); how to set it: [write a mission](../how-to/write-a-mission.md#set-the-par) |
+| `par_keystrokes` | number | yes | — | gold threshold: the key count of the mission's reference run in `packages/content/par/reference-runs.json`, rounded up to a multiple of 5. The content gate requires it on every playable mission and checks it against the run; how to set it: [write a mission](../how-to/write-a-mission.md#set-the-par) |
 | `summary` | string | no | — | one-line mission summary |
 | `why` | string | no | — | authored CIPHER "why this skill matters" line |
 | `generated_by` | string | no | — | provenance stamp of machine-generated drills, e.g. `MissionGenerator/1`; absent on authored content |

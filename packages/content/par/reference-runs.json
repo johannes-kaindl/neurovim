@@ -1,7 +1,7 @@
 {
   "measured": "2026-10-14",
   "plugin": "neurovim.nvim@4d1b921",
-  "rule": "par = count rounded up to a multiple of 5; R-06 and R-14 keep their authored par pending review",
+  "rule": "par = count rounded up to a multiple of 5",
   "runs": [
     {
       "id": "KATA-01",
@@ -252,7 +252,7 @@
       "id": "R-06",
       "keys": "GfX<C-v>4k3ld",
       "count": 9,
-      "par": 14,
+      "par": 10,
       "taught": "The R-06 briefing's Ctrl-V block delete, reached with the basics `G` (last row) and `fX`, then `4k` up the five rows and `3l` over `X | `."
     },
     {
@@ -308,7 +308,7 @@
       "id": "R-14",
       "keys": "/K7741<CR>\"ayiw/____<CR>cw<Esc>\"apncw<Esc>\"apncw<Esc>\"apncw<Esc>\"ap",
       "count": 45,
-      "par": 30,
+      "par": 45,
       "taught": "R-14 briefing: `\"ayiw` on the key, then per slot `cw<Esc>\"ap`; `/` and `n` for navigation."
     },
     {
