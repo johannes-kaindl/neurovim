@@ -18,6 +18,7 @@ a different need:
 
 - [Write a mission or KATA](how-to/write-a-mission.md)
 - [Generate a KATA draft with a local model](how-to/generate-kata-draft.md)
+- [Measure par from key sequences in real Neovim](how-to/measure-par.md)
 - [Regenerate the manual reference and screenshots](how-to/regenerate-generated-docs.md)
 - [Build the desktop app](how-to/build-desktop-app.md) — macOS and Linux
 - [Cut a release](how-to/release.md)

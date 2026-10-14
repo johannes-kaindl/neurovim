@@ -21,6 +21,7 @@
     "build:manual": "node scripts/gen-manual.mjs",
     "build:conformance": "node scripts/gen-conformance.mjs",
     "generate:kata": "node scripts/generate-kata.mjs",
+    "par": "node scripts/par/par.mjs",
     "capture:screenshots": "node scripts/capture-screenshots.mjs",
     "build": "npm run build:content && npm run build:web",
     "desktop:dev": "npm run build:content && npm run desktop:dev --workspace @neurovim/adapter-web",
