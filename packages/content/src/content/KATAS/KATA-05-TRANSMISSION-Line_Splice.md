@@ -6,6 +6,7 @@ xp_reward: 10
 completed: false
 difficulty: 2
 category: operators
+par_keystrokes: 15
 tags:
   - kata
   - vim/operators

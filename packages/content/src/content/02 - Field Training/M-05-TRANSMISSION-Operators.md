@@ -6,6 +6,7 @@ xp_reward: 25
 completed: false
 difficulty: 3
 category: editing
+par_keystrokes: 20
 tags:
   - vim/operators
   - vim/delete

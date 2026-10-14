@@ -6,6 +6,7 @@ xp_reward: 15
 completed: false
 difficulty: 1
 category: navigation
+par_keystrokes: 95
 tags:
   - vim/navigation
   - vim/hjkl

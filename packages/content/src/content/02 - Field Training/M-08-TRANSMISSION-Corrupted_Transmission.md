@@ -6,6 +6,7 @@ xp_reward: 35
 completed: false
 difficulty: 5
 category: mission
+par_keystrokes: 200
 tags:
   - vim/combined
   - field-training

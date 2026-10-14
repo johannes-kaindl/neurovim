@@ -6,7 +6,7 @@ xp_reward: 10
 completed: false
 difficulty: 2
 category: fundamentals
-par_keystrokes: 16
+par_keystrokes: 15
 tags:
   - kata
   - vim/editing

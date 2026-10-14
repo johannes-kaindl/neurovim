@@ -6,6 +6,7 @@ xp_reward: 65
 completed: false
 difficulty: 8
 category: advanced
+par_keystrokes: 145
 mission_type: practice
 locked: true
 unlock_requirement: "M-14 completed"

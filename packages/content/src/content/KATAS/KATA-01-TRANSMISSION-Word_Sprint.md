@@ -6,6 +6,7 @@ xp_reward: 10
 completed: false
 difficulty: 1
 category: navigation
+par_keystrokes: 30
 tags:
   - kata
   - vim/navigation

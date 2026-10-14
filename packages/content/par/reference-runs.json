@@ -1,0 +1,385 @@
+{
+  "measured": "2026-10-14",
+  "plugin": "neurovim.nvim@4d1b921",
+  "rule": "par = count rounded up to a multiple of 5; R-06 and R-14 keep their authored par pending review",
+  "runs": [
+    {
+      "id": "KATA-01",
+      "keys": "9j$rWjbaC<Esc>j$rHhrTjiE<Esc>jiH<Esc>jaN<Esc>",
+      "count": 29,
+      "par": 30,
+      "taught": "Level 1 (not in UNLOCK_MAP): j, $, b, r, i, a with column-preserving j between the six value lines."
+    },
+    {
+      "id": "KATA-02",
+      "keys": "/CORP<CR>dwn.n.n.n.",
+      "count": 16,
+      "par": 20,
+      "taught": "Level 2 (M-07 briefing allows /pattern, n, .): /CORP then dw, then n. four times."
+    },
+    {
+      "id": "KATA-03",
+      "keys": "11jci\"OPERATIVE_7734<Esc>jci\"LEVEL-4<Esc>jci(52.4, 13.4<Esc>jci\"CIPHER_FREQ<Esc>jci{NEVERMORE<Esc>",
+      "count": 78,
+      "par": 80,
+      "taught": "KATA-03 skills (ci\" ci( ci{) with j between lines; the cursor lands on or inside each delimiter pair."
+    },
+    {
+      "id": "KATA-04",
+      "keys": "/GRHOST<CR>cwGHOST<Esc>n.n.n.",
+      "count": 22,
+      "par": 25,
+      "taught": "KATA-04 skills line: /pattern, cw, n and dot; alt :%s/GRHOST/GHOST/ solved in 18 keys."
+    },
+    {
+      "id": "KATA-05",
+      "keys": "Gddkp2kddjp",
+      "count": 11,
+      "par": 15,
+      "taught": "KATA-05 skills line: G, dd, p and k/j/2k to reach the targets (two moves, the minimum for a 3-1-4-2 order)."
+    },
+    {
+      "id": "KATA-06",
+      "keys": ":g/NULL/d<CR>",
+      "count": 10,
+      "par": 10,
+      "taught": "`:g/pat/d` from the R-03 briefing (same unlock level 5); the Visual keys in the banner cannot take three non-adjacent lines, and the key-by-key route `/NULL<CR>ddn.n.` measured 12 keys (would round to 15 instead of 10)."
+    },
+    {
+      "id": "KATA-07",
+      "keys": ":%s/PHANTOM/NEXUS/g<CR>",
+      "count": 20,
+      "par": 20,
+      "taught": "`:%s/old/new/g` as named in the kata banner and taught in the R-01 briefing (same keys as R-01)."
+    },
+    {
+      "id": "KATA-08",
+      "keys": ":%s/NODE-[0-9]\\+/NODE-REDACTED/g<CR>",
+      "count": 33,
+      "par": 35,
+      "taught": "R-05/R-12 level-7 regex teaching plus the KATA header skills: :%s with [0-9]\\+ numeric class."
+    },
+    {
+      "id": "KATA-09",
+      "keys": ":g!/CLEARANCE/d<CR>",
+      "count": 16,
+      "par": 20,
+      "taught": "R-11 briefing: :g!/PATTERN/d (the KATA header offers it too)."
+    },
+    {
+      "id": "KATA-10",
+      "keys": ":%s/\\v(\\d{4})-(\\d{2})-(\\d{2})/\\3.\\2.\\1/g<CR>",
+      "count": 41,
+      "par": 45,
+      "taught": "No briefing; R-19's `\\v` three-group date command (same level 8), matching the KATA box skills line."
+    },
+    {
+      "id": "KATA-11",
+      "keys": ":g/\\[NOISE\\]/d<CR>:g/MIRROR/s/PENDING/TERMINATED/<CR>",
+      "count": 47,
+      "par": 50,
+      "taught": "No briefing for KATAs; derived from the objective plus the in-file skill line (:g/pat/d, :g/pat/s/a/b/) using the R-23 briefing's :g-delete then :g-substitute pattern."
+    },
+    {
+      "id": "KATA-12",
+      "keys": "10Gf7xj0;xj0;xj0;x;x",
+      "count": 20,
+      "par": 20,
+      "taught": "KATA-12 skills line: f7 once, then 0 and ; per line with x; alt /7<CR> with n and x solved in 12 keys."
+    },
+    {
+      "id": "KATA-13",
+      "keys": "10Gdwj.j.j.j.",
+      "count": 13,
+      "par": 15,
+      "taught": "KATA-13 skills line: dw once, then j. down the four remaining lines."
+    },
+    {
+      "id": "KATA-14",
+      "keys": ":g/\\[TRACE\\]/d<CR>",
+      "count": 15,
+      "par": 15,
+      "taught": "`:g/pat/d` from the R-03 briefing and the kata banner, with the brackets escaped because the heading also contains the word TRACE."
+    },
+    {
+      "id": "M-01",
+      "keys": "3j0fXxfZxfXxfZxj0fXx;xfZxj0fXx;xfZx2j0fXx;xfZx2j0fZxfXx;xj0fXxfZx;xj0fXxfZx2j0fXxfZx;xj0fXxfZx2j0fXx;xj0fZxfXx",
+      "count": 110,
+      "par": 110,
+      "taught": "Level 1: j, 0, f/;, x and counts (FUNDAMENTALS/NAVIGATION), delete each X/Z with f<char>x and ;x per line."
+    },
+    {
+      "id": "M-02",
+      "keys": "5j4wfaxaa<Esc>j0wern$al<Esc>j0fsx2j0faxaa<Esc>j0frxar<Esc>j0frad<Esc>3j0feae<Esc>$ate.<Esc>j03wehxae<Esc>2j03wfixai<Esc>j05wfrar<Esc>",
+      "count": 93,
+      "par": 95,
+      "taught": "Level 1 (M-01..M-04 briefings): j, 0, $, w, e, f, x, r, a, i with counts (no p yet, so transpositions are x plus a-insert or r)."
+    },
+    {
+      "id": "M-03",
+      "keys": "4jcwUNIT<Esc>2j0.2j0.2j0.3jfS.6j.k0cwRELAY<Esc>4kfT.5k0.4k0.2j0cwNODE<Esc>4j0.5jfW.",
+      "count": 71,
+      "par": 75,
+      "taught": "Level 1 (M-03 briefing): cw plus . grouped by code word (all SCAN, then TRACE bottom-up, then WATCH), with j, k, 0, f and counts."
+    },
+    {
+      "id": "M-04",
+      "keys": "4}d}2{P{d3}Gp",
+      "count": 13,
+      "par": 15,
+      "taught": "Only M-04 navigation ({, }, counts) is taught at level 1; the block moves needed d} / d3} with P / p, first taught in the M-05 briefing (level 2), so this run goes beyond the taught keys."
+    },
+    {
+      "id": "M-05",
+      "keys": "}j3dd}j.}j2dd}j3.",
+      "count": 17,
+      "par": 20,
+      "taught": "M-05 briefing (dd, d with counts, .) with } from M-04 to hop to each >> block; 3dd, then . and 3. for the repeats."
+    },
+    {
+      "id": "M-06",
+      "keys": "21jfVci\"active<Esc>j.jci\"dark<Esc>FRci\"deep-cover<Esc>kci\"intelligence<Esc>kFRci\"field-ops<Esc>FZci\"sector-7-north<Esc>jFZci\"corp-adjacent<Esc>jFZci\"corp-internal<Esc>FCci\"GHOST<Esc>kci\"CELL-DELTA-02<Esc>kFAci\"CELL-DELTA-01<Esc>6j$F0ci\"7741<Esc>jci\"3392<Esc>jci\"0012<Esc>FZci\"corp-internal<Esc>kFZci\"corp-adjacent<Esc>kFZci\"sector-7-north<Esc>FAci\"CELL-DELTA-01<Esc>jFBci\"CELL-DELTA-02<Esc>jFCci\"GHOST<Esc>3jci\"relay-cluster-7<Esc>j0ci\"441.7<Esc>j0ci\"THE DIFF DOES NOT LIE<Esc>j0ci\"TRUST THE DIFF<Esc>",
+      "count": 405,
+      "par": 405,
+      "taught": "M-06 briefing (ci\") plus f/F, j/k, $ and . navigation, no :s (taught only from M-07); every value replaced with ci\"..<Esc>, one . for the repeated active."
+    },
+    {
+      "id": "M-07",
+      "keys": ":%s/ZONE-7-CLUSTER/RELAY-CLUSTER-7/g<CR>",
+      "count": 37,
+      "par": 40,
+      "taught": "M-07 briefing: :%s/old/new/g exactly as in the briefing example (37 keys; dropping /g would give 35)."
+    },
+    {
+      "id": "M-08",
+      "keys": "/█<CR>cwmidnight<Esc>j0c3wOver many a quaint and curious<Esc>fRcwforgotten<Esc>3jFScwvisitor<Esc>fMcwtapping<Esc>3jccAh, distinctly I remember it was in the bleak December;<Esc>nct;morrow<Esc>jfRcwLenore<Esc>jFR.j$bcwevermore<Esc>2j2dd",
+      "count": 196,
+      "par": 200,
+      "taught": "Level 2 (M-05..M-08 briefings): / and n, c3w, cw, ct;, cc, f/F, ., $, b, dd."
+    },
+    {
+      "id": "M-09",
+      "keys": "qa/TS-<CR>3xq11@a",
+      "count": 14,
+      "par": 15,
+      "taught": "M-09 briefing: ma/qa/q/@a macro recorded with a search, replayed 11 times; alt :8,19s/TS-// solved in 13 keys."
+    },
+    {
+      "id": "M-10",
+      "keys": "8G\"a4ddj\"b4dd\"aP2k\"bp",
+      "count": 21,
+      "par": 25,
+      "taught": "M-10 briefing: two named registers (\"a4dd, \"b4dd, \"aP, \"bp); alt default-register-only (8G4ddp4j4dd7Gp) solved in 14 keys."
+    },
+    {
+      "id": "M-11",
+      "keys": "21Gf94s78.4<Esc>fwc$declining from the Q1 baseline of 83.1%.<Esc>29G0c4wNon-compliance identification and detention operations have<Esc>2wcwconducted<Esc>39G0f13s312<Esc>2wcwrequiring<Esc>wcwresolution<Esc>47G05wc4welevated non-compliance pressures<Esc>4wc3wWorkforce Optimization Bureau projects<Esc>2wc2wenforcement escalation<Esc>",
+      "count": 293,
+      "par": 295,
+      "taught": "M-11 objective only: typed edits (cw/c4w/c$/s, 0, G, w counts); the briefing's yy/Vp across a second pane (FRAGMENT-10) was also run: 26 keys effective (harness shows 150, of which 124 are the free ':vsp <file>' that the harness cannot refund)."
+    },
+    {
+      "id": "M-12",
+      "keys": "22G11dd/7 Non<CR>cgn5 Factual Non<Esc>....33Gddjddj.j.",
+      "count": 47,
+      "par": 50,
+      "taught": "M-12 briefing: 22G11dd for the section, /pattern + cgn + dot for the five Cat. lines (computed, not measured: a ranged :s costs 29, :g/../s/ 34), 33Gdd + jdd + j. j. for the four lines."
+    },
+    {
+      "id": "M-13",
+      "keys": "18Ggu2j~j0~f.w~j0~jgUU",
+      "count": 22,
+      "par": 25,
+      "taught": "M-13 briefing: gu2j to lowercase three lines, ~ for the capitals, gUU for the signature."
+    },
+    {
+      "id": "M-14",
+      "keys": "20G3<C-x>j.j.j.j.w7<C-x>k.k.k.k.",
+      "count": 24,
+      "par": 25,
+      "taught": "M-14 briefing: 3<C-x> then j. down the REF column, w + 7<C-x> then k. up the MARK column; alt macro (qa..q4@a) solved in 16 keys."
+    },
+    {
+      "id": "M-15",
+      "keys": "17GfCcwResistance<Esc>:19,24s/\\v\\[CLASSIFICATION: (\\w+)\\]/## Classification: \\1/<CR>:%s/\\v\\[ENTRY-(\\d{4})\\]: pattern-(\\d{2}) (.+)/Pattern \\2 (\\1) - \\3/<CR>",
+      "count": 145,
+      "par": 145,
+      "taught": "M-15 briefing: \\v with capture groups and \\1..\\3 for the classification (ranged 19,24) and entry lines, cw for the title; alt with the classification done by hand (s## <Esc>llgue$x) solved in 118 keys."
+    },
+    {
+      "id": "M-16",
+      "keys": "67Gddjdd:%s/\\v\\[ENTRY-(\\d{4})\\]: threat-(\\w+) pattern-(\\d{2}) (.+)/Threat-\\2 Pattern \\3 (\\1) - \\4/<CR>55Ggu2j44G2<C-x>j.j.w<C-x>k.k.31G2dd24G3dd",
+      "count": 133,
+      "par": 135,
+      "taught": "M-16 objective and Tier 1-4 keys: 24G3dd/31G2dd, 2<C-x>/<C-x> with j., gu2j, g/dd on the noise lines and a four-group \\v substitute (bottom-up so line numbers stay valid)."
+    },
+    {
+      "id": "R-01",
+      "keys": ":%s/PHANTOM/NEXUS/g<CR>",
+      "count": 20,
+      "par": 20,
+      "taught": "The R-01 briefing's own command `:%s/PHANTOM/NEXUS/g` (g is optional here, one hit per line; 19 without it rounds to the same 20)."
+    },
+    {
+      "id": "R-02",
+      "keys": ":%s/mirror/PROJECT MIRROR/gi<CR>",
+      "count": 29,
+      "par": 30,
+      "taught": "The R-02 briefing's `:%s/.../gi` with the case-insensitive `i` flag."
+    },
+    {
+      "id": "R-03",
+      "keys": ":g/TRACK/d<CR>",
+      "count": 11,
+      "par": 15,
+      "taught": "The R-03 briefing's `:g/pattern/d` in the form its CIPHER quote gives (`:g/TRACK/d`; no other line holds TRACK); the SKILLS-box form `:g/\\[TRACK\\]/d` measured 15 keys and rounds to the same par 15."
+    },
+    {
+      "id": "R-04",
+      "keys": ":3,10s/QUEUED/ACTIVE/<CR>",
+      "count": 22,
+      "par": 25,
+      "taught": "The R-04 briefing's ranged `:{range}s`, with the range 3,10 read off the line numbers (line 1 is the title, lines 3-10 the upper section); `:1,10s` would be 23 and rounds the same."
+    },
+    {
+      "id": "R-05",
+      "keys": ":%s/AGENT-./OPERATIVE/g<CR>",
+      "count": 24,
+      "par": 25,
+      "taught": "The R-05 briefing's `:%s/AGENT-./OPERATIVE/g` with `.` as the one-character wildcard."
+    },
+    {
+      "id": "R-06",
+      "keys": "GfX<C-v>4k3ld",
+      "count": 9,
+      "par": 14,
+      "taught": "The R-06 briefing's Ctrl-V block delete, reached with the basics `G` (last row) and `fX`, then `4k` up the five rows and `3l` over `X | `."
+    },
+    {
+      "id": "R-07",
+      "keys": ":%s/<.\\{-}>//g<CR>",
+      "count": 15,
+      "par": 15,
+      "taught": "The R-07 briefing's lazy quantifier `:%s/<.\\{-}>//g`."
+    },
+    {
+      "id": "R-08",
+      "keys": ":%s/\\v(ALPHA|BETA|GAMMA)/TIER-1/g<CR>",
+      "count": 34,
+      "par": 35,
+      "taught": "The R-08 briefing's very-magic alternation `:%s/\\v(ALPHA|BETA|GAMMA)/TIER-1/g` (without the parentheses 32 keys, same rounding to 35)."
+    },
+    {
+      "id": "R-09",
+      "keys": ":%s/: [XYZ]$/: CLEAN/g<CR>",
+      "count": 23,
+      "par": 25,
+      "taught": "R-09 briefing: character set [XYZ] with :%s and $ anchor (:s taught earlier)."
+    },
+    {
+      "id": "R-10",
+      "keys": "G4kqaI# <Esc>$ciw[OK]<Esc>0jq4@a",
+      "count": 24,
+      "par": 25,
+      "taught": "R-10 briefing: qa ... q recording with I, $, ciw, 0j and a counted replay 4@a, plus G/4k from FUNDAMENTALS/NAVIGATION."
+    },
+    {
+      "id": "R-11",
+      "keys": ":g!/CLEARANCE/d<CR>",
+      "count": 16,
+      "par": 20,
+      "taught": "R-11 briefing: :g!/CLEARANCE/d inverse global delete."
+    },
+    {
+      "id": "R-12",
+      "keys": ":%s/[0-9A-F]\\{8\\}/[HASH-REDACTED]/g<CR>",
+      "count": 36,
+      "par": 40,
+      "taught": "R-12 briefing: exact-length class [0-9A-F]\\{8\\} in :%s."
+    },
+    {
+      "id": "R-13",
+      "keys": ":%s/^\\[TRACK\\] //g<CR>",
+      "count": 19,
+      "par": 20,
+      "taught": "R-13 briefing: `:%s/^\\[TRACK\\] //g` (anchor ^, escaped brackets), with :%s from M-07."
+    },
+    {
+      "id": "R-14",
+      "keys": "/K7741<CR>\"ayiw/____<CR>cw<Esc>\"apncw<Esc>\"apncw<Esc>\"apncw<Esc>\"ap",
+      "count": 45,
+      "par": 30,
+      "taught": "R-14 briefing: `\"ayiw` on the key, then per slot `cw<Esc>\"ap`; `/` and `n` for navigation."
+    },
+    {
+      "id": "R-15",
+      "keys": ":%s/\\<MIRROR\\>/PROJECT MIRROR/g<CR>",
+      "count": 32,
+      "par": 35,
+      "taught": "R-15 briefing: `:%s/\\<MIRROR\\>/PROJECT MIRROR/g` with word boundaries."
+    },
+    {
+      "id": "R-16",
+      "keys": ":%s/^CLASSIFIED$/[REDACTED]/g<CR>",
+      "count": 30,
+      "par": 30,
+      "taught": "R-16 briefing: `:%s/^CLASSIFIED$/[REDACTED]/g` with both anchors."
+    },
+    {
+      "id": "R-17",
+      "keys": ":%s/\\(SECTOR-[A-Z]\\) \\(NODE-[0-9]\\)/\\2 \\1/g<CR>",
+      "count": 44,
+      "par": 45,
+      "taught": "R-17 briefing: `:%s/\\(SECTOR-[A-Z]\\) \\(NODE-[0-9]\\)/\\2 \\1/g` (capture groups, swap)."
+    },
+    {
+      "id": "R-18",
+      "keys": ":%s/\\(\\w\\+\\) \\1/\\1/g<CR>",
+      "count": 21,
+      "par": 25,
+      "taught": "R-18 briefing: `:%s/\\(\\w\\+\\) \\1/\\1/g` (backreference in the pattern)."
+    },
+    {
+      "id": "R-19",
+      "keys": ":%s/\\v(\\d{4})-(\\d{2})-(\\d{2})/\\3.\\2.\\1/g<CR>",
+      "count": 41,
+      "par": 45,
+      "taught": "R-19 briefing: `:%s/\\v(\\d{4})-(\\d{2})-(\\d{2})/\\3.\\2.\\1/g` (\\v very magic, three groups)."
+    },
+    {
+      "id": "R-20",
+      "keys": ":%s/\\(\\w\\+\\), \\(\\w\\+\\)/\\2 \\1/g<CR>",
+      "count": 31,
+      "par": 35,
+      "taught": "R-20 briefing: `:%s/\\(\\w\\+\\), \\(\\w\\+\\)/\\2 \\1/g` (two groups, comma dropped)."
+    },
+    {
+      "id": "R-21",
+      "keys": ":g/ENCRYPTED/s/STATUS: ACTIVE/STATUS: EXPOSED/<CR>",
+      "count": 47,
+      "par": 50,
+      "taught": "The R-21 briefing's own command :g/pat/s/old/new/ composed with :s, used verbatim."
+    },
+    {
+      "id": "R-22",
+      "keys": ":v/MIRROR/d<CR>",
+      "count": 12,
+      "par": 15,
+      "taught": "The R-22 briefing's :v/pattern/d (inverse global delete), used verbatim."
+    },
+    {
+      "id": "R-23",
+      "keys": ":g/\\[NOISE\\]/d<CR>:g/MIRROR/s/PENDING/TERMINATED/<CR>",
+      "count": 47,
+      "par": 50,
+      "taught": "The R-23 briefing's two sequential commands :g/\\[NOISE\\]/d then :g/MIRROR/s/PENDING/TERMINATED/, used verbatim."
+    },
+    {
+      "id": "R-24",
+      "keys": ":g/\\[CORP-STATUS\\]/d<CR>:%s/CIPHER: TRACKED/CIPHER: EXPOSED/<CR>:%s/ACTIVE/TERMINATED/g<CR>",
+      "count": 82,
+      "par": 85,
+      "taught": "The R-24 briefing's three SKILLS commands (:g delete, :%s, :%s///g) in the given order, used verbatim."
+    }
+  ]
+}

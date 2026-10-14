@@ -6,6 +6,7 @@ xp_reward: 15
 completed: false
 difficulty: 1
 category: fundamentals
+par_keystrokes: 110
 tags:
   - vim/modes
   - indoctrination

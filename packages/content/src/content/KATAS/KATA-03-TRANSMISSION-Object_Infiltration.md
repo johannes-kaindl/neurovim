@@ -6,6 +6,7 @@ xp_reward: 10
 completed: false
 difficulty: 2
 category: text-objects
+par_keystrokes: 80
 tags:
   - kata
   - vim/text-objects

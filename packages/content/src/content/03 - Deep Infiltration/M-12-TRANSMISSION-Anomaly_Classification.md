@@ -6,6 +6,7 @@ xp_reward: 60
 completed: false
 difficulty: 8
 category: advanced
+par_keystrokes: 50
 mission_type: practice
 locked: true
 unlock_requirement: "M-11 completed"

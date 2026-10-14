@@ -1,3 +1,5 @@
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import { ENTRIES, listMissions, getMission, getLore } from '../src/index';
 import { getDiff, LEVELS, ProgressionEngine, unlockLevelFor } from '@neurovim/core';
 
@@ -331,5 +333,42 @@ describe('ascii frames', () => {
       const e = ENTRIES.find((x) => x.role === role && x.id === id)!;
       expect(skewedFrameLines(e.body).length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('par', () => {
+  // Par comes from a measured reference run (packages/content/par/reference-runs.json, npm run par),
+  // rounded up to a multiple of 5 — so the run itself reaches gold, and no par is invented.
+  const ref = JSON.parse(readFileSync(join(__dirname, '..', 'par', 'reference-runs.json'), 'utf8')) as { runs: { id: string; count: number; par: number }[] };
+  // Johannes' decisions from Task 7 Step 4: a measured par that deviates > 25 % from the authored one is
+  // presented to him, not overwritten. Each entry keeps the authored value until he decides.
+  const PAR_APPROVED: Record<string, number> = {
+    'R-06': 14, // measured 9 (par 10) — kept pending Johannes' decision
+    'R-14': 30, // measured 45 (par 45) via the briefed register route; :%s solves it in 16 — kept pending Johannes' decision
+  };
+  it('every playable mission has an authored par', () => {
+    expect(listMissions().filter((m) => m.par_keystrokes == null).map((m) => m.mission_id)).toEqual([]);
+  });
+  it('every authored par is the reference run rounded up to 5, or an approved exception', () => {
+    const off = listMissions()
+      .filter((m) => PAR_APPROVED[m.mission_id] == null)
+      .filter((m) => {
+        const r = ref.runs.find((x) => x.id === m.mission_id);
+        return !r || m.par_keystrokes !== Math.ceil(r.count / 5) * 5;
+      })
+      .map((m) => m.mission_id);
+    expect(off).toEqual([]);
+  });
+  it('an approved exception keeps exactly its approved par', () => {
+    const authored = new Map(listMissions().map((m) => [m.mission_id, m.par_keystrokes]));
+    const off = Object.entries(PAR_APPROVED)
+      .filter(([id, par]) => authored.get(id) !== par)
+      .map(([id]) => id);
+    expect(off).toEqual([]);
+  });
+  it('the recorded par of every reference run is what the mission carries', () => {
+    const authored = new Map(listMissions().map((m) => [m.mission_id, m.par_keystrokes]));
+    const off = ref.runs.filter((r) => authored.get(r.id) !== r.par).map((r) => r.id);
+    expect(off).toEqual([]);
   });
 });

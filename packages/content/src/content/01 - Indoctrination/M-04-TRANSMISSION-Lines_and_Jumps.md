@@ -6,6 +6,7 @@ xp_reward: 15
 completed: false
 difficulty: 2
 category: navigation
+par_keystrokes: 15
 tags:
   - vim/navigation
   - vim/lines

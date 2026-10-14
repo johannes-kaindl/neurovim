@@ -6,6 +6,7 @@ xp_reward: 80
 completed: false
 difficulty: 9
 category: mission
+par_keystrokes: 135
 mission_type: practice
 locked: true
 unlock_requirement: "M-15 completed"

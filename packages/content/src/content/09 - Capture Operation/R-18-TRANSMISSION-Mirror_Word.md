@@ -6,6 +6,7 @@ xp_reward: 35
 completed: false
 difficulty: 4
 category: regex
+par_keystrokes: 25
 mission_type: practice
 locked: true
 unlock_requirement: "Level 8"

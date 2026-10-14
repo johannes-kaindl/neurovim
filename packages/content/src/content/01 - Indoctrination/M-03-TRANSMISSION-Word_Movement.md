@@ -6,6 +6,7 @@ xp_reward: 20
 completed: false
 difficulty: 2
 category: navigation
+par_keystrokes: 75
 tags:
   - vim/navigation
   - vim/words

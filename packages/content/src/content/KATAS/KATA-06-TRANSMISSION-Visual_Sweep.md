@@ -6,6 +6,7 @@ xp_reward: 15
 completed: false
 difficulty: 3
 category: visual-block
+par_keystrokes: 10
 tags:
   - kata
   - vim/visual

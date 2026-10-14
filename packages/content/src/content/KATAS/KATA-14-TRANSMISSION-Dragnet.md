@@ -6,7 +6,7 @@ xp_reward: 10
 completed: false
 difficulty: 3
 category: ex-commands
-par_keystrokes: 14
+par_keystrokes: 15
 tags:
   - kata
   - vim/ex-commands

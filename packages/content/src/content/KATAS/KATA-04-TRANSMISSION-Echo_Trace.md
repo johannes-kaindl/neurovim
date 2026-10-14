@@ -6,6 +6,7 @@ xp_reward: 10
 completed: false
 difficulty: 2
 category: search-replace
+par_keystrokes: 25
 tags:
   - kata
   - vim/search

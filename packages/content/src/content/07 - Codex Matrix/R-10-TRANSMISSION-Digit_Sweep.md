@@ -6,7 +6,7 @@ xp_reward: 30
 completed: false
 difficulty: 3
 category: marks-macros
-par_keystrokes: 24
+par_keystrokes: 25
 mission_type: practice
 locked: true
 unlock_requirement: "Level 7"

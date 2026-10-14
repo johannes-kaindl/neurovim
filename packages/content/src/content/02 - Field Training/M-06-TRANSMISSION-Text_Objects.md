@@ -6,6 +6,7 @@ xp_reward: 30
 completed: false
 difficulty: 4
 category: editing
+par_keystrokes: 405
 tags:
   - vim/text-objects
   - vim/precision

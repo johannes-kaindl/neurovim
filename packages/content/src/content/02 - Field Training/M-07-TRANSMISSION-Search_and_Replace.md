@@ -6,6 +6,7 @@ xp_reward: 30
 completed: false
 difficulty: 4
 category: search
+par_keystrokes: 40
 tags:
   - vim/search
   - vim/replace

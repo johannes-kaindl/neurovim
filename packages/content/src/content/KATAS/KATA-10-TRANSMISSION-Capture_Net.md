@@ -6,6 +6,7 @@ xp_reward: 15
 completed: false
 difficulty: 3
 category: regex
+par_keystrokes: 45
 tags:
   - kata
   - vim/regex

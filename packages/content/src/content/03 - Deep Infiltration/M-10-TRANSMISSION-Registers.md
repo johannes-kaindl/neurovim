@@ -6,6 +6,7 @@ xp_reward: 55
 completed: false
 difficulty: 7
 category: advanced
+par_keystrokes: 25
 mission_type: practice
 locked: true
 unlock_requirement: "DEEP COVER level (186+ XP)"

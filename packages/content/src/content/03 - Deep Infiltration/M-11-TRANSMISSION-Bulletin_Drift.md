@@ -6,6 +6,7 @@ xp_reward: 55
 completed: false
 difficulty: 7
 category: advanced
+par_keystrokes: 295
 mission_type: practice
 locked: true
 unlock_requirement: "M-10 completed"
