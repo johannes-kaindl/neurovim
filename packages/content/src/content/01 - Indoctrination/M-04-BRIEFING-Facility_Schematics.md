@@ -34,6 +34,6 @@ color: "#00ff41"
 > > Move whole blocks (header plus its lines). Change no text.
 >
 > > [!tip] SKILLS
-> > `gg` `G` `:#`, `{` `}`, `H` `M` `L`
+> > `gg` `G` `:#`, `{` `}`, `H` `M` `L`, `d}` `dd` cut, `p` `P` put
 >
 > > [!success] +15 XP

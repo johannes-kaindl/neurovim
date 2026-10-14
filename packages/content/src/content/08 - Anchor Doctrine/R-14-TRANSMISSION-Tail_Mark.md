@@ -9,7 +9,7 @@ category: registers
 par_keystrokes: 30
 mission_type: practice
 locked: true
-unlock_requirement: "Level 8"
+unlock_requirement: "Level 7"
 tags:
   - vim/registers
   - arc2

@@ -196,7 +196,7 @@ export const ENTRIES: RawContentEntry[] = [
       "sticker": "lucide//layout",
       "color": "#00ff41"
     },
-    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-04 // LINES AND JUMPS       ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Another corrupted file. Not a roster this time — a layout document. Sections scrambled at the line level. Whole blocks shifted out of order. Section 1 notes below Section 3. The index appears after the entries.*\n> *Restoring this requires line-level navigation. Not character by character — you jump.*\n> *`gg` to the top. `G` to the bottom. `:#` to a specific line number.*\n> *`{` and `}` jump between paragraphs. In a large file, character navigation is useless.*\n> *Read the document. Restore the order.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Reorder the scrambled layout sections into this order:\n> > 1. `SECTION 1 — ENTRY INDEX`\n> > 2. `SECTION 2 — ADMINISTRATIVE INDEX`\n> > 3. `SECTION 3 — ARCHIVE INDEX`\n> > 4. `ENTRY NODES`\n> > 5. `ACCESS WINDOWS`\n> >\n> > Move whole blocks (header plus its lines). Change no text.\n>\n> > [!tip] SKILLS\n> > `gg` `G` `:#`, `{` `}`, `H` `M` `L`\n>\n> > [!success] +15 XP",
+    "body": "```ascii\n╔══════════════════════════════════════════╗\n║  INCOMING — CIPHER                       ║\n║  BRIEFING: M-04 // LINES AND JUMPS       ║\n╚══════════════════════════════════════════╝\n```\n\n> [!quote] CIPHER\n> *\"Another corrupted file. Not a roster this time — a layout document. Sections scrambled at the line level. Whole blocks shifted out of order. Section 1 notes below Section 3. The index appears after the entries.*\n> *Restoring this requires line-level navigation. Not character by character — you jump.*\n> *`gg` to the top. `G` to the bottom. `:#` to a specific line number.*\n> *`{` and `}` jump between paragraphs. In a large file, character navigation is useless.*\n> *Read the document. Restore the order.\"*\n\n\n> [!abstract] DIRECTIVE\n> > [!warning] OBJECTIVE\n> > Reorder the scrambled layout sections into this order:\n> > 1. `SECTION 1 — ENTRY INDEX`\n> > 2. `SECTION 2 — ADMINISTRATIVE INDEX`\n> > 3. `SECTION 3 — ARCHIVE INDEX`\n> > 4. `ENTRY NODES`\n> > 5. `ACCESS WINDOWS`\n> >\n> > Move whole blocks (header plus its lines). Change no text.\n>\n> > [!tip] SKILLS\n> > `gg` `G` `:#`, `{` `}`, `H` `M` `L`, `d}` `dd` cut, `p` `P` put\n>\n> > [!success] +15 XP",
     "path": "01 - Indoctrination/M-04-BRIEFING-Facility_Schematics.md"
   },
   {
@@ -1692,7 +1692,7 @@ export const ENTRIES: RawContentEntry[] = [
       "par_keystrokes": 30,
       "mission_type": "practice",
       "locked": true,
-      "unlock_requirement": "Level 8",
+      "unlock_requirement": "Level 7",
       "tags": [
         "vim/registers",
         "arc2",
@@ -3000,8 +3000,8 @@ export const ENTRIES: RawContentEntry[] = [
       ],
       "sticker": "lucide//filter",
       "color": "#444444",
-      "summary": "A trace flood buried the real log. One global command — :g/TRACE/d — nets every junk line at once. (:v keeps only matches; :g//normal runs an edit on each.) No story. Just precision.",
-      "why": "One :g/TRACE/d nets every junk line at once — the global command is a dragnet, not a hunt.",
+      "summary": "A trace flood buried the real log. One global command — :g/\\[TRACE\\]/d (brackets escaped, so the heading survives) — nets every junk line at once. (:v keeps only matches; :g//normal runs an edit on each.) No story. Just precision.",
+      "why": "One :g/\\[TRACE\\]/d nets every junk line at once — the global command is a dragnet, not a hunt.",
       "mission_type": "practice",
       "locked": true,
       "objective": [
