@@ -25,7 +25,7 @@ color: "#00ff88"
 
 > [!abstract] DIRECTIVE
 > > [!warning] OBJECTIVE
-> > Swap every `word, word` pair in the register and drop the comma (8×): the six names (`Ren, WRAITH` → `WRAITH Ren`), the title (`FORMAT, NAME` → `NAME FORMAT`) and `zones, all` → `all zones`.
+> > Swap every `word, word` pair in the register and drop the comma (8×): the six names (`WRAITH, Ren` → `Ren WRAITH`), the title (`FORMAT, NAME` → `NAME FORMAT`) and `zones, all` → `all zones`.
 >
 > > [!tip] SKILLS
 > > `:%s/\(\w\+\), \(\w\+\)/\2 \1/g` — two groups, comma stripped in replacement
