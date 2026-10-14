@@ -24,7 +24,7 @@ objective:
 ```ascii
 ╔══════════════════════════════════════════╗
 ║  KATA-02 // OPERATOR STRIKE              ║
-║  Skills: dw  dd  D  x  cw               ║
+║  Skills: dw  dd  D  x  cw                ║
 ╚══════════════════════════════════════════╝
 ```
 

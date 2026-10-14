@@ -28,7 +28,7 @@ objective:
 ╔══════════════════════════════════════════════════════════════════╗
 ║  CORP ASSET REGISTER — NAME FORMAT CORRECTION                    ║
 ║  Document       : Field personnel // CORP surname-first format   ║
-║  Timestamp      : 2047-06-05 // 09:00                           ║
+║  Timestamp      : 2047-06-05 // 09:00                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

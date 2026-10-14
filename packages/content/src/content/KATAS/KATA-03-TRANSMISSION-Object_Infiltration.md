@@ -27,7 +27,7 @@ objective:
 ```ascii
 ╔══════════════════════════════════════════╗
 ║  KATA-03 // OBJECT INFILTRATION          ║
-║  Skills: ci"  ci(  ci{  ca"  da(        ║
+║  Skills: ci"  ci(  ci{  ca"  da(         ║
 ╚══════════════════════════════════════════╝
 ```
 

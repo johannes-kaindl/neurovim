@@ -295,3 +295,41 @@ describe('progression', () => {
     }
   });
 });
+
+describe('ascii frames', () => {
+  // A ╔…╗ box is drawn with single-cell characters only (ASCII, box drawing, — Δ Ω →), so the
+  // code-point count is the display width. Transmissions are not checked: a glitch may change a
+  // line's length on purpose, and the solution is what the player is scored against.
+  const FRAME_EXEMPT = new Set([
+    'solution:R-24', // R-24's :%s lengthens the status line; its objective says the border shifts
+  ]);
+  const width = (s: string) => [...s].length;
+  function skewedFrameLines(body: string): string[] {
+    const lines = body.split('\n').map((l) => l.trimEnd());
+    const out: string[] = [];
+    for (let i = 0; i < lines.length; i++) {
+      if (!lines[i].includes('╔') || !lines[i].includes('╗')) continue;
+      const w = width(lines[i]);
+      for (let j = i + 1; j < lines.length; j++) {
+        if (width(lines[j]) !== w) out.push(lines[j]);
+        if (lines[j].includes('╚')) { i = j; break; }
+      }
+    }
+    return out;
+  }
+
+  it('every frame in solutions, briefings and lore is straight', () => {
+    const skewed = ENTRIES.filter((e) => !['transmission', 'kata'].includes(e.role))
+      .filter((e) => !FRAME_EXEMPT.has(`${e.role}:${e.id}`))
+      .flatMap((e) => skewedFrameLines(e.body).map((l) => `${e.role}:${e.id}: ${l}`));
+    expect(skewed).toEqual([]);
+  });
+
+  it('every FRAME_EXEMPT entry is still skewed (a stale exemption hides the next defect)', () => {
+    for (const key of FRAME_EXEMPT) {
+      const [role, id] = key.split(':');
+      const e = ENTRIES.find((x) => x.role === role && x.id === id)!;
+      expect(skewedFrameLines(e.body).length).toBeGreaterThan(0);
+    }
+  });
+});

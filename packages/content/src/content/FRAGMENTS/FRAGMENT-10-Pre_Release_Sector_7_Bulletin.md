@@ -13,7 +13,7 @@ summary: "An unsanitized draft citizen bulletin exposing Sector 7's falling prod
 ╠══════════════════════════════════════════════════════════════════╣
 ║  Document Type  : Citizen Bulletin — Pre-Release Draft           ║
 ║  Edition        : 14 / Quarter 2 / 2047                          ║
-║  Revision       : DRAFT-R3 — 2047-06-25T09:14:00Z               ║
+║  Revision       : DRAFT-R3 — 2047-06-25T09:14:00Z                ║
 ║  Classification : INTERNAL — AWAITING COMMUNICATIONS REVIEW      ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```

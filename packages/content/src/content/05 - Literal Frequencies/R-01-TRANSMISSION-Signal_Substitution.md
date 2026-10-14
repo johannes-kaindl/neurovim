@@ -25,8 +25,8 @@ objective:
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
 ║  COMM INTERCEPT — RESISTANCE INTERNAL                            ║
-║  Channel        : CIPHER-DIRECT // encrypted                    ║
-║  Timestamp      : 2047-05-03 // 04:17                           ║
+║  Channel        : CIPHER-DIRECT // encrypted                     ║
+║  Timestamp      : 2047-05-03 // 04:17                            ║
 ║  Subject        : Relay log fragment — garbled in transit        ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```

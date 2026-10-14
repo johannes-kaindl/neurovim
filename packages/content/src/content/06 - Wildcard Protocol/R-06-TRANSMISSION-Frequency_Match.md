@@ -26,7 +26,7 @@ objective:
 ╔══════════════════════════════════════════════════════════════════╗
 ║  CORP RELAY GRID — COLUMN INJECTION                              ║
 ║  Document       : Aligned node table // bogus status column      ║
-║  Timestamp      : 2047-05-11 // 09:30                           ║
+║  Timestamp      : 2047-05-11 // 09:30                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

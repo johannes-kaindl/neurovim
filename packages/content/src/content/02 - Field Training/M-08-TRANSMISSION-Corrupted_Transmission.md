@@ -30,7 +30,7 @@ objective:
 ╔══════════════════════════════════════════╗
 ║  MISSION M-08 // OPERATION RAVEN         ║
 ║  Tier: FIELD TRAINING  //  +35 XP        ║
-║  Clearance: GHOST OPERATOR              ║
+║  Clearance: GHOST OPERATOR               ║
 ╚══════════════════════════════════════════╝
 ```
 

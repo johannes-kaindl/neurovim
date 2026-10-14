@@ -26,7 +26,7 @@ objective:
 ╔══════════════════════════════════════════════════════════════════╗
 ║  RESISTANCE KEY DISTRIBUTION — DEAD DROP                         ║
 ║  Document       : Master key + empty slots // fill all slots     ║
-║  Timestamp      : 2047-05-26 // 05:44                           ║
+║  Timestamp      : 2047-05-26 // 05:44                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

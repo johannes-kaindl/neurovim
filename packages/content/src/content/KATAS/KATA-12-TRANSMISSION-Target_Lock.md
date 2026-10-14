@@ -24,8 +24,8 @@ objective:
 ---
 ```ascii
 ╔══════════════════════════════════════════╗
-║  KATA-12 // TARGET LOCK                   ║
-║  Skills: f  F  t  T  ;  ,                 ║
+║  KATA-12 // TARGET LOCK                  ║
+║  Skills: f  F  t  T  ;  ,                ║
 ╚══════════════════════════════════════════╝
 ```
 

@@ -23,8 +23,8 @@ objective:
 ---
 ```ascii
 ╔══════════════════════════════════════════╗
-║  KATA-13 // ECHO                          ║
-║  Skills: .  (repeat last change)          ║
+║  KATA-13 // ECHO                         ║
+║  Skills: .  (repeat last change)         ║
 ╚══════════════════════════════════════════╝
 ```
 

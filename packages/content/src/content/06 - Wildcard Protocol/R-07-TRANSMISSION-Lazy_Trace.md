@@ -27,7 +27,7 @@ objective:
 ╔══════════════════════════════════════════════════════════════════╗
 ║  CORP ENCRYPTED PAYLOAD — SECTOR 3 RELAY                         ║
 ║  Document       : Wrapped transmission // tag-encoded            ║
-║  Timestamp      : 2047-05-12 // 17:45                           ║
+║  Timestamp      : 2047-05-12 // 17:45                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

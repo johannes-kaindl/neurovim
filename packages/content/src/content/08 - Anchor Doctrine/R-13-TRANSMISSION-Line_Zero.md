@@ -26,7 +26,7 @@ objective:
 ╔══════════════════════════════════════════════════════════════════╗
 ║  RESISTANCE INTERCEPT — PREFIX STRIPPED                          ║
 ║  Source         : CORP Sector-3 relay // prefixed feed           ║
-║  Timestamp      : 2047-05-25 // 03:17                           ║
+║  Timestamp      : 2047-05-25 // 03:17                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

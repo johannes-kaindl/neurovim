@@ -1,8 +1,8 @@
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
 ║  CORP INTERNAL — TIER CLASSIFICATION REGISTER                    ║
-║  Document       : Legacy tier mapping // normalization pending    ║
-║  Timestamp      : 2047-05-13 // 11:00                           ║
+║  Document       : Legacy tier mapping // normalization pending   ║
+║  Timestamp      : 2047-05-13 // 11:00                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

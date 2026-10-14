@@ -24,7 +24,7 @@ objective:
 ```ascii
 ╔══════════════════════════════════════════╗
 ║  KATA-08 // WILDCARD HUNT                ║
-║  Skills: . [0-9]\+  :%s/pattern/rep/g   ║
+║  Skills: . [0-9]\+  :%s/pattern/rep/g    ║
 ╚══════════════════════════════════════════╝
 ```
 

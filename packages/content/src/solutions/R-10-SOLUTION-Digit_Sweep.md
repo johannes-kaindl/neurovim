@@ -2,7 +2,7 @@
 ╔══════════════════════════════════════════════════════════════════╗
 ║  RESISTANCE RELAY ROSTER — BULK REFORMAT                         ║
 ║  Document       : Relay status list // same edit, every line     ║
-║  Timestamp      : 2047-05-19 // 06:30                           ║
+║  Timestamp      : 2047-05-19 // 06:30                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 

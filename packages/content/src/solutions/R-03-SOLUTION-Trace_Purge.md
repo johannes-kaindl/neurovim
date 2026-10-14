@@ -1,8 +1,8 @@
 ```ascii
 ╔══════════════════════════════════════════════════════════════════╗
 ║  RESISTANCE INTERCEPT — RAW FEED                                 ║
-║  Source         : CORP Sector-3 comms // scraped                ║
-║  Timestamp      : 2047-05-04 // 02:31                           ║
+║  Source         : CORP Sector-3 comms // scraped                 ║
+║  Timestamp      : 2047-05-04 // 02:31                            ║
 ║  Note           : CORP trace markers injected — purge before use ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```

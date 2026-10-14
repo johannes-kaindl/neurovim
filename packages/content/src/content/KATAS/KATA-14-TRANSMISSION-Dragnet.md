@@ -24,8 +24,8 @@ objective:
 ---
 ```ascii
 ╔══════════════════════════════════════════╗
-║  KATA-14 // DRAGNET                       ║
-║  Skills: :g/pat/d   :v/pat/d              ║
+║  KATA-14 // DRAGNET                      ║
+║  Skills: :g/pat/d   :v/pat/d             ║
 ╚══════════════════════════════════════════╝
 ```
 

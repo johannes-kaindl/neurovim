@@ -27,7 +27,7 @@ objective:
 ╔══════════════════════════════════════════════════════════════════╗
 ║  CORP TRANSCRIPTION — STUTTER DETECTED                           ║
 ║  Document       : Automated comm log // duplicate words present  ║
-║  Timestamp      : 2047-06-02 // 14:20                           ║
+║  Timestamp      : 2047-06-02 // 14:20                            ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
