@@ -314,6 +314,7 @@ Why vendored rather than depended on, and why the split matters:
   `WebLlm` answers with `refusalHint` instead of a retry. Measure against the app path, not
   the deploy root (the root sends a CSP the app does not). Full measurements (2026-08-21):
   `docs/dev/explanation/cipher-uplink.md`.
+- **"Today" from the clock is `localDay()`, and zone probes run under `node --test`:** never `new Date().toISOString().slice(0, 10)` for the player's day — that is the UTC day, a day off after local midnight. A test that switches `process.env.TZ` does nothing in jest (each test file gets a copy of `process.env`), so zone cases live in `scripts/lib/local-day.test.mjs`, behind a guard case that proves the switch took effect.
 - **The game's Vim is codemirror-vim, not Vim:** `Ctrl+a`/`Ctrl+x` change only the number at
   the cursor (no visual-block increment) and read `REF-4217` as minus 4217. Content that
   teaches a key must be checked against `node_modules/@replit/codemirror-vim`, not against
