@@ -50,6 +50,17 @@
         60
       ],
       "expected": null
+    },
+    {
+      "name": "odd par gives a fractional delta",
+      "args": [
+        60,
+        35
+      ],
+      "expected": {
+        "nextTier": "silver",
+        "delta": 7.5
+      }
     }
   ]
 }

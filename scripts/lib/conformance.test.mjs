@@ -26,6 +26,21 @@ test('building twice is byte-identical', () => {
   for (const fn of Object.keys(vectors)) assert.equal(serializeVector(again[fn]), serializeVector(vectors[fn]));
 });
 
+// Vectors are a contract between machines: building them twenty years later must not change them.
+// A case that read the clock (new Date() without an argument, Date.now()) would differ here.
+test('vectors do not depend on the clock', () => {
+  const RealDate = globalThis.Date;
+  const shift = 20 * 365 * 86400000;
+  class FutureDate extends RealDate {
+    constructor(...args) { super(...(args.length ? args : [RealDate.now() + shift])); }
+    static now() { return RealDate.now() + shift; }
+  }
+  globalThis.Date = FutureDate;
+  let later;
+  try { later = buildVectors(core); } finally { globalThis.Date = RealDate; }
+  for (const fn of Object.keys(vectors)) assert.equal(serializeVector(later[fn]), serializeVector(vectors[fn]), fn);
+});
+
 test('the TS core passes its own vectors', () => {
   for (const [fn, v] of Object.entries(vectors)) assert.deepEqual(runVectors(v, FUNCTIONS[fn](core)), [], fn);
 });

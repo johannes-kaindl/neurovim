@@ -167,6 +167,9 @@ export function casesFor(core) {
       { name: 'just above silver is bronze', args: [91, 60] },
       { name: 'bronze boundary', args: [150, 60] },
       { name: 'beyond bronze has no tier', args: [151, 60] },
+      // Odd par: silver ends at 52.5 — a port with integer math rounds the boundary away.
+      { name: 'odd par, inside silver', args: [52, 35] },
+      { name: 'odd par, just past silver', args: [53, 35] },
     ],
     metricsResult: [
       { name: 'one decimal', args: [37, 42000] },
@@ -194,6 +197,7 @@ export function casesFor(core) {
       { name: 'bronze to silver', args: [120, 60] },
       { name: 'below bronze to bronze', args: [200, 60] },
       { name: 'no keystrokes', args: [0, 60] },
+      { name: 'odd par gives a fractional delta', args: [60, 35] },
     ],
   };
 }

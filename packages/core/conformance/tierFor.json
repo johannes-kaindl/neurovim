@@ -65,6 +65,22 @@
         60
       ],
       "expected": null
+    },
+    {
+      "name": "odd par, inside silver",
+      "args": [
+        52,
+        35
+      ],
+      "expected": "silver"
+    },
+    {
+      "name": "odd par, just past silver",
+      "args": [
+        53,
+        35
+      ],
+      "expected": "bronze"
     }
   ]
 }
