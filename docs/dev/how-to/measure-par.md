@@ -12,7 +12,7 @@ Par is a measured reference run: you solve the mission once with the fewest keys
 - Neovim 0.10 or newer on the `PATH` (`nvim`).
 - A clone of `neurovim.nvim`, the Neovim port, next to this repo's workspace. The default location is `../../nvim-plugins/neurovim.nvim` relative to the repo root; anywhere else, pass `--plugin <dir>`.
 
-The tool never touches the plugin clone or your own save. It plays a throwaway copy of the plugin (without `.git`) with this repo's export swapped in, under a temporary `XDG_DATA_HOME`, and deletes the copy afterwards. All missions are unlocked in that temporary save, so any id can be played.
+The tool never touches the plugin clone or your own save. It plays a throwaway copy of the plugin (without `.git`) with this repo's export swapped in, under a temporary `XDG_DATA_HOME`, and deletes the copy afterwards. All missions are unlocked in that temporary save, so any id can be played. Every run gets its own Neovim process, so registers, macros, the last search, marks and history from one run never reach the next: a run costs what a fresh player pays.
 
 ## 1 · Check the setup
 
@@ -33,7 +33,7 @@ A JSON array with one object per run. `keys` is in Vim notation: special keys as
 ]
 ```
 
-The same id may appear in several runs, for example to compare two approaches. Each run starts the mission fresh. A briefing, if the mission has one, is dismissed for you and costs nothing, so the keys start at the transmission.
+The same id may appear in several runs, for example to compare two approaches. Each run starts in a fresh Neovim with the mission freshly opened. A briefing, if the mission has one, is dismissed for you and costs nothing, so the keys start at the transmission. An id that is not in the export, or `keys` that is not a string, rejects the whole file before anything is played (exit 2), so a typo does not cost a half-finished measurement.
 
 ## 3 · Run it
 
@@ -41,7 +41,7 @@ The same id may appear in several runs, for example to compare two approaches. E
 npm run par -- runs.json out.json
 ```
 
-One line per run goes to the terminal: id, `solved` or `UNSOLVED (<n> lines off)`, the key count, and the error if the sequence raised one. The full result is written to `out.json`:
+One line per run goes to the terminal: id, `solved`, `UNSOLVED (<n> lines off)` or `NO RESULT` (the run timed out or Neovim died), the key count, and the error if there was one. A failed run does not stop the others; the exit code stays 0 and the `error` field in `out.json` carries the news. The full result is written to `out.json`:
 
 ```json
 [
@@ -52,9 +52,9 @@ One line per run goes to the terminal: id, `solved` or `UNSOLVED (<n> lines off)
 | Field | Meaning |
 |---|---|
 | `solved` | the buffer matches the mission's solution after the keys |
-| `keys` | the count by the plugin's rules, below |
-| `lines_off` | lines that still differ from the solution; `0` when solved |
-| `error` | the message if playing the keys failed, otherwise `null` |
+| `keys` | the count by the plugin's rules, below; `null` when the run produced no result |
+| `lines_off` | lines that still differ from the solution; `0` when solved; `null` when the run produced no result |
+| `error` | `null`, or why the run has no clean result: the message if playing the keys raised one, `timeout` if Neovim ran longer than 60 seconds (it is killed), `nvim failed (<status>)` if the process died |
 | `text` | the buffer after the run, only when unsolved — read it to see where the sequence went wrong |
 
 ## What counts as a key

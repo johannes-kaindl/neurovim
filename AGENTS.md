@@ -98,6 +98,7 @@ decision log (D1–D26) live in the separate design-prep workspace, not in this 
 │   ├── generate-kata.mjs   # authoring driver for the core's MissionGenerator (LlmPort impl)
 │   ├── gen-export.mjs      # writes packages/content/export/neurovim-data.json (part of build:content)
 │   ├── gen-conformance.mjs # writes packages/core/conformance/*.json from the TS core
+│   ├── par/                # par.mjs + run.lua — measure par from key sequences in real Neovim (npm run par)
 │   └── lib/                # consumers.mjs (gate helpers), load-ts.mjs (TS loader for scripts),
 │                           #   export.mjs + conformance.mjs (builders), *.test.mjs (node --test)
 ├── experiments/

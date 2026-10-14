@@ -18,6 +18,7 @@ of them: `packages/core`, `packages/content`, `packages/adapter-web`.
 | `npm run build` | `build:content` → `build:web` | — | both of the above |
 | `npm run build:manual` | `node scripts/gen-manual.mjs` | root devDependency `esbuild` | `docs/manual/reference/vim-keymap.md`, `docs/manual/reference/progression.md` |
 | `npm run generate:kata` | `node scripts/generate-kata.mjs` | a local OpenAI-compatible server with an instruct model | `packages/content/src/_drafts/KATA-NN-{TRANSMISSION,SOLUTION}-<Title>.md` (git-ignored) |
+| `npm run par -- <runs.json> <out.json>` | `node scripts/par/par.mjs` — plays key sequences in a throwaway copy of neurovim.nvim and counts them; `--self-test` instead of the two files checks the setup; see [measure par](../how-to/measure-par.md) | Neovim ≥ 0.10 and a `neurovim.nvim` clone (default `../../nvim-plugins/neurovim.nvim`), current `build:content` export; not part of `npm test` | the `<out.json>` you name |
 | `npm run capture:screenshots` | `node scripts/capture-screenshots.mjs` | installed Google Chrome (`playwright-core`, `channel: 'chrome'`) | `docs/screenshots/*.png` |
 | `npm run desktop:dev` | `build:content` → `tauri dev` in `@neurovim/adapter-web` | Rust toolchain; platform WebView deps | — |
 | `npm run build:dmg` | `build:content` → `tauri build` in `@neurovim/adapter-web` | Rust toolchain; on macOS the Xcode Command Line Tools | `packages/adapter-web/src-tauri/target/release/` (binary + bundles) |
@@ -95,5 +96,7 @@ Both run only on GitHub Actions (the `github` mirror).
 | `capture-screenshots.mjs` | `--no-build` | build first | reuse the existing `dist/` |
 | | `--only <a,b>` | all shots | comma-separated shot names, e.g. `05-result-modal,06-sandbox` |
 | | env `NV_SHOT_OUT` | `docs/screenshots` | output directory |
+| `par.mjs` | `--plugin <dir>` | `../../nvim-plugins/neurovim.nvim` | the neurovim.nvim clone to copy and play; resolved against the repo root |
+| | `--self-test` | off | replay the known 19-key `M-01` run and the isolation checks instead of reading a runs file |
 | `check-consumers.mjs` | `--write` | off | regenerate `CONSUMERS.md` |
 | `bump-version.sh` | `<X.Y.Z \| patch \| minor \| major>` | required | see [release](../how-to/release.md) |
