@@ -355,10 +355,10 @@ Transforms `[ENTRY-0147]: pattern-01 byte-position skew` → `Pattern 01 (0147) 
 | 4 | 🟣 NEON WRAITH | 371 XP | Chrome Raven + LOOT-03 |
 | 5 | 🟢 CHROME RAVEN | 601 XP | ARC II Ch. 5 + LOOT-04 |
 | 6 | 🔵 SIGNAL HUNTER | 800 XP | Ch. 6 + LOOT-05 |
-| 7 | 🟠 PROTOCOL READER | 1150 XP | Ch. 7–8 |
-| 8 | 🟣 PATTERN BREAKER | 1550 XP | Ch. 9 |
-| 9 | 🔴 CIPHER ANALYST | 2000 XP | Ch. 10 + LOOT-06 |
-| 10 | ⚪ SIGNAL ARCHITECT | 2500 XP | — |
+| 7 | 🟠 PROTOCOL READER | 900 XP | Ch. 7–8 |
+| 8 | 🟣 PATTERN BREAKER | 1150 XP | Ch. 9 |
+| 9 | 🔴 CIPHER ANALYST | 1300 XP | Ch. 10 + LOOT-06 |
+| 10 | ⚪ SIGNAL ARCHITECT | 1500 XP | — |
 
 ---
 

@@ -89,7 +89,7 @@ export function casesFor(core) {
       { name: 'missing lines are reported past the end', args: ['a', 'a\nb\nc'] },
       { name: 'leading blank lines shift indices', args: ['\n\na\nX', 'a\nb'] },
     ],
-    getLevelForXp: [0, 65, 66, 185, 186, 600, 601, 2499, 2500, 99999].map((xp) => ({ name: `${xp} xp`, args: [xp] })),
+    getLevelForXp: [0, 65, 66, 185, 186, 600, 601, 799, 800, 899, 900, 1149, 1150, 1299, 1300, 1499, 1500, 99999].map((xp) => ({ name: `${xp} xp`, args: [xp] })),
     addXp: [
       { name: 'no level change', args: [data({ total_xp: 0 }), 15] },
       { name: 'crosses into level 2 and unlocks', args: [data({ total_xp: 60 }), 10] },
@@ -98,12 +98,15 @@ export function casesFor(core) {
       // (backfillUnlocks repairs the rest on load). Not changed in this plan.
       { name: 'jump over several levels', args: [data({ total_xp: 180 }), 500] },
       { name: 'already unlocked id is not duplicated', args: [data({ total_xp: 60, unlocked: [...D.unlocked, 'M-05'] }), 10] },
-      { name: 'beyond max level', args: [data({ total_xp: 2500 }), 1000] },
+      { name: 'beyond max level', args: [data({ total_xp: 1500 }), 1000] },
+      { name: 'crosses into level 7 at 900', args: [data({ total_xp: 890 }), 15] },
     ],
     backfillUnlocks: [
       { name: 'fresh save', args: [data({})] },
       { name: 'level 3 with empty unlocked list', args: [data({ total_xp: 200, unlocked: [] })] },
       { name: 'completed mission missing from unlocked', args: [data({ completed_missions: ['R-24'] })] },
+      // A save from before v0.2.8 at 1200 XP was level 7; under the new table it is level 8.
+      { name: 'backfill after the threshold change', args: [data({ total_xp: 1200, unlocked: [] })] },
     ],
     recordCompletion: [
       { name: 'first completion ever', args: [data({ streak_last_date: '' }), '2026-03-01'] },
@@ -123,7 +126,7 @@ export function casesFor(core) {
       { name: 'faster but more keys', args: [{ best_time_ms: 50000, best_keystrokes: 30, best_ks_per_min: 40, runs: 2, last_run: '2026-02-01' }, m(42000, 37, 52.9), '2026-03-01'] },
       { name: 'zero bests are replaced', args: [{ best_time_ms: 0, best_keystrokes: 0, best_ks_per_min: 0, runs: 0, last_run: '' }, m(1000, 5, 300), '2026-03-01'] },
     ],
-    getXpProgress: [0, 100, 186, 2499, 2500, 3000].map((xp) => ({ name: `${xp} xp`, args: [xp] })),
+    getXpProgress: [0, 100, 186, 899, 900, 1499, 1500, 3000].map((xp) => ({ name: `${xp} xp`, args: [xp] })),
     resolvePar: [
       { name: 'authored override wins', args: [{ parOverride: 35, difficulty: 2 }] },
       { name: 'zero override falls back to difficulty', args: [{ parOverride: 0, difficulty: 2 }] },

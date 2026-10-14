@@ -52,16 +52,72 @@
       "expected": 5
     },
     {
-      "name": "2499 xp",
+      "name": "799 xp",
       "args": [
-        2499
+        799
+      ],
+      "expected": 5
+    },
+    {
+      "name": "800 xp",
+      "args": [
+        800
+      ],
+      "expected": 6
+    },
+    {
+      "name": "899 xp",
+      "args": [
+        899
+      ],
+      "expected": 6
+    },
+    {
+      "name": "900 xp",
+      "args": [
+        900
+      ],
+      "expected": 7
+    },
+    {
+      "name": "1149 xp",
+      "args": [
+        1149
+      ],
+      "expected": 7
+    },
+    {
+      "name": "1150 xp",
+      "args": [
+        1150
+      ],
+      "expected": 8
+    },
+    {
+      "name": "1299 xp",
+      "args": [
+        1299
+      ],
+      "expected": 8
+    },
+    {
+      "name": "1300 xp",
+      "args": [
+        1300
       ],
       "expected": 9
     },
     {
-      "name": "2500 xp",
+      "name": "1499 xp",
       "args": [
-        2500
+        1499
+      ],
+      "expected": 9
+    },
+    {
+      "name": "1500 xp",
+      "args": [
+        1500
       ],
       "expected": 10
     },

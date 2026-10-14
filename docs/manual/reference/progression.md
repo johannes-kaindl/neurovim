@@ -14,10 +14,10 @@
 | 4 | **NEON WRAITH** | 371 |
 | 5 | **CHROME RAVEN** | 601 |
 | 6 | **SIGNAL HUNTER** | 800 |
-| 7 | **PROTOCOL READER** | 1150 |
-| 8 | **PATTERN BREAKER** | 1550 |
-| 9 | **CIPHER ANALYST** | 2000 |
-| 10 | **SIGNAL ARCHITECT** | 2500 |
+| 7 | **PROTOCOL READER** | 900 |
+| 8 | **PATTERN BREAKER** | 1150 |
+| 9 | **CIPHER ANALYST** | 1300 |
+| 10 | **SIGNAL ARCHITECT** | 1500 |
 
 You start at **Level 1 — SIGNAL LOST** with the first chapter unlocked. XP comes
 from completing missions (`xp_reward` per mission); crossing a threshold ranks you up

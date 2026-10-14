@@ -1247,25 +1247,25 @@
     {
       "level": 7,
       "title": "PROTOCOL READER",
-      "xp_required": 1150,
+      "xp_required": 900,
       "color": "#ff6600"
     },
     {
       "level": 8,
       "title": "PATTERN BREAKER",
-      "xp_required": 1550,
+      "xp_required": 1150,
       "color": "#cc00ff"
     },
     {
       "level": 9,
       "title": "CIPHER ANALYST",
-      "xp_required": 2000,
+      "xp_required": 1300,
       "color": "#ff0066"
     },
     {
       "level": 10,
       "title": "SIGNAL ARCHITECT",
-      "xp_required": 2500,
+      "xp_required": 1500,
       "color": "#ffffff"
     }
   ],

@@ -158,10 +158,10 @@ summary: Alle wichtigen Vim-Befehle auf einen Blick. Navigation, Modi, Operatore
 | 4 | 🟣 NEON WRAITH | 371 XP | Chrome Raven + LOOT-03 |
 | 5 | 🟢 CHROME RAVEN | 601 XP | ARC II Kap. 5 + LOOT-04 |
 | 6 | 🔵 SIGNAL HUNTER | 800 XP | Kap. 6 + LOOT-05 |
-| 7 | 🟠 PROTOCOL READER | 1150 XP | Kap. 7–8 |
-| 8 | 🟣 PATTERN BREAKER | 1550 XP | Kap. 9 |
-| 9 | 🔴 CIPHER ANALYST | 2000 XP | Kap. 10 + LOOT-06 |
-| 10 | ⚪ SIGNAL ARCHITECT | 2500 XP | — |
+| 7 | 🟠 PROTOCOL READER | 900 XP | Kap. 7–8 |
+| 8 | 🟣 PATTERN BREAKER | 1150 XP | Kap. 9 |
+| 9 | 🔴 CIPHER ANALYST | 1300 XP | Kap. 10 + LOOT-06 |
+| 10 | ⚪ SIGNAL ARCHITECT | 1500 XP | — |
 
 ---
 

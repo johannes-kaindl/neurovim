@@ -433,7 +433,7 @@
       "args": [
         {
           "missions": {},
-          "total_xp": 2500,
+          "total_xp": 1500,
           "streak_current": 0,
           "streak_last_date": "",
           "sidebar_module_state": {
@@ -465,7 +465,7 @@
       "expected": {
         "new_data": {
           "missions": {},
-          "total_xp": 3500,
+          "total_xp": 2500,
           "streak_current": 0,
           "streak_last_date": "",
           "sidebar_module_state": {
@@ -493,6 +493,102 @@
           "railPin": null
         },
         "level_up": null
+      }
+    },
+    {
+      "name": "crosses into level 7 at 900",
+      "args": [
+        {
+          "missions": {},
+          "total_xp": 890,
+          "streak_current": 0,
+          "streak_last_date": "",
+          "sidebar_module_state": {
+            "mission": true,
+            "cheatsheet": false,
+            "progress": false
+          },
+          "unlocked": [
+            "M-01",
+            "M-02",
+            "M-03",
+            "M-04",
+            "KATA-01"
+          ],
+          "completed_missions": [],
+          "sandbox_bests": {
+            "easy": null,
+            "normal": null,
+            "hard": null
+          },
+          "onboarded": false,
+          "healedFrontmatters": {},
+          "ambient_enabled": false,
+          "vimPrimerSeen": false,
+          "railPin": null
+        },
+        15
+      ],
+      "expected": {
+        "new_data": {
+          "missions": {},
+          "total_xp": 905,
+          "streak_current": 0,
+          "streak_last_date": "",
+          "sidebar_module_state": {
+            "mission": true,
+            "cheatsheet": false,
+            "progress": false
+          },
+          "unlocked": [
+            "M-01",
+            "M-02",
+            "M-03",
+            "M-04",
+            "KATA-01",
+            "R-09",
+            "R-10",
+            "R-11",
+            "R-12",
+            "R-13",
+            "R-14",
+            "R-15",
+            "R-16",
+            "KATA-08",
+            "KATA-09",
+            "LOOT-07"
+          ],
+          "completed_missions": [],
+          "sandbox_bests": {
+            "easy": null,
+            "normal": null,
+            "hard": null
+          },
+          "onboarded": false,
+          "healedFrontmatters": {},
+          "ambient_enabled": false,
+          "vimPrimerSeen": false,
+          "railPin": null
+        },
+        "level_up": {
+          "old_level": 6,
+          "new_level": 7,
+          "unlocked_missions": [
+            "R-09",
+            "R-10",
+            "R-11",
+            "R-12",
+            "R-13",
+            "R-14",
+            "R-15",
+            "R-16",
+            "KATA-08",
+            "KATA-09"
+          ],
+          "unlocked_loot": [
+            "LOOT-07"
+          ]
+        }
       }
     }
   ]

@@ -77,7 +77,7 @@ describe('ProgressionEngine', () => {
   });
 
   it('unlocks R-09..R-16 at level 7', () => {
-    const data = makeData(1140);
+    const data = makeData(890);
     const result = ProgressionEngine.addXp(data, 15);
     expect(result.level_up!.new_level).toBe(7);
     expect(result.level_up!.unlocked_missions).toContain('R-09');
@@ -85,7 +85,7 @@ describe('ProgressionEngine', () => {
   });
 
   it('unlocks R-17..R-20 at level 8', () => {
-    const data = makeData(1540);
+    const data = makeData(1140);
     const result = ProgressionEngine.addXp(data, 15);
     expect(result.level_up!.new_level).toBe(8);
     expect(result.level_up!.unlocked_missions).toContain('R-17');
@@ -93,7 +93,7 @@ describe('ProgressionEngine', () => {
   });
 
   it('unlocks R-21..R-24 and KATA-11 at level 9', () => {
-    const data = makeData(1985);
+    const data = makeData(1290);
     const result = ProgressionEngine.addXp(data, 20);
     expect(result.level_up!.new_level).toBe(9);
     expect(result.level_up!.unlocked_missions).toContain('R-21');

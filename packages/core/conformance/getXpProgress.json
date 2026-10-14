@@ -45,23 +45,51 @@
       }
     },
     {
-      "name": "2499 xp",
+      "name": "899 xp",
       "args": [
-        2499
+        899
+      ],
+      "expected": {
+        "level": 6,
+        "into": 99,
+        "span": 100,
+        "pct": 99,
+        "nextLevelXp": 900,
+        "nextTitle": "PROTOCOL READER"
+      }
+    },
+    {
+      "name": "900 xp",
+      "args": [
+        900
+      ],
+      "expected": {
+        "level": 7,
+        "into": 0,
+        "span": 250,
+        "pct": 0,
+        "nextLevelXp": 1150,
+        "nextTitle": "PATTERN BREAKER"
+      }
+    },
+    {
+      "name": "1499 xp",
+      "args": [
+        1499
       ],
       "expected": {
         "level": 9,
-        "into": 499,
-        "span": 500,
+        "into": 199,
+        "span": 200,
         "pct": 100,
-        "nextLevelXp": 2500,
+        "nextLevelXp": 1500,
         "nextTitle": "SIGNAL ARCHITECT"
       }
     },
     {
-      "name": "2500 xp",
+      "name": "1500 xp",
       "args": [
-        2500
+        1500
       ],
       "expected": {
         "level": 10,

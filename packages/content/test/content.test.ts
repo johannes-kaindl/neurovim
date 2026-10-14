@@ -1,5 +1,5 @@
 import { ENTRIES, listMissions, getMission, getLore } from '../src/index';
-import { getDiff } from '@neurovim/core';
+import { getDiff, LEVELS, ProgressionEngine, unlockLevelFor } from '@neurovim/core';
 
 describe('@neurovim/content manifest', () => {
   it('has all 174 content entries (120 content + 54 solutions)', () => {
@@ -263,5 +263,35 @@ describe('briefing text', () => {
       })
       .map((m) => m.mission_id);
     expect(withLaunchLine).toEqual([]);
+  });
+});
+
+describe('progression', () => {
+  // Decided 2026-10-14: one pass through everything (story + KATAs), each mission once, must
+  // unlock and reach every mission. Replaying earns XP as a bonus, never as a wall.
+  it('a single pass without replays unlocks every mission and reaches the top level', () => {
+    const all = listMissions();
+    const done = new Set<string>();
+    let xp = 0;
+    for (;;) {
+      const level = ProgressionEngine.getLevelForXp(xp);
+      const open = all.filter((m) => !done.has(m.mission_id) && (unlockLevelFor(m.mission_id) ?? 1) <= level);
+      if (open.length === 0) break;
+      for (const m of open) {
+        done.add(m.mission_id);
+        xp += m.xp_reward;
+      }
+    }
+    expect(all.filter((m) => !done.has(m.mission_id)).map((m) => m.mission_id)).toEqual([]);
+    expect(ProgressionEngine.getLevelForXp(xp)).toBe(LEVELS[LEVELS.length - 1].level);
+  });
+
+  // The quick references repeat the level table for players; a second copy drifts (CORE-META-16).
+  it('the level tables in both quick references match LEVELS', () => {
+    for (const id of ['REF-EN-Quick_Reference', 'REF-DE-Schnellreferenz']) {
+      const body = ENTRIES.find((e) => e.id === id)!.body;
+      const rows = [...body.matchAll(/^\| (\d+) \| [^|]+\| (\d+) XP \|/gm)].map((r) => [Number(r[1]), Number(r[2])]);
+      expect(rows).toEqual(LEVELS.map((l) => [l.level, l.xp_required]));
+    }
   });
 });
