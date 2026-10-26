@@ -153,7 +153,7 @@ npm run build:manual         # scripts/gen-manual.mjs → docs/manual/reference/
 npm run generate:kata        # generate a KATA draft into packages/content/src/_drafts/
                              #   needs a local OpenAI-compatible server (LM Studio / Ollama / MLX).
                              #   Server setup, the /v1 pitfall and mobile access: the central guide at
-                             #   uplink.jkaindl.de/llm-setup (CORE-META-13) — repo-specific is only
+                             #   jkaindl.de/uplink/llm-setup (CORE-META-13) — repo-specific is only
                              #   --endpoint / --model, and that an instruct model is required: a base
                              #   model without a chat template echoes the prompt back.
 npm run capture:screenshots  # scripts/capture-screenshots.mjs → docs/screenshots/* (playwright-core + system Chrome)
@@ -462,7 +462,7 @@ CORE-DATA-01…03, CORE-OPS-01 und PROF-TS-05 hinzugekommen):
       `Claude Opus <Version> (1M context)` und deckt die hiesige Praxis wörtlich ab. Der frühere
       Abweichungs-Eintrag ist gestrichen (2026-08-19).
 - [ ] CORE-META-13 — `npm run generate:kata` setzt einen lokalen OpenAI-kompatiblen Server voraus
-      und müsste auf `uplink.jkaindl.de/llm-setup` verweisen statt Endpoint-Wissen selbst zu
+      und müsste auf `jkaindl.de/uplink/llm-setup` verweisen statt Endpoint-Wissen selbst zu
       tragen. Grenzfall: die Regel ist *(user-facing)* markiert, das Werkzeug ist aber reines
       Autoren-Tooling und im README zu Recht nicht erwähnt. Zeiger deshalb hier in `AGENTS.md`
       gesetzt; ob das der Regel genügt oder das Werkzeug in den Guide gehört, ist offen.

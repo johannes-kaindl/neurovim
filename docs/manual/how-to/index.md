@@ -142,7 +142,7 @@ are in the [desktop build guide](../../dev/how-to/build-desktop-app.md).
 The uplink lets CIPHER talk through a language model running **on your own machine**.
 You need a local OpenAI-compatible server (LM Studio, Ollama, MLX, …) with an instruct
 model loaded — setting one up is covered by the
-[LLM setup guide](https://uplink.jkaindl.de/llm-setup).
+[LLM setup guide](https://jkaindl.de/uplink/llm-setup/).
 
 > **Current state:** the uplink only *connects* so far. The panel checks your server and
 > remembers your model, but the web app has no CIPHER chat yet that would use it.

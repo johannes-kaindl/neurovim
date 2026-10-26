@@ -9,7 +9,7 @@
 - `npm install` done (the script transpiles the core with the root devDependency `esbuild`)
 - a local OpenAI-compatible server (LM Studio, Ollama, MLX, …) serving an **instruct** model.
   A base model without a chat template echoes the prompt back. Server setup, the `/v1`
-  pitfall and mobile access: <https://uplink.jkaindl.de/llm-setup>
+  pitfall and mobile access: <https://jkaindl.de/uplink/llm-setup/>
 
 ## 1 · Pick a category
 
