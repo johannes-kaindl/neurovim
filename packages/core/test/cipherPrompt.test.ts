@@ -63,6 +63,14 @@ describe('buildChatMessages', () => {
     expect(msgs[0].content).toContain('same language the operative used'); // answer-language rule
   });
 
+  it('asks for plain text and marks every Vim key sequence in square brackets (the uplink renders no Markdown)', () => {
+    const msgs = buildChatMessages({ knowledge: KNOWLEDGE, mission: null, history: [], question: 'q' });
+    expect(msgs[0].content).toContain('Plain text only');
+    expect(msgs[0].content).toContain('no Markdown');
+    expect(msgs[0].content).toContain('square brackets');
+    expect(msgs[0].content).toContain('[ci"]');
+  });
+
   it('includes mission context only when a mission is active', () => {
     const withM = buildChatMessages({ knowledge: KNOWLEDGE, mission, history: [], question: 'q' });
     expect(withM[0].content).toContain('First Contact');
