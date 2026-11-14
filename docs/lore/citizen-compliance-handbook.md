@@ -1,3 +1,9 @@
+---
+title: citizen-compliance-handbook
+created: 2026-06-04T13:02:15
+updated: 2026-10-07T16:48:56
+---
+
 <!--
   IN-WORLD LORE DOCUMENT (diegetic). Not technical documentation.
   CORP propaganda issued to citizens; the real story is between the lines.
@@ -13,7 +19,7 @@
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
-## Welcome, Citizen.
+## Welcome, Citizen
 
 You have been issued a Terminal. This is a privilege, and a kindness.
 

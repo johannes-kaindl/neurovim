@@ -1,4 +1,10 @@
-# NeuroVim Web — Design Spec (Polish Pass)
+---
+title: design-brief-polish-pass
+created: 2026-09-14T22:28:36
+updated: 2026-10-07T16:50:27
+---
+
+## NeuroVim Web — Design Spec (Polish Pass)
 
 > **Diátaxis: Explanation — historical document (2026-05-29).** This is the brief that
 > started the web app's visual design. It was implemented, then superseded by the
@@ -14,7 +20,7 @@
 
 ---
 
-## 1 · TL;DR + Project Identity
+### 1 · TL;DR + Project Identity
 
 **NeuroVim** is a Vim-learning game wrapped in a cyberpunk spy-thriller. The player is a freshly-recruited *operative* of a resistance cell; an AI handler called **CIPHER** assigns missions that are really Vim exercises — restore a CORP-corrupted document, fix glitched transmissions, beat the clock. Learning Vim is the disguised core loop; the story is the motivation layer.
 
@@ -24,7 +30,7 @@
 
 ---
 
-## 2 · Current State (screenshots)
+### 2 · Current State (screenshots)
 
 Six representative captures (1280×860 @2×, fresh save-state) live in `docs/screenshots/`. Regenerate via the headless script described in §10.
 
@@ -48,11 +54,11 @@ Embedded for convenience:
 
 ---
 
-## 3 · Design System (current)
+### 3 · Design System (current)
 
 All values are extracted from `packages/adapter-web/src/styles.css`. **Everything funnels through six CSS variables** — respect them; never hardcode hex.
 
-### Color tokens (`:root`)
+#### Color tokens (`:root`)
 
 | Var | Hex | Role |
 |---|---|---|
@@ -65,17 +71,17 @@ All values are extracted from `packages/adapter-web/src/styles.css`. **Everythin
 
 **Un-tokenized status colors** (currently hardcoded — should become vars): error/fail red `#ff6b6b` (modal-fail title, sandbox "remaining"), modal backdrop `rgba(0,0,0,0.72)`, modal shadow `rgba(0,0,0,0.6)`.
 
-### Typography
+#### Typography
 
 - **Family:** `ui-monospace, monospace` only. No web-font load (system mono — SF Mono / Menlo / Consolas). One typeface for the whole app, by design.
 - **Scale (current, ad-hoc):** h1 ≈ browser default (~32px, accent, `letter-spacing: 1px`); modal title 20px; modal XP 28px; body ≈ 16px (inherited); secondary 13–14px; fine print 11–12px (badges, XP labels). `line-height: 1.6` on prose (`.nv-md`).
 - There is **no formal type scale** — a polish opportunity (see §4 Welcome / §9).
 
-### Spacing
+#### Spacing
 
 Informal 4px-ish base; common values in use: 4, 6, 8, 10, 12, 14, 16, 18, 22, 24, 28. **Radius:** 3 / 4 / 6 / 8px. No shadow except the modal. Container widths: 820px (app/doc), 900px (editor).
 
-### Components (selector → snippet → usage)
+#### Components (selector → snippet → usage)
 
 | Component | Key style | Where |
 |---|---|---|
@@ -92,39 +98,45 @@ The **only transition** in the codebase is the XP-bar width. Hover states are in
 
 ---
 
-## 4 · View-by-View Spec
+### 4 · View-by-View Spec
 
-### Welcome (`WelcomeView.tsx`)
+#### Welcome (`WelcomeView.tsx`)
+
 - **Does:** first screen on load; the story hook + entry CTA.
 - **Current:** left-aligned wordmark + CIPHER callout + two paragraphs + `Enter NEXUS →`, vertically centered (`min-height: 70vh`). Markdown-rendered from `@neurovim/content` `getWelcome()`.
 - **Polish wishes:** this is the front door and currently reads like a README. Wants a *hero moment* — a proper type-scale jump on the wordmark, optional terminal boot/typing intro, more vertical rhythm. The CTA is small relative to its importance. Consider a faint scanline/CRT vignette on the bg (reduced-motion aware).
 - **A11y:** CTA needs a visible focus ring (currently none beyond browser default). Accent-on-bg contrast is excellent; muted body text should be verified ≥ 4.5:1.
 
-### NEXUS Picker (`App.tsx`)
+#### NEXUS Picker (`App.tsx`)
+
 - **Does:** hub — operator status (level, XP-to-next, streak, fastest), full mission list, sandbox entry.
 - **Current:** header block (level row + XP bar + stats strip) over a flat single-column list of 27 rows, then a SANDBOX section. Completed rows show a best-metrics badge + ✓.
 - **Polish wishes:** 27 flat rows is a long scroll with weak hierarchy — tiers (INDOCTRINATION / FIELD TRAINING / …) exist in the data but aren't visually grouped here (the Obsidian NEXUS groups them). Locked vs. unlocked vs. completed states are not visually distinct. Consider tier headers, a completed-state treatment (dimmed + ✓), and a locked-state (the data has `locked`/`unlocked`). Tile-grid vs. list is an open question (§9).
 - **A11y:** list is keyboard-tabbable (native buttons) ✓; needs focus-visible styling and possibly `aria-label` with XP/status on each row.
 
-### Briefing (`BriefingView.tsx`)
+#### Briefing (`BriefingView.tsx`)
+
 - **Does:** story briefing shown before every mission; renders the mission's `briefingBody` markdown.
 - **Current:** top bar (← NEXUS / `M-NN · Title` / Begin Mission →), then rendered markdown (ASCII box as `<pre>`, CIPHER/DIRECTIVE/OBJECTIVE/SKILLS as left-accent blockquotes), foot with duplicate Begin/Back.
 - **Polish wishes:** the rendering is functional but callouts are visually uniform (all green left-border) — the source distinguishes `[!quote]` / `[!warning]` / `[!tip]` / `[!success]` types whose colors/icons are currently dropped (D25). Restoring type-aware callout styling (color + small icon) would make briefings much richer (§9). The ASCII box is a highlight — lean into it.
 - **A11y:** prose contrast good; ensure the `<pre>` ASCII (accent on panel) clears 4.5:1; long briefings need clear focus order between the two CTA pairs.
 
-### Editor (`MissionEditor.tsx`)
+#### Editor (`MissionEditor.tsx`)
+
 - **Does:** the actual exercise — CodeMirror 6 + `@replit/codemirror-vim`, 60vh, line numbers, the corrupted text to fix.
 - **Current:** top bar (← NEXUS / title / Submit) + CM6 host. The CM6 theme is inline: 14px mono, 60vh, `1px solid #1f2a1c` border. Default CM6 light gutter/selection (NOT themed to match).
 - **Polish wishes:** the editor is the heart of the product and is the *least* art-directed surface — CM6 ships default colors that clash with the cyberpunk palette (light gutter, default cursor/selection). Needs a full CM6 theme: phosphor cursor, dark gutter, accent selection, line-number muting. **No visible Vim-mode indicator** (Normal/Insert/Visual) — a major UX gap for learners (§9). Submit affordance is a plain top-right button.
 - **A11y:** CM6 handles editor a11y; the surrounding bar needs focus-visible. Vim-mode state should be announced (aria-live) for screen-reader learners.
 
-### Sandbox (`SandboxView.tsx`)
+#### Sandbox (`SandboxView.tsx`)
+
 - **Does:** THE RAVEN free-play — pick difficulty, fix N injected glitches against the clock, beat your PB.
 - **Current:** `>_ RAVEN SANDBOX` header + intro line + three difficulty tiles (EASY/NORMAL/HARD with glitch count + PB) + ← NEXUS. Active state reuses the editor layout; result is an inline accent banner.
 - **Polish wishes:** difficulty tiles are plain; could carry more menace/identity (HARD should *feel* harder). The active-run state has no prominent timer (it's tracked but the HUD is minimal) — a live countdown/elapsed display would raise tension. Result banner is understated for a "you beat CORP" moment.
 - **A11y:** tiles tabbable; live timer (if added) must be `aria-live="off"`/polite to avoid spam.
 
-### Result Modal (`MissionResult.tsx`)
+#### Result Modal (`MissionResult.tsx`)
+
 - **Does:** post-submit overlay — complete (XP, level-up, run + best metrics, Next) or fail (lines-differ count, Retry).
 - **Current:** centered card, success title accent / fail title red, big +XP, metrics stack, action row. Backdrop click = dismiss.
 - **Polish wishes:** the complete state is the reward beat and is visually modest — this is where celebration belongs (§9: confetti/particles question, weighed against the somber resistance tone). Level-up deserves more than a one-line text. Fail state is fine but could be more encouraging/diegetic ("transmission still corrupted").
@@ -132,7 +144,7 @@ The **only transition** in the codebase is the XP-bar width. Hover states are in
 
 ---
 
-## 5 · Motion & Animation
+### 5 · Motion & Animation
 
 - **Current:** essentially none — only `.nv-xpbar-fill width .4s ease` + instant hover border swaps.
 - **Opportunity (diegetic):** the story is literally about *signal corruption vs. restoration*. Motion should mean something:
@@ -155,7 +167,7 @@ flowchart TD
 
 ---
 
-## 6 · Audio Integration
+### 6 · Audio Integration
 
 - **Ratified (D4):** non-intrusive, **no autoplay**; the `AudioContext` unlocks on the first user gesture (`pointerdown` / Enter NEXUS). Ambient defaults OFF.
 - **Current gap:** there is **no visible audio toggle** in the UI and **no visual pendant** for audio cues. The engine fires cues (mission complete, glitch fix, level up, wrong attempt) but a muted/headphones-off player gets nothing.
@@ -174,7 +186,7 @@ flowchart LR
 
 ---
 
-## 7 · Responsive Strategy
+### 7 · Responsive Strategy
 
 - **Current:** desktop-primary. Containers cap at 820/900px and center; the editor is `60vh`. Most rows/strips use `flex-wrap`, so they *degrade* rather than break.
 - **Known concerns at ≤375px:** the NEXUS mission rows (id + title + badges + XP + ✓ in one flex row) will get cramped; the briefing top bar (back + long title + Begin) will wrap awkwardly; the editor at 60vh with a mobile keyboard is unproven; CM6 + on-screen Vim on a phone is a genuine UX question (Vim without a physical keyboard is hard).
@@ -182,7 +194,7 @@ flowchart LR
 
 ---
 
-## 8 · Branding / Identity
+### 8 · Branding / Identity
 
 - **Wordmark:** `>_ NEUROVIM` (accent, letter-spaced). No logo mark. The `>_` prompt is the de-facto brand glyph — could be formalized.
 - **Favicon:** a single emoji SVG data-URI (📟 pager, `U+1F4DF`) in `index.html`. Functional stub; a real mark (the `>_` glyph as SVG) would be stronger and consistent.
@@ -191,7 +203,7 @@ flowchart LR
 
 ---
 
-## 9 · Open Questions (designer input wanted)
+### 9 · Open Questions (designer input wanted)
 
 Each has direct polish leverage:
 
@@ -204,7 +216,7 @@ Each has direct polish leverage:
 
 ---
 
-## 10 · Designer Workflow / Update Mechanism
+### 10 · Designer Workflow / Update Mechanism
 
 - **Primary:** edit CSS directly in `packages/adapter-web/src/styles.css` (one file, all app styles) and the inline CM6 theme in `MissionEditor.tsx` / `SandboxView.tsx`. Run `npm run dev` (from repo root) → http://localhost:5173/ for live HMR.
 - **Mockups:** drop static comps as images in `docs/mockups/` (create as needed) and reference them from this spec or a PR. No Figma in this project's setup — image mockups + direct CSS are the loop.
@@ -213,7 +225,7 @@ Each has direct polish leverage:
 
 ---
 
-## 11 · Tech Constraints (read before styling)
+### 11 · Tech Constraints (read before styling)
 
 - **Stack:** Preact 10 + plain CSS. **No Tailwind, no CSS-in-JS, no UI kit.** Class names are hand-written BEM-ish `nv-*`.
 - **Tokens, not hex:** style through the six `--nv-*` vars. If you need a new color (e.g. callout-type colors, a real status-token for `#ff6b6b`), **add it as a `:root` variable** rather than inlining.
