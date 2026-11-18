@@ -21,7 +21,7 @@ derivative works of, publicly display, publicly perform, sublicense, and
 distribute your contributions and such derivative works **under any license
 terms** — including:
 
-- the **AGPL-3.0-only** (the project's open-source license), and
+- the **AGPL-3.0-or-later** (the project's open-source license), and
 - **other licenses, including proprietary/commercial licenses.**
 
 This is the clause that lets the Maintainer offer the project commercially

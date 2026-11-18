@@ -6,6 +6,9 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Changed
+- **License identifier is now `AGPL-3.0-or-later`** (was `AGPL-3.0-only`) in `package.json` (root and workspaces), `Cargo.toml`, `LICENSING.md`, `CLA.md`, `CONTRIBUTING.md` and `ANGEBOT.md`, so that every repo of the maintainer carries the same identifier. The `LICENSE` text is unchanged (the unmodified AGPL v3).
+
 ### Fixed
 - **The daily streak counts the player's local day.** The defaults of `ProgressionEngine.recordCompletion` and `recordMissionRun`, and the day the web app passes to `completeMission`, came from `toISOString()`, the UTC day: in Berlin a mission solved between midnight and 02:00 counted for the day before, so a streak broke or failed to grow there. A new `localDay()` in the core reads the local date fields, and every "today" from the clock goes through it; "yesterday" stays calendar arithmetic on the date string. The conformance vectors are unchanged (they pass `today` explicitly), and `packages/core/conformance/README.md` states the rule for ports. The zone probes run under `node --test` (`scripts/lib/local-day.test.mjs`), because jest gives each test file a copy of `process.env` and a `TZ` set there never reaches Node.
 

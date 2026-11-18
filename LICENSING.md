@@ -5,7 +5,7 @@ NeuroVim is **dual-licensed**.
 ## 1. Open-source license (default)
 
 The source code is licensed under the **GNU Affero General Public License,
-version 3 (AGPL-3.0-only)** — see [`LICENSE`](LICENSE). This is the license that
+version 3 (AGPL-3.0-or-later)** — see [`LICENSE`](LICENSE). This is the license that
 applies to everyone by default, and it is the right choice for the overwhelming
 majority of uses: running it, studying it, modifying it, self-hosting it, and
 building on it.

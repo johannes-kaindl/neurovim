@@ -3,7 +3,7 @@
   "version": "0.2.8",
   "private": true,
   "description": "NeuroVim — a Vim-learning game. Monorepo: platform-neutral core + Obsidian/web adapters.",
-  "license": "AGPL-3.0-only",
+  "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "https://git.jkaindl.de/jkaindl/NeuroVIM.git"

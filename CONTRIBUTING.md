@@ -58,4 +58,4 @@ possible. To accept, add this line to your PR description (or as a
 > I have read and agree to the Contributor License Agreement (CLA.md).
 
 Under the open-source license, your contribution is published under the same
-license as the overall project: [AGPL-3.0-only](LICENSE).
+license as the overall project: [AGPL-3.0-or-later](LICENSE).
